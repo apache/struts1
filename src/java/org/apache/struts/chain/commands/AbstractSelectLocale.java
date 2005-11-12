@@ -33,7 +33,8 @@ import org.apache.struts.config.ModuleConfig;
 
 public abstract class AbstractSelectLocale extends ActionCommandBase {
 
-    private static final Log log = LogFactory.getLog(AbstractSelectLocale.class);
+    private static final Log log = 
+            LogFactory.getLog(AbstractSelectLocale.class);
 
     // ---------------------------------------------------------- Public Methods
 
@@ -51,13 +52,18 @@ public abstract class AbstractSelectLocale extends ActionCommandBase {
         log.trace("retrieve config...");
         ModuleConfig moduleConfig = actionCtx.getModuleConfig();
         if (!moduleConfig.getControllerConfig().getLocale()) {
-            log.debug("module is not configured for a specific locale; nothing to do");
+            if (log.isDebugEnabled()) {
+                log.debug("module is not configured for a specific locale; " 
+                        + "nothing to do");
+            }
             return (false);
         }
 
         // Retrieve and cache appropriate Locale for this request
         Locale locale = getLocale(actionCtx);
-        log.debug("set context locale to " + locale);
+        if (log.isDebugEnabled()) {
+            log.debug("set context locale to " + locale);
+        }
         actionCtx.setLocale(locale);
 
         return (false);

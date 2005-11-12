@@ -64,7 +64,8 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
 
         boolean throwEx = false;
         try {
-            throwEx = !(isAuthorized(actionCtx, actionConfig.getRoleNames(), actionConfig));
+            throwEx = !(isAuthorized(actionCtx, actionConfig.getRoleNames(), 
+                    actionConfig));
         }
         catch (Exception ex) {
             throwEx = true;
@@ -74,7 +75,8 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
         if (throwEx) {
 
             // The current user is not authorized for this action
-            throw new UnauthorizedActionException(getErrorMessage(actionCtx, actionConfig));
+            throw new UnauthorizedActionException(
+                    getErrorMessage(actionCtx, actionConfig));
         } else {
             return (false);
         }
@@ -82,9 +84,9 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
     }
 
     /**
-     * <p>Must authorization rules be consulted?  The base implementation returns
-     * <code>true</code> if the given <code>ActionConfig</code> has one or more 
-     * roles defined.</p>
+     * <p>Must authorization rules be consulted?  The base implementation 
+     * returns <code>true</code> if the given <code>ActionConfig</code> has 
+     * one or more roles defined.</p>
      * 
      * @param actionConfig the current ActionConfig object
      * @return true if the <code>isAuthorized</code> method should be consulted.
@@ -109,11 +111,13 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
      * <code>false</code>
      * @exception Exception If the action cannot be tested for authorization
      */
-    protected abstract boolean isAuthorized(ActionContext context, String[] roles,
+    protected abstract boolean isAuthorized(ActionContext context, 
+                                            String[] roles,
                                             ActionConfig actionConfig)
               throws Exception;
 
 
-    protected abstract String getErrorMessage(ActionContext context, ActionConfig actionConfig);
+    protected abstract String getErrorMessage(ActionContext context, 
+                                              ActionConfig actionConfig);
 
 }

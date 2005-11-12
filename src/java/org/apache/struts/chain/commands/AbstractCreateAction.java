@@ -35,7 +35,8 @@ public abstract class AbstractCreateAction extends ActionCommandBase {
 
 
     // ------------------------------------------------------ Instance Variables
-    private static final Log log = LogFactory.getLog(AbstractCreateAction.class);
+    private static final Log log = 
+            LogFactory.getLog(AbstractCreateAction.class);
 
     // ---------------------------------------------------------- Public Methods
 
@@ -74,7 +75,9 @@ public abstract class AbstractCreateAction extends ActionCommandBase {
 
         // Create (if necessary) and cache an Action instance
         Action action = getAction(actionCtx, type, actionConfig);
-        log.trace("setting action to " + action);
+        if (log.isTraceEnabled()) {
+            log.trace("setting action to " + action);
+        }
         actionCtx.setAction(action);
 
         return (false);
@@ -86,17 +89,22 @@ public abstract class AbstractCreateAction extends ActionCommandBase {
 
 
     /**
-     * Create and return the appropriate <code>Action</code> class for the given <code>type</code>
-     * and <code>actionConfig</code>.
+     * Create and return the appropriate <code>Action</code> class for the 
+     * given <code>type</code> and <code>actionConfig</code>.
      * @param context
      * @param type
      * @param actionConfig
      * @return
-     * @throws Exception if there are any problems instantiating the Action class.
-     * @todo The dependence on ActionServlet suggests that this should be broken up
-     * along the lines of the other Abstract/concrete pairs in the org.apache.struts.chain.commands package.
+     * @throws Exception if there are any problems instantiating the Action 
+     *                      class.
+     * @todo The dependence on ActionServlet suggests that this should be 
+     * broken up along the lines of the other Abstract/concrete pairs in the 
+     * org.apache.struts.chain.commands package.
      */
-    protected abstract Action getAction(ActionContext context, String type, ActionConfig actionConfig) throws Exception;
+    protected abstract Action getAction(ActionContext context, 
+                                        String type, 
+                                        ActionConfig actionConfig) 
+            throws Exception;
 
 
 }

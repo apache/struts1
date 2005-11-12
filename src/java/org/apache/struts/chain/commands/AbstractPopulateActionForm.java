@@ -98,10 +98,11 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
 
 
     /**
-     * For a given request parameter name, trim off any prefix and/or suffix which
-     * are defined in <code>actionConfig</code> and return what remains.  If
-     * either prefix or suffix is defined, then return null for <code>name</code>
-     * values which do not begin or end accordingly.
+     * <p>For a given request parameter name, trim off any prefix and/or suffix 
+     * which are defined in <code>actionConfig</code> and return what remains.  
+     * If either prefix or suffix is defined, then return null for
+     * <code>name</code> values which do not begin or end accordingly.</p>
+     * 
      * @param actionConfig
      * @param name
      * @return
@@ -121,7 +122,8 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
             if (!stripped.endsWith(suffix)) {
                 return null;
             }
-            stripped = stripped.substring(0, stripped.length() - suffix.length());
+            stripped = 
+                    stripped.substring(0, stripped.length() - suffix.length());
         }
 
         return stripped;
@@ -129,7 +131,9 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
     }
 
     /**
-     * Take into account whether the request includes any defined value for the global "cancel" parameter.
+     * <p>Take into account whether the request includes 
+     * any defined value for the global "cancel" parameter.</p>
+     * 
      * @param context
      * @param actionConfig
      * @param actionForm
@@ -137,13 +141,17 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
      * @see Globals.CANCEL_PROPERTY
      * @see Globals.CANCEL_PROPERTY_X
      */
-    protected void handleCancel(ActionContext context, ActionConfig actionConfig, ActionForm actionForm) throws Exception {
+    protected void handleCancel(ActionContext context, 
+                                ActionConfig actionConfig, 
+                                ActionForm actionForm) 
+            throws Exception {
         Map paramValues = context.getParameterMap();
 
         // Set the cancellation attribute if appropriate
-        /** @todo An issue was raised (but I don't think a Bugzilla ticket created) about
-         * the security implications of using a well-known cancel property which skips form validation,
-         * as you may not write your actions to deal with the cancellation case. */
+        /** @todo An issue was raised (but I don't think a Bugzilla ticket 
+         * created) about the security implications of using a well-known 
+         * cancel property which skips form validation, as you may not write 
+         * your actions to deal with the cancellation case. */
         if ((paramValues.get(Globals.CANCEL_PROPERTY) != null) ||
             (paramValues.get(Globals.CANCEL_PROPERTY_X) != null)) {
             context.setCancelled(Boolean.TRUE);

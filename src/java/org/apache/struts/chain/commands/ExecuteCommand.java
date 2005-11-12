@@ -24,14 +24,17 @@ import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 
 /**
- * <p>Invoke the appropriate <code>Command</code> for this request.  If the context's
- * <code>ActionConfig</code> has no <code>command</code> property defined, no action
- * will be taken.  If the specified command cannot be found, a warning will be logged,
- * but processing will continue.  Depending on how the chain is configured, this can
- * be used in place of an <code>Action</code> or as a method of performing pre-processing.
- * </p>
- * <p>If used instead of an action, the command which is looked up should put an ActionForward
- * into the context, unless it has already dealt with the response.</p>
+ * <p>Invoke the appropriate <code>Command</code> for this request.  If the 
+ * context's <code>ActionConfig</code> has no <code>command</code> property 
+ * defined, no action will be taken.  If the specified command cannot be 
+ * found, a warning will be logged, but processing will continue.  Depending 
+ * on how the chain is configured, this can be used in place of an 
+ * <code>Action</code> or as a method of performing pre-processing. </p>
+ * 
+ * <p>If used instead of an action, the command which is looked up should 
+ * put an ActionForward into the context, unless it has already dealt with 
+ * the response.</p>
+ * 
  * @version $Id$
  */
 public class ExecuteCommand extends ActionCommandBase {
@@ -47,12 +50,13 @@ public class ExecuteCommand extends ActionCommandBase {
 
 
     /**
-     * <p>If the <code>context</code> is "valid", lookup a command and execute it.</p>
+     * <p>If the <code>context</code> is "valid", lookup a command and 
+     * execute it.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
      *
-     * @return the result of the lookup command's <code>execute</code> method, if executed,
-     * or <code>false</code> if it was not executed.
+     * @return the result of the lookup command's <code>execute</code> method, 
+     * if executed, or <code>false</code> if it was not executed.
      */
     public boolean execute(ActionContext actionCtx) throws Exception {
         if (shouldProcess(actionCtx)) {
@@ -70,8 +74,9 @@ public class ExecuteCommand extends ActionCommandBase {
     }
 
     /**
-     * Evaluate the current context to see if a command should even be
-     * executed.
+     * <p>Evaluate the current context to see if a command should even be
+     * executed.</p>
+     * 
      * @param context
      * @return
      */
@@ -83,8 +88,10 @@ public class ExecuteCommand extends ActionCommandBase {
     }
 
     /**
-     * Find the <code>ActionConfig</code> in the current context and, if it is
-     * properly configured, lookup the appropriate <code>commons-chain</code> command.
+     * <p>Find the <code>ActionConfig</code> in the current context and, 
+     * if it is properly configured, lookup the appropriate 
+     * <code>commons-chain</code> command.</p>
+     * 
      * @param context
      * @return a <code>Command</code> to execute, or null if none is specified
      * or if the specified command cannot be found.
@@ -116,13 +123,13 @@ public class ExecuteCommand extends ActionCommandBase {
             return null;
         }
 
-        Command command = null;
         Catalog catalog = null;
 
         if (catalogName != null) {
             catalog = CatalogFactory.getInstance().getCatalog(catalogName);
             if (catalog == null) {
-                log.warn("When looking up " + commandName + ", no catalog found under " + catalogName);
+                log.warn("When looking up " + commandName + ","
+                        + " no catalog found under " + catalogName);
                 return null;
             }
 
@@ -130,12 +137,16 @@ public class ExecuteCommand extends ActionCommandBase {
             catalogName = "the default catalog";
             catalog = CatalogFactory.getInstance().getCatalog();
             if (catalog == null) {
-                log.warn("When looking up " + commandName + ", no default catalog found.");
+                log.warn("When looking up " + commandName + ","
+                        + " no default catalog found.");
                 return null;
             }
         }
 
-        log.debug("looking up command " + commandName + " in " + catalogName);
+        if (log.isDebugEnabled()) {
+            log.debug("looking up command " + commandName 
+                    + " in " + catalogName);
+        }
         return catalog.getCommand(commandName);
     }
 

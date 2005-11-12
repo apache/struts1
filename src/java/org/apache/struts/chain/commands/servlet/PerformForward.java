@@ -62,7 +62,8 @@ public class PerformForward extends AbstractPerformForward {
             // Retrieve internal message resources
             ActionServlet servlet =  (ActionServlet) sacontext.getActionServlet();
             MessageResources resources = servlet.getInternal();
-            throw new IllegalArgumentException(resources.getMessage("forwardPathNull"));
+            throw new IllegalArgumentException(
+                    resources.getMessage("forwardPathNull"));
         }
 
         ModuleConfig moduleConfig  = context.getModuleConfig();

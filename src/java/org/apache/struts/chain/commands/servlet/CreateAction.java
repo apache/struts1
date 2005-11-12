@@ -33,19 +33,20 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ModuleConfig;
 
 /**
- * <p>Concrete implementation of <code>org.apache.struts.chain.commands.CreateAction</code>
- * for use in a Servlet API chain.  Expects that the ActionContext passed into it
- * can safely be cast to <code>ServletActionContext</code>.</p>
+ * <p>Concrete implementation of <code>AbstractCreateAction</code>
+ * for use in a Servlet API chain.  Expects that the ActionContext passed 
+ * into it can safely be cast to <code>ServletActionContext</code>.</p>
  */
-public class CreateAction extends org.apache.struts.chain.commands.AbstractCreateAction {
+public class CreateAction 
+        extends org.apache.struts.chain.commands.AbstractCreateAction {
 
 
     // ------------------------------------------------------ Instance Variables
     private static final Log log = LogFactory.getLog(CreateAction.class);
 
 
-    /* :TODO The Action class' dependency on having its "servlet" property set requires this
-     * API-dependent subclass of AbstractCreateAction.
+    /* :TODO The Action class' dependency on having its "servlet" property set 
+     * requires this API-dependent subclass of AbstractCreateAction.
      */
     protected synchronized Action getAction(ActionContext context, String type,
             ActionConfig actionConfig) throws Exception  {

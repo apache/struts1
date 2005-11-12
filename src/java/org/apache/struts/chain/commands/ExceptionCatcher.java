@@ -24,7 +24,6 @@ import org.apache.commons.chain.Context;
 import org.apache.commons.chain.Filter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.chain.Constants;
 import org.apache.struts.chain.contexts.ActionContext;
 
 
@@ -45,7 +44,6 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
 
     private String catalogName = null;
     private String exceptionCommand = null;
-    private String exceptionKey = Constants.EXCEPTION_KEY;
 
     private static final Log log = LogFactory.getLog(ExceptionCatcher.class);
 
@@ -168,7 +166,8 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
 
     }
 
-    protected Command lookupExceptionCommand() throws IllegalArgumentException, IllegalStateException {
+    protected Command lookupExceptionCommand() 
+            throws IllegalArgumentException, IllegalStateException {
         String catalogName = getCatalogName();
         Catalog catalog = null;
         if (catalogName == null) {

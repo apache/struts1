@@ -68,7 +68,10 @@ public class ComposableRequestProcessor extends RequestProcessor {
     // ------------------------------------------------------ Instance Variables
 
 
-    private static final Class[] SERVLET_ACTION_CONTEXT_CTOR_SIGNATURE = new Class[] { ServletContext.class, HttpServletRequest.class, HttpServletResponse.class };
+    private static final Class[] SERVLET_ACTION_CONTEXT_CTOR_SIGNATURE = 
+            new Class[] { ServletContext.class, 
+                          HttpServletRequest.class, 
+                          HttpServletResponse.class };
 
 
     public static final String ACTION_CONTEXT_CLASS = "ACTION_CONTEXT_CLASS";
@@ -157,16 +160,22 @@ public class ComposableRequestProcessor extends RequestProcessor {
                                        commandName + "'");
         }
 
-        this.setActionContextClassName( controllerConfig.getProperty(ACTION_CONTEXT_CLASS) );
+        this.setActionContextClassName( 
+                controllerConfig.getProperty(ACTION_CONTEXT_CLASS) );
         
     }
 
-    private void setActionContextClass(Class actionContextClass) throws ServletException {
+    private void setActionContextClass(Class actionContextClass) 
+            throws ServletException {
         this.actionContextClass = actionContextClass;
-        // if there is a custom class provided and if it uses our "preferred" constructor,
-        // cache a reference to that constructor rather than looking it up every time.
+        // if there is a custom class provided and if it uses our "preferred" 
+        // constructor, cache a reference to that constructor rather than 
+        // looking it up every time.
         if (actionContextClass != null) {
-            this.servletActionContextConstructor = ConstructorUtils.getAccessibleConstructor(actionContextClass, SERVLET_ACTION_CONTEXT_CTOR_SIGNATURE);
+            this.servletActionContextConstructor = 
+                    ConstructorUtils.getAccessibleConstructor(
+                            actionContextClass, 
+                            SERVLET_ACTION_CONTEXT_CTOR_SIGNATURE);
         } else {
             this.servletActionContextConstructor = null;
         }
@@ -174,39 +183,55 @@ public class ComposableRequestProcessor extends RequestProcessor {
     }
 
     /**
-     * Make sure that the specified <code>className</code> identfies a class which can be found
-     * and which implements the <code>ActionContext</code> interface.
+     * <p>Make sure that the specified <code>className</code> identfies a class 
+     * which can be found and which implements the <code>ActionContext</code> 
+     * interface.</p>
+     * 
      * @param className
      * @throws ServletException
      */
-    private void setActionContextClassName(String className) throws ServletException {
+    private void setActionContextClassName(String className) 
+            throws ServletException {
         if (className != null && className.trim().length() > 0) {
-            log.debug("setActionContextClassName: requested context class: " + className);
+            if (log.isDebugEnabled()) {
+                log.debug("setActionContextClassName: requested context class: " 
+                        + className);
+            }
             try {
-                Class actionContextClass = RequestUtils.applicationClass(className);
+                Class actionContextClass = 
+                        RequestUtils.applicationClass(className);
                 if (!ActionContext.class.isAssignableFrom(actionContextClass)) {
-                    throw new UnavailableException("ActionContextClass [" + className + "] must implement ActionContext interface.");
+                    throw new UnavailableException("ActionContextClass " 
+                            + "[" + className + "]" 
+                            + " must implement ActionContext interface.");
                 }
                 this.setActionContextClass(actionContextClass);
             } catch (ClassNotFoundException e) {
-                throw new UnavailableException("ActionContextClass " + className + " not found.");
+                throw new UnavailableException("ActionContextClass " 
+                        + className + " not found.");
             }
         } else {
-            log.debug("setActionContextClassName: no actionContextClass specified");
+            if (log.isDebugEnabled()) {
+                log.debug("setActionContextClassName: no className specified");
+            }
             this.setActionContextClass(null);
         }
     }
 
     /**
-     * <p>Establish the <code>CatalogFactory</code> which will be used to look up
-     * the catalog which has the request processing command.</p>
-     * <p>The base implementation simply calls <code>CatalogFactory.getInstance()</code>,
-     * unless the <code>catalogFactory</code> property of this object has already been set,
-     * in which case it is not changed.</p>
+     * <p>Establish the <code>CatalogFactory</code> which will be used to look 
+     * up the catalog which has the request processing command.</p>
+     * 
+     * <p>The base implementation simply calls 
+     * <code>CatalogFactory.getInstance()</code>, unless the 
+     * <code>catalogFactory</code> property of this object has already been 
+     * set, in which case it is not changed.</p>
+     * 
      * @param servlet
      * @param moduleConfig
      */
-    protected void initCatalogFactory(ActionServlet servlet, ModuleConfig moduleConfig) {
+    protected void initCatalogFactory(ActionServlet servlet, 
+                                      ModuleConfig moduleConfig) {
         if (this.catalogFactory != null) {
             return;
         }
@@ -251,49 +276,77 @@ public class ComposableRequestProcessor extends RequestProcessor {
     }
 
     /**
-     * Provide the initialized <code>ActionContext</code> instance which will be used by this request.
-     * Internally, this simply calls <code>createActionContextInstance</code> followed by 
-     * <code>initializeActionContext</code>. 
+     * <p>Provide the initialized <code>ActionContext</code> instance which 
+     * will be used by this request. Internally, this simply calls 
+     * <code>createActionContextInstance</code> followed by 
+     * <code>initializeActionContext</code>.</p>
+     * 
      * @param request
      * @param response
      * @return
      * @throws ServletException
      */
     protected ActionContext contextInstance(HttpServletRequest request,
-                                            HttpServletResponse response) throws ServletException {
-        ActionContext context = createActionContextInstance(getServletContext(), request, response);
+                                            HttpServletResponse response) 
+            throws ServletException {
+        
+        ActionContext context = createActionContextInstance(
+                getServletContext(), request, response);
         initializeActionContext(context);
         return context;
     }
 
     /**
-     * Create a new instance of <code>ActionContext</code> according to configuration.  If no alternative was specified at initialization, 
-     * a new instance <code>ServletActionContext</code> is returned.  If an alternative was specified using the 
-     * <code>ACTION_CONTEXT_CLASS</code> property, then that value is treated as a classname, and an instance of that class
-     * is created.  If that class implements the same constructor that <code>ServletActionContext</code> does, then that constructor
-     * will be used: <code>ServletContext, HttpServletRequest, HttpServletResponse</code>; otherwise, it is assumed that the class
-     * has a no-arguments constructor.  If these constraints do not suit you, simply override this method in a subclass.
+     * <p>Create a new instance of <code>ActionContext</code> according to 
+     * configuration.  If no alternative was specified at initialization, 
+     * a new instance <code>ServletActionContext</code> is returned.  If  
+     * an alternative was specified using the <code>ACTION_CONTEXT_CLASS</code> 
+     * property, then that value is treated as a classname, and an instance of 
+     * that class is created.  If that class implements the same constructor 
+     * that <code>ServletActionContext</code> does, then that constructor
+     * will be used: <code>ServletContext, HttpServletRequest, 
+     * HttpServletResponse</code>; otherwise, it is assumed that the class
+     * has a no-arguments constructor.  If these constraints do not suit you, 
+     * simply override this method in a subclass.</p>
+     * 
      * @param servletContext
      * @param request
      * @param response
      * @return
      * @throws ServletException
      */
-    protected ActionContext createActionContextInstance(ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        if (this.actionContextClass == null) return new ServletActionContext(servletContext, request, response);
+    protected ActionContext createActionContextInstance(
+            ServletContext servletContext, 
+            HttpServletRequest request, 
+            HttpServletResponse response) 
+            throws ServletException {
+        
+        if (this.actionContextClass == null) {
+            return new ServletActionContext(servletContext, request, response);
+        }
+        
         try {
-            if (this.servletActionContextConstructor == null) return (ActionContext) this.actionContextClass.newInstance();
-            return (ActionContext) this.servletActionContextConstructor.newInstance(new Object[] { servletContext, request, response });
+            if (this.servletActionContextConstructor == null) {
+                return (ActionContext) this.actionContextClass.newInstance();
+            }
+            return (ActionContext) this.servletActionContextConstructor
+                    .newInstance(
+                            new Object[]{ servletContext, request, response });
         } catch (Exception e) {
-            throw new ServletException("Error creating ActionContext instance of type " + this.actionContextClass, e);
+            throw new ServletException(
+                    "Error creating ActionContext instance of type " 
+                        + this.actionContextClass, e);
         }
     }
     
     /**
-     * Set common properties on the given <code>ActionContext</code> instance so that commands in the chain
-     * can count on their presence.  Note that while this method does not require that its argument 
-     * be an instance of <code>ServletActionContext</code>, at this time many common Struts
-     * commands will be expecting to receive an <code>ActionContext</code> which is also a <code>ServletActionContext</code>.
+     * <p>Set common properties on the given <code>ActionContext</code> instance 
+     * so that commands in the chain can count on their presence.  Note that 
+     * while this method does not require that its argument be an instance of 
+     * <code>ServletActionContext</code>, at this time many common Struts
+     * commands will be expecting to receive an <code>ActionContext</code> 
+     * which is also a <code>ServletActionContext</code>.</p>
+     * 
      * @param context
      */
     protected void initializeActionContext(ActionContext context) {
@@ -302,6 +355,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
         }
         context.setModuleConfig(this.moduleConfig);
     }
+    
     
     /**
      * If this is a multipart request, wrap it with a special wrapper.
@@ -326,9 +380,10 @@ public class ComposableRequestProcessor extends RequestProcessor {
     }
 
     /**
-     * <p>Set the <code>CatalogFactory</code> instance which should be used to find
-     * the request-processing command.  In the base implementation, if this value is not
-     * already set, then it will be initialized when {@link initCatalogFactory} is called.
+     * <p>Set the <code>CatalogFactory</code> instance which should be used to 
+     * find the request-processing command.  In the base implementation, if 
+     * this value is not already set, then it will be initialized when 
+     * {@link #initCatalogFactory} is called.
      * </p>
      * @param catalogFactory
      */

@@ -23,8 +23,8 @@ import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ForwardConfig;
 
 /**
- * <p>Look up and execute a commons-chain <code>Command</code> based on properties of
- * the ActionContext's <code>forwardConfig</code> property.
+ * <p>Look up and execute a commons-chain <code>Command</code> based on 
+ * properties of the ActionContext's <code>forwardConfig</code> property.
  * </p>
  */
 public class ExecuteForwardCommand extends ExecuteCommand {
@@ -32,15 +32,16 @@ public class ExecuteForwardCommand extends ExecuteCommand {
     /**
      * <p>Return the command specified by the <code>command</code> and
      * <code>catalog</code> properties of the <code>forwardConfig</code>
-     * property of the given <code>ActionContext</code>.  If <code>forwardConfig</code>
-     * is null, return null.</p>
+     * property of the given <code>ActionContext</code>.  If 
+     * <code>forwardConfig</code> is null, return null.</p>
      */
     protected Command getCommand(ActionContext context) {
         ForwardConfig forwardConfig = context.getForwardConfig();
         if (forwardConfig == null) {
             return null;
         }
-        return getCommand(forwardConfig.getCommand(), forwardConfig.getCatalog());
+        return getCommand(forwardConfig.getCommand(), 
+                forwardConfig.getCatalog());
     }
 
     /**

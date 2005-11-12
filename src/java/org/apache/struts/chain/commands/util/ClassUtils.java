@@ -41,7 +41,8 @@ public final class ClassUtils {
         throws ClassNotFoundException {
 
         if (className == null) {
-            throw new NullPointerException("getApplicationClass called with null className");
+            throw new NullPointerException(
+                    "getApplicationClass called with null className");
         }
 
         ClassLoader classLoader =

@@ -43,7 +43,8 @@ public class AuthorizeAction extends AbstractAuthorizeAction {
                                    ActionConfig mapping) throws Exception {
 
         // Identify the HTTP request object
-        ServletActionContext servletActionContext = (ServletActionContext) context;
+        ServletActionContext servletActionContext = 
+                (ServletActionContext) context;
         HttpServletRequest request = servletActionContext.getRequest();
 
         // Check the current user against the list of required roles
@@ -59,10 +60,14 @@ public class AuthorizeAction extends AbstractAuthorizeAction {
     }
 
 
-    protected String getErrorMessage(ActionContext context, ActionConfig actionConfig) {
-        ServletActionContext servletActionContext = (ServletActionContext) context;
+    protected String getErrorMessage(ActionContext context, 
+                                     ActionConfig actionConfig) {
+        
+        ServletActionContext servletActionContext = 
+                (ServletActionContext) context;
+        
         // Retrieve internal message resources
-        ActionServlet servlet =  (ActionServlet) servletActionContext.getActionServlet();
+        ActionServlet servlet = servletActionContext.getActionServlet();
         MessageResources resources = servlet.getInternal();
         return resources.getMessage("notAuthorized", actionConfig.getPath());
     }

@@ -44,10 +44,14 @@ public abstract class AbstractSetOriginalURI extends ActionCommandBase {
      * @return <code>false</code> so that processing continues
      */
     public boolean execute(ActionContext actionCtx) throws Exception {
+        
         // Set the original uri if not already set
-        if (!actionCtx.getRequestScope().containsKey(Globals.ORIGINAL_URI_KEY)) {
+        if (!actionCtx.getRequestScope()
+                .containsKey(Globals.ORIGINAL_URI_KEY)) {
+            
             setOriginalURI(actionCtx);
-        }    
+        }
+        
         return (false);
 
     }

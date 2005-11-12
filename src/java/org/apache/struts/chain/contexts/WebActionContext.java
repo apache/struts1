@@ -155,14 +155,16 @@ public class WebActionContext extends ActionContextBase {
         return mc;
     }
 
-    // ISSUE:  AbstractSelectModule set the precedent of doing this at the "web context" level
-    // instead of the ServletWebContext level.  Consider whether that's how we want to do it
-    // universally for other manipulations of the RequestScope or not...
+    // ISSUE:  AbstractSelectModule set the precedent of doing this at the 
+    // "web context" level instead of the ServletWebContext level.  Consider 
+    // whether that's how we want to do it universally for other manipulations 
+    // of the RequestScope or not...
 
     public void setCancelled(Boolean cancelled) {
         super.setCancelled(cancelled);
-        // historic semantics of "isCancelled" are to consider any non-null
-        // value in the request under Globals.CANCEL_KEY as "yes, this was cancelled."
+        // historic semantics of "isCancelled" are to consider any non-null 
+        // value in the request under Globals.CANCEL_KEY as "yes, this was 
+        // cancelled."
         if (cancelled != null && cancelled.booleanValue()) {
             this.getRequestScope().put(Globals.CANCEL_KEY, cancelled);
         } else {
@@ -174,7 +176,8 @@ public class WebActionContext extends ActionContextBase {
     public Boolean getCancelled() {
         Boolean cancelled = super.getCancelled();
         if (cancelled == null) {
-            cancelled = (Boolean) this.getRequestScope().get(Globals.CANCEL_KEY);
+            cancelled = (Boolean) this.getRequestScope()
+                    .get(Globals.CANCEL_KEY);
         }
         return cancelled;
     }

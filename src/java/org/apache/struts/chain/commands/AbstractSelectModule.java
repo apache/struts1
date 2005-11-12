@@ -73,7 +73,9 @@ public abstract class AbstractSelectModule extends ActionCommandBase {
         MessageResources messageResources = (MessageResources)
             actionCtx.getApplicationScope().get(key);
         if (messageResources == null) {
-            throw new IllegalArgumentException("No message resources found in application scope under " + key);
+            throw new IllegalArgumentException(
+                    "No message resources found in application scope under " 
+                    + key);
         }
         actionCtx.setMessageResources(messageResources);
 

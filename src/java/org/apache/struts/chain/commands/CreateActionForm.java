@@ -62,7 +62,9 @@ public class CreateActionForm extends ActionCommandBase {
             return (false);
         }
 
-        log.trace("Look up form-bean " + name);
+        if (log.isTraceEnabled()) {
+            log.trace("Look up form-bean " + name);
+        }
 
         // Look up the corresponding FormBeanConfig (if any)
         FormBeanConfig formBeanConfig =
@@ -85,7 +87,8 @@ public class CreateActionForm extends ActionCommandBase {
             instance = formBeanConfig.createActionForm(actionCtx);
         }
 
-        // TODO Remove this when ActionForm no longer directly depends on ActionServlet
+        // TODO Remove this when ActionForm no longer directly depends on 
+        //      ActionServlet
         if (actionCtx instanceof ServletActionContext) {
             // The servlet property of ActionForm is transient, so
             // ActionForms which are restored from a serialized state

@@ -50,7 +50,8 @@ public class WrappingLookupCommand implements Filter {
     private String wrapperClassName = null;
     private boolean optional = false;
 
-    private static final Log log = LogFactory.getLog(WrappingLookupCommand.class);
+    private static final Log log = 
+            LogFactory.getLog(WrappingLookupCommand.class);
 
 
     public String getCatalogName() {
@@ -95,7 +96,10 @@ public class WrappingLookupCommand implements Filter {
 
     public boolean execute(Context context)
             throws Exception {
-        log.trace("execute ["+this+"]");
+        if (log.isTraceEnabled()) {
+            log.trace("execute ["+this+"]");
+        }
+        
         Command command = getCommand(context);
         if(command != null) {
             return command.execute(getContext(context));
@@ -108,7 +112,8 @@ public class WrappingLookupCommand implements Filter {
         Command command = getCommand(context);
         if(command != null && (command instanceof Filter)) {
             try {
-                return ((Filter)command).postprocess(getContext(context), exception);
+                return ((Filter)command).postprocess(
+                        getContext(context), exception);
             }
             catch (NoSuchMethodException ex) {
                 log.error("Error wrapping context in postprocess", ex);
@@ -136,7 +141,8 @@ public class WrappingLookupCommand implements Filter {
             catalog = catalogFactory.getCatalog(catalogName);
         }
         if(catalog == null) {
-            throw new IllegalArgumentException("Cannot find catalog '" + catalogName + "'");
+            throw new IllegalArgumentException(
+                    "Cannot find catalog '" + catalogName + "'");
         }
 
         Command command = null;
@@ -147,11 +153,18 @@ public class WrappingLookupCommand implements Filter {
         }
 
         if(name != null) {
-            log.debug("Lookup command " + name + " in catalog " + catalogName);
+            if (log.isDebugEnabled()) {
+                log.debug("Lookup command " + name 
+                        + " in catalog " + catalogName);
+            }
             command = catalog.getCommand(name);
-            log.debug("Found command " + command + "; optional: " + isOptional());
+            if (log.isDebugEnabled()) {
+                log.debug("Found command " + command + ";"
+                        + " optional: " + isOptional());
+            }
             if(command == null && !isOptional()) {
-                throw new IllegalArgumentException("Cannot find command '" + name + "' in catalog '" + catalogName + "'");
+                throw new IllegalArgumentException("Cannot find command " 
+                    + "'" + name + "' in catalog '" + catalogName + "'");
             } else {
                 return command;
             }
@@ -161,13 +174,17 @@ public class WrappingLookupCommand implements Filter {
     }
 
     /**
-     * If the <code>wrapperClassName</code> property is not null, return a <code>Context</code>
-     * of the type specified by <code>wrapperClassName</code>, instantiated using a single-arg
-     * constructor which takes the <code>context</code> passed as an argument to this method.
+     * <p>If the <code>wrapperClassName</code> property is not null, return a 
+     * <code>Context</code> of the type specified by 
+     * <code>wrapperClassName</code>, instantiated using a single-arg
+     * constructor which takes the <code>context</code> passed as an 
+     * argument to this method.</p>
+     * 
+     * <p>This method throws an exception if the wrapperClass cannot be found, 
+     * or if there are any errors instantiating the wrapping context.</p>
+     * 
      * @param context
      * @return
-     * @throws Exception if the wrapperClass cannot be found, or if there are any errors instantiating
-     * the wrapping context.
      */
     protected Context getContext(Context context)
             throws ClassNotFoundException,
@@ -177,13 +194,25 @@ public class WrappingLookupCommand implements Filter {
                    NoSuchMethodException
     {
         if (wrapperClassName == null) {
-            log.debug("No defined wrapper class; returning original context.");
+            if (log.isDebugEnabled()) {
+                log.debug("No defined wrapper class; " +
+                        "returning original context.");
+            }
             return context;
         }
-        log.debug("Looking for wrapper class: " + wrapperClassName);
+
+        if (log.isDebugEnabled()) {
+            log.debug("Looking for wrapper class: " + wrapperClassName);
+        }
+        
         Class wrapperClass = ClassUtils.getApplicationClass(wrapperClassName);
-        log.debug("Instantiating wrapper class");
-        return (Context) ConstructorUtils.invokeConstructor(wrapperClass, new Object[] { context });
+        
+        if (log.isDebugEnabled()) {
+            log.debug("Instantiating wrapper class");
+        }
+        
+        return (Context) ConstructorUtils
+                .invokeConstructor(wrapperClass, new Object[] { context });
     }
 
 }

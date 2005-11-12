@@ -47,7 +47,9 @@ public abstract class AbstractSetContentType extends ActionCommandBase {
         ModuleConfig moduleConfig = actionCtx.getModuleConfig();
 
         // If the content type is configured, set it for the response
-        String contentType = moduleConfig.getControllerConfig().getContentType();
+        String contentType = 
+                moduleConfig.getControllerConfig().getContentType();
+        
         if (contentType != null) {
             setContentType(actionCtx, contentType);
         }
@@ -65,7 +67,8 @@ public abstract class AbstractSetContentType extends ActionCommandBase {
      * @param context The <code>Context</code> for this request
      * @param contentType The content type for the response
      */
-    protected abstract void setContentType(ActionContext context, String contentType);
+    protected abstract void setContentType(ActionContext context, 
+                                           String contentType);
 
 
 }

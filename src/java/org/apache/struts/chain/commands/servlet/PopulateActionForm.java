@@ -47,7 +47,8 @@ public class PopulateActionForm extends AbstractPopulateActionForm {
                          ActionConfig actionConfig,
                          ActionForm actionForm) throws Exception {
         ServletActionContext saContext = (ServletActionContext) context;
-        RequestUtils.populate(actionForm, actionConfig.getPrefix(), actionConfig.getSuffix(), saContext.getRequest());
+        RequestUtils.populate(actionForm, actionConfig.getPrefix(), 
+                actionConfig.getSuffix(), saContext.getRequest());
     }
 
     protected void reset(ActionContext context,

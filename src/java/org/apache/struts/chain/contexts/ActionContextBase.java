@@ -48,7 +48,9 @@ import org.apache.struts.util.TokenProcessor;
  * <code>getSessionScope</code>.
  * </p>
  */
-public abstract class ActionContextBase extends ContextWrapper implements ActionContext {
+public abstract class ActionContextBase 
+        extends ContextWrapper 
+        implements ActionContext {
 
     /**
      * @see Constants.ACTION_KEY
@@ -68,7 +70,8 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     /**
      * @see Constants.FORWARD_CONFIG_KEY
      */
-    public static final String FORWARD_CONFIG_KEY = Constants.FORWARD_CONFIG_KEY;
+    public static final String FORWARD_CONFIG_KEY = 
+            Constants.FORWARD_CONFIG_KEY;
 
     /**
      * @see Constants.MODULE_CONFIG_KEY
@@ -99,7 +102,8 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     /**
      * @see Constants.MESSAGE_RESOURCES_KEY
      */
-    public static final String MESSAGE_RESOURCES_KEY = Constants.MESSAGE_RESOURCES_KEY;
+    public static final String MESSAGE_RESOURCES_KEY = 
+            Constants.MESSAGE_RESOURCES_KEY;
 
     /**
      * @see Constants.INCLUDE_KEY
@@ -328,13 +332,15 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
     }
 
     /**
-     * <p>Save the given <code>messages</code> into the map identified by the given <code>scopeId</code> under
-     * the given <code>key</code>.</p>
+     * <p>Save the given <code>messages</code> into the map identified by the 
+     * given <code>scopeId</code> under the given <code>key</code>.</p>
      * @param scopeId
      * @param key
      * @param messages
      */
-    public void saveActionMessages(String scopeId, String key, ActionMessages messages) {
+    public void saveActionMessages(String scopeId, 
+                                   String key, 
+                                   ActionMessages messages) {
         Map scope = getScope(scopeId);
         if ((messages == null) || messages.isEmpty()) {
             scope.remove(key);
@@ -378,8 +384,9 @@ public abstract class ActionContextBase extends ContextWrapper implements Action
 
     }
 
-    // ISSUE: The original implementation was based on the HttpSession identifier;
-    // what would be a way to do that without depending on the Servlet API?
+    // ISSUE: The original implementation was based on the HttpSession 
+    // identifier; what would be a way to do that without depending on the 
+    // Servlet API?
     // REPLY: uuid's
     // http://java.sun.com/products/jini/2.0/doc/specs/api/net/jini/id/Uuid.html
 

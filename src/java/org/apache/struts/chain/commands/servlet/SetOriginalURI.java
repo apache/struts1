@@ -42,7 +42,8 @@ public class SetOriginalURI extends AbstractSetOriginalURI {
         ServletActionContext swcontext = (ServletActionContext) context;
         HttpServletRequest request = swcontext.getRequest();
 
-        request.setAttribute(Globals.ORIGINAL_URI_KEY, request.getServletPath());
+        request.setAttribute(
+                Globals.ORIGINAL_URI_KEY, request.getServletPath());
 
     }
 
