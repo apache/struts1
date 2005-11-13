@@ -2,7 +2,7 @@
 <project>
 <!-- 
 /*
- * Copyright 2001-2004 The Apache Software Foundation.
+ * Copyright 2001-2005 The Apache Software Foundation.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -94,28 +94,6 @@
     </branch>
   </branches>
   
-  <dependencies>
-
-    <!-- for tld generation -->
-    <dependency>
-      <groupId>xml-apis</groupId>
-      <artifactId>xml-apis</artifactId>
-      <version>2.0.2</version>
-      <url>http://xml.apache.org/commons/</url>
-      <properties>
-        <war.bundle>true</war.bundle>
-      </properties>
-    </dependency>
-    
-    <dependency>
-      <groupId>xalan</groupId>
-      <artifactId>xalan</artifactId>
-      <version>2.5.1</version>
-      <url>http://xml.apache.org/xalan</url>
-    </dependency>
-    
-  </dependencies>
-  
   <build>
     <sourceDirectory>src/java</sourceDirectory>
     <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
@@ -159,6 +137,13 @@
         <targetPath>org/apache/struts/chain</targetPath>
         <includes>
           <include>chain-config.xml</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>conf/java</directory>
+        <targetPath>org/apache/struts/validator</targetPath>
+        <includes>
+          <include>validator-rules.xml</include>
         </includes>
       </resource>
       <resource>
