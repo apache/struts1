@@ -29,6 +29,16 @@
     <!--        Project management section                                -->
     <!-- ################################################################ -->
 
+   <description>
+        Struts Action Framework is a flexible control layer based on
+        <a href="userGuide/preface.html">standard technologies</a> like Java
+        Servlets, JavaBeans, ResourceBundles, and XML, as well as various
+        <a href="http://jakarta.apache.org/commons/index.html">Jakarta
+        Commons</a> packages, like BeanUtils and Chain of Responsibility.
+        Struts Action Framework helps you create an extensible development environment for your
+        application, based on published standards and proven design patterns.
+   </description>
+
   <repository>
     <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/core/trunk</connection>
     <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/core/trunk</developerConnection>

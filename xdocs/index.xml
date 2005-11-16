@@ -24,29 +24,25 @@ limitations under the License.
 
 <body>
 
-<section name="Welcome to Struts Core Framework">
+<section name="Welcome to Struts Action Framework">
 <a name="Welcome"/>
 
     <p>
-        Struts Core Framework provides the invisible underpinnings every
-        professional web application needs to survive.
-    </p>
-    
-    <p>        
-        Struts Core is a flexible control layer based on
+        Struts Action Framework is a flexible control layer based on
         <a href="userGuide/preface.html">standard technologies</a> like Java
         Servlets, JavaBeans, ResourceBundles, and XML, as well as various
         <a href="http://jakarta.apache.org/commons/index.html">Jakarta
         Commons</a> packages, like BeanUtils and Chain of Responsibility.
-        Core helps you create an extensible development environment for your
-        application, based on published standards and proven design patterns.
+        Struts Action Framework helps you create an extensible development 
+        environment for your application, 
+        based on published standards and proven design patterns.
     </p>
 
-<subsection name="Struts Core in a Nutshell">
+<subsection name="Action Framework in a Nutshell">
 <a name="nutshell"/>
 
     <p>
-        Struts Core provides its own web <strong>Controller</strong> component and
+        Action Framework provides its own web <strong>Controller</strong> component and
         integrates with other technologies to provide the Model and the View.
         For the <strong>Model</strong>, Core can interact
         with standard data access technologies,
@@ -67,12 +63,12 @@ limitations under the License.
     </p>
     
     <p>
-    	The Struts Core Controller acts as a bridge between the application's 
+    	The Action Framework Controller acts as a bridge between the application's 
     	Model and the web View. When a request is received, the Controller invokes 
-    	the Struts <strong>Action</strong> class. The Action consults with the Model 
+    	an <strong>Action</strong> class. The Action class consults with the Model 
     	(or, preferably, a <strong>Facade</strong> representing your Model) 
     	to examine or update the application's state.
-    	Struts Core provides an <strong>ActionForm</strong> class to help transfer 
+    	The framework provides an <strong>ActionForm</strong> class to help transfer 
     	data between Model and View.     	
     </p>
     
@@ -98,7 +94,7 @@ limitations under the License.
         <a href="userGuide/preface.html#xml">XML</a> document
         and named "web.xml".
         Likewise,
-        Core uses a configuration file to initialize its own resources.
+        the framework uses a configuration file to initialize its own resources.
         These resources include
         <a href="userGuide/building_controller.html#action_form_classes">
         ActionForms</a> to collect input from users,
@@ -109,7 +105,7 @@ limitations under the License.
     </p>
 
     <p>
-        Here's a simple Struts configuration (struts-config.xml) for a login workflow:
+        Here's a simple configuration (struts-config.xml) for a login workflow:
     </p>
 
     <pre><code><![CDATA[
@@ -157,8 +153,8 @@ limitations under the License.
     ]]></code></pre>
 
     <p>
-        There are several other resources you can specify in an Struts
-        Core configuration file.
+        There are several other resources you can specify in the framework's 
+        configuration file.
         You can specify validations for the ActionForms in an XML descriptor,
         using the <a href="userGuide/dev_validator.html">Struts Validator</a>.
         A standard extension, <a href="userGuide/dev_tiles.html">Tiles</a>,
@@ -166,27 +162,26 @@ limitations under the License.
         </p>
 
     <p>
-        Struts Core is an extensible framework.
-        Every class deployed by Core can be replaced by your own default class.
+        Struts Action Framework is extensible.
+        Every class deployed by the framework can be replaced by your own default class.
         The properties of your default class can be set using the
         <a href="http://jakarta.apache.org/commons/digester/"> Digester's</a>
         <code>set-property</code> feature.
         This is one reason why there are so many
         <a href="http://wiki.apache.org/struts/StrutsResources/">contributor
-        extensions</a> for Struts Core.
-        Core provides a base framework, but you can still write <b>your</b>
+        extensions</a>.
+        We provide the base framework, but you can still write <b>your</b>
         application <b>your</b> way.
      </p>
 
     <p>
-        For more about Struts Core and its underlying technologies, see the
-        <a href="userGuide/index.html">User Guide</a>
-        and the Developer Guides.
+        For more about Struts Action Framework and its underlying technologies, see the
+        <a href="userGuide/index.html">User Guide</a>.
     </p>
 
 </subsection>
 
- <subsection name="Is Struts Core the best choice for every project?">
+ <subsection name="Is Struts Action Framework the best choice for every project?">
 
     <p>
         No. If you need to write a very simple application, with a handful of
@@ -211,7 +206,7 @@ limitations under the License.
 
 <section>
    <p class="right">
-   Next: <a href="learning.html">Learning about Struts Core</a>
+   Next: <a href="learning.html">Learning about Struts Action Framework</a>
    </p>
 </section>
 

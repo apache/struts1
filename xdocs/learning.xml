@@ -25,10 +25,10 @@ limitations under the License.
 <body>
 
 <a name="Docs"/>
-<section name="Learning About Struts Core">
+<section name="Learning About Struts Action Framework">
 
     <p>
-        The <strong>official documentation</strong> for Struts Core is
+        The <strong>official documentation</strong> for Struts Action Framework is
         provided online and may be built locally from the source code
         distribution.
         To build the documentation, change to the subproject's
@@ -40,13 +40,13 @@ limitations under the License.
     </p>
 
     <p>
-        The Core documentation includes a <a href="userGuide/index.html">User Guide</a>,
-	<a href="./faqs/index.html">FAQ and Howto Guides</a>, 
+        Our documentation includes a <a href="userGuide/index.html">User Guide</a>,
+	<a href="./faqs/index.html">FAQs, and Howto Guides</a>, 
 	along with this top-level introduction.
     </p>
     
     <p>
-    	The <a href="apidocs/index.html">JavaDocs</a> 
+    	The <a href="apidocs/index.html">Javadocs</a> 
     	and <a href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/">source code</a> 
     	can also be browsed.
     </p>
@@ -63,7 +63,7 @@ limitations under the License.
         If you are previewing the documentation on the website,
         most of the links in this section will refer to the
         <strong>Nightly Build</strong>.
-        When learning about Struts Core,
+        When learning about the framework,
         <strong>be sure to refer to the documentation for the version
         you are actually using</strong>.
     </p>
@@ -73,44 +73,45 @@ limitations under the License.
  <subsection name="User Guide">
 
     <p>
-        The concise Struts Core <a href="userGuide/index.html"><strong>
+        Our concise <a href="userGuide/index.html"><strong>
         User Guide</strong></a>
         introduces the Model-View-Controller architecture,
-        and how it relates to the major components of Struts Core.
-        If you want to find out "How Core works", this is the place to start.
+        and how it relates to the major components of the framework.
+        If you want to find out "How Struts Action works", this is the place to start.
         Along with an architectural overview,
         the User Guide also includes detailed installation instructions
-        and release notes for each version of Struts Core.
+        and release notes for each version of the framework.
     </p>
 </subsection>
 
  <a name="FAQS"/>
- <subsection name="FAQS and HowTos">
+ <subsection name="FAQS and HOWTOs">
 
     <p>
-        The Struts Core <strong>FAQs</strong> are designed to fill in
-        any gaps left by the Javadocs or the User Guides.
+        Our <strong>FAQs</strong> and <strong>HOWTOs</strong> are designed to fill in
+        any gaps left by the Javadocs or User Guide.
     </p>
 
     <ul>
         <li>
-            The <a href="faqs/kickstart.html">Kickstart FAQ</a>
+            Our <a href="faqs/kickstart.html">Kickstart FAQ</a>
             answers the most common non-technical questions
-            people first ask about Struts Core.
+            people first ask about the framework.
         </li>
         <li>
-            The <a href="faqs/newbie.html">Struts Core Newbie FAQ</a>
-            answers the most common technical questions asked by first-timer
-            Struts Core developers.
+            Our <a href="faqs/newbie.html">Newbie FAQ</a>
+            answers the most common technical questions asked developers using 
+            the framework for the first-time.
+           
         </li>
     </ul>
 
     <p>
-        The <strong>Howto Guides</strong> are designed to help you get started
+        The <strong>HOWTO Guides</strong> are designed to help you get started
         with some of the optional extensions and components available
-        for Struts Core.
+        for the framework.
         These include topics like using the Secure Socket Layer (SSL) protocol
-        with Struts Core and how to unit test your Struts applications.
+        and how to unit test your applications.
     </p>
 
     <p>
@@ -122,23 +123,22 @@ limitations under the License.
     <p>
         Of course,
         the only true documentation is the code itself.
-        If you have any questions about how Struts Core actually works,
+        If you have any questions about how the framework actually works,
         do not hesitate to <em>use the source</em>.
-        For the complete, buildable source code to the entire
-        Struts Core product,
+        For the complete, buildable source code,
         see the "src" folder in your <strong>source distribution</strong>.
     </p>
 </subsection>
 
- <a name="JavaDocs"/>
- <subsection name="JavaDocs">
+ <a name="Javadocs"/>
+ <subsection name="Javadocs">
     <p>
         For more detail about a specific class or package,
-        the Struts Core <a href="apidocs/index.html"><strong>
+        our <a href="apidocs/index.html"><strong>
         Javadocs</strong></a> are <strong>surprisingly comprehensive and
         carefully maintained</strong>.
         It is <em>strongly</em> recommended that you refer to the
-        <a href="apidocs/index.html">JavaDocs</a> for each class
+        <a href="apidocs/index.html">Javadocs</a> for each class
         as you begin to use it.
         This will help ensure that important features and options are not
         overlooked.
@@ -147,10 +147,10 @@ limitations under the License.
 </subsection>
 
 <a name="Examples"/>
-<subsection name="Struts Core by Example">
+<subsection name="Struts Action Framework by Example">
     <p>
         To help you see how it all fits together, several example applications
-        are available that demonstrate using Struts Core with other
+        are available that demonstrate using the framework with other
         Apache Struts subprojects.
     </p>
 
@@ -158,10 +158,8 @@ limitations under the License.
         <li>
             Blank - A simple template for starting new Struts applications.
         </li>
-        <li>
-            <a href="http://opensource2.atlassian.com/confluence/oss/display/STRUTS/MailReader">
-            MailReader</a> - The original Struts example
-            application. <em>Try me first!</em>
+         <li>
+            Cookbook - See various techniques in action and view the source code in place. 
         </li>
         <li>
             Examples - Various demonstration applications combined as separate
@@ -179,6 +177,11 @@ limitations under the License.
                    Validator - Demonstrates using the Validator extension.
                 </li>
             </ul>
+        </li>
+        <li>
+            <a href="http://opensource2.atlassian.com/confluence/oss/display/STRUTS/MailReader">
+            MailReader</a> - The original Struts example
+            application. <em>Try me first!</em>
         </li>
    </ul>
 
@@ -215,7 +218,7 @@ limitations under the License.
 </subsection>
 
 <a name="More"/>
-<subsection name="Learning More About Struts Core">
+<subsection name="Learning More About Struts Action Framework">
     <p>
         The Struts <a href="http://struts.apache.org/mail.html">Mailing Lists</a>
         are a treasure trove of useful, interactive information.
@@ -259,7 +262,7 @@ limitations under the License.
 <a name="resources"/>
 <subsection name="Struts Community Resources">
     <p>
-        Struts Core has attracted a large and robust community of developers,
+        Apache Struts has attracted a large and robust community of developers,
         which have created a vast number of Struts related resources.
         Several pages on our wiki are devoted to listing
         <a href="http://wiki.apache.org/struts/StrutsResources">Apache Struts
@@ -290,7 +293,7 @@ limitations under the License.
 </subsection>
     
 <a name="books"/>
-<subsection name="Books about Struts">
+<subsection name="Books about Apache Struts">
 
        <p>
        The Apache Software Foundation does not provide printed manuals,
