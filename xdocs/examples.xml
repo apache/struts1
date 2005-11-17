@@ -168,25 +168,14 @@ limitations under the License.
     </subsection>
     
     <subsection name="Specify Attribute Types">
-       
-    <strong>Example Output</strong>
-    <div align="center" width="300" border="2" bordercolor="black" >
-        <table width="100%">
-        <tr>
-        <td  bgcolor="Blue"><strong>Title with specified Type.</strong></td>
-        </tr>
-        <tr>
-        <td><strong>This is the header</strong>
-        <img src="images/struts-power.gif" align="right" border="0"/>
-        </td>
-        </tr>
-        <tr>
-        <td><div align="center"><b><i>This is the body</i></b></div>
-        </td>
-        </tr>
-        </table>
-    </div>
-    
+
+    <p>The previous examples used the <strong>put</strong> tag to set
+       attributes in a Tiles definition. In those examples Tiles inferred they 
+       attribute type.  In most cases this is fine as long as you understand the
+       rules of how value types are inferred.  More on that later.  This example
+       shows that you can specify the attribute type to give Tiles a hint about
+       what to do with the value.</p>
+           
     <strong>file: WEB-INF/tiles-defs.xml</strong>
     <source><![CDATA[
 ...
@@ -197,6 +186,31 @@ limitations under the License.
 </definition>
 ...
     ]]></source>
+    
+    <p>The above code is really no different from the first example.  Tiles 
+       would've inferred the types we specified.  There are several valid 
+       settings for the type attribute.  However, they all resolve to just
+       three different types.  The type will be interpreted in one of the
+       following ways.</p>
+       
+    <ul>
+        <li><strong>String.</strong>  Value will be inserted directly in the 
+            page as text.</li>
+        <li><strong>Definition.</strong>  Value points to a valid Tiles definition
+            that will be processed and inserted in the page.</li>
+        <li><strong>Page.</strong>  Value points to a JSP page that will be
+            included in the current page.</li>
+    </ul>
+       
+    <p>In most cases Tiles will determine the appropriate type.  When would you
+       need to specify it?  Perhaps you have an attribute that is a logo that is
+       either reused or overriden for a Tile.  Tiles might interpret this value
+       as a path and try to process it as a JSP page.  If you specify it as a 
+       String it will be inserted directly into the page.  It would also be 
+       useful to specify the type if the value points to a Tiles definition
+       and you want to make sure Tiles doesn't interpret it as a direct
+       String.</p>
+       
     </subsection>
     
     <subsection name="Set Attribute With Tag Body">
