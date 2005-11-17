@@ -22,9 +22,8 @@ package org.apache.struts.action;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
-import java.lang.reflect.Method;
 
+import net.sf.cglib.proxy.Enhancer;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.DynaClass;
 import org.apache.commons.beanutils.DynaProperty;
@@ -33,13 +32,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.FormPropertyConfig;
 import org.apache.struts.util.RequestUtils;
-import net.sf.cglib.proxy.InterfaceMaker;
-import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.MethodInterceptor;
-import net.sf.cglib.proxy.MethodProxy;
-import net.sf.cglib.asm.Type;
-import net.sf.cglib.core.Signature;
-import net.sf.cglib.core.Constants;
+import org.apache.struts.util.DynaBeanInterceptor;
 
 
 /**
@@ -90,6 +83,12 @@ public class DynaActionFormClass implements DynaClass, Serializable {
      */
     protected transient Class beanClass = null;
 
+
+    /**
+     * <p>The CGLIB <code>Enhancer</code> which we will use to dynamically
+     * add getters/setters if 'enhanced' is true in the form config.
+     */
+    protected transient Enhancer enhancer = null;
 
     /**
      * <p>The form bean configuration information for this class.</p>
@@ -193,9 +192,14 @@ public class DynaActionFormClass implements DynaClass, Serializable {
     public DynaBean newInstance()
         throws IllegalAccessException, InstantiationException {
 
-        FormPropertyConfig[] props = config.findFormPropertyConfigs();
-        DynaActionForm dynaBean = (DynaActionForm) doCreate(props);
+        DynaActionForm dynaBean = null;
+        if (config.isEnhanced()) {
+            dynaBean = (DynaActionForm) getBeanEnhancer().create();
+        } else {
+            dynaBean = (DynaActionForm) getBeanClass().newInstance();
+        }
         dynaBean.setDynaActionFormClass(this);
+        FormPropertyConfig[] props = config.findFormPropertyConfigs();
         for (int i = 0; i < props.length; i++) {
             dynaBean.set(props[i].getName(), props[i].initial());
         }
@@ -273,6 +277,24 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
+     * <p>Return the <code>Enhancer</code> we are using to construct new
+     * instances, re-introspecting our {@link FormBeanConfig} if necessary
+     * (that is, after being deserialized, since <code>enhancer</code> is
+     * marked transient).</p>
+     *
+     * @return The enhancer used to construct new instances.
+     */
+    protected Enhancer getBeanEnhancer() {
+
+        if (enhancer == null) {
+            introspect(config);
+        }
+        return (enhancer);
+
+    }
+
+
+    /**
      * <p>Introspect our form bean configuration to identify the supported
      * properties.</p>
      *
@@ -320,115 +342,14 @@ public class DynaActionFormClass implements DynaClass, Serializable {
                               properties[i]);
         }
 
+        // Create CGLIB enhancer if enhancement is enabled
+        if (config.isEnhanced()) {
+             DynaBeanInterceptor interceptor = new DynaBeanInterceptor();
+             enhancer = interceptor.createEnhancer(this, getBeanClass());
+        }
     }
 
 
     // -------------------------------------------------------- Private Methods
 
-    private Object doCreate(FormPropertyConfig[] props) {
-        // Build an interface to implement consisting of getter/setter
-        // pairs for each property. Also create a lookup table so we
-        // can map method names back to the corresponding dynamic
-        // property on invocation. This allows us to correctly handle
-        // property names that don't comply with JavaBeans naming
-        // conventions.
-        Map properties = new HashMap(props.length * 2);
-        InterfaceMaker im = new InterfaceMaker();
-        for (int i = 0; i < props.length; i++) {
-            String name = props[i].getName();
-            Class type = props[i].getTypeClass();
-            Type ttype = Type.getType(type);
-
-            if (! name.matches("[\\w]+")) {
-                // Note: this allows leading digits, which is not legal
-                // for an identifier but is valid in a getter/setter
-                // method name. Since you can define such getter/setter
-                // directly, we support doing so dynamically too.
-                if (log.isWarnEnabled()) {
-                    log.warn(
-                        "Dyna property name '" + name +
-                        "' in form bean " + config.getName() +
-                        " is not a legal Java identifier. " +
-                        "No property access methods generated.");
-                }
-            } else {
-                // Capitalize property name appropriately
-                String property;
-                if ((name.length() <= 1) ||
-                    (  Character.isLowerCase(name.charAt(0)) &&
-                    (! Character.isLowerCase(name.charAt(1))))
-                ) {
-                    property = name;
-                } else {
-                    property =
-                        Character.toUpperCase(name.charAt(0)) +
-                        name.substring(1);
-                }
-
-                // Create the getter/setter method pair
-                Signature getter = new Signature("get"+property, ttype, Constants.TYPES_EMPTY);
-                Signature setter = new Signature("set"+property, Type.VOID_TYPE, new Type[] { ttype });
-                im.add(getter, Constants.TYPES_EMPTY);
-                im.add(setter, Constants.TYPES_EMPTY);
-                properties.put("get"+property, name);
-                properties.put("set"+property, name);
-            }
-        }
-        Class beanInterface = im.create();
-
-        // Now generate a proxy for the dyna bean that also implements
-        // the getter/setter methods defined above. We turn off the
-        // Factory interface to preven problems with BeanUtils.copyProperties
-        // when both source and target bean are enhanced (otherwise, the
-        // target bean's callbacks get overwritten with the source beans,
-        // leading to unexpected behaviour).
-        Enhancer e = new Enhancer();
-        e.setSuperclass(beanClass);
-        e.setInterfaces(new Class[] { beanInterface });
-        e.setCallback(new BeanInterceptor(properties));
-        e.setUseFactory(false);
-
-        // Return the generated/enhanced bean
-        return e.create();
-    }
-
-    private static class BeanInterceptor implements MethodInterceptor, Serializable {
-        private Map propertyLookup;
-
-        public BeanInterceptor(Map propertyLookup) {
-            this.propertyLookup = propertyLookup;
-        }
-
-        public Object intercept(Object obj, Method method, Object[] args,
-                                MethodProxy proxy) throws Throwable {
-
-            String methodNm = method.getName();
-            String propertyNm = (String) propertyLookup.get(methodNm);
-            String targetNm = methodNm.substring(0, 3); // get/set
-
-            if (propertyNm == null) {
-                // Not a dyna property access, just pass call along
-                return proxy.invokeSuper(obj, args);
-            }
-
-            // Handle the dyna property access:
-            //  - map getFoo(...) to get("foo", ...)
-            //  - map setFoo(bar, ...) to set("foo", bar, ...)
-            Class[] targetArgTypes = new Class[args.length + 1];
-            Object[] targetArgs = new Object[args.length + 1];
-            targetArgTypes[0] = String.class; // for property name
-            targetArgs[0] = propertyNm;
-
-            System.arraycopy(args, 0, targetArgs, 1, args.length);
-
-            for (int i = 0; i < args.length; i++) {
-                targetArgTypes[i + 1] = args[i].getClass();
-            }
-
-            Method target = obj.getClass().getMethod(targetNm, targetArgTypes);
-
-            // Return the result of mapped get/set
-            return target.invoke(obj, targetArgs);
-        }
-    }
 }

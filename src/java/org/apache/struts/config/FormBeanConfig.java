@@ -105,6 +105,20 @@ public class FormBeanConfig extends BaseConfig {
         return (this.dynamic);
     }
 
+    /**
+     * Should the form bean class be dynamically enhanced to simplify
+     * property access in JSP and tag files?
+     */
+    protected boolean enhance = false;
+    
+    public boolean isEnhanced() {
+        return (this.enhance);
+    }
+    
+    public void setEnhanced(boolean enhance) {
+        throwIfConfigured();
+        this.enhance = enhance;
+    }
 
     /**
      * The name of the FormBeanConfig that this config inherits configuration
