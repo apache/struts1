@@ -136,7 +136,6 @@ The "form-bean" element describes a particular form bean, which is a
 <!ELEMENT form-bean (icon?, display-name?, description?, set-property*, form-property*)>
 <!ATTLIST form-bean      id             ID              #IMPLIED>
 <!ATTLIST form-bean      className      %ClassName;     #IMPLIED>
-<!ATTLIST form-bean      dynamic        %Boolean;       #IMPLIED>
 <!ATTLIST form-bean      enhanced       %Boolean;       #IMPLIED>
 <!ATTLIST form-bean      extends        %BeanName;      #IMPLIED>
 <!ATTLIST form-bean      name           %BeanName;      #REQUIRED>
