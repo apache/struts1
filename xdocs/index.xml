@@ -42,9 +42,9 @@ limitations under the License.
 <a name="nutshell"/>
 
     <p>
-        Action Framework provides its own web <strong>Controller</strong> component and
+        The framework provides its own web <strong>Controller</strong> component and
         integrates with other technologies to provide the Model and the View.
-        For the <strong>Model</strong>, Core can interact
+        For the <strong>Model</strong>, the framework can interact
         with standard data access technologies,
         like <a href="http://java.sun.com/products/jdbc/">JDBC</a> and
         <a href="http://java.sun.com/products/ejb/">EJB</a>,
@@ -53,7 +53,7 @@ limitations under the License.
         <a href="http://hibernate.org/">Hibernate</a>,
         <a href="http://ibatis.apache.org/">iBATIS</a>, or
         <a href="http://db.apache.org/ojb/">Object Relational Bridge</a>.
-        For the <strong>View</strong>, Core works well with
+        For the <strong>View</strong>, the framework works well with
         <a href="http://java.sun.com/products/jsp/">JavaServer Pages</a>,
         including <a href="faqs/kickstart.html#jsf">JSTL and JSF</a>,
         as well as
@@ -63,7 +63,7 @@ limitations under the License.
     </p>
     
     <p>
-    	The Action Framework Controller acts as a bridge between the application's 
+    	The framework's Controller acts as a bridge between the application's 
     	Model and the web View. When a request is received, the Controller invokes 
     	an <strong>Action</strong> class. The Action class consults with the Model 
     	(or, preferably, a <strong>Facade</strong> representing your Model) 
@@ -175,7 +175,7 @@ limitations under the License.
      </p>
 
     <p>
-        For more about Struts Action Framework and its underlying technologies, see the
+        For more about the framework and its underlying technologies, see the
         <a href="userGuide/index.html">User Guide</a>.
     </p>
 
@@ -193,7 +193,7 @@ limitations under the License.
     <p>
         But, if you are writing a more complicated application,
         with dozens of pages,
-        that need to be maintained over time, then Struts Core can help.
+        that need to be maintained over time, then Struts Action Framework can help.
         For more about whether Model 1 or MVC/Model 2 is right for you, see
         <a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html">
         Understanding JavaServer Pages Model 2 architecture</a> and

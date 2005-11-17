@@ -90,7 +90,7 @@ limitations under the License.
                         Divide distribution into subprojects
                         <ul>
                             <li>
-                                core, apps, el, faces, site, taglibs, extras
+                                action, apps, el, faces, site, taglibs, extras
                             </li>
                             <li>
                                 flow, scripting, shale
@@ -101,7 +101,7 @@ limitations under the License.
                         Complete support for Maven builds
                     </li>
                     <li>
-                        Move core to "Struts Chain" Request Processor
+                        Move action to "Struts Chain" Request Processor
                     </li>
                     <li>
                         Enhance all configs to extend one configuration
@@ -119,7 +119,7 @@ limitations under the License.
                     <li>
                         (Pending) Bundle subproject GA releases into
                         Linux-style  distributions
-                        (Struts Classic 1.3.0 = (Core 1.3.x + Taglibs 1.3.x +
+                        (Struts Classic 1.3.0 = (Action 1.3.x + Taglibs 1.3.x +
                         Extras 1.3.x))
                     </li>
                 </ul>

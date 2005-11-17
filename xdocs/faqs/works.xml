@@ -19,22 +19,22 @@ limitations under the License.
 <document>
 
 <properties>
-<title>How Does Struts Core Work?</title>
+<title>How Does It Work?</title>
 </properties>
 <body>
-<section href="faq" name="How does Struts Core work?">
+<section href="faq" name="How does it work?">
 
-<subsection href="how" name="How Does Struts Core Work?">
+<subsection href="how" name="How does it work?">
 
 <p>
     Java Servlets are designed to handle requests made by Web browsers.
     Server pages are designed to create dynamic Web pages that can turn billboard sites into live applications.
-    Struts Core uses a special Servlet as a switchboard to route requests from Web browsers to the appropriate server page.
+    Struts Action Framework uses a special Servlet as a switchboard to route requests from Web browsers to the appropriate server page.
     This makes Web applications much easier to design, create, and maintain.
 </p>
 
 <p>
-    Here is some more detail on the mechanisms and dependencies of Struts Core:
+    Here is some more detail on the mechanisms and dependencies of the framework:
 </p>
 
 <ul>
@@ -46,7 +46,7 @@ limitations under the License.
       mappings to servlets (path or extension name), and parameters to those
       servlets.<br/>
 
-      In this file, you configure the Struts Core 
+      In this file, you configure the framework  
       <a href="../apidocs/org/apache/struts/action/ActionServlet.html"><code>ActionServlet</code></a>
       as the servlet that will handle all requests for a given mapping (usually
       the extension <code>.do</code>). This is the "switchboard" mentioned
@@ -63,7 +63,7 @@ limitations under the License.
       <a href="http://java.sun.com">Java site</a>.<br/>
    </li>
    <li>
-      In the Struts Core configuration file(s), you associate paths with
+      In the framework configuration file(s), you associate paths with
       the controller components of your application, known as
       <a href="../api/org/apache/struts/action/Action.html"><code>Action</code></a>
       classes (i.e. "login" ==&gt; LoginAction class). This tells the 
@@ -78,7 +78,7 @@ limitations under the License.
       executed.<br/>
    </li>
    <li>
-      For each <code>Action</code>, you also configure Struts Core with the names of
+      For each <code>Action</code>, you also configure the framework with the names of
       the resulting page(s) that can be shown as a result of that action. There
       can be more than one view as the result of an action (often, there are at
       least two: one for success, and one for failure).<br/>
@@ -86,19 +86,19 @@ limitations under the License.
       Your <code>Action</code> (the controller component you write) is based on
       these <em>logical</em> result mapping names. It reports back to the
       <code>ActionServlet</code> using words like "success", "failure",
-      "ready", "ok", "UserError", et cetera. Struts Core (through the
+      "ready", "ok", "UserError", et cetera. The framework (through the
       configuration that you wrote) knows how to forward to the proper
       <em>specific</em> page. This has the added advantage of reconfiguration of
       the view layer by simply editing the XML configuration file.<br/>
 
-      At this point Struts Core knows how to delegate to your controller components,
+      At this point, the framework knows how to delegate to your controller components,
       and what to show as a result of your controller processing. The "model"
       part of the application is completely up to you, and is called from
       within your controller components.
    </li>
    <li>
       You may also associate a Java Bean with an action (or set of actions) in
-      the Struts Core configuration file. The Java Bean is used as a repository for
+      the framework's configuration file. The Java Bean is used as a repository for
       form or display data that can be communicated between the view and
       controller layer.<br/>
 
@@ -106,29 +106,29 @@ limitations under the License.
       (like <code>LoginAction</code>) and any view page that is associated with
       that controller. <br/>
 
-      These Beans can also be validated with the help of Struts Core to
+      These Beans can also be validated with the help of the framework to
       help insure that the user is putting good data in the form. They can be
       carried along with a session, allowing forms to span multiple pages of
       the view, and Actions in the controller.<br/>
 
       <strong>Note</strong>: You must be using some sort of server-side
       technology (JSP, Velocity, XSLT) for the view layer (going <em>to</em> the
-      client) to see this data (plain HTML won't work). Struts Core works on the
+      client) to see this data (plain HTML won't work). The framework works on the
       server side, so the client's view has to be composed there.<br/>
 
       The client feeds the data back through normal form submission (POST/GET)
-      methods, and Struts Core updates that data in the Bean before
+      methods, and the framework updates that data in the Bean before
       calling your controller components.
    </li>
    <li>
       Within your web application will be pages that represent the view your
       users will see. These can be JSP pages, Velocity Templates,
       XSLT pages, and so forth.
-      Sets of JSP and JSTL tags are available for Struts Core so that you
+      Sets of JSP and JSTL tags are available for the framework so that you
       can get started right away, but any standard presentation technology
-      can be used with Struts Core.<br/>
+      can be used with the framework.<br/>
 
-      Even plain HTML files can be used within your Struts Core application,
+      Even plain HTML files can be used within your application,
       although they will not take full advantage of all of the dynamic
       features.<br/>
 

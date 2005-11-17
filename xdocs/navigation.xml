@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="Struts Core">
-<title>Apache Struts - Struts Core</title>
+<project name="Struts Action Framework">
+<title>Apache Struts - Struts Action Framework</title>
     <body>
 
-        <menu name="Struts Core Framework">
+        <menu name="Struts Action Framework">
             <item
                 name="Welcome"
                 href="index.html"

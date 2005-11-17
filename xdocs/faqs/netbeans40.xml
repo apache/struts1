@@ -20,7 +20,7 @@ limitations under the License.
 <document>
 
 <properties>
- <title>How to setup a basic Struts project using NetBeans IDE 4.0</title>
+ <title>How to setup a basic Struts Action Framework project using NetBeans IDE 4.0</title>
 </properties>
 
 <body>
@@ -32,7 +32,7 @@ Please read <a href="http://jakarta.apache.org/site/idedevelopers.html">this</a>
 <p>
 * DISCLAIMER - This simple How-To shows you how easy it is to use NetBeans IDE 4.0 to write code for the Struts<br/>
 framework.  It just works straight out of the box. Simply specify where your sources are<br/>
-and where you want to store your Struts Core application, and NetBeans IDE 4.0 does everything<br/>
+and where you want to store your application, and NetBeans IDE 4.0 does everything<br/>
 you need -- it even generates a customized Ant build script for you and hooks its targets<br/>
 up to IDE commands such as "Build" and "Run".<br/>
 <br/>
@@ -109,8 +109,8 @@ from the Struts Applications distribution and extract it, with the result that i
 
 </section>
 
-<section name="Let's set up a blank Struts Core application">
-Now you will use wizards to set up a new Struts application in NetBeans IDE 4.0, again in 5 steps.<br/> 
+<section name="Let's set up a blank application">
+Now you will use wizards to set up a new Struts Action Framework application in NetBeans IDE 4.0, again in 5 steps.<br/> 
 <br/>
 <ol>
   <li>

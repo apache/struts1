@@ -92,10 +92,10 @@ limitations under the License.
     </p>
 
     <p>
-    Using fewer Actions does require a deeper understanding of how Struts Core 
+    Using fewer Actions does require a deeper understanding of how Struts  
     and MVC frameworks operate.
     Don't hesitate to err on the side of creating more Action classes at first.
-    The Struts Core configuration makes it easy to refactor your Actions later,
+    The configuration file makes it easy to refactor your Actions later,
     since you can change the Action type without changing anything else in the
     application.
     </p>

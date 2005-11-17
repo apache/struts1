@@ -28,7 +28,7 @@ limitations under the License.
 <section name="Learning About Struts Action Framework">
 
     <p>
-        The <strong>official documentation</strong> for Struts Action Framework is
+        The <strong>official documentation</strong> for the framework is
         provided online and may be built locally from the source code
         distribution.
         To build the documentation, change to the subproject's
@@ -77,7 +77,7 @@ limitations under the License.
         User Guide</strong></a>
         introduces the Model-View-Controller architecture,
         and how it relates to the major components of the framework.
-        If you want to find out "How Struts Action works", this is the place to start.
+        If you want to find out "How it works", this is the place to start.
         Along with an architectural overview,
         the User Guide also includes detailed installation instructions
         and release notes for each version of the framework.
@@ -156,7 +156,7 @@ limitations under the License.
 
     <ul>
         <li>
-            Blank - A simple template for starting new Struts applications.
+            Blank - A simple template for starting new applications.
         </li>
          <li>
             Cookbook - See various techniques in action and view the source code in place. 

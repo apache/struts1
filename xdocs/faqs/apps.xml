@@ -26,7 +26,7 @@ limitations under the License.
 <subsection name="About This Document">
 <p>
 This document outlines one possible sequence of development steps that can be followed to create a
-Struts Core application.  It is not intended as a complete description of each
+Struts Action Framework application.  It is not intended as a complete description of each
 referenced development activity.  More detailed documentation is available
 elsewhere and is referenced by "(more...)" links where possible.
 </p>
@@ -35,8 +35,8 @@ elsewhere and is referenced by "(more...)" links where possible.
 <subsection name="Caveats">
 <ol>
 <li>Requirements development and design are outside of the scope of this  document.</li>
-<li>For help installing Struts Core, see the <a href="../userGuide/installation.html">Getting Started</a> chapter.</li>
-<li>There are many other ways to approach Struts Core development and there are many
+<li>For help installing the framework, see the <a href="../userGuide/installation.html">Getting Started</a> chapter.</li>
+<li>There are many other ways to approach development with the framework and there are many
     other features available besides the ones discussed below. This document
     outlines only one way to get started.</li>
 <li>This document focuses on form/data centric applications, but may also work with
@@ -57,7 +57,7 @@ elsewhere and is referenced by "(more...)" links where possible.
 <li>Create <code>struts-config.xml</code> to associate forms with
     actions.</li>
 <li>Create or update <code>web.xml</code> to reference
-    <code>ActionServlet</code>, taglibs used by Struts Core.</li>
+    <code>ActionServlet</code>, taglibs used by the framework.</li>
 <li>Parallel Tasks
 <ol>
 <li>Building</li>

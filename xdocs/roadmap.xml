@@ -195,7 +195,7 @@ limitations under the License.
         <p>
             To lay the groundwork for future changes,
             three "experimental" classes and interfaces are being added to
-            Struts Core so that early adopters can experiment with using
+            the framework so that early adopters can experiment with using
             Struts Chain to develop applications.
             We do consider these members experimental,
             and they are subject to change,
@@ -298,7 +298,7 @@ limitations under the License.
             Depending on how the work goes with the experimental
             ActionCommand interface,
             we might identifiy a need to add a catalog element to the
-            Struts Core configuration,
+            configuration,
             to support using a Chain of ActionCommands.
         </p>
 
@@ -434,12 +434,12 @@ limitations under the License.
     </ul>
 
     <p>
-        A strong goal should be that a Struts Core application should be
+        A strong goal should be that an application should be
         usable either as a webapp or as a portlet,
         with little (ideally no) changes.
         Therefore, we should build whatever it takes to support this into
-        the standard Struts Core distribution,
-        which woulf then be used in both environments.
+        the standard framework distribution,
+        which could then be used in both environments.
     </p>
 
 </subsection>

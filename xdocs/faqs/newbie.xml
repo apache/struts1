@@ -29,7 +29,7 @@ limitations under the License.
 
     <p>
     Here are answers to the most common questions people ask when using
-    Struts Core on their first project.
+    the framework on their first project.
     </p>
 
     <ul>
@@ -114,7 +114,7 @@ limitations under the License.
 <subsection name="What is a modular application? What does module-relative mean?">
 
 <p>
-Since Struts 1.1, the Core framework supports multiple application modules. All applications have at
+Since Struts 1.1, the framework supports multiple application modules. All applications have at
 least one root, or default, module. Like the root directory in a file system, the default application
 has no name. (Or is named with an empty string, depending your viewpoint.) Developing an application
 with only a default module is no different from how applications were developed under Struts 1.0.
@@ -128,7 +128,7 @@ User Guide.
 </p>
 
 <p>
-But to answer the question =:0), a modular application is a Struts Core application that uses more than
+But to answer the question =:0), a modular application is an application that uses more than
 one module. Module-relative means that the URI starts at the module level, rather than at
 the context level, or the absolute-URL level.
 </p>
@@ -180,7 +180,7 @@ and the result was not pretty.
 Since then, most developers use different approaches to data persistent,
 and most developers now have a good understanding of why we want to separate 
 the model from the view. 
-Accordingly, we do plan to introduce more interfaces into Struts Core. 
+Accordingly, we do plan to introduce more interfaces into the framework. 
 It's just a matter of when. 
 </p>
 <p>
@@ -194,8 +194,8 @@ and Hubert Rabago's <a href="https://formdef.dev.java.net/">FormDef</a>.
 <a name="JavaBeans"/>
 <subsection name="Do ActionForms have to be true JavaBeans?">
 <p>
-The utilities that Struts Core uses (Commons-BeanUtils since 1.1) require that ActionForm properties follow
-the JavaBean patterns for mutators and accessors (get*,set*,is*). Since Struts Core uses the Introspection API
+The utilities that the framework uses (Commons-BeanUtils since 1.1) require that ActionForm properties follow
+the JavaBean patterns for mutators and accessors (get*,set*,is*). Since the framework uses the Introspection API
 with the ActionForms, some containers may require that all the JavaBean patterns be followed, including
 declaring "<code>implements Serializable</code>" for each subclass. The safest thing is to review the
 <a href="../userGuide/preface.html#javabeans">JavaBean specification</a> and follow all the prescribed patterns.
@@ -226,7 +226,7 @@ and <a href="#otherBeans">Using Hashmaps with ActionForms</a> in this FAQ.
     </ul>
     <p>
     ActionForms (a.k.a. "form beans") are really just Java beans (with a few
-    special methods) that Struts Core creates and puts into session or request scope for you.
+    special methods) that the framework creates and puts into session or request scope for you.
     There is nothing preventing you from using other beans, or including
     them in your form beans. Here are some examples:
     </p>
@@ -347,10 +347,10 @@ and <a href="#otherBeans">Using Hashmaps with ActionForms</a> in this FAQ.
     rules.</p>
 
     <p>First, your ActionForm bean must have a zero-arguments
-    constructor.  This is required because Struts Core must be able to
+    constructor.  This is required because the framework must be able to
     dynamically create new instances of your form bean class, while
     knowing only the class name.  This is not an onerous restriction,
-    however, because Struts Core will also populate your form bean's
+    however, because the framework will also populate your form bean's
     properties (from the request parameters) for you.</p>
 
     <p>Second, the fields of your form bean are made available to the
@@ -411,8 +411,8 @@ and <a href="#otherBeans">Using Hashmaps with ActionForms</a> in this FAQ.
 
     <p>There are other rules to follow if you want other features of your
     form beans to be exposed.  These include indexed attributes and mapped
-    attributes.  They are covered in detail in other areas of the Struts
-    Core documentation, in particular:</p>
+    attributes.  They are covered in detail in other areas of the 
+    documentation, in particular:</p>
     
     <a href="indexedprops.html">indexedprops.html</a>
     
@@ -458,7 +458,7 @@ and <a href="#otherBeans">Using Hashmaps with ActionForms</a> in this FAQ.
         undisplayed boolean properties will always appear to have a
         <code>false</code> value.</li>
     <li><em>Workflow</em> - The most common need for form bean
-        reuse is workflow.  Out of the box, Struts Core has limited support
+        reuse is workflow.  Out of the box, the framework has limited support
         for workflow, but a common pattern is to use a single form bean
         with all of the properties for all of the pages of a workflow.
         You will need a good understanding of the
@@ -483,8 +483,8 @@ and <a href="#otherBeans">Using Hashmaps with ActionForms</a> in this FAQ.
     <code>Action</code> would then be use to process the submitted form fields,
     by declaring an instance of the same form bean name.</p>
 
-    <p>The <em>struts-example</em> example application that is shipped
-    with Struts Core illustrates this design pattern nicely.  Note the following
+    <p>The <em>MailReader</em> application, part of the Struts Applications
+    subrpoject, illustrates this design pattern nicely.  Note the following
     definitions from the <code>struts-config.xml</code> file:</p>
     <pre>
         ...
@@ -519,8 +519,8 @@ and <a href="#otherBeans">Using Hashmaps with ActionForms</a> in this FAQ.
     <ul>
     <li>Both the <code>/editRegistration</code> and
         <code>/saveRegistration</code> actions use the same form bean.</li>
-    <li>When the <code>/editRegistration</code> action is entered, Struts
-        Core will have pre-created an empty form bean instance, and passed it to
+    <li>When the <code>/editRegistration</code> action is entered, the 
+        framework will have pre-created an empty form bean instance, and passed it to
         the <code>execute()</code> method.  The setup action is free to
         preconfigure the values that will be displayed when the form is
         rendered, simply by setting the corresponding form bean properties.
@@ -535,13 +535,13 @@ and <a href="#otherBeans">Using Hashmaps with ActionForms</a> in this FAQ.
         validation on the form that is being set up.  You will normally want
         to include this attribute in the configuration of your setup actions,
         because you are not planning to actually process the results -- you
-        simply want to take advantage of the fact that Struts Core will precreate
+        simply want to take advantage of the fact that the framework will precreate
         a form bean instance of the correct class for you.</li>
     <li>The processing action (<code>/saveRegistration</code>), on the other
         hand, leaves out the <code>validate</code> attribute, which defaults
-        to <code>true</code>.  This tells Struts Core to perform the validations
+        to <code>true</code>.  This tells the framework to perform the validations
         associated with this form bean before invoking the processing action
-        at all.  If any validation errors have occurred, Struts Core will forward
+        at all.  If any validation errors have occurred, the framework will forward
         back to your input page (technically, it forwards back to an
         <code>ActionForward</code> named "registration" in this case, because
         the example webapp uses the <code>inputForward</code> attribute in the
@@ -668,7 +668,7 @@ fields, duplicate records, security constraints, etc.</p>
 and things that make sense for the particular problem you are triing to
 solve.</p>
 <p>
-... This is where Struts Core comes into the picture, by now the system should be
+... This is where the framework comes into the picture, by now the system should be
 pretty well bulletproof.  What we are going to do is make validation friendlier
 and informative.  Rember it is OK to have duplicate validations...</p>
 <p>
@@ -707,7 +707,7 @@ User Guide</a></p>
     <p>
     The simplest way is to have two actions.  The first one has the job of setting
     the form data, i.e. a blank registration screen.  The second action in our
-    writes the registration data to the database. Struts Core 
+    writes the registration data to the database. The framework  
     would take care of invoking the validation and returning the user to the
     correct screen if validation was not complete.
     </p>
@@ -925,7 +925,7 @@ to add this attribute and set it to <code>false</code>.
     calling the second Action from the first Action has the same effect as calling the second
     Action from scratch.
     If both of your Actions change the properties of a formbean,
-    the changes made by the first Action will be lost because Struts Core calls the reset() method on
+    the changes made by the first Action will be lost because the framework calls the reset() method on
     the formbean when the second Action is called.
         </p>
 
