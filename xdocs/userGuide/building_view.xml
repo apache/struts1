@@ -29,7 +29,7 @@ limitations under the License.
 <subsection name="3.1 Overview">
 
     <p>
-        Struts Core provides infrastructural support for view components,
+        The framework provides infrastructural support for view components,
         but does not provide any actual view components of its own.
         Several options are available, such as
         <a href="http://struts.apache.org/struts-taglib/">Struts Taglib</a>,
@@ -40,7 +40,7 @@ limitations under the License.
     </p>
 
     <p>
-        Features provided by Struts Core for direct use by view components
+        Features provided by the framework for direct use by view components
         include <a href="#resources">Message Resources</a>
         for localizing text and images,
         and <a href="#formbeans">FormBeans</a> to provide for automatic
@@ -120,7 +120,7 @@ limitations under the License.
         
         <li>
         <a href="../struts-core/apidocs/org/apache/struts/util/MessageResources.html">
-        <strong>MessageResources</strong></a> - The Struts Core class 
+        <strong>MessageResources</strong></a> - The framework class 
         <code>org.apache.struts.util.MessageResources</code> lets you treat
         a set of resource bundles like a database, and allows you to request
         a particular message string for a particular Locale (normally one
@@ -131,7 +131,7 @@ limitations under the License.
     </ul>
 
     <p>
-    Please note that the i18n support in a framework like Core is limited to 
+    Please note that the i18n support in a server-side framework is limited to 
     the <strong>presentation</strong> of internationalized text and images to the user.
     Support for Locale specific <strong>input methods</strong> (used with languages
     such as Japanese, Chinese, and Korean) is left up to the client device, 
@@ -219,9 +219,9 @@ limitations under the License.
 
 <p>
     <strong>Note:</strong> While the examples given here use JSP and custom tags,
-    the ActionForm beans and the other Core controller components are
+    the ActionForm beans and the other controller components are
     View neutral. 
-    Struts Core can be used with Cocoon, Velocity Templates, XSLT, and
+    The framework be used with Cocoon, Velocity Templates, XSLT, and
     any other presentation technology that can be rendered via a Java servlet. 
 </p>
 
@@ -278,12 +278,12 @@ value="<%= loginBean.getUsername() >"/>
     Most browsers support this through a &lt;input type="file"&gt; element, 
     that generates a file browse button, but it's up to the developer to 
     handle the incoming files. 
-    Struts Core handles these "multipart" forms in a way identical to building 
+    The framework handles these "multipart" forms in a way identical to building 
     normal forms. 
     </p>
     
     <p>
-    For an example of using Struts Core to create a simple login form, 
+    For an example of using the framework to create a simple login form, 
     see the "<a href="../faqs/actionForm.html">
     Buiding an ActionForm Howto</a>".
     </p>
@@ -294,7 +294,7 @@ value="<%= loginBean.getUsername() >"/>
 
     <p>
     In addition to the form and bean interactions described above,
-    Struts Core offers an additional facility to validate the input
+    The framework offers an additional facility to validate the input
     fields it has received.
     To utilize this feature, override the following method in your ActionForm
     class:
@@ -350,15 +350,14 @@ HttpServletRequest request);
     </p>
 
     <p>
-    The Struts Core Validator, covered in the next section, may be
-    used to easily 
+    The Struts Validator, covered in the next section, may be used to easily 
     validate ActionForms.
     </p>
     
 </subsection>
 
 <a name="validator"/>
-<subsection name="3.3.3 The Struts Core Validator">
+<subsection name="3.3.3 The Struts Validator">
 
 
     <p>
@@ -411,7 +410,7 @@ value="/WEB-INF/validator-rules.xml,
     </p>
     
     <p>
-    For more about the Struts Core Validator, see the 
+    For more about the Struts Validator, see the 
     <a href="./dev_validator.html">Developers Guide</a>.
     </p>
     
@@ -513,12 +512,12 @@ parameter="homepage"/>
 <a name="presentation_frameworks"/>
 <subsection name="3.4 Presentation Frameworks">
     <p>
-        Struts Core is supported by many presentation frameworks,
-        and there are a great number of extensions to Struts Core
-        to help make creating view components even easier.
+        The framework is supported by many presentation technologies,
+        and there are a great number of extensions that 
+        make creating view components even easier.
     </p>
 
-    Some popular presentation layer frameworks include:
+    Some popular presentation layer technologies include:
     <ul>
         <li>
             <a href="http://struts.apache.org/struts-taglib/">

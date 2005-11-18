@@ -32,8 +32,8 @@ limitations under the License.
     Now that we understand how to construct the Model and View components
     of your application, it is time to focus on the Controller
     components.
-    Struts Core includes a servlet that implements the primary function of
-     mapping a request URI to an Action class.
+    The framework includes a servlet that implements the primary function of
+    mapping a request URI to an Action class.
     Therefore, your primary responsibilities related to the Controller are:
     </p>
 
@@ -127,7 +127,7 @@ limitations under the License.
     It then goes through an enumeration of all init-param
     elements, looking for those elements who's name starts with
     config/.
-    For each of these elements, Core loads the configuration file specified
+    For each of these elements, the framework loads the configuration file specified
     by the value of that init-param, and assigns a "prefix"
     value to that module's ModuleConfig instance consisting of the piece
     of the init-param name following "config/".
@@ -156,7 +156,7 @@ limitations under the License.
 
     <p>
     The RequestProcessor is where the majority of the core processing
-    occurs for each request. Since Struts 1.3, the default Request Processor
+    occurs for each request. Since version 1.3, the default Request Processor
     (<code>ComposableRequestProcessor</code>) is composed using
     <a href="http://jakarta.apache.org/commons/chain/">Jakarta Commons Chain</a>,
     which is an implementation of the <i>Chain of Responsibility</i> pattern (CoR).
@@ -462,7 +462,7 @@ messages. Here we provide a table summarizing the changes.
     scope.
     If they're in the session it's important to implement the form's
     reset method to initialize the form before each use.
-    Core sets the ActionForm's properties from the request parameters and
+    The framework sets the ActionForm's properties from the request parameters and
     sends the validated form to the appropriate Action's execute
     method.
     </p>
@@ -486,7 +486,7 @@ messages. Here we provide a table summarizing the changes.
     <li>
     The ActionForm object also offers a standard validation mechanism.
     If you override a "stub" method, and provide error messages in the
-    standard application resource, Core will automatically validate the
+    standard application resource, The framework will automatically validate the
     input from the form (using your method).
     See "<a href="building_view.html#3_3_4_Automatic_Form_Validation">Automatic Form
     Validation</a>" for details. Of course, you can also ignore the
@@ -552,7 +552,7 @@ messages. Here we provide a table summarizing the changes.
 
     <p>
     Maintaining a separate concrete ActionForm class for each form in your
-    Struts Core application is time-consuming.
+    application is time-consuming.
     It is particularly frustrating when all the ActionForm does is gather
     and validate simple properties that are passed along to a business
     JavaBean.
@@ -561,7 +561,7 @@ messages. Here we provide a table summarizing the changes.
     This bottleneck can be alleviated through the use of DynaActionForm classes.
     Instead of creating a new ActionForm subclass and new get/set methods for
     each of your bean's properties, you can list its properties, type, and
-    defaults in the Struts Core configuration file.
+    defaults in the framework's configuration file.
     </p>
 
     <p>
@@ -722,7 +722,7 @@ messages. Here we provide a table summarizing the changes.
     DynaActionForms cannot be instantiated using a no-argument constructor.
     In order to simulate the extra properties,
     there is a lot of machinery involved in their construction.
-    You must rely on Struts Core to instantiate a DynaActionForm for you,
+    You must rely on the framework to instantiate a DynaActionForm for you,
     via the ActionMapping.
     </p>
 
@@ -860,14 +860,14 @@ messages. Here we provide a table summarizing the changes.
     <p>
     The DynaActionForm classes offer the ability to create ActionForm beans
     at initialization time, based on a list of properties enumerated in the
-    Struts Core configuration file.
+    the framework's configuration file.
     However, many HTML forms are generated dynamically at request time.
     Since the properties of these forms' ActionForm beans are not all known
     ahead of time, we need a new approach.
     </p>
 
     <p>
-    Struts Core allows you to make one or more of your ActionForm's
+    The framework allows you to make one or more of your ActionForm's
     properties' values a Map instead of a traditional atomic object.
     You can then store the data from your form's dynamic fields in that Map.
     Here is an example of a map-backed ActionForm class:
@@ -902,9 +902,9 @@ messages. Here we provide a table summarizing the changes.
         </li>
 
         <li>
-        Struts Core should look for get/set methods that take a String key
+        The framework should look for get/set methods that take a String key
         parameter to find the correct sub-property value.
-        Core will, of course, use the keyname value from the
+        The framework will, of course, use the keyname value from the
         parentheses when it calls the get/set methods.
         </li>
 
@@ -967,7 +967,7 @@ messages. Here we provide a table summarizing the changes.
     listname[index].
     The braces in the bean property name indicate that the bean property named
     listname is indexed (probably backed by a List), and that
-    Core should look for get/set methods that take an index parameter
+    the framework should look for get/set methods that take an index parameter
     in order to find the correct sub-property value.
     </p>
 
@@ -1177,9 +1177,9 @@ throws Exception;
     to another conceptual layer;
     otherwise, you may be left with an inflexible application which can only
     be accessed in a web-application environment.
-    Struts Core should be viewed as simply the <strong>foundation</strong>
+    The framework should be viewed as simply the <strong>foundation</strong>
     for implementing MVC in your applications.
-    Core provides a useful control layer, but it is not a fully
+    Struts Action Framework provides a useful control layer, but it is not a fully
     featured platform for building MVC applications, soup to nuts.
     </p>
 
@@ -1195,7 +1195,7 @@ throws Exception;
     org.apache.struts.action.ExceptionHandler and override the
     execute method.
     Your execute method should process the Exception and return
-    an ActionForward object to tell Core where to forward to next.
+    an ActionForward object to tell the framework where to forward to next.
     Then you configure your handler in struts-config.xml like this:
     </p>
 
@@ -1368,7 +1368,7 @@ throws Exception;
 
     <p>
     PlugIns are configured using &lt;plug-in&gt; elements within the
-    Struts Core configuration file.
+    framework's configuration file.
     See <a href="configuration.html#5_2_3_PlugIn_Configuration">PlugIn Configuration</a>
     for details.
     </p>
@@ -1437,7 +1437,7 @@ throws Exception;
     instantiated new ActionMapping instances, and called all of
     the appropriate setter methods.
     To make this process easier,
-    Struts Core uses the Jakarta Commons Digester component
+    the framework uses the Jakarta Commons Digester component
     to parse an XML-based description of the desired mappings
     and create the appropriate objects initialized
     to the appropriate default values.
@@ -1458,7 +1458,7 @@ throws Exception;
     There are several other elements that can be placed in the
     struts-config file to customize your application.
     See "<a href="configuration.html">Configuring Applications</a>" for more
-    about the other elements in the Struts Core configuration file.
+    about the other elements in the framework's configuration file.
     </p>
 
     <p>
@@ -1594,7 +1594,7 @@ throws Exception;
     For a complete description of the elements that can be used with the
     action element, see the
     <a href="http://struts.apache.org/dtds/struts-config_1_3.dtd">
-    Apache Struts Core Configuration DTD</a> and the
+    configuration DTD</a> and the
     <a href="../struts-core/apidocs/org/apache/struts/action/ActionMapping.html">
     ActionMapping documentation</a>.
     </p>
@@ -1699,7 +1699,7 @@ throws Exception;
     </p>
 
     <p>
-    The Struts Core configuration file includes several other elements that you
+    The configuration file includes several other elements that you
     can use to customize your application.
     See "<a href="configuration.html">Configuring Applications</a>" for details.
     </p>
@@ -1769,13 +1769,13 @@ throws Exception;
     the URI matched by the wildcard will then be substituted into various
     attributes of the action mapping and its action forwards replacing
     {1}.
-    For the rest of the request, Core will see the action mapping and its
+    For the rest of the request, the framework will see the action mapping and its
     action forwards containing the new values.
     </p>
 
     <p>
     Mappings are matched against the request in the order they appear in
-    the Struts Core configuration file. If more than one pattern matches the
+    the framework's configuration file. If more than one pattern matches the
     last one wins, so less specific patterns must appear before more
     specific ones. However, if the request URL can be matched against
     a path without any wildcards in it, no wildcard matching is performed
@@ -1872,7 +1872,7 @@ throws Exception;
 <a name="logging"/>
 <subsection name="4.11 Commons Logging Interface">
     <p>
-    Struts Core doesn't configure logging itself -- it's all done by
+    The framework doesn't configure logging itself -- it's all done by
     <a href="http://jakarta.apache.org/commons/">commons-logging</a>
     under the covers.
     The default algorithm is a search:
@@ -1907,7 +1907,7 @@ throws Exception;
     </p>
 
     <p>
-    Because Struts Core uses commons-logging and, therefore,
+    Because the framework uses commons-logging and, therefore,
     includes the necessary JAR files,
     you've probably had the occasional fleeting thought,
     <em>"Should I use commons-logging?"</em>
@@ -1959,8 +1959,8 @@ public class Foo {
     </p>
 
     <p>
-    For examples of using logging in Struts Core classes, see the
-    Action classes in the Struts MailReader example application.
+    For examples of using logging in the framework classes, see the
+    Action classes in our MailReader example application.
     </p>
 
 </subsection>

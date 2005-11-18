@@ -61,7 +61,7 @@ limitations under the License.
     </p>
 
     <p>If you've created web applications for other platforms, you may be able to follow along
-    and visit the other references as needed. The core technologies used by Core are
+    and visit the other references as needed. The core technologies used by the framework are
     also used by most other Java web development products, so the background information will be
     useful in any Java project.
     </p>
@@ -113,7 +113,7 @@ limitations under the License.
     <p>A very important part of HTTP for the web developer is the request/response cycle. To use HTTP
     you have to make a request. A HTTP server, like a web server, is then obliged to respond. When you
     build your web application, you design it to react to a HTTP request by returning a HTTP response.
-    Frameworks like Core abstract much of these nuts and bolts, but it is important to understand
+    Frameworks abstract much of these nuts and bolts, but it is important to understand
     what is happening behind the scenes. </p>
 
     <p>If you are not familiar with the HTTP request/response cycle, we <strong>strongly</strong> recommend the
@@ -126,14 +126,14 @@ limitations under the License.
     <a name="java"/>
     <subsection name="0.4 The Java Language and Application Frameworks">
 
-    <p>Struts Core is written in the popular and versatile
+    <p>The framework is written in the popular and versatile
     <a href="http://java.sun.com/docs/books/jls/first_edition/html/index.html">Java programming language</a>.
-    Java is an object-orientated language, and Core makes good use of many
+    Java is an object-orientated language, and the framework makes good use of many
     object-orientated techniques.  In addition, Java natively supports the
     concept of <em>threads</em>, which allows more than one task to be
     performed at the same time.  A good understanding of Java, and especially
     object-orientated programming (OOP) and threading, will help
-    you get the most out of Struts Core and this User Guide. </p>
+    you get the most out of the framework and this User Guide. </p>
 
     <p>For more about Java and threads, see </p>
 
@@ -183,7 +183,7 @@ limitations under the License.
               implemented.
               Most importantly, we can adjust the Chain without changing
               how callers invoke the Chain.
-              As of Struts Core 1.3,
+              As of version 1.3,
               the default Request Processor,
               which acts as the framework's "kernal",
               is a Chain of Responsiblity.
@@ -223,12 +223,12 @@ limitations under the License.
     <a name="javabeans"/>
     <subsection name="0.5 JavaBeans">
 
-    <p>Like many Java applications, most of the Struts Core objects are designed as
+    <p>Like many Java applications, most of the framework objects are designed as
     <a href="http://java.sun.com/products/javabeans/">JavaBeans</a>. Following the JavaBean design patterns makes
-    the Struts Core classes easier to use -- both by Java developers and by Java development tools. </p>
+    the framework's classes easier to use -- both by Java developers and by Java development tools. </p>
 
     <p>Although JavaBeans were first created for visual elements, these object design patterns have been found to
-    be useful as the basis for any reusable component, like those used by the Struts Core framework.</p>
+    be useful as the basis for any reusable component, like those used by the framework.</p>
 
     <p>For more about JavaBeans, see:</p>
 
@@ -258,7 +258,7 @@ limitations under the License.
     </p>
 
     <p>
-    The Struts Core framework uses Introspection to convert HTTP parameters into JavaBean properties and to populate HTML fields from JavaBean properties.
+    The framework uses Introspection to convert HTTP parameters into JavaBean properties and to populate HTML fields from JavaBean properties.
     This technique makes it easy to "roundtrip" properties between HTML forms and JavaBeans.
     </p>
 
@@ -302,7 +302,7 @@ limitations under the License.
     </p>
 
     <p>
-    In a Struts Core application, you can use DynaBeans to describe your HTML forms.
+    In your application, you can use DynaBeans to describe your HTML forms.
     This strategy can avoid creating a formal JavaBean subclass to store a few simple properties.
     </p>
 
@@ -329,7 +329,7 @@ limitations under the License.
     <p>Java applications, including web applications, are often configured using
     <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/Properties.html">Properties</a>
     files. Properties files are the basis for the
-    <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/ResourceBundle.html">ResourceBundles</a> that Core uses to provide message resources
+    <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/ResourceBundle.html">ResourceBundles</a> that the framework uses to provide message resources
     to an application. </p>
 
     <p>For more about Properties files, see: </p>
@@ -342,7 +342,7 @@ limitations under the License.
     <p>Java ResourceBundles use one or more Properties files to provide internationalized messages
     to users based their
     <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/Locale.html">Locale</a>.
-    Support for localizing an application was built into Struts Core from the ground-up.</p>
+    Support for localizing an application was built into the framework from the ground-up.</p>
 
     <p>For more about localization and ResourceBundles, see </p>
 
@@ -408,7 +408,7 @@ limitations under the License.
       </ul>
 
     <p>
-    Struts Core provides a ready-to-use servlet for your application [<code>org.apache.struts.action.ActionServlet</code>].
+    The framework provides a ready-to-use servlet for your application [<code>org.apache.struts.action.ActionServlet</code>].
     As a Struts developer, you can then just write objects that the Struts ActionServlet calls when needed.
     But it is still helpful to understand the basics of what servlets are,
     and the role they play in a Java web application.
@@ -628,9 +628,9 @@ limitations under the License.
 
       <p>The Struts 1.0, 1.1, and 1.2 versions require only version 2.2 or later
       of the Servlet Specification to be implemented by your servlet container,
-      so those versions of Struts Core do not use Filters. Beginning with the Struts
-      Core 1.3 version, a container that supports version 2.3 or later of the Servlet
-      Specification is required, and it is possible that Struts itself might use
+      so those versions do not use Filters. Beginning with the 
+      1.3 version, a container that supports version 2.3 or later of the Servlet
+      Specification is required, and it is possible that the framework might use
       Filters in the future.</p>
       
       <p>
@@ -708,7 +708,7 @@ limitations under the License.
       <p>
       The Java Servlet specification extends the HTTP request/response cycle by allowing the request to be dispatched,
       or forwarded, between resources.
-      Struts Core uses this feature to pass a request through specialized components,
+      The framework uses this feature to pass a request through specialized components,
       each handling one aspect of the response.
       In the normal course, a request may pass through a controller object, a model object,
       and finally to a view object as part of a single request/response cycle.
@@ -810,7 +810,7 @@ limitations under the License.
     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPBeans.html">JavaBeans Components in JSP Pages</a>
     in the Java Web Services Tutorial.</p>
 
-    <p>Struts Core also works well with the
+    <p>The framework also works well with the
     <a href="http://java.sun.com/products/jsp/jstl"><strong>JavaServer Pages Standard Tag Library</strong></a>
     (JSTL) and taglibs from other sources, like
     <a href="http://jsptags.com/">JSP Tags</a>,
@@ -827,7 +827,7 @@ limitations under the License.
         expressions) for dynamic attribute values.
     </p>
 
-    <p>There are also toolkits available that make Struts Core easy to use with
+    <p>There are also toolkits available that make the framework easy to use with
     <a href="http://stxx.sourceforge.net/">XSLT</a> and
     <a href="http://jakarta.apache.org/velocity/tools/index.html">Velocity Templates</a>.
     </p>
@@ -869,7 +869,7 @@ limitations under the License.
     <a name="xml"/>
     <subsection name="0.9 Extensible Markup Language (XML)" href="">
 
-    <p>The features provided by the Struts Core framework rely on a number of objects that are
+    <p>The features provided by the framework rely on a number of objects that are
     usually deployed using a configuration file written in
     <a href="http://www.w3.org/XML/">Extensible Markup Language</a>. XML is also used to
     configure Java web applications; so, this is yet another familiar approach.
@@ -904,7 +904,7 @@ limitations under the License.
 
         <p>
         The Java Servlet platform uses an XML configuration file to deploy servlets (among other things).
-        Likewise, Struts Core uses an XML configuration file to deploy objects used by the framework.
+        Likewise, The framework uses an XML configuration file to deploy objects.
         </p>
 
     </subsection>
@@ -913,7 +913,7 @@ limitations under the License.
       <subsection name="0.10 JAAS" href="">
 
       <p>
-          While Core can work with any approach to user authentication and authorization, Struts 1.1 and later offers
+          While the framework can work with any approach to user authentication and authorization, Struts 1.1 and later offers
           direct support for the standard Java Authentication and Authorization Service (JAAS).
           You can now specify security roles on an action-by-action basis.
       </p>
@@ -925,7 +925,7 @@ limitations under the License.
       <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html">Java Web Services Tutorial</a>.</p>
 
       <p>
-          A popular extension for handling security in a Java web application, including a Struts Core application,
+          A popular extension for handling security in a Java web application, including a framework application,
           is <a href="http://securityfilter.sourceforge.net/">SecurityFilter</a>.
       </p>
     </subsection>
@@ -934,7 +934,7 @@ limitations under the License.
     <subsection name="0.11 Other layers">
 
     <p>
-       Struts Core provides the control layer for a web application.
+       The framework provides the control layer for a web application.
        Developers can use this layer with other standard technologies
        to provide the business, data access, and presentation layers.
     </p>

@@ -21,7 +21,7 @@
 
   <extend>build/project.xml</extend>
   <id>struts-core</id>
-  <name>Struts Core</name>
+  <name>Struts Action Framework</name>
 
 
 

@@ -31,23 +31,23 @@ limitations under the License.
     <p>
     Before you can build an application, you need to lay a solid foundation.
     There are several setup tasks you need to perform before deploying
-    your Struts Core application.
-    These include components in the Struts Core configuration file
+    your application.
+    These include components in the configuration file
     and in the Web Application Deployment Descriptor.
     </p>
 
  </subsection>
     
  <a name="struts-config"/>
- <subsection name="5.2 The Struts Core configuration file">
+ <subsection name="5.2 The configuration file">
 
     <p>
     The <a href="building_controller.html#4_8_Writing_Action_Mappings">Writing Action
     Mappings</a> section covered writing the <code>&lt;form-bean&gt;</code> and
-    <code>&lt;action-mapping&gt;</code> portions of the Struts Core configuration file.
-    These elements usually play an important role in the development of a
-    Struts Core application.
-    The other elements in Struts Core configuration file tend to be static:
+    <code>&lt;action-mapping&gt;</code> portions of the configuration file.
+    These elements usually play an important role in the development of an 
+    application.
+    The other elements in a configuration file tend to be static:
     you set them once and leave them alone.
     </p>
 
@@ -270,7 +270,7 @@ limitations under the License.
 <subsection name="5.2.2 Message Resources Configuration">
 
     <p>
-    Struts Core has built in support for internationalization (I18N).
+    The framework has built in support for internationalization (I18N).
     You can define one or more <code>&lt;message-resources&gt;</code> elements
     for your webapp; modules can define their own resource bundles.
     Different bundles can be used simultaneously in your application, the 'key'
@@ -329,8 +329,8 @@ limitations under the License.
 <subsection name="5.2.3 PlugIn Configuration">
 
     <p>
-    Struts Core PlugIns are configured using the <code>&lt;plug-in&gt;</code>
-    element within the Struts Core configuration file.
+    Struts PlugIns are configured using the <code>&lt;plug-in&gt;</code>
+    element within the configuration file.
     This element has only one valid attribute, 'className', which is the fully
     qualified name of the Java class which implements the
     <code>org.apache.struts.action.PlugIn</code> interface.
@@ -359,8 +359,8 @@ limitations under the License.
 <subsection name="5.3 Configuring Your Application for Modules">
 
     <p>
-    Very little is required in order to start taking advantage of the Struts
-    Core module feature.
+    Very little is required in order to start taking advantage of the 
+    module feature.
     Just go through the following steps:
     </p>
 
@@ -416,7 +416,7 @@ limitations under the License.
     Since Struts 1.0, you listed your configuration file as an initialization
     parameter to the action servlet in <code>web.xml</code>.
     This is still done since Struts 1.1, but the parameter can be extended.
-    In order to tell the Struts Core machinery about your different modules, you
+    In order to tell the framework machinery about your different modules, you
     specify multiple 'config' initialization parameters, with a slight twist.
     You'll still use 'config' to tell the ActionServlet about your "default"
     module, however, for each additional module, you will
@@ -452,7 +452,7 @@ limitations under the License.
     <p>
     (The <code>struts-default.xml</code> would be equivalent to what most folks call
     <code>struts-config.xml</code>.
-    I just like the symmetry of having all my Struts Core module configuration files being
+    I just like the symmetry of having all my module configuration files being
     named <code>struts-<em>module</em>.xml</code>)
     </p>
 
@@ -578,7 +578,7 @@ limitations under the License.
     <p>
     The final step in setting up the application is to configure the
     application deployment descriptor (stored in file
-    <code>WEB-INF/web.xml</code>) to  include all the Struts Core or Taglib components that
+    <code>WEB-INF/web.xml</code>) to  include all the framework or Taglib components that
     are required.
     Using the deployment descriptor for the example application as a guide,
     we see that the following entries need to be created or modified.
@@ -627,7 +627,7 @@ limitations under the License.
         <strong>chainConfig</strong> - Comma-separated list of either 
         context-relative or classloader path(s) to load commons-chain catalog
         definitions from.  If none specified, the default catalog that is
-        provided with Struts Core will be used. (Since Struts Core 1.3)
+        provided with the framework will be used. (Since version 1.3)
         </li>
         
         <li>
@@ -652,7 +652,7 @@ limitations under the License.
 	<li>
 	<strong>configFactory</strong> - The Java class name of the 
 	ModuleConfigFactory used to create the implementation of the 
-	ModuleConfig interface. (Since Struts Core 1.3)
+	ModuleConfig interface. (Since version 1.3)
 	[org.apache.struts.config.impl.DefaultModuleConfigFactory]
         </li>
 
@@ -683,7 +683,7 @@ limitations under the License.
     </ul>
 
      <p>
-       <strong>WARNING</strong> - Struts Core will not
+       <strong>WARNING</strong> - The framework will not
        operate correctly if you define more than one
        <code>&lt;servlet&gt;</code> element for a controller
        servlet, or a subclass of the standard controller servlet class.
@@ -698,11 +698,11 @@ limitations under the License.
 
     <p>
     <strong>Note:</strong> The material in this section is not specific to
-    Struts Core.
+    Struts Action Framework.
     The configuration of servlet mappings is defined in the Java Servlet
     Specification.
-    This section describes the most common means of configuring a Struts
-    Core application.
+    This section describes the most common means of configuring a 
+    application.
     </p>
 
     <p>
@@ -763,7 +763,7 @@ limitations under the License.
 <source>http://www.mycompany.com/myapplication/logon.do</source>
 
         <p>
-        <strong>WARNING</strong> - Struts Core will not
+        <strong>WARNING</strong> - The framework will not
         operate correctly if you define more than one
         <code>&lt;servlet-mapping&gt;</code> element for the controller
         servlet.
@@ -812,7 +812,7 @@ limitations under the License.
 <subsection name="5.5 Add Struts Components To Your Application">
 
     <p>
-    To use Struts Core, you must copy <code>struts.jar</code>
+    To use the framework, you must copy <code>struts.jar</code>
     (and all of the <code>commons-*.jar</code> files) into your
     <code>WEB-INF/lib</code> directory. To use Struts Taglib, 
     you must also copy the .tld files that you require into
@@ -859,12 +859,12 @@ limitations under the License.
           in the web application's class loader, unless they are specifically
           programmed to use the Thread context class loader.
 
-            For example, Struts Core dynamically loads your action and form bean
+            For example, the framework dynamically loads your action and form bean
             classes, and normally would not be able to find those classes.
-            Struts Core has been programmed to deal with this in <em>most</em>
+            The framework has been programmed to deal with this in <em>most</em>
             scenarios, but it has not been thoroughly audited to ensure that
             it works in <em>all</em> scenarios.  The Commons libraries that
-            Struts Core uses have <strong>NOT</strong> been audited to catch all
+            the framework uses have <strong>NOT</strong> been audited to catch all
             possible scenarios where this might become a problem.
 
         </li>
@@ -875,7 +875,7 @@ limitations under the License.
           statics are global only within a particular web applicaiton (which
           would be true if the class was loaded from the webapp class loader).
 
-            There are many cases where Struts Core, and the Commons libraries it
+            There are many cases where the framework, and the Commons libraries it
             relies on, use static variables to maintain information that is
             presumed to be visible only within a single web application.
             Sharing these JAR files can cause unwanted interactions, and
@@ -894,7 +894,7 @@ limitations under the License.
 
       <p>
         In spite of these difficulties, it is possible that sharing the
-        Struts Core and Commons JAR files <em>might</em> appear to work for you.
+        Struts and Commons JAR files <em>might</em> appear to work for you.
         However, this is <strong>NOT</strong> a supported configuration.
       </p>
 
@@ -910,14 +910,14 @@ limitations under the License.
 
 </subsection>
 <a name="config_logging"/>
-<subsection name="5.6 Logging in Struts Core BAsed Applications">
+<subsection name="5.6 Logging">
 
   <p>
   Since Struts 1.0, the logging functionality was fairly limited.  You could
   set a debugging detail level with a servlet initialization parameter, and
   all log messages were written to wherever <code>ServletContext.log()</code>
   output is sent by your servlet container.  With Struts 1.1, however, all
-  logging messages written by Struts Core itself, as well as the commons libraries
+  logging messages written by the framework, as well as the commons libraries
   that it utilizes, flow through an abstract wrapper called
   <a href="http://jakarta.apache.org/commons/logging">Commons Logging</a>,
   which can be used as a wrapper around any logging implementation.  The most
@@ -931,7 +931,7 @@ limitations under the License.
   <p>
   This section does not attempt to fully explain how Commons Logging is
   configured and used.  Instead, it focuses on pertinent details of using
-  Commons Logging in a Struts Core based environment. For complete documentation
+  Commons Logging in connection with the Struts Action Framework. For complete documentation
   on using Commons Logging, consult the documentation for the logging system
   you are using, plus the Commons Logging
   <a href="http://jakarta.apache.org/commons/logging/commons-logging-1.0.3/docs/api/">

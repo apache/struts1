@@ -219,13 +219,13 @@ limitations under the License.
     <subsection name="1.2.3 The Controller: ActionServlet and ActionMapping" href="controllerConcepts">
       
       <p>
-        Struts Core is the <em>Controller</em> portion of the application.
+        Struts Action Framework provides the <em>Controller</em> portion of the application.
         The Controller is focused on receiving
         requests from the client (typically a user running a web browser), deciding
         what business logic function is to be performed, and then delegating
         responsibility for producing the next phase of the user interface to
         an appropriate View component.  The primary component of the
-        Controller in Struts Core is a servlet of class <code>ActionServlet</code>. This servlet
+        Controller in the framework is a servlet of class <code>ActionServlet</code>. This servlet
         is configured by defining a set of <code>ActionMappings</code>. 
         An ActionMapping defines a <code>path</code> that is matched against the 
         request URI of the incoming request and usually specifies the
@@ -234,12 +234,12 @@ limitations under the License.
         encapsulate calls to business logic classes, interpret the outcome, and
         ultimately dispatch control to the appropriate View component to create the
         response.
-        While Struts Core dispatches to a View, actually rendering the
+        While the framework dispatches to a View, actually rendering the
         View is outside its scope.
       </p>
         
       <p>
-        Struts Core also supports the ability to use <code>ActionMapping</code>
+        The framework also supports the ability to use <code>ActionMapping</code>
         classes that have additional properties beyond the standard ones required
         to operate the controller. This allows you to store additional information
         specific to your application and still utilize the remaining features of
@@ -261,7 +261,7 @@ limitations under the License.
       <subsection name="1.3 Struts Control Flow" href="flow">
       
         <p>
-          Struts Core provides several components that make up the <strong>Control</strong>
+          The framework provides several components that make up the <strong>Control</strong>
           layer of a MVC-style application. These include a controller component (servlet),
           developer-defined request handlers, and several supporting objects.
         </p>
@@ -272,10 +272,10 @@ limitations under the License.
           Others are generic tags found convenient when writing applications. Other 
           taglibs, including 
           <a href="http://java.sun.com/products/jsp/jstl/index.html">JSTL</a>, 
-          can also be used with Struts Core. Other presentation technologies, like
+          can also be used with the framework. Other presentation technologies, like
           <a href="http://jakarta.apache.org/velocity/index.html">Velocity Templates</a> and 
           <a href="http://www.w3.org/TR/xslt">XSLT</a>
-          can also be used with Struts Core.
+          can also be used with the framework.
         </p>
 
         <p>
@@ -304,7 +304,7 @@ limitations under the License.
 
         <p>
           The controller component consults the ActionMappings as it routes HTTP
-          requests to other components in Struts Core. Requests may be forwarded to JavaServer Pages or
+          requests to other components in the framework. Requests may be forwarded to JavaServer Pages or
           <a href="../struts-core/apidocs/org/apache/struts/action/Action.html">Action</a> 
           [<code>org.apache.struts.action.Action</code>] subclasses provided by the
           Struts developer. Often, a request is first forwarded to an Action and then to a JSP 
@@ -344,7 +344,7 @@ limitations under the License.
           Since each client has their own session, they will each also have their own
           shopping cart. </p>
         <p>
-          In a Struts Core application, most of the business logic can be
+          Most of the business logic in an application can be
           represented using JavaBeans. An Action can call the properties of a JavaBean 
           without knowing how it actually works. This encapsulates the business logic, 
           so that the Action can focus on error handling and where to forward control.
@@ -353,7 +353,7 @@ limitations under the License.
         <p>
           JavaBeans can also be used to manage input forms. A key problem in designing
           Web applications is retaining and validating what a user has entered between
-          requests. With Struts Core, you can define your own set of input bean classes, by
+          requests. You can define your own set of input bean classes, by
           subclassing 
           <a href="../struts-core/apidocs/org/apache/struts/action/ActionForm.html">ActionForm</a>
           [<code>org.apache.struts.action.ActionForm</code>]. The ActionForm class makes it
@@ -366,7 +366,7 @@ limitations under the License.
         <p>
           The form bean can be used by a JSP to collect data from the user ... by an
           Action object to validate the user-entered data ... and then by the JSP again to
-          re-populate the form fields. In the case of validation errors, Struts Core has a
+          re-populate the form fields. In the case of validation errors, the framework has a
           shared mechanism for raising and displaying error messages.
         </p>
         
@@ -409,7 +409,7 @@ limitations under the License.
         </p>
         
         <p>
-          Struts Core and Struts Taglibs were designed from the ground-up
+          The framework and Struts Taglib were designed from the ground-up
           to support the internationalization features built into the Java platform. All the field labels
           and messages can be retrieved from a 
           <a href="../struts-core/apidocs/org/apache/struts/util/MessageResources.html">message resource</a>.
@@ -450,7 +450,7 @@ limitations under the License.
         
         <p>
           <a href="index.html">Other sections</a> in this document cover the
-          various Struts Core components in greater detail.
+          various framework components in greater detail.
           The Struts Taglib distribution includes several Developer Guides
           covering various aspects of the tag components.
           The Struts Applications subproject provides sample applications

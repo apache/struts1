@@ -3,9 +3,9 @@
          href="http://struts.apache.org/userGuide"
         image="../images/struts.gif"
       authors="false">
-<title>Apache Struts - Struts Core - User Guide</title>
+<title>Apache Struts - Struts Action Framework - User Guide</title>
   <body>
-    <menu name="Struts Core User Guide">
+    <menu name="Action Framework User Guide">
       <item 
         name="Table of Contents"     
         href="userGuide/index.html"/>
@@ -35,7 +35,7 @@
         href="userGuide/installation.html"/>
     </menu>
 
-    <menu name="Struts Core Developer Guides">
+    <menu name="Action Framework Developer Guides">
         <item 
             name="Utilities"
             href="userGuide/dev_util.html"/>
@@ -55,7 +55,7 @@
             name="Source Repository"
             href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/?root=Apache-SVN"/>
         <item 
-            name="Struts Core Home"                 
+            name="Struts Action Framework Home"                 
             href="index.html"/>
     </menu>
   </body>
