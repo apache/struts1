@@ -11,6 +11,7 @@
         <item href="installation.html" name="Installation"/>
         <item href="userGuide.html" name="User Guide"/>
         <item href="examples.html" name="Examples"/>
+        <item href="faq.html" name="FAQs"/>
     </menu>
     <menu name="Taglib Reference">
         <item name="Struts Tiles" href="tagreference-struts-tiles.html"/>    
