@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -86,7 +86,11 @@ public class ModuleUtils {
      * the context.
      */
     public ModuleConfig getModuleConfig(String prefix, ServletContext context) {
-        return (ModuleConfig) context.getAttribute(Globals.MODULE_KEY + prefix);
+        if (prefix == null || "/".equals(prefix)) {
+            return (ModuleConfig)context.getAttribute(Globals.MODULE_KEY);
+        } else {
+            return (ModuleConfig)context.getAttribute(Globals.MODULE_KEY + prefix);
+        }
     }
 
     /**
@@ -103,7 +107,7 @@ public class ModuleUtils {
         ModuleConfig moduleConfig = null;
 
 
-        if(prefix != null) {
+        if (prefix != null) {
             //lookup module stored with the given prefix.
             moduleConfig = this.getModuleConfig(prefix, context);
         }
