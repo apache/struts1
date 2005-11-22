@@ -146,6 +146,22 @@ limitations under the License.
               it was not easy to use multiple extension that each wanted to override
               the request processor in a different way.
           </p>
+          <source>
+public void process(HttpServletRequest request,
+                    HttpServletResponse response)
+	throws IOException, ServletException {
+
+	processLocale(request, response);
+	if (!processRoles(request, response, mapping)) {
+           return;
+	}
+	/// ...
+	ActionForward forward =
+          processActionPerform(request, response,
+                               action, form, mapping);
+	processForwardConfig(request, response, forward);
+}          
+</source>
           <p>
               For Struts 1.3, we turned the request processor methods into Commands
               that are part of a flexible Chain of Commands.
@@ -155,6 +171,15 @@ limitations under the License.
               to extend or streamline the request processing gauntlet
               to meets the needs of different kinds of applications.
           </p>
+<source>
+&lt;chain name="process-action">
+ &lt;command className= "...SelectLocale"/>
+ &lt;command className= "...AuthorizeAction"/>
+&lt;!-- ... -->
+ &lt;command className= "...CreateAction"/>
+ &lt;command className= "...ExecuteAction"/>
+&lt;/chain>
+</source>
           <p>
               We fully expect the Struts 1.3 request processor to be backwardly
               compatible with earlier versions.
@@ -165,6 +190,7 @@ limitations under the License.
               We've made a few other changes and improvements in Struts 1.3.x,
               but the two big-ticket items are subprojects and the new request processor.
           </p>
+          
 
           <h4>Arbitrary configuration properties</h4>
           <p>
@@ -172,6 +198,22 @@ limitations under the License.
               Arbitrary configuration properties let us externalize more of our configurations,
               encouraging reuse.
           </p>
+
+<source>
+&lt;action path="/EditSubscription"
+        extends="Editor">
+        <set-property key="foo" value="bar" />
+&lt;/action>
+
+public ActionForward execute( 
+       ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response)
+        throws Exception {
+        string foo = getProperty("foo"); 
+        // ...
+</source>
           <p>
               Arbitrary Configuration should make it easier for everyone
               to write reusable chunks of code, for ActionMappings, Exception Handlers,
@@ -202,7 +244,13 @@ limitations under the License.
               command - The name of a commons-chain command which should be looked up and 
               executed as part of servicing this request.
           </p>
-
+<source>
+&lt;controller 
+     inputForward="true" 
+     catalog="Foo"
+     command="FooBar"
+   />
+</source>   
           
           <h4>Extends attribute</h4>
           <p>
@@ -210,6 +258,24 @@ limitations under the License.
               we can now use the <b>extends</b> attribute to adopt default settings from another element,
               as we already can in the Tiles configuration files.
          </p>
+<source>
+&lt;struts-config>
+  &lt;form-beans>
+    &lt;form-bean name="registrationForm"
+        type="org.apache.struts.action.DynaValidatorForm">
+      &lt;form-property name="firstName" type="java.lang.String" />
+      &lt;form-property name="lastName" type="java.lang.String" />
+    &lt;/form-bean>
+    
+    &lt;form-bean name="managerRegistrationForm"
+        type="org.apache.struts.action.DynaValidatorForm"
+        extends="registrationForm">
+      &lt;form-property name="department" type="java.lang.String" />
+    &lt;/form-bean>    
+  &lt;/form-beans>
+  ... 
+&lt;/struts-config>          
+</source>          
           <p>
               Extends makes using XML elements much more like object-orientated programming.
               You can setup a base element, and then only specify the behavior that changes.
@@ -226,12 +292,32 @@ limitations under the License.
               The updated ExceptionHandler accepts new configuration attributes which let you
               choose alternate behavior, or no behavior at all. See the JavaDoc for details.
           </p>
+          
+<source>
+&lt;exception
+       key="GlobalExceptionHandler.default"
+       type="java.lang.Exception"
+       path="/ErrorPage.jsp">
+       <set-property key="INCLUDE_PATH" value="/error.jsp" />
+&lt;/exception>
+
+&lt;exception
+       key="GlobalExceptionHandler.default"
+       type="java.lang.Exception"
+       path="/ErrorPage.jsp">
+       &lt;set-property key="SILENT_IF_COMMITTED" value="true" />
+&lt;/exception>
+</source>
 
           <h4>Postback Forms</h4>
           <p>
               The action attribute of the Form taglib is now optional.
               If omitted, the original URI of the original request is used.
           </p>
+<source>
+&lt;html:form 
+   onsubmit="return validateLogonForm(this);">
+</source>
 
           <h4>Wildcard ActionConfig properties</h4>
           <p>
@@ -239,6 +325,14 @@ limitations under the License.
               This makes it easier to pass multiple request-time values to the Action
               without complicating the "parameter" attibute.
           </p>
+          
+<source>
+&lt;action path="/Save*"
+        name="Save{1}"
+        extends="BaseSave">
+        &lt;set-properties key="Save" value="{1}"/>
+&lt;/action>
+</source>
 
           <h3>Struts EL</h3>
 
