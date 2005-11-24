@@ -43,7 +43,7 @@
     <dependencies>
         <dependency>
             <groupId>struts</groupId>
-            <artifactId>struts-core</artifactId>
+            <artifactId>struts-action</artifactId>
             <version>1.3.0-dev</version>
             <properties>
                 <war.bundle>true</war.bundle>
