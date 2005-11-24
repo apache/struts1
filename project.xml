@@ -20,7 +20,7 @@
 
 
   <extend>build/project.xml</extend>
-  <id>struts-core</id>
+  <id>struts-action</id>
   <name>Struts Action Framework</name>
 
 
@@ -40,9 +40,9 @@
    </description>
 
   <repository>
-    <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/core/trunk</connection>
-    <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/core/trunk</developerConnection>
-    <url>http://svn.apache.org/repos/asf/struts/core/trunk</url>
+    <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/action/trunk</connection>
+    <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/action/trunk</developerConnection>
+    <url>http://svn.apache.org/repos/asf/struts/action/trunk</url>
   </repository>
   <versions>
     <version>
@@ -181,6 +181,6 @@
   <reports>
       <!-- report>maven-cactus-plugin</report -->
 
-  	<!-- add any reports specific to core -->
+  	<!-- add any reports specific to action -->
   </reports>
 </project>
