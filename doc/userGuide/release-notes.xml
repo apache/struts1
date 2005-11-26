@@ -7,6 +7,12 @@
  <chapter name="6.1 Release Notes - Version 1.2.8" href="release_notes">
       <section name="Introduction" href="Introduction">
           <p>
+              The main motivation for releasing Struts 1.2.8 is to fix a
+              <i>Cross Site Scripting</i> (XSS) vulnerability which has
+              been identified by Hacktics.com. More details available on the
+              <a href="http://wiki.apache.org/struts/StrutsXssVulnerability">Wiki</a>.
+          </p>
+          <p>
               This section contains release notes for changes that have taken
               place since
               <a href="release-notes-1.2.7.html">Version 1.2.7</a>.
@@ -59,7 +65,7 @@
                  <td align="center"><a href="http://svn.apache.org/viewcvs?rev=331060&amp;view=rev">331060</a>
                      (<a href="http://svn.apache.org/viewcvs.cgi?rev=331055&amp;view=rev">331055</a>)</td>
                  <td align="center"><i>n/a</i></td>
-                 <td>Remove uri from error messages.</td>
+                 <td>Fix for Struts XSS Vulnerability - remove uri from error messages.</td>
              </tr>
              <tr>
                  <td align="center">2005-08-31</td>
