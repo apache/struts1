@@ -941,7 +941,7 @@ limitations under the License.
   <p>
   Commons Logging provides fine-grained control over the logging messages
   created by a <code>Log</code> instance. By convention, the <code>Log</code>
-  instances for Struts Core (and the Commons packages in general) are named the
+  instances for the framework (and the Commons packages in general) are named the
   fully qualified class name of the class whose messages are being logged.
   Therefore, log messages created by the <code>RequestProcessor</code> class are, naturally
   enough, directed to a logger named
@@ -988,7 +988,7 @@ limitations under the License.
 
   <p>
   You can seamlessly integrate logging from your own components into the same
-  logging implementation that Struts Core and the Commons libraries use, by
+  logging implementation that the framework and the Commons libraries use, by
   following the instructions in
   <a href="building_controller.html#4_11_Commons_Logging_Interface">
   Section 4.11</a>.  If you do

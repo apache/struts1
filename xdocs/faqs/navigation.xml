@@ -13,7 +13,7 @@
             name="Newbie FAQ"/>
         <item 
             href="faqs/works.html" 
-            name="How Does Struts Core Work?"/>
+            name="How Does Struts Action Work?"/>
     </menu>
 
     <menu name="HOWTOs">
@@ -48,7 +48,7 @@
             href="apidocs/index.html"/>
        <item
             name="Source Repository"
-            href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/?root=Apache-SVN"/>
+            href="http://svn.apache.org/viewcvs.cgi/struts/action/trunk/?root=Apache-SVN"/>
         <item 
             name="Struts Action Home"
             href="index.html"/>

@@ -40,7 +40,7 @@
                 />
             <item
                 name="Source Repository"
-                href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/?root=Apache-SVN"
+                href="http://svn.apache.org/viewcvs.cgi/struts/action/trunk/?root=Apache-SVN"
                 />
             <item
                 name="Apache Struts Home"

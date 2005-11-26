@@ -57,7 +57,7 @@ limitations under the License.
          </p>
          <p>
               You can also access to the Struts source repository and change logs directly through both
-              <a href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/?root=Apache-SVN">web browser</a>
+              <a href="http://svn.apache.org/viewcvs.cgi/struts/action/trunk/?root=Apache-SVN">web browser</a>
               and <a href="http://www.apache.org/dev/version-control.html"> Subversion client</a> interfaces.
          </p>
 

@@ -87,9 +87,9 @@ limitations under the License.
         Through version 1.2.x, the project's codebase was bundled as a single
         distribution with a single release cycle.
         Post version 1.2.x, the project's codebase is separated into several
-        subprojects, each with it's own distribution and release cycle.
+        subprojects, each with its own distribution and release cycle.
         The core controller classes are now available as Struts Action 
-        Framework. The taglibs classes are now available and Struts Taglib, 
+        Framework. The taglibs classes are now available as Struts Taglib, 
         and so forth.
     </p>
 

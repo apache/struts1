@@ -1595,7 +1595,7 @@ throws Exception;
     action element, see the
     <a href="http://struts.apache.org/dtds/struts-config_1_3.dtd">
     configuration DTD</a> and the
-    <a href="../struts-core/apidocs/org/apache/struts/action/ActionMapping.html">
+    <a href="../struts-action/apidocs/org/apache/struts/action/ActionMapping.html">
     ActionMapping documentation</a>.
     </p>
 

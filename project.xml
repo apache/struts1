@@ -39,6 +39,9 @@
         application, based on published standards and proven design patterns.
    </description>
 
+   <siteAddress>people.apache.org</siteAddress>
+   <siteDirectory>/www/struts.apache.org/struts-action/</siteDirectory>
+
   <repository>
     <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/action/trunk</connection>
     <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/action/trunk</developerConnection>
