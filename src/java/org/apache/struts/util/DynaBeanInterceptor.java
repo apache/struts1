@@ -108,10 +108,10 @@ public class DynaBeanInterceptor implements MethodInterceptor, Serializable  {
 
                 // Create the indexed getter/setter method pair
                 if (dynaProperties[i].isIndexed()) {
-                    Type itype = Type.getType(Integer.class);
+                    Type itype = Type.getType(Integer.TYPE);
                     ttype = Type.getType((type.isArray() ? type.getComponentType() : Object.class));
                     Signature indexGetter = new Signature(getterName, ttype, new Type[] { itype });
-                    Signature indexSetter = new Signature(setterName, Type.VOID_TYPE, new Type[] { ttype, itype });
+                    Signature indexSetter = new Signature(setterName, Type.VOID_TYPE, new Type[] { itype, ttype });
                     im.add(indexGetter, Constants.TYPES_EMPTY);
                     im.add(indexSetter, Constants.TYPES_EMPTY);
                 }
@@ -166,9 +166,9 @@ public class DynaBeanInterceptor implements MethodInterceptor, Serializable  {
             if (args.length == 1) {
                 dynaBean.set(property, args[0]);
                 return null;
-            } else if(args.length == 2 && args[1].getClass() == Integer.class) {
-                int index = ((Integer)args[1]).intValue();
-                dynaBean.set(property, index, args[0]);
+            } else if(args.length == 2 && args[0].getClass() == Integer.class) {
+                int index = ((Integer)args[0]).intValue();
+                dynaBean.set(property, index, args[1]);
                 return null;
             } else {
                 return proxy.invokeSuper(obj, args);
