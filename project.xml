@@ -2,7 +2,8 @@
 <project>
   <pomVersion>3</pomVersion>
   <name>struts</name>
-  <id>struts</id>
+  <groupId>struts</groupId>
+  <artifactId>struts</artifactId>
   <currentVersion>1.2.8</currentVersion>
   <organization>
     <name>The Apache Software Foundation</name>
