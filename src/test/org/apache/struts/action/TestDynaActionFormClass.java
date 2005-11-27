@@ -1,7 +1,7 @@
 /*
  * $Id$ 
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2005 The Apache Software Foundation.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,6 +79,10 @@ public class TestDynaActionFormClass extends TestCase
      */
     protected DynaActionFormClass dynaClass = null;
 
+    /**
+     * Whether an "Enhanced" DynaActionForm is created.
+     */
+    protected boolean enhanced = false;
 
     /**
      * The set of <code>FormPropertyConfig</code> objects to use when
@@ -118,6 +122,7 @@ public class TestDynaActionFormClass extends TestCase
         beanConfig = new FormBeanConfig();
         beanConfig.setName("dynaForm");
         beanConfig.setType("org.apache.struts.action.DynaActionForm");
+        beanConfig.setEnhanced(enhanced);
 
         // Add relevant property definitions
         for (int i = 0; i < dynaProperties.length; i++) {
