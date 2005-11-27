@@ -17,8 +17,14 @@
  */
 package org.apache.struts.action;
 
+import java.util.List;
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.beans.IndexedPropertyDescriptor;
+import org.apache.commons.beanutils.DynaProperty;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -85,6 +91,51 @@ public class TestCGLibDynaActionForm extends TestDynaActionForm {
 
 
     /**
+     * Check Property Descriptors
+     */
+    public void testDesciptors() {
+
+        // Introspect the bean and find property descriptors
+        try {
+            BeanInfo beanInfo = Introspector.getBeanInfo(dynaForm.getClass());
+            PropertyDescriptor[] descriptors =  beanInfo.getPropertyDescriptors();
+            DynaProperty[] dynaProperties = dynaClass.getDynaProperties();
+            for (int i = 0; i < dynaProperties.length; i++) {
+                DynaProperty dynaProperty = dynaProperties[i];
+                PropertyDescriptor descriptor = null;
+                for (int j = 0; j < descriptors.length; j++) {
+                    if (dynaProperty.getName().equals(descriptors[j].getName())) {
+                        descriptor = descriptors[j];
+                        break;
+                    }
+                }
+                if (descriptor == null) {
+                    fail(i+" Descriptor not found: " + dynaProperty.getName());
+                } else {
+                    boolean indexedDescriptor = (descriptor instanceof IndexedPropertyDescriptor);
+                    if (!(dynaProperty.getType() == descriptor.getPropertyType())) {
+                        // ignore java.util.List - not proper indexed properties
+                        if (!(List.class.isAssignableFrom(dynaProperty.getType()))) {
+                            fail(i+" Descriptor type error: " + dynaProperty.getName() +
+                                 " dyna=" + dynaProperty.getType() +
+                                 " regular=" + descriptor.getPropertyType());
+                        }
+                    }
+                    if (!(dynaProperty.isIndexed() == indexedDescriptor)) {
+                        fail(i+" Descriptor index error: " + dynaProperty.getName() +
+                             " dyna=" + dynaProperty.isIndexed() +
+                             " regular=" + indexedDescriptor);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            fail("Exception thrown " + e);
+        }
+
+    }
+
+
+    /**
      * Test simple read property
      */
     public void testSimpleRead() {
@@ -128,7 +179,6 @@ public class TestCGLibDynaActionForm extends TestDynaActionForm {
             fail("Exception thrown " + e);
         }
     }
-
     /**
      * Test simple write property
      */
