@@ -28,7 +28,7 @@ limitations under the License.
           <p>
               This section contains release notes for changes that have taken
               place to Struts Classic since
-              <a href="release-notes-1.2.7.html">Version 1.2.7</a>.
+              <a href="release-notes-1.2.8.html">Version 1.2.8</a>.
               To keep up-to-date on all changes to Struts, subscribe to the
               (commits at struts.apache.org) list.
               To preview our plans for upcoming changes,
@@ -51,7 +51,7 @@ limitations under the License.
       <subsection name="Highlights of Changes">
           <p>
               The purpose of this section is to highlight the new features since the
-              Version 1.2.7 release.
+              Version 1.2.8 release.
               For more detail, see the Project Info reports for each subproject,
               which include a complete changelog and list of external dependencies.
          </p>

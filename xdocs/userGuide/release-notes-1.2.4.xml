@@ -4,11 +4,12 @@
     <title>Struts Release Notes (since 1.1)</title>
   </properties>
   <body>
-      <section name="Introduction" href="Introduction">
+  <section name="6.1 Release Notes - Version 1.2.4" href="release_notes">
+      <subsection name="Introduction" href="Introduction">
         <p>This section contains release notes for changes that have taken place since
         <a href="release-notes-1.1.html">Version 1.1</a> was released.</p>
-      </section>
-      <section name="What's Included?" href="Included">
+      </subsection>
+      <subsection name="What's Included?" href="Included">
         <p>The binary distribution of this release includes the following files relevant to Struts:</p>
         <ul>
           <li>
@@ -58,8 +59,8 @@
         </ul>
         <p>For the version requirements of each library, see the
         <a href="installation.html">Installation chapter</a>.</p>
-      </section>
-      <section name="What's new?" href="New">
+      </subsection>
+      <subsection name="What's new?" href="New">
         <p>This section highlights new features added and critical changes made since the last release. Other interesting changes are listed in the
         <a href="#Changes">What Changed?</a> section. Subscribers to the
         <a href="../using.html#Lists">struts-dev mailing list</a>, receive reports of all changes as they are made.</p>
@@ -139,8 +140,8 @@
        <strong>Module attribute</strong> - A new "module" attribute is available on the forward element as well as several of the core tags. This attribute allows you to specify another module by name (or "prefix") to create direct links between modules. The new module attribute is preferered to the <code>contextRelative</code> attribute and can often be used in lieu of a "SwitchAction".
         </p>
 
-      </section>
-      <section name="What Changed?" href="Changes">
+      </subsection>
+      <subsection name="What Changed?" href="Changes">
         <p>This section highlights some of the changes that have taken place since the last release. Subscribers to the
         <a href="../using.html#Lists">struts-dev mailing list</a>, receive reports of all changes as they are made.</p>
         <p>
@@ -657,10 +658,11 @@
           <li>2003-12-21 - Add rest of form to fr.CA formset to correct operation.</li>
           <li>2003-09-24 - Modify Validator example to show use of 'required' for checkboxes, radio,select-one, and select-multiple field types.</li>
         </ul>
-      </section>
-      <section>
+      </subsection>
+      <subsection>
         <p class="right">Next:
         <a href="installation.html">Installation</a></p>
-      </section>
+      </subsection>
+  </section>
   </body>
 </document>
