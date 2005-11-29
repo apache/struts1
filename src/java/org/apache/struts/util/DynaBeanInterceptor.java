@@ -1,6 +1,6 @@
 /*
  * $Id$
- * 
+ *
  * Copyright 2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -36,14 +36,18 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * DynaBeanInterceptor
- * 
+ * Creates dynamic proxies for DynaBeans with getter/setter pairs for each
+ * property. The proxies intercept the corresponding methods and map them
+ * back to the properties.
+ *
  * @since Struts 1.3
  * @version $Revision$ $Date$
  */
 public class DynaBeanInterceptor implements MethodInterceptor, Serializable  {
 
     private Log log = LogFactory.getLog(DynaBeanInterceptor.class);
+
+    /** A lookup table to map method names to the corresponding properties. */
     private Map propertyLookup = new HashMap();
 
     /**
@@ -51,9 +55,13 @@ public class DynaBeanInterceptor implements MethodInterceptor, Serializable  {
      */
     public DynaBeanInterceptor() {
     }
-    
+
     /**
      * Creates an Enhancer for a DynaClass/DynaBean.
+     *
+     * @param dynaClass the dynamic properties to use for enhancement
+     * @param beanClass the class to create the proxy for
+     * @return an enhancer to generate proxies
      */
     public Enhancer createEnhancer(DynaClass dynaClass, Class beanClass) {
         // Build an interface to implement consisting of getter/setter
@@ -95,7 +103,7 @@ public class DynaBeanInterceptor implements MethodInterceptor, Serializable  {
                         Character.toUpperCase(name.charAt(0)) +
                         name.substring(1);
                 }
-                
+
                 // Method names
                 String getterName = "get"+property;
                 String setterName = "set"+property;
@@ -117,7 +125,7 @@ public class DynaBeanInterceptor implements MethodInterceptor, Serializable  {
                 }
                 propertyLookup.put(getterName, name);
                 propertyLookup.put(setterName, name);
-                
+
             }
         }
         Class beanInterface = im.create();
@@ -138,6 +146,12 @@ public class DynaBeanInterceptor implements MethodInterceptor, Serializable  {
 
     /**
      * Intercepts a method call on the enhanced DynaBean.
+     *
+     * @param obj the enhanced <code>DynaBean</code>
+     * @param method the method to invoke on the object
+     * @param args the method parameters
+     * @param proxy the method proxy
+     * @return the return value of the intercepted method call
      */
     public Object intercept(Object obj, Method method, Object[] args,
                             MethodProxy proxy) throws Throwable {
@@ -149,7 +163,7 @@ public class DynaBeanInterceptor implements MethodInterceptor, Serializable  {
             // Not a dyna property access, just pass call along
             return proxy.invokeSuper(obj, args);
         }
-        
+
         boolean getter  = methodNm.startsWith("get");
 
         DynaBean dynaBean = (DynaBean)obj;
@@ -176,5 +190,5 @@ public class DynaBeanInterceptor implements MethodInterceptor, Serializable  {
         }
 
     }
-    
+
 }
