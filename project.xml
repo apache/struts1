@@ -185,12 +185,8 @@
   <contributors>
     <contributor>
       <name>Tim Chen</name>
-      <id></id>
       <email>tchen at ampabay.rr.com</email>
       <organization></organization>
-      <roles>
-        <role></role>
-      </roles>
     </contributor>
   </contributors>
   <dependencies>
@@ -273,8 +269,8 @@
       </properties>
     </dependency>
     <dependency>
-      <groupId>servletapi</groupId>
-      <artifactId>servletapi</artifactId>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
       <version>2.2</version>
       <properties>
         <scope>provided</scope>
@@ -361,9 +357,6 @@
         </includes>
       </resource>
     </resources>
-    <!-- Integration unit test cases -->
-    <integrationUnitTest />
-    <jars></jars>
   </build>
   <reports>
     <!--
