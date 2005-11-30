@@ -103,7 +103,7 @@
             />
         <item
             name="Source Repository"
-            href="http://svn.apache.org/viewcvs.cgi/struts/core/trunk/?root=Apache-SVN"
+            href="http://svn.apache.org/viewcvs.cgi/struts/action/branches/STRUTS_1_2_BRANCH/"
             />
     </menu>
 
