@@ -2,9 +2,9 @@
 <project>
   <pomVersion>3</pomVersion>
   <name>struts-el</name>
-  <id>struts-el</id>
   <groupId>struts</groupId>
-  <currentVersion>1.2.7</currentVersion>
+  <artifactId>struts-el</artifactId>
+  <currentVersion>1.2.8</currentVersion>
   <inceptionYear>2003</inceptionYear>
   <package>org.apache.strutsel</package>
   <shortDescription>Extension/adaptation of Struts tag libraries to use JSP 1.2 expression language.</shortDescription>
@@ -35,28 +35,30 @@ for evaluating attribute values.
   </repository>
   <versions />
   <dependencies>
+
     <dependency>
-      <groupId>servletapi</groupId>
-      <artifactId>servletapi</artifactId>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
       <version>2.3</version>
-      <url>http://jakarta.apache.org/tomcat/tomcat-4.1-doc/index.html</url>
+      <properties>
+        <scope>provided</scope>
+      </properties>
     </dependency>
     <dependency>
       <groupId>taglibs</groupId>
       <artifactId>standard</artifactId>
-      <version>1.0.2</version>
-      <url>http://jakarta.apache.org/taglibs/doc/standard-1.0-doc/intro.html</url>
+      <version>1.0.6</version>
     </dependency>
     <dependency>
-      <groupId>jstl</groupId>
+      <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
-      <version>1.0.2</version>
+      <version>1.0.6</version>
       <url>http://jakarta.apache.org/taglibs/doc/standard-1.0-doc/intro.html</url>
     </dependency>
     <dependency>
       <groupId>struts</groupId>
       <artifactId>struts</artifactId>
-      <version>1.2.4</version>
+      <version>1.2.8</version>
       <url>http://jakarta.apache.org/struts/</url>
     </dependency>
     <dependency>
@@ -64,6 +66,7 @@ for evaluating attribute values.
       <artifactId>httpunit</artifactId>
       <version>1.5.4</version>
       <url>http://httpunit.org/</url>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>commons-logging</groupId>
@@ -76,12 +79,14 @@ for evaluating attribute values.
       <artifactId>cactus</artifactId>
       <version>12-1.4.1</version>
       <url>http://jakarta.apache.org/cactus</url>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>cactus</groupId>
       <artifactId>cactus-ant</artifactId>
       <version>1.4.1</version>
       <url>http://jakarta.apache.org/cactus</url>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>
@@ -99,16 +104,6 @@ for evaluating attribute values.
     <!-- J A R  R E S O U R C E S -->
     <!-- Resources that are packaged up inside the JAR file -->
     <resources />
-    <!-- Integration unit test cases -->
-    <integrationUnitTest>
-      <includes>
-        <include>**/Test*.java</include>
-      </includes>
-      <excludes>
-        <exclude>org/apache/strutsel/taglib/utils/*.java</exclude>
-      </excludes>
-    </integrationUnitTest>
-    <jars></jars>
   </build>
   <reports>
     <!--
