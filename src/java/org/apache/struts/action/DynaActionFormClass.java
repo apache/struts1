@@ -49,7 +49,7 @@ import org.apache.struts.util.DynaBeanInterceptor;
 
 public class DynaActionFormClass implements DynaClass, Serializable {
 
-    private Log log = LogFactory.getLog(DynaActionFormClass.class);
+    private static Log log = LogFactory.getLog(DynaActionFormClass.class);
 
     // ----------------------------------------------------------- Constructors
 
