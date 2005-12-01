@@ -17,17 +17,16 @@
  */
 package org.apache.struts.action;
 
-import java.util.List;
-import java.lang.reflect.Method;
-import java.lang.reflect.InvocationTargetException;
 import java.beans.BeanInfo;
+import java.beans.IndexedPropertyDescriptor;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.beans.IndexedPropertyDescriptor;
-import org.apache.commons.beanutils.DynaProperty;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
+import org.apache.commons.beanutils.DynaProperty;
 
 /**
  * Suite of unit tests for the
@@ -114,14 +113,13 @@ public class TestCGLibDynaActionForm extends TestDynaActionForm {
                 } else {
                     boolean indexedDescriptor = (descriptor instanceof IndexedPropertyDescriptor);
                     if (!(dynaProperty.getType() == descriptor.getPropertyType())) {
-                        // ignore java.util.List - not proper indexed properties
-                        if (!(List.class.isAssignableFrom(dynaProperty.getType()))) {
-                            fail(i+" Descriptor type error: " + dynaProperty.getName() +
-                                 " dyna=" + dynaProperty.getType() +
-                                 " regular=" + descriptor.getPropertyType());
-                        }
+                        fail(i+" Descriptor type error: " + dynaProperty.getName() +
+                             " dyna=" + dynaProperty.getType() +
+                             " regular=" + descriptor.getPropertyType());
                     }
-                    if (!(dynaProperty.isIndexed() == indexedDescriptor)) {
+                    boolean indexed = dynaProperty.isIndexed() && 
+                            dynaProperty.getType().isArray();
+                    if (indexed != indexedDescriptor) {
                         fail(i+" Descriptor index error: " + dynaProperty.getName() +
                              " dyna=" + dynaProperty.isIndexed() +
                              " regular=" + indexedDescriptor);
