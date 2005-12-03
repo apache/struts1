@@ -35,6 +35,8 @@
     <shortDescription>Tiles library for defining view components.</shortDescription>
     <description>Tiles can be used to simply define reusable layout components for multiple Servlet "view"
     technologies.  This library has been extracted from the Struts core.</description>
+    <siteAddress>people.apache.org</siteAddress>
+    <siteDirectory>/www/struts.apache.org/struts-tiles</siteDirectory>
     <repository>
         <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/tiles/trunk</connection>
         <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/tiles/trunk</developerConnection>
@@ -57,6 +59,13 @@
             <type>plugin</type>
             <url>http://maven-taglib.sourceforge.net</url>
         </dependency>
+        <!--dependency>
+            <groupId>maven</groupId>
+            <artifactId>maven-pdf-plugin</artifactId>
+            <version>2.5-SNAPSHOT</version>
+            <type>plugin</type>
+            <url>http://maven.apache.org/maven-1.x/reference/plugins/pdf</url>
+        </dependency-->
     </dependencies>
     <build>
         <sourceDirectory>src/java</sourceDirectory>
