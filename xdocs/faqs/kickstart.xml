@@ -17,7 +17,7 @@ limitations under the License.
 // ======================================================================== 78
 -->
 <document><properties>
-<title>Kickstart FAQ - Struts Core FAQs and Howtos - Apache Struts</title>
+<title>Kickstart FAQ - Struts Action Framework FAQs and Howtos - Apache Struts</title>
 </properties>
 <body>
 <a name="faq"/>
@@ -31,32 +31,34 @@ Here are answers to the usual getting-started questions.
 </p>
 
   <ul>
-    <li><a href="#why">Why do we need Struts Core?</a></li>
-    <li><a href="#how">How does Struts Core work?</a></li>
-    <li><a href="#compat">Is Struts Core compatible with other Java technologies?</a></li>
+    <li><a href="#why">Why do we need Struts Action Framework?</a></li>
+    <li><a href="#how">How does Struts Action work?</a></li>
+    <li><a href="#compat">Is Struts Action Framework compatible with other Java technologies?</a></li>
+    <li><a href="#who">Who wrote Struts Action Framework?</a></li>
+  </ul>
+  <ul>
+    <li><a href="#where">Where can I get a copy of Struts Action Framework?</a></li>
+    <li><a href="#install">How do I install Struts Action Framework?</a></li>
+    <li><a href="#jar">When do I need the struts-action.jar on my classpath?</a></li>
+    <li><a href="#tests">Does Struts Action Framework provide its own unit tests?</a></li>
+  </ul>  
+  <ul>
+    <li><a href="#shale">Why are you offering both Struts Shale and Struts Action Framework? Don't they compete for new development?</a></li>
+    <li><a href="#2x">Is Shale likely to become Struts 2.x?</a></li>
+    <li><a href="#shale-fork">Is Struts Shale a fork?</a></li>
+    <li><a href="#classic">What's the difference between Struts Action Framework and Struts Classic</a></li>
+  </ul>
+  <ul>
     <li><a href="#struts">Why is it called Struts?</a></li>
     <li><a href="#license">How is Apache Struts licensed?</a></li>
     <li><a href="#usage">Can Apache Struts be used in a commercial application?</a></li>
     <li><a href="#credits">Do I have to credit Apache Struts on my own website?</a></li>
-  </ul>
-  <ul>
-    <li><a href="#who">Who wrote Struts Core?</a></li>
-    <li><a href="#shale">Why are you offering both Struts Shale and Struts Core? Don't they compete for new development?</a></li>
-    <li><a href="#2x">Is Shale likely to become Struts 2.x?</a></li>
-    <li><a href="#shale-fork">Is Struts Shale a fork?</a></li>
-    <li><a href="#classic">What's the difference between Struts Core and Struts Classic</a></li>
-  </ul>
-  <ul>
-    <li><a href="#where">Where can I get a copy of Struts Core?</a></li>
-    <li><a href="#install">How do I install Struts Core?</a></li>
-    <li><a href="#jar">When do I need the struts-core.jar on my classpath?</a></li>
-    <li><a href="#tests">Does Struts Core provide its own unit tests?</a></li>
   </ul><ul>
-    <li><a href="#requests">If the framework doesn't do what I want, can I request that a feature be added?</a></li>
+    <li><a href="#requests">If a product doesn't do what I want, can I request that a feature be added?</a></li>
     <li><a href="#help">Where can I get help with Apache Struts?</a></li>
-    <li><a href="#support">Is commercial support available for Apach eStruts?</a></li>
+    <li><a href="#support">Is commercial support available for Apache Struts?</a></li>
     <li><a href="#providers">Are there ISPs that will host my Apache Struts application?</a></li>
-    <li><a href="#ide">Is there a particularly good IDE to use with Struts Core?</a></li>
+    <li><a href="#ide">Is there a particularly good IDE to use with Struts Action Framework?</a></li>
   </ul><ul>
     <li><a href="#digest">Is there a digest for the Apache Struts User list?</a></li>
     <li><a href="#newsgroup">Is there a Apache Struts Newsgroup?</a></li>
@@ -66,19 +68,128 @@ Here are answers to the usual getting-started questions.
 </subsection>
 
 <a name="why"/>
-<subsection name="Why do we need Struts Core?">
-<p>Java technologies give developers a serious boost when creating and maintaining applications to meet the demands of today's public Web sites and enterprise intranets. Struts Core combines standard Java technologies into a unified framework. The end result is a cooperative, synergistic framework, suitable for development teams, independent developers, and everyone in between.</p>
+<subsection name="Why do we need Struts Action Framework?">
+<p>Java technologies give developers a serious boost when creating and maintaining applications to meet the demands of today's public Web sites and enterprise intranets. Struts Action Framework combines standard Java technologies into a unified framework. The end result is a cooperative, synergistic framework, suitable for development teams, independent developers, and everyone in between.</p>
 </subsection>
 
 <a name="how"/>
-<subsection name="How does Struts Core work?">
-<p>Java Servlets are designed to handle requests made by Web browsers. Server pages are designed to create dynamic Web pages that can turn billboard sites into live applications. Struts Core uses a special Servlet as a switchboard to route requests from Web browsers to the appropriate server page. This makes Web applications much easier to design, create, and maintain.</p>
+<subsection name="How does Struts Action Framework work?">
+<p>Java Servlets are designed to handle requests made by Web browsers. Server pages are designed to create dynamic Web pages that can turn billboard sites into live applications. Struts Action Framework uses a special Servlet as a switchboard to route requests from Web browsers to the appropriate server page. This makes Web applications much easier to design, create, and maintain.</p>
 </subsection>
 
 <a name="compat"/>
-<subsection name="Is Struts Core compatible with other Java technologies?">
+<subsection name="Is Struts Action Framework compatible with other Java technologies?">
 <p>Yes. Struts is committed to supporting industry standards.
    Struts acts as an integrator of Java technologies so that they can be used in the &quot;real world&quot;.</p>
+</subsection>
+
+<a name="who"/>
+<subsection name="Who wrote Struts Action Framework?">
+    <p>There are several <a href="../volunteers.html">active committers</a> to the Apache Struts project, working cooperatively from around the globe.  Dozens of individual developers and committers contributed to the Struts 1.x codebase. All interested developers and wordsmiths are invited to <a href="http://struts.apache.org/helping.html#contribute">contribute to the project</a>.</p>
+    <p>The initial Struts codebase (Struts 0.5) was created by Craig R. McClanahan in May 2000 and donated to The Apache Software Foundation in May 2000. Craig was the primary developer of both Struts 1.x and <a href="http://jakarta.apache.org/tomcat/index.html">Tomcat 4</a>. Tomcat 4 was the basis for the official reference implementation for a servlet 2.3 and JSP 1.2 container.</p>
+    <p>After serving as the co-lead of the JSR 127 specification (JavaServerFaces), Craig created another version of Struts based on JavaServerFaces, called Shale. Both Struts Action Framework and Struts Shale are first-class citizens of the Apache Struts project. </p>
+</subsection>
+
+<a name="where"/>
+<subsection name="Where can I get a copy of Struts Action Framework?">
+<p>The best place to download Apahce Struts products is at <a href="http://struts.apache.org/">struts.apache.org</a>. The nightly builds are very stable, and recommended as the best place to start today.</p>
+</subsection>
+
+<a name="install"/>
+<subsection name="How do I install Struts Action Framework?">
+<p>To develop applications with Struts, you can usually just add the Struts JAR file
+to your Java development environment. You can then start using the Struts classes as
+part of your own application. A blank Struts application (in the
+<code>webapps</code> directory, open <code>struts-blank.war</code>)
+is provided, which you can just copy to get a quick-start on your own brainchild.</p>
+<p>Aside from the Struts Action Framework jar, the blank application includes the other Struts Action Framework 
+Library JARs and dependencies. 
+All dependencies are compatible with the Apache License.
+</p>
+<p>Since the full source code for Struts is available, we also provide
+<a href="../userGuide/installation.html">complete instructions</a>
+for compiling your own Struts JAR from scratch. (This is actually easier than it looks!)</p>
+<p>Your Struts application can usually be deployed using a standard WAR file. In most
+cases, you simply deposit the WAR file on your application server, and it is installed
+automatically. If not, step-by-step installation instructions for
+<a href="../userGuide/installation.html#Containers">various servlet
+containers</a> are available.</p>
+</subsection>
+
+<a name="jar"/>
+<subsection name="When do I need &quot;struts-action.jar&quot; on my classpath?">
+<p>When you are compiling an application that uses the Struts classes, you must have the &quot;struts-action.jar&quot; on the classpath your <strong>compiler</strong> sees -- it does not <em> have</em> to be on your CLASSPATH environment variable.</p>
+<p>Why is that an important distinction? Because if you are using a servlet container on your development machine to test your application, the &quot;struts-action.jar&quot; <strong>must not</strong> be on your CLASSPATH environment variable when running the container. (This is because each Web application must also have their own copy of the Struts classes, and the container will become confused if it is on the environment path as well.)</p>
+<p>There are several general approaches to this issue:</p>
+<ul>
+<li><strong>Use ANT</strong> for building your projects -- it can easily assemble classpaths for the compiler.  (This is how Struts itself is  built, along with Tomcat and most other Java-based projects).</li>
+<li><strong>Use an IDE</strong> where you can configure the "class path" used  for compilation independent of the CLASSPATH environment  variable.</li>
+<li><strong>Use a shell script</strong> that temporarily adds struts-action.jar  to the classpath just for compilation, for example<br/>
+<em>javac -classpath /path/to/struts-action.jar:$CLASSPATH $@</em></li>
+</ul>
+</subsection>
+
+<a name="tests"/>
+<subsection name="Does Struts Action Framework include its own unit tests?">
+<p>
+Struts Action Framework currently has two testing environments, to reflect the fact that
+some things can be tested statically, and some really need to be done in
+the environment of a running servlet container.</p>
+<p>
+For static unit tests, we use the <a href="http://www.junit.org">JUnit framework</a>.
+The sources for these tests are in the "src/test"
+hierarchy in the source repository, and are executed via the "test.junit"
+target in the top-level build.xml file.  Such tests are focused on the
+low-level functionality of individual methods, are particularly
+suitable for the static methods in the org.apache.struts.util utility
+classes.  In the test hierarchy, there are also some "mock object" classes
+(in the org.apache.struts.mock package) so that you can package up things
+that look like servlet API and Struts API objects to pass in as arguments
+to such tests.</p>
+<p>
+Another valuable tool is
+<a href="http://sourceforge.net/projects/strutstestcase/">Struts TestCase</a>
+which provides a useful harness for Action classes that can be used with JUnit or
+<a href="http://jakarta.apache.org/cactus">Cactus</a>.
+</p>
+</subsection>
+
+<a name="shale"/>
+<subsection name="Why are you offering both Struts Shale and Struts Action Framework? Don't they compete for new development?">
+<p>We do offer Apache Struts developers a choice, but, hey, choice is good. :)</p>
+<p>People who want to create and maintain Struts Action Framework are welcome to do so.</p>
+<p>People who want to create and maintain Struts Shale are equally welcome.</p>
+<p>As a volunteer organization, we are not constrained by the economics of competition. All we need are volunteers who are ready, willing, and able to do the work. So long as we have volunteers, we have work for them to do. :)</p>
+<p>Right now, we have volunteers who want to leverage the new JavaServer Faces framework by using Struts Shale for new development. We also have volunteers who prefer to leverage their existing investment in Struts Action Framework. All are welcome.</p>
+<p>For more about volunteering, visit our <a href="http://struts.apache.org/faqs/helping.html">how to help page</a>.</p>
+</subsection>
+
+<a name="fork"/>
+<subsection name="Is Struts Shale a fork?">
+<p>No. It's an entirely new product with its own architecture. Struts Shale is an MVC framework for web applications, like Struts Action Framework, but it's a fresh start. Struts Shale is the best choice for developers eager to leverage the latest technologies, like JavaServer Faces.</p>
+<p>Both frameworks will have a home here so long as there are volunteers ready to contribute.</p>
+<p>We encourage you to choose the framework that works best for you. (Even if it is not one of ours!)</p>
+</subsection>
+
+<a name="2x"/>
+<subsection name="Is Shale likely to become Struts 2.x?">
+<p>Struts Shale has its own identity and its own release cycle. Struts Action Framework is one subproject, and Struts Shale is another.</p>
+<p>So, no, it is not likely that Struts Shale will become Struts Action Framework 2.x.</p>
+<p>Right now, there are no concrete plans for a 2.x release of Struts Action Framework. The people working on the 1.x series want to evolve the code base without breaking backward compatibility.</p>
+<p>In our opinion, the reasons to roll the major version number are when</p>
+<ul>
+    <li>a new codebase is created, or</li>
+    <li>there is a break in backward compatability.</li>
+</ul>
+<p>Should either of these things happen, then, in that event, there might be a Struts Action Framework 2.x.</p>
+<p>For example, right now, most of us are using Java 1.3 in production, so that is the platform that Struts Action Framework targets. But, if someone wanted to start a "Struts Tiger" codebase, using the new features of Java 1.5, something like that might be a candidate for Struts Action Framework 2.x.</p>
+<p>But, so long as each Struts Action Framework release follows the deprecate/replace/remove strategy, and targets the mainstream platform, we will just keep rolling the minor version number. If this takes us to Struts 1.42 or Struts 1.2025, then so be it.</p>
+</subsection>
+
+<a name="action"/>
+<subsection name="What's the difference between Struts Action Framework and Struts Classic?">
+<p>For the Struts Action Framework 1.3.x series, we subdivided the monolithic Struts 1.2.x distribution into several discrete subprojects. Struts Classic is a codename for the work we needed to do to create and release the new subprojects. </p>
+<p>For a time, we considered bundling those seven products together and calling the bundle "Struts Classic". Instead, we are bundling Struts Action Framework and any compatible projects into a distribution called "Struts Action Framework Library". This bundle includes the original "seven dwarfs" and new subprojects, like Struts Scripting.</p>
 </subsection>
 
 <a name="struts"/>
@@ -105,117 +216,8 @@ It's the same situation as using the Apache HTTPD server or Tomcat. Not required
 Required if you've used the source code to create your own server that you are redistributing to other people.</p>
 </subsection>
 
-<a name="who"/>
-<subsection name="Who wrote Struts Core?">
-    <p>There are several <a href="../volunteers.html">active committers</a> to the Apache Struts project, working cooperatively from around the globe.  Dozens of individual developers and committers contributed to the Struts 1.x codebase. All interested developers and wordsmiths are invited to <a href="http://struts.apache.org/helping.html#contribute">contribute to the project</a>.</p>
-    <p>The initial Struts codebase (Struts 0.5) was created by Craig R. McClanahan in May 2000 and donated to The Apache Software Foundation in May 2000. Craig was the primary developer of both Struts 1.x and <a href="http://jakarta.apache.org/tomcat/index.html">Tomcat 4</a>. Tomcat 4 was the basis for the official reference implementation for a servlet 2.3 and JSP 1.2 container.</p>
-    <p>After serving as the co-lead of the JSR 127 specification (JavaServerFaces), Craig created another version of Struts based on JavaServerFaces, called Shale. Both Struts Core and Struts Shale are first-class citizens of the Apache Struts project. </p>
-</subsection>
-
-<a name="shale"/>
-<subsection name="Why are you offering both Struts Shale and Struts Core? Don't they compete for new development?">
-<p>We do offer Apache Struts developers a choice, but, hey, choice is good. :)</p>
-<p>People who want to create and maintain Struts Core are welcome to do so.</p>
-<p>People who want to create and maintain Struts Shale are equally welcome.</p>
-<p>As a volunteer organization, we are not constrained by the economics of competition. All we need are volunteers who are ready, willing, and able to do the work. So long as we have volunteers, we have work for them to do. :)</p>
-<p>Right now, we have volunteers who want to leverage the new JavaServer Faces framework by using Struts Shale for new development. We also have volunteers who prefer to leverage their existing investment in Struts Core. All are welcome.</p>
-<p>For more about volunteering, visit our <a href="http://struts.apache.org/faqs/helping.html">how to help page</a>.</p>
-</subsection>
-
-<a name="2x"/>
-<subsection name="Is Shale likely to become Struts 2.x?">
-<p>Struts Shale has its own identity and its own release cycle. Struts Core is one subproject, and Struts Shale is another.</p>
-<p>So, no, it is not likely that Struts Shale will become Struts Core 2.x.</p>
-<p>Right now, there are no concrete plans for a 2.x release of Struts Core. The people working on the 1.x series want to evolve the code base without breaking backward compatibility.</p>
-<p>In our opinion, the reasons to roll the major version number are when</p>
-<ul>
-    <li>a new codebase is created, or</li>
-    <li>there is a break in backward compatability.</li>
-</ul>
-<p>Should either of these things happen, then, in that event, there might be a Struts Core 2.x.</p>
-<p>For example, right now, most of us are using Java 1.3 in production, so that is the platform that Struts Core targets. But, if someone wanted to start a "Struts Tiger" codebase, using the new features of Java 1.5, something like that might be a candidate for Struts Core 2.x.</p>
-<p>But, so long as each Struts Core release follows the deprecate/replace/remove strategy, and targets the mainstream platform, we will just keep rolling the minor version number. If this takes us to Struts 1.42 or Struts 1.2025, then so be it.</p>
-</subsection>
-
-<a name="fork"/>
-<subsection name="Is Struts Shale a fork?">
-<p>No. It's an entirely new product with its own architecture. Struts Shale is an MVC framework for web applications, like Struts Core, but it's a fresh start. Struts Shale is the best choice for developers eager to leverage the latest technologies, like JavaServer Faces.</p>
-<p>Both frameworks will have a home here so long as there are volunteers ready to contribute.</p>
-<p>We encourage you to choose the framework that works best for you. (Even if it is not one of ours!)</p>
-</subsection>
-
-<a name="core"/>
-<subsection name="What's the difference between Struts Core and Struts Classic?">
-<p>For the Struts Core 1.3.x series, we subdivided the monolithic Struts 1.2.x distribution into several discrete subprojects. Struts Classic is a codename for the work we needed to do to create and release the new subprojects. </p>
-<p>For a time, we considered bundling those seven products together and calling the bundle "Struts Classic". Instead, we are bundling Struts Core and any compatible projects into a distribution called "Struts Core Library". This bundle includes the original "seven dwarfs" and new subprojects, like Struts Scripting.</p>
-</subsection>
-
-<a name="where"/>
-<subsection name="Where can I get a copy of Struts Core?">
-<p>The best place to download Apahce Struts products is at <a href="http://struts.apache.org/">struts.apache.org</a>. The nightly builds are very stable, and recommended as the best place to start today.</p>
-</subsection>
-
-<a name="install"/>
-<subsection name="How do I install Struts Core?">
-<p>To develop applications with Struts, you can usually just add the Struts JAR file
-to your Java development environment. You can then start using the Struts classes as
-part of your own application. A blank Struts application (in the
-<code>webapps</code> directory, open <code>struts-blank.war</code>)
-is provided, which you can just copy to get a quick-start on your own brainchild.</p>
-<p>Aside from the Struts Core jar, the blank application includes the other Struts Core 
-Library JARs and dependencies. 
-All dependencies are compatible with the Apache License.
-</p>
-<p>Since the full source code for Struts is available, we also provide
-<a href="../userGuide/installation.html">complete instructions</a>
-for compiling your own Struts JAR from scratch. (This is actually easier than it looks!)</p>
-<p>Your Struts application can usually be deployed using a standard WAR file. In most
-cases, you simply deposit the WAR file on your application server, and it is installed
-automatically. If not, step-by-step installation instructions for
-<a href="../userGuide/installation.html#Containers">various servlet
-containers</a> are available.</p>
-</subsection>
-
-<a name="jar"/>
-<subsection name="When do I need &quot;struts-core.jar&quot; on my classpath?">
-<p>When you are compiling an application that uses the Struts classes, you must have the &quot;struts-core.jar&quot; on the classpath your <strong>compiler</strong> sees -- it does not <em> have</em> to be on your CLASSPATH environment variable.</p>
-<p>Why is that an important distinction? Because if you are using a servlet container on your development machine to test your application, the &quot;struts-core.jar&quot; <strong>must not</strong> be on your CLASSPATH environment variable when running the container. (This is because each Web application must also have their own copy of the Struts classes, and the container will become confused if it is on the environment path as well.)</p>
-<p>There are several general approaches to this issue:</p>
-<ul>
-<li><strong>Use ANT</strong> for building your projects -- it can easily assemble classpaths for the compiler.  (This is how Struts itself is  built, along with Tomcat and most other Java-based projects).</li>
-<li><strong>Use an IDE</strong> where you can configure the "class path" used  for compilation independent of the CLASSPATH environment  variable.</li>
-<li><strong>Use a shell script</strong> that temporarily adds struts-core.jar  to the classpath just for compilation, for example<br/>
-<em>javac -classpath /path/to/struts-core.jar:$CLASSPATH $@</em></li>
-</ul>
-</subsection>
-
-<a name="tests"/>
-<subsection name="Does Struts Core include its own unit tests?">
-<p>
-Struts Core currently has two testing environments, to reflect the fact that
-some things can be tested statically, and some really need to be done in
-the environment of a running servlet container.</p>
-<p>
-For static unit tests, we use the <a href="http://www.junit.org">JUnit framework</a>.
-The sources for these tests are in the "src/test"
-hierarchy in the source repository, and are executed via the "test.junit"
-target in the top-level build.xml file.  Such tests are focused on the
-low-level functionality of individual methods, are particularly
-suitable for the static methods in the org.apache.struts.util utility
-classes.  In the test hierarchy, there are also some "mock object" classes
-(in the org.apache.struts.mock package) so that you can package up things
-that look like servlet API and Struts API objects to pass in as arguments
-to such tests.</p>
-<p>
-Another valuable tool is
-<a href="http://sourceforge.net/projects/strutstestcase/">Struts TestCase</a>
-which provides a useful harness for Action classes that can be used with JUnit or
-<a href="http://jakarta.apache.org/cactus">Cactus</a>.
-</p>
-</subsection>
-
 <a name="requests"/>
-<subsection name="If the framework doesn't do what I want, can I request that a feature be added?">
+<subsection name="If a product doesn't do what I want, can I request that a feature be added?">
 <p>
 First, it's important to remember that Apache Struts is an all-volunteer project.
 We don't charge anyone anything to use Apache Struts products.
@@ -230,8 +232,8 @@ We are grateful for any patches, and we welcome new ideas, but the best way to s
 </subsection>
 
 <a name="help"/>
-<subsection name="Where can I get help with Struts Core?">
-<p>Struts Core comes complete with a
+<subsection name="Where can I get help with Apache Struts?">
+<p>Struts Action Framework comes complete with a
 <a href="../userGuide/index.html">Users Guide</a> to
 introduce people to the framework and its underlying technologies. Various components
 also have their own in-depth Developers Guide, to cover more advanced topics. Comprehensive
@@ -260,11 +262,11 @@ However, third parties may offer different degrees of support. </p>
 
 <a name="providers"/>
 <subsection name="Are there ISPs that will host my Struts application?">
-<p>For a listing of some Java and Struts Core ISPs, visit the <a href="http://struts.sf.net/community/index.html">Struts Community Resources</a> area on SourceForge.</p>
+<p>For a listing of some Java and Struts Action Framework ISPs, visit the <a href="http://struts.sf.net/community/index.html">Struts Community Resources</a> area on SourceForge.</p>
 </subsection>
 
 <a name="ide"/>
-<subsection name="Is there a particularly good IDE to use with Struts Core">
+<subsection name="Is there a particularly good IDE to use with Struts Action Framework">
 <p>
 Struts should work well with any development environment that you would like to use, as well as with any programmers editor.
 The members of the Struts development team each use their own tools such as
