@@ -1,0 +1,246 @@
+<project name="struts-scripting" default="jar" basedir=".">
+
+    <!-- ========== Initialization Properties ================================= -->
+    <!--
+            These property values may optionally be overridden with property
+            settings from an "ant" command line, the "antrc" properties file
+            in your home directory, or from settings in a superior build.xml
+            script.
+    -->
+
+    <!-- Java compilation options -->
+    <property name="compile.debug"         value="true" />
+    <property name="compile.deprecation"   value="true" />
+    <property name="compile.optimize"      value="false" />
+
+    <!-- Doc directory and packages that go in there -->
+    <property name="doc.dir"              value="./doc"/>
+
+    <!-- where all the library files are kept, plus what to include/exclude when building -->
+    <property name="lib.dir"              value="./lib" />
+    <property name="lib.core"              value="${lib.dir}/core" />
+    <property name="lib.build"              value="${lib.dir}/build" />
+
+    <!-- application information -->
+    <property name="app.name"           value="struts-scripting" />
+    <property name="app.version"        value="1.0.0" />
+
+    <!-- The base directory for distribution targets -->
+    <property name="dist.dir"           value="./dist" />
+   
+    <property name="src.dir" value="src" />
+    <property name="src.java" value="${src.dir}/java" />
+    <property name="src.example" value="${src.dir}/struts-example" />
+    
+    <property name="build.dir" value="build" />
+    <property name="build.example" value="${build.dir}/struts-example" />
+    <property name="build.target" value="${build.dir}/target" />
+
+    <property name="javadoc.packages" value="org.apache.struts.scripting.*" />
+
+
+    <!-- ========== Derived Properties ======================================== -->
+    <!--
+            These property values are derived from values defined above, and
+            generally should NOT be overridden by command line settings
+    -->
+
+    <!-- The name of the web application archive file to be produced -->
+    <property name="app.jar"           value="${app.name}-${app.version}.jar" />
+    <property name="release.zip"           value="${app.name}-${app.version}.zip" />
+
+    <path id="base.classpath">
+        <fileset dir="lib">
+                <include name="**/*.jar"/>
+        </fileset>
+        <pathelement location="${build.target}"/>
+        <pathelement location="${build.test}" />
+    </path> 
+
+    <!-- ========== Executable Targets ======================================== -->
+    <!--
+            The "init" target evaluates "available" expressions as necessary
+            to modify the behavior of this script.
+    -->
+
+    <target name="init">
+        <echo    message="Processing build.target init ${app.name}"/>
+        <available file="${src.java}"   property="src.java.present"/>
+        <available file="${lib.dir}"     property="lib.dir.present"/>
+    </target>
+
+    <target name="download-dependencies" unless="lib.dir.present">
+        <mkdir dir="${lib.build}" />
+
+        <get dest="${lib.build}/servletapi-2.3.jar" usetimestamp="true" 
+              ignoreerrors="true" 
+              src="http://www.ibiblio.org/maven/servletapi/jars/servletapi-2.3.jar"/> 
+
+        <mkdir dir="${lib.core}" />
+        <get dest="${lib.core}/struts-1.2.8.jar" usetimestamp="true" 
+              ignoreerrors="true" 
+              src="http://www.ibiblio.org/maven/struts/jars/struts-1.2.8.jar"/> 
+
+        <get dest="${lib.core}/bsf-2.3.0.jar" usetimestamp="true" 
+              ignoreerrors="true" 
+              src="http://www.ibiblio.org/maven/bsf/jars/bsf-2.3.0.jar"/> 
+
+        <get dest="${lib.core}/bsh-1.3.0.jar" usetimestamp="true" 
+              ignoreerrors="true" 
+              src="http://www.ibiblio.org/maven/bsh/jars/bsh-1.3.0.jar"/> 
+
+        <get dest="${lib.core}/jakarta-oro-2.0.7.jar" usetimestamp="true" 
+              ignoreerrors="true" 
+              src="http://www.ibiblio.org/maven/oro/jars/oro-2.0.7.jar"/> 
+
+        <get dest="${lib.core}/commons-logging.jar" usetimestamp="true" 
+              ignoreerrors="true" 
+              src="http://www.ibiblio.org/maven/commons-logging/jars/commons-logging-1.0.4.jar"/> 
+ 
+        <get dest="${lib.core}/commons-beanutils.jar" usetimestamp="true" 
+              ignoreerrors="true" 
+              src="http://www.ibiblio.org/maven/commons-beanutils/jars/commons-beanutils-1.7.0.jar"/> 
+ 
+        <get dest="${lib.core}/commons-validator.jar" usetimestamp="true" 
+              ignoreerrors="true" 
+              src="http://www.ibiblio.org/maven/commons-validator/jars/commons-validator-1.1.4.jar"/> 
+        <get dest="${lib.core}/commons-digester.jar" usetimestamp="true" 
+              ignoreerrors="true" 
+              src="http://www.ibiblio.org/maven/commons-digester/jars/commons-digester-1.7.jar"/> 
+    </target>
+
+    <!--
+            The "clean" task deletes any created directories that have resulted
+            from running any of the other targets in this script.
+    -->
+
+    <target name="clean"
+        description="Clean build and distribution directories">
+        <echo    message="Processing build.target clean ${app.name}"/>
+        <delete   dir="${build.dir}" />
+        <delete   dir="${dist.dir}" />
+    </target>
+
+    <!--
+            The "prepare" target creates a directory structure in the build target
+            area for the unpacked files associated with this web application
+    -->
+    <target name="prepare" depends="init, download-dependencies"
+        description="Prepare target directory">
+        <echo    message="Processing app ${app.name}"/>
+        <mkdir   dir="${build.dir}" />
+        <mkdir   dir="${build.target}" />
+        <mkdir   dir="${dist.dir}" />
+    </target>
+
+     <target name="release" depends="clean, jar, example, javadoc"
+             description="Creates a release">
+        <echo message="Creating ${app.version} release" />
+        
+        <zip destfile="${release.zip}"
+            compress="true">
+            <zipfileset dir="${src.dir}" prefix="src" />
+            <zipfileset dir="${doc.dir}" prefix="doc" />
+            <zipfileset dir="${lib.dir}" prefix="lib" />
+            <zipfileset dir="${dist.dir}" prefix="dist" />
+            <fileset dir="." includes="build.xml" />
+        </zip>
+    </target>
+        
+        
+    <!--
+            The "compile" target compiles the Java source code of your web
+            application, if and only if the specified source directory
+            actually exists.
+    -->
+    <target name="compile" depends="prepare" description="Compile Java sources">
+        <echo    message="Processing app ${app.name}"/>
+
+        <echo    message="Source ${src.java}"/>
+        <echo    message="Target ${build.target}"/>
+        <javac  srcdir="${src.java}"
+            destdir="${build.target}"
+            debug="${compile.debug}"
+            deprecation="${compile.deprecation}"
+            optimize="${compile.optimize}">
+            <classpath refid="base.classpath" />
+        </javac>
+        <copy    todir="${build.target}">
+            <fileset dir="${src.java}">
+                <exclude name="**/*.java"/>
+                <exclude name="**/!dirinfo.txt"/>
+            </fileset>
+        </copy>
+    </target>
+
+<!--
+	<target name="run-tests" depends="compile">
+		<javac srcdir="${test.src}" destdir="${test.build}"
+			debug="on" optimize="off" deprecation="off" >
+            <classpath refid="base.classpath" />
+        </javac>
+		<junit printsummary="on" fork="on">
+			<formatter type="xml" />
+			<classpath refid="base.classpath" />
+
+			<batchtest todir="${test.results}">
+				<fileset dir="${test.src}">
+					<include name="**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+    </target>
+    -->
+    <!--
+            The 'javadoc' target creates the API documentation.
+            All javadoc is created in the ${doc.dir}/javadoc directory.
+    -->
+    <target name="javadoc" depends="init">
+        <mkdir dir="${doc.dir}/api"/>
+        <delete includeEmptyDirs="true" >
+            <fileset dir="${doc.dir}/api"/>
+        </delete>
+        <mkdir dir="${doc.dir}/api"/>
+        <javadoc packagenames="${javadoc.packages}"
+            sourcepath="${src.java}"
+            destdir="${doc.dir}/api"
+            author="false"
+            version="true"
+            private="false"
+            doctitle="${app.name} Version ${app.version}">
+            <classpath refid="base.classpath" />
+        </javadoc>
+    </target>
+    <!--
+            The "dist" target creates a web application archive containing
+            your completed web application, suitable for deployment on any
+            compatible servlet container.
+    -->
+   <target name="jar" depends="compile" unless="nojar"
+        description="Create jar">
+        <echo    message="Processing jarfile ${app.name}"/>
+        <jar  jarfile="${dist.dir}/${app.jar}"
+            basedir="${build.target}"
+            excludes="**/example/*.*"/>
+    </target> 
+    
+    <target name="example" depends="jar"
+        description="Create example">
+        <echo    message="Creating example"/>
+        <mkdir dir="${build.example}" />
+        <mkdir dir="${build.example}/WEB-INF/lib" />
+        <copy todir="${build.example}">
+            <fileset dir="${src.example}" excludes="WEB-INF/web.xml" />
+        </copy>
+        <copy todir="${build.example}/WEB-INF/lib">
+            <fileset dir="${lib.core}" />
+        </copy>
+        <copy todir="${build.example}/WEB-INF/lib" file="${dist.dir}/${app.jar}" />
+            
+        <war  destfile="${dist.dir}/struts-example.war"
+            basedir="${build.example}"
+            webxml="${src.example}/WEB-INF/web.xml"/>
+    </target> 
+
+    
+</project>
