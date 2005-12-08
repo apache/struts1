@@ -39,6 +39,10 @@
                 href="apidocs/index.html"
                 />
             <item
+                name="Release Notes"
+                href="userGuide/release-notes.html"
+                />
+            <item
                 name="Source Repository"
                 href="http://svn.apache.org/viewcvs.cgi/struts/action/trunk/?root=Apache-SVN"
                 />
