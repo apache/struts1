@@ -66,7 +66,9 @@ for evaluating attribute values.
       <artifactId>httpunit</artifactId>
       <version>1.5.4</version>
       <url>http://httpunit.org/</url>
-      <scope>test</scope>
+      <properties>
+        <scope>test</scope>
+      </properties>
     </dependency>
     <dependency>
       <groupId>commons-logging</groupId>
@@ -79,14 +81,18 @@ for evaluating attribute values.
       <artifactId>cactus</artifactId>
       <version>12-1.4.1</version>
       <url>http://jakarta.apache.org/cactus</url>
-      <scope>test</scope>
+      <properties>
+        <scope>test</scope>
+      </properties>
     </dependency>
     <dependency>
       <groupId>cactus</groupId>
       <artifactId>cactus-ant</artifactId>
       <version>1.4.1</version>
       <url>http://jakarta.apache.org/cactus</url>
-      <scope>test</scope>
+      <properties>
+        <scope>test</scope>
+      </properties>
     </dependency>
   </dependencies>
   <build>
