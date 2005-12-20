@@ -46,8 +46,24 @@ limitations under the License.
     ]]></source>
 
     <p>If you are using Struts 1.2.x you will need to also make sure you are
-       using a <code>RequestProcessor</code> class that extends
-       <code>org.apache.struts.tiles.TilesRequestProcessor</code>.</p>
+       using the <code>org.apache.struts.tiles.TilesRequestProcessor</code>
+       or a <code>RequestProcessor</code> class that extends it.</p>
+    <source><![CDATA[
+    <controller
+       processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+    ]]></source>
+       
+    <p>If you are using Struts 1.3.x, the default 
+    <code>ComposableRequestProcessor</code> can be configured to recognize
+    Tiles definitions.  A chain-config file is included in struts-tiles.jar.
+    To use it, add the following <code>init-param</code> to the Action
+    Servlet definition in web.xml.</p>
+    <source><![CDATA[
+    <init-param>
+        <param-name>chainConfig</param-name>
+        <param-value>org/apache/struts/tiles/chain-config.xml</param-value>
+    </init-param>
+    ]]></source>
        
     <p>If you are not using Struts most of the configuration will be found in
        the web application deployment descriptor as follows:</p>

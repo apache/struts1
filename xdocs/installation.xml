@@ -18,7 +18,7 @@ limitations under the License.
 -->
 <document>
 <properties>
-  <title>Installation (1.1)</title>
+  <title>Installation</title>
 </properties>
 
 <body>
@@ -105,7 +105,25 @@ limitations under the License.
             <li><strong>Using Tiles With Struts</strong> -
                 Modify the <code>WEB-INF/web.xml</code> file
                 for your web application to use a <code>&lt;servlet&gt;
-                </code> that responds to Struts actions.  You will need to 
+                </code> that responds to Struts actions.  Usually, this
+                will be the standard Struts ActionServlet:</li>
+    <source><![CDATA[
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>chainConfig</param-name>
+        <param-value>org/apache/struts/tiles/chain-config.xml</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+ </servlet>
+    ]]></source>
+            <li><strong>Using Tiles With Struts</strong> -
+                You will also need to 
                 configure the Tiles Plugin and the Tiles Request Processor to
                 allow Struts to respond to Tiles-based Action Forwards.  Below
                 is a sample Tiles Plugin configuration.
@@ -165,12 +183,12 @@ limitations under the License.
     </ul>
     <p>Note to Struts 1.0 users :</p>
     <ul>
-        <li>You should use a <code>tiles.jar</code> build with Struts1.0.x.</li>
-        <li>If you have downloaded a Tiles version build with Struts1.0.x, you
+        <li>You should use a <code>tiles.jar</code> built with Struts 1.0.x.</li>
+        <li>If you have downloaded a Tiles version build with Struts 1.0.x, you
             already have it. </li>
     </ul>
 
-    <p>Note to Struts1.1 users :</p>
+    <p>Note to Struts 1.1 and 1.2 users :</p>
     <ul>
         <li>You should also initialize a <code>TilesRequestProcessor</code>.</li>
         <li>To do so, add following lines in your <code>struts-config.xml</code>
