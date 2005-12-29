@@ -1614,9 +1614,9 @@ throws Exception;
     <p>
     For a complete description of the elements that can be used with the
     action element, see the
-    <a href="http://struts.apache.org/dtds/struts-config_1_3.dtd">
+    <a href="http://struts.apache.org/dtds/struts-config/1_3">
     configuration DTD</a> and the
-    <a href="../struts-action/apidocs/org/apache/struts/action/ActionMapping.html">
+    <a href="../apidocs/org/apache/struts/action/ActionMapping.html">
     ActionMapping documentation</a>.
     </p>
 

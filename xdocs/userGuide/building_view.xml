@@ -411,7 +411,7 @@ value="/org/apache/struts/validator/validator-rules.xml,
     
     <p>
     For more about the Struts Validator, see the 
-    <a href="../../struts-taglib/dev_validator.html">Developers Guide</a>.
+    <a href="http://struts.apache.org/struts-taglib/dev_validator.html">Developers Guide</a>.
     </p>
     
 </subsection>
@@ -504,7 +504,7 @@ parameter="homepage"/>
         </p>
 
         <p>
-        See the <a href="../../struts-tiles/index.html">Struts Tiles website</a>
+        See the <a href="http://struts.apache.org/struts-tiles/">Struts Tiles website</a>
         for in-depth examples.
         </p>
   
