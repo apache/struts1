@@ -315,8 +315,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable, Module
         ActionConfig config = (ActionConfig) actionConfigs.get(path);
 
         // If a direct match cannot be found, try to match action configs
-        // containing wildcard patterns
-        if (config == null) {
+        // containing wildcard patterns only if a matcher exists.
+        if (config == null && matcher != null) {
             config = matcher.match(path);
         }
 
