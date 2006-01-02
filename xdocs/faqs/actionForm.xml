@@ -210,6 +210,51 @@ limitations under the License.
         </li>
           
     </ul>
+    
+</subsection>
+
+<subsection name="Transferring Data">
+
+    <p>
+    To transfer data between ActionForms and business objects, 
+    many developers use the Commons BeanUtil methods. 
+    To transfer data from an ActionForm to a business object, 
+    you can use a statement like:
+    </p>
+    
+<source><![CDATA[
+            PropertyUtils.copyProperties(actionForm, businessObject);
+
+]]></source>
+    
+    <p>
+    To transfer data from a business object to an ActionForm, 
+    you can reverse the parameters 
+    
+    
+<source><![CDATA[
+            PropertyUtils.copyProperties(businessObject, actionForm);
+]]></source>
+    </p>
+    
+    <p>
+    For more about using this technique, see the 
+    <a href="http://jakarta.apache.org/commons/beanutils/">
+    Jakarta Commons BeanUtils documentation</a>, 
+    and the Struts MailReader example application.
+    </p>
+    
+    <p>
+    Aside from BeanUtils, 
+    there are other tools available that make it easier to use business objects 
+    and ActionForms together. 
+    For more about POJO ActionForms, see the
+    <a href="https://formdef.dev.java.net/">FormDef</a> extension 
+    and the <a href="https://strutslive.dev.java.net/">Struts Live</a> toolkit.
+    </p>
+</subsection>
+
+<subsection name="Multipart Forms">
 
     <p>
     Handling multipart forms is also easy.  
@@ -218,8 +263,6 @@ limitations under the License.
     The first step to creating a multipart form is to utilize the struts-html 
     taglib to create the presentation page:
     </p>
-
-<hr/>
 
 <source><![CDATA[
 <%@page language="java">
@@ -297,7 +340,7 @@ public class UploadForm extends ActionForm {
 
 </subsection>
 
-  </section>
+ </section>
  </body>
 </document>
 
