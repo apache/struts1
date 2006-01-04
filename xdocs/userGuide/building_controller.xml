@@ -168,7 +168,7 @@ limitations under the License.
     Let's take a look at the <i>default</i> commands for the ComposableRequestProcessor
     Chain in turn. These Command classes are in either the
     <code>org.apache.struts.chain.commands</code> or
-    or <code>org.apache.struts.chain.commands.servlet</code> packages.
+    <code>org.apache.struts.chain.commands.servlet</code> packages.
     </p>
 
     <table>
