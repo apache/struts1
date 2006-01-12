@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-Copyright 1999-2005 The Apache Software Foundation
+Copyright 1999-2006 The Apache Software Foundation
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -73,7 +73,7 @@ limitations under the License.
   <subsection name="Install a Library Distribution" href="Installing">
 
     <p>First, download a binary distribution of Struts Action Library by following the
-    instructions <a href=".http://struts.apache.org/acquiring.html">here</a>. Then, make sure
+    instructions <a href="http://struts.apache.org/downloads.html">here</a>. Then, make sure
     you have downloaded and installed the
     <a href="#Prerequisites">prerequisite</a> software packages described
     above.</p>
@@ -187,8 +187,8 @@ about how to configure additional security manager permissions.</p>
 
     <p>
     First, download a source distribution of a Struts subproject by following the
-    instructions <a href="http://struts.apache.org/acquiring.html">here</a>. Then, make sure
-    you have downloaded and installed <a href="http://maven.apache.org/maven-1.x/">Apache Maven 1.1</a> 
+    instructions <a href="http://struts.apache.org/downloads.html">here</a>. Then, make sure
+    you have downloaded and installed <a href="http://maven.apache.org/maven-1.x/">Apache Maven 1.0.2</a> 
     </p>
     
     <p>
