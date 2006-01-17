@@ -126,12 +126,7 @@ The "form-bean" element describes a particular form bean, which is a
      type            Fully qualified Java class name of the ActionForm subclass
                      to use with this form bean.
                      
-     enhanced        Flag indicating if the form bean should be dynamically
-                     enhanced to include getters and setters for defined
-                     properties. This is only valid when 'type' is a
-                     dynamic form bean (an instance of 
-                     "org.apache.struts.action.DynaActionForm" or a sub-class,
-                     and requires CGLIB when enabled.
+     enhanced        Reserved for future use.
 -->
 <!ELEMENT form-bean (icon?, display-name?, description?, set-property*, form-property*)>
 <!ATTLIST form-bean      id             ID              #IMPLIED>

@@ -697,34 +697,6 @@ messages. Here we provide a table summarizing the changes.
     </p>
 
     <p>
-    Since release 1.3.0 it is possible to use regular JSTL EL property
-    references, without the additional '.map' qualifier. This can be
-    useful if you often reference form bean properties with JSTL or if
-    you need to pass form beans to JSP 2.0 tag files or other re-usable
-    components which shouldn't need to know how to handle DynaActionForm
-    objects specially.
-    </p>
-
-    <p>
-    To make this work, you need to do two things:
-    <ul>
-        <li>install <a href="http://cglib.sourceforge.net/">CGLIB</a>
-            in your application's classpath</li>
-        <li>include the 'enhanced="true"' attribute in the form-bean
-            declaration in struts-config.xml, like this:
-
-            <source><![CDATA[
-<form-bean name="myForm" enhanced="true"
-           type="org.apache.struts.action.DynaActionFrom">
-    ...
-</form-bean>]]></source>
-        </li>
-    </ul>
-    You can then reference DynaFormBean properties just like any other
-    ActionForm.
-    </p>
-
-    <p>
     DynaActionForms are meant as an easy solution to a common problem:
     <em>Your ActionForms use simple properties and standard validations,
     and you just pass these properties over to another JavaBean</em>

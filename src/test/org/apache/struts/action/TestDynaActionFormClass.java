@@ -79,10 +79,6 @@ public class TestDynaActionFormClass extends TestCase
      */
     protected DynaActionFormClass dynaClass = null;
 
-    /**
-     * Whether an "Enhanced" DynaActionForm is created.
-     */
-    protected boolean enhanced = false;
 
     /**
      * The set of <code>FormPropertyConfig</code> objects to use when
@@ -122,7 +118,6 @@ public class TestDynaActionFormClass extends TestCase
         beanConfig = new FormBeanConfig();
         beanConfig.setName("dynaForm");
         beanConfig.setType("org.apache.struts.action.DynaActionForm");
-        beanConfig.setEnhanced(enhanced);
 
         // Add relevant property definitions
         for (int i = 0; i < dynaProperties.length; i++) {

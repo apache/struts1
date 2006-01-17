@@ -107,18 +107,6 @@
     </branch>
   </branches>
 
-  <dependencies>
-    <dependency>
-      <groupId>cglib</groupId>
-      <artifactId>cglib-nodep</artifactId>
-      <version>2.1_3</version>
-      <url>http://cglib.sourceforge.net/</url>
-      <properties>
-        <optional>true</optional>
-      </properties>
-    </dependency>
-  </dependencies>
-
   <build>
     <sourceDirectory>src/java</sourceDirectory>
     <unitTestSourceDirectory>src/test</unitTestSourceDirectory>

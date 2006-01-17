@@ -23,7 +23,6 @@ package org.apache.struts.action;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import net.sf.cglib.proxy.Enhancer;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.DynaClass;
 import org.apache.commons.beanutils.DynaProperty;
@@ -32,7 +31,6 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.FormPropertyConfig;
 import org.apache.struts.util.RequestUtils;
-import org.apache.struts.util.DynaBeanInterceptor;
 
 
 /**
@@ -83,12 +81,6 @@ public class DynaActionFormClass implements DynaClass, Serializable {
      */
     protected transient Class beanClass = null;
 
-
-    /**
-     * <p>The CGLIB <code>Enhancer</code> which we will use to dynamically
-     * add getters/setters if 'enhanced' is true in the form config.
-     */
-    protected transient Enhancer enhancer = null;
 
     /**
      * <p>The form bean configuration information for this class.</p>
@@ -192,12 +184,7 @@ public class DynaActionFormClass implements DynaClass, Serializable {
     public DynaBean newInstance()
         throws IllegalAccessException, InstantiationException {
 
-        DynaActionForm dynaBean = null;
-        if (config.isEnhanced()) {
-            dynaBean = (DynaActionForm) getBeanEnhancer().create();
-        } else {
-            dynaBean = (DynaActionForm) getBeanClass().newInstance();
-        }
+        DynaActionForm dynaBean = (DynaActionForm) getBeanClass().newInstance();
         dynaBean.setDynaActionFormClass(this);
         FormPropertyConfig[] props = config.findFormPropertyConfigs();
         for (int i = 0; i < props.length; i++) {
@@ -277,24 +264,6 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
 
     /**
-     * <p>Return the <code>Enhancer</code> we are using to construct new
-     * instances, re-introspecting our {@link FormBeanConfig} if necessary
-     * (that is, after being deserialized, since <code>enhancer</code> is
-     * marked transient).</p>
-     *
-     * @return The enhancer used to construct new instances.
-     */
-    protected Enhancer getBeanEnhancer() {
-
-        if (enhancer == null) {
-            introspect(config);
-        }
-        return (enhancer);
-
-    }
-
-
-    /**
      * <p>Introspect our form bean configuration to identify the supported
      * properties.</p>
      *
@@ -342,11 +311,6 @@ public class DynaActionFormClass implements DynaClass, Serializable {
                               properties[i]);
         }
 
-        // Create CGLIB enhancer if enhancement is enabled
-        if (config.isEnhanced()) {
-             DynaBeanInterceptor interceptor = new DynaBeanInterceptor();
-             enhancer = interceptor.createEnhancer(this, getBeanClass());
-        }
     }
 
 

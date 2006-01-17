@@ -137,9 +137,6 @@ limitations under the License.
               <li>
                   Wildcard ActionConfig properties
               </li>
-              <li>
-                  Enhanced DynaActionForms
-              </li>
           </ul>
 
           <h4>Composable Request Processor</h4>
@@ -338,30 +335,6 @@ public ActionForward execute(
 &lt;/action>
 </source>
 
-          <h4>Enhanced DynaActionForms</h4>
-          <p>
-              The form-bean element in struts-config.xml now accepts
-              an <code>enhanced</code> attribute which, if set to
-              <code>true</code> for a form bean based on DynaActionForm
-              (or a sub-class), causes the form bean to be enhanced with
-              CGLIB to add getters and setters for each property, allowing
-              them to be accessed with the same JSTL EL syntax as for
-              normal form beans.
-          </p>
-          
-<source>
-&lt;form-bean name="form" enhanced="true" 
-        type="org.apache.struts.action.DynaActionForm"&gt;
-    ...
-&lt;/form-bean&gt;
-</source>
-          
-          <p>
-              <strong>NOTE:</strong> this feature requires that 
-              <a href="http://cglib.sourceforge.net/">CGLIB</a> be
-              included in your application's classpath.
-          </p>
-          
           <h3>Struts EL</h3>
 
           <p>Aside from addressing deprecrations, there was one minor change to Struts EL.</p>
