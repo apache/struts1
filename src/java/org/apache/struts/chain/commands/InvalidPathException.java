@@ -1,5 +1,7 @@
 /*
- * Copyright 2005 The Apache Software Foundation.
+ * $Id$
+ *
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +19,7 @@ package org.apache.struts.chain.commands;
 
 
 /**
- * <p>Exception thrown when no mapping can be found for the specified
- * path.</p>
+ * <p>Exception thrown when no mapping can be found for the specified path.</p>
  *
  * @version $Rev$ $Date: 2005-11-05 21:44:59 -0500 (Sat, 05 Nov 2005)
  *          $
@@ -27,14 +28,14 @@ public class InvalidPathException extends Exception {
     private String path;
 
     /**
-     * Constructor
+     * <p> Default, no-argument constructor. </p>
      */
     public InvalidPathException() {
         super();
     }
 
     /**
-     * Constructor.
+     * <p> Constructor to inject message and path upon instantiation. </p>
      *
      * @param message The error or warning message.
      * @param path    The invalid path.
@@ -45,7 +46,9 @@ public class InvalidPathException extends Exception {
     }
 
     /**
-     * Return the path.
+     * <p> Return the invalid path causing the exception. </p>
+     *
+     * @return The invalid path causing the exception.
      */
     public String getPath() {
         return path;

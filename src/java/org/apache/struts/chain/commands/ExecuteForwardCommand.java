@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2005 The Apache Software Foundation.
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,8 +23,7 @@ import org.apache.struts.config.ForwardConfig;
 
 /**
  * <p>Look up and execute a commons-chain <code>Command</code> based on
- * properties of the ActionContext's <code>forwardConfig</code> property.
- * </p>
+ * properties of the ActionContext's <code>forwardConfig</code> property. </p>
  */
 public class ExecuteForwardCommand extends ExecuteCommand {
     /**
@@ -45,8 +44,11 @@ public class ExecuteForwardCommand extends ExecuteCommand {
     }
 
     /**
-     * @return <p><code>true</code> if the given <code>ActionContext</code>
-     *         has a non-null <code>forwardConfig</code> property.</p>
+     * <p> Determine whether the forwardConfig should be processed. </p>
+     *
+     * @param context The ActionContext we are processing
+     * @return <p><code>true</code> if the given <code>ActionContext</code> has
+     *         a non-null <code>forwardConfig</code> property.</p>
      */
     protected boolean shouldProcess(ActionContext context) {
         return (context.getForwardConfig() != null);

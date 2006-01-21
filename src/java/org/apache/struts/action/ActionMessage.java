@@ -23,8 +23,8 @@ import java.io.Serializable;
  * <p>An encapsulation of an individual message returned by the
  * <code>validate</code> method of an <code>ActionForm</code>, consisting of a
  * message key (to be used to look up message text in an appropriate message
- * resources database) plus up to four placeholder objects that can be used
- * for parametric replacement in the message text.</p>
+ * resources database) plus up to four placeholder objects that can be used for
+ * parametric replacement in the message text.</p>
  *
  * @version $Rev$ $Date: 2005-05-14 01:09:32 -0400 (Sat, 14 May 2005)
  *          $
@@ -162,8 +162,8 @@ public class ActionMessage implements Serializable {
      * <p>Indicate whether the key is taken to be as a  bundle key [true] or
      * literal value [false].</p>
      *
-     * @return <code>true</code> if the key is a bundle key;
-     *         <code>false</code> otherwise.
+     * @return <code>true</code> if the key is a bundle key; <code>false</code>
+     *         otherwise.
      */
     public boolean isResource() {
         return (this.resource);

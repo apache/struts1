@@ -28,10 +28,9 @@ import org.apache.struts.config.FormBeanConfig;
  * <p>Since Struts 1.1 <code>ActionFormBean</code> extends
  * <code>FormBeanConfig</code>.</p>
  *
- * <p><strong>NOTE</strong> - This class would have been deprecated and
- * replaced by <code>org.apache.struts.config.FormBeanConfig</code> except for
- * the fact that it is part of the public API that existing applications are
- * using.</p>
+ * <p><strong>NOTE</strong> - This class would have been deprecated and replaced
+ * by <code>org.apache.struts.config.FormBeanConfig</code> except for the fact
+ * that it is part of the public API that existing applications are using.</p>
  *
  * @version $Rev$ $Date: 2005-05-14 01:09:32 -0400 (Sat, 14 May 2005)
  *          $

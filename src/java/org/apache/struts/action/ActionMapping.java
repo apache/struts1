@@ -27,18 +27,17 @@ import java.util.ArrayList;
 /**
  * <p>An <strong>ActionMapping</strong> represents the information that the
  * controller, <code>RequestProcessor</code>, knows about the mapping of a
- * particular request to an instance of a particular <code>Action</code>
- * class. The <code>ActionMapping</code> instance used to select a particular
+ * particular request to an instance of a particular <code>Action</code> class.
+ * The <code>ActionMapping</code> instance used to select a particular
  * <code>Action</code> is passed on to that <code>Action</code>, thereby
  * providing access to any custom configuration information included with the
  * <code>ActionMapping</code> object.</p>
  *
  * <p>Since Struts 1.1 this class extends <code>ActionConfig</code>.
  *
- * <p><strong>NOTE</strong> - This class would have been deprecated and
- * replaced by <code>org.apache.struts.config.ActionConfig</code> except for
- * the fact that it is part of the public API that existing applications are
- * using.</p>
+ * <p><strong>NOTE</strong> - This class would have been deprecated and replaced
+ * by <code>org.apache.struts.config.ActionConfig</code> except for the fact
+ * that it is part of the public API that existing applications are using.</p>
  *
  * @version $Rev$ $Date: 2005-08-26 21:58:39 -0400 (Fri, 26 Aug 2005)
  *          $
@@ -55,8 +54,8 @@ public class ActionMapping extends ActionConfig {
      * <p>Find and return the <code>ForwardConfig</code> instance defining how
      * forwarding to the specified logical name should be handled. This is
      * performed by checking local and then global configurations for the
-     * specified forwarding configuration. If no forwarding configuration can
-     * be found, return <code>null</code>.</p>
+     * specified forwarding configuration. If no forwarding configuration can be
+     * found, return <code>null</code>.</p>
      *
      * @param forwardName Logical name of the forwarding instance to be
      *                    returned

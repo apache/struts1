@@ -26,8 +26,8 @@ public final class ClassUtils {
     // ---------------------------------------------------------- Static Methods
 
     /**
-     * <p>Return the <code>Class</code> object for the specified fully
-     * qualified class name, from this web application's class loader.
+     * <p>Return the <code>Class</code> object for the specified fully qualified
+     * class name, from this web application's class loader.
      *
      * @param className Fully qualified class name
      * @throws ClassNotFoundException if the specified class cannot be loaded
@@ -51,8 +51,8 @@ public final class ClassUtils {
 
     /**
      * <p>Return a new instance of the specified fully qualified class name,
-     * after loading the class (if necessary) from this web application's
-     * class loader.</p>
+     * after loading the class (if necessary) from this web application's class
+     * loader.</p>
      *
      * @param className Fully qualified class name
      * @throws ClassNotFoundException if the specified class cannot be loaded

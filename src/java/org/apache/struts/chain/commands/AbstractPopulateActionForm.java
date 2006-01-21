@@ -1,5 +1,7 @@
 /*
- * Copyright 2003,2004 The Apache Software Foundation.
+ * $Id$
+ *
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +38,7 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> so that processing continues
+     * @throws Exception On an unexpected error
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {
@@ -61,10 +64,9 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
     // ------------------------------------------------------- Protected Methods
 
     /**
-     * <p>Call the <code>reset()</code> method on the specified form
-     * bean.</p>
+     * <p>Call the <code>reset()</code> method on the specified form bean.</p>
      *
-     * @param context      The context for this reqest
+     * @param context      The context for this request
      * @param actionConfig The actionConfig for this request
      * @param actionForm   The form bean for this request
      */
@@ -73,32 +75,31 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
                                   ActionForm actionForm);
 
     /**
-     * Populate the given <code>ActionForm</code> with request parameter
+     * <p> Populate the given <code>ActionForm</code> with request parameter
      * values, taking into account any prefix/suffix values configured on the
-     * given <code>ActionConfig</code>.
+     * given <code>ActionConfig</code>. </p>
      *
-     * @param context
-     * @param actionConfig
-     * @param actionForm
-     * @throws Exception
+     * @param context      The ActionContext we are processing
+     * @param actionConfig The ActionConfig we are processing
+     * @param actionForm   The ActionForm we are processing
+     * @throws Exception On an unexpected error
      */
-
-    // original implementation casting context to WebContext is not safe
-    // when the input value is an ActionContext.
     protected abstract void populate(ActionContext context,
                                      ActionConfig actionConfig,
                                      ActionForm actionForm)
             throws Exception;
+    // original implementation casting context to WebContext is not safe
+    // when the input value is an ActionContext.
 
     /**
-     * <p>For a given request parameter name, trim off any prefix and/or
-     * suffix which are defined in <code>actionConfig</code> and return what
-     * remains. If either prefix or suffix is defined, then return null for
+     * <p>For a given request parameter name, trim off any prefix and/or suffix
+     * which are defined in <code>actionConfig</code> and return what remains.
+     * If either prefix or suffix is defined, then return null for
      * <code>name</code> values which do not begin or end accordingly.</p>
      *
-     * @param actionConfig
-     * @param name
-     * @return
+     * @param actionConfig The ActionConfig we are processing
+     * @param name         The request parameter name to proceess
+     * @return The request parameter name trimmed of any suffix or prefix
      */
     protected String trimParameterName(ActionConfig actionConfig,
                                        String name) {
@@ -128,12 +129,15 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
 
     /**
      * <p>Take into account whether the request includes any defined value for
-     * the global "cancel" parameter.</p>
+     * the global "cancel" parameter.</p> <p> An issue was raised (but I don't
+     * think a Bugzilla ticket created) about the security implications of using
+     * a well-known cancel property which skips form validation, as you may not
+     * write your actions to deal with the cancellation case. </p>
      *
-     * @param context
-     * @param actionConfig
-     * @param actionForm
-     * @throws Exception
+     * @param context      The ActionContext we are processing
+     * @param actionConfig The ActionConfig we are processing
+     * @param actionForm   The ActionForm we are processing
+     * @throws Exception On an unexpected error
      * @see Globals.CANCEL_PROPERTY
      * @see Globals.CANCEL_PROPERTY_X
      */
@@ -145,10 +149,6 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
 
         // Set the cancellation attribute if appropriate
 
-        /** @todo An issue was raised (but I don't think a Bugzilla ticket
-         * created) about the security implications of using a well-known
-         * cancel property which skips form validation, as you may not write
-         * your actions to deal with the cancellation case. */
         if ((paramValues.get(Globals.CANCEL_PROPERTY) != null)
                 || (paramValues.get(Globals.CANCEL_PROPERTY_X) != null)) {
             context.setCancelled(Boolean.TRUE);

@@ -20,8 +20,6 @@ package org.apache.struts.action;
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.DynaClass;
 import org.apache.commons.beanutils.DynaProperty;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.FormPropertyConfig;
 import org.apache.struts.util.RequestUtils;
@@ -41,7 +39,6 @@ import java.util.HashMap;
  * @since Struts 1.1
  */
 public class DynaActionFormClass implements DynaClass, Serializable {
-    private static Log log = LogFactory.getLog(DynaActionFormClass.class);
 
     // ----------------------------------------------------- Instance Variables
 
@@ -79,9 +76,8 @@ public class DynaActionFormClass implements DynaClass, Serializable {
     /**
      * <p>Construct a new <code>DynaActionFormClass</code> for the specified
      * form bean configuration.  This constructor is private;
-     * <code>DynaActionFormClass</code> instances will be created as needed
-     * via calls to the static <code>createDynaActionFormClass()</code>
-     * method.</p>
+     * <code>DynaActionFormClass</code> instances will be created as needed via
+     * calls to the static <code>createDynaActionFormClass()</code> method.</p>
      *
      * @param config The FormBeanConfig instance describing the properties of
      *               the bean to be created
@@ -109,8 +105,8 @@ public class DynaActionFormClass implements DynaClass, Serializable {
     }
 
     /**
-     * <p>Return a property descriptor for the specified property, if it
-     * exists; otherwise, return <code>null</code>.</p>
+     * <p>Return a property descriptor for the specified property, if it exists;
+     * otherwise, return <code>null</code>.</p>
      *
      * @param name Name of the dynamic property for which a descriptor is
      *             requested
@@ -142,10 +138,9 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
     /**
      * <p>Instantiate and return a new {@link DynaActionForm} instance,
-     * associated with this <code>DynaActionFormClass</code>.  The properties
-     * of the returned {@link DynaActionForm} will have been initialized to
-     * the default values specified in the form bean configuration
-     * information.</p>
+     * associated with this <code>DynaActionFormClass</code>.  The properties of
+     * the returned {@link DynaActionForm} will have been initialized to the
+     * default values specified in the form bean configuration information.</p>
      *
      * @return A new {@link DynaActionForm} instance.
      * @throws IllegalAccessException if the Class or the appropriate
@@ -219,9 +214,9 @@ public class DynaActionFormClass implements DynaClass, Serializable {
 
     /**
      * <p>Return the implementation class we are using to construct new
-     * instances, re-introspecting our {@link FormBeanConfig} if necessary
-     * (that is, after being deserialized, since <code>beanClass</code> is
-     * marked transient).</p>
+     * instances, re-introspecting our {@link FormBeanConfig} if necessary (that
+     * is, after being deserialized, since <code>beanClass</code> is marked
+     * transient).</p>
      *
      * @return The implementation class used to construct new instances.
      */
@@ -250,8 +245,7 @@ public class DynaActionFormClass implements DynaClass, Serializable {
         // Validate the ActionFormBean implementation class
         try {
             beanClass = RequestUtils.applicationClass(config.getType());
-        }
-        catch (Throwable t) {
+        } catch (Throwable t) {
             throw new IllegalArgumentException(
                     "Cannot instantiate ActionFormBean class '"
                             + config.getType()

@@ -1,5 +1,7 @@
 /*
- * Copyright 2003,2004 The Apache Software Foundation.
+ * $Id$
+ *
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +32,13 @@ import org.apache.struts.config.ModuleConfig;
  *          $
  */
 public abstract class AbstractSelectForward extends ActionCommandBase {
+
     // ------------------------------------------------------ Instance Variables
-    private static final Log log =
+
+    /**
+     * <p> Provide Commons Logging instance for this class. </p>
+     */
+    private static final Log LOG =
             LogFactory.getLog(AbstractSelectForward.class);
 
     // ---------------------------------------------------------- Public Methods
@@ -42,6 +49,7 @@ public abstract class AbstractSelectForward extends ActionCommandBase {
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> so that processing continues
+     * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {
@@ -62,8 +70,8 @@ public abstract class AbstractSelectForward extends ActionCommandBase {
         if (forward != null) {
             forwardConfig = forward(actionCtx, moduleConfig, forward);
 
-            if (log.isDebugEnabled()) {
-                log.debug("Forwarding to " + forwardConfig);
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Forwarding to " + forwardConfig);
             }
 
             actionCtx.setForwardConfig(forwardConfig);
@@ -81,6 +89,7 @@ public abstract class AbstractSelectForward extends ActionCommandBase {
      * @param context      The context for this request
      * @param moduleConfig The <code>ModuleConfig</code> for this request
      * @param uri          The module-relative URI to be the destination
+     * @return ForwwardConfig representing the destination
      */
     protected abstract ForwardConfig forward(ActionContext context,
                                              ModuleConfig moduleConfig,

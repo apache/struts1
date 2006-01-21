@@ -1,7 +1,7 @@
 /*
- * $Id$
+ * $Id: RequestProcessor.java 370938 2006-01-21 00:19:02Z husted $
  *
- * Copyright 2005 The Apache Software Foundation.
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,16 @@ import org.apache.commons.chain.Command;
 import org.apache.struts.chain.contexts.ActionContext;
 
 /**
- * <p>Marks a commons-chain <code>Command</code> which expects to operate upon
- * a Struts <code>ActionContext</code>.</p>
+ * <p>Marks a commons-chain <code>Command</code> which expects to operate upon a
+ * Struts <code>ActionContext</code>.</p>
  */
 public interface ActionCommand extends Command {
+
+    /**
+     * @param actionContext The <code>Context</code> for the current request
+     * @return TRUE if processing should halt
+     * @throws Exception On any error
+     */
     boolean execute(ActionContext actionContext)
             throws Exception;
 }

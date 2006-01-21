@@ -1,5 +1,7 @@
 /*
- * Copyright 2003,2004 The Apache Software Foundation.
+ * $Id$
+ *
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,6 +35,7 @@ public abstract class AbstractPerformInclude extends ActionCommandBase {
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>true</code> so that processing completes
+     * @throws Exception if thrown by the <code>Action</code>
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {
@@ -57,11 +60,11 @@ public abstract class AbstractPerformInclude extends ActionCommandBase {
     // ------------------------------------------------------- Protected Methods
 
     /**
-     * <p>Perform the appropriate processing on the specified include
-     * uri.</p>
+     * <p>Perform the appropriate processing on the specified include uri.</p>
      *
      * @param context The context for this request
      * @param include The forward to be performed
+     * @throws Exception if thrown by the <code>Action</code>
      */
     protected abstract void perform(ActionContext context, String include)
             throws Exception;

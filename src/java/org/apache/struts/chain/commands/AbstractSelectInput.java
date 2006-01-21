@@ -1,5 +1,7 @@
 /*
- * Copyright 2003,2004 The Apache Software Foundation.
+ * $Id$
+ *
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,15 +25,20 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 
 /**
- * <p>Select and cache a <code>ForwardConfig</code> that returns us to the
- * input page for the current action, if any.</p>
+ * <p>Select and cache a <code>ForwardConfig</code> that returns us to the input
+ * page for the current action, if any.</p>
  *
  * @version $Rev$ $Date: 2005-06-04 10:58:46 -0400 (Sat, 04 Jun 2005)
  *          $
  */
 public abstract class AbstractSelectInput extends ActionCommandBase {
+
     // ------------------------------------------------------ Instance Variables
-    private static final Log log =
+
+    /**
+     * <p> Provide Commons Logging instance for this class. </p>
+     */
+    private static final Log LOG =
             LogFactory.getLog(AbstractSelectInput.class);
 
     // ---------------------------------------------------------- Public Methods
@@ -42,6 +49,7 @@ public abstract class AbstractSelectInput extends ActionCommandBase {
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> so that processing continues
+     * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {
@@ -57,12 +65,12 @@ public abstract class AbstractSelectInput extends ActionCommandBase {
         ModuleConfig moduleConfig = actionConfig.getModuleConfig();
 
         // Cache an ForwardConfig back to our input page
-        ForwardConfig forwardConfig = null;
+        ForwardConfig forwardConfig;
         String input = actionConfig.getInput();
 
         if (moduleConfig.getControllerConfig().getInputForward()) {
-            if (log.isTraceEnabled()) {
-                log.trace("Finding ForwardConfig for '" + input + "'");
+            if (LOG.isTraceEnabled()) {
+                LOG.trace("Finding ForwardConfig for '" + input + "'");
             }
 
             forwardConfig = actionConfig.findForwardConfig(input);
@@ -71,15 +79,15 @@ public abstract class AbstractSelectInput extends ActionCommandBase {
                 forwardConfig = moduleConfig.findForwardConfig(input);
             }
         } else {
-            if (log.isTraceEnabled()) {
-                log.trace("Delegating to forward() for '" + input + "'");
+            if (LOG.isTraceEnabled()) {
+                LOG.trace("Delegating to forward() for '" + input + "'");
             }
 
             forwardConfig = forward(actionCtx, moduleConfig, input);
         }
 
-        if (log.isDebugEnabled()) {
-            log.debug("Forwarding back to " + forwardConfig);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Forwarding back to " + forwardConfig);
         }
 
         actionCtx.setForwardConfig(forwardConfig);
@@ -96,6 +104,7 @@ public abstract class AbstractSelectInput extends ActionCommandBase {
      * @param context      The context for this request
      * @param moduleConfig The <code>ModuleConfig</code> for this request
      * @param uri          The module-relative URI to be the destination
+     * @return ForwardConfig representing destination
      */
     protected abstract ForwardConfig forward(ActionContext context,
                                              ModuleConfig moduleConfig,

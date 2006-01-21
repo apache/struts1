@@ -55,8 +55,7 @@ public class SelectModule extends AbstractSelectModule {
                 .get(Globals.MODULE_PREFIXES_KEY);
         int lastSlash = 0;
 
-        while (prefix.equals("") && ((lastSlash = uri.lastIndexOf("/")) > 0))
-        {
+        while (prefix.equals("") && ((lastSlash = uri.lastIndexOf("/")) > 0)) {
             uri = uri.substring(0, lastSlash);
 
             for (int i = 0; i < prefixes.length; i++) {

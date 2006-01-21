@@ -54,7 +54,7 @@ public class MockServletContext implements ServletContext {
     protected HashMap attributes = new HashMap();
 
     /**
-     * Default destination for <code>log()</code> output.
+     * Default destination for <code>LOG()</code> output.
      */
     protected Log log = LogFactory.getLog(MockServletContext.class);
 

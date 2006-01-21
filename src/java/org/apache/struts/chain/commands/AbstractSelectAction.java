@@ -1,4 +1,6 @@
 /*
+ * $Id$
+ *
  * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,8 +22,8 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ModuleConfig;
 
 /**
- * <p>Cache the <code>ActionConfig</code> instance for the action to be used
- * for processing this request.</p>
+ * <p>Cache the <code>ActionConfig</code> instance for the action to be used for
+ * processing this request.</p>
  *
  * @version $Rev$ $Date: 2005-11-05 21:44:59 -0500 (Sat, 05 Nov 2005)
  *          $
@@ -30,13 +32,14 @@ public abstract class AbstractSelectAction extends ActionCommandBase {
     // ---------------------------------------------------------- Public Methods
 
     /**
-     * <p>Cache the <code>ActionConfig</code> instance for the action to be
-     * used for processing this request.</p>
+     * <p>Cache the <code>ActionConfig</code> instance for the action to be used
+     * for processing this request.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> so that processing continues
-     * @throws IllegalArgumentException if no valid action can be identified
-     *                                  for this request
+     * @throws InvalidPathException if no valid action can be identified for
+     *                              this request
+     * @throws Exception            if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {
@@ -48,7 +51,7 @@ public abstract class AbstractSelectAction extends ActionCommandBase {
         ActionConfig actionConfig = moduleConfig.findActionConfig(path);
 
         if (actionConfig == null) {
-            //:TODO Shouldn't this be the responsibility of ModuleConfig?
+            // NOTE Shouldn't this be the responsibility of ModuleConfig?
             // Locate the mapping for unknown paths (if any)
             ActionConfig[] configs = moduleConfig.findActionConfigs();
 
@@ -75,12 +78,11 @@ public abstract class AbstractSelectAction extends ActionCommandBase {
     // ------------------------------------------------------- Protected Methods
 
     /**
-     * <p>Return the path to be used to select the <code>ActionConfig</code>
-     * for this request.</p>
+     * <p>Return the path to be used to select the <code>ActionConfig</code> for
+     * this request.</p>
      *
      * @param context The <code>Context</code> for this request
-     * @throws IllegalArgumentException if no valid action can be identified
-     *                                  for this request
+     * @return Path to be used to select the ActionConfig
      */
     protected abstract String getPath(ActionContext context);
 }

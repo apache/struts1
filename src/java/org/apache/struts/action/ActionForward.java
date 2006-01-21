@@ -29,27 +29,25 @@ import org.apache.struts.config.ForwardConfig;
  * named lookup of potentially multiple destinations for a particular mapping
  * instance.</p>
  *
- * <p>An <code>ActionForward</code> has the following minimal set of
- * properties. Additional properties can be provided as needed by
- * subclassses.</p> <ul> <li><strong>contextRelative</strong> - Should the
- * <code>path</code> value be interpreted as context-relative (instead of
- * module-relative, if it starts with a '/' character? [false]</li>
- * <li><strong>name</strong> - Logical name by which this instance may be
- * looked up in relationship to a particular <code>ActionMapping</code>. </li>
- * <li><strong>path</strong> - Module-relative or context-relative URI to
- * which control should be forwarded, or an absolute or relative URI to which
- * control should be redirected.</li> <li><strong>redirect</strong> - Set to
- * <code>true</code> if the controller servlet should call
- * <code>HttpServletResponse.sendRedirect()</code> on the associated path;
- * otherwise <code>false</code>.  [false]</li> </ul>
+ * <p>An <code>ActionForward</code> has the following minimal set of properties.
+ * Additional properties can be provided as needed by subclassses.</p> <ul>
+ * <li><strong>contextRelative</strong> - Should the <code>path</code> value be
+ * interpreted as context-relative (instead of module-relative, if it starts
+ * with a '/' character? [false]</li> <li><strong>name</strong> - Logical name
+ * by which this instance may be looked up in relationship to a particular
+ * <code>ActionMapping</code>. </li> <li><strong>path</strong> - Module-relative
+ * or context-relative URI to which control should be forwarded, or an absolute
+ * or relative URI to which control should be redirected.</li>
+ * <li><strong>redirect</strong> - Set to <code>true</code> if the controller
+ * servlet should call <code>HttpServletResponse.sendRedirect()</code> on the
+ * associated path; otherwise <code>false</code>.  [false]</li> </ul>
  *
  * <p>Since Struts 1.1 this class extends <code>ForwardConfig</code> and
  * inherits the <code>contextRelative</code> property.
  *
- * <p><strong>NOTE</strong> - This class would have been deprecated and
- * replaced by <code>org.apache.struts.config.ForwardConfig</code> except for
- * the fact that it is part of the public API that existing applications are
- * using.</p>
+ * <p><strong>NOTE</strong> - This class would have been deprecated and replaced
+ * by <code>org.apache.struts.config.ForwardConfig</code> except for the fact
+ * that it is part of the public API that existing applications are using.</p>
  *
  * @version $Rev$ $Date: 2005-08-14 17:24:39 -0400 (Sun, 14 Aug 2005)
  *          $
@@ -104,8 +102,7 @@ public class ActionForward extends ForwardConfig {
      * Construct a new instance with the specified values.
      *
      * @param name     Name of this forward
-     * @param path     Path to which control should be forwarded or
-     *                 redirected
+     * @param path     Path to which control should be forwarded or redirected
      * @param redirect Should we do a redirect?
      * @param module   Module prefix, if any
      */

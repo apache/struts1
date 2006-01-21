@@ -1,5 +1,7 @@
 /*
- * Copyright 2005 The Apache Software Foundation.
+ * $Id$
+ *
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,13 +28,13 @@ import org.apache.struts.config.ActionConfig;
 /**
  * <p>Invoke the appropriate <code>Command</code> for this request.  If the
  * context's <code>ActionConfig</code> has no <code>command</code> property
- * defined, no action will be taken.  If the specified command cannot be
- * found, a warning will be logged, but processing will continue.  Depending
- * on how the chain is configured, this can be used in place of an
- * <code>Action</code> or as a method of performing pre-processing. </p>
+ * defined, no action will be taken.  If the specified command cannot be found,
+ * a warning will be logged, but processing will continue.  Depending on how the
+ * chain is configured, this can be used in place of an <code>Action</code> or
+ * as a method of performing pre-processing. </p>
  *
- * <p>If used instead of an action, the command which is looked up should put
- * an ActionForward into the context, unless it has already dealt with the
+ * <p>If used instead of an action, the command which is looked up should put an
+ * ActionForward into the context, unless it has already dealt with the
  * response.</p>
  *
  * @version $Id$
@@ -50,6 +52,7 @@ public class ExecuteCommand extends ActionCommandBase {
      * @param actionCtx The <code>Context</code> for the current request
      * @return the result of the lookup command's <code>execute</code> method,
      *         if executed, or <code>false</code> if it was not executed.
+     * @throws Exception on any error
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {
@@ -69,7 +72,7 @@ public class ExecuteCommand extends ActionCommandBase {
      * executed.</p>
      *
      * @param context
-     * @return
+     * @return TRUE if the pending Command should be executed
      */
     protected boolean shouldProcess(ActionContext context) {
         // Skip processing if the current request is not valid
@@ -102,16 +105,18 @@ public class ExecuteCommand extends ActionCommandBase {
     }
 
     /**
-     * @param commandName
-     * @param catalogName
-     * @return
+     * <p> Retrieve the specified Command from the specified Catalog. </p>
+     *
+     * @param commandName The Command to retrieve.
+     * @param catalogName The Catalog to search.
+     * @return Instantiated Command, or null
      */
     protected Command getCommand(String commandName, String catalogName) {
         if (commandName == null) {
             return null;
         }
 
-        Catalog catalog = null;
+        Catalog catalog;
 
         if (catalogName != null) {
             catalog = CatalogFactory.getInstance().getCatalog(catalogName);

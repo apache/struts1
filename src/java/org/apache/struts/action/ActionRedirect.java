@@ -30,10 +30,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A subclass of {@link ActionForward} which is designed for use in
- * redirecting requests, with support for adding parameters at runtime. <br/>
- * An {@link ForwardConfig} (or subclass) can be passed to the constructor to
- * copy its configuration: <br/>
+ * A subclass of {@link ActionForward} which is designed for use in redirecting
+ * requests, with support for adding parameters at runtime. <br/> An {@link
+ * ForwardConfig} (or subclass) can be passed to the constructor to copy its
+ * configuration: <br/>
  * <pre>
  * public ActionForward execute(ActionMapping mapping,
  *                              ActionForm form,
@@ -65,7 +65,7 @@ public class ActionRedirect extends ActionForward {
     /**
      * <p>Commons logging instance.</p>
      */
-    protected static final Log log = LogFactory.getLog(ActionRedirect.class);
+    protected static final Log LOG = LogFactory.getLog(ActionRedirect.class);
 
     // ----------------------------------------------------- Instance variables
 
@@ -116,8 +116,8 @@ public class ActionRedirect extends ActionForward {
      * <p>Construct a new instance with a {@link ForwardConfig} object to copy
      * name, path, and contextRelative values from.</p>
      *
-     * @param baseConfig the {@link ForwardConfig} to copy configuration
-     *                   values from
+     * @param baseConfig the {@link ForwardConfig} to copy configuration values
+     *                   from
      */
     public ActionRedirect(ForwardConfig baseConfig) {
         setName(baseConfig.getName());
@@ -158,7 +158,7 @@ public class ActionRedirect extends ActionForward {
         //} catch (UnsupportedEncodingException uce) {
         // this shouldn't happen since UTF-8 is the W3C Recommendation
         //     String errorMsg = "UTF-8 Character Encoding not supported";
-        //     log.error(errorMsg, uce);
+        //     LOG.error(errorMsg, uce);
         //     throw new RuntimeException(errorMsg, uce);
         // }
         Object currentValue = parameterValues.get(fieldName);
@@ -180,8 +180,7 @@ public class ActionRedirect extends ActionForward {
 
             newValues.add(value);
             parameterValues.put(fieldName,
-                    (String[]) newValues
-                            .toArray(new String[newValues.size()]));
+                    newValues.toArray(new String[newValues.size()]));
         }
     }
 

@@ -104,7 +104,8 @@ public class Globals implements Serializable {
     public static final String LOCALE_KEY = "org.apache.struts.action.LOCALE";
 
     /**
-     * The request attributes key under which our <code>org.apache.struts.ActionMapping</code>
+     * The request attributes key under which our
+     * <code>org.apache.struts.ActionMapping</code>
      * instance is passed.
      */
     public static final String MAPPING_KEY =
@@ -189,23 +190,23 @@ public class Globals implements Serializable {
     /**
      * The name of the taglib package.
      */
-    public static final String TaglibPackage =
+    public static final String TAGLIB_PACKAGE =
             "org.apache.struts.taglib.html";
 
     /**
      * The property under which a Cancel button press is reported.
      */
-    public static final String CANCEL_PROPERTY = TaglibPackage + ".CANCEL";
+    public static final String CANCEL_PROPERTY = TAGLIB_PACKAGE + ".CANCEL";
 
     /**
      * The property under which a Cancel button press is reported, if the
      * Cancel button is rendered as an image.
      */
     public static final String CANCEL_PROPERTY_X =
-            TaglibPackage + ".CANCEL.x";
+            TAGLIB_PACKAGE + ".CANCEL.x";
 
     /**
      * The property under which a transaction token is reported.
      */
-    public static final String TOKEN_KEY = TaglibPackage + ".TOKEN";
+    public static final String TOKEN_KEY = TAGLIB_PACKAGE + ".TOKEN";
 }

@@ -1,5 +1,7 @@
 /*
- * Copyright 2003,2004 The Apache Software Foundation.
+ * $Id$
+ *
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +17,6 @@
  */
 package org.apache.struts.chain.commands;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.chain.contexts.ActionContext;
@@ -31,9 +31,8 @@ import org.apache.struts.config.ActionConfig;
  *          $
  */
 public abstract class AbstractValidateActionForm extends ActionCommandBase {
+
     // ------------------------------------------------------ Instance Variables
-    private static final Log log =
-            LogFactory.getLog(AbstractValidateActionForm.class);
 
     // ---------------------------------------------------------- Public Methods
 
@@ -43,8 +42,9 @@ public abstract class AbstractValidateActionForm extends ActionCommandBase {
      * otherwise, proceed normally.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
-     * @return <code>false</code> so that processing continues, if there are
-     *         no validation errors; otherwise <code>true</code>
+     * @return <code>false</code> so that processing continues, if there are no
+     *         validation errors; otherwise <code>true</code>
+     * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {
@@ -86,8 +86,11 @@ public abstract class AbstractValidateActionForm extends ActionCommandBase {
         }
 
         // Flag the validation failure and proceed
-        /** @todo Is there any concern that there might have already
-         * been errors, or that other errors might be coming? */
+
+        /* NOTE: Is there any concern that there might have already
+         * been errors, or that other errors might be coming?
+         */
+
         actionCtx.saveErrors(errors);
         actionCtx.setFormValid(Boolean.FALSE);
 
@@ -103,6 +106,7 @@ public abstract class AbstractValidateActionForm extends ActionCommandBase {
      * @param context      The context for this request
      * @param actionConfig The <code>ActionConfig</code> for this request
      * @param actionForm   The form bean for this request
+     * @return ActionErrors object, if any
      */
     protected abstract ActionErrors validate(ActionContext context,
                                              ActionConfig actionConfig,

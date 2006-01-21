@@ -39,23 +39,22 @@ import java.util.Locale;
  * select an appropriate Action for each request, create an instance (if
  * necessary), and call the <code>execute</code> method.</p>
  *
- * <p>Actions must be programmed in a thread-safe manner, because the
- * controller will share the same instance for multiple simultaneous requests.
- * This means you should design with the following items in mind: </p> <ul>
- * <li>Instance and static variables MUST NOT be used to store information
- * related to the state of a particular request. They MAY be used to share
- * global resources across requests for the same action.</li> <li>Access to
- * other resources (JavaBeans, session variables, etc.) MUST be synchronized
- * if those resources require protection. (Generally, however, resource
- * classes should be designed to provide their own protection where
- * necessary.</li> </ul>
+ * <p>Actions must be programmed in a thread-safe manner, because the controller
+ * will share the same instance for multiple simultaneous requests. This means
+ * you should design with the following items in mind: </p> <ul> <li>Instance
+ * and static variables MUST NOT be used to store information related to the
+ * state of a particular request. They MAY be used to share global resources
+ * across requests for the same action.</li> <li>Access to other resources
+ * (JavaBeans, session variables, etc.) MUST be synchronized if those resources
+ * require protection. (Generally, however, resource classes should be designed
+ * to provide their own protection where necessary.</li> </ul>
  *
- * <p>When an <code>Action</code> instance is first created, the controller
- * will call <code>setServlet</code> with a non-null argument to identify the
- * servlet instance to which this Action is attached. When the servlet is to
- * be shut down (or restarted), the <code>setServlet</code> method will be
- * called with a <code>null</code> argument, which can be used to clean up any
- * allocated resources in use by this Action.</p>
+ * <p>When an <code>Action</code> instance is first created, the controller will
+ * call <code>setServlet</code> with a non-null argument to identify the servlet
+ * instance to which this Action is attached. When the servlet is to be shut
+ * down (or restarted), the <code>setServlet</code> method will be called with a
+ * <code>null</code> argument, which can be used to clean up any allocated
+ * resources in use by this Action.</p>
  *
  * @version $Rev$ $Date: 2005-08-26 21:58:39 -0400 (Fri, 26 Aug 2005)
  *          $
@@ -67,9 +66,9 @@ public class Action {
      */
     private static TokenProcessor token = TokenProcessor.getInstance();
 
-    // :TODO: We can make this variable protected and remove Action's token
-    // methods or leave it private and allow the token methods to delegate
-    // their calls.
+    // NOTE: We can make the tken  variable protected and remove Action's
+    // token methods or leave it private and allow the token methods to
+    // delegate their calls.
     // ----------------------------------------------------- Instance Variables
 
     /**
@@ -90,8 +89,8 @@ public class Action {
 
     /**
      * <p>Set the servlet instance to which we are attached (if
-     * <code>servlet</code> is non-null), or release any allocated resources
-     * (if <code>servlet</code> is null).</p>
+     * <code>servlet</code> is non-null), or release any allocated resources (if
+     * <code>servlet</code> is null).</p>
      *
      * @param servlet The new controller servlet, if any
      */
@@ -106,13 +105,13 @@ public class Action {
     /**
      * <p>Process the specified non-HTTP request, and create the corresponding
      * non-HTTP response (or forward to another web component that will create
-     * it), with provision for handling exceptions thrown by the business
-     * logic. Return an {@link ActionForward} instance describing where and
-     * how control should be forwarded, or <code>null</code> if the response
-     * has already been completed.</p>
+     * it), with provision for handling exceptions thrown by the business logic.
+     * Return an {@link ActionForward} instance describing where and how control
+     * should be forwarded, or <code>null</code> if the response has already
+     * been completed.</p>
      *
-     * <p>The default implementation attempts to forward to the HTTP version
-     * of this method.</p>
+     * <p>The default implementation attempts to forward to the HTTP version of
+     * this method.</p>
      *
      * @param mapping  The ActionMapping used to select this instance
      * @param form     The optional ActionForm bean for this request (if any)
@@ -120,8 +119,7 @@ public class Action {
      * @param response The non-HTTP response we are creating
      * @return The forward to which control should be transferred, or
      *         <code>null</code> if the response has been completed.
-     * @throws Exception if the application business logic throws an
-     *                   exception.
+     * @throws Exception if the application business logic throws an exception.
      * @since Struts 1.1
      */
     public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -131,19 +129,18 @@ public class Action {
         try {
             return execute(mapping, form, (HttpServletRequest) request,
                     (HttpServletResponse) response);
-        }
-        catch (ClassCastException e) {
+        } catch (ClassCastException e) {
             return null;
         }
     }
 
     /**
-     * <p>Process the specified HTTP request, and create the corresponding
-     * HTTP response (or forward to another web component that will create
-     * it), with provision for handling exceptions thrown by the business
-     * logic. Return an {@link ActionForward} instance describing where and
-     * how control should be forwarded, or <code>null</code> if the response
-     * has already been completed.</p>
+     * <p>Process the specified HTTP request, and create the corresponding HTTP
+     * response (or forward to another web component that will create it), with
+     * provision for handling exceptions thrown by the business logic. Return an
+     * {@link ActionForward} instance describing where and how control should be
+     * forwarded, or <code>null</code> if the response has already been
+     * completed.</p>
      *
      * @param mapping  The ActionMapping used to select this instance
      * @param form     The optional ActionForm bean for this request (if any)
@@ -151,8 +148,7 @@ public class Action {
      * @param response The HTTP response we are creating
      * @return The forward to which control should be transferred, or
      *         <code>null</code> if the response has been completed.
-     * @throws Exception if the application business logic throws an
-     *                   exception
+     * @throws Exception if the application business logic throws an exception
      * @since Struts 1.1
      */
     public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -166,9 +162,9 @@ public class Action {
 
     /**
      * Adds the specified messages keys into the appropriate request attribute
-     * for use by the &lt;html:messages&gt; tag (if messages="true" is set),
-     * if any messages are required. Initialize the attribute if it has not
-     * already been. Otherwise, ensure that the request attribute is not set.
+     * for use by the &lt;html:messages&gt; tag (if messages="true" is set), if
+     * any messages are required. Initialize the attribute if it has not already
+     * been. Otherwise, ensure that the request attribute is not set.
      *
      * @param request  The servlet request we are processing
      * @param messages Messages object
@@ -204,8 +200,8 @@ public class Action {
     }
 
     /**
-     * Adds the specified errors keys into the appropriate request attribute
-     * for use by the &lt;html:errors&gt; tag, if any messages are required.
+     * Adds the specified errors keys into the appropriate request attribute for
+     * use by the &lt;html:errors&gt; tag, if any messages are required.
      * Initialize the attribute if it has not already been. Otherwise, ensure
      * that the request attribute is not set.
      *
@@ -254,10 +250,10 @@ public class Action {
     }
 
     /**
-     * Retrieves any existing errors placed in the request by previous
-     * actions. This method could be called instead of creating a <code>new
-     * ActionMessages()</code> at the beginning of an <code>Action</code>.
-     * This will prevent saveErrors() from wiping out any existing Errors
+     * Retrieves any existing errors placed in the request by previous actions.
+     * This method could be called instead of creating a <code>new
+     * ActionMessages()</code> at the beginning of an <code>Action</code>. This
+     * will prevent saveErrors() from wiping out any existing Errors
      *
      * @param request The servlet request we are processing
      * @return the Errors that already exist in the request, or a new
@@ -345,10 +341,10 @@ public class Action {
      * <p>Returns <code>true</code> if the current form's cancel button was
      * pressed.  This method will check if the <code>Globals.CANCEL_KEY</code>
      * request attribute has been set, which normally occurs if the cancel
-     * button generated by <strong>CancelTag</strong> was pressed by the user
-     * in the current request.  If <code>true</code>, validation performed by
-     * an <strong>ActionForm</strong>'s <code>validate()</code> method will
-     * have been skipped by the controller servlet.</p>
+     * button generated by <strong>CancelTag</strong> was pressed by the user in
+     * the current request.  If <code>true</code>, validation performed by an
+     * <strong>ActionForm</strong>'s <code>validate()</code> method will have
+     * been skipped by the controller servlet.</p>
      *
      * @param request The servlet request we are processing
      * @return <code>true</code> if the cancel button was pressed;
@@ -359,14 +355,14 @@ public class Action {
     }
 
     /**
-     * <p>Return <code>true</code> if there is a transaction token stored in
-     * the user's current session, and the value submitted as a request
-     * parameter with this action matches it. Returns <code>false</code> under
-     * any of the following circumstances:</p> <ul> <li>No session associated
-     * with this request</li> <li>No transaction token saved in the
-     * session</li> <li>No transaction token included as a request
-     * parameter</li> <li>The included transaction token value does not match
-     * the transaction token in the user's session</li> </ul>
+     * <p>Return <code>true</code> if there is a transaction token stored in the
+     * user's current session, and the value submitted as a request parameter
+     * with this action matches it. Returns <code>false</code> under any of the
+     * following circumstances:</p> <ul> <li>No session associated with this
+     * request</li> <li>No transaction token saved in the session</li> <li>No
+     * transaction token included as a request parameter</li> <li>The included
+     * transaction token value does not match the transaction token in the
+     * user's session</li> </ul>
      *
      * @param request The servlet request we are processing
      * @return <code>true</code> if there is a transaction token and it is
@@ -377,14 +373,14 @@ public class Action {
     }
 
     /**
-     * <p>Return <code>true</code> if there is a transaction token stored in
-     * the user's current session, and the value submitted as a request
-     * parameter with this action matches it. Returns <code>false</code> under
-     * any of the following circumstances:</p> <ul> <li>No session associated
-     * with this request</li> <li>No transaction token saved in the
-     * session</li> <li>No transaction token included as a request
-     * parameter</li> <li>The included transaction token value does not match
-     * the transaction token in the user's session</li> </ul>
+     * <p>Return <code>true</code> if there is a transaction token stored in the
+     * user's current session, and the value submitted as a request parameter
+     * with this action matches it. Returns <code>false</code> under any of the
+     * following circumstances:</p> <ul> <li>No session associated with this
+     * request</li> <li>No transaction token saved in the session</li> <li>No
+     * transaction token included as a request parameter</li> <li>The included
+     * transaction token value does not match the transaction token in the
+     * user's session</li> </ul>
      *
      * @param request The servlet request we are processing
      * @param reset   Should we reset the token after checking it?
@@ -432,14 +428,13 @@ public class Action {
 
     /**
      * <p>Save the specified messages keys into the appropriate request
-     * attribute for use by the &lt;html:messages&gt; tag (if messages="true"
-     * is set), if any messages are required. Otherwise, ensure that the
-     * request attribute is not created.</p>
+     * attribute for use by the &lt;html:messages&gt; tag (if messages="true" is
+     * set), if any messages are required. Otherwise, ensure that the request
+     * attribute is not created.</p>
      *
      * @param request  The servlet request we are processing.
-     * @param messages The messages to save. <code>null</code> or empty
-     *                 messages removes any existing ActionMessages in the
-     *                 request.
+     * @param messages The messages to save. <code>null</code> or empty messages
+     *                 removes any existing ActionMessages in the request.
      * @since Struts 1.1
      */
     protected void saveMessages(HttpServletRequest request,
@@ -457,14 +452,13 @@ public class Action {
 
     /**
      * <p>Save the specified messages keys into the appropriate session
-     * attribute for use by the &lt;html:messages&gt; tag (if messages="true"
-     * is set), if any messages are required. Otherwise, ensure that the
-     * session attribute is not created.</p>
+     * attribute for use by the &lt;html:messages&gt; tag (if messages="true" is
+     * set), if any messages are required. Otherwise, ensure that the session
+     * attribute is not created.</p>
      *
      * @param session  The session to save the messages in.
-     * @param messages The messages to save. <code>null</code> or empty
-     *                 messages removes any existing ActionMessages in the
-     *                 session.
+     * @param messages The messages to save. <code>null</code> or empty messages
+     *                 removes any existing ActionMessages in the session.
      * @since Struts 1.2
      */
     protected void saveMessages(HttpSession session,
@@ -482,14 +476,14 @@ public class Action {
 
     /**
      * <p>Save the specified error messages keys into the appropriate session
-     * attribute for use by the &lt;html:messages&gt; tag (if
-     * messages="false") or &lt;html:errors&gt;, if any error messages are
-     * required. Otherwise, ensure that the session attribute is empty.</p>
+     * attribute for use by the &lt;html:messages&gt; tag (if messages="false")
+     * or &lt;html:errors&gt;, if any error messages are required. Otherwise,
+     * ensure that the session attribute is empty.</p>
      *
      * @param session The session to save the error messages in.
      * @param errors  The error messages to save. <code>null</code> or empty
-     *                messages removes any existing error ActionMessages in
-     *                the session.
+     *                messages removes any existing error ActionMessages in the
+     *                session.
      * @since Struts 1.3
      */
     protected void saveErrors(HttpSession session, ActionMessages errors) {
@@ -505,8 +499,8 @@ public class Action {
     }
 
     /**
-     * <p>Save a new transaction token in the user's current session, creating
-     * a new session if necessary.</p>
+     * <p>Save a new transaction token in the user's current session, creating a
+     * new session if necessary.</p>
      *
      * @param request The servlet request we are processing
      */

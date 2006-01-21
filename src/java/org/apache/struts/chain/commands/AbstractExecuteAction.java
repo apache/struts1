@@ -1,5 +1,7 @@
 /*
- * Copyright 2003,2004 The Apache Software Foundation.
+ * $Id$
+ *
+ * Copyright 2000-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +24,8 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
 
 /**
- * <p>Invoke the appropriate <code>Action</code> for this request, and cache
- * the returned <code>ActionForward</code>.</p>
+ * <p>Invoke the appropriate <code>Action</code> for this request, and cache the
+ * returned <code>ActionForward</code>.</p>
  *
  * @version $Rev$ $Date: 2005-06-04 10:58:46 -0400 (Sat, 04 Jun 2005)
  *          $
@@ -32,13 +34,12 @@ public abstract class AbstractExecuteAction extends ActionCommandBase {
     // ---------------------------------------------------------- Public Methods
 
     /**
-     * <p>Invoke the appropriate <code>Action</code> for this request, and
-     * cache the returned <code>ActionForward</code>.</p>
+     * <p>Invoke the appropriate <code>Action</code> for this request, and cache
+     * the returned <code>ActionForward</code>.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> so that processing continues
-     * @throws InvalidPathException if no valid action can be identified for
-     *                              this request
+     * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {
@@ -77,8 +78,8 @@ public abstract class AbstractExecuteAction extends ActionCommandBase {
      * @param context      The <code>Context</code> for this request
      * @param action       The <code>Action</code> to be executed
      * @param actionConfig The <code>ActionConfig</code> defining this action
-     * @param actionForm   The <code>ActionForm</code> (if any) for this
-     *                     action
+     * @param actionForm   The <code>ActionForm</code> (if any) for this action
+     * @return ForwardConfig The next location, or null
      * @throws Exception if thrown by the <code>Action</code>
      */
     protected abstract ForwardConfig execute(ActionContext context,

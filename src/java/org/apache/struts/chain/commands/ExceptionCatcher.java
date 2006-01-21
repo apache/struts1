@@ -1,5 +1,7 @@
 /*
- * Copyright 2003,2004 The Apache Software Foundation.
+ * $Id$
+ *
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,33 +28,46 @@ import org.apache.struts.chain.contexts.ActionContext;
 
 /**
  * <p>Intercept any exception thrown by a subsequent <code>Command</code> in
- * this processing chain, and fire the configured exception handler chain
- * after storing the exception that has occurred into the
- * <code>Context</code>. </p>
+ * this processing chain, and fire the configured exception handler chain after
+ * storing the exception that has occurred into the <code>Context</code>. </p>
  *
  * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
  *          $
  */
 public class ExceptionCatcher extends ActionCommandBase implements Filter {
-    private static final Log log = LogFactory.getLog(ExceptionCatcher.class);
+
+    /**
+     * <p> Provide Commons Logging instance for this class. </p>
+     */
+    private static final Log LOG = LogFactory.getLog(ExceptionCatcher.class);
 
     // ------------------------------------------------------ Instance Variables
+
+    /**
+     * <p> Field for CatalogName property. </p>
+     */
     private String catalogName = null;
+
+    /**
+     * <p> Field for ExceptionCommand property. </p>
+     */
     private String exceptionCommand = null;
 
     // -------------------------------------------------------------- Properties
 
     /**
-     * <p>Return the name of the <code>Catalog</code> in which to perform
-     * lookups, or <code>null</code> for the default <code>Catalog</code>.</p>
+     * <p> Return the name of the <code>Catalog</code> in which to perform
+     * lookups, or <code>null</code> for the default <code>Catalog</code>. </p>
+     *
+     * @return Name of catalog to use, or null
      */
     public String getCatalogName() {
         return (this.catalogName);
     }
 
     /**
-     * <p>Set the name of the <code>Catalog</code> in which to perform
-     * lookups, or <code>null</code> for the default <code>Catalog</code>.</p>
+     * <p>Set the name of the <code>Catalog</code> in which to perform lookups,
+     * or <code>null</code> for the default <code>Catalog</code>.</p>
      *
      * @param catalogName The new catalog name or <code>null</code>
      */
@@ -61,8 +76,10 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
     }
 
     /**
-     * <p>Return the name of the command to be executed if an exception
-     * occurs.</p>
+     * <p> Return the name of the command to be executed if an exception occurs.
+     * </p>
+     *
+     * @return The name of the command to be executed on an exception
      */
     public String getExceptionCommand() {
         return (this.exceptionCommand);
@@ -81,11 +98,12 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
     // ---------------------------------------------------------- Public Methods
 
     /**
-     * <p>Clear any existing stored exception and pass the
-     * <code>context</code> on to the remainder of the current chain.</p>
+     * <p>Clear any existing stored exception and pass the <code>context</code>
+     * on to the remainder of the current chain.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> so that processing continues
+     * @throws Exception On any error
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {
@@ -95,8 +113,8 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
     }
 
     /**
-     * <p>If an exception was thrown by a subsequent <code>Command</code>,
-     * pass it on to the specified exception handling chain.  Otherwise, do
+     * <p>If an exception was thrown by a subsequent <code>Command</code>, pass
+     * it on to the specified exception handling chain.  Otherwise, do
      * nothing.</p>
      *
      * @param context   The {@link Context} to be processed by this {@link
@@ -104,6 +122,9 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
      * @param exception The <code>Exception</code> (if any) that was thrown by
      *                  the last {@link Command} that was executed; otherwise
      *                  <code>null</code>
+     * @return TRUE if post processing an exception occurred and the exception
+     *         processing chain invoked
+     * @throws IllegalStateException If exception throws exception
      */
     public boolean postprocess(Context context, Exception exception) {
         // Do nothing if there was no exception thrown
@@ -112,8 +133,8 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
         }
 
         // Stash the exception in the specified context attribute
-        if (log.isDebugEnabled()) {
-            log.debug("Attempting to handle a thrown exception");
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Attempting to handle a thrown exception");
         }
 
         ActionContext actionCtx = (ActionContext) context;
@@ -125,22 +146,21 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
             Command command = lookupExceptionCommand();
 
             if (command == null) {
-                log.error("Cannot find exceptionCommand '" + exceptionCommand
+                LOG.error("Cannot find exceptionCommand '" + exceptionCommand
                         + "'");
                 throw new IllegalStateException(
                         "Cannot find exceptionCommand '" + exceptionCommand
                                 + "'");
             }
 
-            if (log.isTraceEnabled()) {
-                log.trace("Calling exceptionCommand '" + exceptionCommand
+            if (LOG.isTraceEnabled()) {
+                LOG.trace("Calling exceptionCommand '" + exceptionCommand
                         + "'");
             }
 
             command.execute(context);
-        }
-        catch (Exception e) {
-            log.warn("Exception from exceptionCommand '" + exceptionCommand
+        } catch (Exception e) {
+            LOG.warn("Exception from exceptionCommand '" + exceptionCommand
                     + "'", e);
             throw new IllegalStateException("Exception chain threw exception");
         }
@@ -148,16 +168,22 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
         return (true);
     }
 
-    protected Command lookupExceptionCommand()
-            throws IllegalArgumentException, IllegalStateException {
+    /**
+     * <p> Return the command to be executed if an exception occurs. </p>
+     *
+     * @return The command to be executed if an exception occurs
+     * @throws IllegalArgumentException If catalog cannot be found
+     * @throws IllegalStateException    If command property is not specified
+     */
+    protected Command lookupExceptionCommand() {
         String catalogName = getCatalogName();
-        Catalog catalog = null;
+        Catalog catalog;
 
         if (catalogName == null) {
             catalog = CatalogFactory.getInstance().getCatalog();
 
             if (catalog == null) {
-                log.error("Cannot find default catalog");
+                LOG.error("Cannot find default catalog");
                 throw new IllegalArgumentException(
                         "Cannot find default catalog");
             }
@@ -165,7 +191,7 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
             catalog = CatalogFactory.getInstance().getCatalog(catalogName);
 
             if (catalog == null) {
-                log.error("Cannot find catalog '" + catalogName + "'");
+                LOG.error("Cannot find catalog '" + catalogName + "'");
                 throw new IllegalArgumentException("Cannot find catalog '"
                         + catalogName + "'");
             }
@@ -174,7 +200,7 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
         String exceptionCommand = getExceptionCommand();
 
         if (exceptionCommand == null) {
-            log.error("No exceptionCommand property specified");
+            LOG.error("No exceptionCommand property specified");
             throw new IllegalStateException(
                     "No exceptionCommand property specfied");
         }

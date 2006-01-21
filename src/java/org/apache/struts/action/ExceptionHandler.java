@@ -42,8 +42,7 @@ public class ExceptionHandler {
      * <p>The name of a configuration property which can be set to specify an
      * alternative path which should be used when the <code>HttpServletResponse</code>
      * has already been committed.</p> <p>To use this, in your
-     * <code>struts-config.xml</code> specify the exception handler like
-     * this:
+     * <code>struts-config.xml</code> specify the exception handler like this:
      * <pre>
      *   &lt;exception
      *       key="GlobalExceptionHandler.default"
@@ -52,8 +51,8 @@ public class ExceptionHandler {
      *       &lt;set-property key="INCLUDE_PATH" value="/error.jsp" /&gt;
      *   &lt;/exception&gt;
      *  </pre>
-     * </p> <p>You would want to use this when your normal ExceptionHandler
-     * path is a Tiles definition or otherwise unsuitable for use in an
+     * </p> <p>You would want to use this when your normal ExceptionHandler path
+     * is a Tiles definition or otherwise unsuitable for use in an
      * <code>include</code> context.  If you do not use this, and you do not
      * specify "SILENT_IF_COMMITTED" then the ExceptionHandler will attempt to
      * forward to the same path which would be used in normal circumstances,
@@ -67,11 +66,10 @@ public class ExceptionHandler {
     /**
      * <p>The name of a configuration property which indicates that Struts
      * should do nothing if the response has already been committed.  This
-     * suppresses the default behavior, which is to use an "include" rather
-     * than a "forward" in this case in hopes of providing some meaningful
+     * suppresses the default behavior, which is to use an "include" rather than
+     * a "forward" in this case in hopes of providing some meaningful
      * information to the browser.</p> <p>To use this, in your
-     * <code>struts-config.xml</code> specify the exception handler like
-     * this:
+     * <code>struts-config.xml</code> specify the exception handler like this:
      * <pre>
      *   &lt;exception
      *       key="GlobalExceptionHandler.default"
@@ -80,11 +78,11 @@ public class ExceptionHandler {
      *       &lt;set-property key="SILENT_IF_COMMITTED" value="true" /&gt;
      *   &lt;/exception&gt;
      *  </pre>
-     * To be effective, this value must be defined to the literal String
-     * "true".  If it is not defined or defined to any other value, the
-     * default behavior will be used. </p> <p>You only need to use this if you
-     * do not want error information displayed in the browser when Struts
-     * intercepts an exception after the response has been committed.</p>
+     * To be effective, this value must be defined to the literal String "true".
+     *  If it is not defined or defined to any other value, the default behavior
+     * will be used. </p> <p>You only need to use this if you do not want error
+     * information displayed in the browser when Struts intercepts an exception
+     * after the response has been committed.</p>
      *
      * @since Struts 1.3
      */
@@ -93,7 +91,7 @@ public class ExceptionHandler {
     /**
      * <p>Commons logging instance.</p>
      */
-    private static final Log log = LogFactory.getLog(ExceptionHandler.class);
+    private static final Log LOG = LogFactory.getLog(ExceptionHandler.class);
 
     /**
      * <p>The message resources for this package.</p>
@@ -102,9 +100,8 @@ public class ExceptionHandler {
             .getMessageResources("org.apache.struts.action.LocalStrings");
 
     /**
-     * <p>Handle the <code>Exception</code>. Return the
-     * <code>ActionForward</code> instance (if any) returned by the called
-     * <code>ExceptionHandler</code>.
+     * <p>Handle the <code>Exception</code>. Return the <code>ActionForward</code>
+     * instance (if any) returned by the called <code>ExceptionHandler</code>.
      *
      * @param ex           The exception to handle
      * @param ae           The ExceptionConfig corresponding to the exception
@@ -112,8 +109,8 @@ public class ExceptionHandler {
      * @param formInstance The ActionForm we are processing
      * @param request      The servlet request we are processing
      * @param response     The servlet response we are creating
-     * @return The <code>ActionForward</code> instance (if any) returned by
-     *         the called <code>ExceptionHandler</code>.
+     * @return The <code>ActionForward</code> instance (if any) returned by the
+     *         called <code>ExceptionHandler</code>.
      * @throws ServletException if a servlet exception occurs
      * @since Struts 1.1
      */
@@ -123,11 +120,11 @@ public class ExceptionHandler {
                                  HttpServletRequest request,
                                  HttpServletResponse response)
             throws ServletException {
-        log.debug("ExceptionHandler executing for exception " + ex);
+        LOG.debug("ExceptionHandler executing for exception " + ex);
 
-        ActionForward forward = null;
-        ActionMessage error = null;
-        String property = null;
+        ActionForward forward;
+        ActionMessage error;
+        String property;
 
         // Build the forward from the exception mapping if it exists
         // or from the form input
@@ -156,14 +153,13 @@ public class ExceptionHandler {
             return forward;
         }
 
-        log.debug(
-                "Response is already committed, so forwarding will not work.  Attempt alternate handling.");
-
+        LOG.debug("Response is already committed, so forwarding will not work."
+                + " Attempt alternate handling.");
         if (!silent(ae)) {
             handleCommittedResponse(ex, ae, mapping, formInstance, request,
                     response, forward);
         } else {
-            log.warn("ExceptionHandler configured with " + SILENT_IF_COMMITTED
+            LOG.warn("ExceptionHandler configured with " + SILENT_IF_COMMITTED
                     + " and response is committed.", ex);
         }
 
@@ -172,18 +168,18 @@ public class ExceptionHandler {
 
     /**
      * <p>Attempt to give good information when the response has already been
-     * committed when the exception was thrown. This happens often when Tiles
-     * is used. Base implementation will see if the INCLUDE_PATH property has
-     * been set, or if not, it will attempt to use the same path to which
-     * control would have been forwarded.</p>
+     * committed when the exception was thrown. This happens often when Tiles is
+     * used. Base implementation will see if the INCLUDE_PATH property has been
+     * set, or if not, it will attempt to use the same path to which control
+     * would have been forwarded.</p>
      *
-     * @param ex
-     * @param config
-     * @param mapping
-     * @param formInstance
-     * @param request
-     * @param response
-     * @param actionForward
+     * @param ex            The exception to handle
+     * @param config        The ExceptionConfig we are processing
+     * @param mapping       The ActionMapping we are processing
+     * @param formInstance  The ActionForm we are processing
+     * @param request       The servlet request we are processing
+     * @param response      The servlet response we are creating
+     * @param actionForward The ActionForward we are processing
      * @since Struts 1.3
      */
     protected void handleCommittedResponse(Exception ex,
@@ -197,7 +193,7 @@ public class ExceptionHandler {
 
         if (includePath != null) {
             if (includePath.startsWith("/")) {
-                log.debug(
+                LOG.debug(
                         "response committed, but attempt to include results of actionForward path");
 
                 RequestDispatcher requestDispatcher = request
@@ -207,28 +203,26 @@ public class ExceptionHandler {
                     requestDispatcher.include(request, response);
 
                     return;
-                }
-                catch (IOException e) {
-                    log.error(
+                } catch (IOException e) {
+                    LOG.error(
                             "IOException when trying to include the error page path "
                                     + includePath,
                             e);
-                }
-                catch (ServletException e) {
-                    log.error(
+                } catch (ServletException e) {
+                    LOG.error(
                             "ServletException when trying to include the error page path "
                                     + includePath,
                             e);
                 }
             } else {
-                log.warn(
+                LOG.warn(
                         "Suspicious includePath doesn't seem likely to work, so skipping it: "
                                 + includePath
                                 + "; expected path to start with '/'");
             }
         }
 
-        log.debug(
+        LOG.debug(
                 "Include not available or failed; try writing to the response directly.");
 
         try {
@@ -236,23 +230,22 @@ public class ExceptionHandler {
             response.getWriter().println("<!-- ");
             ex.printStackTrace(response.getWriter());
             response.getWriter().println("-->");
-        }
-        catch (IOException e) {
-            log.error("Error giving minimal information about exception", e);
-            log.error("Original exception: ", ex);
+        } catch (IOException e) {
+            LOG.error("Error giving minimal information about exception", e);
+            LOG.error("Original exception: ", ex);
         }
     }
 
     /**
-     * <p>Return a path to which an include should be attempted in the case
-     * when the response was committed before the <code>ExceptionHandler</code>
-     * was invoked.  </p> <p>If the <code>ExceptionConfig</code> has the
-     * property <code>INCLUDE_PATH</code> defined, then the value of that
-     * property will be returned.</p>
+     * <p>Return a path to which an include should be attempted in the case when
+     * the response was committed before the <code>ExceptionHandler</code> was
+     * invoked.  </p> <p>If the <code>ExceptionConfig</code> has the property
+     * <code>INCLUDE_PATH</code> defined, then the value of that property will
+     * be returned. Otherwise, the ActionForward path is returned. </p>
      *
-     * @param config
-     * @param actionForward
-     * @return
+     * @param config        Configuration element
+     * @param actionForward Forward to use on error
+     * @return Path of resource to include
      * @since Struts 1.3
      */
     protected String determineIncludePath(ExceptionConfig config,
@@ -269,27 +262,27 @@ public class ExceptionHandler {
     /**
      * <p>Logs the <code>Exception</code> using commons-logging.</p>
      *
-     * @param e The Exception to log.
+     * @param e The Exception to LOG.
      * @since Struts 1.2
      */
     protected void logException(Exception e) {
-        log.debug(messages.getMessage("exception.log"), e);
+        LOG.debug(messages.getMessage("exception.LOG"), e);
     }
 
     /**
      * <p>Default implementation for handling an <code>ActionMessage</code>
      * generated from an <code>Exception</code> during <code>Action</code>
      * delegation. The default implementation is to set an attribute of the
-     * request or session, as defined by the scope provided (the scope from
-     * the exception mapping). An <code>ActionMessages</code> instance is
-     * created, the error is added to the collection and the collection is set
-     * under the <code>Globals.ERROR_KEY</code>.</p>
+     * request or session, as defined by the scope provided (the scope from the
+     * exception mapping). An <code>ActionMessages</code> instance is created,
+     * the error is added to the collection and the collection is set under the
+     * <code>Globals.ERROR_KEY</code>.</p>
      *
      * @param request  The request we are handling
      * @param property The property name to use for this error
      * @param error    The error generated from the exception mapping
-     * @param forward  The forward generated from the input path (from the
-     *                 form or exception mapping)
+     * @param forward  The forward generated from the input path (from the form
+     *                 or exception mapping)
      * @param scope    The scope of the exception mapping.
      * @since Struts 1.2
      */
@@ -313,8 +306,8 @@ public class ExceptionHandler {
      * <code>"true"</code> for the property "SILENT_IF_COMMITTED" in the
      * ExceptionConfig.</p>
      *
-     * @param config
-     * @return
+     * @param config The ExceptionConfiguration we are handling
+     * @return True if Handler is silent
      * @since Struts 1.3
      */
     private boolean silent(ExceptionConfig config) {

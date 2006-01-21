@@ -22,9 +22,9 @@ import java.io.Serializable;
 /**
  * <p>A class that encapsulates the error messages being reported by the
  * <code>validate()</code> method of an <code>ActionForm</code>. Validation
- * errors are either global to the entire <code>ActionForm</code> bean they
- * are associated with, or they are specific to a particular bean property
- * (and, therefore, a particular input field on the corresponding form).</p>
+ * errors are either global to the entire <code>ActionForm</code> bean they are
+ * associated with, or they are specific to a particular bean property (and,
+ * therefore, a particular input field on the corresponding form).</p>
  *
  * <p>Each individual error is described by an <code>ActionMessage</code>
  * object, which contains a message key (to be looked up in an appropriate

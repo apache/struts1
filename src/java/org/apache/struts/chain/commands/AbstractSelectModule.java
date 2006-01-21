@@ -1,5 +1,7 @@
 /*
- * Copyright 2003,2004 The Apache Software Foundation.
+ * $Id$
+ *
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +18,6 @@
 package org.apache.struts.chain.commands;
 
 import org.apache.struts.Globals;
-import org.apache.struts.chain.Constants;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
@@ -30,9 +31,8 @@ import org.apache.struts.util.MessageResources;
  *          $
  */
 public abstract class AbstractSelectModule extends ActionCommandBase {
+
     // ------------------------------------------------------ Instance Variables
-    private String messageResourcesKey = Constants.MESSAGE_RESOURCES_KEY;
-    private String moduleConfigKey = Constants.MODULE_CONFIG_KEY;
 
     // ---------------------------------------------------------- Public Methods
 
@@ -46,6 +46,7 @@ public abstract class AbstractSelectModule extends ActionCommandBase {
      * @throws IllegalArgumentException if no valid ModuleConfig or
      *                                  MessageResources can be identified for
      *                                  this request
+     * @throws Exception                if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {
@@ -87,6 +88,7 @@ public abstract class AbstractSelectModule extends ActionCommandBase {
      * for this request.</p>
      *
      * @param context The <code>Context</code> for this request
+     * @return Module prefix to be used with this request
      * @throws IllegalArgumentException if no valid ModuleConfig or
      *                                  MessageResources can be identified for
      *                                  this request

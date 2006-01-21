@@ -1,5 +1,7 @@
 /*
- * Copyright 2003,2004 The Apache Software Foundation.
+ * $Id$
+ *
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +31,12 @@ import java.util.Locale;
  *          $
  */
 public abstract class AbstractSelectLocale extends ActionCommandBase {
+
+    // ------------------------------------------------------ Instance Variables
+
+    /**
+     * <p> Provide Commons Logging instance for this class. </p>
+     */
     private static final Log log =
             LogFactory.getLog(AbstractSelectLocale.class);
 
@@ -39,6 +47,7 @@ public abstract class AbstractSelectLocale extends ActionCommandBase {
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> so that processing continues
+     * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {
@@ -74,6 +83,7 @@ public abstract class AbstractSelectLocale extends ActionCommandBase {
      * <p>Return the <code>Locale</code> to be used for this request.</p>
      *
      * @param context The <code>Context</code> for this request
+     * @return The Locale to be used for this request
      */
     protected abstract Locale getLocale(ActionContext context);
 }

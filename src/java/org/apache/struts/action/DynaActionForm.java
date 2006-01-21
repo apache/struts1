@@ -59,8 +59,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
     protected DynaActionFormClass dynaClass = null;
 
     /**
-     * <p>The set of property values for this <code>DynaActionForm</code>,
-     * keyed by property name.</p>
+     * <p>The set of property values for this <code>DynaActionForm</code>, keyed
+     * by property name.</p>
      */
     protected HashMap dynaValues = new HashMap();
 
@@ -68,8 +68,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
     /**
      * <p>Initialize all bean properties to their initial values, as specified
-     * in the {@link FormPropertyConfig} elements associated with the
-     * definition of this <code>DynaActionForm</code>.</p>
+     * in the {@link FormPropertyConfig} elements associated with the definition
+     * of this <code>DynaActionForm</code>.</p>
      *
      * @param mapping The mapping used to select this instance
      */
@@ -110,8 +110,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * <p>Reset bean properties to their default state, as needed. This method
      * is called before the properties are repopulated by the controller.</p>
      *
-     * <p>The default implementation attempts to forward to the HTTP version
-     * of this method.</p>
+     * <p>The default implementation attempts to forward to the HTTP version of
+     * this method.</p>
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
@@ -122,9 +122,9 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
     /**
      * <p>Reset the properties to their <code>initial</code> value if their
-     * <code>reset</code> configuration is set to true or if
-     * <code>reset</code> is set to a list of HTTP request methods that
-     * includes the method of given <code>request</code> object.</p>
+     * <code>reset</code> configuration is set to true or if <code>reset</code>
+     * is set to a list of HTTP request methods that includes the method of
+     * given <code>request</code> object.</p>
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
@@ -188,9 +188,10 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @param name Name of the property to check
      * @param key  Name of the key to check
      * @return <code>true</code> if the specified mapped property contains a
-     *         value for the specified key value; <code>true</code>
-     *         otherwise.
-     * @throws IllegalArgumentException if there is no property of the
+     *         value for the specified key value; <code>true</code> otherwise.
+     * @throws NullPointerException     if there is no property of the specified
+     *                                  name
+     * @throws IllegalArgumentException if there is no mapped property of the
      *                                  specified name
      */
     public boolean contains(String name, String key) {
@@ -213,8 +214,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      *
      * @param name Name of the property whose value is to be retrieved
      * @return The value of a simple property with the specified name.
-     * @throws IllegalArgumentException if there is no property of the
-     *                                  specified name
+     * @throws IllegalArgumentException if there is no property of the specified
+     *                                  name
      * @throws NullPointerException     if the type specified for the property
      *                                  is invalid
      */
@@ -261,20 +262,17 @@ public class DynaActionForm extends ActionForm implements DynaBean {
     }
 
     /**
-     * <p>Return the value of an indexed property with the specified name.
-     * </p>
+     * <p>Return the value of an indexed property with the specified name. </p>
      *
      * @param name  Name of the property whose value is to be retrieved
      * @param index Index of the value to be retrieved
      * @return The value of an indexed property with the specified name.
-     * @throws IllegalArgumentException  if there is no property of the
-     *                                   specified name
-     * @throws IllegalArgumentException  if the specified property exists, but
-     *                                   is not indexed
-     * @throws IndexOutOfBoundsException if the specified index is outside the
-     *                                   range of the underlying property
-     * @throws NullPointerException      if no array or List has been
-     *                                   initialized for this property
+     * @throws IllegalArgumentException if there is no property of the specified
+     *                                  name
+     * @throws IllegalArgumentException if the specified property exists, but is
+     *                                  not indexed
+     * @throws NullPointerException     if no array or List has been initialized
+     *                                  for this property
      */
     public Object get(String name, int index) {
         Object value = dynaValues.get(name);
@@ -300,10 +298,10 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @param key  Key of the value to be retrieved
      * @return The value of a mapped property with the specified name, or
      *         <code>null</code> if there is no value for the specified key.
-     * @throws IllegalArgumentException if there is no property of the
-     *                                  specified name
-     * @throws IllegalArgumentException if the specified property exists, but
-     *                                  is not mapped
+     * @throws NullPointerException     if there is no property of the specified
+     *                                  name
+     * @throws IllegalArgumentException if the specified property exists, but is
+     *                                  not mapped
      */
     public Object get(String name, String key) {
         Object value = dynaValues.get(name);
@@ -321,15 +319,15 @@ public class DynaActionForm extends ActionForm implements DynaBean {
     }
 
     /**
-     * <p>Return the value of a <code>String</code> property with the
-     * specified name. This is equivalent to calling <code>(String)
+     * <p>Return the value of a <code>String</code> property with the specified
+     * name. This is equivalent to calling <code>(String)
      * dynaForm.get(name)</code>.</p>
      *
      * @param name Name of the property whose value is to be retrieved.
      * @return The value of a <code>String</code> property with the specified
      *         name.
-     * @throws IllegalArgumentException if there is no property of the
-     *                                  specified name
+     * @throws IllegalArgumentException if there is no property of the specified
+     *                                  name
      * @throws NullPointerException     if the type specified for the property
      *                                  is invalid
      * @throws ClassCastException       if the property is not a String.
@@ -345,10 +343,10 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * dynaForm.get(name)</code>.</p>
      *
      * @param name Name of the property whose value is to be retrieved.
-     * @return The value of a <code>String[]</code> property with the
-     *         specified name.
-     * @throws IllegalArgumentException if there is no property of the
-     *                                  specified name
+     * @return The value of a <code>String[]</code> property with the specified
+     *         name.
+     * @throws IllegalArgumentException if there is no property of the specified
+     *                                  name
      * @throws NullPointerException     if the type specified for the property
      *                                  is invalid
      * @throws ClassCastException       if the property is not a String[].
@@ -398,7 +396,9 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      *
      * @param name Name of the property for which a value is to be removed
      * @param key  Key of the value to be removed
-     * @throws IllegalArgumentException if there is no property of the
+     * @throws NullPointerException     if there is no property of the specified
+     *                                  name
+     * @throws IllegalArgumentException if there is no mapped property of the
      *                                  specified name
      */
     public void remove(String name, String key) {
@@ -422,14 +422,14 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @param name  Name of the property whose value is to be set
      * @param value Value to which this property is to be set
      * @throws ConversionException      if the specified value cannot be
-     *                                  converted to the type required for
-     *                                  this property
-     * @throws IllegalArgumentException if there is no property of the
-     *                                  specified name
+     *                                  converted to the type required for this
+     *                                  property
+     * @throws IllegalArgumentException if there is no property of the specified
+     *                                  name
      * @throws NullPointerException     if the type specified for the property
      *                                  is invalid
-     * @throws NullPointerException     if an attempt is made to set a
-     *                                  primitive property to null
+     * @throws NullPointerException     if an attempt is made to set a primitive
+     *                                  property to null
      */
     public void set(String name, Object value) {
         DynaProperty descriptor = getDynaProperty(name);
@@ -444,8 +444,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
                 throw new NullPointerException("Primitive value for '" + name
                         + "'");
             }
-        } else
-        if (!isDynaAssignable(descriptor.getType(), value.getClass())) {
+        } else if (!isDynaAssignable(descriptor.getType(), value.getClass())) {
             throw new ConversionException("Cannot assign value of type '"
                     + value.getClass().getName() + "' to property '" + name
                     + "' of type '" + descriptor.getType().getName() + "'");
@@ -461,9 +460,9 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @param index Index of the property to be set
      * @param value Value to which this property is to be set
      * @throws ConversionException       if the specified value cannot be
-     *                                   converted to the type required for
-     *                                   this property
-     * @throws IllegalArgumentException  if there is no property of the
+     *                                   converted to the type required for this
+     *                                   property
+     * @throws NullPointerException      if there is no property of the
      *                                   specified name
      * @throws IllegalArgumentException  if the specified property exists, but
      *                                   is not indexed
@@ -481,8 +480,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         } else if (prop instanceof List) {
             try {
                 ((List) prop).set(index, value);
-            }
-            catch (ClassCastException e) {
+            } catch (ClassCastException e) {
                 throw new ConversionException(e.getMessage());
             }
         } else {
@@ -497,13 +495,10 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      * @param name  Name of the property whose value is to be set
      * @param key   Key of the property to be set
      * @param value Value to which this property is to be set
-     * @throws ConversionException      if the specified value cannot be
-     *                                  converted to the type required for
-     *                                  this property
-     * @throws IllegalArgumentException if there is no property of the
-     *                                  specified name
-     * @throws IllegalArgumentException if the specified property exists, but
-     *                                  is not mapped
+     * @throws NullPointerException     if there is no property of the specified
+     *                                  name
+     * @throws IllegalArgumentException if the specified property exists, but is
+     *                                  not mapped
      */
     public void set(String name, String key, Object value) {
         Object prop = dynaValues.get(name);
@@ -630,8 +625,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      *
      * @param name Name of the property for which to retrieve the descriptor
      * @return The property descriptor for the specified property name.
-     * @throws IllegalArgumentException if this is not a valid property name
-     *                                  for our DynaClass
+     * @throws IllegalArgumentException if this is not a valid property name for
+     *                                  our DynaClass
      */
     protected DynaProperty getDynaProperty(String name) {
         DynaProperty descriptor = getDynaClass().getDynaProperty(name);
@@ -651,8 +646,8 @@ public class DynaActionForm extends ActionForm implements DynaBean {
      *
      * @param dest   Destination class
      * @param source Source class
-     * @return <code>true</code> if the source is assignable to the
-     *         destination; <code>false</code> otherwise.
+     * @return <code>true</code> if the source is assignable to the destination;
+     *         <code>false</code> otherwise.
      */
     protected boolean isDynaAssignable(Class dest, Class source) {
         if (dest.isAssignableFrom(source)

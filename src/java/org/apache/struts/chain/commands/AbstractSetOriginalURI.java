@@ -1,5 +1,7 @@
 /*
- * Copyright 2003,2004 The Apache Software Foundation.
+ * $Id: RequestProcessor.java 370938 2006-01-21 00:19:02Z husted $
+ *
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +27,7 @@ import org.apache.struts.chain.contexts.ActionContext;
  *          $
  */
 public abstract class AbstractSetOriginalURI extends ActionCommandBase {
+
     // ---------------------------------------------------------- Public Methods
 
     /**
@@ -33,6 +36,7 @@ public abstract class AbstractSetOriginalURI extends ActionCommandBase {
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> so that processing continues
+     * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {

@@ -24,8 +24,8 @@ import org.apache.struts.config.ModuleConfig;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * <p>Cache the <code>ActionConfig</code> instance for the action to be used
- * for processing this request.</p>
+ * <p>Cache the <code>ActionConfig</code> instance for the action to be used for
+ * processing this request.</p>
  *
  * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
  *          $

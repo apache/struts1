@@ -22,17 +22,14 @@ import org.apache.struts.chain.contexts.ActionContext;
 
 /**
  * <p>Simple abstract class which avoids frequent casting to
- * <code>ActionContext</code> in commands explicitly intended for use with
- * that class.</code>.</p>
+ * <code>ActionContext</code> in commands explicitly intended for use with that
+ * class.</p>
  */
 public abstract class ActionCommandBase implements ActionCommand {
     public abstract boolean execute(ActionContext actionContext)
             throws Exception;
 
-    /**
-     * <p>Simply cast the <code>Context</code> to <code>ActionContext</code>
-     * and call <code>execute(ActionContext)</code>.</p>
-     */
+    // See interface for Javadoc
     public boolean execute(Context context)
             throws Exception {
         return execute((ActionContext) context);

@@ -22,8 +22,8 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 
 /**
- * <p>Create and return a <code>ForwardConfig</code> representing the
- * specified module-relative destination.</p>
+ * <p>Create and return a <code>ForwardConfig</code> representing the specified
+ * module-relative destination.</p>
  *
  * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
  *          $

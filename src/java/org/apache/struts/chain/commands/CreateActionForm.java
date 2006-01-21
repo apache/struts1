@@ -1,5 +1,7 @@
 /*
- * Copyright 2003,2004 The Apache Software Foundation.
+ * $Id$
+ *
+ * Copyright 2003-2005 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,8 +33,13 @@ import java.util.Map;
  * @version $Id$
  */
 public class CreateActionForm extends ActionCommandBase {
+
     // ------------------------------------------------------ Instance Variables
-    private static final Log log = LogFactory.getLog(CreateActionForm.class);
+
+    /**
+     * <p> Provide Commons Logging instance for this class. </p>
+     */
+    private static final Log LOG = LogFactory.getLog(CreateActionForm.class);
 
     // ---------------------------------------------------------- Public Methods
 
@@ -41,6 +48,7 @@ public class CreateActionForm extends ActionCommandBase {
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> so that processing continues
+     * @throws Exception on any error
      */
     public boolean execute(ActionContext actionCtx)
             throws Exception {
@@ -54,8 +62,8 @@ public class CreateActionForm extends ActionCommandBase {
             return (false);
         }
 
-        if (log.isTraceEnabled()) {
-            log.trace("Look up form-bean " + name);
+        if (LOG.isTraceEnabled()) {
+            LOG.trace("Look up form-bean " + name);
         }
 
         // Look up the corresponding FormBeanConfig (if any)
@@ -63,7 +71,7 @@ public class CreateActionForm extends ActionCommandBase {
                 .findFormBeanConfig(name);
 
         if (formBeanConfig == null) {
-            log.warn("No FormBeanConfig found in module "
+            LOG.warn("No FormBeanConfig found in module "
                     + actionConfig.getModuleConfig().getPrefix()
                     + " under name "
                     + name);
@@ -74,7 +82,7 @@ public class CreateActionForm extends ActionCommandBase {
 
         Map scope = actionCtx.getScope(actionConfig.getScope());
 
-        ActionForm instance = null;
+        ActionForm instance;
 
         instance = (ActionForm) scope.get(actionConfig.getAttribute());
 
@@ -83,7 +91,7 @@ public class CreateActionForm extends ActionCommandBase {
             instance = formBeanConfig.createActionForm(actionCtx);
         }
 
-        // TODO Remove this when ActionForm no longer directly depends on
+        // TODO: Remove this when ActionForm no longer directly depends on
         //      ActionServlet
         if (actionCtx instanceof ServletActionContext) {
             // The servlet property of ActionForm is transient, so

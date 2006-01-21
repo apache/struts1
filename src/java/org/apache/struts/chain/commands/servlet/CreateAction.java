@@ -32,9 +32,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>Concrete implementation of <code>AbstractCreateAction</code> for use in
- * a Servlet API chain.  Expects that the ActionContext passed into it can
- * safely be cast to <code>ServletActionContext</code>.</p>
+ * <p>Concrete implementation of <code>AbstractCreateAction</code> for use in a
+ * Servlet API chain.  Expects that the ActionContext passed into it can safely
+ * be cast to <code>ServletActionContext</code>.</p>
  */
 public class CreateAction
         extends org.apache.struts.chain.commands.AbstractCreateAction {

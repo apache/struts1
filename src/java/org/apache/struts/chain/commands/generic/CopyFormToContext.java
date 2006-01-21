@@ -43,22 +43,21 @@ public class CopyFormToContext extends ActionCommandBase {
     private String formName = null;
 
     /**
-     * <p>The name of a scope, such as "request" or "session" in which the
-     * form to be prepared will be placed for reference by the view and other
-     * parts of Struts.</p>
+     * <p>The name of a scope, such as "request" or "session" in which the form
+     * to be prepared will be placed for reference by the view and other parts
+     * of Struts.</p>
      *
-     * <p>Either <code>actionPath</code> or both this and
-     * <code>formName</code> are required configuration properties.</p>
+     * <p>Either <code>actionPath</code> or both this and <code>formName</code>
+     * are required configuration properties.</p>
      */
     private String scope = null;
 
     /**
-     * <p>The path of an <code>&lt;action&gt;</code> mapping as configured in
-     * a <code>struts-config.xml</code> file for this module.  This action
-     * will be looked up, and its <code>name</code> and <code>scope</code>
-     * values will be used as if those values were configured directly in this
-     * instance's <code>formName</code> and <code>scope</code>
-     * properties.</p>
+     * <p>The path of an <code>&lt;action&gt;</code> mapping as configured in a
+     * <code>struts-config.xml</code> file for this module.  This action will be
+     * looked up, and its <code>name</code> and <code>scope</code> values will
+     * be used as if those values were configured directly in this instance's
+     * <code>formName</code> and <code>scope</code> properties.</p>
      *
      * <p>Either <code>this</code> or both <code>scope</code> and
      * <code>formName</code> are required configuration properties.</p>
@@ -66,9 +65,9 @@ public class CopyFormToContext extends ActionCommandBase {
     private String actionPath = null;
 
     /**
-     * The context key under which the form which was looked up will be
-     * stored. Defaults to "actionForm" but may be overridden in cases where
-     * the "request" ActionForm must be preserved.
+     * The context key under which the form which was looked up will be stored.
+     * Defaults to "actionForm" but may be overridden in cases where the
+     * "request" ActionForm must be preserved.
      */
     private String toKey = ActionContextBase.ACTION_FORM_KEY;
 
@@ -111,8 +110,8 @@ public class CopyFormToContext extends ActionCommandBase {
      * <p>Look up an ActionForm instance based on the configured properties of
      * this command and copy it into the <code>Context</code>.  After this
      * command successfully executes, an ActionForm instance will exist in the
-     * specified scope and will be available, for example for backing fields
-     * in an HTML form.  It will also be in the <code>ActionContext</code>
+     * specified scope and will be available, for example for backing fields in
+     * an HTML form.  It will also be in the <code>ActionContext</code>
      * available for another command to do prepopulation of values or other
      * preparation.</p>
      */
@@ -173,11 +172,11 @@ public class CopyFormToContext extends ActionCommandBase {
     }
 
     /**
-     * <p>Actually find or create an instance of ActionForm configured under
-     * the form-bean-name <code>effectiveFormName</code>, looking in in the
+     * <p>Actually find or create an instance of ActionForm configured under the
+     * form-bean-name <code>effectiveFormName</code>, looking in in the
      * <code>ActionContext's</code> scope as identified by
-     * <code>effectiveScope</code>. If a form is created, it will also be
-     * stored in that scope.</p>
+     * <code>effectiveScope</code>. If a form is created, it will also be stored
+     * in that scope.</p>
      *
      * <p><b>NOTE:</b> This specific method depends on the instance of
      * <code>ActionContext</code> which is passed being a subclass of
