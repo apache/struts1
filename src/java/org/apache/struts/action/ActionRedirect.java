@@ -15,29 +15,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.action;
 
-import org.apache.struts.config.ForwardConfig;
-import org.apache.struts.util.ResponseUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.config.ForwardConfig;
+import org.apache.struts.util.ResponseUtils;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
- * A subclass of {@link ActionForward} which is designed for use
- * in redirecting requests, with support for adding parameters
- * at runtime.
- * <br/>
- * An {@link ForwardConfig} (or subclass) can be passed to the constructor
- * to copy its configuration:
- * <br/>
+ * A subclass of {@link ActionForward} which is designed for use in
+ * redirecting requests, with support for adding parameters at runtime. <br/>
+ * An {@link ForwardConfig} (or subclass) can be passed to the constructor to
+ * copy its configuration: <br/>
  * <pre>
  * public ActionForward execute(ActionMapping mapping,
  *                              ActionForm form,
@@ -57,14 +53,12 @@ import java.util.Iterator;
  * @version $Rev$ $Date$
  */
 public class ActionRedirect extends ActionForward {
-
     // ----------------------------------------------------- Manifest constants
 
     /**
      * <p>Default allocation size for string buffers.</p>
      */
     private static final int DEFAULT_BUFFER_SIZE = 256;
-
 
     // ----------------------------------------------------- Static variables
 
@@ -73,22 +67,19 @@ public class ActionRedirect extends ActionForward {
      */
     protected static final Log log = LogFactory.getLog(ActionRedirect.class);
 
-
     // ----------------------------------------------------- Instance variables
 
     /**
-     * <p>Holds the redirect parameters.
-     * Each entry is either a String or a String[] depending on whether
-     * it has one or more entries.</p>
+     * <p>Holds the redirect parameters. Each entry is either a String or a
+     * String[] depending on whether it has one or more entries.</p>
      */
     protected Map parameterValues = null;
-
 
     // ----------------------------------------------------- Constructors
 
     /**
-     * <p>Construct a new instance with redirect set to true
-     * and initialize parameter lists.</p>
+     * <p>Construct a new instance with redirect set to true and initialize
+     * parameter lists.</p>
      */
     public ActionRedirect() {
         setRedirect(true);
@@ -96,8 +87,8 @@ public class ActionRedirect extends ActionForward {
     }
 
     /**
-     * <p>Construct a new instance with the specified path
-     * and initialize parameter lists.</p>
+     * <p>Construct a new instance with the specified path and initialize
+     * parameter lists.</p>
      *
      * @param path Path for this instance
      */
@@ -108,11 +99,11 @@ public class ActionRedirect extends ActionForward {
     }
 
     /**
-     * <p>Construct a new instance with the specified values
-     * and initialize parameter lists.</p>
+     * <p>Construct a new instance with the specified values and initialize
+     * parameter lists.</p>
      *
-     * @param name Name of this instance
-     * @param path Path for this instance
+     * @param name   Name of this instance
+     * @param path   Path for this instance
      * @param module Module prefix, if any
      */
     public ActionRedirect(String name, String path, String module) {
@@ -121,13 +112,12 @@ public class ActionRedirect extends ActionForward {
         initializeParameters();
     }
 
-
     /**
-     * <p>Construct a new instance with a {@link ForwardConfig} object
-     *  to copy name, path, and contextRelative values from.</p>
+     * <p>Construct a new instance with a {@link ForwardConfig} object to copy
+     * name, path, and contextRelative values from.</p>
      *
-     * @param baseConfig the {@link ForwardConfig}
-     * to copy configuration values from
+     * @param baseConfig the {@link ForwardConfig} to copy configuration
+     *                   values from
      */
     public ActionRedirect(ForwardConfig baseConfig) {
         setName(baseConfig.getName());
@@ -137,66 +127,63 @@ public class ActionRedirect extends ActionForward {
         initializeParameters();
     }
 
-
-
     // ----------------------------------------------------- Private methods
 
     /**
-     * <p>Initializes the internal objects
-     * used to hold parameter values.</p>
+     * <p>Initializes the internal objects used to hold parameter values.</p>
      */
     private void initializeParameters() {
         parameterValues = new HashMap();
     }
 
-
     // ----------------------------------------------------- Public methods
 
     /**
-     * <p>Adds the object's toString() to the list of parameters if it's
-     * not null, or an empty string with the given fieldName if it is.</p>
+     * <p>Adds the object's toString() to the list of parameters if it's not
+     * null, or an empty string with the given fieldName if it is.</p>
      *
      * @param fieldName the name to use for the parameter
-     * @param valueObj the value for this parameter
+     * @param valueObj  the value for this parameter
      */
     public void addParameter(String fieldName, Object valueObj) {
-
         String value = (valueObj != null) ? valueObj.toString() : "";
+
         if (parameterValues == null) {
             initializeParameters();
         }
 
         //try {
-            value = ResponseUtils.encodeURL(value);
-        //} catch (UnsupportedEncodingException uce) {
-            // this shouldn't happen since UTF-8 is the W3C Recommendation
-       //     String errorMsg = "UTF-8 Character Encoding not supported";
-       //     log.error(errorMsg, uce);
-       //     throw new RuntimeException(errorMsg, uce);
-       // }
+        value = ResponseUtils.encodeURL(value);
 
+        //} catch (UnsupportedEncodingException uce) {
+        // this shouldn't happen since UTF-8 is the W3C Recommendation
+        //     String errorMsg = "UTF-8 Character Encoding not supported";
+        //     log.error(errorMsg, uce);
+        //     throw new RuntimeException(errorMsg, uce);
+        // }
         Object currentValue = parameterValues.get(fieldName);
+
         if (currentValue == null) {
             // there's no value for this param yet; add it to the map
             parameterValues.put(fieldName, value);
-
         } else if (currentValue instanceof String) {
             // there's already a value; let's use an array for these parameters
             String[] newValue = new String[2];
+
             newValue[0] = (String) currentValue;
             newValue[1] = value;
             parameterValues.put(fieldName, newValue);
-
         } else if (currentValue instanceof String[]) {
             // add the value to the list of existing values
             List newValues = new ArrayList(Arrays.asList(
                     (Object[]) currentValue));
+
             newValues.add(value);
             parameterValues.put(fieldName,
-                    (String[]) newValues.toArray(new String[newValues.size()]));
+                    (String[]) newValues
+                            .toArray(new String[newValues.size()]));
         }
     }
-
 
     /**
      * <p>Get the original path without the parameters added at runtime.</p>
@@ -207,10 +194,9 @@ public class ActionRedirect extends ActionForward {
         return super.getPath();
     }
 
-
     /**
-     * <p>Get the path for this object, including any parameters
-     * that may have been added at runtime.</p>
+     * <p>Get the path for this object, including any parameters that may have
+     * been added at runtime.</p>
      *
      * @return The path for this object.
      */
@@ -230,10 +216,13 @@ public class ActionRedirect extends ActionForward {
 
             // does the original path already have a "?"?
             int paramStartIndex = originalPath.indexOf("?");
+
             if (paramStartIndex > 0) {
                 // did the path end with "?"?
                 needsParamSeparator =
-                        (paramStartIndex != originalPath.length() - 1);
+                        (paramStartIndex != (originalPath.length()
+                                - 1));
+
                 if (needsParamSeparator) {
                     paramSeparator = "&";
                 }
@@ -242,26 +231,26 @@ public class ActionRedirect extends ActionForward {
             if (needsParamSeparator) {
                 result.append(paramSeparator);
             }
+
             result.append(parameterString);
         }
 
         return result.toString();
     }
 
-
     /**
-     * <p>Forms the string containing the parameters
-     *  passed onto this object thru calls to addParameter().</p>
+     * <p>Forms the string containing the parameters passed onto this object
+     * thru calls to addParameter().</p>
      *
-     * @return a string which can be appended to the URLs.  The
-     *    return string does not include a leading question
-     *    mark (?).
+     * @return a string which can be appended to the URLs.  The return string
+     *         does not include a leading question mark (?).
      */
     public String getParameterString() {
         StringBuffer strParam = new StringBuffer(DEFAULT_BUFFER_SIZE);
 
         // loop through all parameters
         Iterator iterator = parameterValues.keySet().iterator();
+
         while (iterator.hasNext()) {
             // get the parameter name
             String paramName = (String) iterator.next();
@@ -271,18 +260,15 @@ public class ActionRedirect extends ActionForward {
 
             if (value instanceof String) {
                 // just one value for this param
-                strParam.append(paramName)
-                        .append("=")
-                        .append(value);
-
+                strParam.append(paramName).append("=").append(value);
             } else if (value instanceof String[]) {
                 // loop through all values for this param
                 String[] values = (String[]) value;
+
                 for (int i = 0; i < values.length; i++) {
-                    strParam.append(paramName)
-                            .append("=")
-                            .append(values[i]);
-                    if (i < values.length - 1) {
+                    strParam.append(paramName).append("=").append(values[i]);
+
+                    if (i < (values.length - 1)) {
                         strParam.append("&");
                     }
                 }
@@ -296,23 +282,22 @@ public class ActionRedirect extends ActionForward {
         return strParam.toString();
     }
 
-
     // ----------------------------------------------------- toString()
 
     /**
      * <p>Return a string description of this object.</p>
      *
-     * @return a string containing the original path for this object
-     *  and the parameters it currently holds
+     * @return a string containing the original path for this object and the
+     *         parameters it currently holds
      */
     public String toString() {
         StringBuffer result = new StringBuffer(DEFAULT_BUFFER_SIZE);
+
         result.append("ActionRedirect [");
         result.append("originalPath=").append(getOriginalPath()).append(";");
-        result.append("parameterString=")
-                .append(getParameterString()).append("]");
+        result.append("parameterString=").append(getParameterString())
+                .append("]");
+
         return result.toString();
     }
-
-
 }

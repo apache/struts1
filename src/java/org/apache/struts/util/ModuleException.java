@@ -23,11 +23,11 @@ import org.apache.struts.action.ActionMessage;
  * Used for specialized exception handling.
  */
 public class ModuleException extends Exception {
-
     protected String property = null;
 
     /**
      * The ActionMessage associated with this exception.
+     *
      * @since Struts 1.2
      */
     protected ActionMessage message = null;
@@ -45,7 +45,7 @@ public class ModuleException extends Exception {
     /**
      * Construct an module exception with the specified replacement values.
      *
-     * @param key Message key for this error message
+     * @param key   Message key for this error message
      * @param value First replacement value
      */
     public ModuleException(String key, Object value) {
@@ -56,7 +56,7 @@ public class ModuleException extends Exception {
     /**
      * Construct an module exception with the specified replacement values.
      *
-     * @param key Message key for this error message
+     * @param key    Message key for this error message
      * @param value0 First replacement value
      * @param value1 Second replacement value
      */
@@ -68,12 +68,13 @@ public class ModuleException extends Exception {
     /**
      * Construct an module exception with the specified replacement values.
      *
-     * @param key Message key for this error message
+     * @param key    Message key for this error message
      * @param value0 First replacement value
      * @param value1 Second replacement value
      * @param value2 Third replacement value
      */
-    public ModuleException(String key, Object value0, Object value1, Object value2) {
+    public ModuleException(String key, Object value0, Object value1,
+                           Object value2) {
         super(key);
         message = new ActionMessage(key, value0, value1, value2);
     }
@@ -81,13 +82,14 @@ public class ModuleException extends Exception {
     /**
      * Construct an module exception with the specified replacement values.
      *
-     * @param key Message key for this error message
+     * @param key    Message key for this error message
      * @param value0 First replacement value
      * @param value1 Second replacement value
      * @param value2 Third replacement value
      * @param value3 Fourth replacement value
      */
-    public ModuleException(String key, Object value0, Object value1, Object value2, Object value3) {
+    public ModuleException(String key, Object value0, Object value1,
+                           Object value2, Object value3) {
         super(key);
         message = new ActionMessage(key, value0, value1, value2, value3);
     }
@@ -95,7 +97,7 @@ public class ModuleException extends Exception {
     /**
      * Construct an error with the specified replacement values.
      *
-     * @param key Message key for this message
+     * @param key    Message key for this message
      * @param values Array of replacement values
      */
     public ModuleException(String key, Object[] values) {
@@ -105,6 +107,7 @@ public class ModuleException extends Exception {
 
     /**
      * Returns the property associated with the exception.
+     *
      * @return Value of property.
      */
     public String getProperty() {
@@ -112,8 +115,8 @@ public class ModuleException extends Exception {
     }
 
     /**
-     * Set the property associated with the exception.
-     * It can be a name of the edit field, which 'caused' the exception.
+     * Set the property associated with the exception. It can be a name of the
+     * edit field, which 'caused' the exception.
      */
     public void setProperty(String property) {
         this.property = property;
@@ -121,11 +124,11 @@ public class ModuleException extends Exception {
 
     /**
      * Returns the error associated with the exception.
+     *
      * @return Value of property error.
      * @since Struts 1.2
      */
     public ActionMessage getActionMessage() {
         return this.message;
     }
-    
 }

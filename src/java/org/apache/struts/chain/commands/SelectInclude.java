@@ -13,58 +13,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands;
-
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 
-
 /**
- * <p>Select and cache the include for this
- * <code>ActionConfig</code> if specified.</p>
+ * <p>Select and cache the include for this <code>ActionConfig</code> if
+ * specified.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-06-04 10:58:46 -0400 (Sat, 04 Jun 2005)
+ *          $
  */
-
 public class SelectInclude extends ActionCommandBase {
-
-
     // ------------------------------------------------------ Instance Variables
-    private static final Log log =
-        LogFactory.getLog(SelectInclude.class);
-
-
+    private static final Log log = LogFactory.getLog(SelectInclude.class);
 
     // ---------------------------------------------------------- Public Methods
 
-
     /**
-     * <p>Select and cache the include uri for this
-     * <code>ActionConfig</code> if specified.</p>
+     * <p>Select and cache the include uri for this <code>ActionConfig</code>
+     * if specified.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
-     *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(ActionContext actionCtx) throws Exception {
-
+    public boolean execute(ActionContext actionCtx)
+            throws Exception {
         // Acquire configuration objects that we need
         ActionConfig actionConfig = actionCtx.getActionConfig();
 
         // Cache an include uri if found
         String include = actionConfig.getInclude();
+
         if (include != null) {
             if (log.isDebugEnabled()) {
                 log.debug("Including " + include);
             }
+
             actionCtx.setInclude(include);
         }
+
         return (false);
-
     }
-
 }

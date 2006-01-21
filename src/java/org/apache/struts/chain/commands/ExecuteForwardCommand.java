@@ -15,7 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands;
 
 import org.apache.commons.chain.Command;
@@ -23,34 +22,33 @@ import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ForwardConfig;
 
 /**
- * <p>Look up and execute a commons-chain <code>Command</code> based on 
+ * <p>Look up and execute a commons-chain <code>Command</code> based on
  * properties of the ActionContext's <code>forwardConfig</code> property.
  * </p>
  */
 public class ExecuteForwardCommand extends ExecuteCommand {
-
     /**
      * <p>Return the command specified by the <code>command</code> and
      * <code>catalog</code> properties of the <code>forwardConfig</code>
-     * property of the given <code>ActionContext</code>.  If 
+     * property of the given <code>ActionContext</code>.  If
      * <code>forwardConfig</code> is null, return null.</p>
      */
     protected Command getCommand(ActionContext context) {
         ForwardConfig forwardConfig = context.getForwardConfig();
+
         if (forwardConfig == null) {
             return null;
         }
-        return getCommand(forwardConfig.getCommand(), 
+
+        return getCommand(forwardConfig.getCommand(),
                 forwardConfig.getCatalog());
     }
 
     /**
-     * @return <p><code>true</code> if the given <code>ActionContext</code> has
-     * a non-null <code>forwardConfig</code> property.</p>
+     * @return <p><code>true</code> if the given <code>ActionContext</code>
+     *         has a non-null <code>forwardConfig</code> property.</p>
      */
     protected boolean shouldProcess(ActionContext context) {
         return (context.getForwardConfig() != null);
     }
 }
-
-

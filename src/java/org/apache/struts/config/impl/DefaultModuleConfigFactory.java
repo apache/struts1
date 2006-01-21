@@ -15,37 +15,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.config.impl;
-
-import java.io.Serializable;
 
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.ModuleConfigFactory;
 
+import java.io.Serializable;
+
 /**
  * A factory for creating {@link ModuleConfig} instances.
  *
+ * @version $Rev$ $Date: 2005-05-07 12:45:39 -0400 (Sat, 07 May 2005)
+ *          $
  * @see ModuleConfig
  * @see ModuleConfigFactory
- *
- * @version $Rev$ $Date$
  */
-public class DefaultModuleConfigFactory extends ModuleConfigFactory implements Serializable {
+public class DefaultModuleConfigFactory extends ModuleConfigFactory
+        implements Serializable {
     // --------------------------------------------------------- Public Methods
 
     /**
-     * Create and return a newly instansiated {@link ModuleConfig}.
-     * This method must be implemented by concrete subclasses.
+     * Create and return a newly instansiated {@link ModuleConfig}. This
+     * method must be implemented by concrete subclasses.
      *
      * @param prefix Module prefix for Configuration
      */
     public ModuleConfig createModuleConfig(String prefix) {
-
         return new ModuleConfigImpl(prefix);
-
     }
-
-
-
 }

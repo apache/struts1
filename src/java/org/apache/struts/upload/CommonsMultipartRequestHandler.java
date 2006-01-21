@@ -15,45 +15,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package org.apache.struts.upload;
 
+import org.apache.commons.fileupload.DiskFileUpload;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.Globals;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionServlet;
+import org.apache.struts.config.ModuleConfig;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.DiskFileUpload;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionServlet;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.Globals;
 
-
- /**
-  * This class implements the <code>MultipartRequestHandler</code> interface
-  * by providing a wrapper around the Jakarta Commons FileUpload library.
-  *
-  * @version $Rev$ $Date$
-  * @since Struts 1.1
-  */
-public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
-
-
+/**
+ * This class implements the <code>MultipartRequestHandler</code> interface by
+ * providing a wrapper around the Jakarta Commons FileUpload library.
+ *
+ * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
+ *          $
+ * @since Struts 1.1
+ */
+public class CommonsMultipartRequestHandler
+        implements MultipartRequestHandler {
     // ----------------------------------------------------- Manifest Constants
-
 
     /**
      * The default value for the maximum allowable size, in bytes, of an
@@ -61,57 +57,47 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      */
     public static final long DEFAULT_SIZE_MAX = 250 * 1024 * 1024;
 
-
     /**
-     * The default value for the threshold which determines whether an uploaded
-     * file will be written to disk or cached in memory. The value is equivalent
-     * to 250KB.
+     * The default value for the threshold which determines whether an
+     * uploaded file will be written to disk or cached in memory. The value is
+     * equivalent to 250KB.
      */
     public static final int DEFAULT_SIZE_THRESHOLD = 256 * 1024;
 
-
     // ----------------------------------------------------- Instance Variables
-
 
     /**
      * Commons Logging instance.
      */
-    protected static Log log = LogFactory.getLog(
-            CommonsMultipartRequestHandler.class);
-
+    protected static Log log =
+            LogFactory.getLog(CommonsMultipartRequestHandler.class);
 
     /**
      * The combined text and file request parameters.
      */
     private Hashtable elementsAll;
 
-
     /**
      * The file request parameters.
      */
     private Hashtable elementsFile;
-
 
     /**
      * The text request parameters.
      */
     private Hashtable elementsText;
 
-
     /**
      * The action mapping  with which this handler is associated.
      */
     private ActionMapping mapping;
-
 
     /**
      * The servlet with which this handler is associated.
      */
     private ActionServlet servlet;
 
-
     // ---------------------------------------- MultipartRequestHandler Methods
-
 
     /**
      * Retrieves the servlet with which this handler is associated.
@@ -122,7 +108,6 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         return this.servlet;
     }
 
-
     /**
      * Sets the servlet with which this handler is associated.
      *
@@ -131,7 +116,6 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
     public void setServlet(ActionServlet servlet) {
         this.servlet = servlet;
     }
-
 
     /**
      * Retrieves the action mapping with which this handler is associated.
@@ -142,7 +126,6 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         return this.mapping;
     }
 
-
     /**
      * Sets the action mapping with which this handler is associated.
      *
@@ -152,7 +135,6 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         this.mapping = mapping;
     }
 
-
     /**
      * Parses the input stream and partitions the parsed items into a set of
      * form fields and a set of file items. In the process, the parsed items
@@ -160,25 +142,27 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      * to Struts <code>FormFile</code> instances.
      *
      * @param request The multipart request to be processed.
-     *
      * @throws ServletException if an unrecoverable error occurs.
      */
     public void handleRequest(HttpServletRequest request)
             throws ServletException {
-
         // Get the app config for the current request.
-        ModuleConfig ac = (ModuleConfig) request.getAttribute(
-                Globals.MODULE_KEY);
+        ModuleConfig ac =
+                (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
 
         // Create and configure a DIskFileUpload instance.
         DiskFileUpload upload = new DiskFileUpload();
+
         // The following line is to support an "EncodingFilter"
         // see http://issues.apache.org/bugzilla/show_bug.cgi?id=23255
         upload.setHeaderEncoding(request.getCharacterEncoding());
+
         // Set the maximum size before a FileUploadException will be thrown.
         upload.setSizeMax(getSizeMax(ac));
+
         // Set the maximum size that will be stored in memory.
         upload.setSizeThreshold((int) getSizeThreshold(ac));
+
         // Set the the location for saving data on disk.
         upload.setRepositoryPath(getRepositoryPath(ac));
 
@@ -189,21 +173,25 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
 
         // Parse the request into file items.
         List items = null;
+
         try {
             items = upload.parseRequest(request);
-        } catch (DiskFileUpload.SizeLimitExceededException e) {
+        }
+        catch (DiskFileUpload.SizeLimitExceededException e) {
             // Special handling for uploads that are too big.
-            request.setAttribute(
-                    MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED,
+            request.setAttribute(MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED,
                     Boolean.TRUE);
+
             return;
-        } catch (FileUploadException e) {
+        }
+        catch (FileUploadException e) {
             log.error("Failed to parse multipart request", e);
             throw new ServletException(e);
         }
 
         // Partition the items into form fields and files.
         Iterator iter = items.iterator();
+
         while (iter.hasNext()) {
             FileItem item = (FileItem) iter.next();
 
@@ -215,7 +203,6 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         }
     }
 
-
     /**
      * Returns a hash table containing the text (that is, non-file) request
      * parameters.
@@ -225,7 +212,6 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
     public Hashtable getTextElements() {
         return this.elementsText;
     }
-
 
     /**
      * Returns a hash table containing the file (that is, non-text) request
@@ -237,7 +223,6 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         return this.elementsFile;
     }
 
-
     /**
      * Returns a hash table containing both text and file request parameters.
      *
@@ -246,7 +231,6 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
     public Hashtable getAllElements() {
         return this.elementsAll;
     }
-
 
     /**
      * Cleans up when a problem occurs during request processing.
@@ -261,7 +245,6 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         }
     }
 
-
     /**
      * Cleans up at the end of a request.
      */
@@ -269,51 +252,45 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         rollback();
     }
 
-
     // -------------------------------------------------------- Support Methods
-
 
     /**
      * Returns the maximum allowable size, in bytes, of an uploaded file. The
      * value is obtained from the current module's controller configuration.
      *
      * @param mc The current module's configuration.
-     *
      * @return The maximum allowable file size, in bytes.
      */
     protected long getSizeMax(ModuleConfig mc) {
-        return convertSizeToBytes(
-                mc.getControllerConfig().getMaxFileSize(),
+        return convertSizeToBytes(mc.getControllerConfig().getMaxFileSize(),
                 DEFAULT_SIZE_MAX);
     }
-
 
     /**
      * Returns the size threshold which determines whether an uploaded file
      * will be written to disk or cached in memory.
      *
      * @param mc The current module's configuration.
-     *
      * @return The size threshold, in bytes.
      */
     protected long getSizeThreshold(ModuleConfig mc) {
-        return convertSizeToBytes(
-                mc.getControllerConfig().getMemFileSize(),
+        return convertSizeToBytes(mc.getControllerConfig().getMemFileSize(),
                 DEFAULT_SIZE_THRESHOLD);
     }
 
     /**
-     * Converts a size value from a string representation to its numeric value.
-     * The string must be of the form nnnm, where nnn is an arbitrary decimal
-     * value, and m is a multiplier. The multiplier must be one of 'K', 'M' and
-     * 'G', representing kilobytes, megabytes and gigabytes respectively.
+     * Converts a size value from a string representation to its numeric
+     * value. The string must be of the form nnnm, where nnn is an arbitrary
+     * decimal value, and m is a multiplier. The multiplier must be one of
+     * 'K', 'M' and 'G', representing kilobytes, megabytes and gigabytes
+     * respectively.
      *
-     * If the size value cannot be converted, for example due to invalid syntax,
-     * the supplied default is returned instead.
+     * If the size value cannot be converted, for example due to invalid
+     * syntax, the supplied default is returned instead.
      *
-     * @param sizeString  The string representation of the size to be converted.
+     * @param sizeString  The string representation of the size to be
+     *                    converted.
      * @param defaultSize The value to be returned if the string is invalid.
-     *
      * @return The actual size in bytes.
      */
     protected long convertSizeToBytes(String sizeString, long defaultSize) {
@@ -326,16 +303,19 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         } else if (sizeString.endsWith("G")) {
             multiplier = 1024 * 1024 * 1024;
         }
+
         if (multiplier != 1) {
             sizeString = sizeString.substring(0, sizeString.length() - 1);
         }
 
         long size = 0;
+
         try {
             size = Long.parseLong(sizeString);
-        } catch (NumberFormatException nfe) {
-            log.warn("Invalid format for file size ('" + sizeString +
-                    "'). Using default.");
+        }
+        catch (NumberFormatException nfe) {
+            log.warn("Invalid format for file size ('" + sizeString
+                    + "'). Using default.");
             size = defaultSize;
             multiplier = 1;
         }
@@ -343,43 +323,37 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         return (size * multiplier);
     }
 
-
     /**
      * Returns the path to the temporary directory to be used for uploaded
      * files which are written to disk. The directory used is determined from
-     * the first of the following to be non-empty.
-     * <ol>
-     * <li>A temp dir explicitly defined either using the <code>tempDir</code>
-     *     servlet init param, or the <code>tempDir</code> attribute of the
-     *     &lt;controller&gt; element in the Struts config file.</li>
-     * <li>The container-specified temp dir, obtained from the
-     *     <code>javax.servlet.context.tempdir</code> servlet context
-     *     attribute.</li>
-     * <li>The temp dir specified by the <code>java.io.tmpdir</code> system
-     *     property.</li>
-     * (/ol>
+     * the first of the following to be non-empty. <ol> <li>A temp dir
+     * explicitly defined either using the <code>tempDir</code> servlet init
+     * param, or the <code>tempDir</code> attribute of the &lt;controller&gt;
+     * element in the Struts config file.</li> <li>The container-specified
+     * temp dir, obtained from the <code>javax.servlet.context.tempdir</code>
+     * servlet context attribute.</li> <li>The temp dir specified by the
+     * <code>java.io.tmpdir</code> system property.</li> (/ol>
      *
      * @param mc The module config instance for which the path should be
      *           determined.
-     *
      * @return The path to the directory to be used to store uploaded files.
      */
     protected String getRepositoryPath(ModuleConfig mc) {
-
         // First, look for an explicitly defined temp dir.
         String tempDir = mc.getControllerConfig().getTempDir();
 
         // If none, look for a container specified temp dir.
-        if (tempDir == null || tempDir.length() == 0) {
+        if ((tempDir == null) || (tempDir.length() == 0)) {
             if (servlet != null) {
                 ServletContext context = servlet.getServletContext();
                 File tempDirFile = (File) context.getAttribute(
                         "javax.servlet.context.tempdir");
+
                 tempDir = tempDirFile.getAbsolutePath();
             }
 
             // If none, pick up the system temp dir.
-            if (tempDir == null || tempDir.length() == 0) {
+            if ((tempDir == null) || (tempDir.length() == 0)) {
                 tempDir = System.getProperty("java.io.tmpdir");
             }
         }
@@ -391,7 +365,6 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         return tempDir;
     }
 
-
     /**
      * Adds a regular text parameter to the set of text parameters for this
      * request and also to the list of all parameters. Handles the case of
@@ -401,7 +374,8 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      * @param request The request in which the parameter was specified.
      * @param item    The file item for the parameter to add.
      */
-    protected void addTextParameter(HttpServletRequest request, FileItem item) {
+    protected void addTextParameter(HttpServletRequest request,
+                                    FileItem item) {
         String name = item.getFieldName();
         String value = null;
         boolean haveValue = false;
@@ -411,21 +385,27 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
             try {
                 value = item.getString(encoding);
                 haveValue = true;
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 // Handled below, since haveValue is false.
             }
         }
+
         if (!haveValue) {
             try {
-                 value = item.getString("ISO-8859-1");
-            } catch (java.io.UnsupportedEncodingException uee) {
-                 value = item.getString();
+                value = item.getString("ISO-8859-1");
             }
+            catch (java.io.UnsupportedEncodingException uee) {
+                value = item.getString();
+            }
+
             haveValue = true;
         }
 
         if (request instanceof MultipartRequestWrapper) {
-            MultipartRequestWrapper wrapper = (MultipartRequestWrapper) request;
+            MultipartRequestWrapper wrapper =
+                    (MultipartRequestWrapper) request;
+
             wrapper.setParameter(name, value);
         }
 
@@ -437,19 +417,18 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
             System.arraycopy(oldArray, 0, newArray, 0, oldArray.length);
             newArray[oldArray.length] = value;
         } else {
-            newArray = new String[] { value };
+            newArray = new String[]{value};
         }
 
         elementsText.put(name, newArray);
         elementsAll.put(name, newArray);
     }
 
-
     /**
      * Adds a file parameter to the set of file parameters for this request
      * and also to the list of all parameters.
      *
-     * @param item    The file item for the parameter to add.
+     * @param item The file item for the parameter to add.
      */
     protected void addFileParameter(FileItem item) {
         FormFile formFile = new CommonsFormFile(item);
@@ -458,9 +437,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         elementsAll.put(item.getFieldName(), formFile);
     }
 
-
     // ---------------------------------------------------------- Inner Classes
-
 
     /**
      * This class implements the Struts <code>FormFile</code> interface by
@@ -469,23 +446,20 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      * of this class will result in an <code>UnsupportedOperationException</code>.
      */
     static class CommonsFormFile implements FormFile, Serializable {
-
         /**
          * The <code>FileItem</code> instance wrapped by this object.
          */
         FileItem fileItem;
 
-
         /**
-         * Constructs an instance of this class which wraps the supplied
-         * file item.
+         * Constructs an instance of this class which wraps the supplied file
+         * item.
          *
          * @param fileItem The Commons file item to be wrapped.
          */
         public CommonsFormFile(FileItem fileItem) {
             this.fileItem = fileItem;
         }
-
 
         /**
          * Returns the content type for this file.
@@ -496,11 +470,9 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
             return fileItem.getContentType();
         }
 
-
         /**
-         * Sets the content type for this file.
-         * <p>
-         * NOTE: This method is not supported in this implementation.
+         * Sets the content type for this file. <p> NOTE: This method is not
+         * supported in this implementation.
          *
          * @param contentType A string representing the content type.
          */
@@ -509,21 +481,18 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
                     "The setContentType() method is not supported.");
         }
 
-
         /**
          * Returns the size, in bytes, of this file.
          *
          * @return The size of the file, in bytes.
          */
         public int getFileSize() {
-            return (int)fileItem.getSize();
+            return (int) fileItem.getSize();
         }
 
-
         /**
-         * Sets the size, in bytes, for this file.
-         * <p>
-         * NOTE: This method is not supported in this implementation.
+         * Sets the size, in bytes, for this file. <p> NOTE: This method is
+         * not supported in this implementation.
          *
          * @param filesize The size of the file, in bytes.
          */
@@ -531,7 +500,6 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
             throw new UnsupportedOperationException(
                     "The setFileSize() method is not supported.");
         }
-
 
         /**
          * Returns the (client-side) file name for this file.
@@ -542,11 +510,9 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
             return getBaseFileName(fileItem.getName());
         }
 
-
         /**
-         * Sets the (client-side) file name for this file.
-         * <p>
-         * NOTE: This method is not supported in this implementation.
+         * Sets the (client-side) file name for this file. <p> NOTE: This
+         * method is not supported in this implementation.
          *
          * @param fileName The client-side name for the file.
          */
@@ -555,71 +521,70 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
                     "The setFileName() method is not supported.");
         }
 
-
         /**
          * Returns the data for this file as a byte array. Note that this may
          * result in excessive memory usage for large uploads. The use of the
-         * {@link #getInputStream() getInputStream} method is encouraged
-         * as an alternative.
+         * {@link #getInputStream() getInputStream} method is encouraged as an
+         * alternative.
          *
          * @return An array of bytes representing the data contained in this
          *         form file.
-         *
-         * @exception FileNotFoundException If some sort of file representation
-         *                                  cannot be found for the FormFile
-         * @exception IOException If there is some sort of IOException
+         * @throws FileNotFoundException If some sort of file representation
+         *                               cannot be found for the FormFile
+         * @throws IOException           If there is some sort of IOException
          */
-        public byte[] getFileData() throws FileNotFoundException, IOException {
+        public byte[] getFileData()
+                throws FileNotFoundException, IOException {
             return fileItem.get();
         }
 
-
         /**
-         * Get an InputStream that represents this file.  This is the preferred
-         * method of getting file data.
-         * @exception FileNotFoundException If some sort of file representation
-         *                                  cannot be found for the FormFile
-         * @exception IOException If there is some sort of IOException
+         * Get an InputStream that represents this file.  This is the
+         * preferred method of getting file data.
+         *
+         * @throws FileNotFoundException If some sort of file representation
+         *                               cannot be found for the FormFile
+         * @throws IOException           If there is some sort of IOException
          */
-        public InputStream getInputStream() throws FileNotFoundException, IOException {
+        public InputStream getInputStream()
+                throws FileNotFoundException, IOException {
             return fileItem.getInputStream();
         }
 
-
         /**
-         * Destroy all content for this form file.
-         * Implementations should remove any temporary
-         * files or any temporary file data stored somewhere
+         * Destroy all content for this form file. Implementations should
+         * remove any temporary files or any temporary file data stored
+         * somewhere
          */
         public void destroy() {
             fileItem.delete();
         }
 
-
         /**
-         * Returns the base file name from the supplied file path. On the surface,
-         * this would appear to be a trivial task. Apparently, however, some Linux
-         * JDKs do not implement <code>File.getName()</code> correctly for Windows
-         * paths, so we attempt to take care of that here.
+         * Returns the base file name from the supplied file path. On the
+         * surface, this would appear to be a trivial task. Apparently,
+         * however, some Linux JDKs do not implement <code>File.getName()</code>
+         * correctly for Windows paths, so we attempt to take care of that
+         * here.
          *
          * @param filePath The full path to the file.
-         *
          * @return The base file name, from the end of the path.
          */
         protected String getBaseFileName(String filePath) {
-
             // First, ask the JDK for the base file name.
             String fileName = new File(filePath).getName();
 
             // Now check for a Windows file name parsed incorrectly.
             int colonIndex = fileName.indexOf(":");
+
             if (colonIndex == -1) {
                 // Check for a Windows SMB file path.
                 colonIndex = fileName.indexOf("\\\\");
             }
+
             int backslashIndex = fileName.lastIndexOf("\\");
 
-            if (colonIndex > -1 && backslashIndex > -1) {
+            if ((colonIndex > -1) && (backslashIndex > -1)) {
                 // Consider this filename to be a full Windows path, and parse it
                 // accordingly to retrieve just the base file name.
                 fileName = fileName.substring(backslashIndex + 1);

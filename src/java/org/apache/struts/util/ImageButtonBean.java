@@ -15,13 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package org.apache.struts.util;
 
-
 import java.io.Serializable;
-
 
 /**
  * A simple JavaBean to encapsulate the request parameters sent for an HTML
@@ -31,13 +27,23 @@ import java.io.Serializable;
  * and provide a simple means of detecting whether or not the corresponding
  * image was selected.
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
+ *          $
  */
 public class ImageButtonBean implements Serializable {
+    // ------------------------------------------------------------- Properties
 
+    /**
+     * The X coordinate of the button press.
+     */
+    private String x;
+
+    /**
+     * The Y coordinate of the button press.
+     */
+    private String y;
 
     // ----------------------------------------------------------- Constructors
-
 
     /**
      * Construct an instance with empty property values.
@@ -57,15 +63,6 @@ public class ImageButtonBean implements Serializable {
         this.y = y;
     }
 
-
-    // ------------------------------------------------------------- Properties
-
-
-    /**
-     * The X coordinate of the button press.
-     */
-    private String x;
-
     public String getX() {
         return (this.x);
     }
@@ -74,43 +71,35 @@ public class ImageButtonBean implements Serializable {
         this.x = x;
     }
 
-
-    /**
-     * The Y coordinate of the button press.
-     */
-    private String y;
-
     public String getY() {
-         return (this.y);
+        return (this.y);
     }
 
     public void setY(String y) {
         this.y = y;
     }
 
-
     // --------------------------------------------------------- Public Methods
 
-
     /**
-     * A convenience method to determine whether or not the corresponding image
-     * element was selected.
+     * A convenience method to determine whether or not the corresponding
+     * image element was selected.
      */
     public boolean isSelected() {
         return ((x != null) || (y != null));
     }
-
 
     /**
      * Return a string representation of this object.
      */
     public String toString() {
         StringBuffer sb = new StringBuffer("ImageButtonBean[");
+
         sb.append(this.x);
         sb.append(", ");
         sb.append(this.y);
         sb.append("]");
+
         return (sb.toString());
     }
-
 }

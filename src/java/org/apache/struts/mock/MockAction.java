@@ -15,21 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package org.apache.struts.mock;
 
-
 import org.apache.struts.action.Action;
-
 
 /**
  * <p>General purpose Action for unit tests.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
+ *          $
  */
-
 public class MockAction extends Action {
-
-
 }

@@ -15,28 +15,28 @@
  */
 package org.apache.struts.chain.commands;
 
+
 /**
- *  <p>Exception thrown when the chosen action mapping is not authorized
- *  for the current request.</p>
+ * <p>Exception thrown when the chosen action mapping is not authorized for
+ * the current request.</p>
  *
- *@version    $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-06-04 10:58:46 -0400 (Sat, 04 Jun 2005)
+ *          $
  */
-
 public class UnauthorizedActionException extends Exception {
-
-    /**  Constructor */
+    /**
+     * Constructor
+     */
     public UnauthorizedActionException() {
         super();
     }
 
     /**
-     *  Constructor.
+     * Constructor.
      *
-     *@param  message  The error or warning message.
+     * @param message The error or warning message.
      */
     public UnauthorizedActionException(String message) {
         super(message);
     }
-
 }
-

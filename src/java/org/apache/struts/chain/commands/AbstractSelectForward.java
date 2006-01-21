@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands;
-
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,37 +22,32 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 
-
 /**
  * <p>Select and cache the <code>ActionForward</code> for this
  * <code>ActionConfig</code> if specified.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-06-04 10:58:46 -0400 (Sat, 04 Jun 2005)
+ *          $
  */
-
 public abstract class AbstractSelectForward extends ActionCommandBase {
-
-
     // ------------------------------------------------------ Instance Variables
     private static final Log log =
-        LogFactory.getLog(AbstractSelectForward.class);
-
+            LogFactory.getLog(AbstractSelectForward.class);
 
     // ---------------------------------------------------------- Public Methods
-
 
     /**
      * <p>Select and cache the <code>ActionForward</code> for this
      * <code>ActionConfig</code> if specified.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
-     *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(ActionContext actionCtx) throws Exception {
-
+    public boolean execute(ActionContext actionCtx)
+            throws Exception {
         // Skip processing if the current request is not valid
         Boolean valid = actionCtx.getFormValid();
+
         if ((valid == null) || !valid.booleanValue()) {
             return (false);
         }
@@ -65,33 +58,31 @@ public abstract class AbstractSelectForward extends ActionCommandBase {
 
         ForwardConfig forwardConfig = null;
         String forward = actionConfig.getForward();
+
         if (forward != null) {
             forwardConfig = forward(actionCtx, moduleConfig, forward);
+
             if (log.isDebugEnabled()) {
                 log.debug("Forwarding to " + forwardConfig);
             }
+
             actionCtx.setForwardConfig(forwardConfig);
         }
-        return (false);
 
+        return (false);
     }
 
-
     // ------------------------------------------------------- Protected Methods
-
 
     /**
      * <p>Create and return a <code>ForwardConfig</code> representing the
      * specified module-relative destination.</p>
      *
-     * @param context The context for this request
+     * @param context      The context for this request
      * @param moduleConfig The <code>ModuleConfig</code> for this request
-     * @param uri The module-relative URI to be the destination
+     * @param uri          The module-relative URI to be the destination
      */
     protected abstract ForwardConfig forward(ActionContext context,
                                              ModuleConfig moduleConfig,
                                              String uri);
-
-
-
 }

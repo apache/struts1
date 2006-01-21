@@ -17,10 +17,6 @@
  */
 package org.apache.struts.chain.contexts;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionMessages;
@@ -29,18 +25,18 @@ import org.apache.struts.chain.Constants;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.util.MessageResources;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
- * <p>
- * Implement ActionContext interface while making Servlet API-specific
- * values available.
- * </p>
+ * <p> Implement ActionContext interface while making Servlet API-specific
+ * values available. </p>
  */
 public class ServletActionContext extends WebActionContext {
-
     /**
-     * <p>
-     * Instantiate this composite by wrapping a ServletWebContext.
-     * </p>
+     * <p> Instantiate this composite by wrapping a ServletWebContext. </p>
+     *
      * @param context The ServletWebContext to wrap
      */
     public ServletActionContext(ServletWebContext context) {
@@ -48,12 +44,11 @@ public class ServletActionContext extends WebActionContext {
     }
 
     /**
-     * <p>
-     * Instantiate this Context for a given ServletContext,
-     * HttpServletRequest, and HttpServletResponse.
-     * </p>
-     * @param context The instant ServletContext
-     * @param request The instant HttpServletRequest
+     * <p> Instantiate this Context for a given ServletContext,
+     * HttpServletRequest, and HttpServletResponse. </p>
+     *
+     * @param context  The instant ServletContext
+     * @param request  The instant HttpServletRequest
      * @param response The instant HttpServletResponse
      */
     public ServletActionContext(ServletContext context,
@@ -63,9 +58,8 @@ public class ServletActionContext extends WebActionContext {
     }
 
     /**
-     * <p>
-     * Provide the ServletWebContext for this composite.
-     * </p>
+     * <p> Provide the ServletWebContext for this composite. </p>
+     *
      * @return Our ServletWebContext
      */
     protected ServletWebContext servletWebContext() {
@@ -82,9 +76,8 @@ public class ServletActionContext extends WebActionContext {
     // -------------------------------
 
     /**
-     * <p>
-     * Return the ServletContext for this context.
-     * </p>
+     * <p> Return the ServletContext for this context. </p>
+     *
      * @return Our ServletContext
      */
     public ServletContext getContext() {
@@ -92,9 +85,8 @@ public class ServletActionContext extends WebActionContext {
     }
 
     /**
-     * <p>
-     * Return the HttpServletRequest for this context.
-     * </p>
+     * <p> Return the HttpServletRequest for this context. </p>
+     *
      * @return Our HttpServletRequest
      */
     public HttpServletRequest getRequest() {
@@ -102,9 +94,8 @@ public class ServletActionContext extends WebActionContext {
     }
 
     /**
-     * <p>
-     * Return the HttpServletResponse for this context.
-     * </p>
+     * <p> Return the HttpServletResponse for this context. </p>
+     *
      * @return Our HttpServletResponse
      */
     public HttpServletResponse getResponse() {
@@ -112,9 +103,8 @@ public class ServletActionContext extends WebActionContext {
     }
 
     /**
-     * <p>
-     * Return the ActionServlet for this context.
-     * </p>
+     * <p> Return the ActionServlet for this context. </p>
+     *
      * @return Our ActionServlet
      */
     public ActionServlet getActionServlet() {
@@ -122,9 +112,8 @@ public class ServletActionContext extends WebActionContext {
     }
 
     /**
-     * <p>
-     * Set the ActionServlet instance for this context.
-     * </p>
+     * <p> Set the ActionServlet instance for this context. </p>
+     *
      * @param servlet Our ActionServlet instance
      */
     public void setActionServlet(ActionServlet servlet) {
@@ -134,28 +123,27 @@ public class ServletActionContext extends WebActionContext {
     // -------------------------------
     // Servlet specific modifications to base properties.
     // -------------------------------
-
     public void setActionConfig(ActionConfig actionConfig) {
         super.setActionConfig(actionConfig);
         this.getRequestScope().put(Globals.MAPPING_KEY, actionConfig);
+
         // ISSUE: Should we check this call to put?
     }
 
     public MessageResources getMessageResources() {
-        return ((MessageResources)
-                getRequest().getAttribute(Globals.MESSAGES_KEY));
-
+        return ((MessageResources) getRequest()
+                .getAttribute(Globals.MESSAGES_KEY));
     }
 
     // ISSUE: This method would probably be better handled by a "Struts"
     // object which encapsulated the servler (Application) scope.
-
     public MessageResources getMessageResources(String key) {
         // Identify the current module
         ServletContext context = getActionServlet().getServletContext();
+
         // Return the requested message resources instance
-        return (MessageResources) context.getAttribute(key +
-                getModuleConfig().getPrefix());
+        return (MessageResources) context.getAttribute(key
+                + getModuleConfig().getPrefix());
     }
 
     public void setMessageResources(MessageResources resources) {
@@ -164,11 +152,10 @@ public class ServletActionContext extends WebActionContext {
     }
 
     /**
-     * <p>
-     * Store the mesasage resources for the current module under the given
-     * request attribute key.
-     * </p>
-     * @param key Request attribute key
+     * <p> Store the mesasage resources for the current module under the given
+     * request attribute key. </p>
+     *
+     * @param key       Request attribute key
      * @param resources Message resouces to store
      */
     public void setMessageResources(String key, MessageResources resources) {
@@ -179,64 +166,66 @@ public class ServletActionContext extends WebActionContext {
     // -------------------------------
     // ActionMessage Processing
     // -------------------------------
-
     public void saveErrors(ActionMessages errors) {
         // Remove any error messages attribute if none are required
         if ((errors == null) || errors.isEmpty()) {
             getRequest().removeAttribute(Globals.ERROR_KEY);
+
             return;
         }
+
         // Save the error messages we need
         getRequest().setAttribute(Globals.ERROR_KEY, errors);
-
     }
 
     public void saveMessages(ActionMessages messages) {
-
         if ((messages == null) || messages.isEmpty()) {
             getRequest().removeAttribute(Globals.MESSAGE_KEY);
+
             return;
         }
+
         getRequest().setAttribute(Globals.MESSAGE_KEY, messages);
     }
 
     public void addMessages(ActionMessages messages) {
+        if (messages == null) {
+            return;
+        }
 
-            if (messages == null) {
-                return;
-            }
+        ActionMessages requestMessages = getMessages();
 
-            ActionMessages requestMessages = getMessages();
-            if (requestMessages == null) {
-                    requestMessages = new ActionMessages();
-            }
-            requestMessages.add(messages);
-            saveMessages(requestMessages);
+        if (requestMessages == null) {
+            requestMessages = new ActionMessages();
+        }
+
+        requestMessages.add(messages);
+        saveMessages(requestMessages);
     }
 
-
     public void addErrors(ActionMessages errors) {
+        if (errors == null) {
+            return;
+        }
 
-            if (errors == null) {
-                return;
-            }
+        ActionMessages requestErrors = getErrors();
 
-            ActionMessages requestErrors = getErrors();
-            if (requestErrors == null) {
-                    requestErrors = new ActionMessages();
-            }
-            requestErrors.add(errors);
-            saveErrors(requestErrors);
+        if (requestErrors == null) {
+            requestErrors = new ActionMessages();
+        }
+
+        requestErrors.add(errors);
+        saveErrors(requestErrors);
     }
 
     public ActionMessages getErrors() {
-        return (ActionMessages)
-                this.getRequest().getAttribute(Globals.ERROR_KEY);
+        return (ActionMessages) this.getRequest()
+                .getAttribute(Globals.ERROR_KEY);
     }
 
     public ActionMessages getMessages() {
-        return (ActionMessages)
-                this.getRequest().getAttribute(Globals.MESSAGE_KEY);
+        return (ActionMessages) this.getRequest()
+                .getAttribute(Globals.MESSAGE_KEY);
     }
 
     // -------------------------------
@@ -245,14 +234,12 @@ public class ServletActionContext extends WebActionContext {
     // TokenProcessor class
     // directly should ensure greater compatibility.
     // -------------------------------
-
     public void saveToken() {
         token.saveToken(getRequest());
     }
 
     public String generateToken() {
         return token.generateToken(getRequest());
-
     }
 
     public boolean isTokenValid(boolean reset) {
@@ -262,5 +249,4 @@ public class ServletActionContext extends WebActionContext {
     public void resetToken() {
         token.resetToken(getRequest());
     }
-
 }

@@ -15,17 +15,20 @@
  */
 package org.apache.struts.chain.commands;
 
+
 /**
- *  <p>Exception thrown when no mapping can be found for the specified path.</p>
+ * <p>Exception thrown when no mapping can be found for the specified
+ * path.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-11-05 21:44:59 -0500 (Sat, 05 Nov 2005)
+ *          $
  */
-
 public class InvalidPathException extends Exception {
-
     private String path;
 
-    /**  Constructor */
+    /**
+     * Constructor
+     */
     public InvalidPathException() {
         super();
     }
@@ -33,8 +36,8 @@ public class InvalidPathException extends Exception {
     /**
      * Constructor.
      *
-     * @param  message  The error or warning message.
-     * @param  path The invalid path.
+     * @param message The error or warning message.
+     * @param path    The invalid path.
      */
     public InvalidPathException(String message, String path) {
         super(message);
@@ -47,6 +50,4 @@ public class InvalidPathException extends Exception {
     public String getPath() {
         return path;
     }
-
 }
-

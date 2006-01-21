@@ -15,19 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package org.apache.struts.mock;
-
 
 import java.security.Principal;
 
-
 /**
- * <p>Mock <strong>Principal</strong> object for low-level unit tests
- * of Struts controller components.  Coarser grained tests should be
- * implemented in terms of the Cactus framework, instead of the mock
- * object classes.</p>
+ * <p>Mock <strong>Principal</strong> object for low-level unit tests of
+ * Struts controller components.  Coarser grained tests should be implemented
+ * in terms of the Cactus framework, instead of the mock object classes.</p>
  *
  * <p><strong>WARNING</strong> - Only the minimal set of methods needed to
  * create unit tests is provided, plus additional methods to configure this
@@ -37,11 +32,12 @@ import java.security.Principal;
  * <p><strong>WARNING</strong> - Because unit tests operate in a single
  * threaded environment, no synchronization is performed.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
+ *          $
  */
-
 public class MockPrincipal implements Principal {
-
+    protected String name = null;
+    protected String[] roles = null;
 
     public MockPrincipal() {
         super();
@@ -49,31 +45,21 @@ public class MockPrincipal implements Principal {
         this.roles = new String[0];
     }
 
-
     public MockPrincipal(String name) {
         super();
         this.name = name;
         this.roles = new String[0];
     }
 
-
-    public MockPrincipal(String name, String roles[]) {
+    public MockPrincipal(String name, String[] roles) {
         super();
         this.name = name;
         this.roles = roles;
     }
 
-
-    protected String name = null;
-
-
-    protected String roles[] = null;
-
-
     public String getName() {
         return (this.name);
     }
-
 
     public boolean isUserInRole(String role) {
         for (int i = 0; i < roles.length; i++) {
@@ -81,25 +67,27 @@ public class MockPrincipal implements Principal {
                 return (true);
             }
         }
+
         return (false);
     }
-
 
     public boolean equals(Object o) {
         if (o == null) {
             return (false);
         }
+
         if (!(o instanceof Principal)) {
             return (false);
         }
+
         Principal p = (Principal) o;
+
         if (name == null) {
             return (p.getName() == null);
         } else {
             return (name.equals(p.getName()));
         }
     }
-
 
     public int hashCode() {
         if (name == null) {
@@ -108,6 +96,4 @@ public class MockPrincipal implements Principal {
             return (name.hashCode());
         }
     }
-
-
 }

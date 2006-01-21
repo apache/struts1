@@ -15,7 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.util;
 
 import java.util.Map;
@@ -24,65 +23,63 @@ import java.util.Map;
  * This class is an utility class that perform wilcard-patterns matching and
  * isolation taken from Apache Cocoon.
  *
+ * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
+ *          $
  * @since Struts 1.2
- * @version $Rev$ $Date$
  */
 public class WildcardHelper {
-
-    /** The int representing '*' in the pattern <code>int []</code>. */
+    /**
+     * The int representing '*' in the pattern <code>int []</code>.
+     */
     protected static final int MATCH_FILE = -1;
 
-    /** The int representing '**' in the pattern <code>int []</code>. */
+    /**
+     * The int representing '**' in the pattern <code>int []</code>.
+     */
     protected static final int MATCH_PATH = -2;
 
-    /** The int representing begin in the pattern <code>int []</code>. */
+    /**
+     * The int representing begin in the pattern <code>int []</code>.
+     */
     protected static final int MATCH_BEGIN = -4;
 
-    /** The int representing end in pattern <code>int []</code>. */
+    /**
+     * The int representing end in pattern <code>int []</code>.
+     */
     protected static final int MATCH_THEEND = -5;
 
-    /** The int value that terminates the pattern <code>int []</code>. */
+    /**
+     * The int value that terminates the pattern <code>int []</code>.
+     */
     protected static final int MATCH_END = -3;
-
 
     /**
      * Translate the given <code>String</code> into a <code>int []</code>
-     * representing the pattern matchable by this class.
-     * <br>
-     * This function translates a <code>String</code> into an int array
-     * converting the special '*' and '\' characters.
-     * <br>
-     * Here is how the conversion algorithm works:
-     * <ul>
-     *   <li>The '*' character is converted to MATCH_FILE, meaning that zero
-     *        or more characters (excluding the path separator '/') are to
-     *        be matched.</li>
-     *   <li>The '**' sequence is converted to MATCH_PATH, meaning that zero
-     *       or more characters (including the path separator '/') are to
-     *        be matched.</li>
-     *   <li>The '\' character is used as an escape sequence ('\*' is
-     *       translated in '*', not in MATCH_FILE). If an exact '\' character
-     *       is to be matched the source string must contain a '\\'.
-     *       sequence.</li>
-     * </ul>
-     * When more than two '*' characters, not separated by another character,
-     * are found their value is considered as '**' (MATCH_PATH).
-     * <br>
-     * The array is always terminated by a special value (MATCH_END).
-     * <br>
-     * All MATCH* values are less than zero, while normal characters are equal
-     * or greater.
+     * representing the pattern matchable by this class. <br> This function
+     * translates a <code>String</code> into an int array converting the
+     * special '*' and '\' characters. <br> Here is how the conversion
+     * algorithm works: <ul> <li>The '*' character is converted to MATCH_FILE,
+     * meaning that zero or more characters (excluding the path separator '/')
+     * are to be matched.</li> <li>The '**' sequence is converted to
+     * MATCH_PATH, meaning that zero or more characters (including the path
+     * separator '/') are to be matched.</li> <li>The '\' character is used as
+     * an escape sequence ('\*' is translated in '*', not in MATCH_FILE). If
+     * an exact '\' character is to be matched the source string must contain
+     * a '\\'. sequence.</li> </ul> When more than two '*' characters, not
+     * separated by another character, are found their value is considered as
+     * '**' (MATCH_PATH). <br> The array is always terminated by a special
+     * value (MATCH_END). <br> All MATCH* values are less than zero, while
+     * normal characters are equal or greater.
      *
      * @param data The string to translate.
      * @return The encoded string as an int array, terminated by the MATCH_END
      *         value (don't consider the array length).
-     * @exception NullPointerException If data is null.
+     * @throws NullPointerException If data is null.
      */
     public int[] compilePattern(String data) {
-
         // Prepare the arrays
-        int expr[] = new int[data.length() + 2];
-        char buff[] = data.toCharArray();
+        int[] expr = new int[data.length() + 2];
+        char[] buff = data.toCharArray();
 
         // Prepare variables for the translation loop
         int y = 0;
@@ -96,7 +93,7 @@ public class WildcardHelper {
                 slash = true;
             } else if (buff[0] == '*') {
                 expr[y++] = MATCH_FILE;
-            }  else {
+            } else {
                 expr[y++] = buff[0];
             }
 
@@ -106,13 +103,15 @@ public class WildcardHelper {
                 if (slash) {
                     expr[y++] = buff[x];
                     slash = false;
-                // If the previous char was not '\' we have to do a bunch of
-                // checks
+
+                    // If the previous char was not '\' we have to do a bunch of
+                    // checks
                 } else {
                     // If this char is '\' declare that and continue
                     if (buff[x] == '\\') {
                         slash = true;
-                    // If this char is '*' check the previous one
+
+                        // If this char is '*' check the previous one
                     } else if (buff[x] == '*') {
                         // If the previous character als was '*' match a path
                         if (expr[y - 1] <= MATCH_FILE) {
@@ -129,12 +128,13 @@ public class WildcardHelper {
 
         // Must match end at the end
         expr[y] = MATCH_THEEND;
+
         return expr;
     }
 
     /**
-     * Match a pattern agains a string and isolates wildcard replacement into a
-     * <code>Stack</code>.
+     * Match a pattern agains a string and isolates wildcard replacement into
+     * a <code>Stack</code>.
      *
      * @param map  The map to store matched values
      * @param data The string to match
@@ -144,20 +144,21 @@ public class WildcardHelper {
      */
     public boolean match(Map map, String data, int[] expr) {
         if (map == null) {
-            throw new NullPointerException ("No map provided");
+            throw new NullPointerException("No map provided");
         }
+
         if (data == null) {
-            throw new NullPointerException ("No data provided");
+            throw new NullPointerException("No data provided");
         }
+
         if (expr == null) {
-            throw new NullPointerException ("No pattern expression provided");
+            throw new NullPointerException("No pattern expression provided");
         }
 
+        char[] buff = data.toCharArray();
 
-        char buff[] = data.toCharArray();
         // Allocate the result buffer
-        char rslt[] = new char[expr.length + buff.length];
-
+        char[] rslt = new char[expr.length + buff.length];
 
         // The previous and current position of the expression character
         // (MATCH_*)
@@ -177,6 +178,7 @@ public class WildcardHelper {
 
         // First check for MATCH_BEGIN
         boolean matchBegin = false;
+
         if (expr[charpos] == MATCH_BEGIN) {
             matchBegin = true;
             exprpos = ++charpos;
@@ -198,10 +200,11 @@ public class WildcardHelper {
                 if (!matchArray(expr, exprpos, charpos, buff, buffpos)) {
                     return (false);
                 }
+
                 matchBegin = false;
             } else {
-                offset = indexOfArray (expr, exprpos, charpos, buff,
-                        buffpos);
+                offset = indexOfArray(expr, exprpos, charpos, buff, buffpos);
+
                 if (offset < 0) {
                     return (false);
                 }
@@ -212,6 +215,7 @@ public class WildcardHelper {
                 if (offset != 0) {
                     return (false);
                 }
+
                 matchBegin = false;
             }
 
@@ -222,32 +226,36 @@ public class WildcardHelper {
             if (exprchr == MATCH_END) {
                 if (rsltpos > 0) {
                     map.put(Integer.toString(++mcount),
-                        new String(rslt, 0, rsltpos));
+                            new String(rslt, 0, rsltpos));
                 }
+
                 // Don't care about rest of input buffer
                 return (true);
             } else if (exprchr == MATCH_THEEND) {
                 if (rsltpos > 0) {
                     map.put(Integer.toString(++mcount),
-                        new String(rslt, 0, rsltpos));
+                            new String(rslt, 0, rsltpos));
                 }
+
                 // Check that we reach buffer's end
                 return (buffpos == buff.length);
             }
 
             // Search the next expression character
             exprpos = ++charpos;
+
             while (expr[charpos] >= 0) {
                 charpos++;
             }
+
             int prevchr = exprchr;
+
             exprchr = expr[charpos];
 
             // We have here prevchr == * or **.
             offset = (prevchr == MATCH_FILE)
-                    ? indexOfArray (expr, exprpos, charpos, buff, buffpos)
-                    : lastIndexOfArray (expr, exprpos, charpos, buff,
-                    buffpos);
+                    ? indexOfArray(expr, exprpos, charpos, buff, buffpos)
+                    : lastIndexOfArray(expr, exprpos, charpos, buff, buffpos);
 
             if (offset < 0) {
                 return (false);
@@ -265,41 +273,43 @@ public class WildcardHelper {
                     if (buff[buffpos] == '/') {
                         return (false);
                     }
+
                     rslt[rsltpos++] = buff[buffpos++];
                 }
             }
 
-            map.put(Integer.toString(++mcount), new String (rslt, 0, rsltpos));
+            map.put(Integer.toString(++mcount), new String(rslt, 0, rsltpos));
             rsltpos = 0;
         }
     }
 
-     /**
-      * Get the offset of a part of an int array within a char array.
-      * <br>
-      * This method return the index in d of the first occurrence after dpos of
-      * that part of array specified by r, starting at rpos and terminating at
-      * rend.
-      *
-      * @param r The array containing the data that need to be matched in d.
-      * @param rpos The index of the first character in r to look for.
-      * @param rend The index of the last character in r to look for plus 1.
-      * @param d The array of char that should contain a part of r.
-      * @param dpos The starting offset in d for the matching.
-      * @return The offset in d of the part of r matched in d or -1 if that was
-      *         not found.
-      */
-    protected int indexOfArray (int r[], int rpos, int rend,
-            char d[], int dpos) {
-
+    /**
+     * Get the offset of a part of an int array within a char array. <br> This
+     * method return the index in d of the first occurrence after dpos of that
+     * part of array specified by r, starting at rpos and terminating at
+     * rend.
+     *
+     * @param r    The array containing the data that need to be matched in
+     *             d.
+     * @param rpos The index of the first character in r to look for.
+     * @param rend The index of the last character in r to look for plus 1.
+     * @param d    The array of char that should contain a part of r.
+     * @param dpos The starting offset in d for the matching.
+     * @return The offset in d of the part of r matched in d or -1 if that was
+     *         not found.
+     */
+    protected int indexOfArray(int[] r, int rpos, int rend, char[] d,
+                               int dpos) {
         // Check if pos and len are legal
         if (rend < rpos) {
-            throw new IllegalArgumentException ("rend < rpos");
+            throw new IllegalArgumentException("rend < rpos");
         }
+
         // If we need to match a zero length string return current dpos
         if (rend == rpos) {
             return (d.length); //?? dpos?
         }
+
         // If we need to match a 1 char length string do it simply
         if ((rend - rpos) == 1) {
             // Search for the specified character
@@ -309,50 +319,56 @@ public class WildcardHelper {
                 }
             }
         }
+
         // Main string matching loop. It gets executed if the characters to
         // match are less then the characters left in the d buffer
-        while ((dpos + rend - rpos) <= d.length) {
+        while (((dpos + rend) - rpos) <= d.length) {
             // Set current startpoint in d
             int y = dpos;
+
             // Check every character in d for equity. If the string is matched
             // return dpos
             for (int x = rpos; x <= rend; x++) {
                 if (x == rend) {
                     return (dpos);
                 }
+
                 if (r[x] != d[y++]) {
                     break;
                 }
             }
+
             // Increase dpos to search for the same string at next offset
             dpos++;
         }
+
         // The remaining chars in d buffer were not enough or the string
         // wasn't matched
         return (-1);
     }
 
-     /**
-      * Get the offset of a last occurance of an int array within a char array.
-      * <br>
-      * This method return the index in d of the last occurrence after dpos of
-      * that part of array specified by r, starting at rpos and terminating at
-      * rend.
-      *
-      * @param r The array containing the data that need to be matched in d.
-      * @param rpos The index of the first character in r to look for.
-      * @param rend The index of the last character in r to look for plus 1.
-      * @param d The array of char that should contain a part of r.
-      * @param dpos The starting offset in d for the matching.
-      * @return The offset in d of the last part of r matched in d or -1 if
-      *         that was not found.
-      */
-    protected int lastIndexOfArray (int r[], int rpos, int rend,
-            char d[], int dpos) {
+    /**
+     * Get the offset of a last occurance of an int array within a char array.
+     * <br> This method return the index in d of the last occurrence after
+     * dpos of that part of array specified by r, starting at rpos and
+     * terminating at rend.
+     *
+     * @param r    The array containing the data that need to be matched in
+     *             d.
+     * @param rpos The index of the first character in r to look for.
+     * @param rend The index of the last character in r to look for plus 1.
+     * @param d    The array of char that should contain a part of r.
+     * @param dpos The starting offset in d for the matching.
+     * @return The offset in d of the last part of r matched in d or -1 if
+     *         that was not found.
+     */
+    protected int lastIndexOfArray(int[] r, int rpos, int rend, char[] d,
+                                   int dpos) {
         // Check if pos and len are legal
         if (rend < rpos) {
-            throw new IllegalArgumentException ("rend < rpos");
+            throw new IllegalArgumentException("rend < rpos");
         }
+
         // If we need to match a zero length string return current dpos
         if (rend == rpos) {
             return (d.length); //?? dpos?
@@ -371,51 +387,58 @@ public class WildcardHelper {
         // Main string matching loop. It gets executed if the characters to
         // match are less then the characters left in the d buffer
         int l = d.length - (rend - rpos);
+
         while (l >= dpos) {
             // Set current startpoint in d
             int y = l;
+
             // Check every character in d for equity. If the string is matched
             // return dpos
             for (int x = rpos; x <= rend; x++) {
                 if (x == rend) {
                     return (l);
                 }
+
                 if (r[x] != d[y++]) {
                     break;
                 }
             }
+
             // Decrease l to search for the same string at next offset
             l--;
         }
+
         // The remaining chars in d buffer were not enough or the string
         // wasn't matched
         return (-1);
     }
 
-     /**
-      * Matches elements of array r from rpos to rend with array d, starting
-      * from dpos.
-      * <br>
-      * This method return true if elements of array r from rpos to rend
-      * equals elements of array d starting from dpos to dpos+(rend-rpos).
-      *
-      * @param r The array containing the data that need to be matched in d.
-      * @param rpos The index of the first character in r to look for.
-      * @param rend The index of the last character in r to look for.
-      * @param d The array of char that should start from a part of r.
-      * @param dpos The starting offset in d for the matching.
-      * @return true if array d starts from portion of array r.
-      */
-    protected boolean matchArray (int r[], int rpos, int rend,
-            char d[], int dpos) {
-        if (d.length - dpos < rend - rpos) {
+    /**
+     * Matches elements of array r from rpos to rend with array d, starting
+     * from dpos. <br> This method return true if elements of array r from
+     * rpos to rend equals elements of array d starting from dpos to
+     * dpos+(rend-rpos).
+     *
+     * @param r    The array containing the data that need to be matched in
+     *             d.
+     * @param rpos The index of the first character in r to look for.
+     * @param rend The index of the last character in r to look for.
+     * @param d    The array of char that should start from a part of r.
+     * @param dpos The starting offset in d for the matching.
+     * @return true if array d starts from portion of array r.
+     */
+    protected boolean matchArray(int[] r, int rpos, int rend, char[] d,
+                                 int dpos) {
+        if ((d.length - dpos) < (rend - rpos)) {
             return (false);
         }
+
         for (int i = rpos; i < rend; i++) {
             if (r[i] != d[dpos++]) {
                 return (false);
             }
         }
+
         return (true);
     }
 }

@@ -13,65 +13,59 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands.servlet;
-
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.chain.commands.AbstractPerformForward;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
-import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>Perform forwarding or redirection based on the specified
  * <code>ForwardConfig</code> (if any).</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
+ *          $
  */
-
 public class PerformForward extends AbstractPerformForward {
-
-
     // ------------------------------------------------------- Protected Methods
-
 
     /**
      * <p>Perform the appropriate processing on the specified
      * <code>ForwardConfig</code>.</p>
      *
-     * @param context The context for this request
+     * @param context       The context for this request
      * @param forwardConfig The forward to be performed
      */
-    protected void perform(ActionContext context,ForwardConfig forwardConfig)
-        throws Exception {
-
+    protected void perform(ActionContext context, ForwardConfig forwardConfig)
+            throws Exception {
         ServletActionContext sacontext = (ServletActionContext) context;
         String forwardPath = forwardConfig.getPath();
         String uri = null;
 
         if (forwardPath == null) {
             // Retrieve internal message resources
-            ActionServlet servlet =  (ActionServlet) sacontext.getActionServlet();
+            ActionServlet servlet =
+                    (ActionServlet) sacontext.getActionServlet();
             MessageResources resources = servlet.getInternal();
-            throw new IllegalArgumentException(
-                    resources.getMessage("forwardPathNull"));
+
+            throw new IllegalArgumentException(resources.getMessage(
+                    "forwardPathNull"));
         }
 
-        ModuleConfig moduleConfig  = context.getModuleConfig();
+        ModuleConfig moduleConfig = context.getModuleConfig();
+
         // Resolve module-relative paths
         if (forwardPath.startsWith("/")) {
             uri = RequestUtils.forwardURL(sacontext.getRequest(),
-                                          forwardConfig,
-                                          moduleConfig);
+                    forwardConfig, moduleConfig);
         } else {
             uri = forwardPath;
         }
@@ -83,15 +77,14 @@ public class PerformForward extends AbstractPerformForward {
             if (uri.startsWith("/")) {
                 uri = request.getContextPath() + uri;
             }
-            sacontext.getResponse().sendRedirect
-                (sacontext.getResponse().encodeRedirectURL(uri));
+
+            sacontext.getResponse().sendRedirect(sacontext.getResponse()
+                    .encodeRedirectURL(uri));
         } else {
             RequestDispatcher rd =
-                sacontext.getContext().getRequestDispatcher(uri);
+                    sacontext.getContext().getRequestDispatcher(uri);
+
             rd.forward(request, sacontext.getResponse());
         }
-
     }
-
-
 }

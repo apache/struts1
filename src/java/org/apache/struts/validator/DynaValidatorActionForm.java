@@ -15,41 +15,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.validator;
-
-import java.io.Serializable;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.DynaBean;
 import org.apache.struts.action.ActionMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
+
 /**
- * <p>This class extends <strong>DynaValidatorForm</strong> and provides
- * basic field validation based on an XML file.  The key passed into the
- * validator is the action element's 'path' attribute from the
- * struts-config.xml which should match the form element's name attribute
- * in the validation.xml.</p>
+ * <p>This class extends <strong>DynaValidatorForm</strong> and provides basic
+ * field validation based on an XML file.  The key passed into the validator
+ * is the action element's 'path' attribute from the struts-config.xml which
+ * should match the form element's name attribute in the validation.xml.</p>
  *
  * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
  * for validation rules.</li></ul>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
+ *          $
  * @since Struts 1.1
  */
-public class DynaValidatorActionForm extends DynaValidatorForm implements DynaBean, Serializable {
-
+public class DynaValidatorActionForm extends DynaValidatorForm
+        implements DynaBean, Serializable {
     /**
      * Returns the Validation key.
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
-     * @return validation key - the action element's 'path' attribute in this case
+     * @return validation key - the action element's 'path' attribute in this
+     *         case
      */
     public String getValidationKey(ActionMapping mapping,
                                    HttpServletRequest request) {
-
         return mapping.getPath();
     }
-
 }

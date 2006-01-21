@@ -15,25 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package org.apache.struts.config;
 
 import java.lang.reflect.InvocationTargetException;
 
 /**
  * <p>A JavaBean representing the configuration information of an
- * <code>&lt;exception&gt;</code> element from a Struts
- * configuration file.</p>
+ * <code>&lt;exception&gt;</code> element from a Struts configuration
+ * file.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-08-06 18:03:30 -0400 (Sat, 06 Aug 2005)
+ *          $
  * @since Struts 1.1
  */
-
 public class ExceptionConfig extends BaseConfig {
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * The servlet context attribute under which the message resources bundle
@@ -41,6 +37,47 @@ public class ExceptionConfig extends BaseConfig {
      * message resources for the current module is assumed.
      */
     protected String bundle = null;
+
+    /**
+     * The type of the ExceptionConfig that this object should inherit
+     * properties from.
+     */
+    protected String inherit = null;
+
+    /**
+     * Have the inheritance values for this class been applied?
+     */
+    protected boolean extensionProcessed = false;
+
+    /**
+     * The fully qualified Java class name of the exception handler class
+     * which should be instantiated to handle this exception.
+     */
+    protected String handler = "org.apache.struts.action.ExceptionHandler";
+
+    /**
+     * The message resources key specifying the error message associated with
+     * this exception.
+     */
+    protected String key = null;
+
+    /**
+     * The module-relative path of the resource to forward to if this
+     * exception occurs during an <code>Action</code>.
+     */
+    protected String path = null;
+
+    /**
+     * The scope in which we should expose the ActionMessage for this
+     * exception handler.
+     */
+    protected String scope = "request";
+
+    /**
+     * The fully qualified Java class name of the exception that is to be
+     * handled by this handler.
+     */
+    protected String type = null;
 
     public String getBundle() {
         return (this.bundle);
@@ -50,15 +87,9 @@ public class ExceptionConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.bundle = bundle;
     }
-
-
-    /**
-     * The type of the ExceptionConfig that this object should inherit
-     * properties from.
-     */
-    protected String inherit = null;
 
     public String getExtends() {
         return (this.inherit);
@@ -68,25 +99,13 @@ public class ExceptionConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.inherit = inherit;
     }
-
-
-    /**
-     * Have the inheritance values for this class been applied?
-     */
-    protected boolean extensionProcessed = false;
 
     public boolean isExtensionProcessed() {
         return extensionProcessed;
     }
-
-
-    /**
-     * The fully qualified Java class name of the exception handler class
-     * which should be instantiated to handle this exception.
-     */
-    protected String handler = "org.apache.struts.action.ExceptionHandler";
 
     public String getHandler() {
         return (this.handler);
@@ -96,15 +115,9 @@ public class ExceptionConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.handler = handler;
     }
-
-
-    /**
-     * The message resources key specifying the error message
-     * associated with this exception.
-     */
-    protected String key = null;
 
     public String getKey() {
         return (this.key);
@@ -114,15 +127,9 @@ public class ExceptionConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.key = key;
     }
-
-
-    /**
-     * The module-relative path of the resource to forward to if this
-     * exception occurs during an <code>Action</code>.
-     */
-    protected String path = null;
 
     public String getPath() {
         return (this.path);
@@ -132,15 +139,9 @@ public class ExceptionConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.path = path;
     }
-
-
-    /**
-     * The scope in which we should expose the ActionMessage for this exception
-     * handler.
-     */
-    protected String scope = "request";
 
     public String getScope() {
         return (this.scope);
@@ -150,15 +151,9 @@ public class ExceptionConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.scope = scope;
     }
-
-
-    /**
-     * The fully qualified Java class name of the exception that is to be
-     * handled by this handler.
-     */
-    protected String type = null;
 
     public String getType() {
         return (this.type);
@@ -168,27 +163,26 @@ public class ExceptionConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.type = type;
     }
 
-
     // ------------------------------------------------------ Protected Methods
-
 
     /**
      * <p>Traces the hierarchy of this object to check if any of the ancestors
      * are extending this instance.</p>
      *
-     * @param moduleConfig  The {@link ModuleConfig} that this config is from.
-     * @param actionConfig  The {@link ActionConfig} that this config is from,
-     *                      if applicable.  This parameter must be null if this
-     *                      is a global handler.
-     *
+     * @param moduleConfig The {@link ModuleConfig} that this config is from.
+     * @param actionConfig The {@link ActionConfig} that this config is from,
+     *                     if applicable.  This parameter must be null if this
+     *                     is a global handler.
      * @return true if circular inheritance was detected.
      */
     protected boolean checkCircularInheritance(ModuleConfig moduleConfig,
                                                ActionConfig actionConfig) {
         String ancestorType = getExtends();
+
         if (ancestorType == null) {
             return false;
         }
@@ -209,6 +203,7 @@ public class ExceptionConfig extends BaseConfig {
         // Then check the global handlers
         if (ancestor == null) {
             ancestor = moduleConfig.findExceptionConfig(ancestorType);
+
             if (ancestor != null) {
                 // If the ancestor is a global handler, set actionConfig
                 //  to null so further searches are only done among
@@ -250,6 +245,7 @@ public class ExceptionConfig extends BaseConfig {
             // Then check the global handlers
             if (ancestor == null) {
                 ancestor = moduleConfig.findExceptionConfig(ancestorType);
+
                 if (ancestor != null) {
                     // Limit further checks to moduleConfig.
                     actionConfig = null;
@@ -260,9 +256,7 @@ public class ExceptionConfig extends BaseConfig {
         return false;
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * <p>Inherit values that have not been overridden from the provided
@@ -285,16 +279,13 @@ public class ExceptionConfig extends BaseConfig {
      * extensions should be resolved before it's used as a parameter to this
      * method.</p>
      *
-     * @param config    The object that this instance will be inheriting
-     *                  its values from.
+     * @param config The object that this instance will be inheriting its
+     *               values from.
      * @see #processExtends(ModuleConfig, ActionConfig)
      */
     public void inheritFrom(ExceptionConfig config)
-            throws ClassNotFoundException,
-                   IllegalAccessException,
-                   InstantiationException,
-                   InvocationTargetException {
-
+            throws ClassNotFoundException, IllegalAccessException,
+            InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
@@ -304,7 +295,8 @@ public class ExceptionConfig extends BaseConfig {
             setBundle(config.getBundle());
         }
 
-        if (getHandler().equals("org.apache.struts.action.ExceptionHandler")) {
+        if (getHandler().equals("org.apache.struts.action.ExceptionHandler"))
+        {
             setHandler(config.getHandler());
         }
 
@@ -323,10 +315,9 @@ public class ExceptionConfig extends BaseConfig {
         if (getType() == null) {
             setType(config.getType());
         }
-        
+
         inheritProperties(config);
     }
-
 
     /**
      * <p>Inherit configuration information from the ExceptionConfig that this
@@ -334,39 +325,36 @@ public class ExceptionConfig extends BaseConfig {
      * object that it inherits from has also had its processExtends() method
      * called.</p>
      *
-     * @param moduleConfig  The {@link ModuleConfig} that this config is from.
-     * @param actionConfig  The {@link ActionConfig} that this config is from,
-     *                      if applicable.  This must be null for global
-     *                      forwards.
-     *
+     * @param moduleConfig The {@link ModuleConfig} that this config is from.
+     * @param actionConfig The {@link ActionConfig} that this config is from,
+     *                     if applicable.  This must be null for global
+     *                     forwards.
      * @see #inheritFrom(ExceptionConfig)
      */
     public void processExtends(ModuleConfig moduleConfig,
                                ActionConfig actionConfig)
-            throws ClassNotFoundException,
-                   IllegalAccessException,
-                   InstantiationException,
-                   InvocationTargetException {
-        
+            throws ClassNotFoundException, IllegalAccessException,
+            InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         String ancestorType = getExtends();
+
         if ((!extensionProcessed) && (ancestorType != null)) {
             ExceptionConfig baseConfig = null;
 
             // We only check the action config if we're not a global handler
-            boolean checkActionConfig =
-                    (this != moduleConfig.findExceptionConfig(getType()));
+            boolean checkActionConfig = (this != moduleConfig
+                    .findExceptionConfig(getType()));
 
             // ... and the action config was provided
-            checkActionConfig &= actionConfig != null;
+            checkActionConfig &= (actionConfig != null);
 
             // ... and we're not extending a config with the same type value
             // (because if we are, that means we're an action-level handler
             //  extending a global handler).
             checkActionConfig &= !ancestorType.equals(getType());
-
 
             // We first check in the action config's exception handlers
             if (checkActionConfig) {
@@ -388,7 +376,7 @@ public class ExceptionConfig extends BaseConfig {
             if (checkCircularInheritance(moduleConfig, actionConfig)) {
                 throw new IllegalArgumentException(
                         "Circular inheritance detected for forward "
-                        + getType());
+                                + getType());
             }
 
             if (!baseConfig.isExtensionProcessed()) {
@@ -406,18 +394,21 @@ public class ExceptionConfig extends BaseConfig {
      * Return a String representation of this object.
      */
     public String toString() {
-
         StringBuffer sb = new StringBuffer("ExceptionConfig[");
+
         sb.append("type=");
         sb.append(this.type);
+
         if (this.bundle != null) {
             sb.append(",bundle=");
             sb.append(this.bundle);
         }
+
         if (this.inherit != null) {
             sb.append(",extends=");
             sb.append(this.inherit);
         }
+
         sb.append(",handler=");
         sb.append(this.handler);
         sb.append(",key=");
@@ -427,9 +418,7 @@ public class ExceptionConfig extends BaseConfig {
         sb.append(",scope=");
         sb.append(this.scope);
         sb.append("]");
+
         return (sb.toString());
-
     }
-
-
 }

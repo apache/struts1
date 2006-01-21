@@ -15,30 +15,129 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package org.apache.struts.config;
+
 
 /**
  * <p>A JavaBean representing the configuration information of a
- * <code>&lt;controller&gt;</code> element in a Struts
- * configuration file.</p>
+ * <code>&lt;controller&gt;</code> element in a Struts configuration
+ * file.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-05-12 18:41:19 -0400 (Thu, 12 May 2005)
+ *          $
  * @since Struts 1.1
  */
-
 public class ControllerConfig extends BaseConfig {
-
-
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * The input buffer size for file uploads.
      */
     protected int bufferSize = 4096;
+
+    /**
+     * The content type and character encoding to be set on each response.
+     */
+    protected String contentType = "text/html";
+
+    /**
+     * The chain catalog name for this module.
+     */
+    protected String catalog = "struts";
+
+    /**
+     * The chain command to execute for each request.
+     */
+    protected String command = "servlet-standard";
+
+    /**
+     * <p>The replacement pattern used to determine a context-relative URL
+     * from a {@link ForwardConfig} element.  The pattern may consist of any
+     * combination of the following markers and characters:</p> <ul>
+     * <li><code><strong>$M</strong></code> - Replaced by the module prefix
+     * for the current module.</li> <li><code><strong>$P</strong></code> -
+     * Replaced by the <code>path</code> property of a {@link ForwardConfig}
+     * instance.</li> <li><code><strong>$$</strong></code> - Renders a literal
+     * dollar sign ("$") character in the resulting URL.</li> <li>A dollar
+     * sign followed by any other character is reserved for future use, and
+     * both characters are silently swallowed.</li> <li>All other characters
+     * in the pattern are passed through unchanged. </li> </ul>
+     *
+     * <p>If this property is set to <code>null</code>, a default pattern of
+     * <code>$M$P</code> is utilized, which is backwards compatible with the
+     * hard coded functionality in prior versions.</p>
+     */
+    protected String forwardPattern = null;
+
+    /**
+     * <p>Should the <code>input</code> property of {@link ActionConfig}
+     * instances associated with this module be treated as the name of a
+     * corresponding {@link ForwardConfig}.  A <code>false</code> value treats
+     * them as a module-relative path (consistent with the hard coded behavior
+     * of earlier versions of Struts.</p>
+     *
+     * @since Struts 1.1
+     */
+    protected boolean inputForward = false;
+
+    /**
+     * Should we store a Locale object in the user's session if needed?
+     */
+    protected boolean locale = true;
+
+    /**
+     * The maximum file size to process for file uploads.
+     */
+    protected String maxFileSize = "250M";
+
+    /**
+     * The maximum file size to retain in memory.
+     */
+    protected String memFileSize = "256K";
+
+    /**
+     * The fully qualified Java class name of the MultipartRequestHandler
+     * class to be used.
+     */
+    protected String multipartClass =
+            "org.apache.struts.upload.CommonsMultipartRequestHandler";
+
+    /**
+     * Should we set no-cache HTTP headers on each response?
+     */
+    protected boolean nocache = false;
+
+    /**
+     * <p>The replacement pattern used to determine a context-relative URL
+     * from the <code>page</code> attribute of Struts tags and configuration
+     * properties.  The pattern may consist of any combination of the
+     * following markers and characters:</p> <ul> <li><code><strong>$M</strong></code>
+     * - Replaced by the module prefix for the current module.</li>
+     * <li><code><strong>$P</strong></code> - Replaced by the
+     * <code>page</code> attribute value being evaluated.</li>
+     * <li><code><strong>$$</strong></code> - Renders a literal dollar sign
+     * ("$") character in the resulting URL.</li> <li>A dollar sign followed
+     * by any other character is reserved for future use, and both characters
+     * are silently swallowed.</li> <li>All other characters in the pattern
+     * are passed through unchanged. </li> </ul>
+     *
+     * <p>If this property is set to <code>null</code>, a default pattern of
+     * <code>$M$P</code> is utilized, which is backwards compatible with the
+     * hard coded functionality in prior versions.</p>
+     */
+    protected String pagePattern = null;
+
+    /**
+     * The fully qualified class name of the RequestProcessor implementation
+     * class to be used for this module.
+     */
+    protected String processorClass =
+            "org.apache.struts.chain.ComposableRequestProcessor";
+
+    /**
+     * The temporary working directory to use for file uploads.
+     */
+    protected String tempDir = null;
 
     public int getBufferSize() {
         return (this.bufferSize);
@@ -48,14 +147,9 @@ public class ControllerConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.bufferSize = bufferSize;
     }
-
-
-    /**
-     * The content type and character encoding to be set on each response.
-     */
-    protected String contentType = "text/html";
 
     public String getContentType() {
         return (this.contentType);
@@ -65,14 +159,9 @@ public class ControllerConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.contentType = contentType;
     }
-
-
-    /**
-     * The chain catalog name for this module.
-     */
-    protected String catalog = "struts";
 
     public String getCatalog() {
         return (this.catalog);
@@ -82,14 +171,9 @@ public class ControllerConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.catalog = catalog;
     }
-
-
-    /**
-     * The chain command to execute for each request.
-     */
-    protected String command = "servlet-standard";
 
     public String getCommand() {
         return (this.command);
@@ -99,32 +183,9 @@ public class ControllerConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.command = command;
     }
-
-
-    /**
-     * <p>The replacement pattern used to determine a context-relative URL
-     * from a {@link ForwardConfig} element.  The pattern may consist of any
-     * combination of the following markers and characters:</p>
-     * <ul>
-     * <li><code><strong>$M</strong></code> - Replaced by the module
-     *     prefix for the current module.</li>
-     * <li><code><strong>$P</strong></code> - Replaced by the <code>path</code>
-     *     property of a {@link ForwardConfig} instance.</li>
-     * <li><code><strong>$$</strong></code> - Renders a literal dollar sign
-     *     ("$") character in the resulting URL.</li>
-     * <li>A dollar sign followed by any other character is reserved for
-     *     future use, and both characters are silently swallowed.</li>
-     * <li>All other characters in the pattern are passed through unchanged.
-     *     </li>
-     * </ul>
-     *
-     * <p>If this property is set to <code>null</code>, a default pattern of
-     * <code>$M$P</code> is utilized, which is backwards compatible with
-     * the hard coded functionality in prior versions.</p>
-     */
-    protected String forwardPattern = null;
 
     public String getForwardPattern() {
         return (this.forwardPattern);
@@ -134,18 +195,6 @@ public class ControllerConfig extends BaseConfig {
         this.forwardPattern = forwardPattern;
     }
 
-
-    /**
-     * <p>Should the <code>input</code> property of {@link ActionConfig}
-     * instances associated with this module be treated as the
-     * name of a corresponding {@link ForwardConfig}.  A <code>false</code>
-     * value treats them as a module-relative path (consistent
-     * with the hard coded behavior of earlier versions of Struts.</p>
-     *
-     * @since Struts 1.1
-     */
-    protected boolean inputForward = false;
-
     public boolean getInputForward() {
         return (this.inputForward);
     }
@@ -153,12 +202,6 @@ public class ControllerConfig extends BaseConfig {
     public void setInputForward(boolean inputForward) {
         this.inputForward = inputForward;
     }
-
-
-    /**
-     * Should we store a Locale object in the user's session if needed?
-     */
-    protected boolean locale = true;
 
     public boolean getLocale() {
         return (this.locale);
@@ -168,14 +211,9 @@ public class ControllerConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.locale = locale;
     }
-
-
-    /**
-     * The maximum file size to process for file uploads.
-     */
-    protected String maxFileSize = "250M";
 
     public String getMaxFileSize() {
         return (this.maxFileSize);
@@ -185,14 +223,9 @@ public class ControllerConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.maxFileSize = maxFileSize;
     }
-
-
-    /**
-     * The maximum file size to retain in memory.
-     */
-    protected String memFileSize = "256K";
 
     public String getMemFileSize() {
         return (this.memFileSize);
@@ -202,16 +235,9 @@ public class ControllerConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.memFileSize = memFileSize;
     }
-
-
-    /**
-     * The fully qualified Java class name of the MultipartRequestHandler
-     * class to be used.
-     */
-    protected String multipartClass =
-        "org.apache.struts.upload.CommonsMultipartRequestHandler";
 
     public String getMultipartClass() {
         return (this.multipartClass);
@@ -221,14 +247,9 @@ public class ControllerConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.multipartClass = multipartClass;
     }
-
-
-    /**
-     * Should we set no-cache HTTP headers on each response?
-     */
-    protected boolean nocache = false;
 
     public boolean getNocache() {
         return (this.nocache);
@@ -238,33 +259,9 @@ public class ControllerConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.nocache = nocache;
     }
-
-
-    /**
-     * <p>The replacement pattern used to determine a context-relative URL
-     * from the <code>page</code> attribute of Struts tags and configuration
-     * properties.  The pattern may consist of any combination of the
-     * following markers and characters:</p>
-     * <ul>
-     * <li><code><strong>$M</strong></code> - Replaced by the module
-     *     prefix for the current module.</li>
-     * <li><code><strong>$P</strong></code> - Replaced by the <code>page</code>
-     *     attribute value being evaluated.</li>
-     * <li><code><strong>$$</strong></code> - Renders a literal dollar sign
-     *     ("$") character in the resulting URL.</li>
-     * <li>A dollar sign followed by any other character is reserved for
-     *     future use, and both characters are silently swallowed.</li>
-     * <li>All other characters in the pattern are passed through unchanged.
-     *     </li>
-     * </ul>
-     *
-     * <p>If this property is set to <code>null</code>, a default pattern of
-     * <code>$M$P</code> is utilized, which is backwards compatible with
-     * the hard coded functionality in prior versions.</p>
-     */
-    protected String pagePattern = null;
 
     public String getPagePattern() {
         return (this.pagePattern);
@@ -274,14 +271,6 @@ public class ControllerConfig extends BaseConfig {
         this.pagePattern = pagePattern;
     }
 
-
-    /**
-     * The fully qualified class name of the RequestProcessor implementation
-     * class to be used for this module.
-     */
-    protected String processorClass =
-        "org.apache.struts.chain.ComposableRequestProcessor";
-
     public String getProcessorClass() {
         return (this.processorClass);
     }
@@ -290,14 +279,9 @@ public class ControllerConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.processorClass = processorClass;
     }
-
-
-    /**
-     * The temporary working directory to use for file uploads.
-     */
-    protected String tempDir = null;
 
     public String getTempDir() {
         return (this.tempDir);
@@ -307,9 +291,9 @@ public class ControllerConfig extends BaseConfig {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
+
         this.tempDir = tempDir;
     }
-
 
     // --------------------------------------------------------- Public Methods
 
@@ -317,48 +301,56 @@ public class ControllerConfig extends BaseConfig {
      * Return a String representation of this object.
      */
     public String toString() {
-
         StringBuffer sb = new StringBuffer("ControllerConfig[");
+
         sb.append("bufferSize=");
         sb.append(this.bufferSize);
+
         if (this.contentType != null) {
             sb.append(",contentType=");
             sb.append(this.contentType);
         }
+
         if (this.forwardPattern != null) {
             sb.append(",forwardPattern=");
             sb.append(this.forwardPattern);
         }
+
         sb.append(",inputForward=");
         sb.append(this.inputForward);
         sb.append(",locale=");
         sb.append(this.locale);
+
         if (this.maxFileSize != null) {
             sb.append(",maxFileSize=");
             sb.append(this.maxFileSize);
         }
+
         if (this.memFileSize != null) {
             sb.append(",memFileSize=");
             sb.append(this.memFileSize);
         }
+
         sb.append(",multipartClass=");
         sb.append(this.multipartClass);
         sb.append(",nocache=");
         sb.append(this.nocache);
+
         if (this.pagePattern != null) {
             sb.append(",pagePattern=");
             sb.append(this.pagePattern);
         }
+
         sb.append(",processorClass=");
         sb.append(this.processorClass);
+
         if (this.tempDir != null) {
             sb.append(",tempDir=");
             sb.append(this.tempDir);
         }
+
         sb.append("]");
+
         return (sb.toString());
-
     }
-
-
 }

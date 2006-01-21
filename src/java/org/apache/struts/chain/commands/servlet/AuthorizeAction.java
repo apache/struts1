@@ -13,11 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands.servlet;
-
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.chain.commands.AbstractAuthorizeAction;
@@ -26,24 +22,21 @@ import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.util.MessageResources;
 
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>Determine if the action is authorized for the given roles.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
+ *          $
  */
-
 public class AuthorizeAction extends AbstractAuthorizeAction {
-
-
     // ------------------------------------------------------- Protected Methods
-
-
     protected boolean isAuthorized(ActionContext context, String[] roles,
-                                   ActionConfig mapping) throws Exception {
-
+                                   ActionConfig mapping)
+            throws Exception {
         // Identify the HTTP request object
-        ServletActionContext servletActionContext = 
+        ServletActionContext servletActionContext =
                 (ServletActionContext) context;
         HttpServletRequest request = servletActionContext.getRequest();
 
@@ -56,20 +49,17 @@ public class AuthorizeAction extends AbstractAuthorizeAction {
 
         // Default to unauthorized
         return (false);
-
     }
 
-
-    protected String getErrorMessage(ActionContext context, 
+    protected String getErrorMessage(ActionContext context,
                                      ActionConfig actionConfig) {
-        
-        ServletActionContext servletActionContext = 
+        ServletActionContext servletActionContext =
                 (ServletActionContext) context;
-        
+
         // Retrieve internal message resources
         ActionServlet servlet = servletActionContext.getActionServlet();
         MessageResources resources = servlet.getInternal();
+
         return resources.getMessage("notAuthorized", actionConfig.getPath());
     }
-
 }

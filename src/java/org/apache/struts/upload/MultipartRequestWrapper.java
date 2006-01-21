@@ -15,25 +15,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.upload;
 
-import java.util.Map;
-import java.util.Vector;
-import java.util.HashMap;
-import java.util.Iterator;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Vector;
 
 /**
- * This class functions as a wrapper around HttpServletRequest to
- * provide working getParameter methods for multipart requests.
+ * This class functions as a wrapper around HttpServletRequest to provide
+ * working getParameter methods for multipart requests.
  */
 public class MultipartRequestWrapper extends HttpServletRequestWrapper {
-
     /**
      * The parameters for this multipart request
      */
@@ -45,16 +43,19 @@ public class MultipartRequestWrapper extends HttpServletRequestWrapper {
     }
 
     /**
-     * Sets a parameter for this request.  The parameter is actually
-     * separate from the request parameters, but calling on the
-     * getParameter() methods of this class will work as if they weren't.
+     * Sets a parameter for this request.  The parameter is actually separate
+     * from the request parameters, but calling on the getParameter() methods
+     * of this class will work as if they weren't.
      */
     public void setParameter(String name, String value) {
         String[] mValue = (String[]) parameters.get(name);
+
         if (mValue == null) {
             mValue = new String[0];
         }
+
         String[] newValue = new String[mValue.length + 1];
+
         System.arraycopy(mValue, 0, newValue, 0, mValue.length);
         newValue[mValue.length] = value;
 
@@ -69,57 +70,67 @@ public class MultipartRequestWrapper extends HttpServletRequestWrapper {
      */
     public String getParameter(String name) {
         String value = getRequest().getParameter(name);
+
         if (value == null) {
             String[] mValue = (String[]) parameters.get(name);
+
             if ((mValue != null) && (mValue.length > 0)) {
                 value = mValue[0];
             }
         }
+
         return value;
     }
 
     /**
-     * Returns the names of the parameters for this request.
-     * The enumeration consists of the normal request parameter
-     * names plus the parameters read from the multipart request
+     * Returns the names of the parameters for this request. The enumeration
+     * consists of the normal request parameter names plus the parameters read
+     * from the multipart request
      */
     public Enumeration getParameterNames() {
         Enumeration baseParams = getRequest().getParameterNames();
         Vector list = new Vector();
+
         while (baseParams.hasMoreElements()) {
             list.add(baseParams.nextElement());
         }
+
         Collection multipartParams = parameters.keySet();
         Iterator iterator = multipartParams.iterator();
+
         while (iterator.hasNext()) {
             list.add(iterator.next());
         }
+
         return Collections.enumeration(list);
     }
 
     /**
-     * Returns the values of a parameter in this request.
-     * It first looks in the underlying HttpServletRequest object 
-     * for the parameter, and if that doesn't exist it looks for 
-     * the parameter retrieved from the multipart request.
+     * Returns the values of a parameter in this request. It first looks in
+     * the underlying HttpServletRequest object for the parameter, and if that
+     * doesn't exist it looks for the parameter retrieved from the multipart
+     * request.
      */
     public String[] getParameterValues(String name) {
         String[] value = getRequest().getParameterValues(name);
+
         if (value == null) {
             value = (String[]) parameters.get(name);
         }
+
         return value;
     }
 
     /**
      * Combines the parameters stored here with those in the underlying
-     * request. If paramater values in the underlying request take
-     * precedence over those stored here.
+     * request. If paramater values in the underlying request take precedence
+     * over those stored here.
      */
     public Map getParameterMap() {
         Map map = new HashMap(parameters);
+
         map.putAll(getRequest().getParameterMap());
+
         return map;
     }
-
 }

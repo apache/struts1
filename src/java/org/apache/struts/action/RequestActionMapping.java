@@ -15,30 +15,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package org.apache.struts.action;
 
 
 /**
- * <p>Subclass of <code>ActionMapping</code> that defaults the form bean
- * scope to <code>request</code>.</p>
+ * <p>Subclass of <code>ActionMapping</code> that defaults the form bean scope
+ * to <code>request</code>.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
+ *          $
  */
-
 public class RequestActionMapping extends ActionMapping {
-
-
     /**
-     * <p>Construct a new instance of this class with the desired default
-     * form bean scope.</p>
+     * <p>Construct a new instance of this class with the desired default form
+     * bean scope.</p>
      */
     public RequestActionMapping() {
-
         super();
         setScope("request");
-
     }
-
 }

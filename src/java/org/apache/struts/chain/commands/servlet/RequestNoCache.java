@@ -13,39 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands.servlet;
 
-
-import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.chain.commands.AbstractRequestNoCache;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
 
+import javax.servlet.http.HttpServletResponse;
 
 /**
- * <p>Check to see if the controller is configured to prevent caching,
- * and if so, set the no cache HTTP response headers.</p>
+ * <p>Check to see if the controller is configured to prevent caching, and if
+ * so, set the no cache HTTP response headers.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
+ *          $
  */
-
 public class RequestNoCache extends AbstractRequestNoCache {
-
-
     // ------------------------------------------------------- Protected Methods
-
-
     protected void requestNoCache(ActionContext context) {
-
         ServletActionContext sacontext = (ServletActionContext) context;
         HttpServletResponse response = sacontext.getResponse();
 
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "no-cache,no-store,max-age=0");
         response.setDateHeader("Expires", 1);
-
     }
-
-
 }

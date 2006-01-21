@@ -15,18 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands;
 
 import org.apache.commons.chain.Command;
 import org.apache.struts.chain.contexts.ActionContext;
 
 /**
- * <p>Marks a commons-chain <code>Command</code> which expects to operate
- * upon a Struts <code>ActionContext</code>.</p>
+ * <p>Marks a commons-chain <code>Command</code> which expects to operate upon
+ * a Struts <code>ActionContext</code>.</p>
  */
 public interface ActionCommand extends Command {
-    boolean execute(ActionContext actionContext) throws Exception;
+    boolean execute(ActionContext actionContext)
+            throws Exception;
 }
-
-

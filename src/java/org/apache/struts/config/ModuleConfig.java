@@ -17,22 +17,24 @@
  */
 package org.apache.struts.config;
 
+
 /**
  * <p>The collection of static configuration information that describes a
- * Struts-based module.  Multiple modules are identified by
- * a <em>prefix</em> at the beginning of the context
- * relative portion of the request URI.  If no module prefix can be
- * matched, the default configuration (with a prefix equal to a zero-length
- * string) is selected, which is elegantly backwards compatible with the
- * previous Struts behavior that only supported one module.</p>
+ * Struts-based module.  Multiple modules are identified by a <em>prefix</em>
+ * at the beginning of the context relative portion of the request URI.  If no
+ * module prefix can be matched, the default configuration (with a prefix
+ * equal to a zero-length string) is selected, which is elegantly backwards
+ * compatible with the previous Struts behavior that only supported one
+ * module.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-08-06 04:12:10 -0400 (Sat, 06 Aug 2005)
+ *          $
  * @since Struts 1.1
  */
 public interface ModuleConfig {
     /**
-     * Has this module been completely configured yet.  Once this flag
-     * has been set, any attempt to modify the configuration will return an
+     * Has this module been completely configured yet.  Once this flag has
+     * been set, any attempt to modify the configuration will return an
      * IllegalStateException.
      */
     boolean getConfigured();
@@ -41,11 +43,12 @@ public interface ModuleConfig {
      * The controller configuration object for this module.
      */
     ControllerConfig getControllerConfig();
+
     /**
      * The controller configuration object for this module.
-     * @param cc   The controller configuration object for this module.
+     *
+     * @param cc The controller configuration object for this module.
      */
-
     void setControllerConfig(ControllerConfig cc);
 
     /**
@@ -61,7 +64,9 @@ public interface ModuleConfig {
      * select this configuration versus others supported by the controller
      * servlet.  A configuration with a prefix of a zero-length String is the
      * default configuration for this web module.
-     * @param prefix The prefix of the context-relative portion of the request URI.
+     *
+     * @param prefix The prefix of the context-relative portion of the request
+     *               URI.
      */
     public void setPrefix(String prefix);
 
@@ -76,17 +81,19 @@ public interface ModuleConfig {
      * instances.
      *
      * @param actionFormBeanClass default class name to be used when creating
-     *                           action form bean instances.
+     *                            action form bean instances.
      */
     void setActionFormBeanClass(String actionFormBeanClass);
 
     /**
-     * The default class name to be used when creating action mapping instances.
+     * The default class name to be used when creating action mapping
+     * instances.
      */
     String getActionMappingClass();
 
     /**
-     * The default class name to be used when creating action mapping instances.
+     * The default class name to be used when creating action mapping
+     * instances.
      *
      * @param actionMappingClass default class name to be used when creating
      *                           action mapping instances.
@@ -94,13 +101,12 @@ public interface ModuleConfig {
     void setActionMappingClass(String actionMappingClass);
 
     /**
-     * Add a new <code>ActionConfig</code> instance to the set associated
-     * with this module.
+     * Add a new <code>ActionConfig</code> instance to the set associated with
+     * this module.
      *
      * @param config The new configuration instance to be added
-     *
-     * @exception java.lang.IllegalStateException if this module configuration
-     *  has been frozen
+     * @throws IllegalStateException if this module configuration has been
+     *                               frozen
      */
     void addActionConfig(ActionConfig config);
 
@@ -109,9 +115,8 @@ public interface ModuleConfig {
      * with this module.
      *
      * @param config The new configuration instance to be added
-     *
-     * @exception java.lang.IllegalStateException if this module configuration
-     *  has been frozen
+     * @throws IllegalStateException if this module configuration has been
+     *                               frozen
      */
     void addExceptionConfig(ExceptionConfig config);
 
@@ -120,19 +125,20 @@ public interface ModuleConfig {
      * with this module.
      *
      * @param config The new configuration instance to be added
-     *
-     * @exception java.lang.IllegalStateException if this module configuration
-     *  has been frozen
+     * @throws IllegalStateException if this module configuration has been
+     *                               frozen
      */
     void addFormBeanConfig(FormBeanConfig config);
 
     /**
-     * The default class name to be used when creating action forward instances.
+     * The default class name to be used when creating action forward
+     * instances.
      */
     String getActionForwardClass();
 
     /**
-     * The default class name to be used when creating action forward instances.
+     * The default class name to be used when creating action forward
+     * instances.
      *
      * @param actionForwardClass default class name to be used when creating
      *                           action forward instances.
@@ -144,9 +150,8 @@ public interface ModuleConfig {
      * forwards associated with this module.
      *
      * @param config The new configuration instance to be added
-     *
-     * @exception java.lang.IllegalStateException if this module configuration
-     *  has been frozen
+     * @throws IllegalStateException if this module configuration has been
+     *                               frozen
      */
     void addForwardConfig(ForwardConfig config);
 
@@ -155,14 +160,13 @@ public interface ModuleConfig {
      * associated with this module.
      *
      * @param config The new configuration instance to be added
-     *
-     * @exception IllegalStateException if this module configuration
-     *  has been frozen
+     * @throws IllegalStateException if this module configuration has been
+     *                               frozen
      */
     void addMessageResourcesConfig(MessageResourcesConfig config);
 
     /**
-     * Add a newly configured {@link org.apache.struts.config.PlugInConfig} instance to the set of
+     * Add a newly configured {@link PlugInConfig} instance to the set of
      * plug-in Actions for this module.
      *
      * @param plugInConfig The new configuration instance to be added
@@ -178,8 +182,8 @@ public interface ModuleConfig {
     ActionConfig findActionConfig(String path);
 
     /**
-     * Return the action configurations for this module.  If there are
-     * none, a zero-length array is returned.
+     * Return the action configurations for this module.  If there are none, a
+     * zero-length array is returned.
      */
     ActionConfig[] findActionConfigs();
 
@@ -192,20 +196,20 @@ public interface ModuleConfig {
     ExceptionConfig findExceptionConfig(String type);
 
     /**
-     * Perform a recursive search for an ExceptionConfig registered for this class, or for any
-     * superclass.  This should only be used in the case when an <code>ActionConfig</code> 
-     * is not available; otherwise, use <code>ActionConfig.findException(Class)</code>
-     * to preserve the search order.
+     * Perform a recursive search for an ExceptionConfig registered for this
+     * class, or for any superclass.  This should only be used in the case
+     * when an <code>ActionConfig</code> is not available; otherwise, use
+     * <code>ActionConfig.findException(Class)</code> to preserve the search
+     * order.
      *
      * @param type Exception class name to find a configuration for
      * @see ActionConfig.findException(Class)
      */
     ExceptionConfig findException(Class type);
 
-    
     /**
-     * Return the exception configurations for this module.  If there
-     * are none, a zero-length array is returned.
+     * Return the exception configurations for this module.  If there are
+     * none, a zero-length array is returned.
      */
     ExceptionConfig[] findExceptionConfigs();
 
@@ -218,8 +222,8 @@ public interface ModuleConfig {
     FormBeanConfig findFormBeanConfig(String name);
 
     /**
-     * Return the form bean configurations for this module.  If there
-     * are none, a zero-length array is returned.
+     * Return the form bean configurations for this module.  If there are
+     * none, a zero-length array is returned.
      */
     FormBeanConfig[] findFormBeanConfigs();
 
@@ -232,35 +236,35 @@ public interface ModuleConfig {
     ForwardConfig findForwardConfig(String name);
 
     /**
-     * Return the form bean configurations for this module.  If there
-     * are none, a zero-length array is returned.
+     * Return the form bean configurations for this module.  If there are
+     * none, a zero-length array is returned.
      */
     ForwardConfig[] findForwardConfigs();
 
     /**
-     * Return the message resources configuration for the specified key,
-     * if any; otherwise return <code>null</code>.
+     * Return the message resources configuration for the specified key, if
+     * any; otherwise return <code>null</code>.
      *
      * @param key Key of the data source configuration to return
      */
     MessageResourcesConfig findMessageResourcesConfig(String key);
 
     /**
-     * Return the message resources configurations for this module.
-     * If there are none, a zero-length array is returned.
+     * Return the message resources configurations for this module. If there
+     * are none, a zero-length array is returned.
      */
     MessageResourcesConfig[] findMessageResourcesConfigs();
 
     /**
-     * Return the configured plug-in actions for this module.  If there
-     * are none, a zero-length array is returned.
+     * Return the configured plug-in actions for this module.  If there are
+     * none, a zero-length array is returned.
      */
     PlugInConfig[] findPlugInConfigs();
 
     /**
-     * Freeze the configuration of this module.  After this method
-     * returns, any attempt to modify the configuration will return
-     * an IllegalStateException.
+     * Freeze the configuration of this module.  After this method returns,
+     * any attempt to modify the configuration will return an
+     * IllegalStateException.
      */
     void freeze();
 
@@ -268,9 +272,8 @@ public interface ModuleConfig {
      * Remove the specified action configuration instance.
      *
      * @param config ActionConfig instance to be removed
-     *
-     * @exception java.lang.IllegalStateException if this module configuration
-     *  has been frozen
+     * @throws IllegalStateException if this module configuration has been
+     *                               frozen
      */
     void removeActionConfig(ActionConfig config);
 
@@ -278,9 +281,8 @@ public interface ModuleConfig {
      * Remove the specified exception configuration instance.
      *
      * @param config ActionConfig instance to be removed
-     *
-     * @exception java.lang.IllegalStateException if this module configuration
-     *  has been frozen
+     * @throws IllegalStateException if this module configuration has been
+     *                               frozen
      */
     void removeExceptionConfig(ExceptionConfig config);
 
@@ -288,9 +290,8 @@ public interface ModuleConfig {
      * Remove the specified form bean configuration instance.
      *
      * @param config FormBeanConfig instance to be removed
-     *
-     * @exception java.lang.IllegalStateException if this module configuration
-     *  has been frozen
+     * @throws IllegalStateException if this module configuration has been
+     *                               frozen
      */
     void removeFormBeanConfig(FormBeanConfig config);
 
@@ -298,9 +299,8 @@ public interface ModuleConfig {
      * Remove the specified forward configuration instance.
      *
      * @param config ForwardConfig instance to be removed
-     *
-     * @exception java.lang.IllegalStateException if this module configuration
-     *  has been frozen
+     * @throws IllegalStateException if this module configuration has been
+     *                               frozen
      */
     void removeForwardConfig(ForwardConfig config);
 
@@ -308,9 +308,8 @@ public interface ModuleConfig {
      * Remove the specified message resources configuration instance.
      *
      * @param config MessageResourcesConfig instance to be removed
-     *
-     * @exception java.lang.IllegalStateException if this module configuration
-     *  has been frozen
+     * @throws IllegalStateException if this module configuration has been
+     *                               frozen
      */
     void removeMessageResourcesConfig(MessageResourcesConfig config);
 }

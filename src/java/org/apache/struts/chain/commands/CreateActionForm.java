@@ -13,11 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands;
-
-
-import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,6 +23,7 @@ import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.FormBeanConfig;
 
+import java.util.Map;
 
 /**
  * <p>Create (if necessary) and cache a form bean for this request.</p>
@@ -34,31 +31,26 @@ import org.apache.struts.config.FormBeanConfig;
  * @version $Id$
  */
 public class CreateActionForm extends ActionCommandBase {
-
-
     // ------------------------------------------------------ Instance Variables
-
-
-    private static final Log log =
-        LogFactory.getLog(CreateActionForm.class);
+    private static final Log log = LogFactory.getLog(CreateActionForm.class);
 
     // ---------------------------------------------------------- Public Methods
-
 
     /**
      * <p>Create (if necessary) and cache a form bean for this request.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
-     *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(ActionContext actionCtx) throws Exception {
-
+    public boolean execute(ActionContext actionCtx)
+            throws Exception {
         // Is there a form bean associated with this ActionConfig?
         ActionConfig actionConfig = actionCtx.getActionConfig();
         String name = actionConfig.getName();
+
         if (name == null) {
             actionCtx.setActionForm(null);
+
             return (false);
         }
 
@@ -67,19 +59,23 @@ public class CreateActionForm extends ActionCommandBase {
         }
 
         // Look up the corresponding FormBeanConfig (if any)
-        FormBeanConfig formBeanConfig =
-            actionConfig.getModuleConfig().findFormBeanConfig(name);
+        FormBeanConfig formBeanConfig = actionConfig.getModuleConfig()
+                .findFormBeanConfig(name);
+
         if (formBeanConfig == null) {
             log.warn("No FormBeanConfig found in module "
-                     + actionConfig.getModuleConfig().getPrefix()
-                     + " under name " + name);
+                    + actionConfig.getModuleConfig().getPrefix()
+                    + " under name "
+                    + name);
             actionCtx.setActionForm(null);
+
             return (false);
         }
 
         Map scope = actionCtx.getScope(actionConfig.getScope());
 
         ActionForm instance = null;
+
         instance = (ActionForm) scope.get(actionConfig.getAttribute());
 
         // Can we recycle the existing instance (if any)?
@@ -87,13 +83,14 @@ public class CreateActionForm extends ActionCommandBase {
             instance = formBeanConfig.createActionForm(actionCtx);
         }
 
-        // TODO Remove this when ActionForm no longer directly depends on 
+        // TODO Remove this when ActionForm no longer directly depends on
         //      ActionServlet
         if (actionCtx instanceof ServletActionContext) {
             // The servlet property of ActionForm is transient, so
             // ActionForms which are restored from a serialized state
             // need to have their servlet restored.
             ServletActionContext sac = (ServletActionContext) actionCtx;
+
             instance.setServlet(sac.getActionServlet());
         }
 
@@ -102,7 +99,5 @@ public class CreateActionForm extends ActionCommandBase {
         scope.put(actionConfig.getAttribute(), instance);
 
         return (false);
-
     }
-
 }

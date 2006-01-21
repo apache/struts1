@@ -15,37 +15,55 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.config;
 
-import org.apache.struts.util.RequestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.util.RequestUtils;
 
 /**
  * A factory interface for creating {@link ModuleConfig}s.
  *
- * @version $Rev$ $Date$
- *
+ * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
+ *          $
  * @see ModuleConfig
  */
 public abstract class ModuleConfigFactory {
+    /**
+     * The Java class to be used for <code>ModuleConfigFactory</code>
+     * instances.
+     */
+    protected static Class clazz = null;
 
     /**
-     * Create and return a newly instansiated {@link ModuleConfig}.
-     * This method must be implemented by concrete subclasses.
+     * Commons Logging instance.
+     */
+    private static final Log LOG =
+            LogFactory.getLog(ModuleConfigFactory.class);
+
+    /**
+     * The fully qualified class name to be used for <code>ModuleConfigFactory</code>
+     * instances.
+     */
+    protected static String factoryClass =
+            "org.apache.struts.config.impl.DefaultModuleConfigFactory";
+
+    /**
+     * Create and return a newly instansiated {@link ModuleConfig}. This
+     * method must be implemented by concrete subclasses.
      *
      * @param prefix Module prefix for Configuration
      */
     public abstract ModuleConfig createModuleConfig(String prefix);
 
-
     // ------------------------------------------------------ Static Properties
+
     /**
-     * The fully qualified class name that is used for
-     * <code>ModuleConfigFactory</code> instances.
-     * @return class name that is used for
-     * <code>ModuleConfigFactory</code> instances
+     * The fully qualified class name that is used for <code>ModuleConfigFactory</code>
+     * instances.
+     *
+     * @return class name that is used for <code>ModuleConfigFactory</code>
+     *         instances
      */
     public static String getFactoryClass() {
         return (ModuleConfigFactory.factoryClass);
@@ -54,8 +72,9 @@ public abstract class ModuleConfigFactory {
     /**
      * Set the fully qualified class name that is used for
      * <code>ModuleConfigFactory</code> instances.
-     * @param factoryClass name that is used for
-     * <code>ModuleConfigFactory</code> instances
+     *
+     * @param factoryClass name that is used for <code>ModuleConfigFactory</code>
+     *                     instances
      */
     public static void setFactoryClass(String factoryClass) {
         ModuleConfigFactory.factoryClass = factoryClass;
@@ -64,7 +83,6 @@ public abstract class ModuleConfigFactory {
 
     // --------------------------------------------------------- Static Methods
 
-
     /**
      * Create and return a <code>ModuleConfigFactory</code> instance of the
      * appropriate class, which can be used to create customized
@@ -72,7 +90,6 @@ public abstract class ModuleConfigFactory {
      * created, return <code>null</code> instead.
      */
     public static ModuleConfigFactory createFactory() {
-
         ModuleConfigFactory factory = null;
 
         try {
@@ -81,38 +98,17 @@ public abstract class ModuleConfigFactory {
             }
 
             factory = (ModuleConfigFactory) clazz.newInstance();
-
-        } catch (ClassNotFoundException e) {
+        }
+        catch (ClassNotFoundException e) {
             LOG.error("ModuleConfigFactory.createFactory()", e);
-        } catch (InstantiationException e) {
+        }
+        catch (InstantiationException e) {
             LOG.error("ModuleConfigFactory.createFactory()", e);
-        } catch (IllegalAccessException e) {
+        }
+        catch (IllegalAccessException e) {
             LOG.error("ModuleConfigFactory.createFactory()", e);
         }
 
         return factory;
-
     }
-
-
-    /**
-     * The Java class to be used for
-     * <code>ModuleConfigFactory</code> instances.
-     */
-    protected static Class clazz = null;
-
-    /**
-     * Commons Logging instance.
-     */
-    private static final Log LOG = LogFactory.getLog(ModuleConfigFactory.class);
-
-
-    /**
-     * The fully qualified class name to be used for
-     * <code>ModuleConfigFactory</code> instances.
-     */
-    protected static String factoryClass =
-        "org.apache.struts.config.impl.DefaultModuleConfigFactory";
-
-
 }

@@ -15,15 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package org.apache.struts.upload;
 
-
-import java.io.InputStream;
-import java.io.IOException;
 import java.io.FileNotFoundException;
-
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * This interface represents a file that has been uploaded by a client. It is
@@ -77,25 +73,24 @@ public interface FormFile {
     /**
      * Returns the data for the entire file as byte array. Care is needed when
      * using this method, since a large upload could easily exhaust available
-     * memory. The preferred method for accessing the file data is
-     * {@link #getInputStream() getInputStream}.
+     * memory. The preferred method for accessing the file data is {@link
+     * #getInputStream() getInputStream}.
      *
      * @return The file data as a byte array.
-     *
-     * @exception FileNotFoundException if the uploaded file is not found.
-     * @exception IOException           if an error occurred while reading the
-     *                                  file.
+     * @throws FileNotFoundException if the uploaded file is not found.
+     * @throws IOException           if an error occurred while reading the
+     *                               file.
      */
     public byte[] getFileData()
             throws FileNotFoundException, IOException;
 
     /**
-     * Returns an input stream for this file. The caller must close the
-     * stream when it is no longer needed.
+     * Returns an input stream for this file. The caller must close the stream
+     * when it is no longer needed.
      *
-     * @exception FileNotFoundException if the uploaded file is not found.
-     * @exception IOException           if an error occurred while reading the
-     *                                  file.
+     * @throws FileNotFoundException if the uploaded file is not found.
+     * @throws IOException           if an error occurred while reading the
+     *                               file.
      */
     public InputStream getInputStream()
             throws FileNotFoundException, IOException;

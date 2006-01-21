@@ -18,118 +18,132 @@ limitations under the License.
 -->
 <document>
 
-<properties>
-    <title>Welcome</title>
-</properties>
+    <properties>
+        <title>Welcome</title>
+    </properties>
 
-<body>
+    <body>
 
-<section name="FAQs">
+        <section name="FAQs">
 
- <ul>
+            <ul>
 
-    <li>
-    <a href="kickstart.html">Kickstart FAQ</a> (read me first)
-    </li>
+                <li>
+                    <a href="kickstart.html">Kickstart FAQ</a>
+                    (read me first)
+                </li>
 
-    <li>
-    <a href="newbie.html">Newbie FAQ</a>
-    </li>
+                <li>
+                    <a href="newbie.html">Newbie FAQ</a>
+                </li>
 
-    <li>
-    <a href="http://struts.apache.org/helping.html">How to Help FAQ</a>
-    </li>
+                <li>
+                    <a href="http://struts.apache.org/helping.html">How to
+                        Help FAQ</a>
+                </li>
 
-     <li>
-     <a href="works.html">How does it work?</a>
-     </li>
+                <li>
+                    <a href="works.html">How does it work?</a>
+                </li>
 
- </ul>
+            </ul>
 
-</section>
+        </section>
 
-<section name="HOWTOs">
+        <section name="HOWTOs">
 
- <ul>
+            <ul>
 
-    <li>
-    <a href="db-howto.html">Accessing a Database</a>
-    </li>
+                <li>
+                    <a href="db-howto.html">Accessing a Database</a>
+                </li>
 
-    <li>
-    <a href="actionForm.html">Building an Action Form</a>
-    </li>
-    
-    <li>
-    <a href="apps.html">Building Applications</a>
-    </li>
+                <li>
+                    <a href="actionForm.html">Building an Action Form</a>
+                </li>
 
-    <li>
-    <a href="dispatchValidator.html">Dispatching And Validating</a>
-      <ul>
-     	<li>
- 	  <a href="dispatchValidator.zip">Example Code</a>
-	</li>
-      </ul>    		
-    </li>
- </ul>
+                <li>
+                    <a href="apps.html">Building Applications</a>
+                </li>
 
-</section>
+                <li>
+                    <a href="dispatchValidator.html">Dispatching And
+                        Validating</a>
+                    <ul>
+                        <li>
+                            <a href="dispatchValidator.zip">Example Code</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
 
-<section name="IDE HOWTOs">
+        </section>
 
- <ul>
+        <section name="IDE HOWTOs">
 
-    <li>
-    <a href="eclipse.html">Installing the Eclipse IDE</a>
-    </li>
+            <ul>
 
-    <li>
-    <a href="netbeans40.html">Installing the Netbeans IDE (Version 4.0)</a>
-    </li>
-    
- </ul>
+                <li>
+                    <a href="eclipse.html">Installing the Eclipse IDE</a>
+                </li>
 
-</section>
+                <li>
+                    <a href="netbeans40.html">Installing the Netbeans IDE
+                        (Version 4.0)</a>
+                </li>
 
-<section name="External FAQs and HOWTOs">
+            </ul>
 
-<ul>
-   <li>
-   <a href="http://wiki.apache.org/struts">Apache Struts Wiki</a>
-   </li>
-</ul>
+        </section>
 
- <ul>
-    <li>
-    <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">jGuru FAQ</a>
-    </li>
- </ul>
+        <section name="External FAQs and HOWTOs">
 
-<ul>
-   <li>
-   <a href="http://www.husted.com/struts/tips">Struts Tips</a> by Ted Husted
-   </li>
-</ul>
+            <ul>
+                <li>
+                    <a href="http://wiki.apache.org/struts">Apache Struts
+                        Wiki</a>
+                </li>
+            </ul>
 
-<ul>
-   <li>
-   <a href="http://opensource2.atlassian.com/confluence/oss/display/STRUTS/Home">Struts University</a>
-   </li>
-</ul>
+            <ul>
+                <li>
+                    <a href="http://www.jguru.com/faq/home.jsp?topic=Struts">
+                        jGuru FAQ</a>
+                </li>
+            </ul>
 
-<ul>
-   <li>
-   <a href="http://www.raibledesigns.com/page/rd/20030226#struts_validator_validating_two_fields">Struts Validator: Validating Two Fields Match</a> by Matt Raible
-   </li>
-</ul>
+            <ul>
+                <li>
+                    <a href="http://www.husted.com/struts/tips">Struts
+                        Tips</a>
+                    by Ted Husted
+                </li>
+            </ul>
 
- <ul>
-    <li>
-    <a href="http://strutstestcase.sourceforge.net">Unit Testing with Struts TestCase</a> by Deryl Seale
-    </li>
- </ul>
+            <ul>
+                <li>
+                    <a href="http://opensource2.atlassian.com/confluence/oss/display/STRUTS/Home">
+                        Struts University</a>
+                </li>
+            </ul>
 
-</section>
+            <ul>
+                <li>
+                    <a href="http://www.raibledesigns.com/page/rd/20030226#struts_validator_validating_two_fields">
+                        Struts Validator: Validating Two Fields Match</a>
+                    by Matt Raible
+                </li>
+            </ul>
 
-</body></document>
+            <ul>
+                <li>
+                    <a href="http://strutstestcase.sourceforge.net">Unit
+                        Testing with Struts TestCase</a>
+                    by Deryl Seale
+                </li>
+            </ul>
+
+        </section>
+
+    </body>
+</document>

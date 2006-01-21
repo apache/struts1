@@ -13,40 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands;
-
 
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ModuleConfig;
-
 
 /**
  * <p>Perform forwarding or redirection based on the specified
  * <code>String</code> (if any).</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-06-04 10:58:46 -0400 (Sat, 04 Jun 2005)
+ *          $
  */
-
 public abstract class AbstractPerformInclude extends ActionCommandBase {
-
     // ---------------------------------------------------------- Public Methods
 
-
     /**
-     * <p>Perform an include based on the specified
-     * include uri (if any).</p>
+     * <p>Perform an include based on the specified include uri (if any).</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
-     *
      * @return <code>true</code> so that processing completes
      */
-    public boolean execute(ActionContext actionCtx) throws Exception {
-
+    public boolean execute(ActionContext actionCtx)
+            throws Exception {
         ModuleConfig moduleConfig = actionCtx.getModuleConfig();
 
         // Is there an include to be performed?
         String include = actionCtx.getInclude();
+
         if (include == null) {
             return (false);
         }
@@ -56,24 +50,19 @@ public abstract class AbstractPerformInclude extends ActionCommandBase {
 
         // Perform the appropriate processing on this include uri
         perform(actionCtx, uri);
+
         return (true);
-
     }
-
 
     // ------------------------------------------------------- Protected Methods
 
-
     /**
-     * <p>Perform the appropriate processing on the specified
-     * include uri.</p>
+     * <p>Perform the appropriate processing on the specified include
+     * uri.</p>
      *
      * @param context The context for this request
      * @param include The forward to be performed
      */
-    protected abstract void perform(ActionContext context,
-                                    String include)
-        throws Exception;
-
-
+    protected abstract void perform(ActionContext context, String include)
+            throws Exception;
 }

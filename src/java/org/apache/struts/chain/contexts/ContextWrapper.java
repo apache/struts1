@@ -18,36 +18,32 @@
 package org.apache.struts.chain.contexts;
 
 import org.apache.commons.chain.Context;
-import java.util.Set;
+
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 /**
- * <p>
- * Provide a base class for any Context Implementation which is primarily
- * intended for use in a subchain.
- * </p>
- * <p>
- * Classes which extend <code>ContextWrapper</code> may implement typesafe
- * property methods which also leave their values in the underlying context.
- * </p>
+ * <p> Provide a base class for any Context Implementation which is primarily
+ * intended for use in a subchain. </p> <p> Classes which extend
+ * <code>ContextWrapper</code> may implement typesafe property methods which
+ * also leave their values in the underlying context. </p>
  */
 public class ContextWrapper implements Context {
+    private Context base;
 
     /**
-     * <p>
-     * Instantiate object as a composite around the given Context.
-     * </p>
+     * <p> Instantiate object as a composite around the given Context. </p>
+     *
      * @param context Context instance to wrap
      */
     public ContextWrapper(Context context) {
         this.base = context;
     }
 
-    private Context base;
-
     /**
      * Provide the underlying Context for this composite.
+     *
      * @return The undelrying Context
      */
     protected Context getBaseContext() {
@@ -57,7 +53,6 @@ public class ContextWrapper implements Context {
     // -------------------------------
     // Map interface methods
     // -------------------------------
-
     public Set entrySet() {
         return this.base.entrySet();
     }
@@ -107,5 +102,4 @@ public class ContextWrapper implements Context {
     public int size() {
         return this.base.size();
     }
-
 }

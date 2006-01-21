@@ -13,34 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands;
-
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 
-
 /**
  * <p>Determine whether the requested action is authorized for the current
  * user.  If not, abort chain processing and perferably, return an error
  * message of some kind.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
+ *          $
  */
-
 public abstract class AbstractAuthorizeAction extends ActionCommandBase {
-
-
     // ------------------------------------------------------ Instance Variables
     private static final Log log =
-        LogFactory.getLog(AbstractAuthorizeAction.class);
-
+            LogFactory.getLog(AbstractAuthorizeAction.class);
 
     // ---------------------------------------------------------- Public Methods
-
 
     /**
      * <p>Determine whether the requested action is authorized for the current
@@ -48,12 +41,11 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
      * message of some kind.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
-     *
      * @return <code>false</code> if the user is authorized for the selected
-     * action, else <code>true</code> to abort processing.
+     *         action, else <code>true</code> to abort processing.
      */
-    public boolean execute(ActionContext actionCtx) throws Exception {
-
+    public boolean execute(ActionContext actionCtx)
+            throws Exception {
         // Retrieve ActionConfig
         ActionConfig actionConfig = actionCtx.getActionConfig();
 
@@ -63,8 +55,9 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
         }
 
         boolean throwEx = false;
+
         try {
-            throwEx = !(isAuthorized(actionCtx, actionConfig.getRoleNames(), 
+            throwEx = !(isAuthorized(actionCtx, actionConfig.getRoleNames(),
                     actionConfig));
         }
         catch (Exception ex) {
@@ -73,51 +66,46 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
         }
 
         if (throwEx) {
-
             // The current user is not authorized for this action
-            throw new UnauthorizedActionException(
-                    getErrorMessage(actionCtx, actionConfig));
+            throw new UnauthorizedActionException(getErrorMessage(actionCtx,
+                    actionConfig));
         } else {
             return (false);
         }
-
     }
 
     /**
-     * <p>Must authorization rules be consulted?  The base implementation 
-     * returns <code>true</code> if the given <code>ActionConfig</code> has 
+     * <p>Must authorization rules be consulted?  The base implementation
+     * returns <code>true</code> if the given <code>ActionConfig</code> has
      * one or more roles defined.</p>
-     * 
+     *
      * @param actionConfig the current ActionConfig object
-     * @return true if the <code>isAuthorized</code> method should be consulted.
+     * @return true if the <code>isAuthorized</code> method should be
+     *         consulted.
      */
     protected boolean isAuthorizationRequired(ActionConfig actionConfig) {
         String[] roles = actionConfig.getRoleNames();
+
         return (roles != null) && (roles.length > 0);
     }
 
-
     // ------------------------------------------------------- Protected Methods
-
 
     /**
      * <p>Determine if the action is authorized for the given roles.</p>
      *
-     * @param context        The <code>Context</code> for the current request
-     * @param roles          An array of valid roles for this request
-     * @param actionConfig   The current action mapping
-     *
+     * @param context      The <code>Context</code> for the current request
+     * @param roles        An array of valid roles for this request
+     * @param actionConfig The current action mapping
      * @return <code>true</code> if the request is authorized, else
-     * <code>false</code>
-     * @exception Exception If the action cannot be tested for authorization
+     *         <code>false</code>
+     * @throws Exception If the action cannot be tested for authorization
      */
-    protected abstract boolean isAuthorized(ActionContext context, 
+    protected abstract boolean isAuthorized(ActionContext context,
                                             String[] roles,
                                             ActionConfig actionConfig)
-              throws Exception;
+            throws Exception;
 
-
-    protected abstract String getErrorMessage(ActionContext context, 
+    protected abstract String getErrorMessage(ActionContext context,
                                               ActionConfig actionConfig);
-
 }

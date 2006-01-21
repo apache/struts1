@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands.servlet;
-
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,37 +30,34 @@ import org.apache.struts.util.RequestUtils;
  * <p>Populate the form bean (if any) for this request.  Sets the multipart
  * class from the action config in the request attributes.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
+ *          $
  */
-
 public class PopulateActionForm extends AbstractPopulateActionForm {
-
-
-    private static final Log log = LogFactory.getLog(PopulateActionForm.class);
+    private static final Log log =
+            LogFactory.getLog(PopulateActionForm.class);
 
     // ------------------------------------------------------- Protected Methods
-
-
-    protected void populate(ActionContext context,
-                         ActionConfig actionConfig,
-                         ActionForm actionForm) throws Exception {
+    protected void populate(ActionContext context, ActionConfig actionConfig,
+                            ActionForm actionForm)
+            throws Exception {
         ServletActionContext saContext = (ServletActionContext) context;
-        RequestUtils.populate(actionForm, actionConfig.getPrefix(), 
+
+        RequestUtils.populate(actionForm, actionConfig.getPrefix(),
                 actionConfig.getSuffix(), saContext.getRequest());
     }
 
-    protected void reset(ActionContext context,
-                         ActionConfig actionConfig,
+    protected void reset(ActionContext context, ActionConfig actionConfig,
                          ActionForm actionForm) {
-
         ServletActionContext saContext = (ServletActionContext) context;
-        actionForm.reset((ActionMapping) actionConfig, saContext.getRequest());
+
+        actionForm
+                .reset((ActionMapping) actionConfig, saContext.getRequest());
 
         // Set the multipart class
         if (actionConfig.getMultipartClass() != null) {
             saContext.getRequestScope().put(Globals.MULTIPART_KEY,
-                                 actionConfig.getMultipartClass());
+                    actionConfig.getMultipartClass());
         }
-
     }
 }

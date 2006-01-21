@@ -13,62 +13,52 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands;
-
 
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ModuleConfig;
-
 
 /**
  * <p>Check to see if the content type is set, and if so, set it for this
  * response.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
+ *          $
  */
-
 public abstract class AbstractSetContentType extends ActionCommandBase {
-
-
     // ---------------------------------------------------------- Public Methods
-
 
     /**
      * <p>Check to see if the content type is set, and if so, set it for this
      * response.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
-     *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(ActionContext actionCtx) throws Exception {
+    public boolean execute(ActionContext actionCtx)
+            throws Exception {
         // Retrieve the ModuleConfig instance
         ModuleConfig moduleConfig = actionCtx.getModuleConfig();
 
         // If the content type is configured, set it for the response
-        String contentType = 
+        String contentType =
                 moduleConfig.getControllerConfig().getContentType();
-        
+
         if (contentType != null) {
             setContentType(actionCtx, contentType);
         }
-        return (false);
 
+        return (false);
     }
 
-
     // ------------------------------------------------------- Protected Methods
-
 
     /**
      * <p>Request no cache flags are set.</p>
      *
-     * @param context The <code>Context</code> for this request
+     * @param context     The <code>Context</code> for this request
      * @param contentType The content type for the response
      */
-    protected abstract void setContentType(ActionContext context, 
+    protected abstract void setContentType(ActionContext context,
                                            String contentType);
-
-
 }

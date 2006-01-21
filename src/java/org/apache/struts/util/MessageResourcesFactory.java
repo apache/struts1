@@ -15,36 +15,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package org.apache.struts.util;
 
-
-import java.io.Serializable;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.config.MessageResourcesConfig;
 
+import java.io.Serializable;
 
 /**
  * Factory for <code>MessageResources</code> instances.  The general usage
- * pattern for this class is:
- * <ul>
- * <li>Call <code>MessageResourcesFactory().createFactory()</code> to retrieve
- *     a <code>MessageResourcesFactory</code> instance.</li>
- * <li>Set properties as required to configure this factory instance to create
- *     <code>MessageResources</code> instances with desired
- *     characteristics.</li>
+ * pattern for this class is: <ul> <li>Call <code>MessageResourcesFactory().createFactory()</code>
+ * to retrieve a <code>MessageResourcesFactory</code> instance.</li> <li>Set
+ * properties as required to configure this factory instance to create
+ * <code>MessageResources</code> instances with desired characteristics.</li>
  * <li>Call the <code>createResources()</code> method of the factory to
- *     retrieve a newly instantiated <code>MessageResources</code>
- *     instance.</li>
+ * retrieve a newly instantiated <code>MessageResources</code> instance.</li>
  * </ul>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-08-29 23:57:50 -0400 (Mon, 29 Aug 2005)
+ *          $
  */
-
 public abstract class MessageResourcesFactory implements Serializable {
+    // ------------------------------------------------------ Static Properties
 
+    /**
+     * The Java class to be used for <code>MessageResourcesFactory</code>
+     * instances.
+     */
+    protected static transient Class clazz = null;
+
+    /**
+     * Commons Logging instance.
+     */
+    private static Log LOG = LogFactory.getLog(MessageResourcesFactory.class);
+
+    /**
+     * The fully qualified class name to be used for <code>MessageResourcesFactory</code>
+     * instances.
+     */
+    protected static String factoryClass =
+            "org.apache.struts.util.PropertyMessageResourcesFactory";
 
     // ---------------------------------------------------- Instance Properties
 
@@ -52,6 +63,12 @@ public abstract class MessageResourcesFactory implements Serializable {
      * Configuration information for Message Resources.
      */
     protected MessageResourcesConfig config;
+
+    /**
+     * The "return null" property value to which newly created
+     * MessageResourcess should be initialized.
+     */
+    protected boolean returnNull = true;
 
     /**
      * Set the configuration information for Message Resources.
@@ -72,16 +89,11 @@ public abstract class MessageResourcesFactory implements Serializable {
     }
 
     /**
-     * The "return null" property value to which newly created
-     * MessageResourcess should be initialized.
-     */
-    protected boolean returnNull = true;
-
-    /**
-     * Get default value of the "returnNull" property used to initialize newly created
-     * MessageResourcess.
+     * Get default value of the "returnNull" property used to initialize newly
+     * created MessageResourcess.
+     *
      * @return default value of the "returnNull" property newly created
-     * MessageResourcess are initialized to.
+     *         MessageResourcess are initialized to.
      */
     public boolean getReturnNull() {
         return (this.returnNull);
@@ -90,15 +102,15 @@ public abstract class MessageResourcesFactory implements Serializable {
     /**
      * Set the default value of the "returnNull" property newly created
      * MessageResourcess are initialized to.
-     * @param  returnNull default value of the "returnNull" MessageResourcess are initialized to.
+     *
+     * @param returnNull default value of the "returnNull" MessageResourcess
+     *                   are initialized to.
      */
     public void setReturnNull(boolean returnNull) {
         this.returnNull = returnNull;
     }
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Create and return a newly instansiated <code>MessageResources</code>.
@@ -108,35 +120,12 @@ public abstract class MessageResourcesFactory implements Serializable {
      */
     public abstract MessageResources createResources(String config);
 
-
-    // ------------------------------------------------------ Static Properties
-
-
     /**
-     * The Java class to be used for
-     * <code>MessageResourcesFactory</code> instances.
-     */
-    protected static transient Class clazz = null;
-
-
-    /**
-     * Commons Logging instance.
-     */
-    private static Log LOG = LogFactory.getLog(MessageResourcesFactory.class);
-
-
-    /**
-     * The fully qualified class name to be used for
-     * <code>MessageResourcesFactory</code> instances.
-     */
-    protected static String factoryClass =
-        "org.apache.struts.util.PropertyMessageResourcesFactory";
-
-    /**
-     * The fully qualified class name that is used for
-     * <code>MessageResourcesFactory</code> instances.
-     * @return class name that is used for
-     *   <code>MessageResourcesFactory</code> instances
+     * The fully qualified class name that is used for <code>MessageResourcesFactory</code>
+     * instances.
+     *
+     * @return class name that is used for <code>MessageResourcesFactory</code>
+     *         instances
      */
     public static String getFactoryClass() {
         return (MessageResourcesFactory.factoryClass);
@@ -145,39 +134,39 @@ public abstract class MessageResourcesFactory implements Serializable {
     /**
      * Set the fully qualified class name that is used for
      * <code>MessageResourcesFactory</code> instances.
-     * @param factoryClass name that is used for
-     *   <code>MessageResourcesFactory</code> instances
+     *
+     * @param factoryClass name that is used for <code>MessageResourcesFactory</code>
+     *                     instances
      */
     public static void setFactoryClass(String factoryClass) {
         MessageResourcesFactory.factoryClass = factoryClass;
         MessageResourcesFactory.clazz = null;
     }
 
-
     // --------------------------------------------------------- Static Methods
 
-
     /**
-     * Create and return a <code>MessageResourcesFactory</code> instance of the
-     * appropriate class, which can be used to create customized
+     * Create and return a <code>MessageResourcesFactory</code> instance of
+     * the appropriate class, which can be used to create customized
      * <code>MessageResources</code> instances.  If no such factory can be
      * created, return <code>null</code> instead.
      */
     public static MessageResourcesFactory createFactory() {
-
         // Construct a new instance of the specified factory class
         try {
-            if (clazz == null)
+            if (clazz == null) {
                 clazz = RequestUtils.applicationClass(factoryClass);
-            MessageResourcesFactory factory =
-                (MessageResourcesFactory) clazz.newInstance();
+            }
+
+            MessageResourcesFactory factory = (MessageResourcesFactory) clazz
+                    .newInstance();
+
             return (factory);
-        } catch (Throwable t) {
+        }
+        catch (Throwable t) {
             LOG.error("MessageResourcesFactory.createFactory", t);
+
             return (null);
         }
-
     }
-
-
 }

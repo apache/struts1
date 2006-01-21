@@ -15,20 +15,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.action;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 /**
- * <p>A class that encapsulates messages. Messages can be either global
- * or they are specific to a particular bean property.</p>
+ * <p>A class that encapsulates messages. Messages can be either global or
+ * they are specific to a particular bean property.</p>
  *
  * <p>Each individual message is described by an <code>ActionMessage</code>
  * object, which contains a message key (to be looked up in an appropriate
@@ -40,36 +39,31 @@ import java.util.List;
  * Therefore, no synchronization is required for access to internal
  * collections.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-08-26 21:58:39 -0400 (Fri, 26 Aug 2005)
+ *          $
  * @since Struts 1.1
  */
 public class ActionMessages implements Serializable {
-
-
     /**
      * <p>Compares ActionMessageItem objects.</p>
      */
     private static final Comparator actionItemComparator = new Comparator() {
         public int compare(Object o1, Object o2) {
             return ((ActionMessageItem) o1).getOrder()
-                - ((ActionMessageItem) o2).getOrder();
+                    - ((ActionMessageItem) o2).getOrder();
         }
     };
 
-
     // ----------------------------------------------------- Manifest Constants
-
 
     /**
      * <p>The "property name" marker to use for global messages, as opposed to
      * those related to a specific property.</p>
      */
     public static final String GLOBAL_MESSAGE =
-        "org.apache.struts.action.GLOBAL_MESSAGE";
-
+            "org.apache.struts.action.GLOBAL_MESSAGE";
 
     // ----------------------------------------------------- Instance Variables
-
 
     /**
      * <p>Have the messages been retrieved from this object?</p>
@@ -81,40 +75,34 @@ public class ActionMessages implements Serializable {
      */
     protected boolean accessed = false;
 
-
     /**
-     * <p>The accumulated set of <code>ActionMessage</code> objects (represented
-     * as an ArrayList) for each property, keyed by property name.</p>
+     * <p>The accumulated set of <code>ActionMessage</code> objects
+     * (represented as an ArrayList) for each property, keyed by property
+     * name.</p>
      */
     protected HashMap messages = new HashMap();
 
-
     /**
-     * <p>The current number of the property/key being added. This is used
-     * to maintain the order messages are added.</p>
+     * <p>The current number of the property/key being added. This is used to
+     * maintain the order messages are added.</p>
      */
     protected int iCount = 0;
 
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * <p>Create an empty <code>ActionMessages</code> object.</p>
      */
     public ActionMessages() {
-
         super();
-
     }
-
 
     /**
      * <p>Create an <code>ActionMessages</code> object initialized with the
      * given messages.</p>
      *
-     * @param messages The messages to be initially added to this object.
-     * This parameter can be <code>null</code>.
+     * @param messages The messages to be initially added to this object. This
+     *                 parameter can be <code>null</code>.
      * @since Struts 1.1
      */
     public ActionMessages(ActionMessages messages) {
@@ -122,17 +110,15 @@ public class ActionMessages implements Serializable {
         this.add(messages);
     }
 
-
     /**
      * <p>Add a message to the set of messages for the specified property. An
      * order of the property/key is maintained based on the initial addition
      * of the property/key.</p>
      *
-     * @param property  Property name (or ActionMessages.GLOBAL_MESSAGE)
-     * @param message   The message to be added
+     * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
+     * @param message  The message to be added
      */
     public void add(String property, ActionMessage message) {
-
         ActionMessageItem item = (ActionMessageItem) messages.get(property);
         List list = null;
 
@@ -146,79 +132,70 @@ public class ActionMessages implements Serializable {
         }
 
         list.add(message);
-
     }
-
 
     /**
      * <p>Adds the messages from the given <code>ActionMessages</code> object
      * to this set of messages. The messages are added in the order they are
-     * returned from the <code>properties</code> method. If a message's property
-     * is already in the current <code>ActionMessages</code> object, it is added
-     * to the end of the list for that property. If a message's property is not
-     * in the current list it is added to the end of the properties.</p>
+     * returned from the <code>properties</code> method. If a message's
+     * property is already in the current <code>ActionMessages</code> object,
+     * it is added to the end of the list for that property. If a message's
+     * property is not in the current list it is added to the end of the
+     * properties.</p>
      *
-     * @param actionMessages The <code>ActionMessages</code> object to be added.
-     * This parameter can be <code>null</code>.
+     * @param actionMessages The <code>ActionMessages</code> object to be
+     *                       added. This parameter can be <code>null</code>.
      * @since Struts 1.1
      */
     public void add(ActionMessages actionMessages) {
-
         if (actionMessages == null) {
             return;
         }
 
         // loop over properties
         Iterator props = actionMessages.properties();
+
         while (props.hasNext()) {
             String property = (String) props.next();
 
             // loop over messages for each property
             Iterator msgs = actionMessages.get(property);
+
             while (msgs.hasNext()) {
                 ActionMessage msg = (ActionMessage) msgs.next();
+
                 this.add(property, msg);
             }
         }
     }
 
-
     /**
      * <p>Clear all messages recorded by this object.</p>
      */
     public void clear() {
-
         messages.clear();
-
     }
 
-
     /**
-     * <p>Return <code>true</code> if there are no messages recorded
-     * in this collection, or <code>false</code> otherwise.</p>
+     * <p>Return <code>true</code> if there are no messages recorded in this
+     * collection, or <code>false</code> otherwise.</p>
      *
      * @return <code>true</code> if there are no messages recorded in this
      *         collection; <code>false</code> otherwise.
-     *
      * @since Struts 1.1
      */
     public boolean isEmpty() {
-
         return (messages.isEmpty());
-
-
     }
 
-
     /**
-     * <p>Return the set of all recorded messages, without distinction
-     * by which property the messages are associated with. If there are
-     * no messages recorded, an empty enumeration is returned.</p>
+     * <p>Return the set of all recorded messages, without distinction by
+     * which property the messages are associated with. If there are no
+     * messages recorded, an empty enumeration is returned.</p>
      *
      * @return An iterator over the messages for all properties.
      */
     public Iterator get() {
-
         this.accessed = true;
 
         if (messages.isEmpty()) {
@@ -240,7 +217,7 @@ public class ActionMessages implements Serializable {
             ActionMessageItem ami = (ActionMessageItem) i.next();
 
             for (Iterator msgsIter = ami.getList().iterator();
-            	msgsIter.hasNext();) {
+                 msgsIter.hasNext();) {
                 results.add(msgsIter.next());
             }
         }
@@ -248,16 +225,14 @@ public class ActionMessages implements Serializable {
         return results.iterator();
     }
 
-
     /**
-     * <p>Return the set of messages related to a specific property.
-     * If there are no such messages, an empty enumeration is returned.</p>
+     * <p>Return the set of messages related to a specific property. If there
+     * are no such messages, an empty enumeration is returned.</p>
      *
      * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
      * @return An iterator over the messages for the specified property.
      */
     public Iterator get(String property) {
-
         this.accessed = true;
 
         ActionMessageItem item = (ActionMessageItem) messages.get(property);
@@ -267,24 +242,19 @@ public class ActionMessages implements Serializable {
         } else {
             return (item.getList().iterator());
         }
-
     }
-
 
     /**
      * <p>Returns <code>true</code> if the <code>get()</code> or
      * <code>get(String)</code> methods are called.</p>
      *
-     * @return <code>true</code> if the messages have been accessed one or more
-     * times.
+     * @return <code>true</code> if the messages have been accessed one or
+     *         more times.
      * @since Struts 1.2
      */
     public boolean isAccessed() {
-
         return this.accessed;
-
     }
-
 
     /**
      * <p>Return the set of property names for which at least one message has
@@ -296,7 +266,6 @@ public class ActionMessages implements Serializable {
      * @return An iterator over the property names for which messages exist.
      */
     public Iterator properties() {
-
         if (messages.isEmpty()) {
             return Collections.EMPTY_LIST.iterator();
         }
@@ -314,13 +283,12 @@ public class ActionMessages implements Serializable {
 
         for (Iterator i = actionItems.iterator(); i.hasNext();) {
             ActionMessageItem ami = (ActionMessageItem) i.next();
+
             results.add(ami.getProperty());
         }
 
         return results.iterator();
-
     }
-
 
     /**
      * <p>Return the number of messages recorded for all properties (including
@@ -331,83 +299,72 @@ public class ActionMessages implements Serializable {
      * @return The number of messages associated with all properties.
      */
     public int size() {
-
         int total = 0;
 
         for (Iterator i = messages.values().iterator(); i.hasNext();) {
             ActionMessageItem ami = (ActionMessageItem) i.next();
+
             total += ami.getList().size();
         }
 
         return (total);
-
     }
 
-
     /**
-     * <p>Return the number of messages associated with the specified property.
-     * </p>
+     * <p>Return the number of messages associated with the specified
+     * property. </p>
      *
      * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
      * @return The number of messages associated with the property.
      */
     public int size(String property) {
-
         ActionMessageItem item = (ActionMessageItem) messages.get(property);
 
         return (item == null) ? 0 : item.getList().size();
     }
 
-
     /**
-     * <p>Returns a String representation of this ActionMessages'
-     * property name=message list mapping.</p>
-     * @see java.lang.Object#toString()
+     * <p>Returns a String representation of this ActionMessages' property
+     * name=message list mapping.</p>
+     *
+     * @see Object#toString()
      */
     public String toString() {
         return this.messages.toString();
     }
-
 
     /**
      * <p>This class is used to store a set of messages associated with a
      * property/key and the position it was initially added to list.</p>
      */
     protected class ActionMessageItem implements Serializable {
-
-
         /**
          * <p>The list of <code>ActionMessage</code>s.</p>
          */
         protected List list = null;
-
 
         /**
          * <p>The position in the list of messages.</p>
          */
         protected int iOrder = 0;
 
-
         /**
          * <p>The property associated with <code>ActionMessage</code>.</p>
          */
         protected String property = null;
-
 
         /**
          * <p>Construct an instance of this class.</p>
          *
          * @param list     The list of <code>ActionMessage</code>s.
          * @param iOrder   The position in the list of messages.
-         * @param property The property associated with
-         *                 <code>ActionMessage</code>.
+         * @param property The property associated with <code>ActionMessage</code>.
          */
         public ActionMessageItem(List list, int iOrder, String property) {
             this.list = list;
             this.iOrder = iOrder;
             this.property = property;
         }
-
 
         /**
          * <p>Retrieve the list of messages associated with this item.</p>
@@ -418,7 +375,6 @@ public class ActionMessages implements Serializable {
             return list;
         }
 
-
         /**
          * <p>Set the list of messages associated with this item.</p>
          *
@@ -427,7 +383,6 @@ public class ActionMessages implements Serializable {
         public void setList(List list) {
             this.list = list;
         }
-
 
         /**
          * <p>Retrieve the position in the message list.</p>
@@ -438,7 +393,6 @@ public class ActionMessages implements Serializable {
             return iOrder;
         }
 
-
         /**
          * <p>Set the position in the message list.</p>
          *
@@ -447,7 +401,6 @@ public class ActionMessages implements Serializable {
         public void setOrder(int iOrder) {
             this.iOrder = iOrder;
         }
-
 
         /**
          * <p>Retrieve the property associated with this item.</p>
@@ -458,7 +411,6 @@ public class ActionMessages implements Serializable {
             return property;
         }
 
-
         /**
          * <p>Set the property associated with this item.</p>
          *
@@ -468,7 +420,6 @@ public class ActionMessages implements Serializable {
             this.property = property;
         }
 
-
         /**
          * <p>Construct a string representation of this object.</p>
          *
@@ -477,7 +428,5 @@ public class ActionMessages implements Serializable {
         public String toString() {
             return this.list.toString();
         }
-
     }
-
 }

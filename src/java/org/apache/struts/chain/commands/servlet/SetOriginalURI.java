@@ -13,39 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands.servlet;
-
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.Globals;
 import org.apache.struts.chain.commands.AbstractSetOriginalURI;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
 
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>Set the servlet path.</p>
  *
- * @version $Rev: 179995 $ $Date: 2005-06-04 07:58:46 -0700 (Sat, 04 Jun 2005) $
+ * @version $Rev: 179995 $ $Date: 2005-06-04 07:58:46 -0700 (Sat, 04 Jun 2005)
+ *          $
  */
-
 public class SetOriginalURI extends AbstractSetOriginalURI {
-
-
     // ------------------------------------------------------- Protected Methods
-
-
     protected void setOriginalURI(ActionContext context) {
-
         ServletActionContext swcontext = (ServletActionContext) context;
         HttpServletRequest request = swcontext.getRequest();
 
-        request.setAttribute(
-                Globals.ORIGINAL_URI_KEY, request.getServletPath());
-
+        request.setAttribute(Globals.ORIGINAL_URI_KEY,
+                request.getServletPath());
     }
-
-
 }

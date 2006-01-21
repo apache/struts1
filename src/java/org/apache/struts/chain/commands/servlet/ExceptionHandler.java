@@ -13,12 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands.servlet;
-
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -33,32 +28,25 @@ import org.apache.struts.config.ExceptionConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <p>Handle the specified exception.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
+ *          $
  */
-
 public class ExceptionHandler extends AbstractExceptionHandler {
-
-
     // ------------------------------------------------------ Instance Variables
-
     private static final Log log = LogFactory.getLog(ExceptionHandler.class);
 
-
-
     // ------------------------------------------------------- Protected Methods
-
-
-    protected ForwardConfig handle(ActionContext context,
-                                   Exception exception,
+    protected ForwardConfig handle(ActionContext context, Exception exception,
                                    ExceptionConfig exceptionConfig,
                                    ActionConfig actionConfig,
                                    ModuleConfig moduleConfig)
-        throws Exception {
-
+            throws Exception {
         // Look up the remaining properties needed for this handler
         ServletActionContext sacontext = (ServletActionContext) context;
         ActionForm actionForm = (ActionForm) sacontext.getActionForm();
@@ -67,16 +55,10 @@ public class ExceptionHandler extends AbstractExceptionHandler {
 
         // Handle this exception
         org.apache.struts.action.ExceptionHandler handler =
-            (org.apache.struts.action.ExceptionHandler)
-            ClassUtils.getApplicationInstance(exceptionConfig.getHandler());
-        return (handler.execute(exception,
-                                exceptionConfig,
-                                (ActionMapping) actionConfig,
-                                actionForm,
-                                request,
-                                response));
+                (org.apache.struts.action.ExceptionHandler) ClassUtils
+                        .getApplicationInstance(exceptionConfig.getHandler());
 
+        return (handler.execute(exception, exceptionConfig,
+                (ActionMapping) actionConfig, actionForm, request, response));
     }
-
-
 }

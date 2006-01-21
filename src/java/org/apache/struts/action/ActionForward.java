@@ -15,64 +15,52 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package org.apache.struts.action;
-
 
 import org.apache.struts.config.ForwardConfig;
 
-
 /**
  * <p>An <strong>ActionForward</strong> represents a destination to which the
- * controller, <code>RequestProcessor</code>, might be directed to
- * perform a <code>RequestDispatcher.forward</code> or
- * <code>HttpServletResponse.sendRedirect</code> to, as a result of
- * processing activities of an <code>Action</code> class. Instances of this
- * class may be created dynamically as necessary, or configured in association
- * with an <code>ActionMapping</code> instance for named lookup of potentially
- * multiple destinations for a particular mapping instance.</p>
+ * controller, <code>RequestProcessor</code>, might be directed to perform a
+ * <code>RequestDispatcher.forward</code> or <code>HttpServletResponse.sendRedirect</code>
+ * to, as a result of processing activities of an <code>Action</code> class.
+ * Instances of this class may be created dynamically as necessary, or
+ * configured in association with an <code>ActionMapping</code> instance for
+ * named lookup of potentially multiple destinations for a particular mapping
+ * instance.</p>
  *
- * <p>An <code>ActionForward</code> has the following minimal set of properties.
- * Additional properties can be provided as needed by subclassses.</p>
- * <ul>
- * <li><strong>contextRelative</strong> - Should the <code>path</code>
- *     value be interpreted as context-relative (instead of
- *     module-relative, if it starts with a '/' character? [false]</li>
+ * <p>An <code>ActionForward</code> has the following minimal set of
+ * properties. Additional properties can be provided as needed by
+ * subclassses.</p> <ul> <li><strong>contextRelative</strong> - Should the
+ * <code>path</code> value be interpreted as context-relative (instead of
+ * module-relative, if it starts with a '/' character? [false]</li>
  * <li><strong>name</strong> - Logical name by which this instance may be
- *     looked up in relationship to a particular <code>ActionMapping</code>.
- *     </li>
+ * looked up in relationship to a particular <code>ActionMapping</code>. </li>
  * <li><strong>path</strong> - Module-relative or context-relative URI to
- *     which control should be forwarded, or an absolute or relative URI to
- *     which control should be redirected.</li>
- * <li><strong>redirect</strong> - Set to <code>true</code> if the controller
- *     servlet should call <code>HttpServletResponse.sendRedirect()</code>
- *     on the associated path; otherwise <code>false</code>.  [false]</li>
- * </ul>
+ * which control should be forwarded, or an absolute or relative URI to which
+ * control should be redirected.</li> <li><strong>redirect</strong> - Set to
+ * <code>true</code> if the controller servlet should call
+ * <code>HttpServletResponse.sendRedirect()</code> on the associated path;
+ * otherwise <code>false</code>.  [false]</li> </ul>
  *
- * <p>Since Struts 1.1 this class extends <code>ForwardConfig</code>
- * and inherits the <code>contextRelative</code> property.
+ * <p>Since Struts 1.1 this class extends <code>ForwardConfig</code> and
+ * inherits the <code>contextRelative</code> property.
  *
  * <p><strong>NOTE</strong> - This class would have been deprecated and
- * replaced by <code>org.apache.struts.config.ForwardConfig</code> except
- * for the fact that it is part of the public API that existing applications
- * are using.</p>
+ * replaced by <code>org.apache.struts.config.ForwardConfig</code> except for
+ * the fact that it is part of the public API that existing applications are
+ * using.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-08-14 17:24:39 -0400 (Sun, 14 Aug 2005)
+ *          $
  */
-
 public class ActionForward extends ForwardConfig {
-
-
     /**
      * <p>Construct a new instance with default values.</p>
      */
     public ActionForward() {
-
         this(null, false);
-
     }
-
 
     /**
      * <p>Construct a new instance with the specified path.</p>
@@ -80,66 +68,55 @@ public class ActionForward extends ForwardConfig {
      * @param path Path for this instance
      */
     public ActionForward(String path) {
-
         this(path, false);
-
     }
 
-
     /**
-     * <p>Construct a new instance with the specified
-     * <code>path</code> and <code>redirect</code> flag.</p>
+     * <p>Construct a new instance with the specified <code>path</code> and
+     * <code>redirect</code> flag.</p>
      *
-     * @param path Path for this instance
+     * @param path     Path for this instance
      * @param redirect Redirect flag for this instance
      */
     public ActionForward(String path, boolean redirect) {
-
         super();
         setName(null);
         setPath(path);
         setRedirect(redirect);
-
     }
-
 
     /**
      * <p>Construct a new instance with the specified <code>name</code>,
      * <code>path</code> and <code>redirect</code> flag.</p>
      *
-     * @param name Name of this instance
-     * @param path Path for this instance
+     * @param name     Name of this instance
+     * @param path     Path for this instance
      * @param redirect Redirect flag for this instance
      */
     public ActionForward(String name, String path, boolean redirect) {
-
         super();
         setName(name);
         setPath(path);
         setRedirect(redirect);
-
     }
-
 
     /**
      * Construct a new instance with the specified values.
      *
-     * @param name Name of this forward
-     * @param path Path to which control should be forwarded or redirected
+     * @param name     Name of this forward
+     * @param path     Path to which control should be forwarded or
+     *                 redirected
      * @param redirect Should we do a redirect?
-     * @param module Module prefix, if any
+     * @param module   Module prefix, if any
      */
     public ActionForward(String name, String path, boolean redirect,
                          String module) {
-
         super();
         setName(name);
         setPath(path);
         setRedirect(redirect);
         setModule(module);
-
     }
-
 
     /**
      * <p>Construct a new instance based on the values of another
@@ -152,5 +129,4 @@ public class ActionForward extends ForwardConfig {
         this(copyMe.getName(), copyMe.getPath(), copyMe.getRedirect(),
                 copyMe.getModule());
     }
-
 }

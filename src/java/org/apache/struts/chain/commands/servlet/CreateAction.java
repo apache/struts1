@@ -15,11 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands.servlet;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,28 +28,30 @@ import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ModuleConfig;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * <p>Concrete implementation of <code>AbstractCreateAction</code>
- * for use in a Servlet API chain.  Expects that the ActionContext passed 
- * into it can safely be cast to <code>ServletActionContext</code>.</p>
+ * <p>Concrete implementation of <code>AbstractCreateAction</code> for use in
+ * a Servlet API chain.  Expects that the ActionContext passed into it can
+ * safely be cast to <code>ServletActionContext</code>.</p>
  */
-public class CreateAction 
+public class CreateAction
         extends org.apache.struts.chain.commands.AbstractCreateAction {
-
-
     // ------------------------------------------------------ Instance Variables
     private static final Log log = LogFactory.getLog(CreateAction.class);
 
-
-    /* :TODO The Action class' dependency on having its "servlet" property set 
+    /* :TODO The Action class' dependency on having its "servlet" property set
      * requires this API-dependent subclass of AbstractCreateAction.
      */
-    protected synchronized Action getAction(ActionContext context, String type,
-            ActionConfig actionConfig) throws Exception  {
-
+    protected synchronized Action getAction(ActionContext context,
+                                            String type,
+                                            ActionConfig actionConfig)
+            throws Exception {
         ModuleConfig moduleConfig = actionConfig.getModuleConfig();
         String actionsKey = Constants.ACTIONS_KEY + moduleConfig.getPrefix();
         Map actions = (Map) context.getApplicationScope().get(actionsKey);
+
         if (actions == null) {
             actions = new HashMap();
             context.getApplicationScope().put(actionsKey, actions);
@@ -63,6 +61,7 @@ public class CreateAction
 
         synchronized (actions) {
             action = (Action) actions.get(type);
+
             if (action == null) {
                 log.info("Initialize action of type: " + type);
                 action = (Action) ClassUtils.getApplicationInstance(type);
@@ -73,12 +72,10 @@ public class CreateAction
         if (action.getServlet() == null) {
             ServletActionContext saContext = (ServletActionContext) context;
             ActionServlet actionServlet = saContext.getActionServlet();
+
             action.setServlet(actionServlet);
         }
 
         return (action);
-
     }
-
-
 }

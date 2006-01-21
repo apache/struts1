@@ -13,52 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands;
-
 
 import org.apache.struts.Globals;
 import org.apache.struts.chain.contexts.ActionContext;
-import org.apache.struts.config.ModuleConfig;
-
 
 /**
- * <p>Check to original uri is set, and if not, set it for this
- * request.</p>
+ * <p>Check to original uri is set, and if not, set it for this request.</p>
  *
- * @version $Rev: 179995 $ $Date: 2005-06-04 07:58:46 -0700 (Sat, 04 Jun 2005) $
+ * @version $Rev: 179995 $ $Date: 2005-06-04 07:58:46 -0700 (Sat, 04 Jun 2005)
+ *          $
  */
-
 public abstract class AbstractSetOriginalURI extends ActionCommandBase {
-
-
     // ---------------------------------------------------------- Public Methods
-
 
     /**
      * <p>Check to original uri is set, and if not, set it for this
      * request.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
-     *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(ActionContext actionCtx) throws Exception {
-        
+    public boolean execute(ActionContext actionCtx)
+            throws Exception {
         // Set the original uri if not already set
         if (!actionCtx.getRequestScope()
                 .containsKey(Globals.ORIGINAL_URI_KEY)) {
-            
             setOriginalURI(actionCtx);
         }
-        
-        return (false);
 
+        return (false);
     }
 
-
     // ------------------------------------------------------- Protected Methods
-
 
     /**
      * <p>Set the original uri.</p>
@@ -66,6 +53,4 @@ public abstract class AbstractSetOriginalURI extends ActionCommandBase {
      * @param context The <code>Context</code> for this request
      */
     protected abstract void setOriginalURI(ActionContext context);
-
-
 }

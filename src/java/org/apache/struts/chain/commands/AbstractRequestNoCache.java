@@ -13,37 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands;
-
 
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ModuleConfig;
 
-
 /**
- * <p>Check to see if the controller is configured to prevent caching,
- * and if so, request no cache flags to be set.</p>
+ * <p>Check to see if the controller is configured to prevent caching, and if
+ * so, request no cache flags to be set.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-06-04 10:58:46 -0400 (Sat, 04 Jun 2005)
+ *          $
  */
-
 public abstract class AbstractRequestNoCache extends ActionCommandBase {
-
-
     // ---------------------------------------------------------- Public Methods
 
-
     /**
-     * <p>Check to see if the controller is configured to prevent caching,
-     * and if so, request no cache flags to be set.</p>
+     * <p>Check to see if the controller is configured to prevent caching, and
+     * if so, request no cache flags to be set.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
-     *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(ActionContext actionCtx) throws Exception {
-
+    public boolean execute(ActionContext actionCtx)
+            throws Exception {
         // Retrieve the ModuleConfig instance
         ModuleConfig moduleConfig = actionCtx.getModuleConfig();
 
@@ -51,13 +44,11 @@ public abstract class AbstractRequestNoCache extends ActionCommandBase {
         if (moduleConfig.getControllerConfig().getNocache()) {
             requestNoCache(actionCtx);
         }
-        return (false);
 
+        return (false);
     }
 
-
     // ------------------------------------------------------- Protected Methods
-
 
     /**
      * <p>Request no cache flags are set.</p>
@@ -65,6 +56,4 @@ public abstract class AbstractRequestNoCache extends ActionCommandBase {
      * @param context The <code>Context</code> for this request
      */
     protected abstract void requestNoCache(ActionContext context);
-
-
 }

@@ -15,12 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.util;
 
+import javax.servlet.ServletContext;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import javax.servlet.ServletContext;
 
 /**
  * A PrintWriter implementation that uses the logging facilities of a
@@ -29,13 +28,28 @@ import javax.servlet.ServletContext;
  * is called, or until one of the <code>println()</code> methods is called.
  * Along the way, carriage return characters are skipped.
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
+ *          $
  */
 public class ServletContextWriter extends PrintWriter {
+    // ------------------------------------------------------------- Properties
 
+    /**
+     * The buffer into which we accumulate lines to be logged.
+     */
+    protected StringBuffer buffer = new StringBuffer();
+
+    /**
+     * The servlet context with which we are associated.
+     */
+    protected ServletContext context = null;
+
+    /**
+     * The error state for this stream.
+     */
+    protected boolean error = false;
 
     // ----------------------------------------------------------- Constructors
-
 
     /**
      * Construct a ServletContextWriter associated with the specified
@@ -44,36 +58,11 @@ public class ServletContextWriter extends PrintWriter {
      * @param context The associated servlet context
      */
     public ServletContextWriter(ServletContext context) {
-
         super(new StringWriter());
         this.context = context;
-
     }
 
-
-    // ------------------------------------------------------------- Properties
-
-
-    /**
-     * The buffer into which we accumulate lines to be logged.
-     */
-    protected StringBuffer buffer = new StringBuffer();
-
-
-    /**
-     * The servlet context with which we are associated.
-     */
-    protected ServletContext context = null;
-
-
-    /**
-     * The error state for this stream.
-     */
-    protected boolean error = false;
-
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Flush the stream and check for its error state.  <strong>IMPLEMENTATION
@@ -82,35 +71,27 @@ public class ServletContextWriter extends PrintWriter {
      * <code>true</code> is if <code>setError()</code> is called.
      */
     public boolean checkError() {
-
         flush();
+
         return (error);
-
     }
-
 
     /**
      * Close the stream.
      */
     public void close() {
-
         flush();
-
     }
-
 
     /**
      * Flush the stream.
      */
     public void flush() {
-
         if (buffer.length() > 0) {
             context.log(buffer.toString());
             buffer.setLength(0);
         }
-
     }
-
 
     /**
      * Print a boolean value.
@@ -118,11 +99,8 @@ public class ServletContextWriter extends PrintWriter {
      * @param b The value to be printed
      */
     public void print(boolean b) {
-
         write(String.valueOf(b));
-
     }
-
 
     /**
      * Print a character value.
@@ -130,24 +108,19 @@ public class ServletContextWriter extends PrintWriter {
      * @param c The value to be printed
      */
     public void print(char c) {
-
         write(c);
-
     }
-
 
     /**
      * Print a character array.
      *
      * @param c The character array to be printed
      */
-    public void print(char c[]) {
-
-        for (int i = 0; i < c.length; i++)
+    public void print(char[] c) {
+        for (int i = 0; i < c.length; i++) {
             write(c[i]);
-
+        }
     }
-
 
     /**
      * Print a double value.
@@ -155,11 +128,8 @@ public class ServletContextWriter extends PrintWriter {
      * @param d The value to be printed
      */
     public void print(double d) {
-
         write(String.valueOf(d));
-
     }
-
 
     /**
      * Print a float value.
@@ -167,11 +137,8 @@ public class ServletContextWriter extends PrintWriter {
      * @param f The value to be printed
      */
     public void print(float f) {
-
         write(String.valueOf(f));
-
     }
-
 
     /**
      * Print an integer value.
@@ -179,11 +146,8 @@ public class ServletContextWriter extends PrintWriter {
      * @param i The value to be printed
      */
     public void print(int i) {
-
         write(String.valueOf(i));
-
     }
-
 
     /**
      * Print a long value.
@@ -191,11 +155,8 @@ public class ServletContextWriter extends PrintWriter {
      * @param l The value to be printed
      */
     public void print(long l) {
-
         write(String.valueOf(l));
-
     }
-
 
     /**
      * Print an object.
@@ -203,11 +164,8 @@ public class ServletContextWriter extends PrintWriter {
      * @param o The value to be printed
      */
     public void print(Object o) {
-
         write(o.toString());
-
     }
-
 
     /**
      * Print a String value.
@@ -215,23 +173,19 @@ public class ServletContextWriter extends PrintWriter {
      * @param s The value to be printed
      */
     public void print(String s) {
-
         int len = s.length();
-        for (int i = 0; i < len; i++)
+
+        for (int i = 0; i < len; i++) {
             write(s.charAt(i));
-
+        }
     }
-
 
     /**
      * Terminate the current line and flush the buffer.
      */
     public void println() {
-
         flush();
-
     }
-
 
     /**
      * Print a boolean value and terminate the line.
@@ -239,11 +193,8 @@ public class ServletContextWriter extends PrintWriter {
      * @param b The value to be printed
      */
     public void println(boolean b) {
-
         println(String.valueOf(b));
-
     }
-
 
     /**
      * Print a character value and terminate the line.
@@ -251,26 +202,22 @@ public class ServletContextWriter extends PrintWriter {
      * @param c The value to be printed
      */
     public void println(char c) {
-
         write(c);
         println();
-
     }
-
 
     /**
      * Print a character array and terminate the line.
      *
      * @param c The character array to be printed
      */
-    public void println(char c[]) {
-
-        for (int i = 0; i < c.length; i++)
+    public void println(char[] c) {
+        for (int i = 0; i < c.length; i++) {
             print(c[i]);
+        }
+
         println();
-
     }
-
 
     /**
      * Print a double value and terminate the line.
@@ -278,11 +225,8 @@ public class ServletContextWriter extends PrintWriter {
      * @param d The value to be printed
      */
     public void println(double d) {
-
         println(String.valueOf(d));
-
     }
-
 
     /**
      * Print a float value and terminate the line.
@@ -290,11 +234,8 @@ public class ServletContextWriter extends PrintWriter {
      * @param f The value to be printed
      */
     public void println(float f) {
-
         println(String.valueOf(f));
-
     }
-
 
     /**
      * Print an integer value and terminate the line.
@@ -302,11 +243,8 @@ public class ServletContextWriter extends PrintWriter {
      * @param i The value to be printed
      */
     public void println(int i) {
-
         println(String.valueOf(i));
-
     }
-
 
     /**
      * Print a long value and terminate the line.
@@ -314,11 +252,8 @@ public class ServletContextWriter extends PrintWriter {
      * @param l The value to be printed
      */
     public void println(long l) {
-
         println(String.valueOf(l));
-
     }
-
 
     /**
      * Print an object and terminate the line.
@@ -326,11 +261,8 @@ public class ServletContextWriter extends PrintWriter {
      * @param o The value to be printed
      */
     public void println(Object o) {
-
         println(o.toString());
-
     }
-
 
     /**
      * Print a String value and terminate the line.
@@ -338,24 +270,21 @@ public class ServletContextWriter extends PrintWriter {
      * @param s The value to be printed
      */
     public void println(String s) {
-
         int len = s.length();
-        for (int i = 0; i < len; i++)
+
+        for (int i = 0; i < len; i++) {
             print(s.charAt(i));
+        }
+
         println();
-
     }
-
 
     /**
      * Set the error state for this stream.
      */
     public void setError() {
-
         this.error = true;
-
     }
-
 
     /**
      * Write a single character to this stream.
@@ -363,14 +292,12 @@ public class ServletContextWriter extends PrintWriter {
      * @param c The character to be written
      */
     public void write(char c) {
-
-        if (c == '\n')
+        if (c == '\n') {
             flush();
-        else if (c != '\r')
+        } else if (c != '\r') {
             buffer.append(c);
-
+        }
     }
-
 
     /**
      * Write a single character to this stream.
@@ -378,24 +305,19 @@ public class ServletContextWriter extends PrintWriter {
      * @param c The character to be written
      */
     public void write(int c) {
-
         write((char) c);
-
     }
-
 
     /**
      * Write an array of charaters to this stream.
      *
      * @param buf The character array to be written
      */
-    public void write(char buf[]) {
-
-        for (int i = 0; i < buf.length; i++)
+    public void write(char[] buf) {
+        for (int i = 0; i < buf.length; i++) {
             write(buf[i]);
-
+        }
     }
-
 
     /**
      * Write the specified subset of an array of characters to this stream.
@@ -404,13 +326,11 @@ public class ServletContextWriter extends PrintWriter {
      * @param off The zero-relative starting offset to write
      * @param len The number of characters to write
      */
-    public void write(char buf[], int off, int len) {
-
-        for (int i = off; i < len; i++)
+    public void write(char[] buf, int off, int len) {
+        for (int i = off; i < len; i++) {
             write(buf[i]);
-
+        }
     }
-
 
     /**
      * Write a String to this stream.
@@ -418,27 +338,23 @@ public class ServletContextWriter extends PrintWriter {
      * @param s The string to be written
      */
     public void write(String s) {
-
         int len = s.length();
-        for (int i = 0; i < len; i++)
+
+        for (int i = 0; i < len; i++) {
             write(s.charAt(i));
-
+        }
     }
-
 
     /**
      * Write the specified portion of a String to this stream.
      *
-     * @param s The String from which to write
+     * @param s   The String from which to write
      * @param off The zero-relative starting offset to write
      * @param len The number of characters to write
      */
     public void write(String s, int off, int len) {
-
-        for (int i = off; i < len; i++)
+        for (int i = off; i < len; i++) {
             write(s.charAt(i));
-
+        }
     }
-
-
 }

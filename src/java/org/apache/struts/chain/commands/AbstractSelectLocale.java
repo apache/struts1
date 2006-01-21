@@ -13,66 +13,62 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.struts.chain.commands;
-
-
-import java.util.Locale;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ModuleConfig;
 
+import java.util.Locale;
 
 /**
  * <p>Select the <code>Locale</code> to be used for this request.</p>
  *
- * @version $Rev$ $Date$
+ * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
+ *          $
  */
-
 public abstract class AbstractSelectLocale extends ActionCommandBase {
-
-    private static final Log log = 
+    private static final Log log =
             LogFactory.getLog(AbstractSelectLocale.class);
 
     // ---------------------------------------------------------- Public Methods
-
 
     /**
      * <p>Select the <code>Locale</code> to be used for this request.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
-     *
      * @return <code>false</code> so that processing continues
      */
-    public boolean execute(ActionContext actionCtx) throws Exception {
-
+    public boolean execute(ActionContext actionCtx)
+            throws Exception {
         // Are we configured to select Locale automatically?
         log.trace("retrieve config...");
+
         ModuleConfig moduleConfig = actionCtx.getModuleConfig();
+
         if (!moduleConfig.getControllerConfig().getLocale()) {
             if (log.isDebugEnabled()) {
-                log.debug("module is not configured for a specific locale; " 
+                log.debug("module is not configured for a specific locale; "
                         + "nothing to do");
             }
+
             return (false);
         }
 
         // Retrieve and cache appropriate Locale for this request
         Locale locale = getLocale(actionCtx);
+
         if (log.isDebugEnabled()) {
             log.debug("set context locale to " + locale);
         }
+
         actionCtx.setLocale(locale);
 
         return (false);
-
     }
 
-
     // ------------------------------------------------------- Protected Methods
-
 
     /**
      * <p>Return the <code>Locale</code> to be used for this request.</p>
@@ -80,6 +76,4 @@ public abstract class AbstractSelectLocale extends ActionCommandBase {
      * @param context The <code>Context</code> for this request
      */
     protected abstract Locale getLocale(ActionContext context);
-
-
 }
