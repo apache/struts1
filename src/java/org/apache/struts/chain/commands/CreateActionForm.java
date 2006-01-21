@@ -91,8 +91,8 @@ public class CreateActionForm extends ActionCommandBase {
             instance = formBeanConfig.createActionForm(actionCtx);
         }
 
-        // TODO: Remove this when ActionForm no longer directly depends on
-        //      ActionServlet
+        // TODO: Remove ServletActionContext when ActionForm no longer
+        //  directly depends on ActionServlet
         if (actionCtx instanceof ServletActionContext) {
             // The servlet property of ActionForm is transient, so
             // ActionForms which are restored from a serialized state

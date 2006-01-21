@@ -31,6 +31,9 @@ public class ExecuteForwardCommand extends ExecuteCommand {
      * <code>catalog</code> properties of the <code>forwardConfig</code>
      * property of the given <code>ActionContext</code>.  If
      * <code>forwardConfig</code> is null, return null.</p>
+     *
+     * @param context Our ActionContext
+     * @return Command to execute or null
      */
     protected Command getCommand(ActionContext context) {
         ForwardConfig forwardConfig = context.getForwardConfig();

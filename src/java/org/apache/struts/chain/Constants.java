@@ -25,26 +25,26 @@ public final class Constants {
     // -------------------------------------------------- Context Attribute Keys
 
     /**
-     * <p>The default context attribute under which the <code>Action</code> for
-     * the current request will be stored.</p>
+     * <p>The default context attribute under which the Action for the current
+     * request will be stored.</p>
      */
     public static final String ACTION_KEY = "action";
 
     /**
-     * <p>The default context attribute under which the <code>ActionConfig</code>
-     * for the current request will be stored.</p>
+     * <p>The default context attribute under which the ActionConfig for the
+     * current request will be stored.</p>
      */
     public static final String ACTION_CONFIG_KEY = "actionConfig";
 
     /**
-     * <p>The default context attribute under which the <code>ActionForm</code>
-     * for the current request will be stored.</p>
+     * <p>The default context attribute under which the ActionForm for the
+     * current request will be stored.</p>
      */
     public static final String ACTION_FORM_KEY = "actionForm";
 
     /**
-     * <p>The default context attribute under which the <code>ActionServet</code>
-     * for the current application will be stored.</p>
+     * <p>The default context attribute under which the ActionServet for the
+     * current application will be stored.</p>
      */
     public static final String ACTION_SERVLET_KEY = "actionServlet";
 
@@ -55,14 +55,14 @@ public final class Constants {
     public static final String CANCEL_KEY = "cancel";
 
     /**
-     * <p>The default context attribute under which an <code>Exception</code>
-     * will be stored before passing it to an exception handler chain.</p>
+     * <p>The default context attribute under which an Exception will be stored
+     * before passing it to an exception handler chain.</p>
      */
     public static final String EXCEPTION_KEY = "exception";
 
     /**
-     * <p>The default context attribute under which the <code>ForwardConfig</code>
-     * for the current request will be stored.</p>
+     * <p>The default context attribute under which the ForwardConfig for the
+     * current request will be stored.</p>
      */
     public static final String FORWARD_CONFIG_KEY = "forwardConfig";
 
@@ -73,27 +73,27 @@ public final class Constants {
     public static final String INCLUDE_KEY = "include";
 
     /**
-     * <p>The default context attribute under which the <code>Locale</code> for
-     * the current request will be stored.</p>
+     * <p>The default context attribute under which the Locale for the current
+     * request will be stored.</p>
      */
     public static final String LOCALE_KEY = "locale";
 
     /**
-     * <p>The default context attribute under which the <code>MessageResources</code>
-     * for the current request will be stored.</p>
+     * <p>The default context attribute under which the MessageResources for the
+     * current request will be stored.</p>
      */
     public static final String MESSAGE_RESOURCES_KEY = "messageResources";
 
     /**
-     * <p>The default context attribute under which the <code>ModuleConfig</code>
-     * for the current request will be stored.</p>
+     * <p>The default context attribute under which the ModuleConfig for the
+     * current request will be stored.</p>
      */
     public static final String MODULE_CONFIG_KEY = "moduleConfig";
 
     /**
-     * <p>The default context attribute key under which a <code>Boolean</code>
-     * is stored, indicating the valid state of the current request.  If not
-     * present, a value of <code>Boolean.FALSE</code> should be assumed.
+     * <p>The default context attribute key under which a Boolean is stored,
+     * indicating the valid state of the current request.  If not present, a
+     * value of Boolean.FALSE should be assumed.
      */
     public static final String VALID_KEY = "valid";
 
@@ -101,15 +101,15 @@ public final class Constants {
 
     /**
      * <p>The base part of the context attribute under which a Map containing
-     * the <code>Action</code> instances associated with this module are stored.
-     *  This value must be suffixed with the module prefix in order to create a
-     * unique key per module.</p>
+     * the Action</code> instances associated with this module are stored. This
+     * value must be suffixed with the module prefix in order to create a unique
+     * key per module.</p>
      */
     public static final String ACTIONS_KEY = "actions";
 
     /**
-     * <p>The context attribute under which the <code>Catalog</code> containing
-     * our defined command chains has been stored.</p>
+     * <p>The context attribute under which the Catalog containing our defined
+     * command chains has been stored.</p>
      */
     public static final String CATALOG_ATTR =
             "org.apache.struts.chain.CATALOG";

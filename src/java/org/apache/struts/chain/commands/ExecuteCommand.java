@@ -40,8 +40,13 @@ import org.apache.struts.config.ActionConfig;
  * @version $Id$
  */
 public class ExecuteCommand extends ActionCommandBase {
+
     // ------------------------------------------------------ Instance Variables
-    private static final Log log = LogFactory.getLog(ExecuteCommand.class);
+
+    /**
+     * Provide Commons Logging instance for this class.
+     */
+    private static final Log LOG = LogFactory.getLog(ExecuteCommand.class);
 
     // ---------------------------------------------------------- Public Methods
 
@@ -71,7 +76,7 @@ public class ExecuteCommand extends ActionCommandBase {
      * <p>Evaluate the current context to see if a command should even be
      * executed.</p>
      *
-     * @param context
+     * @param context A valid ActionContext
      * @return TRUE if the pending Command should be executed
      */
     protected boolean shouldProcess(ActionContext context) {
@@ -86,7 +91,7 @@ public class ExecuteCommand extends ActionCommandBase {
      * is properly configured, lookup the appropriate <code>commons-chain</code>
      * command.</p>
      *
-     * @param context
+     * @param context A valid ActionContext
      * @return a <code>Command</code> to execute, or null if none is specified
      *         or if the specified command cannot be found.
      */
@@ -122,7 +127,7 @@ public class ExecuteCommand extends ActionCommandBase {
             catalog = CatalogFactory.getInstance().getCatalog(catalogName);
 
             if (catalog == null) {
-                log.warn("When looking up " + commandName + ","
+                LOG.warn("When looking up " + commandName + ","
                         + " no catalog found under " + catalogName);
 
                 return null;
@@ -132,15 +137,15 @@ public class ExecuteCommand extends ActionCommandBase {
             catalog = CatalogFactory.getInstance().getCatalog();
 
             if (catalog == null) {
-                log.warn("When looking up " + commandName + ","
+                LOG.warn("When looking up " + commandName + ","
                         + " no default catalog found.");
 
                 return null;
             }
         }
 
-        if (log.isDebugEnabled()) {
-            log.debug("looking up command " + commandName + " in "
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("looking up command " + commandName + " in "
                     + catalogName);
         }
 

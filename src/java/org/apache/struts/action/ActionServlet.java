@@ -136,15 +136,14 @@ import java.util.MissingResourceException;
  * This can be repeated as many times as required for multiple modules. (Since
  * Struts 1.1)</li> <li><strong>configFactory</strong> - The Java class name of
  * the <code>ModuleConfigFactory</code> used to create the implementation of the
- * <code>ModuleConfig</code> interface. [org.apache.struts.config.impl.DefaultModuleConfigFactory]
- * </li> <li><strong>convertNull</strong> - Force simulation of the Struts 1.0
- * behavior when populating forms. If set to true, the numeric Java wrapper
- * class types (like <code>java.lang.Integer</code>) will default to null
- * (rather than 0). (Since Struts 1.1) [false] </li> <li><strong>rulesets
- * </strong> - Comma-delimited list of fully qualified classnames of additional
- * <code>org.apache.commons.digester.RuleSet</code> instances that should be
- * added to the <code>Digester</code> that will be processing
- * <code>struts-config.xml</code> files.  By default, only the
+ * ModuleConfig interface. </li> </li> <li><strong>convertNull</strong> - Force
+ * simulation of the Struts 1.0 behavior when populating forms. If set to true,
+ * the numeric Java wrapper class types (like <code>java.lang.Integer</code>)
+ * will default to null (rather than 0). (Since Struts 1.1) [false] </li>
+ * <li><strong>rulesets </strong> - Comma-delimited list of fully qualified
+ * classnames of additional <code>org.apache.commons.digester.RuleSet</code>
+ * instances that should be added to the <code>Digester</code> that will be
+ * processing <code>struts-config.xml</code> files.  By default, only the
  * <code>RuleSet</code> for the standard configuration elements is loaded.
  * (Since Struts 1.1)</li> <li><strong>validating</strong> - Should we use a
  * validating XML parser to process the configuration file (strongly
@@ -757,7 +756,7 @@ public class ActionServlet extends HttpServlet {
      * <p>General handling for exceptions caught while inheriting config
      * information.</p>
      *
-     * @param configType The type of configuration object of <code>configName</code>.
+     * @param configType The type of configuration object of configName.
      * @param configName The name of the config that could not be extended.
      * @param e          The exception that was caught.
      * @throws ServletException to communicate the error.
@@ -777,7 +776,7 @@ public class ActionServlet extends HttpServlet {
      * <p>Handle errors caused by required fields that were not specified.</p>
      *
      * @param field      The name of the required field that was not found.
-     * @param configType The type of configuration object of <code>configName</code>.
+     * @param configType The type of configuration object of configName.
      * @param configName The name of the config that's missing the required
      *                   value.
      * @throws ServletException to communicate the error.

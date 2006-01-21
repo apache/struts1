@@ -41,17 +41,16 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 
 /**
- * <p><strong>ComposableRequestProcessor</strong> uses the <em>Chain Of
- * Resposibility</em> design pattern (as implemented by the commons-chain
- * package in Jakarta Commons) to support external configuration of command
- * chains to be used.  It is configured via the following context initialization
- * parameters:</p> <ul> <li><strong>org.apache.struts.chain.CATALOG_NAME</strong>
- * - Name of the <code>Catalog</code> in which we will look up the
- * <code>Command</code> to be executed for each request.  If not specified, the
- * default value is <code>struts</code>.</li> <li><strong>org.apache.struts.chain.COMMAND_NAME</strong>
- * - Name of the <code>Command</code> which we will execute for each request, to
- * be looked up in the specified <code>Catalog</code>.  If not specified, the
- * default value is <code>servlet-standard</code>.</li> </ul>
+ * <p> ComposableRequestProcessor uses the Chain Of Resposibility design pattern
+ * (as implemented by the commons-chain package in Jakarta Commons) to support
+ * external configuration of command chains to be used.  It is configured via
+ * the following context initialization parameters: </p><ul>
+ * <li>[org.apache.struts.chain.CATALOG_NAME] - Name of the Catalog in which we
+ * will look up the Command to be executed for each request.  If not specified,
+ * the default value is struts. </li> <li> org.apache.struts.chain.COMMAND_NAME
+ * - Name of the Command which we will execute for each request, to be looked up
+ * in the specified Catalog.  If not specified, the default value is
+ * servlet-standard. </li> </ul>
  *
  * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
  *          $
@@ -62,8 +61,8 @@ public class ComposableRequestProcessor extends RequestProcessor {
     // ------------------------------------------------------ Instance Variables
 
     /**
-     * Cache for constructor discovered by <strong>setActionContextClass</strong>
-     * method.
+     * <p> Cache for constructor discovered by setActionContextClass method.
+     * </p>
      */
     private static final Class[] SERVLET_ACTION_CONTEXT_CTOR_SIGNATURE =
             new Class[]{
@@ -102,13 +101,13 @@ public class ComposableRequestProcessor extends RequestProcessor {
     protected Command command = null;
 
     /**
-     * <p> ActionContext class as cached by <code>createActionContextInstance</code>
-     * method. </p>
+     * <p> ActionContext class as cached by createActionContextInstance method.
+     * </p>
      */
     private Class actionContextClass;
 
     /**
-     * <p> ActionContext constructor as cached by <code>createActionContextInstance</code>
+     * <p> ActionContext constructor as cached by createActionContextInstance
      * method. </p>
      */
     private Constructor servletActionContextConstructor = null;
@@ -173,7 +172,7 @@ public class ComposableRequestProcessor extends RequestProcessor {
      * provided and if it uses our "preferred" constructor, cache a reference to
      * that constructor rather than looking it up every time. </p>
      *
-     * @param actionContextClass
+     * @param actionContextClass The ActionContext class to process
      */
     private void setActionContextClass(Class actionContextClass) {
         this.actionContextClass = actionContextClass;
@@ -231,12 +230,11 @@ public class ComposableRequestProcessor extends RequestProcessor {
     }
 
     /**
-     * <p>Establish the <code>CatalogFactory</code> which will be used to look
-     * up the catalog which has the request processing command.</p>
-     *
-     * <p>The base implementation simply calls <code>CatalogFactory.getInstance()</code>,
-     * unless the <code>catalogFactory</code> property of this object has
-     * already been set, in which case it is not changed.</p>
+     * <p> Establish the CatalogFactory which will be used to look up the
+     * catalog which has the request processing command. </p><p> The base
+     * implementation simply calls CatalogFactory.getInstance(), unless the
+     * catalogFactory property of this object has already been set, in which
+     * case it is not changed. </p>
      *
      * @param servlet      The ActionServlet we are processing
      * @param moduleConfig The ModuleConfig we are processing

@@ -40,8 +40,8 @@ import java.io.IOException;
 public class ExceptionHandler {
     /**
      * <p>The name of a configuration property which can be set to specify an
-     * alternative path which should be used when the <code>HttpServletResponse</code>
-     * has already been committed.</p> <p>To use this, in your
+     * alternative path which should be used when the HttpServletResponse has
+     * already been committed.</p> <p>To use this, in your
      * <code>struts-config.xml</code> specify the exception handler like this:
      * <pre>
      *   &lt;exception
@@ -79,7 +79,7 @@ public class ExceptionHandler {
      *   &lt;/exception&gt;
      *  </pre>
      * To be effective, this value must be defined to the literal String "true".
-     *  If it is not defined or defined to any other value, the default behavior
+     * If it is not defined or defined to any other value, the default behavior
      * will be used. </p> <p>You only need to use this if you do not want error
      * information displayed in the browser when Struts intercepts an exception
      * after the response has been committed.</p>
@@ -100,8 +100,8 @@ public class ExceptionHandler {
             .getMessageResources("org.apache.struts.action.LocalStrings");
 
     /**
-     * <p>Handle the <code>Exception</code>. Return the <code>ActionForward</code>
-     * instance (if any) returned by the called <code>ExceptionHandler</code>.
+     * <p> Handle the Exception. Return the ActionForward instance (if any)
+     * returned by the called ExceptionHandler. </p>
      *
      * @param ex           The exception to handle
      * @param ae           The ExceptionConfig corresponding to the exception
@@ -194,7 +194,9 @@ public class ExceptionHandler {
         if (includePath != null) {
             if (includePath.startsWith("/")) {
                 LOG.debug(
-                        "response committed, but attempt to include results of actionForward path");
+                        "response committed, "
+                                + "but attempt to include results "
+                                + "of actionForward path");
 
                 RequestDispatcher requestDispatcher = request
                         .getRequestDispatcher(includePath);
@@ -205,25 +207,29 @@ public class ExceptionHandler {
                     return;
                 } catch (IOException e) {
                     LOG.error(
-                            "IOException when trying to include the error page path "
+                            "IOException when trying to include "
+                                    + "the error page path "
                                     + includePath,
                             e);
                 } catch (ServletException e) {
                     LOG.error(
-                            "ServletException when trying to include the error page path "
+                            "ServletException when trying to include "
+                                    + "the error page path "
                                     + includePath,
                             e);
                 }
             } else {
                 LOG.warn(
-                        "Suspicious includePath doesn't seem likely to work, so skipping it: "
+                        "Suspicious includePath doesn't seem likely to work, "
+                                + "so skipping it: "
                                 + includePath
                                 + "; expected path to start with '/'");
             }
         }
 
         LOG.debug(
-                "Include not available or failed; try writing to the response directly.");
+                "Include not available or failed; "
+                        + "try writing to the response directly.");
 
         try {
             response.getWriter().println("Unexpected error: " + ex);

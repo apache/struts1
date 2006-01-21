@@ -24,7 +24,7 @@ import org.apache.struts.config.ActionConfig;
 
 /**
  * <p>Determine whether the requested action is authorized for the current user.
- *  If not, abort chain processing and perferably, return an error message of
+ * If not, abort chain processing and perferably, return an error message of
  * some kind.</p>
  *
  * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
