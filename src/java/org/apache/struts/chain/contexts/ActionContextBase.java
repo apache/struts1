@@ -489,8 +489,8 @@ public abstract class ActionContextBase extends ContextWrapper
      * @param formName  The name attribute of our ActionForm
      * @param scopeName The scope identier (request, session)
      * @return The ActionForm for this request
-     * @throws IllegalAccessException
-     * @throws InstantiationException
+     * @throws IllegalAccessException If object cannot be created
+     * @throws InstantiationException If object cannot be created
      * @see this.findOrCreateActionForm(String, String, ModuleConfig)
      */
     public ActionForm findOrCreateActionForm(String formName,

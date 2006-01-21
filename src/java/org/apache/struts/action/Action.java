@@ -319,7 +319,7 @@ public class Action {
      * <p>Return the specified message resources for the current module.</p>
      *
      * @param request The servlet request we are processing
-     * @param key     The key specified in the <code>&lt;message-resources&gt;</code>
+     * @param key     The key specified in the message-resources
      *                element for the requested bundle.
      * @return The specified message resource for the current module.
      * @since Struts 1.1

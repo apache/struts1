@@ -31,14 +31,15 @@ import org.apache.struts.config.ActionConfig;
  * @version $Id$
  */
 public class CopyFormToContext extends ActionCommandBase {
+
     // ------------------------------------------------------ Instance Variables
 
     /**
-     * <p>The name of a form bean as configured in a <code>struts-config.xml</code>
-     * file for this module.  </p>
+     * <p>The name of a form bean as configured in a struts-config.xml file for
+     * this module.  </p>
      *
-     * <p> Either <code>actionPath</code> or both this and <code>scope</code>
-     * are required configuration properties.</p>
+     * <p> Either actionPath or both this and scope are required configuration
+     * properties.</p>
      */
     private String formName = null;
 
@@ -72,34 +73,75 @@ public class CopyFormToContext extends ActionCommandBase {
     private String toKey = ActionContextBase.ACTION_FORM_KEY;
 
     // ------------------------------------------------------ Properties
+
+    /**
+     * Return ActionPath property.
+     *
+     * @return ActionPath property
+     */
     public String getActionPath() {
         return this.actionPath;
     }
 
+    /**
+     * Set ActionPath property.
+     *
+     * @param actionPath New valuefor ActionPath
+     */
     public void setActionPath(String actionPath) {
         this.actionPath = actionPath;
     }
 
+    /**
+     * Return FormName property.
+     *
+     * @return FormName property
+     */
     public String getFormName() {
         return this.formName;
     }
 
+    /**
+     * Set FormName property.
+     *
+     * @param formName New valuefor FormName
+     */
     public void setFormName(String formName) {
         this.formName = formName;
     }
 
+    /**
+     * Return Scope property.
+     *
+     * @return Scope property
+     */
     public String getScope() {
         return this.scope;
     }
 
+    /**
+     * Set Scope property.
+     *
+     * @param scope New valuefor Scope
+     */
     public void setScope(String scope) {
         this.scope = scope;
     }
 
+    /**
+     * Return ToKey property.
+     *
+     * @return ToKey property
+     */
     public String getToKey() {
         return this.toKey;
     }
 
+    /**
+     * Set ToKey property.
+     *
+     * @param toKey New valuefor FormName
+     */
     public void setToKey(String toKey) {
         this.toKey = toKey;
     }
@@ -114,6 +156,9 @@ public class CopyFormToContext extends ActionCommandBase {
      * an HTML form.  It will also be in the <code>ActionContext</code>
      * available for another command to do prepopulation of values or other
      * preparation.</p>
+     * @param actionContext Our ActionContext
+     * @return TRUE if processing should halt
+     * @throws Exception on any error
      */
     public boolean execute(ActionContext actionContext)
             throws Exception {
@@ -134,15 +179,18 @@ public class CopyFormToContext extends ActionCommandBase {
      * <code>ActionContext</code>, find or create an ActionForm instance for
      * preparation.</p>
      *
-     * @param context
-     * @return
-     * @throws IllegalAccessException
-     * @throws InstantiationException
+     * @param context ActionContextBase class that we are processing
+     * @return ActionForm instance
+     * @throws IllegalArgumentException On ActionConfig not found
+     * @throws IllegalStateException    On undefined scope and formbean
+     * @throws IllegalAccessException   On failed instantiation
+     * @throws InstantiationException   If ActionContext is not subsclass of
+     *                                  ActionContextBase
      */
     protected ActionForm findOrCreateForm(ActionContext context)
             throws IllegalAccessException, InstantiationException {
-        String effectiveFormName = null;
-        String effectiveScope = null;
+        String effectiveFormName;
+        String effectiveScope;
 
         if (!(isEmpty(this.getActionPath()))) {
             ActionConfig actionConfig = context.getModuleConfig()
@@ -183,25 +231,27 @@ public class CopyFormToContext extends ActionCommandBase {
      * <code>ActionContextBase</code>, which implements the utility method
      * <code>findOrCreateActionForm</code>. </p>
      *
-     * @param ctx
-     * @param effectiveFormName
-     * @param effectiveScope
-     * @return
-     * @throws IllegalAccessException
-     * @throws InstantiationException
-     * @throws IllegalArgumentException
+     * @param ctx               The ActionContext we are processing
+     * @param effectiveFormName the target form name
+     * @param effectiveScope    The target scope
+     * @return ActionForm instnace, storing in scope if created
+     * @throws InstantiationException   If ActionContext is not subsclass of
+     *                                  ActionContextBase
+     * @throws InstantiationException   If object cannot be created
+     * @throws IllegalArgumentException On form not found in/ scope
+     * @throws IllegalAccessException   On failed instantiation
+     * @throws IllegalStateException    If ActionContext is not a subclass of
+     *                                  ActionBase
      */
     protected ActionForm findOrCreateForm(ActionContext ctx,
                                           String effectiveFormName,
                                           String effectiveScope)
-            throws IllegalAccessException, InstantiationException,
-            IllegalArgumentException {
+            throws IllegalAccessException, InstantiationException {
         ActionContextBase context;
 
         try {
             context = (ActionContextBase) ctx;
-        }
-        catch (ClassCastException e) {
+        } catch (ClassCastException e) {
             throw new IllegalStateException("ActionContext [" + ctx + "]"
                     + " must be subclass of ActionContextBase");
         }
@@ -218,6 +268,12 @@ public class CopyFormToContext extends ActionCommandBase {
         return form;
     }
 
+    /**
+     * <p>Convenience method to test for an empty string.</p>
+     *
+     * @param test String to test
+     * @return TRUE if test is null or zero-length
+     */
     private boolean isEmpty(String test) {
         return (test == null) || (test.trim().length() == 0);
     }

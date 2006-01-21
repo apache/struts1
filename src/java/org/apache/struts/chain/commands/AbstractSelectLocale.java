@@ -37,7 +37,7 @@ public abstract class AbstractSelectLocale extends ActionCommandBase {
     /**
      * <p> Provide Commons Logging instance for this class. </p>
      */
-    private static final Log log =
+    private static final Log LOG =
             LogFactory.getLog(AbstractSelectLocale.class);
 
     // ---------------------------------------------------------- Public Methods
@@ -52,13 +52,13 @@ public abstract class AbstractSelectLocale extends ActionCommandBase {
     public boolean execute(ActionContext actionCtx)
             throws Exception {
         // Are we configured to select Locale automatically?
-        log.trace("retrieve config...");
+        LOG.trace("retrieve config...");
 
         ModuleConfig moduleConfig = actionCtx.getModuleConfig();
 
         if (!moduleConfig.getControllerConfig().getLocale()) {
-            if (log.isDebugEnabled()) {
-                log.debug("module is not configured for a specific locale; "
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("module is not configured for a specific locale; "
                         + "nothing to do");
             }
 
@@ -68,8 +68,8 @@ public abstract class AbstractSelectLocale extends ActionCommandBase {
         // Retrieve and cache appropriate Locale for this request
         Locale locale = getLocale(actionCtx);
 
-        if (log.isDebugEnabled()) {
-            log.debug("set context locale to " + locale);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("set context locale to " + locale);
         }
 
         actionCtx.setLocale(locale);

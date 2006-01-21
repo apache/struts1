@@ -136,7 +136,7 @@ import java.util.MissingResourceException;
  * This can be repeated as many times as required for multiple modules. (Since
  * Struts 1.1)</li> <li><strong>configFactory</strong> - The Java class name of
  * the <code>ModuleConfigFactory</code> used to create the implementation of the
- * ModuleConfig interface. </li> </li> <li><strong>convertNull</strong> - Force
+ * ModuleConfig interface. </li> <li><strong>convertNull</strong> - Force
  * simulation of the Struts 1.0 behavior when populating forms. If set to true,
  * the numeric Java wrapper class types (like <code>java.lang.Integer</code>)
  * will default to null (rather than 0). (Since Struts 1.1) [false] </li>
@@ -720,7 +720,7 @@ public class ActionServlet extends HttpServlet {
     }
 
     /**
-     * <p>Simplifies exception handling in the <code>parseModuleConfigFile</code>
+     * <p>Simplifies exception handling in the parseModuleConfigFile
      * method.<p>
      *
      * @param path The path to which the exception relates.

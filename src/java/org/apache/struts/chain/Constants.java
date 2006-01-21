@@ -101,7 +101,7 @@ public final class Constants {
 
     /**
      * <p>The base part of the context attribute under which a Map containing
-     * the Action</code> instances associated with this module are stored. This
+     * the Action instances associated with this module are stored. This
      * value must be suffixed with the module prefix in order to create a unique
      * key per module.</p>
      */

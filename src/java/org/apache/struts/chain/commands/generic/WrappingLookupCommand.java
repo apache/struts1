@@ -30,20 +30,47 @@ import org.apache.struts.chain.commands.util.ClassUtils;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * Variant on chain LookupCommand which can optionally wrap the context it
- * passes to the looked up command in an alternative class.
+ * <p>Variant on chain LookupCommand which can optionally wrap the context it
+ * passes to the looked up command in an alternative class.</p>
  */
 public class WrappingLookupCommand implements Filter {
-    private static final Log log =
+
+    /**
+     * Provide Commons Logging instance for this class.
+     */
+    private static final Log LOG =
             LogFactory.getLog(WrappingLookupCommand.class);
 
     // ------------------------------------------------------ Instance Variables
+
+    /**
+     * <p>Field for property.</p>
+     */
     private String catalogName = null;
+
+    /**
+     * <p>Field for property.</p>
+     */
     private String name = null;
+
+    /**
+     * <p>Field for property.</p>
+     */
     private String nameKey = null;
+
+    /**
+     * <p>Field for property.</p>
+     */
     private String wrapperClassName = null;
+
+    /**
+     * <p>Field for property.</p>
+     */
     private boolean optional = false;
 
+    /**
+     * <p>Zero-argument constructor.</p>
+     */
     public WrappingLookupCommand() {
         catalogName = null;
         name = null;
@@ -51,50 +78,108 @@ public class WrappingLookupCommand implements Filter {
         optional = false;
     }
 
+    /**
+     * <p>Return CatalogName property.  </p>
+     *
+     * @return Value of CatalogName property.
+     */
     public String getCatalogName() {
         return catalogName;
     }
 
+    /**
+     * <p>Set CatalogName property.</p>
+     *
+     * @param catalogName New value for CatalogName
+     */
     public void setCatalogName(String catalogName) {
         this.catalogName = catalogName;
     }
 
+    /**
+     * <p>Retrieve Name property.</p>
+     *
+     * @return Value of Name property
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * <p>Set Name property.</p>
+     *
+     * @param name New value for Name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * <p>Return NameKey property.</p>
+     *
+     * @return Value of NameKey property.
+     */
     public String getNameKey() {
         return nameKey;
     }
 
+    /**
+     * <p>Set NameKey property.</p>
+     *
+     * @param nameKey New value for NameKey
+     */
     public void setNameKey(String nameKey) {
         this.nameKey = nameKey;
     }
 
+    /**
+     * <p>Test Optional property.</p>
+     *
+     * @return TRUE if Optional is TRUE.
+     */
     public boolean isOptional() {
         return optional;
     }
 
+    /**
+     * <p>Set Optional property.</p>
+     *
+     * @param optional New value for Optional
+     */
     public void setOptional(boolean optional) {
         this.optional = optional;
     }
 
+    /**
+     * <p>Return the WrapperClass property.</p>
+     *
+     * @return The WrapperClass property
+     */
     public String getWrapperClassName() {
         return wrapperClassName;
     }
 
+    /**
+     * <p>Set WrappClassName property. </p>
+     *
+     * @param wrapperClassName The name of a WrapperClass
+     */
     public void setWrapperClassName(String wrapperClassName) {
         this.wrapperClassName = wrapperClassName;
     }
 
+    /**
+     * <p>Invoke the Command for a Context, returning TRUE if processing should
+     * halt.</p>
+     *
+     * @param context Our ActionContext
+     * @return TRUE if processing should halt
+     * @throws Exception On any error
+     */
     public boolean execute(Context context)
             throws Exception {
-        if (log.isTraceEnabled()) {
-            log.trace("execute [" + this + "]");
+        if (LOG.isTraceEnabled()) {
+            LOG.trace("execute [" + this + "]");
         }
 
         Command command = getCommand(context);
@@ -106,6 +191,13 @@ public class WrappingLookupCommand implements Filter {
         }
     }
 
+    /**
+     * <p>Process the Exception for any Command that is a filter.</p>
+     *
+     * @param context   Our ActionContext
+     * @param exception The Exception thrown by another Comamnd in a Chain
+     * @return TRUE if there is a Filter to process
+     */
     public boolean postprocess(Context context, Exception exception) {
         Command command = getCommand(context);
 
@@ -113,31 +205,32 @@ public class WrappingLookupCommand implements Filter {
             try {
                 return ((Filter) command).postprocess(getContext(context),
                         exception);
-            }
-            catch (NoSuchMethodException ex) {
-                log.error("Error wrapping context in postprocess", ex);
-            }
-            catch (IllegalAccessException ex) {
-                log.error("Error wrapping context in postprocess", ex);
-            }
-            catch (InvocationTargetException ex) {
-                log.error("Error wrapping context in postprocess", ex);
-            }
-            catch (InstantiationException ex) {
-                log.error("Error wrapping context in postprocess", ex);
-            }
-            catch (ClassNotFoundException ex) {
-                log.error("Error wrapping context in postprocess", ex);
+            } catch (NoSuchMethodException ex) {
+                LOG.error("Error wrapping context in postprocess", ex);
+            } catch (IllegalAccessException ex) {
+                LOG.error("Error wrapping context in postprocess", ex);
+            } catch (InvocationTargetException ex) {
+                LOG.error("Error wrapping context in postprocess", ex);
+            } catch (InstantiationException ex) {
+                LOG.error("Error wrapping context in postprocess", ex);
+            } catch (ClassNotFoundException ex) {
+                LOG.error("Error wrapping context in postprocess", ex);
             }
         }
 
         return false;
     }
 
+    /**
+     * <p>Return the Command to process for this Context.</p>
+     *
+     * @param context The Context we are processing
+     * @return The Command to process for this Context
+     */
     protected Command getCommand(Context context) {
         CatalogFactory catalogFactory = CatalogFactory.getInstance();
         String catalogName = getCatalogName();
-        Catalog catalog = null;
+        Catalog catalog;
 
         if (catalogName == null) {
             catalog = catalogFactory.getCatalog();
@@ -151,7 +244,7 @@ public class WrappingLookupCommand implements Filter {
                     + catalogName + "'");
         }
 
-        Command command = null;
+        Command command;
         String name = getName();
 
         if (name == null) {
@@ -159,15 +252,15 @@ public class WrappingLookupCommand implements Filter {
         }
 
         if (name != null) {
-            if (log.isDebugEnabled()) {
-                log.debug("Lookup command " + name + " in catalog "
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Lookup command " + name + " in catalog "
                         + catalogName);
             }
 
             command = catalog.getCommand(name);
 
-            if (log.isDebugEnabled()) {
-                log.debug("Found command " + command + ";" + " optional: "
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Found command " + command + ";" + " optional: "
                         + isOptional());
             }
 
@@ -185,38 +278,43 @@ public class WrappingLookupCommand implements Filter {
     }
 
     /**
-     * <p>If the <code>wrapperClassName</code> property is not null, return a
-     * <code>Context</code> of the type specified by <code>wrapperClassName</code>,
-     * instantiated using a single-arg constructor which takes the
-     * <code>context</code> passed as an argument to this method.</p>
+     * <p>If the wrapperClassName property is not null, return a Context of the
+     * type specified by wrapperClassName, instantiated using a single-arg
+     * constructor which takes the context passed as an argument to this
+     * method.</p>
      *
      * <p>This method throws an exception if the wrapperClass cannot be found,
      * or if there are any errors instantiating the wrapping context.</p>
      *
-     * @param context
-     * @return
+     * @param context Context we are processing
+     * @return Context wrapper
+     * @throws ClassNotFoundException    On failed instantiation
+     * @throws InstantiationException    On failed instantiation
+     * @throws InvocationTargetException On failed instantiation
+     * @throws IllegalAccessException    On failed instantiation
+     * @throws NoSuchMethodException     On failed instantiation
      */
     protected Context getContext(Context context)
             throws ClassNotFoundException, InstantiationException,
             InvocationTargetException, IllegalAccessException,
             NoSuchMethodException {
         if (wrapperClassName == null) {
-            if (log.isDebugEnabled()) {
-                log.debug("No defined wrapper class; "
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("No defined wrapper class; "
                         + "returning original context.");
             }
 
             return context;
         }
 
-        if (log.isDebugEnabled()) {
-            log.debug("Looking for wrapper class: " + wrapperClassName);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Looking for wrapper class: " + wrapperClassName);
         }
 
         Class wrapperClass = ClassUtils.getApplicationClass(wrapperClassName);
 
-        if (log.isDebugEnabled()) {
-            log.debug("Instantiating wrapper class");
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Instantiating wrapper class");
         }
 
         return (Context) ConstructorUtils.invokeConstructor(wrapperClass,

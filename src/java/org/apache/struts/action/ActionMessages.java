@@ -354,9 +354,9 @@ public class ActionMessages implements Serializable {
         /**
          * <p>Construct an instance of this class.</p>
          *
-         * @param list     The list of <code>ActionMessage</code>s.
+         * @param list     The list of ActionMessages.
          * @param iOrder   The position in the list of messages.
-         * @param property The property associated with <code>ActionMessage</code>.
+         * @param property The property associated with ActionMessage.
          */
         public ActionMessageItem(List list, int iOrder, String property) {
             this.list = list;
