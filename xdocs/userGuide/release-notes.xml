@@ -256,7 +256,7 @@ limitations under the License.
                 <source>
                     &lt;action path="/EditSubscription"
                     extends="Editor">
-                    <set-property key="foo" value="bar"/>
+                    &lt;set-property key="foo" value="bar"/>
                     &lt;/action>
 
                     public ActionForward execute(
