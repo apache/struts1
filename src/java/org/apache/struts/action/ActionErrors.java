@@ -22,9 +22,9 @@ import java.io.Serializable;
 /**
  * <p>A class that encapsulates the error messages being reported by the
  * <code>validate()</code> method of an <code>ActionForm</code>. Validation
- * errors are either global to the entire <code>ActionForm</code> bean they are
- * associated with, or they are specific to a particular bean property (and,
- * therefore, a particular input field on the corresponding form).</p>
+ * errors are either global to the entire <code>ActionForm</code> bean they
+ * are associated with, or they are specific to a particular bean property
+ * (and, therefore, a particular input field on the corresponding form).</p>
  *
  * <p>Each individual error is described by an <code>ActionMessage</code>
  * object, which contains a message key (to be looked up in an appropriate
@@ -43,15 +43,15 @@ public class ActionErrors extends ActionMessages implements Serializable {
     // --------------------------------------------------------- Public Methods
 
     /**
-     * Create an empty <code>ActionErrors</code> object.
+     * <p>Create an empty <code>ActionErrors</code> object.</p>
      */
     public ActionErrors() {
         super();
     }
 
     /**
-     * Create an <code>ActionErrors</code> object initialized with the given
-     * messages.
+     * <p>Create an <code>ActionErrors</code> object initialized with the
+     * given messages.</p>
      *
      * @param messages The messages to be initially added to this object. This
      *                 parameter can be <code>null</code>.

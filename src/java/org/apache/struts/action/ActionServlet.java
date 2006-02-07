@@ -60,13 +60,17 @@ import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -76,81 +80,122 @@ import java.util.MissingResourceException;
 /**
  * <p><strong>ActionServlet</strong> provides the "controller" in the
  * Model-View-Controller (MVC) design pattern for web applications that is
- * commonly known as "Model 2".  This nomenclature originated with a description
- * in the JavaServerPages Specification, version 0.92, and has persisted ever
- * since (in the absence of a better name).</p>
+ * commonly known as "Model 2".  This nomenclature originated with a
+ * description in the JavaServerPages Specification, version 0.92, and has
+ * persisted ever since (in the absence of a better name).</p>
  *
- * <p>Generally, a "Model 2" application is architected as follows:</p> <ul>
+ * <p>Generally, a "Model 2" application is architected as follows:</p>
+ *
+ * <ul>
+ *
  * <li>The user interface will generally be created with server pages, which
  * will not themselves contain any business logic. These pages represent the
- * "view" component of an MVC architecture.</li> <li>Forms and hyperlinks in the
- * user interface that require business logic to be executed will be submitted
- * to a request URI that is mapped to this servlet.</li> <li>There can be
- * <b>one</b> instance of this servlet class, which receives and processes all
- * requests that change the state of a user's interaction with the application.
- * The servlet delegates the handling of a request to a {@link RequestProcessor}
- * object. This component represents the "controller" component of an MVC
- * architecture. </li> <li>The <code>RequestProcessor</code> selects and invokes
- * an {@link Action} class to perform the requested business logic, or delegates
- * the response to another resource.</li> <li>The <code>Action</code> classes
- * can manipulate the state of the application's interaction with the user,
- * typically by creating or modifying JavaBeans that are stored as request or
- * session attributes (depending on how long they need to be available). Such
- * JavaBeans represent the "model" component of an MVC architecture.</li>
+ * "view" component of an MVC architecture.</li>
+ *
+ * <li>Forms and hyperlinks in the user interface that require business logic
+ * to be executed will be submitted to a request URI that is mapped to this
+ * servlet.</li>
+ *
+ * <li>There can be <b>one</b> instance of this servlet class, which receives
+ * and processes all requests that change the state of a user's interaction
+ * with the application. The servlet delegates the handling of a request to a
+ * {@link RequestProcessor} object. This component represents the "controller"
+ * component of an MVC architecture. </li>
+ *
+ * <li>The <code>RequestProcessor</code> selects and invokes an {@link Action}
+ * class to perform the requested business logic, or delegates the response to
+ * another resource.</li>
+ *
+ * <li>The <code>Action</code> classes can manipulate the state of the
+ * application's interaction with the user, typically by creating or modifying
+ * JavaBeans that are stored as request or session attributes (depending on
+ * how long they need to be available). Such JavaBeans represent the "model"
+ * component of an MVC architecture.</li>
+ *
  * <li>Instead of producing the next page of the user interface directly,
  * <code>Action</code> classes generally return an {@link ActionForward} to
  * indicate which resource should handle the response. If the
  * <code>Action</code> does not return null, the <code>RequestProcessor</code>
  * forwards or redirects to the specified resource (by utilizing
  * <code>RequestDispatcher.forward</code> or <code>Response.sendRedirect</code>)
- * so as to produce the next page of the user interface.</li> </ul>
+ * so as to produce the next page of the user interface.</li>
+ *
+ * </ul>
  *
  * <p>The standard version of <code>RequestsProcessor</code> implements the
- * following logic for each incoming HTTP request. You can override some or all
- * of this functionality by subclassing this object and implementing your own
- * version of the processing.</p> <ul> <li>Identify, from the incoming request
- * URI, the substring that will be used to select an action procedure.</li>
- * <li>Use this substring to map to the Java class name of the corresponding
- * action class (an implementation of the <code>Action</code> interface). </li>
- * <li>If this is the first request for a particular <code>Action</code> class,
- * instantiate an instance of that class and cache it for future use.</li>
- * <li>Optionally populate the properties of an <code>ActionForm</code> bean
- * associated with this mapping.</li> <li>Call the <code>execute</code> method
- * of this <code>Action</code> class, passing on a reference to the mapping that
- * was used, the relevant form-bean (if any), and the request and the response
- * that were passed to the controller by the servlet container (thereby
- * providing access to any specialized properties of the mapping itself as well
- * as to the ServletContext). </li> </ul>
+ * following logic for each incoming HTTP request. You can override some or
+ * all of this functionality by subclassing this object and implementing your
+ * own version of the processing.</p>
  *
- * <p>The standard version of <code>ActionServlet</code> is configured based on
- * the following servlet initialization parameters, which you will specify in
- * the web application deployment descriptor (<code>/WEB-INF/web.xml</code>) for
- * your application.  Subclasses that specialize this servlet are free to define
- * additional initialization parameters. </p> <ul> <li><strong>config</strong> -
- * Comma-separated list of context-relative path(s) to the XML resource(s)
- * containing the configuration information for the default module.  (Multiple
- * files support since Struts 1.1) [/WEB-INF/struts-config.xml].</li>
+ * <ul>
+ *
+ * <li>Identify, from the incoming request URI, the substring that will be
+ * used to select an action procedure.</li>
+ *
+ * <li>Use this substring to map to the Java class name of the corresponding
+ * action class (an implementation of the <code>Action</code> interface).
+ * </li>
+ *
+ * <li>If this is the first request for a particular <code>Action</code>
+ * class, instantiate an instance of that class and cache it for future
+ * use.</li>
+ *
+ * <li>Optionally populate the properties of an <code>ActionForm</code> bean
+ * associated with this mapping.</li>
+ *
+ * <li>Call the <code>execute</code> method of this <code>Action</code> class,
+ * passing on a reference to the mapping that was used, the relevant form-bean
+ * (if any), and the request and the response that were passed to the
+ * controller by the servlet container (thereby providing access to any
+ * specialized properties of the mapping itself as well as to the
+ * ServletContext). </li>
+ *
+ * </ul>
+ *
+ * <p>The standard version of <code>ActionServlet</code> is configured based
+ * on the following servlet initialization parameters, which you will specify
+ * in the web application deployment descriptor (<code>/WEB-INF/web.xml</code>)
+ * for your application.  Subclasses that specialize this servlet are free to
+ * define additional initialization parameters. </p>
+ *
+ * <ul>
+ *
+ * <li><strong>config</strong> - Comma-separated list of context-relative
+ * path(s) to the XML resource(s) containing the configuration information for
+ * the default module.  (Multiple files support since Struts 1.1)
+ * [/WEB-INF/struts-config.xml].</li>
+ *
  * <li><strong>config/${module}</strong> - Comma-separated list of
- * Context-relative path(s) to the XML resource(s) containing the configuration
- * information for the module that will use the specified prefix (/${module}).
- * This can be repeated as many times as required for multiple modules. (Since
- * Struts 1.1)</li> <li><strong>configFactory</strong> - The Java class name of
- * the <code>ModuleConfigFactory</code> used to create the implementation of the
- * ModuleConfig interface. </li> <li><strong>convertNull</strong> - Force
- * simulation of the Struts 1.0 behavior when populating forms. If set to true,
- * the numeric Java wrapper class types (like <code>java.lang.Integer</code>)
- * will default to null (rather than 0). (Since Struts 1.1) [false] </li>
+ * Context-relative path(s) to the XML resource(s) containing the
+ * configuration information for the module that will use the specified prefix
+ * (/${module}). This can be repeated as many times as required for multiple
+ * modules. (Since Struts 1.1)</li>
+ *
+ * <li><strong>configFactory</strong> - The Java class name of the
+ * <code>ModuleConfigFactory</code> used to create the implementation of the
+ * ModuleConfig interface. </li>
+ *
+ * <li><strong>convertNull</strong> - Force simulation of the Struts 1.0
+ * behavior when populating forms. If set to true, the numeric Java wrapper
+ * class types (like <code>java.lang.Integer</code>) will default to null
+ * (rather than 0). (Since Struts 1.1) [false] </li>
+ *
  * <li><strong>rulesets </strong> - Comma-delimited list of fully qualified
  * classnames of additional <code>org.apache.commons.digester.RuleSet</code>
  * instances that should be added to the <code>Digester</code> that will be
  * processing <code>struts-config.xml</code> files.  By default, only the
  * <code>RuleSet</code> for the standard configuration elements is loaded.
- * (Since Struts 1.1)</li> <li><strong>validating</strong> - Should we use a
- * validating XML parser to process the configuration file (strongly
- * recommended)? [true]</li> <li><strong>chainConfig</strong> - Comma-separated
- * list of either context-relative or classloader path(s) to load commons-chain
- * catalog definitions from.  If none specified, the default Struts catalog that
- * is provided with Struts will be used.</li> </ul>
+ * (Since Struts 1.1)</li>
+ *
+ * <li><strong>validating</strong> - Should we use a validating XML parser to
+ * process the configuration file (strongly recommended)? [true]</li>
+ *
+ * <li><strong>chainConfig</strong> - Comma-separated list of either
+ * context-relative or classloader path(s) to load commons-chain catalog
+ * definitions from.  If none specified, the default Struts catalog that is
+ * provided with Struts will be used.</li>
+ *
+ * </ul>
  *
  * @version $Rev$ $Date: 2005-10-14 19:54:16 -0400 (Fri, 14 Oct 2005)
  *          $
@@ -166,14 +211,15 @@ public class ActionServlet extends HttpServlet {
     // ----------------------------------------------------- Instance Variables
 
     /**
-     * <p>Comma-separated list of context-relative path(s) to our configuration
-     * resource(s) for the default module.</p>
+     * <p>Comma-separated list of context-relative path(s) to our
+     * configuration resource(s) for the default module.</p>
      */
     protected String config = "/WEB-INF/struts-config.xml";
 
     /**
      * <p>Comma-separated list of context or classloader-relative path(s) that
-     * contain the configuration for the default commons-chain catalog(s).</p>
+     * contain the configuration for the default commons-chain
+     * catalog(s).</p>
      */
     protected String chainConfig = "org/apache/struts/chain/chain-config.xml";
 
@@ -203,15 +249,15 @@ public class ActionServlet extends HttpServlet {
      *
      * @since Struts 1.1
      */
-    protected String internalName =
-            "org.apache.struts.action.ActionResources";
+    protected String internalName = "org.apache.struts.action.ActionResources";
 
     /**
      * <p>The set of public identifiers, and corresponding resource names, for
      * the versions of the configuration file DTDs that we know about.  There
      * <strong>MUST</strong> be an even number of Strings in this list!</p>
      */
-    protected String[] registrations = {
+    protected String[] registrations =
+        {
             "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN",
             "/org/apache/struts/resources/struts-config_1_0.dtd",
             "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN",
@@ -224,7 +270,7 @@ public class ActionServlet extends HttpServlet {
             "/org/apache/struts/resources/web-app_2_2.dtd",
             "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN",
             "/org/apache/struts/resources/web-app_2_3.dtd"
-    };
+        };
 
     /**
      * <p>The URL pattern to which we are mapped in our web application
@@ -233,16 +279,16 @@ public class ActionServlet extends HttpServlet {
     protected String servletMapping = null; // :FIXME: - multiples?
 
     /**
-     * <p>The servlet name under which we are registered in our web application
-     * deployment descriptor.</p>
+     * <p>The servlet name under which we are registered in our web
+     * application deployment descriptor.</p>
      */
     protected String servletName = null;
 
     // ---------------------------------------------------- HttpServlet Methods
 
     /**
-     * <p>Gracefully shut down this controller servlet, releasing any resources
-     * that were allocated at initialization.</p>
+     * <p>Gracefully shut down this controller servlet, releasing any
+     * resources that were allocated at initialization.</p>
      */
     public void destroy() {
         if (log.isDebugEnabled()) {
@@ -255,7 +301,7 @@ public class ActionServlet extends HttpServlet {
 
         // Release our LogFactory and Log instances (if any)
         ClassLoader classLoader =
-                Thread.currentThread().getContextClassLoader();
+            Thread.currentThread().getContextClassLoader();
 
         if (classLoader == null) {
             classLoader = ActionServlet.class.getClassLoader();
@@ -263,7 +309,8 @@ public class ActionServlet extends HttpServlet {
 
         try {
             LogFactory.release(classLoader);
-        } catch (Throwable t) {
+        }
+        catch (Throwable t) {
             ; // Servlet container doesn't have the latest version
 
             // of commons-logging-api.jar installed
@@ -284,8 +331,8 @@ public class ActionServlet extends HttpServlet {
 
     /**
      * <p>Initialize this servlet.  Most of the processing has been factored
-     * into support methods so that you can override particular functionality at
-     * a fairly granular level.</p>
+     * into support methods so that you can override particular functionality
+     * at a fairly granular level.</p>
      *
      * @throws ServletException if we cannot configure ourselves correctly
      */
@@ -302,8 +349,7 @@ public class ActionServlet extends HttpServlet {
             initServlet();
             initChain();
 
-            getServletContext()
-                    .setAttribute(Globals.ACTION_SERVLET_KEY, this);
+            getServletContext().setAttribute(Globals.ACTION_SERVLET_KEY, this);
             initModuleConfigFactory();
 
             // Initialize modules as needed
@@ -328,7 +374,8 @@ public class ActionServlet extends HttpServlet {
 
                 String prefix = name.substring(configPrefixLength);
 
-                moduleConfig = initModuleConfig(prefix,
+                moduleConfig =
+                    initModuleConfig(prefix,
                         getServletConfig().getInitParameter(name));
                 initModuleMessageResources(moduleConfig);
                 initModulePlugIns(moduleConfig);
@@ -342,16 +389,18 @@ public class ActionServlet extends HttpServlet {
             this.initModulePrefixes(this.getServletContext());
 
             this.destroyConfigDigester();
-        } catch (UnavailableException ex) {
+        }
+        catch (UnavailableException ex) {
             throw ex;
-        } catch (Throwable t) {
+        }
+        catch (Throwable t) {
             // The follow error message is not retrieved from internal message
             // resources as they may not have been able to have been
             // initialized
             log.error("Unable to initialize Struts ActionServlet due to an "
-                    + "unexpected exception or error thrown, so marking the "
-                    + "servlet as unavailable.  Most likely, this is due to an "
-                    + "incorrect or missing library dependency.", t);
+                + "unexpected exception or error thrown, so marking the "
+                + "servlet as unavailable.  Most likely, this is due to an "
+                + "incorrect or missing library dependency.", t);
             throw new UnavailableException(t.getMessage());
         }
     }
@@ -384,8 +433,7 @@ public class ActionServlet extends HttpServlet {
         }
 
         String[] prefixes =
-                (String[]) prefixList.toArray(new String[prefixList
-                        .size()]);
+            (String[]) prefixList.toArray(new String[prefixList.size()]);
 
         context.setAttribute(Globals.MODULE_PREFIXES_KEY, prefixes);
     }
@@ -398,9 +446,8 @@ public class ActionServlet extends HttpServlet {
      * @throws IOException      if an input/output error occurs
      * @throws ServletException if a servlet exception occurs
      */
-    public void doGet(HttpServletRequest request,
-                      HttpServletResponse response)
-            throws IOException, ServletException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws IOException, ServletException {
         process(request, response);
     }
 
@@ -412,9 +459,8 @@ public class ActionServlet extends HttpServlet {
      * @throws IOException      if an input/output error occurs
      * @throws ServletException if a servlet exception occurs
      */
-    public void doPost(HttpServletRequest request,
-                       HttpServletResponse response)
-            throws IOException, ServletException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws IOException, ServletException {
         process(request, response);
     }
 
@@ -435,7 +481,7 @@ public class ActionServlet extends HttpServlet {
         if (servletName.equals(this.servletName)) {
             if (log.isDebugEnabled()) {
                 log.debug("Process servletName=" + servletName
-                        + ", urlPattern=" + urlPattern);
+                    + ", urlPattern=" + urlPattern);
             }
 
             this.servletMapping = urlPattern;
@@ -488,9 +534,9 @@ public class ActionServlet extends HttpServlet {
 
             getServletContext().removeAttribute(name);
 
-            PlugIn[] plugIns = (PlugIn[]) getServletContext()
-                    .getAttribute(Globals.PLUG_INS_KEY
-                            + config.getPrefix());
+            PlugIn[] plugIns =
+                (PlugIn[]) getServletContext().getAttribute(Globals.PLUG_INS_KEY
+                    + config.getPrefix());
 
             if (plugIns != null) {
                 for (int i = 0; i < plugIns.length; i++) {
@@ -500,7 +546,7 @@ public class ActionServlet extends HttpServlet {
                 }
 
                 getServletContext().removeAttribute(Globals.PLUG_INS_KEY
-                        + config.getPrefix());
+                    + config.getPrefix());
             }
         }
     }
@@ -533,11 +579,11 @@ public class ActionServlet extends HttpServlet {
      */
     protected ModuleConfig getModuleConfig(HttpServletRequest request) {
         ModuleConfig config =
-                (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+            (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
 
         if (config == null) {
-            config = (ModuleConfig) getServletContext()
-                    .getAttribute(Globals.MODULE_KEY);
+            config =
+                (ModuleConfig) getServletContext().getAttribute(Globals.MODULE_KEY);
         }
 
         return (config);
@@ -547,8 +593,8 @@ public class ActionServlet extends HttpServlet {
      * <p>Look up and return the {@link RequestProcessor} responsible for the
      * specified module, creating a new one if necessary.</p>
      *
-     * @param config The module configuration for which to acquire and return a
-     *               RequestProcessor.
+     * @param config The module configuration for which to acquire and return
+     *               a RequestProcessor.
      * @return The {@link RequestProcessor} responsible for the specified
      *         module,
      * @throws ServletException If we cannot instantiate a RequestProcessor
@@ -558,20 +604,20 @@ public class ActionServlet extends HttpServlet {
      * @since Struts 1.1
      */
     protected synchronized RequestProcessor getRequestProcessor(
-            ModuleConfig config) throws ServletException {
+        ModuleConfig config) throws ServletException {
         RequestProcessor processor = this.getProcessorForModule(config);
 
         if (processor == null) {
             try {
-                processor = (RequestProcessor) RequestUtils
-                        .applicationInstance(config.getControllerConfig()
-                                .getProcessorClass());
-            } catch (Exception e) {
+                processor =
+                    (RequestProcessor) RequestUtils.applicationInstance(config.getControllerConfig()
+                                                                              .getProcessorClass());
+            }
+            catch (Exception e) {
                 throw new UnavailableException(
-                        "Cannot initialize RequestProcessor of class "
-                                + config.getControllerConfig()
-                                .getProcessorClass() + ": "
-                                + e);
+                    "Cannot initialize RequestProcessor of class "
+                    + config.getControllerConfig().getProcessorClass() + ": "
+                    + e);
             }
 
             processor.init(this, config);
@@ -585,8 +631,8 @@ public class ActionServlet extends HttpServlet {
     }
 
     /**
-     * <p>Returns the RequestProcessor for the given module or null if one does
-     * not exist.  This method will not create a RequestProcessor.</p>
+     * <p>Returns the RequestProcessor for the given module or null if one
+     * does not exist.  This method will not create a RequestProcessor.</p>
      *
      * @param config The ModuleConfig.
      * @return The <code>RequestProcessor</code> for the given module, or
@@ -605,7 +651,7 @@ public class ActionServlet extends HttpServlet {
      */
     protected void initModuleConfigFactory() {
         String configFactory =
-                getServletConfig().getInitParameter("configFactory");
+            getServletConfig().getInitParameter("configFactory");
 
         if (configFactory != null) {
             ModuleConfigFactory.setFactoryClass(configFactory);
@@ -624,15 +670,14 @@ public class ActionServlet extends HttpServlet {
      * @since Struts 1.1
      */
     protected ModuleConfig initModuleConfig(String prefix, String paths)
-            throws ServletException {
+        throws ServletException {
         if (log.isDebugEnabled()) {
             log.debug("Initializing module path '" + prefix
-                    + "' configuration from '" + paths + "'");
+                + "' configuration from '" + paths + "'");
         }
 
         // Parse the configuration for this module
-        ModuleConfigFactory factoryObject =
-                ModuleConfigFactory.createFactory();
+        ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
         ModuleConfig config = factoryObject.createModuleConfig(prefix);
 
         // Configure the Digester instance we will use
@@ -648,7 +693,7 @@ public class ActionServlet extends HttpServlet {
         }
 
         getServletContext().setAttribute(Globals.MODULE_KEY
-                + config.getPrefix(), config);
+            + config.getPrefix(), config);
 
         return config;
     }
@@ -664,7 +709,7 @@ public class ActionServlet extends HttpServlet {
      *             instead
      */
     protected void parseModuleConfigFile(Digester digester, String path)
-            throws UnavailableException {
+        throws UnavailableException {
         try {
             List paths = splitAndResolvePaths(path);
 
@@ -673,12 +718,15 @@ public class ActionServlet extends HttpServlet {
                 URL url = (URL) paths.get(0);
 
                 parseModuleConfigFile(digester, url);
-            } else {
+            }
+            else {
                 throw new UnavailableException("Cannot locate path " + path);
             }
-        } catch (UnavailableException ex) {
+        }
+        catch (UnavailableException ex) {
             throw ex;
-        } catch (ServletException ex) {
+        }
+        catch (ServletException ex) {
             handleConfigException(path, ex);
         }
     }
@@ -692,7 +740,7 @@ public class ActionServlet extends HttpServlet {
      * @since Struts 1.3
      */
     protected void parseModuleConfigFile(Digester digester, URL url)
-            throws UnavailableException {
+        throws UnavailableException {
         InputStream input = null;
 
         try {
@@ -704,15 +752,19 @@ public class ActionServlet extends HttpServlet {
             input = conn.getInputStream();
             is.setByteStream(input);
             digester.parse(is);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             handleConfigException(url.toString(), e);
-        } catch (SAXException e) {
+        }
+        catch (SAXException e) {
             handleConfigException(url.toString(), e);
-        } finally {
+        }
+        finally {
             if (input != null) {
                 try {
                     input.close();
-                } catch (IOException e) {
+                }
+                catch (IOException e) {
                     throw new UnavailableException(e.getMessage());
                 }
             }
@@ -728,7 +780,7 @@ public class ActionServlet extends HttpServlet {
      * @throws UnavailableException as a wrapper around Exception
      */
     private void handleConfigException(String path, Exception e)
-            throws UnavailableException {
+        throws UnavailableException {
         String msg = internal.getMessage("configParse", path);
 
         log.error(msg, e);
@@ -744,9 +796,9 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException to communicate the error.
      */
     private void handleCreationException(String className, Exception e)
-            throws ServletException {
-        String errorMessage = internal.getMessage("configExtends.creation",
-                className);
+        throws ServletException {
+        String errorMessage =
+            internal.getMessage("configExtends.creation", className);
 
         log.error(errorMessage, e);
         throw new UnavailableException(errorMessage);
@@ -762,18 +814,18 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException to communicate the error.
      */
     private void handleGeneralExtensionException(String configType,
-                                                 String configName,
-                                                 Exception e)
-            throws ServletException {
-        String errorMessage = internal.getMessage("configExtends", configType,
-                configName);
+        String configName, Exception e)
+        throws ServletException {
+        String errorMessage =
+            internal.getMessage("configExtends", configType, configName);
 
         log.error(errorMessage, e);
         throw new UnavailableException(errorMessage);
     }
 
     /**
-     * <p>Handle errors caused by required fields that were not specified.</p>
+     * <p>Handle errors caused by required fields that were not
+     * specified.</p>
      *
      * @param field      The name of the required field that was not found.
      * @param configType The type of configuration object of configName.
@@ -782,11 +834,10 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException to communicate the error.
      */
     private void handleValueRequiredException(String field, String configType,
-                                              String configName)
-            throws ServletException {
+        String configName) throws ServletException {
         String errorMessage =
-                internal.getMessage("configFieldRequired", field,
-                        configType, configName);
+            internal.getMessage("configFieldRequired", field, configType,
+                configName);
 
         log.error(errorMessage);
         throw new UnavailableException(errorMessage);
@@ -800,33 +851,33 @@ public class ActionServlet extends HttpServlet {
      * @since Struts 1.1
      */
     protected void initModulePlugIns(ModuleConfig config)
-            throws ServletException {
+        throws ServletException {
         if (log.isDebugEnabled()) {
             log.debug("Initializing module path '" + config.getPrefix()
-                    + "' plug ins");
+                + "' plug ins");
         }
 
         PlugInConfig[] plugInConfigs = config.findPlugInConfigs();
         PlugIn[] plugIns = new PlugIn[plugInConfigs.length];
 
         getServletContext().setAttribute(Globals.PLUG_INS_KEY
-                + config.getPrefix(), plugIns);
+            + config.getPrefix(), plugIns);
 
         for (int i = 0; i < plugIns.length; i++) {
             try {
-                plugIns[i] = (PlugIn) RequestUtils
-                        .applicationInstance(plugInConfigs[i]
-                                .getClassName());
-                BeanUtils.populate(plugIns[i],
-                        plugInConfigs[i].getProperties());
+                plugIns[i] =
+                    (PlugIn) RequestUtils.applicationInstance(plugInConfigs[i]
+                        .getClassName());
+                BeanUtils.populate(plugIns[i], plugInConfigs[i].getProperties());
 
                 // Pass the current plugIn config object to the PlugIn.
                 // The property is set only if the plugin declares it.
                 // This plugin config object is needed by Tiles
                 try {
                     PropertyUtils.setProperty(plugIns[i],
-                            "currentPlugInConfigObject", plugInConfigs[i]);
-                } catch (Exception e) {
+                        "currentPlugInConfigObject", plugInConfigs[i]);
+                }
+                catch (Exception e) {
                     ;
 
                     // FIXME Whenever we fail silently, we must document a valid
@@ -845,10 +896,13 @@ public class ActionServlet extends HttpServlet {
                 }
 
                 plugIns[i].init(this, config);
-            } catch (ServletException e) {
+            }
+            catch (ServletException e) {
                 throw e;
-            } catch (Exception e) {
-                String errMsg = internal.getMessage("plugIn.init",
+            }
+            catch (Exception e) {
+                String errMsg =
+                    internal.getMessage("plugIn.init",
                         plugInConfigs[i].getClassName());
 
                 log(errMsg, e);
@@ -865,10 +919,10 @@ public class ActionServlet extends HttpServlet {
      * @since Struts 1.3
      */
     protected void initModuleFormBeans(ModuleConfig config)
-            throws ServletException {
+        throws ServletException {
         if (log.isDebugEnabled()) {
             log.debug("Initializing module path '" + config.getPrefix()
-                    + "' form beans");
+                + "' form beans");
         }
 
         // Process form bean extensions.
@@ -886,7 +940,7 @@ public class ActionServlet extends HttpServlet {
             // Verify that required fields are all present for the form config
             if (formBean.getType() == null) {
                 handleValueRequiredException("type", formBean.getName(),
-                        "form bean");
+                    "form bean");
             }
 
             // ... and the property configs
@@ -897,7 +951,7 @@ public class ActionServlet extends HttpServlet {
 
                 if (property.getType() == null) {
                     handleValueRequiredException("type", property.getName(),
-                            "form property");
+                        "form property");
                 }
             }
 
@@ -917,25 +971,27 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException if initialization cannot be performed.
      */
     protected void processFormBeanExtension(FormBeanConfig beanConfig,
-                                            ModuleConfig moduleConfig)
-            throws ServletException {
+        ModuleConfig moduleConfig)
+        throws ServletException {
         try {
             if (!beanConfig.isExtensionProcessed()) {
                 if (log.isDebugEnabled()) {
                     log.debug("Processing extensions for '"
-                            + beanConfig.getName() + "'");
+                        + beanConfig.getName() + "'");
                 }
 
                 beanConfig =
-                        processFormBeanConfigClass(beanConfig, moduleConfig);
+                    processFormBeanConfigClass(beanConfig, moduleConfig);
 
                 beanConfig.processExtends(moduleConfig);
             }
-        } catch (ServletException e) {
+        }
+        catch (ServletException e) {
             throw e;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             handleGeneralExtensionException("FormBeanConfig",
-                    beanConfig.getName(), e);
+                beanConfig.getName(), e);
         }
     }
 
@@ -945,15 +1001,15 @@ public class ActionServlet extends HttpServlet {
      *
      * @param beanConfig   The form bean to check.
      * @param moduleConfig The config for the current module.
-     * @return The form bean config using the correct class as determined by the
-     *         config's ancestor and its own overridden value.
-     * @throws UnavailableException if an instance of the form bean config class
-     *                              cannot be created.
+     * @return The form bean config using the correct class as determined by
+     *         the config's ancestor and its own overridden value.
+     * @throws UnavailableException if an instance of the form bean config
+     *                              class cannot be created.
      * @throws ServletException     on class creation error
      */
     protected FormBeanConfig processFormBeanConfigClass(
-            FormBeanConfig beanConfig, ModuleConfig moduleConfig)
-            throws ServletException {
+        FormBeanConfig beanConfig, ModuleConfig moduleConfig)
+        throws ServletException {
         String ancestor = beanConfig.getExtends();
 
         if (ancestor == null) {
@@ -966,7 +1022,7 @@ public class ActionServlet extends HttpServlet {
 
         if (baseConfig == null) {
             throw new UnavailableException("Unable to find " + "form bean '"
-                    + ancestor + "' to extend.");
+                + ancestor + "' to extend.");
         }
 
         // Was our bean's class overridden already?
@@ -978,19 +1034,20 @@ public class ActionServlet extends HttpServlet {
                 String baseConfigClassName = baseConfig.getClass().getName();
 
                 try {
-                    newBeanConfig = (FormBeanConfig) RequestUtils
-                            .applicationInstance(baseConfigClassName);
+                    newBeanConfig =
+                        (FormBeanConfig) RequestUtils.applicationInstance(baseConfigClassName);
 
                     // copy the values
                     BeanUtils.copyProperties(newBeanConfig, beanConfig);
 
-                    FormPropertyConfig[] fpc = beanConfig
-                            .findFormPropertyConfigs();
+                    FormPropertyConfig[] fpc =
+                        beanConfig.findFormPropertyConfigs();
 
                     for (int i = 0; i < fpc.length; i++) {
                         newBeanConfig.addFormPropertyConfig(fpc[i]);
                     }
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     handleCreationException(baseConfigClassName, e);
                 }
 
@@ -1011,10 +1068,10 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException if initialization cannot be performed
      */
     protected void initModuleForwards(ModuleConfig config)
-            throws ServletException {
+        throws ServletException {
         if (log.isDebugEnabled()) {
             log.debug("Initializing module path '" + config.getPrefix()
-                    + "' forwards");
+                + "' forwards");
         }
 
         // Process forwards extensions.
@@ -1032,7 +1089,7 @@ public class ActionServlet extends HttpServlet {
             // Verify that required fields are all present for the forward
             if (forward.getPath() == null) {
                 handleValueRequiredException("path", forward.getName(),
-                        "global forward");
+                    "global forward");
             }
         }
     }
@@ -1045,26 +1102,27 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException if initialization cannot be performed.
      */
     protected void processForwardExtension(ForwardConfig forwardConfig,
-                                           ModuleConfig moduleConfig)
-            throws ServletException {
+        ModuleConfig moduleConfig)
+        throws ServletException {
         try {
             if (!forwardConfig.isExtensionProcessed()) {
                 if (log.isDebugEnabled()) {
                     log.debug("Processing extensions for '"
-                            + forwardConfig.getName() + "'");
+                        + forwardConfig.getName() + "'");
                 }
 
-                forwardConfig = processForwardConfigClass(forwardConfig,
-                        moduleConfig);
+                forwardConfig =
+                    processForwardConfigClass(forwardConfig, moduleConfig);
 
                 forwardConfig.processExtends(moduleConfig, null);
             }
-        } catch (ServletException e) {
+        }
+        catch (ServletException e) {
             throw e;
-        } catch (Exception e) {
-            handleGeneralExtensionException("Forward",
-                    forwardConfig.getName(),
-                    e);
+        }
+        catch (Exception e) {
+            handleGeneralExtensionException("Forward", forwardConfig.getName(),
+                e);
         }
     }
 
@@ -1081,8 +1139,8 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException     on class creation error
      */
     protected ForwardConfig processForwardConfigClass(
-            ForwardConfig forwardConfig, ModuleConfig moduleConfig)
-            throws ServletException {
+        ForwardConfig forwardConfig, ModuleConfig moduleConfig)
+        throws ServletException {
         String ancestor = forwardConfig.getExtends();
 
         if (ancestor == null) {
@@ -1095,7 +1153,7 @@ public class ActionServlet extends HttpServlet {
 
         if (baseConfig == null) {
             throw new UnavailableException("Unable to find " + "forward '"
-                    + ancestor + "' to extend.");
+                + ancestor + "' to extend.");
         }
 
         // Was our forwards's class overridden already?
@@ -1107,12 +1165,13 @@ public class ActionServlet extends HttpServlet {
                 String baseConfigClassName = baseConfig.getClass().getName();
 
                 try {
-                    newForwardConfig = (ForwardConfig) RequestUtils
-                            .applicationInstance(baseConfigClassName);
+                    newForwardConfig =
+                        (ForwardConfig) RequestUtils.applicationInstance(baseConfigClassName);
 
                     // copy the values
                     BeanUtils.copyProperties(newForwardConfig, forwardConfig);
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     handleCreationException(baseConfigClassName, e);
                 }
 
@@ -1134,10 +1193,10 @@ public class ActionServlet extends HttpServlet {
      * @since Struts 1.3
      */
     protected void initModuleExceptionConfigs(ModuleConfig config)
-            throws ServletException {
+        throws ServletException {
         if (log.isDebugEnabled()) {
             log.debug("Initializing module path '" + config.getPrefix()
-                    + "' forwards");
+                + "' forwards");
         }
 
         // Process exception config extensions.
@@ -1155,7 +1214,7 @@ public class ActionServlet extends HttpServlet {
             // Verify that required fields are all present for the config
             if (exception.getKey() == null) {
                 handleValueRequiredException("key", exception.getType(),
-                        "global exception config");
+                    "global exception config");
             }
         }
     }
@@ -1168,42 +1227,44 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException if initialization cannot be performed.
      */
     protected void processExceptionExtension(ExceptionConfig exceptionConfig,
-                                             ModuleConfig moduleConfig)
-            throws ServletException {
+        ModuleConfig moduleConfig)
+        throws ServletException {
         try {
             if (!exceptionConfig.isExtensionProcessed()) {
                 if (log.isDebugEnabled()) {
                     log.debug("Processing extensions for '"
-                            + exceptionConfig.getType() + "'");
+                        + exceptionConfig.getType() + "'");
                 }
 
-                exceptionConfig = processExceptionConfigClass(exceptionConfig,
-                        moduleConfig);
+                exceptionConfig =
+                    processExceptionConfigClass(exceptionConfig, moduleConfig);
 
                 exceptionConfig.processExtends(moduleConfig, null);
             }
-        } catch (ServletException e) {
+        }
+        catch (ServletException e) {
             throw e;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             handleGeneralExtensionException("Exception",
-                    exceptionConfig.getType(), e);
+                exceptionConfig.getType(), e);
         }
     }
 
     /**
-     * <p>Checks if the current exceptionConfig is using the correct class based
-     * on the class of its configuration ancestor.</p>
+     * <p>Checks if the current exceptionConfig is using the correct class
+     * based on the class of its configuration ancestor.</p>
      *
      * @param exceptionConfig The config to check.
      * @param moduleConfig    The config for the current module.
-     * @return The exception config using the correct class as determined by the
-     *         config's ancestor and its own overridden value.
+     * @return The exception config using the correct class as determined by
+     *         the config's ancestor and its own overridden value.
      * @throws ServletException if an instance of the exception config class
      *                          cannot be created.
      */
     protected ExceptionConfig processExceptionConfigClass(
-            ExceptionConfig exceptionConfig, ModuleConfig moduleConfig)
-            throws ServletException {
+        ExceptionConfig exceptionConfig, ModuleConfig moduleConfig)
+        throws ServletException {
         String ancestor = exceptionConfig.getExtends();
 
         if (ancestor == null) {
@@ -1212,12 +1273,11 @@ public class ActionServlet extends HttpServlet {
         }
 
         // Make sure that this config is of the right class
-        ExceptionConfig baseConfig =
-                moduleConfig.findExceptionConfig(ancestor);
+        ExceptionConfig baseConfig = moduleConfig.findExceptionConfig(ancestor);
 
         if (baseConfig == null) {
             throw new UnavailableException("Unable to find "
-                    + "exception config '" + ancestor + "' to extend.");
+                + "exception config '" + ancestor + "' to extend.");
         }
 
         // Was our config's class overridden already?
@@ -1229,13 +1289,13 @@ public class ActionServlet extends HttpServlet {
                 String baseConfigClassName = baseConfig.getClass().getName();
 
                 try {
-                    newExceptionConfig = (ExceptionConfig) RequestUtils
-                            .applicationInstance(baseConfigClassName);
+                    newExceptionConfig =
+                        (ExceptionConfig) RequestUtils.applicationInstance(baseConfigClassName);
 
                     // copy the values
-                    BeanUtils.copyProperties(newExceptionConfig,
-                            exceptionConfig);
-                } catch (Exception e) {
+                    BeanUtils.copyProperties(newExceptionConfig, exceptionConfig);
+                }
+                catch (Exception e) {
                     handleCreationException(baseConfigClassName, e);
                 }
 
@@ -1257,10 +1317,10 @@ public class ActionServlet extends HttpServlet {
      * @since Struts 1.3
      */
     protected void initModuleActions(ModuleConfig config)
-            throws ServletException {
+        throws ServletException {
         if (log.isDebugEnabled()) {
             log.debug("Initializing module path '" + config.getPrefix()
-                    + "' action configs");
+                + "' action configs");
         }
 
         // Process ActionConfig extensions.
@@ -1284,20 +1344,19 @@ public class ActionServlet extends HttpServlet {
 
                 if (forward.getPath() == null) {
                     handleValueRequiredException("path", forward.getName(),
-                            "action forward");
+                        "action forward");
                 }
             }
 
             // ... and the exception configs
-            ExceptionConfig[] exceptions =
-                    actionConfig.findExceptionConfigs();
+            ExceptionConfig[] exceptions = actionConfig.findExceptionConfigs();
 
             for (int j = 0; j < exceptions.length; j++) {
                 ExceptionConfig exception = exceptions[j];
 
                 if (exception.getKey() == null) {
                     handleValueRequiredException("key", exception.getType(),
-                            "action exception config");
+                        "action exception config");
                 }
             }
         }
@@ -1311,43 +1370,43 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException if initialization cannot be performed.
      */
     protected void processActionConfigExtension(ActionConfig actionConfig,
-                                                ModuleConfig moduleConfig)
-            throws ServletException {
+        ModuleConfig moduleConfig)
+        throws ServletException {
         try {
             if (!actionConfig.isExtensionProcessed()) {
                 if (log.isDebugEnabled()) {
                     log.debug("Processing extensions for '"
-                            + actionConfig.getPath() + "'");
+                        + actionConfig.getPath() + "'");
                 }
 
-                actionConfig = processActionConfigClass(actionConfig,
-                        moduleConfig);
+                actionConfig =
+                    processActionConfigClass(actionConfig, moduleConfig);
 
                 actionConfig.processExtends(moduleConfig);
             }
-        } catch (ServletException e) {
+        }
+        catch (ServletException e) {
             throw e;
-        } catch (Exception e) {
-            handleGeneralExtensionException("Action",
-                    actionConfig.getPath(),
-                    e);
+        }
+        catch (Exception e) {
+            handleGeneralExtensionException("Action", actionConfig.getPath(), e);
         }
     }
 
     /**
-     * <p>Checks if the current actionConfig is using the correct class based on
-     * the class of its ancestor ActionConfig.</p>
+     * <p>Checks if the current actionConfig is using the correct class based
+     * on the class of its ancestor ActionConfig.</p>
      *
      * @param actionConfig The action config to check.
      * @param moduleConfig The config for the current module.
      * @return The config object using the correct class as determined by the
      *         config's ancestor and its own overridden value.
-     * @throws ServletException if an instance of the action config class cannot
-     *                          be created.
+     * @throws ServletException if an instance of the action config class
+     *                          cannot be created.
      */
     protected ActionConfig processActionConfigClass(ActionConfig actionConfig,
-                                                    ModuleConfig moduleConfig)
-            throws ServletException {
+        ModuleConfig moduleConfig)
+        throws ServletException {
         String ancestor = actionConfig.getExtends();
 
         if (ancestor == null) {
@@ -1360,7 +1419,7 @@ public class ActionServlet extends HttpServlet {
 
         if (baseConfig == null) {
             throw new UnavailableException("Unable to find "
-                    + "action config for '" + ancestor + "' to extend.");
+                + "action config for '" + ancestor + "' to extend.");
         }
 
         // Was our actionConfig's class overridden already?
@@ -1372,27 +1431,28 @@ public class ActionServlet extends HttpServlet {
                 String baseConfigClassName = baseConfig.getClass().getName();
 
                 try {
-                    newActionConfig = (ActionConfig) RequestUtils
-                            .applicationInstance(baseConfigClassName);
+                    newActionConfig =
+                        (ActionConfig) RequestUtils.applicationInstance(baseConfigClassName);
 
                     // copy the values
                     BeanUtils.copyProperties(newActionConfig, actionConfig);
 
                     // copy the forward and exception configs, too
                     ForwardConfig[] forwards =
-                            actionConfig.findForwardConfigs();
+                        actionConfig.findForwardConfigs();
 
                     for (int i = 0; i < forwards.length; i++) {
                         newActionConfig.addForwardConfig(forwards[i]);
                     }
 
-                    ExceptionConfig[] exceptions = actionConfig
-                            .findExceptionConfigs();
+                    ExceptionConfig[] exceptions =
+                        actionConfig.findExceptionConfigs();
 
                     for (int i = 0; i < exceptions.length; i++) {
                         newActionConfig.addExceptionConfig(exceptions[i]);
                     }
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     handleCreationException(baseConfigClassName, e);
                 }
 
@@ -1415,38 +1475,37 @@ public class ActionServlet extends HttpServlet {
      * @since Struts 1.1
      */
     protected void initModuleMessageResources(ModuleConfig config)
-            throws ServletException {
+        throws ServletException {
         MessageResourcesConfig[] mrcs = config.findMessageResourcesConfigs();
 
         for (int i = 0; i < mrcs.length; i++) {
             if ((mrcs[i].getFactory() == null)
-                    || (mrcs[i].getParameter() == null)) {
+                || (mrcs[i].getParameter() == null)) {
                 continue;
             }
 
             if (log.isDebugEnabled()) {
                 log.debug("Initializing module path '" + config.getPrefix()
-                        + "' message resources from '"
-                        + mrcs[i].getParameter()
-                        + "'");
+                    + "' message resources from '" + mrcs[i].getParameter()
+                    + "'");
             }
 
             String factory = mrcs[i].getFactory();
 
             MessageResourcesFactory.setFactoryClass(factory);
 
-            MessageResourcesFactory factoryObject = MessageResourcesFactory
-                    .createFactory();
+            MessageResourcesFactory factoryObject =
+                MessageResourcesFactory.createFactory();
 
             factoryObject.setConfig(mrcs[i]);
 
-            MessageResources resources = factoryObject.createResources(mrcs[i]
-                    .getParameter());
+            MessageResources resources =
+                factoryObject.createResources(mrcs[i].getParameter());
 
             resources.setReturnNull(mrcs[i].getNull());
             resources.setEscape(mrcs[i].isEscape());
             getServletContext().setAttribute(mrcs[i].getKey()
-                    + config.getPrefix(), resources);
+                + config.getPrefix(), resources);
         }
     }
 
@@ -1461,7 +1520,7 @@ public class ActionServlet extends HttpServlet {
      * @since Struts 1.1
      */
     protected Digester initConfigDigester()
-            throws ServletException {
+        throws ServletException {
         // :FIXME: Where can ServletException be thrown?
         // Do we have an existing instance?
         if (configDigester != null) {
@@ -1496,7 +1555,7 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException if an error occurs
      */
     private void addRuleSets()
-            throws ServletException {
+        throws ServletException {
         String rulesets = getServletConfig().getInitParameter("rulesets");
 
         if (rulesets == null) {
@@ -1513,22 +1572,24 @@ public class ActionServlet extends HttpServlet {
             if (comma < 0) {
                 ruleset = rulesets.trim();
                 rulesets = "";
-            } else {
+            }
+            else {
                 ruleset = rulesets.substring(0, comma).trim();
                 rulesets = rulesets.substring(comma + 1).trim();
             }
 
             if (log.isDebugEnabled()) {
                 log.debug("Configuring custom Digester Ruleset of type "
-                        + ruleset);
+                    + ruleset);
             }
 
             try {
                 RuleSet instance =
-                        (RuleSet) RequestUtils.applicationInstance(ruleset);
+                    (RuleSet) RequestUtils.applicationInstance(ruleset);
 
                 this.configDigester.addRuleSet(instance);
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 log.error("Exception configuring custom Digester RuleSet", e);
                 throw new ServletException(e);
             }
@@ -1546,7 +1607,7 @@ public class ActionServlet extends HttpServlet {
         String value = getServletConfig().getInitParameter("validating");
 
         if ("false".equalsIgnoreCase(value) || "no".equalsIgnoreCase(value)
-                || "n".equalsIgnoreCase(value) || "0".equalsIgnoreCase(value)) {
+            || "n".equalsIgnoreCase(value) || "0".equalsIgnoreCase(value)) {
             validating = false;
         }
 
@@ -1560,15 +1621,15 @@ public class ActionServlet extends HttpServlet {
      * @throws UnavailableException if we cannot load  resources
      */
     protected void initInternal()
-            throws ServletException {
+        throws ServletException {
         try {
             internal = MessageResources.getMessageResources(internalName);
-        } catch (MissingResourceException e) {
+        }
+        catch (MissingResourceException e) {
             log.error("Cannot load internal resources from '" + internalName
-                    + "'", e);
+                + "'", e);
             throw new UnavailableException(
-                    "Cannot load internal resources from '" + internalName
-                            + "'");
+                "Cannot load internal resources from '" + internalName + "'");
         }
     }
 
@@ -1581,7 +1642,7 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException if an error occurs.
      */
     protected void initChain()
-            throws ServletException {
+        throws ServletException {
         // Parse the configuration file specified by path or resource
         try {
             String value;
@@ -1601,7 +1662,8 @@ public class ActionServlet extends HttpServlet {
                 log.info("Loading chain catalog from " + resource);
                 parser.parse(resource);
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("Exception loading resources", e);
             throw new ServletException(e);
         }
@@ -1614,7 +1676,7 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException if we cannot initialize these resources
      */
     protected void initOther()
-            throws ServletException {
+        throws ServletException {
         String value;
 
         value = getServletConfig().getInitParameter("config");
@@ -1628,21 +1690,20 @@ public class ActionServlet extends HttpServlet {
         value = getServletConfig().getInitParameter("convertNull");
 
         if ("true".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value)
-                || "on".equalsIgnoreCase(value) || "y".equalsIgnoreCase(value)
-                || "1".equalsIgnoreCase(value)) {
+            || "on".equalsIgnoreCase(value) || "y".equalsIgnoreCase(value)
+            || "1".equalsIgnoreCase(value)) {
             convertNull = true;
         }
 
         if (convertNull) {
             ConvertUtils.deregister();
             ConvertUtils.register(new BigDecimalConverter(null),
-                    BigDecimal.class);
+                BigDecimal.class);
             ConvertUtils.register(new BigIntegerConverter(null),
-                    BigInteger.class);
+                BigInteger.class);
             ConvertUtils.register(new BooleanConverter(null), Boolean.class);
             ConvertUtils.register(new ByteConverter(null), Byte.class);
-            ConvertUtils
-                    .register(new CharacterConverter(null), Character.class);
+            ConvertUtils.register(new CharacterConverter(null), Character.class);
             ConvertUtils.register(new DoubleConverter(null), Double.class);
             ConvertUtils.register(new FloatConverter(null), Float.class);
             ConvertUtils.register(new IntegerConverter(null), Integer.class);
@@ -1653,13 +1714,13 @@ public class ActionServlet extends HttpServlet {
 
     /**
      * <p>Initialize the servlet mapping under which our controller servlet is
-     * being accessed.  This will be used in the <code>&html:form&gt;</code> tag
-     * to generate correct destination URLs for form submissions.</p>
+     * being accessed.  This will be used in the <code>&html:form&gt;</code>
+     * tag to generate correct destination URLs for form submissions.</p>
      *
      * @throws ServletException if error happens while scanning web.xml
      */
     protected void initServlet()
-            throws ServletException {
+        throws ServletException {
         // Remember our servlet name
         this.servletName = getServletConfig().getServletName();
 
@@ -1680,9 +1741,7 @@ public class ActionServlet extends HttpServlet {
         }
 
         // Configure the processing rules that we need
-        digester.addCallMethod("web-app/servlet-mapping",
-                "addServletMapping",
-                2);
+        digester.addCallMethod("web-app/servlet-mapping", "addServletMapping", 2);
         digester.addCallParam("web-app/servlet-mapping/servlet-name", 0);
         digester.addCallParam("web-app/servlet-mapping/url-pattern", 1);
 
@@ -1692,7 +1751,7 @@ public class ActionServlet extends HttpServlet {
         }
 
         InputStream input =
-                getServletContext().getResourceAsStream("/WEB-INF/web.xml");
+            getServletContext().getResourceAsStream("/WEB-INF/web.xml");
 
         if (input == null) {
             log.error(internal.getMessage("configWebXml"));
@@ -1701,16 +1760,20 @@ public class ActionServlet extends HttpServlet {
 
         try {
             digester.parse(input);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             log.error(internal.getMessage("configWebXml"), e);
             throw new ServletException(e);
-        } catch (SAXException e) {
+        }
+        catch (SAXException e) {
             log.error(internal.getMessage("configWebXml"), e);
             throw new ServletException(e);
-        } finally {
+        }
+        finally {
             try {
                 input.close();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 log.error(internal.getMessage("configWebXml"), e);
                 throw new ServletException(e);
             }
@@ -1719,28 +1782,27 @@ public class ActionServlet extends HttpServlet {
         // Record a servlet context attribute (if appropriate)
         if (log.isDebugEnabled()) {
             log.debug("Mapping for servlet '" + servletName + "' = '"
-                    + servletMapping + "'");
+                + servletMapping + "'");
         }
 
         if (servletMapping != null) {
-            getServletContext()
-                    .setAttribute(Globals.SERVLET_KEY, servletMapping);
+            getServletContext().setAttribute(Globals.SERVLET_KEY, servletMapping);
         }
     }
 
     /**
-     * Takes a comma-delimited string and splits it into paths, then resolves
-     * those paths using the ServletContext and appropriate ClassLoader.  When
-     * loading from the classloader, multiple resources per path are supported
-     * to support, for example, multiple jars containing the same named config
-     * file.
+     * <p>Takes a comma-delimited string and splits it into paths, then
+     * resolves those paths using the ServletContext and appropriate
+     * ClassLoader.  When loading from the classloader, multiple resources per
+     * path are supported to support, for example, multiple jars containing
+     * the same named config file.</p>
      *
      * @param paths A comma-delimited string of paths
      * @return A list of resolved URL's for all found resources
      * @throws ServletException if a servlet exception is thrown
      */
     protected List splitAndResolvePaths(String paths)
-            throws ServletException {
+        throws ServletException {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
 
         if (loader == null) {
@@ -1762,7 +1824,8 @@ public class ActionServlet extends HttpServlet {
                 if (comma >= 0) {
                     path = paths.substring(0, comma).trim();
                     paths = paths.substring(comma + 1);
-                } else {
+                }
+                else {
                     path = paths.trim();
                     paths = "";
                 }
@@ -1778,30 +1841,33 @@ public class ActionServlet extends HttpServlet {
                 if (resource == null) {
                     if (log.isDebugEnabled()) {
                         log.debug("Unable to locate " + path
-                                + " in the servlet context, "
-                                + "trying classloader.");
+                            + " in the servlet context, "
+                            + "trying classloader.");
                     }
 
                     Enumeration e = loader.getResources(path);
 
                     if (!e.hasMoreElements()) {
-                        String msg =
-                                internal.getMessage("configMissing", path);
+                        String msg = internal.getMessage("configMissing", path);
 
                         log.error(msg);
                         throw new UnavailableException(msg);
-                    } else {
+                    }
+                    else {
                         while (e.hasMoreElements()) {
                             resolvedUrls.add(e.nextElement());
                         }
                     }
-                } else {
+                }
+                else {
                     resolvedUrls.add(resource);
                 }
             }
-        } catch (MalformedURLException e) {
+        }
+        catch (MalformedURLException e) {
             handleConfigException(path, e);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             handleConfigException(path, e);
         }
 
@@ -1818,8 +1884,8 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException if a servlet exception is thrown
      */
     protected void process(HttpServletRequest request,
-                           HttpServletResponse response)
-            throws IOException, ServletException {
+        HttpServletResponse response)
+        throws IOException, ServletException {
         ModuleUtils.getInstance().selectModule(request, getServletContext());
 
         ModuleConfig config = getModuleConfig(request);

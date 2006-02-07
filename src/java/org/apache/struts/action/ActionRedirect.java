@@ -30,10 +30,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A subclass of {@link ActionForward} which is designed for use in redirecting
- * requests, with support for adding parameters at runtime. <br/> An {@link
- * ForwardConfig} (or subclass) can be passed to the constructor to copy its
- * configuration: <br/>
+ * <p> A subclass of {@link ActionForward} which is designed for use in
+ * redirecting requests, with support for adding parameters at runtime. <br/>
+ * An {@link ForwardConfig} (or subclass) can be passed to the constructor to
+ * copy its configuration: </p> <p>
  * <pre>
  * public ActionForward execute(ActionMapping mapping,
  *                              ActionForm form,
@@ -48,7 +48,7 @@ import java.util.Map;
  *     return redirect;
  * }
  * </pre>
- * <p/>
+ * </p>
  *
  * @version $Rev$ $Date$
  */
@@ -116,8 +116,8 @@ public class ActionRedirect extends ActionForward {
      * <p>Construct a new instance with a {@link ForwardConfig} object to copy
      * name, path, and contextRelative values from.</p>
      *
-     * @param baseConfig the {@link ForwardConfig} to copy configuration values
-     *                   from
+     * @param baseConfig the {@link ForwardConfig} to copy configuration
+     *                   values from
      */
     public ActionRedirect(ForwardConfig baseConfig) {
         setName(baseConfig.getName());
@@ -166,21 +166,23 @@ public class ActionRedirect extends ActionForward {
         if (currentValue == null) {
             // there's no value for this param yet; add it to the map
             parameterValues.put(fieldName, value);
-        } else if (currentValue instanceof String) {
+        }
+        else if (currentValue instanceof String) {
             // there's already a value; let's use an array for these parameters
             String[] newValue = new String[2];
 
             newValue[0] = (String) currentValue;
             newValue[1] = value;
             parameterValues.put(fieldName, newValue);
-        } else if (currentValue instanceof String[]) {
+        }
+        else if (currentValue instanceof String[]) {
             // add the value to the list of existing values
-            List newValues = new ArrayList(Arrays.asList(
-                    (Object[]) currentValue));
+            List newValues =
+                new ArrayList(Arrays.asList((Object[]) currentValue));
 
             newValues.add(value);
             parameterValues.put(fieldName,
-                    newValues.toArray(new String[newValues.size()]));
+                newValues.toArray(new String[newValues.size()]));
         }
     }
 
@@ -218,9 +220,8 @@ public class ActionRedirect extends ActionForward {
 
             if (paramStartIndex > 0) {
                 // did the path end with "?"?
-                needsParamSeparator =
-                        (paramStartIndex != (originalPath.length()
-                                - 1));
+                needsParamSeparator = (paramStartIndex != (originalPath.length()
+                    - 1));
 
                 if (needsParamSeparator) {
                     paramSeparator = "&";
@@ -260,7 +261,8 @@ public class ActionRedirect extends ActionForward {
             if (value instanceof String) {
                 // just one value for this param
                 strParam.append(paramName).append("=").append(value);
-            } else if (value instanceof String[]) {
+            }
+            else if (value instanceof String[]) {
                 // loop through all values for this param
                 String[] values = (String[]) value;
 
@@ -294,8 +296,7 @@ public class ActionRedirect extends ActionForward {
 
         result.append("ActionRedirect [");
         result.append("originalPath=").append(getOriginalPath()).append(";");
-        result.append("parameterString=").append(getParameterString())
-                .append("]");
+        result.append("parameterString=").append(getParameterString()).append("]");
 
         return result.toString();
     }

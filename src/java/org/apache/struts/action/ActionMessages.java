@@ -18,6 +18,7 @@
 package org.apache.struts.action;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,8 +27,8 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * <p>A class that encapsulates messages. Messages can be either global or they
- * are specific to a particular bean property.</p>
+ * <p>A class that encapsulates messages. Messages can be either global or
+ * they are specific to a particular bean property.</p>
  *
  * <p>Each individual message is described by an <code>ActionMessage</code>
  * object, which contains a message key (to be looked up in an appropriate
@@ -47,12 +48,13 @@ public class ActionMessages implements Serializable {
     /**
      * <p>Compares ActionMessageItem objects.</p>
      */
-    private static final Comparator ACTION_ITEM_COMPARATOR = new Comparator() {
-        public int compare(Object o1, Object o2) {
-            return ((ActionMessageItem) o1).getOrder()
-                    - ((ActionMessageItem) o2).getOrder();
-        }
-    };
+    private static final Comparator ACTION_ITEM_COMPARATOR =
+        new Comparator() {
+            public int compare(Object o1, Object o2) {
+                return ((ActionMessageItem) o1).getOrder()
+                - ((ActionMessageItem) o2).getOrder();
+            }
+        };
 
     // ----------------------------------------------------- Manifest Constants
 
@@ -61,7 +63,7 @@ public class ActionMessages implements Serializable {
      * those related to a specific property.</p>
      */
     public static final String GLOBAL_MESSAGE =
-            "org.apache.struts.action.GLOBAL_MESSAGE";
+        "org.apache.struts.action.GLOBAL_MESSAGE";
 
     // ----------------------------------------------------- Instance Variables
 
@@ -76,8 +78,9 @@ public class ActionMessages implements Serializable {
     protected boolean accessed = false;
 
     /**
-     * <p>The accumulated set of <code>ActionMessage</code> objects (represented
-     * as an ArrayList) for each property, keyed by property name.</p>
+     * <p>The accumulated set of <code>ActionMessage</code> objects
+     * (represented as an ArrayList) for each property, keyed by property
+     * name.</p>
      */
     protected HashMap messages = new HashMap();
 
@@ -111,8 +114,8 @@ public class ActionMessages implements Serializable {
 
     /**
      * <p>Add a message to the set of messages for the specified property. An
-     * order of the property/key is maintained based on the initial addition of
-     * the property/key.</p>
+     * order of the property/key is maintained based on the initial addition
+     * of the property/key.</p>
      *
      * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
      * @param message  The message to be added
@@ -126,7 +129,8 @@ public class ActionMessages implements Serializable {
             item = new ActionMessageItem(list, iCount++, property);
 
             messages.put(property, item);
-        } else {
+        }
+        else {
             list = item.getList();
         }
 
@@ -134,15 +138,16 @@ public class ActionMessages implements Serializable {
     }
 
     /**
-     * <p>Adds the messages from the given <code>ActionMessages</code> object to
-     * this set of messages. The messages are added in the order they are
-     * returned from the <code>properties</code> method. If a message's property
-     * is already in the current <code>ActionMessages</code> object, it is added
-     * to the end of the list for that property. If a message's property is not
-     * in the current list it is added to the end of the properties.</p>
+     * <p>Adds the messages from the given <code>ActionMessages</code> object
+     * to this set of messages. The messages are added in the order they are
+     * returned from the <code>properties</code> method. If a message's
+     * property is already in the current <code>ActionMessages</code> object,
+     * it is added to the end of the list for that property. If a message's
+     * property is not in the current list it is added to the end of the
+     * properties.</p>
      *
-     * @param actionMessages The <code>ActionMessages</code> object to be added.
-     *                       This parameter can be <code>null</code>.
+     * @param actionMessages The <code>ActionMessages</code> object to be
+     *                       added. This parameter can be <code>null</code>.
      * @since Struts 1.1
      */
     public void add(ActionMessages actionMessages) {
@@ -187,9 +192,9 @@ public class ActionMessages implements Serializable {
     }
 
     /**
-     * <p>Return the set of all recorded messages, without distinction by which
-     * property the messages are associated with. If there are no messages
-     * recorded, an empty enumeration is returned.</p>
+     * <p>Return the set of all recorded messages, without distinction by
+     * which property the messages are associated with. If there are no
+     * messages recorded, an empty enumeration is returned.</p>
      *
      * @return An iterator over the messages for all properties.
      */
@@ -215,7 +220,7 @@ public class ActionMessages implements Serializable {
             ActionMessageItem ami = (ActionMessageItem) i.next();
 
             for (Iterator msgsIter = ami.getList().iterator();
-                 msgsIter.hasNext();) {
+                msgsIter.hasNext();) {
                 results.add(msgsIter.next());
             }
         }
@@ -237,7 +242,8 @@ public class ActionMessages implements Serializable {
 
         if (item == null) {
             return (Collections.EMPTY_LIST.iterator());
-        } else {
+        }
+        else {
             return (item.getList().iterator());
         }
     }
@@ -246,8 +252,8 @@ public class ActionMessages implements Serializable {
      * <p>Returns <code>true</code> if the <code>get()</code> or
      * <code>get(String)</code> methods are called.</p>
      *
-     * @return <code>true</code> if the messages have been accessed one or more
-     *         times.
+     * @return <code>true</code> if the messages have been accessed one or
+     *         more times.
      * @since Struts 1.2
      */
     public boolean isAccessed() {
@@ -309,8 +315,8 @@ public class ActionMessages implements Serializable {
     }
 
     /**
-     * <p>Return the number of messages associated with the specified property.
-     * </p>
+     * <p>Return the number of messages associated with the specified
+     * property. </p>
      *
      * @param property Property name (or ActionMessages.GLOBAL_MESSAGE)
      * @return The number of messages associated with the property.

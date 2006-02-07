@@ -34,7 +34,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
@@ -43,8 +45,8 @@ import java.util.Locale;
  * <p><strong>RequestProcessor</strong> contains the processing logic that the
  * {@link ActionServlet} performs as it receives each servlet request from the
  * container. You can customize the request processing behavior by subclassing
- * this class and overriding the method(s) whose behavior you are interested in
- * changing.</p>
+ * this class and overriding the method(s) whose behavior you are interested
+ * in changing.</p>
  *
  * @version $Rev$ $Date: 2005-11-09 00:11:45 -0500 (Wed, 09 Nov 2005)
  *          $
@@ -58,7 +60,7 @@ public class RequestProcessor {
      * processing during a <code>RequestDispatcher.include</code> call.</p>
      */
     public static final String INCLUDE_PATH_INFO =
-            "javax.servlet.include.path_info";
+        "javax.servlet.include.path_info";
 
     /**
      * <p>The request attribute under which the servlet path information is
@@ -66,7 +68,7 @@ public class RequestProcessor {
      * call.</p>
      */
     public static final String INCLUDE_SERVLET_PATH =
-            "javax.servlet.include.servlet_path";
+        "javax.servlet.include.servlet_path";
 
     /**
      * <p>Commons Logging instance.</p>
@@ -122,7 +124,7 @@ public class RequestProcessor {
      * @throws ServletException If an error occor during initialization
      */
     public void init(ActionServlet servlet, ModuleConfig moduleConfig)
-            throws ServletException {
+        throws ServletException {
         synchronized (actions) {
             actions.clear();
         }
@@ -141,9 +143,8 @@ public class RequestProcessor {
      * @throws IOException      if an input/output error occurs
      * @throws ServletException if a processing exception occurs
      */
-    public void process(HttpServletRequest request,
-                        HttpServletResponse response)
-            throws IOException, ServletException {
+    public void process(HttpServletRequest request, HttpServletResponse response)
+        throws IOException, ServletException {
         // Wrap multipart requests with a special wrapper
         request = processMultipart(request);
 
@@ -156,7 +157,7 @@ public class RequestProcessor {
 
         if (log.isDebugEnabled()) {
             log.debug("Processing a '" + request.getMethod() + "' for path '"
-                    + path + "'");
+                + path + "'");
         }
 
         // Select a Locale for the current user if requested
@@ -212,8 +213,7 @@ public class RequestProcessor {
 
         // Call the Action instance itself
         ActionForward forward =
-                processActionPerform(request, response, action,
-                        form, mapping);
+            processActionPerform(request, response, action, form, mapping);
 
         // Process the returned ActionForward instance
         processForwardConfig(request, response, forward);
@@ -228,14 +228,13 @@ public class RequestProcessor {
      * @param request  The servlet request we are processing
      * @param response The servlet response we are creating
      * @param mapping  The mapping we are using
-     * @return An <code>Action</code> instance that will be used to process the
-     *         current request.
+     * @return An <code>Action</code> instance that will be used to process
+     *         the current request.
      * @throws IOException if an input/output error occurs
      */
     protected Action processActionCreate(HttpServletRequest request,
-                                         HttpServletResponse response,
-                                         ActionMapping mapping)
-            throws IOException {
+        HttpServletResponse response, ActionMapping mapping)
+        throws IOException {
         // Acquire the Action instance we will be using (if there is one)
         String className = mapping.getType();
 
@@ -266,18 +265,17 @@ public class RequestProcessor {
             }
 
             try {
-                instance =
-                        (Action) RequestUtils.applicationInstance(className);
+                instance = (Action) RequestUtils.applicationInstance(className);
 
                 // Maybe we should propagate this exception
                 // instead of returning null.
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 log.error(getInternal().getMessage("actionCreate",
                         mapping.getPath()), e);
 
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                        getInternal().getMessage("actionCreate",
-                                mapping.getPath()));
+                    getInternal().getMessage("actionCreate", mapping.getPath()));
 
                 return (null);
             }
@@ -304,11 +302,11 @@ public class RequestProcessor {
      * @return The <code>ActionForm</code> associated with this mapping.
      */
     protected ActionForm processActionForm(HttpServletRequest request,
-                                           HttpServletResponse response,
-                                           ActionMapping mapping) {
+        HttpServletResponse response, ActionMapping mapping) {
         // Create (if necessary) a form bean to use
-        ActionForm instance = RequestUtils.createActionForm(request, mapping,
-                moduleConfig, servlet);
+        ActionForm instance =
+            RequestUtils.createActionForm(request, mapping, moduleConfig,
+                servlet);
 
         if (instance == null) {
             return (null);
@@ -317,13 +315,14 @@ public class RequestProcessor {
         // Store the new instance in the appropriate scope
         if (log.isDebugEnabled()) {
             log.debug(" Storing ActionForm bean instance in scope '"
-                    + mapping.getScope() + "' under attribute key '"
-                    + mapping.getAttribute() + "'");
+                + mapping.getScope() + "' under attribute key '"
+                + mapping.getAttribute() + "'");
         }
 
         if ("request".equals(mapping.getScope())) {
             request.setAttribute(mapping.getAttribute(), instance);
-        } else {
+        }
+        else {
             HttpSession session = request.getSession();
 
             session.setAttribute(mapping.getAttribute(), instance);
@@ -334,8 +333,8 @@ public class RequestProcessor {
 
     /**
      * <p>Forward or redirect to the specified destination, by the specified
-     * mechanism.  This method uses a <code>ForwardConfig</code> object instead
-     * an <code>ActionForward</code>.</p>
+     * mechanism.  This method uses a <code>ForwardConfig</code> object
+     * instead an <code>ActionForward</code>.</p>
      *
      * @param request  The servlet request we are processing
      * @param response The servlet response we are creating
@@ -344,9 +343,8 @@ public class RequestProcessor {
      * @throws ServletException if a servlet exception occurs
      */
     protected void processForwardConfig(HttpServletRequest request,
-                                        HttpServletResponse response,
-                                        ForwardConfig forward)
-            throws IOException, ServletException {
+        HttpServletResponse response, ForwardConfig forward)
+        throws IOException, ServletException {
         if (forward == null) {
             return;
         }
@@ -363,7 +361,8 @@ public class RequestProcessor {
         if (forwardPath.startsWith("/")) {
             // get module relative uri
             uri = RequestUtils.forwardURL(request, forward, null);
-        } else {
+        }
+        else {
             uri = forwardPath;
         }
 
@@ -374,7 +373,8 @@ public class RequestProcessor {
             }
 
             response.sendRedirect(response.encodeRedirectURL(uri));
-        } else {
+        }
+        else {
             doForward(uri, request, response);
         }
     }
@@ -384,29 +384,29 @@ public class RequestProcessor {
     // ServletException?
 
     /**
-     * <P>Ask the specified <code>Action</code> instance to handle this request.
-     * Return the <code>ActionForward</code> instance (if any) returned by the
-     * called <code>Action</code> for further processing. </P>
+     * <P>Ask the specified <code>Action</code> instance to handle this
+     * request. Return the <code>ActionForward</code> instance (if any)
+     * returned by the called <code>Action</code> for further processing.
+     * </P>
      *
      * @param request  The servlet request we are processing
      * @param response The servlet response we are creating
      * @param action   The Action instance to be used
      * @param form     The ActionForm instance to pass to this Action
      * @param mapping  The ActionMapping instance to pass to this Action
-     * @return The <code>ActionForward</code> instance (if any) returned by the
-     *         called <code>Action</code>.
+     * @return The <code>ActionForward</code> instance (if any) returned by
+     *         the called <code>Action</code>.
      * @throws IOException      if an input/output error occurs
      * @throws ServletException if a servlet exception occurs
      */
     protected ActionForward processActionPerform(HttpServletRequest request,
-                                                 HttpServletResponse response,
-                                                 Action action,
-                                                 ActionForm form,
-                                                 ActionMapping mapping)
-            throws IOException, ServletException {
+        HttpServletResponse response, Action action, ActionForm form,
+        ActionMapping mapping)
+        throws IOException, ServletException {
         try {
             return (action.execute(mapping, form, request, response));
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return (processException(request, response, e, form, mapping));
         }
     }
@@ -423,7 +423,7 @@ public class RequestProcessor {
      * @since Struts 1.2
      */
     protected void processCachedMessages(HttpServletRequest request,
-                                         HttpServletResponse response) {
+        HttpServletResponse response) {
         HttpSession session = request.getSession(false);
 
         if (session == null) {
@@ -432,7 +432,7 @@ public class RequestProcessor {
 
         // Remove messages as needed
         ActionMessages messages =
-                (ActionMessages) session.getAttribute(Globals.MESSAGE_KEY);
+            (ActionMessages) session.getAttribute(Globals.MESSAGE_KEY);
 
         if (messages != null) {
             if (messages.isAccessed()) {
@@ -452,17 +452,17 @@ public class RequestProcessor {
 
     /**
      * <p>Set the default content type (with optional character encoding) for
-     * all responses if requested.  <strong>NOTE</strong> - This header will be
-     * overridden automatically if a <code>RequestDispatcher.forward</code> call
-     * is ultimately invoked.</p>
+     * all responses if requested.  <strong>NOTE</strong> - This header will
+     * be overridden automatically if a <code>RequestDispatcher.forward</code>
+     * call is ultimately invoked.</p>
      *
      * @param request  The servlet request we are processing
      * @param response The servlet response we are creating
      */
     protected void processContent(HttpServletRequest request,
-                                  HttpServletResponse response) {
+        HttpServletResponse response) {
         String contentType =
-                moduleConfig.getControllerConfig().getContentType();
+            moduleConfig.getControllerConfig().getContentType();
 
         if (contentType != null) {
             response.setContentType(contentType);
@@ -479,17 +479,15 @@ public class RequestProcessor {
      * @param exception The exception being handled
      * @param form      The ActionForm we are processing
      * @param mapping   The ActionMapping we are using
-     * @return The <code>ActionForward</code> instance (if any) returned by the
-     *         called <code>ExceptionHandler</code>.
+     * @return The <code>ActionForward</code> instance (if any) returned by
+     *         the called <code>ExceptionHandler</code>.
      * @throws IOException      if an input/output error occurs
      * @throws ServletException if a servlet exception occurs
      */
     protected ActionForward processException(HttpServletRequest request,
-                                             HttpServletResponse response,
-                                             Exception exception,
-                                             ActionForm form,
-                                             ActionMapping mapping)
-            throws IOException, ServletException {
+        HttpServletResponse response, Exception exception, ActionForm form,
+        ActionMapping mapping)
+        throws IOException, ServletException {
         // Is there a defined handler for this exception?
         ExceptionConfig config = mapping.findException(exception.getClass());
 
@@ -499,21 +497,25 @@ public class RequestProcessor {
 
             if (exception instanceof IOException) {
                 throw (IOException) exception;
-            } else if (exception instanceof ServletException) {
+            }
+            else if (exception instanceof ServletException) {
                 throw (ServletException) exception;
-            } else {
+            }
+            else {
                 throw new ServletException(exception);
             }
         }
 
         // Use the configured exception handling
         try {
-            ExceptionHandler handler = (ExceptionHandler) RequestUtils
-                    .applicationInstance(config.getHandler());
+            ExceptionHandler handler =
+                (ExceptionHandler) RequestUtils.applicationInstance(config
+                    .getHandler());
 
             return (handler.execute(exception, config, mapping, form, request,
-                    response));
-        } catch (Exception e) {
+                response));
+        }
+        catch (Exception e) {
             throw new ServletException(e);
         }
     }
@@ -532,9 +534,8 @@ public class RequestProcessor {
      * @throws ServletException if a servlet exception occurs
      */
     protected boolean processForward(HttpServletRequest request,
-                                     HttpServletResponse response,
-                                     ActionMapping mapping)
-            throws IOException, ServletException {
+        HttpServletResponse response, ActionMapping mapping)
+        throws IOException, ServletException {
         // Are we going to processing this request?
         String forward = mapping.getForward();
 
@@ -561,9 +562,8 @@ public class RequestProcessor {
      * @throws ServletException if thrown by invoked methods
      */
     protected boolean processInclude(HttpServletRequest request,
-                                     HttpServletResponse response,
-                                     ActionMapping mapping)
-            throws IOException, ServletException {
+        HttpServletResponse response, ActionMapping mapping)
+        throws IOException, ServletException {
         // Are we going to processing this request?
         String include = mapping.getInclude();
 
@@ -579,13 +579,14 @@ public class RequestProcessor {
     /**
      * <p>Automatically select a <code>Locale</code> for the current user, if
      * requested. <strong>NOTE</strong> - configuring Locale selection will
-     * trigger the creation of a new <code>HttpSession</code> if necessary.</p>
+     * trigger the creation of a new <code>HttpSession</code> if
+     * necessary.</p>
      *
      * @param request  The servlet request we are processing
      * @param response The servlet response we are creating
      */
     protected void processLocale(HttpServletRequest request,
-                                 HttpServletResponse response) {
+        HttpServletResponse response) {
         // Are we configured to select the Locale automatically?
         if (!moduleConfig.getControllerConfig().getLocale()) {
             return;
@@ -618,16 +619,16 @@ public class RequestProcessor {
      * @param request  The servlet request we are processing
      * @param response The servlet response we are creating
      * @param path     The portion of the request URI for selecting a mapping
-     * @return The mapping used to process the selection path for this request.
+     * @return The mapping used to process the selection path for this
+     *         request.
      * @throws IOException if an input/output error occurs
      */
     protected ActionMapping processMapping(HttpServletRequest request,
-                                           HttpServletResponse response,
-                                           String path)
-            throws IOException {
+        HttpServletResponse response, String path)
+        throws IOException {
         // Is there a mapping for this path?
         ActionMapping mapping =
-                (ActionMapping) moduleConfig.findActionConfig(path);
+            (ActionMapping) moduleConfig.findActionConfig(path);
 
         // If a mapping is found, put it in the request and return it
         if (mapping != null) {
@@ -665,8 +666,7 @@ public class RequestProcessor {
      * @return A wrapped request, if the request is multipart; otherwise the
      *         original request.
      */
-    protected HttpServletRequest processMultipart(
-            HttpServletRequest request) {
+    protected HttpServletRequest processMultipart(HttpServletRequest request) {
         if (!"POST".equalsIgnoreCase(request.getMethod())) {
             return (request);
         }
@@ -674,36 +674,37 @@ public class RequestProcessor {
         String contentType = request.getContentType();
 
         if ((contentType != null)
-                && contentType.startsWith("multipart/form-data")) {
+            && contentType.startsWith("multipart/form-data")) {
             return (new MultipartRequestWrapper(request));
-        } else {
+        }
+        else {
             return (request);
         }
     }
 
     /**
      * <p>Set the no-cache headers for all responses, if requested.
-     * <strong>NOTE</strong> - This header will be overridden automatically if a
-     * <code>RequestDispatcher.forward</code> call is ultimately invoked.</p>
+     * <strong>NOTE</strong> - This header will be overridden automatically if
+     * a <code>RequestDispatcher.forward</code> call is ultimately
+     * invoked.</p>
      *
      * @param request  The servlet request we are processing
      * @param response The servlet response we are creating
      */
     protected void processNoCache(HttpServletRequest request,
-                                  HttpServletResponse response) {
+        HttpServletResponse response) {
         if (moduleConfig.getControllerConfig().getNocache()) {
             response.setHeader("Pragma", "No-cache");
-            response.setHeader("Cache-Control",
-                    "no-cache,no-store,max-age=0");
+            response.setHeader("Cache-Control", "no-cache,no-store,max-age=0");
             response.setDateHeader("Expires", 1);
         }
     }
 
     /**
-     * <p>Identify and return the path component (from the request URI) that we
-     * will use to select an <code>ActionMapping</code> with which to dispatch.
-     * If no such path can be identified, create an error response and return
-     * <code>null</code>.</p>
+     * <p>Identify and return the path component (from the request URI) that
+     * we will use to select an <code>ActionMapping</code> with which to
+     * dispatch. If no such path can be identified, create an error response
+     * and return <code>null</code>.</p>
      *
      * @param request  The servlet request we are processing
      * @param response The servlet response we are creating
@@ -711,8 +712,8 @@ public class RequestProcessor {
      * @throws IOException if an input/output error occurs
      */
     protected String processPath(HttpServletRequest request,
-                                 HttpServletResponse response)
-            throws IOException {
+        HttpServletResponse response)
+        throws IOException {
         String path;
 
         // For prefix matching, match on the path info (if any)
@@ -770,9 +771,8 @@ public class RequestProcessor {
      * @throws ServletException if thrown by RequestUtils.populate()
      */
     protected void processPopulate(HttpServletRequest request,
-                                   HttpServletResponse response,
-                                   ActionForm form, ActionMapping mapping)
-            throws ServletException {
+        HttpServletResponse response, ActionForm form, ActionMapping mapping)
+        throws ServletException {
         if (form == null) {
             return;
         }
@@ -787,24 +787,24 @@ public class RequestProcessor {
 
         if (mapping.getMultipartClass() != null) {
             request.setAttribute(Globals.MULTIPART_KEY,
-                    mapping.getMultipartClass());
+                mapping.getMultipartClass());
         }
 
         RequestUtils.populate(form, mapping.getPrefix(), mapping.getSuffix(),
-                request);
+            request);
 
         // Set the cancellation request attribute if appropriate
         if ((request.getParameter(Globals.CANCEL_PROPERTY) != null)
-                || (request.getParameter(Globals.CANCEL_PROPERTY_X) != null)) {
+            || (request.getParameter(Globals.CANCEL_PROPERTY_X) != null)) {
             request.setAttribute(Globals.CANCEL_KEY, Boolean.TRUE);
         }
     }
 
     /**
-     * <p>General-purpose preprocessing hook that can be overridden as required
-     * by subclasses. Return <code>true</code> if you want standard processing
-     * to continue, or <code>false</code> if the response has already been
-     * completed. The default implementation does nothing.</p>
+     * <p>General-purpose preprocessing hook that can be overridden as
+     * required by subclasses. Return <code>true</code> if you want standard
+     * processing to continue, or <code>false</code> if the response has
+     * already been completed. The default implementation does nothing.</p>
      *
      * @param request  The servlet request we are processing
      * @param response The servlet response we are creating
@@ -812,14 +812,14 @@ public class RequestProcessor {
      *         <code>false</code> if a response has been created.
      */
     protected boolean processPreprocess(HttpServletRequest request,
-                                        HttpServletResponse response) {
+        HttpServletResponse response) {
         return (true);
     }
 
     /**
      * <p>If this action is protected by security roles, make sure that the
-     * current user possesses at least one of them.  Return <code>true</code> to
-     * continue normal processing, or <code>false</code> if an appropriate
+     * current user possesses at least one of them.  Return <code>true</code>
+     * to continue normal processing, or <code>false</code> if an appropriate
      * response has been created and processing should terminate.</p>
      *
      * @param request  The servlet request we are processing
@@ -831,9 +831,8 @@ public class RequestProcessor {
      * @throws ServletException if a servlet exception occurs
      */
     protected boolean processRoles(HttpServletRequest request,
-                                   HttpServletResponse response,
-                                   ActionMapping mapping)
-            throws IOException, ServletException {
+        HttpServletResponse response, ActionMapping mapping)
+        throws IOException, ServletException {
         // Is this action protected by role requirements?
         String[] roles = mapping.getRoleNames();
 
@@ -846,8 +845,7 @@ public class RequestProcessor {
             if (request.isUserInRole(roles[i])) {
                 if (log.isDebugEnabled()) {
                     log.debug(" User '" + request.getRemoteUser()
-                            + "' has role '" + roles[i]
-                            + "', granting access");
+                        + "' has role '" + roles[i] + "', granting access");
                 }
 
                 return (true);
@@ -857,11 +855,11 @@ public class RequestProcessor {
         // The current user is not authorized for this action
         if (log.isDebugEnabled()) {
             log.debug(" User '" + request.getRemoteUser()
-                    + "' does not have any required role, denying access");
+                + "' does not have any required role, denying access");
         }
 
         response.sendError(HttpServletResponse.SC_FORBIDDEN,
-                getInternal().getMessage("notAuthorized", mapping.getPath()));
+            getInternal().getMessage("notAuthorized", mapping.getPath()));
 
         return (false);
     }
@@ -871,8 +869,9 @@ public class RequestProcessor {
      * ActionMapping} has not disabled validation, call the
      * <code>validate</code> method of the specified {@link ActionForm}, and
      * forward to the input path if there were any errors. Return
-     * <code>true</code> if we should continue processing, or <code>false</code>
-     * if we have already forwarded control back to the input form.</p>
+     * <code>true</code> if we should continue processing, or
+     * <code>false</code> if we have already forwarded control back to the
+     * input form.</p>
      *
      * @param request  The servlet request we are processing
      * @param response The servlet response we are creating
@@ -884,9 +883,8 @@ public class RequestProcessor {
      * @throws ServletException if a servlet exception occurs
      */
     protected boolean processValidate(HttpServletRequest request,
-                                      HttpServletResponse response,
-                                      ActionForm form, ActionMapping mapping)
-            throws IOException, ServletException {
+        HttpServletResponse response, ActionForm form, ActionMapping mapping)
+        throws IOException, ServletException {
         if (form == null) {
             return (true);
         }
@@ -938,7 +936,7 @@ public class RequestProcessor {
             }
 
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    getInternal().getMessage("noInput", mapping.getPath()));
+                getInternal().getMessage("noInput", mapping.getPath()));
 
             return (false);
         }
@@ -954,7 +952,8 @@ public class RequestProcessor {
             ForwardConfig forward = mapping.findForward(input);
 
             processForwardConfig(request, response, forward);
-        } else {
+        }
+        else {
             internalModuleRelativeForward(input, request, response);
         }
 
@@ -965,8 +964,8 @@ public class RequestProcessor {
      * <p>Do a module relative forward to specified URI using request
      * dispatcher. URI is relative to the current module. The real URI is
      * compute by prefixing the module name.</p> <p>This method is used
-     * internally and is not part of the public API. It is advised to not use it
-     * in subclasses. </p>
+     * internally and is not part of the public API. It is advised to not use
+     * it in subclasses. </p>
      *
      * @param uri      Module-relative URI to forward to
      * @param request  Current page request
@@ -976,9 +975,8 @@ public class RequestProcessor {
      * @since Struts 1.1
      */
     protected void internalModuleRelativeForward(String uri,
-                                                 HttpServletRequest request,
-                                                 HttpServletResponse response)
-            throws IOException, ServletException {
+        HttpServletRequest request, HttpServletResponse response)
+        throws IOException, ServletException {
         // Construct a request dispatcher for the specified path
         uri = moduleConfig.getPrefix() + uri;
 
@@ -995,8 +993,8 @@ public class RequestProcessor {
      * <p>Do a module relative include to specified URI using request
      * dispatcher. URI is relative to the current module. The real URI is
      * compute by prefixing the module name.</p> <p>This method is used
-     * internally and is not part of the public API. It is advised to not use it
-     * in subclasses.</p>
+     * internally and is not part of the public API. It is advised to not use
+     * it in subclasses.</p>
      *
      * @param uri      Module-relative URI to include
      * @param request  Current page request
@@ -1006,9 +1004,8 @@ public class RequestProcessor {
      * @since Struts 1.1
      */
     protected void internalModuleRelativeInclude(String uri,
-                                                 HttpServletRequest request,
-                                                 HttpServletResponse response)
-            throws IOException, ServletException {
+        HttpServletRequest request, HttpServletResponse response)
+        throws IOException, ServletException {
         // Construct a request dispatcher for the specified path
         uri = moduleConfig.getPrefix() + uri;
 
@@ -1023,7 +1020,8 @@ public class RequestProcessor {
 
     /**
      * <p>Do a forward to specified URI using a <code>RequestDispatcher</code>.
-     * This method is used by all internal method needing to do a forward.</p>
+     * This method is used by all internal method needing to do a
+     * forward.</p>
      *
      * @param uri      Context-relative URI to forward to
      * @param request  Current page request
@@ -1033,13 +1031,13 @@ public class RequestProcessor {
      * @since Struts 1.1
      */
     protected void doForward(String uri, HttpServletRequest request,
-                             HttpServletResponse response)
-            throws IOException, ServletException {
+        HttpServletResponse response)
+        throws IOException, ServletException {
         RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
 
         if (rd == null) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    getInternal().getMessage("requestDispatcher", uri));
+                getInternal().getMessage("requestDispatcher", uri));
 
             return;
         }
@@ -1049,7 +1047,8 @@ public class RequestProcessor {
 
     /**
      * <p>Do an include of specified URI using a <code>RequestDispatcher</code>.
-     * This method is used by all internal method needing to do an include.</p>
+     * This method is used by all internal method needing to do an
+     * include.</p>
      *
      * @param uri      Context-relative URI to include
      * @param request  Current page request
@@ -1059,13 +1058,13 @@ public class RequestProcessor {
      * @since Struts 1.1
      */
     protected void doInclude(String uri, HttpServletRequest request,
-                             HttpServletResponse response)
-            throws IOException, ServletException {
+        HttpServletResponse response)
+        throws IOException, ServletException {
         RequestDispatcher rd = getServletContext().getRequestDispatcher(uri);
 
         if (rd == null) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    getInternal().getMessage("requestDispatcher", uri));
+                getInternal().getMessage("requestDispatcher", uri));
 
             return;
         }
