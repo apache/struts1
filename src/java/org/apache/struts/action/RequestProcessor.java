@@ -269,8 +269,7 @@ public class RequestProcessor {
 
                 // Maybe we should propagate this exception
                 // instead of returning null.
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 log.error(getInternal().getMessage("actionCreate",
                         mapping.getPath()), e);
 
@@ -321,8 +320,7 @@ public class RequestProcessor {
 
         if ("request".equals(mapping.getScope())) {
             request.setAttribute(mapping.getAttribute(), instance);
-        }
-        else {
+        } else {
             HttpSession session = request.getSession();
 
             session.setAttribute(mapping.getAttribute(), instance);
@@ -361,8 +359,7 @@ public class RequestProcessor {
         if (forwardPath.startsWith("/")) {
             // get module relative uri
             uri = RequestUtils.forwardURL(request, forward, null);
-        }
-        else {
+        } else {
             uri = forwardPath;
         }
 
@@ -373,8 +370,7 @@ public class RequestProcessor {
             }
 
             response.sendRedirect(response.encodeRedirectURL(uri));
-        }
-        else {
+        } else {
             doForward(uri, request, response);
         }
     }
@@ -405,8 +401,7 @@ public class RequestProcessor {
         throws IOException, ServletException {
         try {
             return (action.execute(mapping, form, request, response));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return (processException(request, response, e, form, mapping));
         }
     }
@@ -497,11 +492,9 @@ public class RequestProcessor {
 
             if (exception instanceof IOException) {
                 throw (IOException) exception;
-            }
-            else if (exception instanceof ServletException) {
+            } else if (exception instanceof ServletException) {
                 throw (ServletException) exception;
-            }
-            else {
+            } else {
                 throw new ServletException(exception);
             }
         }
@@ -514,8 +507,7 @@ public class RequestProcessor {
 
             return (handler.execute(exception, config, mapping, form, request,
                 response));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new ServletException(e);
         }
     }
@@ -676,8 +668,7 @@ public class RequestProcessor {
         if ((contentType != null)
             && contentType.startsWith("multipart/form-data")) {
             return (new MultipartRequestWrapper(request));
-        }
-        else {
+        } else {
             return (request);
         }
     }
@@ -952,8 +943,7 @@ public class RequestProcessor {
             ForwardConfig forward = mapping.findForward(input);
 
             processForwardConfig(request, response, forward);
-        }
-        else {
+        } else {
             internalModuleRelativeForward(input, request, response);
         }
 

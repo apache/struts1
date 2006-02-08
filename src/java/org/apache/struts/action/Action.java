@@ -137,8 +137,7 @@ public class Action {
         try {
             return execute(mapping, form, (HttpServletRequest) request,
                 (HttpServletResponse) response);
-        }
-        catch (ClassCastException e) {
+        } catch (ClassCastException e) {
             return null;
         }
     }

@@ -132,8 +132,7 @@ public class ExceptionHandler {
         // or from the form input
         if (ae.getPath() != null) {
             forward = new ActionForward(ae.getPath());
-        }
-        else {
+        } else {
             forward = mapping.getInputForward();
         }
 
@@ -141,8 +140,7 @@ public class ExceptionHandler {
         if (ex instanceof ModuleException) {
             error = ((ModuleException) ex).getActionMessage();
             property = ((ModuleException) ex).getProperty();
-        }
-        else {
+        } else {
             error = new ActionMessage(ae.getKey(), ex.getMessage());
             property = error.getKey();
         }
@@ -163,8 +161,7 @@ public class ExceptionHandler {
         if (!silent(ae)) {
             handleCommittedResponse(ex, ae, mapping, formInstance, request,
                 response, forward);
-        }
-        else {
+        } else {
             LOG.warn("ExceptionHandler configured with " + SILENT_IF_COMMITTED
                 + " and response is committed.", ex);
         }
@@ -207,17 +204,14 @@ public class ExceptionHandler {
                     requestDispatcher.include(request, response);
 
                     return;
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     LOG.error("IOException when trying to include "
                         + "the error page path " + includePath, e);
-                }
-                catch (ServletException e) {
+                } catch (ServletException e) {
                     LOG.error("ServletException when trying to include "
                         + "the error page path " + includePath, e);
                 }
-            }
-            else {
+            } else {
                 LOG.warn("Suspicious includePath doesn't seem likely to work, "
                     + "so skipping it: " + includePath
                     + "; expected path to start with '/'");
@@ -232,8 +226,7 @@ public class ExceptionHandler {
             response.getWriter().println("<!-- ");
             ex.printStackTrace(response.getWriter());
             response.getWriter().println("-->");
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             LOG.error("Error giving minimal information about exception", e);
             LOG.error("Original exception: ", ex);
         }
@@ -298,8 +291,7 @@ public class ExceptionHandler {
 
         if ("request".equals(scope)) {
             request.setAttribute(Globals.ERROR_KEY, errors);
-        }
-        else {
+        } else {
             request.getSession().setAttribute(Globals.ERROR_KEY, errors);
         }
     }

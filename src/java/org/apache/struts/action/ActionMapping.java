@@ -106,8 +106,7 @@ public class ActionMapping extends ActionConfig {
     public ActionForward getInputForward() {
         if (getModuleConfig().getControllerConfig().getInputForward()) {
             return (findForward(getInput()));
-        }
-        else {
+        } else {
             return (new ActionForward(getInput()));
         }
     }

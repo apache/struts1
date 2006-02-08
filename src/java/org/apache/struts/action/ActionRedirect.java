@@ -166,16 +166,14 @@ public class ActionRedirect extends ActionForward {
         if (currentValue == null) {
             // there's no value for this param yet; add it to the map
             parameterValues.put(fieldName, value);
-        }
-        else if (currentValue instanceof String) {
+        } else if (currentValue instanceof String) {
             // there's already a value; let's use an array for these parameters
             String[] newValue = new String[2];
 
             newValue[0] = (String) currentValue;
             newValue[1] = value;
             parameterValues.put(fieldName, newValue);
-        }
-        else if (currentValue instanceof String[]) {
+        } else if (currentValue instanceof String[]) {
             // add the value to the list of existing values
             List newValues =
                 new ArrayList(Arrays.asList((Object[]) currentValue));
@@ -261,8 +259,7 @@ public class ActionRedirect extends ActionForward {
             if (value instanceof String) {
                 // just one value for this param
                 strParam.append(paramName).append("=").append(value);
-            }
-            else if (value instanceof String[]) {
+            } else if (value instanceof String[]) {
                 // loop through all values for this param
                 String[] values = (String[]) value;
 

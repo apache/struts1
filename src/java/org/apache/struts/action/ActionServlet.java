@@ -309,8 +309,7 @@ public class ActionServlet extends HttpServlet {
 
         try {
             LogFactory.release(classLoader);
-        }
-        catch (Throwable t) {
+        } catch (Throwable t) {
             ; // Servlet container doesn't have the latest version
 
             // of commons-logging-api.jar installed
@@ -389,11 +388,9 @@ public class ActionServlet extends HttpServlet {
             this.initModulePrefixes(this.getServletContext());
 
             this.destroyConfigDigester();
-        }
-        catch (UnavailableException ex) {
+        } catch (UnavailableException ex) {
             throw ex;
-        }
-        catch (Throwable t) {
+        } catch (Throwable t) {
             // The follow error message is not retrieved from internal message
             // resources as they may not have been able to have been
             // initialized
@@ -612,8 +609,7 @@ public class ActionServlet extends HttpServlet {
                 processor =
                     (RequestProcessor) RequestUtils.applicationInstance(config.getControllerConfig()
                                                                               .getProcessorClass());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 throw new UnavailableException(
                     "Cannot initialize RequestProcessor of class "
                     + config.getControllerConfig().getProcessorClass() + ": "
@@ -718,15 +714,12 @@ public class ActionServlet extends HttpServlet {
                 URL url = (URL) paths.get(0);
 
                 parseModuleConfigFile(digester, url);
-            }
-            else {
+            } else {
                 throw new UnavailableException("Cannot locate path " + path);
             }
-        }
-        catch (UnavailableException ex) {
+        } catch (UnavailableException ex) {
             throw ex;
-        }
-        catch (ServletException ex) {
+        } catch (ServletException ex) {
             handleConfigException(path, ex);
         }
     }
@@ -752,19 +745,15 @@ public class ActionServlet extends HttpServlet {
             input = conn.getInputStream();
             is.setByteStream(input);
             digester.parse(is);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             handleConfigException(url.toString(), e);
-        }
-        catch (SAXException e) {
+        } catch (SAXException e) {
             handleConfigException(url.toString(), e);
-        }
-        finally {
+        } finally {
             if (input != null) {
                 try {
                     input.close();
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     throw new UnavailableException(e.getMessage());
                 }
             }
@@ -876,8 +865,7 @@ public class ActionServlet extends HttpServlet {
                 try {
                     PropertyUtils.setProperty(plugIns[i],
                         "currentPlugInConfigObject", plugInConfigs[i]);
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     ;
 
                     // FIXME Whenever we fail silently, we must document a valid
@@ -896,11 +884,9 @@ public class ActionServlet extends HttpServlet {
                 }
 
                 plugIns[i].init(this, config);
-            }
-            catch (ServletException e) {
+            } catch (ServletException e) {
                 throw e;
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 String errMsg =
                     internal.getMessage("plugIn.init",
                         plugInConfigs[i].getClassName());
@@ -985,11 +971,9 @@ public class ActionServlet extends HttpServlet {
 
                 beanConfig.processExtends(moduleConfig);
             }
-        }
-        catch (ServletException e) {
+        } catch (ServletException e) {
             throw e;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             handleGeneralExtensionException("FormBeanConfig",
                 beanConfig.getName(), e);
         }
@@ -1046,8 +1030,7 @@ public class ActionServlet extends HttpServlet {
                     for (int i = 0; i < fpc.length; i++) {
                         newBeanConfig.addFormPropertyConfig(fpc[i]);
                     }
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     handleCreationException(baseConfigClassName, e);
                 }
 
@@ -1116,11 +1099,9 @@ public class ActionServlet extends HttpServlet {
 
                 forwardConfig.processExtends(moduleConfig, null);
             }
-        }
-        catch (ServletException e) {
+        } catch (ServletException e) {
             throw e;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             handleGeneralExtensionException("Forward", forwardConfig.getName(),
                 e);
         }
@@ -1170,8 +1151,7 @@ public class ActionServlet extends HttpServlet {
 
                     // copy the values
                     BeanUtils.copyProperties(newForwardConfig, forwardConfig);
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     handleCreationException(baseConfigClassName, e);
                 }
 
@@ -1241,11 +1221,9 @@ public class ActionServlet extends HttpServlet {
 
                 exceptionConfig.processExtends(moduleConfig, null);
             }
-        }
-        catch (ServletException e) {
+        } catch (ServletException e) {
             throw e;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             handleGeneralExtensionException("Exception",
                 exceptionConfig.getType(), e);
         }
@@ -1294,8 +1272,7 @@ public class ActionServlet extends HttpServlet {
 
                     // copy the values
                     BeanUtils.copyProperties(newExceptionConfig, exceptionConfig);
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     handleCreationException(baseConfigClassName, e);
                 }
 
@@ -1384,11 +1361,9 @@ public class ActionServlet extends HttpServlet {
 
                 actionConfig.processExtends(moduleConfig);
             }
-        }
-        catch (ServletException e) {
+        } catch (ServletException e) {
             throw e;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             handleGeneralExtensionException("Action", actionConfig.getPath(), e);
         }
     }
@@ -1451,8 +1426,7 @@ public class ActionServlet extends HttpServlet {
                     for (int i = 0; i < exceptions.length; i++) {
                         newActionConfig.addExceptionConfig(exceptions[i]);
                     }
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     handleCreationException(baseConfigClassName, e);
                 }
 
@@ -1572,8 +1546,7 @@ public class ActionServlet extends HttpServlet {
             if (comma < 0) {
                 ruleset = rulesets.trim();
                 rulesets = "";
-            }
-            else {
+            } else {
                 ruleset = rulesets.substring(0, comma).trim();
                 rulesets = rulesets.substring(comma + 1).trim();
             }
@@ -1588,8 +1561,7 @@ public class ActionServlet extends HttpServlet {
                     (RuleSet) RequestUtils.applicationInstance(ruleset);
 
                 this.configDigester.addRuleSet(instance);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 log.error("Exception configuring custom Digester RuleSet", e);
                 throw new ServletException(e);
             }
@@ -1624,8 +1596,7 @@ public class ActionServlet extends HttpServlet {
         throws ServletException {
         try {
             internal = MessageResources.getMessageResources(internalName);
-        }
-        catch (MissingResourceException e) {
+        } catch (MissingResourceException e) {
             log.error("Cannot load internal resources from '" + internalName
                 + "'", e);
             throw new UnavailableException(
@@ -1662,8 +1633,7 @@ public class ActionServlet extends HttpServlet {
                 log.info("Loading chain catalog from " + resource);
                 parser.parse(resource);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             log.error("Exception loading resources", e);
             throw new ServletException(e);
         }
@@ -1760,20 +1730,16 @@ public class ActionServlet extends HttpServlet {
 
         try {
             digester.parse(input);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             log.error(internal.getMessage("configWebXml"), e);
             throw new ServletException(e);
-        }
-        catch (SAXException e) {
+        } catch (SAXException e) {
             log.error(internal.getMessage("configWebXml"), e);
             throw new ServletException(e);
-        }
-        finally {
+        } finally {
             try {
                 input.close();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 log.error(internal.getMessage("configWebXml"), e);
                 throw new ServletException(e);
             }
@@ -1824,8 +1790,7 @@ public class ActionServlet extends HttpServlet {
                 if (comma >= 0) {
                     path = paths.substring(0, comma).trim();
                     paths = paths.substring(comma + 1);
-                }
-                else {
+                } else {
                     path = paths.trim();
                     paths = "";
                 }
@@ -1852,22 +1817,18 @@ public class ActionServlet extends HttpServlet {
 
                         log.error(msg);
                         throw new UnavailableException(msg);
-                    }
-                    else {
+                    } else {
                         while (e.hasMoreElements()) {
                             resolvedUrls.add(e.nextElement());
                         }
                     }
-                }
-                else {
+                } else {
                     resolvedUrls.add(resource);
                 }
             }
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             handleConfigException(path, e);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             handleConfigException(path, e);
         }
 

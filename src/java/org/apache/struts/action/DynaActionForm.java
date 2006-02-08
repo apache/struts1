@@ -203,11 +203,9 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         if (value == null) {
             throw new NullPointerException("No mapped value for '" + name + "("
                 + key + ")'");
-        }
-        else if (value instanceof Map) {
+        } else if (value instanceof Map) {
             return (((Map) value).containsKey(key));
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Non-mapped property for '"
                 + name + "(" + key + ")'");
         }
@@ -246,29 +244,21 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         // Manufacture default values for primitive properties
         if (type == Boolean.TYPE) {
             return (Boolean.FALSE);
-        }
-        else if (type == Byte.TYPE) {
+        } else if (type == Byte.TYPE) {
             return (new Byte((byte) 0));
-        }
-        else if (type == Character.TYPE) {
+        } else if (type == Character.TYPE) {
             return (new Character((char) 0));
-        }
-        else if (type == Double.TYPE) {
+        } else if (type == Double.TYPE) {
             return (new Double(0.0));
-        }
-        else if (type == Float.TYPE) {
+        } else if (type == Float.TYPE) {
             return (new Float((float) 0.0));
-        }
-        else if (type == Integer.TYPE) {
+        } else if (type == Integer.TYPE) {
             return (new Integer(0));
-        }
-        else if (type == Long.TYPE) {
+        } else if (type == Long.TYPE) {
             return (new Long(0));
-        }
-        else if (type == Short.TYPE) {
+        } else if (type == Short.TYPE) {
             return (new Short((short) 0));
-        }
-        else {
+        } else {
             return (null);
         }
     }
@@ -293,14 +283,11 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         if (value == null) {
             throw new NullPointerException("No indexed value for '" + name
                 + "[" + index + "]'");
-        }
-        else if (value.getClass().isArray()) {
+        } else if (value.getClass().isArray()) {
             return (Array.get(value, index));
-        }
-        else if (value instanceof List) {
+        } else if (value instanceof List) {
             return ((List) value).get(index);
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Non-indexed property for '"
                 + name + "[" + index + "]'");
         }
@@ -325,11 +312,9 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         if (value == null) {
             throw new NullPointerException("No mapped value for '" + name + "("
                 + key + ")'");
-        }
-        else if (value instanceof Map) {
+        } else if (value instanceof Map) {
             return (((Map) value).get(key));
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Non-mapped property for '"
                 + name + "(" + key + ")'");
         }
@@ -424,11 +409,9 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         if (value == null) {
             throw new NullPointerException("No mapped value for '" + name + "("
                 + key + ")'");
-        }
-        else if (value instanceof Map) {
+        } else if (value instanceof Map) {
             ((Map) value).remove(key);
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Non-mapped property for '"
                 + name + "(" + key + ")'");
         }
@@ -462,8 +445,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
                 throw new NullPointerException("Primitive value for '" + name
                     + "'");
             }
-        }
-        else if (!isDynaAssignable(descriptor.getType(), value.getClass())) {
+        } else if (!isDynaAssignable(descriptor.getType(), value.getClass())) {
             throw new ConversionException("Cannot assign value of type '"
                 + value.getClass().getName() + "' to property '" + name
                 + "' of type '" + descriptor.getType().getName() + "'");
@@ -494,19 +476,15 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         if (prop == null) {
             throw new NullPointerException("No indexed value for '" + name
                 + "[" + index + "]'");
-        }
-        else if (prop.getClass().isArray()) {
+        } else if (prop.getClass().isArray()) {
             Array.set(prop, index, value);
-        }
-        else if (prop instanceof List) {
+        } else if (prop instanceof List) {
             try {
                 ((List) prop).set(index, value);
-            }
-            catch (ClassCastException e) {
+            } catch (ClassCastException e) {
                 throw new ConversionException(e.getMessage());
             }
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Non-indexed property for '"
                 + name + "[" + index + "]'");
         }
@@ -529,11 +507,9 @@ public class DynaActionForm extends ActionForm implements DynaBean {
         if (prop == null) {
             throw new NullPointerException("No mapped value for '" + name + "("
                 + key + ")'");
-        }
-        else if (prop instanceof Map) {
+        } else if (prop instanceof Map) {
             ((Map) prop).put(key, value);
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Non-mapped property for '"
                 + name + "(" + key + ")'");
         }
@@ -571,8 +547,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
 
             if (value == null) {
                 sb.append("<NULL>");
-            }
-            else if (value.getClass().isArray()) {
+            } else if (value.getClass().isArray()) {
                 int n = Array.getLength(value);
 
                 sb.append("{");
@@ -586,8 +561,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
                 }
 
                 sb.append("}");
-            }
-            else if (value instanceof List) {
+            } else if (value instanceof List) {
                 int n = ((List) value).size();
 
                 sb.append("{");
@@ -601,8 +575,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
                 }
 
                 sb.append("}");
-            }
-            else if (value instanceof Map) {
+            } else if (value instanceof Map) {
                 int n = 0;
                 Iterator keys = ((Map) value).keySet().iterator();
 
@@ -623,8 +596,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
                 }
 
                 sb.append("}");
-            }
-            else {
+            } else {
                 sb.append(value);
             }
         }
@@ -687,8 +659,7 @@ public class DynaActionForm extends ActionForm implements DynaBean {
             || ((dest == Long.TYPE) && (source == Long.class))
             || ((dest == Short.TYPE) && (source == Short.class))) {
             return (true);
-        }
-        else {
+        } else {
             return (false);
         }
     }

@@ -129,8 +129,7 @@ public class ActionMessages implements Serializable {
             item = new ActionMessageItem(list, iCount++, property);
 
             messages.put(property, item);
-        }
-        else {
+        } else {
             list = item.getList();
         }
 
@@ -242,8 +241,7 @@ public class ActionMessages implements Serializable {
 
         if (item == null) {
             return (Collections.EMPTY_LIST.iterator());
-        }
-        else {
+        } else {
             return (item.getList().iterator());
         }
     }

@@ -147,8 +147,7 @@ public abstract class ActionForm implements Serializable {
     public void reset(ActionMapping mapping, ServletRequest request) {
         try {
             reset(mapping, (HttpServletRequest) request);
-        }
-        catch (ClassCastException e) {
+        } catch (ClassCastException e) {
             ; // FIXME: Why would this ever happen except a null
         }
     }
@@ -202,8 +201,7 @@ public abstract class ActionForm implements Serializable {
     public ActionErrors validate(ActionMapping mapping, ServletRequest request) {
         try {
             return (validate(mapping, (HttpServletRequest) request));
-        }
-        catch (ClassCastException e) {
+        } catch (ClassCastException e) {
             return (null);
         }
     }
