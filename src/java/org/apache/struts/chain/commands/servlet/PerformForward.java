@@ -45,7 +45,7 @@ public class PerformForward extends AbstractPerformForward {
      * @param forwardConfig The forward to be performed
      */
     protected void perform(ActionContext context, ForwardConfig forwardConfig)
-            throws Exception {
+        throws Exception {
         ServletActionContext sacontext = (ServletActionContext) context;
         String forwardPath = forwardConfig.getPath();
         String uri = null;
@@ -53,7 +53,7 @@ public class PerformForward extends AbstractPerformForward {
         if (forwardPath == null) {
             // Retrieve internal message resources
             ActionServlet servlet =
-                    (ActionServlet) sacontext.getActionServlet();
+                (ActionServlet) sacontext.getActionServlet();
             MessageResources resources = servlet.getInternal();
 
             throw new IllegalArgumentException(resources.getMessage(
@@ -79,10 +79,10 @@ public class PerformForward extends AbstractPerformForward {
             }
 
             sacontext.getResponse().sendRedirect(sacontext.getResponse()
-                    .encodeRedirectURL(uri));
+                                                          .encodeRedirectURL(uri));
         } else {
             RequestDispatcher rd =
-                    sacontext.getContext().getRequestDispatcher(uri);
+                sacontext.getContext().getRequestDispatcher(uri);
 
             rd.forward(request, sacontext.getResponse());
         }

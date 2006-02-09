@@ -42,8 +42,7 @@ public class ExecuteForwardCommand extends ExecuteCommand {
             return null;
         }
 
-        return getCommand(forwardConfig.getCommand(),
-                forwardConfig.getCatalog());
+        return getCommand(forwardConfig.getCommand(), forwardConfig.getCatalog());
     }
 
     /**

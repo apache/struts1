@@ -83,13 +83,12 @@ public class ModuleUtils {
      * @return the ModuleConfig object specified, or null if not found in the
      *         context.
      */
-    public ModuleConfig getModuleConfig(String prefix,
-                                        ServletContext context) {
+    public ModuleConfig getModuleConfig(String prefix, ServletContext context) {
         if ((prefix == null) || "/".equals(prefix)) {
             return (ModuleConfig) context.getAttribute(Globals.MODULE_KEY);
         } else {
             return (ModuleConfig) context.getAttribute(Globals.MODULE_KEY
-                    + prefix);
+                + prefix);
         }
     }
 
@@ -104,8 +103,7 @@ public class ModuleUtils {
      *         context.
      */
     public ModuleConfig getModuleConfig(String prefix,
-                                        HttpServletRequest request,
-                                        ServletContext context) {
+        HttpServletRequest request, ServletContext context) {
         ModuleConfig moduleConfig = null;
 
         if (prefix != null) {
@@ -127,7 +125,7 @@ public class ModuleUtils {
      * @return the ModuleConfig object
      */
     public ModuleConfig getModuleConfig(HttpServletRequest request,
-                                        ServletContext context) {
+        ServletContext context) {
         ModuleConfig moduleConfig = this.getModuleConfig(request);
 
         if (moduleConfig == null) {
@@ -146,10 +144,10 @@ public class ModuleUtils {
      * @return The module prefix or ""
      */
     public String getModuleName(HttpServletRequest request,
-                                ServletContext context) {
+        ServletContext context) {
         // Acquire the path used to compute the module
-        String matchPath = (String) request
-                .getAttribute(RequestProcessor.INCLUDE_SERVLET_PATH);
+        String matchPath =
+            (String) request.getAttribute(RequestProcessor.INCLUDE_SERVLET_PATH);
 
         if (matchPath == null) {
             matchPath = request.getServletPath();
@@ -177,7 +175,7 @@ public class ModuleUtils {
         int lastSlash = 0; // Initialize before loop
 
         while (prefix.equals("")
-                && ((lastSlash = matchPath.lastIndexOf("/")) > 0)) {
+            && ((lastSlash = matchPath.lastIndexOf("/")) > 0)) {
             // We may be in a non-default module.  Try to get it's prefix.
             matchPath = matchPath.substring(0, lastSlash);
 
@@ -193,7 +191,7 @@ public class ModuleUtils {
 
         if (log.isDebugEnabled()) {
             log.debug("Module name found: "
-                    + (prefix.equals("") ? "default" : prefix));
+                + (prefix.equals("") ? "default" : prefix));
         }
 
         return prefix;
@@ -218,8 +216,7 @@ public class ModuleUtils {
      * @param request The servlet request we are processing
      * @param context The ServletContext for this web application
      */
-    public void selectModule(HttpServletRequest request,
-                             ServletContext context) {
+    public void selectModule(HttpServletRequest request, ServletContext context) {
         // Compute module name
         String prefix = getModuleName(request, context);
 
@@ -236,20 +233,20 @@ public class ModuleUtils {
      * @param context The ServletContext for this web application
      */
     public void selectModule(String prefix, HttpServletRequest request,
-                             ServletContext context) {
+        ServletContext context) {
         // Expose the resources for this module
         ModuleConfig config = getModuleConfig(prefix, context);
 
         if (config != null) {
             request.setAttribute(Globals.MODULE_KEY, config);
 
-            MessageResourcesConfig[] mrConfig = config
-                    .findMessageResourcesConfigs();
+            MessageResourcesConfig[] mrConfig =
+                config.findMessageResourcesConfigs();
 
             for (int i = 0; i < mrConfig.length; i++) {
                 String key = mrConfig[i].getKey();
-                MessageResources resources = (MessageResources) context
-                        .getAttribute(key + prefix);
+                MessageResources resources =
+                    (MessageResources) context.getAttribute(key + prefix);
 
                 if (resources != null) {
                     request.setAttribute(key, resources);

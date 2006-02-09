@@ -29,6 +29,7 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.validator.Resources;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.io.StringReader;
 
 /**
@@ -46,8 +47,9 @@ public class ValidWhen {
     /**
      * The message resources for this package.
      */
-    private static MessageResources sysmsgs = MessageResources
-            .getMessageResources("org.apache.struts.validator.LocalStrings");
+    private static MessageResources sysmsgs =
+        MessageResources.getMessageResources(
+            "org.apache.struts.validator.LocalStrings");
 
     /**
      * Returns true if <code>obj</code> is null or a String.
@@ -72,10 +74,8 @@ public class ValidWhen {
      *         <code>false</code> otherwise.
      */
     public static boolean validateValidWhen(Object bean, ValidatorAction va,
-                                            Field field,
-                                            ActionMessages errors,
-                                            Validator validator,
-                                            HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object form = validator.getParameterValue(Validator.BEAN_PARAM);
         String value = null;
         boolean valid = false;
@@ -88,34 +88,32 @@ public class ValidWhen {
             final int rightBracket = key.indexOf("]");
 
             if ((leftBracket > -1) && (rightBracket > -1)) {
-                index = Integer.parseInt(key.substring(leftBracket + 1,
-                        rightBracket));
+                index =
+                    Integer.parseInt(key.substring(leftBracket + 1, rightBracket));
             }
         }
 
         if (isString(bean)) {
             value = (String) bean;
         } else {
-            value = ValidatorUtils
-                    .getValueAsString(bean, field.getProperty());
+            value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
 
         String test = null;
 
         try {
-            test = Resources
-                    .getVarValue("test", field, validator, request, true);
-        }
-        catch (IllegalArgumentException ex) {
-            String logErrorMsg = sysmsgs.getMessage("validation.failed",
-                    "validwhen", field.getProperty(), ex.toString());
+            test =
+                Resources.getVarValue("test", field, validator, request, true);
+        } catch (IllegalArgumentException ex) {
+            String logErrorMsg =
+                sysmsgs.getMessage("validation.failed", "validwhen",
+                    field.getProperty(), ex.toString());
 
             log.error(logErrorMsg);
 
             String userErrorMsg = sysmsgs.getMessage("system.error");
 
-            errors.add(field.getKey(),
-                    new ActionMessage(userErrorMsg, false));
+            errors.add(field.getKey(), new ActionMessage(userErrorMsg, false));
 
             return false;
         }
@@ -125,17 +123,16 @@ public class ValidWhen {
 
         try {
             lexer = new ValidWhenLexer(new StringReader(test));
-        }
-        catch (Exception ex) {
-            String logErrorMsg = "ValidWhenLexer Error for field ' "
-                    + field.getKey() + "' - " + ex;
+        } catch (Exception ex) {
+            String logErrorMsg =
+                "ValidWhenLexer Error for field ' " + field.getKey() + "' - "
+                + ex;
 
             log.error(logErrorMsg);
 
             String userErrorMsg = sysmsgs.getMessage("system.error");
 
-            errors.add(field.getKey(),
-                    new ActionMessage(userErrorMsg, false));
+            errors.add(field.getKey(), new ActionMessage(userErrorMsg, false));
 
             return false;
         }
@@ -145,17 +142,16 @@ public class ValidWhen {
 
         try {
             parser = new ValidWhenParser(lexer);
-        }
-        catch (Exception ex) {
-            String logErrorMsg = "ValidWhenParser Error for field ' "
-                    + field.getKey() + "' - " + ex;
+        } catch (Exception ex) {
+            String logErrorMsg =
+                "ValidWhenParser Error for field ' " + field.getKey() + "' - "
+                + ex;
 
             log.error(logErrorMsg);
 
             String userErrorMsg = sysmsgs.getMessage("system.error");
 
-            errors.add(field.getKey(),
-                    new ActionMessage(userErrorMsg, false));
+            errors.add(field.getKey(), new ActionMessage(userErrorMsg, false));
 
             return false;
         }
@@ -167,27 +163,22 @@ public class ValidWhen {
         try {
             parser.expression();
             valid = parser.getResult();
-        }
-        catch (Exception ex) {
-            String logErrorMsg = "ValidWhen Error for field ' "
-                    + field.getKey() + "' - " + ex;
+        } catch (Exception ex) {
+            String logErrorMsg =
+                "ValidWhen Error for field ' " + field.getKey() + "' - " + ex;
 
             log.error(logErrorMsg);
 
             String userErrorMsg = sysmsgs.getMessage("system.error");
 
-            errors.add(field.getKey(),
-                    new ActionMessage(userErrorMsg, false));
+            errors.add(field.getKey(), new ActionMessage(userErrorMsg, false));
 
             return false;
         }
 
         if (!valid) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
 
             return false;
         }

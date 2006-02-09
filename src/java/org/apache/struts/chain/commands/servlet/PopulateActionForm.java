@@ -34,30 +34,28 @@ import org.apache.struts.util.RequestUtils;
  *          $
  */
 public class PopulateActionForm extends AbstractPopulateActionForm {
-    private static final Log log =
-            LogFactory.getLog(PopulateActionForm.class);
+    private static final Log log = LogFactory.getLog(PopulateActionForm.class);
 
     // ------------------------------------------------------- Protected Methods
     protected void populate(ActionContext context, ActionConfig actionConfig,
-                            ActionForm actionForm)
-            throws Exception {
+        ActionForm actionForm)
+        throws Exception {
         ServletActionContext saContext = (ServletActionContext) context;
 
         RequestUtils.populate(actionForm, actionConfig.getPrefix(),
-                actionConfig.getSuffix(), saContext.getRequest());
+            actionConfig.getSuffix(), saContext.getRequest());
     }
 
     protected void reset(ActionContext context, ActionConfig actionConfig,
-                         ActionForm actionForm) {
+        ActionForm actionForm) {
         ServletActionContext saContext = (ServletActionContext) context;
 
-        actionForm
-                .reset((ActionMapping) actionConfig, saContext.getRequest());
+        actionForm.reset((ActionMapping) actionConfig, saContext.getRequest());
 
         // Set the multipart class
         if (actionConfig.getMultipartClass() != null) {
             saContext.getRequestScope().put(Globals.MULTIPART_KEY,
-                    actionConfig.getMultipartClass());
+                actionConfig.getMultipartClass());
         }
     }
 }

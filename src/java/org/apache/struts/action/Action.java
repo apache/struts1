@@ -363,11 +363,23 @@ public class Action {
      * <p>Return <code>true</code> if there is a transaction token stored in
      * the user's current session, and the value submitted as a request
      * parameter with this action matches it. Returns <code>false</code> under
-     * any of the following circumstances:</p> <ul> <li>No session associated
-     * with this request</li> <li>No transaction token saved in the
-     * session</li> <li>No transaction token included as a request
-     * parameter</li> <li>The included transaction token value does not match
-     * the transaction token in the user's session</li> </ul>
+     * any of the following circumstances:</p>
+     *
+     * <ul>
+     *
+     * <li>No session associated
+     * with this request</li>
+     *
+     *  <li>No transaction token saved in the
+     * session</li>
+     *
+     * <li>No transaction token included as a request
+     * parameter</li>
+     *
+     * <li>The included transaction token value does not match
+     * the transaction token in the user's session</li>
+     *
+     * </ul>
      *
      * @param request The servlet request we are processing
      * @return <code>true</code> if there is a transaction token and it is
@@ -381,11 +393,21 @@ public class Action {
      * <p>Return <code>true</code> if there is a transaction token stored in
      * the user's current session, and the value submitted as a request
      * parameter with this action matches it. Returns <code>false</code> under
-     * any of the following circumstances:</p> <ul> <li>No session associated
+     * any of the following circumstances:</p>
+     *
+     * <ul>
+     *
+     * <li>No session associated
      * with this request</li> <li>No transaction token saved in the
-     * session</li> <li>No transaction token included as a request
-     * parameter</li> <li>The included transaction token value does not match
-     * the transaction token in the user's session</li> </ul>
+     * session</li>
+     *
+     * <li>No transaction token included as a request
+     * parameter</li>
+     *
+     * <li>The included transaction token value does not match
+     * the transaction token in the user's session</li>
+     *
+     * </ul>
      *
      * @param request The servlet request we are processing
      * @param reset   Should we reset the token after checking it?

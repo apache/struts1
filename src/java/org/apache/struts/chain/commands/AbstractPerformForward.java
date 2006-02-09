@@ -39,7 +39,7 @@ public abstract class AbstractPerformForward extends ActionCommandBase {
      * @throws Exception if thrown by the <code>Action</code>
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Is there a ForwardConfig to be performed?
         ForwardConfig forwardConfig = actionCtx.getForwardConfig();
 
@@ -64,6 +64,6 @@ public abstract class AbstractPerformForward extends ActionCommandBase {
      * @throws Exception if thrown by the <code>Action</code>
      */
     protected abstract void perform(ActionContext context,
-                                    ForwardConfig forwardConfig)
-            throws Exception;
+        ForwardConfig forwardConfig)
+        throws Exception;
 }

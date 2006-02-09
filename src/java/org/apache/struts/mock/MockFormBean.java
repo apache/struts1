@@ -30,8 +30,10 @@ import java.util.Map;
  */
 public class MockFormBean extends ActionForm {
     /*
+     * <p>
      * Flag to indicate whether certain methods should complete properly
      * or throw an Exception
+     * </p>
      */
     private boolean throwException = false;
     private boolean returnNulls = false;
@@ -57,7 +59,7 @@ public class MockFormBean extends ActionForm {
     }
 
     public MockFormBean(boolean throwException, boolean returnNulls,
-                        String defaultValue) {
+        String defaultValue) {
         this(throwException, returnNulls);
         this.defaultValue = defaultValue;
     }
@@ -67,25 +69,25 @@ public class MockFormBean extends ActionForm {
     }
 
     public MockFormBean(boolean throwException, boolean returnNulls,
-                        String defaultValue, int arrayCount) {
+        String defaultValue, int arrayCount) {
         this(throwException, returnNulls, defaultValue);
         this.arrayCount = arrayCount;
     }
 
     public MockFormBean(boolean throwException, boolean returnNulls,
-                        Double defaultDouble) {
+        Double defaultDouble) {
         this(throwException, returnNulls);
         this.defaultDouble = defaultDouble;
     }
 
     // ------------------- public methods
     public String getJustThrowAnException()
-            throws Exception {
+        throws Exception {
         throw new Exception();
     }
 
     public Object getThrowIllegalAccessException()
-            throws Exception {
+        throws Exception {
         if (true) {
             throw new IllegalAccessException();
         }
@@ -94,7 +96,7 @@ public class MockFormBean extends ActionForm {
     }
 
     public String getStringValue()
-            throws Exception {
+        throws Exception {
         if (throwException) {
             throw new Exception();
         }
@@ -107,7 +109,7 @@ public class MockFormBean extends ActionForm {
     }
 
     public String[] getStringArray()
-            throws Exception {
+        throws Exception {
         if (throwException) {
             throw new Exception();
         }
@@ -126,7 +128,7 @@ public class MockFormBean extends ActionForm {
     }
 
     public Double getDoubleValue()
-            throws Exception {
+        throws Exception {
         if (throwException) {
             throw new Exception();
         }
@@ -158,8 +160,8 @@ public class MockFormBean extends ActionForm {
     public Map getMapPropertyArrayValues() {
         HashMap map = new HashMap();
 
-        map.put("foo1", new String[]{"bar1", "baz1"});
-        map.put("foo2", new String[]{"bar2", "baz2"});
+        map.put("foo1", new String[] { "bar1", "baz1" });
+        map.put("foo2", new String[] { "bar2", "baz2" });
 
         return (map);
     }

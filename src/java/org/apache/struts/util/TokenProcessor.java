@@ -21,6 +21,7 @@ import org.apache.struts.Globals;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -60,14 +61,23 @@ public class TokenProcessor {
     }
 
     /**
-     * Return <code>true</code> if there is a transaction token stored in the
+     * <p>Return <code>true</code> if there is a transaction token stored in the
      * user's current session, and the value submitted as a request parameter
      * with this action matches it.  Returns <code>false</code> under any of
-     * the following circumstances: <ul> <li>No session associated with this
-     * request</li> <li>No transaction token saved in the session</li> <li>No
-     * transaction token included as a request parameter</li> <li>The included
-     * transaction token value does not match the transaction token in the
-     * user's session</li> </ul>
+     * the following circumstances:</p>
+     *
+     * <ul>
+     *
+     * <li>No session associated with this request</li>
+     *
+     * <li>No transaction token saved in the session</li>
+     *
+     * <li>No transaction token included as a request parameter</li>
+     *
+     * <li>The included transaction token value does not match the transaction
+     * token in the user's session</li>
+     *
+     * </ul>
      *
      * @param request The servlet request we are processing
      */
@@ -78,17 +88,25 @@ public class TokenProcessor {
     /**
      * Return <code>true</code> if there is a transaction token stored in the
      * user's current session, and the value submitted as a request parameter
-     * with this action matches it.  Returns <code>false</code> <ul> <li>No
-     * session associated with this request</li> <li>No transaction token
-     * saved in the session</li> <li>No transaction token included as a
-     * request parameter</li> <li>The included transaction token value does
-     * not match the transaction token in the user's session</li> </ul>
+     * with this action matches it.  Returns <code>false</code>
+     *
+     * <ul>
+     *
+     * <li>No session associated with this request</li> <li>No transaction
+     * token saved in the session</li>
+     *
+     * <li>No transaction token included as a request parameter</li>
+     *
+     * <li>The included transaction token value does not match the transaction
+     * token in the user's session</li>
+     *
+     * </ul>
      *
      * @param request The servlet request we are processing
      * @param reset   Should we reset the token after checking it?
      */
     public synchronized boolean isTokenValid(HttpServletRequest request,
-                                             boolean reset) {
+        boolean reset) {
         // Retrieve the current session for this request
         HttpSession session = request.getSession(false);
 
@@ -99,7 +117,7 @@ public class TokenProcessor {
         // Retrieve the transaction token from this session, and
         // reset it if requested
         String saved =
-                (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
+            (String) session.getAttribute(Globals.TRANSACTION_TOKEN_KEY);
 
         if (saved == null) {
             return false;
@@ -187,8 +205,7 @@ public class TokenProcessor {
             md.update(now);
 
             return toHex(md.digest());
-        }
-        catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             return null;
         }
     }

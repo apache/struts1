@@ -74,7 +74,7 @@ public class ModuleException extends Exception {
      * @param value2 Third replacement value
      */
     public ModuleException(String key, Object value0, Object value1,
-                           Object value2) {
+        Object value2) {
         super(key);
         message = new ActionMessage(key, value0, value1, value2);
     }
@@ -89,7 +89,7 @@ public class ModuleException extends Exception {
      * @param value3 Fourth replacement value
      */
     public ModuleException(String key, Object value0, Object value1,
-                           Object value2, Object value3) {
+        Object value2, Object value3) {
         super(key);
         message = new ActionMessage(key, value0, value1, value2, value3);
     }

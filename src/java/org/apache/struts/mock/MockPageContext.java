@@ -27,9 +27,11 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyContent;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -67,13 +69,15 @@ public class MockPageContext extends PageContext {
     }
 
     public MockPageContext(ServletConfig config, ServletRequest request,
-                           ServletResponse response) {
+        ServletResponse response) {
         super();
         setValues(config, request, response);
     }
 
     /**
+     * <p>
      * Construct a new PageContext impl.
+     * </p>
      *
      * @param throwIOException Determines if the returned JspWriter should
      *                         throw an IOException on any method call.
@@ -86,7 +90,7 @@ public class MockPageContext extends PageContext {
     }
 
     private void checkAndThrow()
-            throws IOException {
+        throws IOException {
         if (throwIOException) {
             throw new IOException();
         }
@@ -94,7 +98,7 @@ public class MockPageContext extends PageContext {
 
     // --------------------------------------------------------- Public Methods
     public void setValues(ServletConfig config, ServletRequest request,
-                          ServletResponse response) {
+        ServletResponse response) {
         this.config = config;
 
         if (config != null) {
@@ -195,14 +199,12 @@ public class MockPageContext extends PageContext {
     public int getAttributesScope(String name) {
         if (attributes.get(name) != null) {
             return (PageContext.PAGE_SCOPE);
-        } else
-        if ((request != null) && (request.getAttribute(name) != null)) {
+        } else if ((request != null) && (request.getAttribute(name) != null)) {
             return (PageContext.REQUEST_SCOPE);
-        } else
-        if ((session != null) && (session.getAttribute(name) != null)) {
+        } else if ((session != null) && (session.getAttribute(name) != null)) {
             return (PageContext.SESSION_SCOPE);
         } else if ((application != null)
-                && (application.getAttribute(name) != null)) {
+            && (application.getAttribute(name) != null)) {
             return (PageContext.APPLICATION_SCOPE);
         } else {
             return (0);
@@ -214,268 +216,131 @@ public class MockPageContext extends PageContext {
     }
 
     /**
+     * <p>
      * Custom JspWriter that throws the specified exception (supplied on the
      * constructor...if any), else it simply returns.
+     * </p>
      */
     public JspWriter getOut() {
-        JspWriter jspWriter = new JspWriter(0, false) {
-            public void print(String s)
+        JspWriter jspWriter =
+            new JspWriter(0, false) {
+                public void print(String s)
                     throws IOException {
-                checkAndThrow();
-            }
-
-            public void newLine()
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void print(boolean b)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void print(char c)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void print(int i)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void print(long l)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void print(float f)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void print(double d)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void print(char[] s)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void print(Object obj)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void println()
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void println(boolean x)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void println(char x)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void println(int x)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void println(long x)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void println(float x)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void println(double x)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void println(char[] x)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void println(String x)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void println(Object x)
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void clear()
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void clearBuffer()
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void flush()
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public void close()
-                    throws IOException {
-                checkAndThrow();
-            }
-
-            public int getRemaining() {
-                return 0;
-            }
-
-            public void write(char[] cbuf, int off, int len)
-                    throws IOException {
-                checkAndThrow();
-            }
-        };
-
-        if (returnBodyContent) {
-            return new BodyContent(jspWriter) {
-                public Reader getReader() {
-                    return null;
-                }
-
-                public String getString() {
-                    return null;
-                }
-
-                public void writeOut(Writer out)
-                        throws IOException {
                     checkAndThrow();
                 }
 
                 public void newLine()
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void print(boolean b)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void print(char c)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void print(int i)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void print(long l)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void print(float f)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void print(double d)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void print(char[] s)
-                        throws IOException {
-                    checkAndThrow();
-                }
-
-                public void print(String s)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void print(Object obj)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void println()
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void println(boolean x)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void println(char x)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void println(int x)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void println(long x)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void println(float x)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void println(double x)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void println(char[] x)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void println(String x)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void println(Object x)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void clear()
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void clearBuffer()
-                        throws IOException {
+                    throws IOException {
+                    checkAndThrow();
+                }
+
+                public void flush()
+                    throws IOException {
                     checkAndThrow();
                 }
 
                 public void close()
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
 
@@ -484,10 +349,150 @@ public class MockPageContext extends PageContext {
                 }
 
                 public void write(char[] cbuf, int off, int len)
-                        throws IOException {
+                    throws IOException {
                     checkAndThrow();
                 }
             };
+
+        if (returnBodyContent) {
+            return new BodyContent(jspWriter) {
+                    public Reader getReader() {
+                        return null;
+                    }
+
+                    public String getString() {
+                        return null;
+                    }
+
+                    public void writeOut(Writer out)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void newLine()
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void print(boolean b)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void print(char c)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void print(int i)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void print(long l)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void print(float f)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void print(double d)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void print(char[] s)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void print(String s)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void print(Object obj)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void println()
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void println(boolean x)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void println(char x)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void println(int x)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void println(long x)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void println(float x)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void println(double x)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void println(char[] x)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void println(String x)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void println(Object x)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void clear()
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void clearBuffer()
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public void close()
+                        throws IOException {
+                        checkAndThrow();
+                    }
+
+                    public int getRemaining() {
+                        return 0;
+                    }
+
+                    public void write(char[] cbuf, int off, int len)
+                        throws IOException {
+                        checkAndThrow();
+                    }
+                };
         }
 
         return jspWriter;
@@ -530,9 +535,8 @@ public class MockPageContext extends PageContext {
     }
 
     public void initialize(Servlet servlet, ServletRequest request,
-                           ServletResponse response, String errorPageURL,
-                           boolean needsSession,
-                           int bufferSize, boolean autoFlush) {
+        ServletResponse response, String errorPageURL, boolean needsSession,
+        int bufferSize, boolean autoFlush) {
         throw new UnsupportedOperationException();
     }
 

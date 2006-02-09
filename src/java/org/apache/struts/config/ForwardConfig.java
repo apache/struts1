@@ -50,19 +50,28 @@ public class ForwardConfig extends BaseConfig {
     /**
      * <p>The URL to which this <code>ForwardConfig</code> entry points, which
      * must start with a slash ("/") character.  It is interpreted according
-     * to the following rules:</p> <ul> <li>If <code>contextRelative</code>
-     * property is <code>true</code>, the path is considered to be
-     * context-relative within the current web application (even if we are in
-     * a named module).  It will be prefixed by the context path to create a
-     * server-relative URL.</li> <li>If the <code>contextRelative</code>
-     * property is false, the path is considered to be the module-relative
-     * portion of the URL. It will be used as the replacement for the
-     * <code>$P</code> marker in the <code>forwardPattern</code> property
-     * defined on the {@link ControllerConfig} element for our current module.
-     * For the default <code>forwardPattern</code> value of
-     * <code>$C$M$P</code>, the resulting server-relative URL will be the
-     * concatenation of the context path, the module prefix, and the
-     * <code>path</code> from this <code>ForwardConfig</code>.</li> </ul>
+     * to the following rules:</p>
+     *
+     * <ul>
+     *
+     * <li>If <code>contextRelative</code> property is <code>true</code>, the
+     * path is considered to be context-relative within the current web
+     * application (even if we are in a named module).  It will be prefixed by
+     * the context path to create a server-relative URL.</li>
+     *
+     * <li>If the <code>contextRelative</code> property is false, the path is
+     * considered to be the module-relative portion of the URL. It will be
+     * used as the replacement for the <code>$P</code> marker in the
+     * <code>forwardPattern</code> property defined on the {@link
+     * ControllerConfig} element for our current module. For the default
+     * <code>forwardPattern</code> value of <code>$C$M$P</code>, the resulting
+     * server-relative URL will be the concatenation of the context path, the
+     * module prefix, and the <code>path</code> from this
+     * <code>ForwardConfig</code>.
+     *
+     * </li>
+     *
+     * </ul>
      */
     protected String path = null;
 
@@ -131,7 +140,7 @@ public class ForwardConfig extends BaseConfig {
      * @param module   Module prefix, if any
      */
     public ForwardConfig(String name, String path, boolean redirect,
-                         String module) {
+        String module) {
         super();
         setName(name);
         setPath(path);
@@ -240,7 +249,7 @@ public class ForwardConfig extends BaseConfig {
      * @return true if circular inheritance was detected.
      */
     protected boolean checkCircularInheritance(ModuleConfig moduleConfig,
-                                               ActionConfig actionConfig) {
+        ActionConfig actionConfig) {
         String ancestorName = getExtends();
 
         if (ancestorName == null) {
@@ -344,7 +353,7 @@ public class ForwardConfig extends BaseConfig {
      * @see #processExtends(ModuleConfig, ActionConfig)
      */
     public void inheritFrom(ForwardConfig config)
-            throws ClassNotFoundException, IllegalAccessException,
+        throws ClassNotFoundException, IllegalAccessException, 
             InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -391,8 +400,8 @@ public class ForwardConfig extends BaseConfig {
      * @see #inheritFrom(ForwardConfig)
      */
     public void processExtends(ModuleConfig moduleConfig,
-                               ActionConfig actionConfig)
-            throws ClassNotFoundException, IllegalAccessException,
+        ActionConfig actionConfig)
+        throws ClassNotFoundException, IllegalAccessException, 
             InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -405,7 +414,7 @@ public class ForwardConfig extends BaseConfig {
 
             // We only check the action config if we're not a global forward
             boolean checkActionConfig =
-                    (this != moduleConfig.findForwardConfig(getName()));
+                (this != moduleConfig.findForwardConfig(getName()));
 
             // ... and the action config was provided
             checkActionConfig &= (actionConfig != null);
@@ -427,15 +436,14 @@ public class ForwardConfig extends BaseConfig {
 
             if (baseConfig == null) {
                 throw new NullPointerException("Unable to find " + "forward '"
-                        + ancestorName + "' to extend.");
+                    + ancestorName + "' to extend.");
             }
 
             // Check for circular inheritance and make sure the base config's
             //  own extends have been processed already
             if (checkCircularInheritance(moduleConfig, actionConfig)) {
                 throw new IllegalArgumentException(
-                        "Circular inheritance detected for forward "
-                                + getName());
+                    "Circular inheritance detected for forward " + getName());
             }
 
             if (!baseConfig.isExtensionProcessed()) {

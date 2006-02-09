@@ -39,7 +39,7 @@ public abstract class AbstractRequestNoCache extends ActionCommandBase {
      * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Retrieve the ModuleConfig instance
         ModuleConfig moduleConfig = actionCtx.getModuleConfig();
 

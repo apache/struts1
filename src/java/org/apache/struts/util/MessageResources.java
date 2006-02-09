@@ -21,7 +21,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.io.Serializable;
+
 import java.text.MessageFormat;
+
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -115,7 +117,7 @@ public abstract class MessageResources implements Serializable {
      * @param returnNull The returnNull property we should initialize with
      */
     public MessageResources(MessageResourcesFactory factory, String config,
-                            boolean returnNull) {
+        boolean returnNull) {
         super();
         this.factory = factory;
         this.config = config;
@@ -235,8 +237,7 @@ public abstract class MessageResources implements Serializable {
      * @param arg1 The replacement for placeholder {1} in the message
      * @param arg2 The replacement for placeholder {2} in the message
      */
-    public String getMessage(String key, Object arg0, Object arg1,
-                             Object arg2) {
+    public String getMessage(String key, Object arg0, Object arg1, Object arg2) {
         return this.getMessage((Locale) null, key, arg0, arg1, arg2);
     }
 
@@ -250,9 +251,8 @@ public abstract class MessageResources implements Serializable {
      * @param arg2 The replacement for placeholder {2} in the message
      * @param arg3 The replacement for placeholder {3} in the message
      */
-    public String getMessage(String key, Object arg0, Object arg1,
-                             Object arg2,
-                             Object arg3) {
+    public String getMessage(String key, Object arg0, Object arg1, Object arg2,
+        Object arg3) {
         return this.getMessage((Locale) null, key, arg0, arg1, arg2, arg3);
     }
 
@@ -319,7 +319,7 @@ public abstract class MessageResources implements Serializable {
      * @param arg0   The replacement for placeholder {0} in the message
      */
     public String getMessage(Locale locale, String key, Object arg0) {
-        return this.getMessage(locale, key, new Object[]{arg0});
+        return this.getMessage(locale, key, new Object[] { arg0 });
     }
 
     /**
@@ -333,9 +333,8 @@ public abstract class MessageResources implements Serializable {
      * @param arg0   The replacement for placeholder {0} in the message
      * @param arg1   The replacement for placeholder {1} in the message
      */
-    public String getMessage(Locale locale, String key, Object arg0,
-                             Object arg1) {
-        return this.getMessage(locale, key, new Object[]{arg0, arg1});
+    public String getMessage(Locale locale, String key, Object arg0, Object arg1) {
+        return this.getMessage(locale, key, new Object[] { arg0, arg1 });
     }
 
     /**
@@ -351,8 +350,8 @@ public abstract class MessageResources implements Serializable {
      * @param arg2   The replacement for placeholder {2} in the message
      */
     public String getMessage(Locale locale, String key, Object arg0,
-                             Object arg1, Object arg2) {
-        return this.getMessage(locale, key, new Object[]{arg0, arg1, arg2});
+        Object arg1, Object arg2) {
+        return this.getMessage(locale, key, new Object[] { arg0, arg1, arg2 });
     }
 
     /**
@@ -369,9 +368,9 @@ public abstract class MessageResources implements Serializable {
      * @param arg3   The replacement for placeholder {3} in the message
      */
     public String getMessage(Locale locale, String key, Object arg0,
-                             Object arg1, Object arg2, Object arg3) {
+        Object arg1, Object arg2, Object arg3) {
         return this.getMessage(locale, key,
-                new Object[]{arg0, arg1, arg2, arg3});
+            new Object[] { arg0, arg1, arg2, arg3 });
     }
 
     /**
@@ -478,7 +477,7 @@ public abstract class MessageResources implements Serializable {
      * @param config Configuration parameter for this message bundle.
      */
     public synchronized static MessageResources getMessageResources(
-            String config) {
+        String config) {
         if (defaultFactory == null) {
             defaultFactory = MessageResourcesFactory.createFactory();
         }

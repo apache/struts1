@@ -36,8 +36,7 @@ import org.apache.struts.config.ActionConfig;
  */
 public class ValidateActionForm extends AbstractValidateActionForm {
     // ------------------------------------------------------ Instance Variables
-    private static final Log log =
-            LogFactory.getLog(ValidateActionForm.class);
+    private static final Log log = LogFactory.getLog(ValidateActionForm.class);
 
     // ------------------------------------------------------- Protected Methods
 
@@ -49,12 +48,11 @@ public class ValidateActionForm extends AbstractValidateActionForm {
      * @param actionForm The form bean for this request
      */
     protected ActionErrors validate(ActionContext context,
-                                    ActionConfig actionConfig,
-                                    ActionForm actionForm) {
+        ActionConfig actionConfig, ActionForm actionForm) {
         ServletActionContext saContext = (ServletActionContext) context;
         ActionErrors errors =
-                (actionForm.validate((ActionMapping) actionConfig,
-                        saContext.getRequest()));
+            (actionForm.validate((ActionMapping) actionConfig,
+                saContext.getRequest()));
 
         // Special handling for multipart request
         if ((errors != null) && !errors.isEmpty()) {

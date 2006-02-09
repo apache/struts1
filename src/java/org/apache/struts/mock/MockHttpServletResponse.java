@@ -20,8 +20,10 @@ package org.apache.struts.mock;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.util.Locale;
 
 /**
@@ -131,12 +133,12 @@ public class MockHttpServletResponse implements HttpServletResponse {
     }
 
     public ServletOutputStream getOutputStream()
-            throws IOException {
+        throws IOException {
         throw new UnsupportedOperationException();
     }
 
     public PrintWriter getWriter()
-            throws IOException {
+        throws IOException {
         throw new UnsupportedOperationException();
     }
 

@@ -23,8 +23,11 @@ import org.apache.commons.logging.LogFactory;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
+
 import java.io.InputStream;
+
 import java.net.URL;
+
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Set;
@@ -49,17 +52,17 @@ public class MockServletContext implements ServletContext {
     // ----------------------------------------------------- Instance Variables
 
     /**
-     * The set of servlet context attributes.
+     * <p> The set of servlet context attributes. </p>
      */
     protected HashMap attributes = new HashMap();
 
     /**
-     * Default destination for <code>LOG()</code> output.
+     * <p> Default destination for <code>LOG()</code> output. </p>
      */
     protected Log log = LogFactory.getLog(MockServletContext.class);
 
     /**
-     * The set of context initialization parameters.
+     * <p> The set of context initialization parameters. </p>
      */
     protected HashMap parameters = new HashMap();
 

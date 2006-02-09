@@ -22,59 +22,59 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * This interface represents a file that has been uploaded by a client. It is
- * the only interface or class in upload package which is typically referenced
- * directly by a Struts application.
+ * <p> This interface represents a file that has been uploaded by a client. It
+ * is the only interface or class in upload package which is typically
+ * referenced directly by a Struts application. </p>
  */
 public interface FormFile {
     /**
-     * Returns the content type for this file.
+     * <p> Returns the content type for this file. </p>
      *
      * @return A String representing content type.
      */
     public String getContentType();
 
     /**
-     * Sets the content type for this file.
+     * <p> Sets the content type for this file. </p>
      *
      * @param contentType The content type for the file.
      */
     public void setContentType(String contentType);
 
     /**
-     * Returns the size of this file.
+     * <p> Returns the size of this file. </p>
      *
      * @return The size of the file, in bytes.
      */
     public int getFileSize();
 
     /**
-     * Sets the file size.
+     * <p> Sets the file size. </p>
      *
      * @param fileSize The size of the file, in bytes,
      */
     public void setFileSize(int fileSize);
 
     /**
-     * Returns the file name of this file. This is the base name of the file,
-     * as supplied by the user when the file was uploaded.
+     * <p> Returns the file name of this file. This is the base name of the
+     * file, as supplied by the user when the file was uploaded. </p>
      *
      * @return The base file name.
      */
     public String getFileName();
 
     /**
-     * Sets the file name of this file.
+     * <p> Sets the file name of this file. </p>
      *
      * @param fileName The base file name.
      */
     public void setFileName(String fileName);
 
     /**
-     * Returns the data for the entire file as byte array. Care is needed when
-     * using this method, since a large upload could easily exhaust available
-     * memory. The preferred method for accessing the file data is {@link
-     * #getInputStream() getInputStream}.
+     * <p> Returns the data for the entire file as byte array. Care is needed
+     * when using this method, since a large upload could easily exhaust
+     * available memory. The preferred method for accessing the file data is
+     * {@link #getInputStream() getInputStream}. </p>
      *
      * @return The file data as a byte array.
      * @throws FileNotFoundException if the uploaded file is not found.
@@ -82,22 +82,22 @@ public interface FormFile {
      *                               file.
      */
     public byte[] getFileData()
-            throws FileNotFoundException, IOException;
+        throws FileNotFoundException, IOException;
 
     /**
-     * Returns an input stream for this file. The caller must close the stream
-     * when it is no longer needed.
+     * <p> Returns an input stream for this file. The caller must close the
+     * stream when it is no longer needed. </p>
      *
      * @throws FileNotFoundException if the uploaded file is not found.
      * @throws IOException           if an error occurred while reading the
      *                               file.
      */
     public InputStream getInputStream()
-            throws FileNotFoundException, IOException;
+        throws FileNotFoundException, IOException;
 
     /**
-     * Destroys all content for the uploaded file, including any underlying
-     * data files.
+     * <p> Destroys all content for the uploaded file, including any
+     * underlying data files. </p>
      */
     public void destroy();
 }

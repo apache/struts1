@@ -47,8 +47,8 @@ public class SelectAction extends AbstractSelectAction {
 
         // For extension matching, match on the servlet path
         if (path == null) {
-            path = (String) request
-                    .getAttribute(Constants.INCLUDE_SERVLET_PATH);
+            path =
+                (String) request.getAttribute(Constants.INCLUDE_SERVLET_PATH);
 
             if (path == null) {
                 path = request.getServletPath();
@@ -56,7 +56,7 @@ public class SelectAction extends AbstractSelectAction {
 
             if (path == null) {
                 throw new IllegalArgumentException(
-                        "No path information in request");
+                    "No path information in request");
             }
 
             extension = true;
@@ -68,7 +68,7 @@ public class SelectAction extends AbstractSelectAction {
 
         if (!path.startsWith(prefix)) {
             throw new IllegalArgumentException("Path does not start with '"
-                    + prefix + "'");
+                + prefix + "'");
         }
 
         path = path.substring(prefix.length());

@@ -23,7 +23,7 @@ import org.apache.struts.config.ModuleConfigFactory;
 import java.io.Serializable;
 
 /**
- * A factory for creating {@link ModuleConfig} instances.
+ * <p>A factory for creating {@link ModuleConfig} instances.</p>
  *
  * @version $Rev$ $Date: 2005-05-07 12:45:39 -0400 (Sat, 07 May 2005)
  *          $
@@ -31,12 +31,12 @@ import java.io.Serializable;
  * @see ModuleConfigFactory
  */
 public class DefaultModuleConfigFactory extends ModuleConfigFactory
-        implements Serializable {
+    implements Serializable {
     // --------------------------------------------------------- Public Methods
 
     /**
-     * Create and return a newly instansiated {@link ModuleConfig}. This
-     * method must be implemented by concrete subclasses.
+     * <p>Create and return a newly instansiated {@link ModuleConfig}. This
+     * method must be implemented by concrete subclasses.</p>
      *
      * @param prefix Module prefix for Configuration
      */

@@ -42,7 +42,7 @@ public abstract class AbstractExecuteAction extends ActionCommandBase {
      * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Skip processing if the current request is not valid
         Boolean valid = actionCtx.getFormValid();
 
@@ -61,8 +61,8 @@ public abstract class AbstractExecuteAction extends ActionCommandBase {
         ActionForm actionForm = actionCtx.getActionForm();
 
         // Execute the Action for this request, caching returned ActionForward
-        ForwardConfig forwardConfig = execute(actionCtx, action, actionConfig,
-                actionForm);
+        ForwardConfig forwardConfig =
+            execute(actionCtx, action, actionConfig, actionForm);
 
         actionCtx.setForwardConfig(forwardConfig);
 
@@ -83,8 +83,6 @@ public abstract class AbstractExecuteAction extends ActionCommandBase {
      * @throws Exception if thrown by the <code>Action</code>
      */
     protected abstract ForwardConfig execute(ActionContext context,
-                                             Action action,
-                                             ActionConfig actionConfig,
-                                             ActionForm actionForm)
-            throws Exception;
+        Action action, ActionConfig actionConfig, ActionForm actionForm)
+        throws Exception;
 }

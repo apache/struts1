@@ -38,15 +38,14 @@ public abstract class ModuleConfigFactory {
     /**
      * Commons Logging instance.
      */
-    private static final Log LOG =
-            LogFactory.getLog(ModuleConfigFactory.class);
+    private static final Log LOG = LogFactory.getLog(ModuleConfigFactory.class);
 
     /**
      * The fully qualified class name to be used for <code>ModuleConfigFactory</code>
      * instances.
      */
     protected static String factoryClass =
-            "org.apache.struts.config.impl.DefaultModuleConfigFactory";
+        "org.apache.struts.config.impl.DefaultModuleConfigFactory";
 
     /**
      * Create and return a newly instansiated {@link ModuleConfig}. This
@@ -98,14 +97,11 @@ public abstract class ModuleConfigFactory {
             }
 
             factory = (ModuleConfigFactory) clazz.newInstance();
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             LOG.error("ModuleConfigFactory.createFactory()", e);
-        }
-        catch (InstantiationException e) {
+        } catch (InstantiationException e) {
             LOG.error("ModuleConfigFactory.createFactory()", e);
-        }
-        catch (IllegalAccessException e) {
+        } catch (IllegalAccessException e) {
             LOG.error("ModuleConfigFactory.createFactory()", e);
         }
 

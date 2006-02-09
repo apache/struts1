@@ -31,14 +31,13 @@ import org.apache.struts.config.ActionConfig;
  *          $
  */
 public abstract class AbstractCreateAction extends ActionCommandBase {
-
     // ------------------------------------------------------ Instance Variables
 
     /**
      * Provide a Commons logging instance for this class.
      */
     private static final Log LOG =
-            LogFactory.getLog(AbstractCreateAction.class);
+        LogFactory.getLog(AbstractCreateAction.class);
 
     // ---------------------------------------------------------- Public Methods
 
@@ -52,7 +51,7 @@ public abstract class AbstractCreateAction extends ActionCommandBase {
      *                   class.
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Skip processing if the current request is not valid
         Boolean valid = actionCtx.getFormValid();
 
@@ -64,8 +63,7 @@ public abstract class AbstractCreateAction extends ActionCommandBase {
 
         // Check to see if an action has already been created
         if (actionCtx.getAction() != null) {
-            LOG.trace(
-                    "already have an action [" + actionCtx.getAction() + "]");
+            LOG.trace("already have an action [" + actionCtx.getAction() + "]");
 
             return (false);
         }
@@ -109,6 +107,6 @@ public abstract class AbstractCreateAction extends ActionCommandBase {
      *                   class.
      */
     protected abstract Action getAction(ActionContext context, String type,
-                                        ActionConfig actionConfig)
-            throws Exception;
+        ActionConfig actionConfig)
+        throws Exception;
 }

@@ -33,7 +33,6 @@ import java.util.Map;
  * @version $Id$
  */
 public class CreateActionForm extends ActionCommandBase {
-
     // ------------------------------------------------------ Instance Variables
 
     /**
@@ -51,7 +50,7 @@ public class CreateActionForm extends ActionCommandBase {
      * @throws Exception on any error
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Is there a form bean associated with this ActionConfig?
         ActionConfig actionConfig = actionCtx.getActionConfig();
         String name = actionConfig.getName();
@@ -67,14 +66,13 @@ public class CreateActionForm extends ActionCommandBase {
         }
 
         // Look up the corresponding FormBeanConfig (if any)
-        FormBeanConfig formBeanConfig = actionConfig.getModuleConfig()
-                .findFormBeanConfig(name);
+        FormBeanConfig formBeanConfig =
+            actionConfig.getModuleConfig().findFormBeanConfig(name);
 
         if (formBeanConfig == null) {
             LOG.warn("No FormBeanConfig found in module "
-                    + actionConfig.getModuleConfig().getPrefix()
-                    + " under name "
-                    + name);
+                + actionConfig.getModuleConfig().getPrefix() + " under name "
+                + name);
             actionCtx.setActionForm(null);
 
             return (false);

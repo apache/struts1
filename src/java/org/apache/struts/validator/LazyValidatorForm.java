@@ -35,15 +35,24 @@ import java.util.Map;
  * <code>LazyDynaBean<code> in the <code>get(name, index)</code> method.</p>
  *
  * <p><i>Lazy</i> DynaBeans provide several types of <i>lazy</i>
- * behaviour:</p> <ul> <li><b><i>lazy</i> property addition</b> - properties
- * which do not exist are automatically added.</li> <li><b><i>lazy</i> List
+ * behaviour:</p>
+ *
+ * <ul>
+ *
+ * <li><b><i>lazy</i> property addition</b> - properties
+ * which do not exist are automatically added.</li>
+ *
+ * <li><b><i>lazy</i> List
  * facilities</b> - automatically <i>grows</i> a <code>List</code> or
  * <code>Array</code> to accomodate the index value being set.</li>
+ *
  * <li><b><i>lazy</i> List creation</b> - automatic creation of a
  * <code>List</code> or <code>Array</code> for <i>indexed</i> properties, if
  * it doesn't exist.</li> <li><b><i>lazy</i> Map creation</b> - automatic
  * creation of a <code>Map</code> for <i>mapped</i> properties, if it doesn't
- * exist.</li> </ul>
+ * exist.</li>
+ *
+ * </ul>
  *
  * <p>Using this <i>lazy</i> <code>ActionForm</code> means that you don't have
  * to define the ActionForm's properties in the <code>struts-config.xml</code>.

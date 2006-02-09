@@ -180,7 +180,7 @@ public class ExceptionConfig extends BaseConfig {
      * @return true if circular inheritance was detected.
      */
     protected boolean checkCircularInheritance(ModuleConfig moduleConfig,
-                                               ActionConfig actionConfig) {
+        ActionConfig actionConfig) {
         String ancestorType = getExtends();
 
         if (ancestorType == null) {
@@ -284,7 +284,7 @@ public class ExceptionConfig extends BaseConfig {
      * @see #processExtends(ModuleConfig, ActionConfig)
      */
     public void inheritFrom(ExceptionConfig config)
-            throws ClassNotFoundException, IllegalAccessException,
+        throws ClassNotFoundException, IllegalAccessException, 
             InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -295,8 +295,7 @@ public class ExceptionConfig extends BaseConfig {
             setBundle(config.getBundle());
         }
 
-        if (getHandler().equals("org.apache.struts.action.ExceptionHandler"))
-        {
+        if (getHandler().equals("org.apache.struts.action.ExceptionHandler")) {
             setHandler(config.getHandler());
         }
 
@@ -332,8 +331,8 @@ public class ExceptionConfig extends BaseConfig {
      * @see #inheritFrom(ExceptionConfig)
      */
     public void processExtends(ModuleConfig moduleConfig,
-                               ActionConfig actionConfig)
-            throws ClassNotFoundException, IllegalAccessException,
+        ActionConfig actionConfig)
+        throws ClassNotFoundException, IllegalAccessException, 
             InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -345,8 +344,8 @@ public class ExceptionConfig extends BaseConfig {
             ExceptionConfig baseConfig = null;
 
             // We only check the action config if we're not a global handler
-            boolean checkActionConfig = (this != moduleConfig
-                    .findExceptionConfig(getType()));
+            boolean checkActionConfig =
+                (this != moduleConfig.findExceptionConfig(getType()));
 
             // ... and the action config was provided
             checkActionConfig &= (actionConfig != null);
@@ -368,15 +367,14 @@ public class ExceptionConfig extends BaseConfig {
 
             if (baseConfig == null) {
                 throw new NullPointerException("Unable to find "
-                        + "handler for '" + ancestorType + "' to extend.");
+                    + "handler for '" + ancestorType + "' to extend.");
             }
 
             // Check for circular inheritance and make sure the base config's
             //  own inheritance has been processed already
             if (checkCircularInheritance(moduleConfig, actionConfig)) {
                 throw new IllegalArgumentException(
-                        "Circular inheritance detected for forward "
-                                + getType());
+                    "Circular inheritance detected for forward " + getType());
             }
 
             if (!baseConfig.isExtensionProcessed()) {

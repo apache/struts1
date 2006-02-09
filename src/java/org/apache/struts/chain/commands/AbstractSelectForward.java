@@ -32,14 +32,13 @@ import org.apache.struts.config.ModuleConfig;
  *          $
  */
 public abstract class AbstractSelectForward extends ActionCommandBase {
-
     // ------------------------------------------------------ Instance Variables
 
     /**
      * <p> Provide Commons Logging instance for this class. </p>
      */
     private static final Log LOG =
-            LogFactory.getLog(AbstractSelectForward.class);
+        LogFactory.getLog(AbstractSelectForward.class);
 
     // ---------------------------------------------------------- Public Methods
 
@@ -52,7 +51,7 @@ public abstract class AbstractSelectForward extends ActionCommandBase {
      * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Skip processing if the current request is not valid
         Boolean valid = actionCtx.getFormValid();
 
@@ -92,6 +91,5 @@ public abstract class AbstractSelectForward extends ActionCommandBase {
      * @return ForwwardConfig representing the destination
      */
     protected abstract ForwardConfig forward(ActionContext context,
-                                             ModuleConfig moduleConfig,
-                                             String uri);
+        ModuleConfig moduleConfig, String uri);
 }

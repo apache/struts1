@@ -44,7 +44,7 @@ public class IteratorAdapter implements Iterator {
     public Object next() {
         if (!e.hasMoreElements()) {
             throw new NoSuchElementException(
-                    "IteratorAdaptor.next() has no more elements");
+                "IteratorAdaptor.next() has no more elements");
         }
 
         return e.nextElement();
@@ -52,6 +52,6 @@ public class IteratorAdapter implements Iterator {
 
     public void remove() {
         throw new UnsupportedOperationException(
-                "Method IteratorAdaptor.remove() not implemented");
+            "Method IteratorAdaptor.remove() not implemented");
     }
 }

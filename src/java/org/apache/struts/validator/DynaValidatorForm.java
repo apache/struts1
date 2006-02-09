@@ -29,7 +29,9 @@ import org.apache.struts.action.DynaActionForm;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+
 import java.io.Serializable;
+
 import java.util.Map;
 
 /**
@@ -38,8 +40,12 @@ import java.util.Map;
  * is the action element's 'name' attribute from the struts-config.xml which
  * should match the form element's name attribute in the validation.xml.</p>
  *
- * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
- * for validation rules.</li></ul>
+ * <ul>
+ *
+ * <li>See <code>ValidatorPlugin</code> definition in struts-config.xml for
+ * validation rules.</li>
+ *
+ * </ul>
  *
  * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
  *          $
@@ -47,7 +53,7 @@ import java.util.Map;
  * @since Struts 1.1
  */
 public class DynaValidatorForm extends DynaActionForm implements DynaBean,
-        Serializable {
+    Serializable {
     /**
      * Commons Logging instance.
      */
@@ -95,7 +101,7 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean,
      *         validation errors.
      */
     public ActionErrors validate(ActionMapping mapping,
-                                 HttpServletRequest request) {
+        HttpServletRequest request) {
         this.setPageFromDynaProperty();
 
         ServletContext application = getServlet().getServletContext();
@@ -103,13 +109,13 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean,
 
         String validationKey = getValidationKey(mapping, request);
 
-        Validator validator = Resources.initValidator(validationKey, this,
-                application, request, errors, page);
+        Validator validator =
+            Resources.initValidator(validationKey, this, application, request,
+                errors, page);
 
         try {
             validatorResults = validator.validate();
-        }
-        catch (ValidatorException e) {
+        } catch (ValidatorException e) {
             log.error(e.getMessage(), e);
         }
 
@@ -124,7 +130,7 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean,
      * @return validation key - the form element's name in this case
      */
     public String getValidationKey(ActionMapping mapping,
-                                   HttpServletRequest request) {
+        HttpServletRequest request) {
         return mapping.getAttribute();
     }
 
@@ -143,18 +149,16 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean,
 
             try {
                 p = (Integer) props.get("page");
-            }
-            catch (ClassCastException e) {
-                log.error(
-                        "Dyna 'page' property must be of type java.lang.Integer.",
-                        e);
+            } catch (ClassCastException e) {
+                log.error("Dyna 'page' property must be of type java.lang.Integer.",
+                    e);
                 throw e;
             }
 
             if (p == null) {
                 throw new NullPointerException(
-                        "Dyna 'page' property must not be null. "
-                                + " Either provide an initial value or set 'convertNull' to false. ");
+                    "Dyna 'page' property must not be null. "
+                    + " Either provide an initial value or set 'convertNull' to false. ");
             }
 
             this.page = p.intValue();
@@ -201,6 +205,6 @@ public class DynaValidatorForm extends DynaActionForm implements DynaBean,
      */
     public Map getResultValueMap() {
         return ((validatorResults != null)
-                ? validatorResults.getResultValueMap() : null);
+        ? validatorResults.getResultValueMap() : null);
     }
 }

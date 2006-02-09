@@ -25,12 +25,11 @@ import org.apache.struts.chain.contexts.ActionContext;
  * Struts <code>ActionContext</code>.</p>
  */
 public interface ActionCommand extends Command {
-
     /**
      * @param actionContext The <code>Context</code> for the current request
      * @return TRUE if processing should halt
      * @throws Exception On any error
      */
     boolean execute(ActionContext actionContext)
-            throws Exception;
+        throws Exception;
 }

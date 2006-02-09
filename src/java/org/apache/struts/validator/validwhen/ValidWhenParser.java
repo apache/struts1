@@ -26,21 +26,22 @@ import antlr.TokenBuffer;
 import antlr.TokenStream;
 import antlr.TokenStreamException;
 import antlr.collections.impl.BitSet;
+
 import org.apache.commons.validator.util.ValidatorUtils;
 
 import java.util.Stack;
 
 public class ValidWhenParser extends antlr.LLkParser
-        implements ValidWhenParserTokenTypes {
-    public static final String[] _tokenNames = {
+    implements ValidWhenParserTokenTypes {
+    public static final String[] _tokenNames =
+        {
             "<0>", "EOF", "<2>", "NULL_TREE_LOOKAHEAD", "DECIMAL_LITERAL",
             "HEX_LITERAL", "OCTAL_LITERAL", "STRING_LITERAL", "IDENTIFIER",
             "LBRACKET", "RBRACKET", "\"null\"", "THIS", "LPAREN", "RPAREN",
             "\"and\"", "\"or\"", "EQUALSIGN", "GREATERTHANSIGN",
-            "GREATEREQUALSIGN", "LESSTHANSIGN", "LESSEQUALSIGN",
-            "NOTEQUALSIGN",
+            "GREATEREQUALSIGN", "LESSTHANSIGN", "LESSEQUALSIGN", "NOTEQUALSIGN",
             "WS"
-    };
+        };
     public static final BitSet _tokenSet_0 = new BitSet(mk_tokenSet_0());
     public static final BitSet _tokenSet_1 = new BitSet(mk_tokenSet_1());
     Stack argStack = new Stack();
@@ -112,23 +113,22 @@ public class ValidWhenParser extends antlr.LLkParser
             }
 
             switch (((Integer) compare).intValue()) {
-                case LESS_EQUAL:
-                case GREATER_THAN:
-                case LESS_THAN:
-                case GREATER_EQUAL:
-                    return false;
+            case LESS_EQUAL:
+            case GREATER_THAN:
+            case LESS_THAN:
+            case GREATER_EQUAL:
+                return false;
 
-                case EQUAL:
-                    return (v1 == v2);
+            case EQUAL:
+                return (v1 == v2);
 
-                case NOT_EQUAL:
-                    return (v1 != v2);
+            case NOT_EQUAL:
+                return (v1 != v2);
             }
         }
 
         if ((Integer.class.isInstance(v1) || String.class.isInstance(v1))
-                && (Integer.class.isInstance(v2) || String.class
-                .isInstance(v2))) {
+            && (Integer.class.isInstance(v2) || String.class.isInstance(v2))) {
             intCompare = true;
         } else {
             intCompare = false;
@@ -152,26 +152,25 @@ public class ValidWhenParser extends antlr.LLkParser
                 }
 
                 switch (((Integer) compare).intValue()) {
-                    case LESS_EQUAL:
-                        return (v1i <= v2i);
+                case LESS_EQUAL:
+                    return (v1i <= v2i);
 
-                    case LESS_THAN:
-                        return (v1i < v2i);
+                case LESS_THAN:
+                    return (v1i < v2i);
 
-                    case EQUAL:
-                        return (v1i == v2i);
+                case EQUAL:
+                    return (v1i == v2i);
 
-                    case GREATER_THAN:
-                        return (v1i > v2i);
+                case GREATER_THAN:
+                    return (v1i > v2i);
 
-                    case GREATER_EQUAL:
-                        return (v1i >= v2i);
+                case GREATER_EQUAL:
+                    return (v1i >= v2i);
 
-                    case NOT_EQUAL:
-                        return (v1i != v2i);
+                case NOT_EQUAL:
+                    return (v1i != v2i);
                 }
-            }
-            catch (NumberFormatException ex) {
+            } catch (NumberFormatException ex) {
                 ; // do nothing
             }
 
@@ -196,66 +195,66 @@ public class ValidWhenParser extends antlr.LLkParser
         int res = v1s.compareTo(v2s);
 
         switch (((Integer) compare).intValue()) {
-            case LESS_EQUAL:
-                return (res <= 0);
+        case LESS_EQUAL:
+            return (res <= 0);
 
-            case LESS_THAN:
-                return (res < 0);
+        case LESS_THAN:
+            return (res < 0);
 
-            case EQUAL:
-                return (res == 0);
+        case EQUAL:
+            return (res == 0);
 
-            case GREATER_THAN:
-                return (res > 0);
+        case GREATER_THAN:
+            return (res > 0);
 
-            case GREATER_EQUAL:
-                return (res >= 0);
+        case GREATER_EQUAL:
+            return (res >= 0);
 
-            case NOT_EQUAL:
-                return (res != 0);
+        case NOT_EQUAL:
+            return (res != 0);
         }
 
         return true;
     }
 
     public final void integer()
-            throws RecognitionException, TokenStreamException {
+        throws RecognitionException, TokenStreamException {
         Token d = null;
         Token h = null;
         Token o = null;
 
         switch (LA(1)) {
-            case DECIMAL_LITERAL: {
-                d = LT(1);
-                match(DECIMAL_LITERAL);
-                argStack.push(Integer.decode(d.getText()));
+        case DECIMAL_LITERAL: {
+            d = LT(1);
+            match(DECIMAL_LITERAL);
+            argStack.push(Integer.decode(d.getText()));
 
-                break;
-            }
+            break;
+        }
 
-            case HEX_LITERAL: {
-                h = LT(1);
-                match(HEX_LITERAL);
-                argStack.push(Integer.decode(h.getText()));
+        case HEX_LITERAL: {
+            h = LT(1);
+            match(HEX_LITERAL);
+            argStack.push(Integer.decode(h.getText()));
 
-                break;
-            }
+            break;
+        }
 
-            case OCTAL_LITERAL: {
-                o = LT(1);
-                match(OCTAL_LITERAL);
-                argStack.push(Integer.decode(o.getText()));
+        case OCTAL_LITERAL: {
+            o = LT(1);
+            match(OCTAL_LITERAL);
+            argStack.push(Integer.decode(o.getText()));
 
-                break;
-            }
+            break;
+        }
 
-            default:
-                throw new NoViableAltException(LT(1), getFilename());
+        default:
+            throw new NoViableAltException(LT(1), getFilename());
         }
     }
 
     public final void string()
-            throws RecognitionException, TokenStreamException {
+        throws RecognitionException, TokenStreamException {
         Token str = null;
 
         str = LT(1);
@@ -264,7 +263,7 @@ public class ValidWhenParser extends antlr.LLkParser
     }
 
     public final void identifier()
-            throws RecognitionException, TokenStreamException {
+        throws RecognitionException, TokenStreamException {
         Token str = null;
 
         str = LT(1);
@@ -273,10 +272,9 @@ public class ValidWhenParser extends antlr.LLkParser
     }
 
     public final void field()
-            throws RecognitionException, TokenStreamException {
-        if ((LA(1) == IDENTIFIER) && (LA(2) == LBRACKET)
-                && (LA(3) == RBRACKET)
-                && (LA(4) == IDENTIFIER)) {
+        throws RecognitionException, TokenStreamException {
+        if ((LA(1) == IDENTIFIER) && (LA(2) == LBRACKET) && (LA(3) == RBRACKET)
+            && (LA(4) == IDENTIFIER)) {
             identifier();
             match(LBRACKET);
             match(RBRACKET);
@@ -288,8 +286,8 @@ public class ValidWhenParser extends antlr.LLkParser
             argStack.push(ValidatorUtils.getValueAsString(form,
                     i1 + "[" + index + "]" + i2));
         } else if ((LA(1) == IDENTIFIER) && (LA(2) == LBRACKET)
-                && ((LA(3) >= DECIMAL_LITERAL) && (LA(3) <= OCTAL_LITERAL))
-                && (LA(4) == RBRACKET) && (LA(5) == IDENTIFIER)) {
+            && ((LA(3) >= DECIMAL_LITERAL) && (LA(3) <= OCTAL_LITERAL))
+            && (LA(4) == RBRACKET) && (LA(5) == IDENTIFIER)) {
             identifier();
             match(LBRACKET);
             integer();
@@ -303,8 +301,8 @@ public class ValidWhenParser extends antlr.LLkParser
             argStack.push(ValidatorUtils.getValueAsString(form,
                     i3 + "[" + i4 + "]" + i5));
         } else if ((LA(1) == IDENTIFIER) && (LA(2) == LBRACKET)
-                && ((LA(3) >= DECIMAL_LITERAL) && (LA(3) <= OCTAL_LITERAL))
-                && (LA(4) == RBRACKET) && (LA(5) == LBRACKET)) {
+            && ((LA(3) >= DECIMAL_LITERAL) && (LA(3) <= OCTAL_LITERAL))
+            && (LA(4) == RBRACKET) && (LA(5) == LBRACKET)) {
             identifier();
             match(LBRACKET);
             integer();
@@ -317,7 +315,7 @@ public class ValidWhenParser extends antlr.LLkParser
             argStack.push(ValidatorUtils.getValueAsString(form,
                     i6 + "[" + i7 + "]"));
         } else if ((LA(1) == IDENTIFIER) && (LA(2) == LBRACKET)
-                && (LA(3) == RBRACKET) && (_tokenSet_0.member(LA(4)))) {
+            && (LA(3) == RBRACKET) && (_tokenSet_0.member(LA(4)))) {
             identifier();
             match(LBRACKET);
             match(RBRACKET);
@@ -338,74 +336,73 @@ public class ValidWhenParser extends antlr.LLkParser
     }
 
     public final void literal()
-            throws RecognitionException, TokenStreamException {
+        throws RecognitionException, TokenStreamException {
         switch (LA(1)) {
-            case DECIMAL_LITERAL:
-            case HEX_LITERAL:
-            case OCTAL_LITERAL: {
-                integer();
+        case DECIMAL_LITERAL:
+        case HEX_LITERAL:
+        case OCTAL_LITERAL: {
+            integer();
 
-                break;
-            }
+            break;
+        }
 
-            case STRING_LITERAL: {
-                string();
+        case STRING_LITERAL: {
+            string();
 
-                break;
-            }
+            break;
+        }
 
-            case LITERAL_null: {
-                match(LITERAL_null);
-                argStack.push(null);
+        case LITERAL_null: {
+            match(LITERAL_null);
+            argStack.push(null);
 
-                break;
-            }
+            break;
+        }
 
-            case THIS: {
-                match(THIS);
-                argStack.push(value);
+        case THIS: {
+            match(THIS);
+            argStack.push(value);
 
-                break;
-            }
+            break;
+        }
 
-            default:
-                throw new NoViableAltException(LT(1), getFilename());
+        default:
+            throw new NoViableAltException(LT(1), getFilename());
         }
     }
 
     public final void value()
-            throws RecognitionException, TokenStreamException {
+        throws RecognitionException, TokenStreamException {
         switch (LA(1)) {
-            case IDENTIFIER: {
-                field();
+        case IDENTIFIER: {
+            field();
 
-                break;
-            }
+            break;
+        }
 
-            case DECIMAL_LITERAL:
-            case HEX_LITERAL:
-            case OCTAL_LITERAL:
-            case STRING_LITERAL:
-            case LITERAL_null:
-            case THIS: {
-                literal();
+        case DECIMAL_LITERAL:
+        case HEX_LITERAL:
+        case OCTAL_LITERAL:
+        case STRING_LITERAL:
+        case LITERAL_null:
+        case THIS: {
+            literal();
 
-                break;
-            }
+            break;
+        }
 
-            default:
-                throw new NoViableAltException(LT(1), getFilename());
+        default:
+            throw new NoViableAltException(LT(1), getFilename());
         }
     }
 
     public final void expression()
-            throws RecognitionException, TokenStreamException {
+        throws RecognitionException, TokenStreamException {
         expr();
         match(Token.EOF_TYPE);
     }
 
-    public final void expr()
-            throws RecognitionException, TokenStreamException {
+    public final void expr() throws RecognitionException, TokenStreamException {
         if ((LA(1) == LPAREN) && (_tokenSet_1.member(LA(2)))) {
             match(LPAREN);
             comparisonExpression();
@@ -420,7 +417,7 @@ public class ValidWhenParser extends antlr.LLkParser
     }
 
     public final void comparisonExpression()
-            throws RecognitionException, TokenStreamException {
+        throws RecognitionException, TokenStreamException {
         value();
         comparison();
         value();
@@ -433,7 +430,7 @@ public class ValidWhenParser extends antlr.LLkParser
     }
 
     public final void joinedExpression()
-            throws RecognitionException, TokenStreamException {
+        throws RecognitionException, TokenStreamException {
         expr();
         join();
         expr();
@@ -443,94 +440,91 @@ public class ValidWhenParser extends antlr.LLkParser
         Boolean v2 = (Boolean) argStack.pop();
 
         if (join.intValue() == AND) {
-            argStack.push(new Boolean(
-                    v1.booleanValue() && v2.booleanValue()));
+            argStack.push(new Boolean(v1.booleanValue() && v2.booleanValue()));
         } else {
-            argStack.push(new Boolean(
-                    v1.booleanValue() || v2.booleanValue()));
+            argStack.push(new Boolean(v1.booleanValue() || v2.booleanValue()));
         }
     }
 
-    public final void join()
-            throws RecognitionException, TokenStreamException {
+    public final void join() throws RecognitionException, TokenStreamException {
         switch (LA(1)) {
-            case ANDSIGN: {
-                match(ANDSIGN);
-                argStack.push(new Integer(AND));
+        case ANDSIGN: {
+            match(ANDSIGN);
+            argStack.push(new Integer(AND));
 
-                break;
-            }
+            break;
+        }
 
-            case ORSIGN: {
-                match(ORSIGN);
-                argStack.push(new Integer(OR));
+        case ORSIGN: {
+            match(ORSIGN);
+            argStack.push(new Integer(OR));
 
-                break;
-            }
+            break;
+        }
 
-            default:
-                throw new NoViableAltException(LT(1), getFilename());
+        default:
+            throw new NoViableAltException(LT(1), getFilename());
         }
     }
 
     public final void comparison()
-            throws RecognitionException, TokenStreamException {
+        throws RecognitionException, TokenStreamException {
         switch (LA(1)) {
-            case EQUALSIGN: {
-                match(EQUALSIGN);
-                argStack.push(new Integer(EQUAL));
+        case EQUALSIGN: {
+            match(EQUALSIGN);
+            argStack.push(new Integer(EQUAL));
 
-                break;
-            }
+            break;
+        }
 
-            case GREATERTHANSIGN: {
-                match(GREATERTHANSIGN);
-                argStack.push(new Integer(GREATER_THAN));
+        case GREATERTHANSIGN: {
+            match(GREATERTHANSIGN);
+            argStack.push(new Integer(GREATER_THAN));
 
-                break;
-            }
+            break;
+        }
 
-            case GREATEREQUALSIGN: {
-                match(GREATEREQUALSIGN);
-                argStack.push(new Integer(GREATER_EQUAL));
+        case GREATEREQUALSIGN: {
+            match(GREATEREQUALSIGN);
+            argStack.push(new Integer(GREATER_EQUAL));
 
-                break;
-            }
+            break;
+        }
 
-            case LESSTHANSIGN: {
-                match(LESSTHANSIGN);
-                argStack.push(new Integer(LESS_THAN));
+        case LESSTHANSIGN: {
+            match(LESSTHANSIGN);
+            argStack.push(new Integer(LESS_THAN));
 
-                break;
-            }
+            break;
+        }
 
-            case LESSEQUALSIGN: {
-                match(LESSEQUALSIGN);
-                argStack.push(new Integer(LESS_EQUAL));
+        case LESSEQUALSIGN: {
+            match(LESSEQUALSIGN);
+            argStack.push(new Integer(LESS_EQUAL));
 
-                break;
-            }
+            break;
+        }
 
-            case NOTEQUALSIGN: {
-                match(NOTEQUALSIGN);
-                argStack.push(new Integer(NOT_EQUAL));
+        case NOTEQUALSIGN: {
+            match(NOTEQUALSIGN);
+            argStack.push(new Integer(NOT_EQUAL));
 
-                break;
-            }
+            break;
+        }
 
-            default:
-                throw new NoViableAltException(LT(1), getFilename());
+        default:
+            throw new NoViableAltException(LT(1), getFilename());
         }
     }
 
     private static final long[] mk_tokenSet_0() {
-        long[] data = {8273920L, 0L};
+        long[] data = { 8273920L, 0L };
 
         return data;
     }
 
     private static final long[] mk_tokenSet_1() {
-        long[] data = {6640L, 0L};
+        long[] data = { 6640L, 0L };
 
         return data;
     }

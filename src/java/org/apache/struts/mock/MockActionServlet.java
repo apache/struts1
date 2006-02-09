@@ -44,23 +44,23 @@ public class MockActionServlet extends ActionServlet {
     protected ServletConfig servletConfig;
 
     /**
-     * Constructor.
+     * <p>Constructor.</p>
      */
     public MockActionServlet(ServletContext servletContext,
-                             ServletConfig servletConfig) {
+        ServletConfig servletConfig) {
         this.servletContext = servletContext;
         this.servletConfig = servletConfig;
     }
 
     /**
-     * Constructor.
+     * <p>Constructor.</p>
      */
     public MockActionServlet() {
         ; // do nothing
     }
 
     /**
-     * Set property
+     * <p> Set property </p>
      *
      * @param servletContext
      */
@@ -69,7 +69,7 @@ public class MockActionServlet extends ActionServlet {
     }
 
     /**
-     * Get property
+     * <p> Get property </p>
      *
      * @return
      */
@@ -78,7 +78,7 @@ public class MockActionServlet extends ActionServlet {
     }
 
     /**
-     * Set property
+     * <p> Set property
      *
      * @param servletConfig
      */
@@ -87,7 +87,7 @@ public class MockActionServlet extends ActionServlet {
     }
 
     /**
-     * Get property
+     * <p> Get property </p>
      *
      * @return
      */
@@ -96,11 +96,11 @@ public class MockActionServlet extends ActionServlet {
     }
 
     /**
-     * Expose as public so that test classes can exercise things which
-     * retrieve messages.
+     * <p> Expose as public so that test classes can exercise things which
+     * retrieve messages. </p>
      */
     public void initInternal()
-            throws ServletException {
+        throws ServletException {
         super.initInternal();
     }
 }

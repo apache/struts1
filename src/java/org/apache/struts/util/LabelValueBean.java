@@ -18,6 +18,7 @@
 package org.apache.struts.util;
 
 import java.io.Serializable;
+
 import java.util.Comparator;
 
 /**
@@ -37,14 +38,15 @@ public class LabelValueBean implements Comparable, Serializable {
      * Comparator that can be used for a case insensitive sort of
      * <code>LabelValueBean</code> objects.
      */
-    public static final Comparator CASE_INSENSITIVE_ORDER = new Comparator() {
-        public int compare(Object o1, Object o2) {
-            String label1 = ((LabelValueBean) o1).getLabel();
-            String label2 = ((LabelValueBean) o2).getLabel();
+    public static final Comparator CASE_INSENSITIVE_ORDER =
+        new Comparator() {
+            public int compare(Object o1, Object o2) {
+                String label1 = ((LabelValueBean) o1).getLabel();
+                String label2 = ((LabelValueBean) o2).getLabel();
 
-            return label1.compareToIgnoreCase(label2);
-        }
-    };
+                return label1.compareToIgnoreCase(label2);
+            }
+        };
 
     // ------------------------------------------------------------- Properties
 

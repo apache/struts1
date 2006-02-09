@@ -36,7 +36,7 @@ public class MessageResourcesConfig extends BaseConfig {
      * should use.
      */
     protected String factory =
-            "org.apache.struts.util.PropertyMessageResourcesFactory";
+        "org.apache.struts.util.PropertyMessageResourcesFactory";
 
     /**
      * The servlet context attributes key under which this MessageResources

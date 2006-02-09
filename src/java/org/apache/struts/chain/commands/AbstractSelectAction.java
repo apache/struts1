@@ -42,7 +42,7 @@ public abstract class AbstractSelectAction extends ActionCommandBase {
      * @throws Exception            if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Identify the matching path for this request
         String path = getPath(actionCtx);
 
@@ -65,9 +65,8 @@ public abstract class AbstractSelectAction extends ActionCommandBase {
         }
 
         if (actionConfig == null) {
-            throw new InvalidPathException(
-                    "No action config found for the specified url.",
-                    path);
+            throw new InvalidPathException("No action config found for the specified url.",
+                path);
         }
 
         actionCtx.setActionConfig(actionConfig);

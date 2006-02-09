@@ -26,14 +26,13 @@ import org.apache.struts.chain.contexts.ActionContext;
  * class.</p>
  */
 public abstract class ActionCommandBase implements ActionCommand {
-
     // See interface for Javadoc
     public abstract boolean execute(ActionContext actionContext)
-            throws Exception;
+        throws Exception;
 
     // See interface for Javadoc
     public boolean execute(Context context)
-            throws Exception {
+        throws Exception {
         return execute((ActionContext) context);
     }
 }

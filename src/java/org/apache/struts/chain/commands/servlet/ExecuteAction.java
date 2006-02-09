@@ -45,12 +45,11 @@ public class ExecuteAction extends AbstractExecuteAction {
      * @throws Exception if thrown by the <code>Action</code>
      */
     protected ForwardConfig execute(ActionContext context, Action action,
-                                    ActionConfig actionConfig,
-                                    ActionForm actionForm)
-            throws Exception {
+        ActionConfig actionConfig, ActionForm actionForm)
+        throws Exception {
         ServletActionContext saContext = (ServletActionContext) context;
 
         return (action.execute((ActionMapping) actionConfig, actionForm,
-                saContext.getRequest(), saContext.getResponse()));
+            saContext.getRequest(), saContext.getResponse()));
     }
 }

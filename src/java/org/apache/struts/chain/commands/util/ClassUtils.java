@@ -33,14 +33,14 @@ public final class ClassUtils {
      * @throws ClassNotFoundException if the specified class cannot be loaded
      */
     public static Class getApplicationClass(String className)
-            throws ClassNotFoundException {
+        throws ClassNotFoundException {
         if (className == null) {
             throw new NullPointerException(
-                    "getApplicationClass called with null className");
+                "getApplicationClass called with null className");
         }
 
         ClassLoader classLoader =
-                Thread.currentThread().getContextClassLoader();
+            Thread.currentThread().getContextClassLoader();
 
         if (classLoader == null) {
             classLoader = ClassUtils.class.getClassLoader();
@@ -61,7 +61,7 @@ public final class ClassUtils {
      *                                constructor
      */
     public static Object getApplicationInstance(String className)
-            throws ClassNotFoundException, IllegalAccessException,
+        throws ClassNotFoundException, IllegalAccessException, 
             InstantiationException {
         return (getApplicationClass(className).newInstance());
     }

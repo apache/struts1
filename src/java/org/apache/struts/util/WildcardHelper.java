@@ -54,22 +54,33 @@ public class WildcardHelper {
     protected static final int MATCH_END = -3;
 
     /**
-     * Translate the given <code>String</code> into a <code>int []</code>
+     * <p> Translate the given <code>String</code> into a <code>int []</code>
      * representing the pattern matchable by this class. <br> This function
      * translates a <code>String</code> into an int array converting the
      * special '*' and '\' characters. <br> Here is how the conversion
-     * algorithm works: <ul> <li>The '*' character is converted to MATCH_FILE,
-     * meaning that zero or more characters (excluding the path separator '/')
-     * are to be matched.</li> <li>The '**' sequence is converted to
-     * MATCH_PATH, meaning that zero or more characters (including the path
-     * separator '/') are to be matched.</li> <li>The '\' character is used as
-     * an escape sequence ('\*' is translated in '*', not in MATCH_FILE). If
-     * an exact '\' character is to be matched the source string must contain
-     * a '\\'. sequence.</li> </ul> When more than two '*' characters, not
-     * separated by another character, are found their value is considered as
-     * '**' (MATCH_PATH). <br> The array is always terminated by a special
-     * value (MATCH_END). <br> All MATCH* values are less than zero, while
-     * normal characters are equal or greater.
+     * algorithm works:</p>
+     *
+     * <ul>
+     *
+     * <li>The '*' character is converted to MATCH_FILE, meaning that zero or
+     * more characters (excluding the path separator '/') are to be
+     * matched.</li>
+     *
+     * <li>The '**' sequence is converted to MATCH_PATH, meaning that zero or
+     * more characters (including the path separator '/') are to be
+     * matched.</li>
+     *
+     * <li>The '\' character is used as an escape sequence ('\*' is translated
+     * in '*', not in MATCH_FILE). If an exact '\' character is to be matched
+     * the source string must contain a '\\'. sequence.</li>
+     *
+     * </ul>
+     *
+     * <p>When more than two '*' characters, not separated by another
+     * character, are found their value is considered as '**' (MATCH_PATH).
+     * <br> The array is always terminated by a special value (MATCH_END).
+     * <br> All MATCH* values are less than zero, while normal characters are
+     * equal or greater.</p>
      *
      * @param data The string to translate.
      * @return The encoded string as an int array, terminated by the MATCH_END
@@ -226,7 +237,7 @@ public class WildcardHelper {
             if (exprchr == MATCH_END) {
                 if (rsltpos > 0) {
                     map.put(Integer.toString(++mcount),
-                            new String(rslt, 0, rsltpos));
+                        new String(rslt, 0, rsltpos));
                 }
 
                 // Don't care about rest of input buffer
@@ -234,7 +245,7 @@ public class WildcardHelper {
             } else if (exprchr == MATCH_THEEND) {
                 if (rsltpos > 0) {
                     map.put(Integer.toString(++mcount),
-                            new String(rslt, 0, rsltpos));
+                        new String(rslt, 0, rsltpos));
                 }
 
                 // Check that we reach buffer's end
@@ -253,9 +264,10 @@ public class WildcardHelper {
             exprchr = expr[charpos];
 
             // We have here prevchr == * or **.
-            offset = (prevchr == MATCH_FILE)
-                    ? indexOfArray(expr, exprpos, charpos, buff, buffpos)
-                    : lastIndexOfArray(expr, exprpos, charpos, buff, buffpos);
+            offset =
+                (prevchr == MATCH_FILE)
+                ? indexOfArray(expr, exprpos, charpos, buff, buffpos)
+                : lastIndexOfArray(expr, exprpos, charpos, buff, buffpos);
 
             if (offset < 0) {
                 return (false);
@@ -298,8 +310,7 @@ public class WildcardHelper {
      * @return The offset in d of the part of r matched in d or -1 if that was
      *         not found.
      */
-    protected int indexOfArray(int[] r, int rpos, int rend, char[] d,
-                               int dpos) {
+    protected int indexOfArray(int[] r, int rpos, int rend, char[] d, int dpos) {
         // Check if pos and len are legal
         if (rend < rpos) {
             throw new IllegalArgumentException("rend < rpos");
@@ -363,7 +374,7 @@ public class WildcardHelper {
      *         that was not found.
      */
     protected int lastIndexOfArray(int[] r, int rpos, int rend, char[] d,
-                                   int dpos) {
+        int dpos) {
         // Check if pos and len are legal
         if (rend < rpos) {
             throw new IllegalArgumentException("rend < rpos");
@@ -427,8 +438,7 @@ public class WildcardHelper {
      * @param dpos The starting offset in d for the matching.
      * @return true if array d starts from portion of array r.
      */
-    protected boolean matchArray(int[] r, int rpos, int rend, char[] d,
-                                 int dpos) {
+    protected boolean matchArray(int[] r, int rpos, int rend, char[] d, int dpos) {
         if ((d.length - dpos) < (rend - rpos)) {
             return (false);
         }

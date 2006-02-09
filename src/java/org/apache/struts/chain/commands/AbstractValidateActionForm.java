@@ -31,9 +31,7 @@ import org.apache.struts.config.ActionConfig;
  *          $
  */
 public abstract class AbstractValidateActionForm extends ActionCommandBase {
-
     // ------------------------------------------------------ Instance Variables
-
     // ---------------------------------------------------------- Public Methods
 
     /**
@@ -47,7 +45,7 @@ public abstract class AbstractValidateActionForm extends ActionCommandBase {
      * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Is there a form bean for this request?
         ActionForm actionForm = actionCtx.getActionForm();
 
@@ -86,11 +84,9 @@ public abstract class AbstractValidateActionForm extends ActionCommandBase {
         }
 
         // Flag the validation failure and proceed
-
         /* NOTE: Is there any concern that there might have already
          * been errors, or that other errors might be coming?
          */
-
         actionCtx.saveErrors(errors);
         actionCtx.setFormValid(Boolean.FALSE);
 
@@ -109,6 +105,5 @@ public abstract class AbstractValidateActionForm extends ActionCommandBase {
      * @return ActionErrors object, if any
      */
     protected abstract ActionErrors validate(ActionContext context,
-                                             ActionConfig actionConfig,
-                                             ActionForm actionForm);
+        ActionConfig actionConfig, ActionForm actionForm);
 }

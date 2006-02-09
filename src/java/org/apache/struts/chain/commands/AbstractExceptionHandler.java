@@ -33,14 +33,13 @@ import org.apache.struts.config.ModuleConfig;
  *          $
  */
 public abstract class AbstractExceptionHandler extends ActionCommandBase {
-
     // ------------------------------------------------------ Instance Variables
 
     /**
      * Provide a Commons logging instance for this class.
      */
     private static final Log LOG =
-            LogFactory.getLog(AbstractExceptionHandler.class);
+        LogFactory.getLog(AbstractExceptionHandler.class);
 
     // ---------------------------------------------------------- Public Methods
 
@@ -55,7 +54,7 @@ public abstract class AbstractExceptionHandler extends ActionCommandBase {
      *                   Exception Handler
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Look up the exception that was thrown
         Exception exception = actionCtx.getException();
 
@@ -73,21 +72,19 @@ public abstract class AbstractExceptionHandler extends ActionCommandBase {
         if (actionConfig != null) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("See if actionConfig " + actionConfig
-                        + " has an exceptionConfig for "
-                        + exception.getClass().getName());
+                    + " has an exceptionConfig for "
+                    + exception.getClass().getName());
             }
 
-            exceptionConfig =
-                    actionConfig.findException(exception.getClass());
+            exceptionConfig = actionConfig.findException(exception.getClass());
         } else if (moduleConfig != null) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("No action yet, see if moduleConfig " + moduleConfig
-                        + " has an exceptionConfig "
-                        + exception.getClass().getName());
+                    + " has an exceptionConfig "
+                    + exception.getClass().getName());
             }
 
-            exceptionConfig =
-                    moduleConfig.findException(exception.getClass());
+            exceptionConfig = moduleConfig.findException(exception.getClass());
         }
 
         // Handle the exception in the configured manner
@@ -96,8 +93,9 @@ public abstract class AbstractExceptionHandler extends ActionCommandBase {
             throw exception;
         }
 
-        ForwardConfig forwardConfig = handle(actionCtx, exception,
-                exceptionConfig, actionConfig, moduleConfig);
+        ForwardConfig forwardConfig =
+            handle(actionCtx, exception, exceptionConfig, actionConfig,
+                moduleConfig);
 
         if (forwardConfig != null) {
             actionCtx.setForwardConfig(forwardConfig);
@@ -123,9 +121,7 @@ public abstract class AbstractExceptionHandler extends ActionCommandBase {
      * @throws Exception if there are any problems handling the exception
      */
     protected abstract ForwardConfig handle(ActionContext context,
-                                            Exception exception,
-                                            ExceptionConfig exceptionConfig,
-                                            ActionConfig actionConfig,
-                                            ModuleConfig moduleConfig)
-            throws Exception;
+        Exception exception, ExceptionConfig exceptionConfig,
+        ActionConfig actionConfig, ModuleConfig moduleConfig)
+        throws Exception;
 }

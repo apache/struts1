@@ -22,6 +22,7 @@ import org.apache.commons.logging.LogFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
@@ -47,7 +48,7 @@ public class PropertyMessageResources extends MessageResources {
      * The <code>Log</code> instance for this class.
      */
     protected static final Log log =
-            LogFactory.getLog(PropertyMessageResources.class);
+        LogFactory.getLog(PropertyMessageResources.class);
 
     // ------------------------------------------------------------- Properties
 
@@ -73,7 +74,7 @@ public class PropertyMessageResources extends MessageResources {
      * @param config  The configuration parameter for this MessageResources
      */
     public PropertyMessageResources(MessageResourcesFactory factory,
-                                    String config) {
+        String config) {
         super(factory, config);
         log.trace("Initializing, config='" + config + "'");
     }
@@ -88,10 +89,10 @@ public class PropertyMessageResources extends MessageResources {
      * @param returnNull The returnNull property we should initialize with
      */
     public PropertyMessageResources(MessageResourcesFactory factory,
-                                    String config, boolean returnNull) {
+        String config, boolean returnNull) {
         super(factory, config, returnNull);
         log.trace("Initializing, config='" + config + "', returnNull="
-                + returnNull);
+            + returnNull);
     }
 
     // --------------------------------------------------------- Public Methods
@@ -236,7 +237,7 @@ public class PropertyMessageResources extends MessageResources {
         }
 
         ClassLoader classLoader =
-                Thread.currentThread().getContextClassLoader();
+            Thread.currentThread().getContextClassLoader();
 
         if (classLoader == null) {
             classLoader = this.getClass().getClassLoader();
@@ -247,15 +248,12 @@ public class PropertyMessageResources extends MessageResources {
         if (is != null) {
             try {
                 props.load(is);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 log.error("loadLocale()", e);
-            }
-            finally {
+            } finally {
                 try {
                     is.close();
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     log.error("loadLocale()", e);
                 }
             }
@@ -278,11 +276,10 @@ public class PropertyMessageResources extends MessageResources {
 
                 if (log.isTraceEnabled()) {
                     log.trace("  Saving message key '"
-                            + messageKey(localeKey, key));
+                        + messageKey(localeKey, key));
                 }
 
-                messages.put(messageKey(localeKey, key),
-                        props.getProperty(key));
+                messages.put(messageKey(localeKey, key), props.getProperty(key));
             }
         }
     }

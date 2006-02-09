@@ -24,8 +24,11 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionMapping;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.io.Serializable;
+
 import java.lang.reflect.Array;
+
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +53,7 @@ import java.util.Map;
  * session scope.</p>
  */
 public class BeanValidatorForm extends ValidatorForm implements DynaBean,
-        Serializable {
+    Serializable {
     /**
      * Commons Logging
      */
@@ -161,7 +164,7 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean,
      * @return validation key to use
      */
     public String getValidationKey(ActionMapping mapping,
-                                   HttpServletRequest request) {
+        HttpServletRequest request) {
         String validationKey = null;
 
         if (isPathValidation()) {
@@ -183,8 +186,8 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean,
 
         if (logger.isDebugEnabled()) {
             logger.debug("Validating ActionForm '" + mapping.getName()
-                    + "' using key '" + validationKey + "' for mapping '"
-                    + mapping.getPath() + "'");
+                + "' using key '" + validationKey + "' for mapping '"
+                + mapping.getPath() + "'");
         }
 
         return validationKey;
@@ -245,10 +248,10 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean,
                 page = ((Integer) value).intValue();
             } else {
                 try {
-                    page = ((Integer) ConvertUtils.convert(value.toString(),
+                    page =
+                        ((Integer) ConvertUtils.convert(value.toString(),
                             Integer.class)).intValue();
-                }
-                catch (Exception ignore) {
+                } catch (Exception ignore) {
                     page = 0;
                 }
             }

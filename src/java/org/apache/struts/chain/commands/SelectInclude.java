@@ -30,7 +30,6 @@ import org.apache.struts.config.ActionConfig;
  *          $
  */
 public class SelectInclude extends ActionCommandBase {
-
     // ------------------------------------------------------ Instance Variables
 
     /**
@@ -49,7 +48,7 @@ public class SelectInclude extends ActionCommandBase {
      * @throws Exception on any error
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Acquire configuration objects that we need
         ActionConfig actionConfig = actionCtx.getActionConfig();
 

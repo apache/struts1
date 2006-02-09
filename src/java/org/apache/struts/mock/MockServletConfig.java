@@ -19,6 +19,7 @@ package org.apache.struts.mock;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
+
 import java.util.Enumeration;
 import java.util.HashMap;
 

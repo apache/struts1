@@ -35,7 +35,6 @@ import org.apache.struts.chain.contexts.ActionContext;
  *          $
  */
 public class ExceptionCatcher extends ActionCommandBase implements Filter {
-
     /**
      * <p> Provide Commons Logging instance for this class. </p>
      */
@@ -106,7 +105,7 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
      * @throws Exception On any error
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         actionCtx.setException(null);
 
         return (false);
@@ -147,21 +146,19 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
 
             if (command == null) {
                 LOG.error("Cannot find exceptionCommand '" + exceptionCommand
-                        + "'");
+                    + "'");
                 throw new IllegalStateException(
-                        "Cannot find exceptionCommand '" + exceptionCommand
-                                + "'");
+                    "Cannot find exceptionCommand '" + exceptionCommand + "'");
             }
 
             if (LOG.isTraceEnabled()) {
-                LOG.trace("Calling exceptionCommand '" + exceptionCommand
-                        + "'");
+                LOG.trace("Calling exceptionCommand '" + exceptionCommand + "'");
             }
 
             command.execute(context);
         } catch (Exception e) {
             LOG.warn("Exception from exceptionCommand '" + exceptionCommand
-                    + "'", e);
+                + "'", e);
             throw new IllegalStateException("Exception chain threw exception");
         }
 
@@ -185,7 +182,7 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
             if (catalog == null) {
                 LOG.error("Cannot find default catalog");
                 throw new IllegalArgumentException(
-                        "Cannot find default catalog");
+                    "Cannot find default catalog");
             }
         } else {
             catalog = CatalogFactory.getInstance().getCatalog(catalogName);
@@ -193,7 +190,7 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
             if (catalog == null) {
                 LOG.error("Cannot find catalog '" + catalogName + "'");
                 throw new IllegalArgumentException("Cannot find catalog '"
-                        + catalogName + "'");
+                    + catalogName + "'");
             }
         }
 
@@ -202,7 +199,7 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
         if (exceptionCommand == null) {
             LOG.error("No exceptionCommand property specified");
             throw new IllegalStateException(
-                    "No exceptionCommand property specfied");
+                "No exceptionCommand property specfied");
         }
 
         return catalog.getCommand(exceptionCommand);

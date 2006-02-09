@@ -37,8 +37,7 @@ public class FormPropertyConfig extends BaseConfig {
     /**
      * The logging instance
      */
-    private static final Log log =
-            LogFactory.getLog(FormPropertyConfig.class);
+    private static final Log log = LogFactory.getLog(FormPropertyConfig.class);
 
     // ----------------------------------------------------- Instance Variables
     // ------------------------------------------------------------- Properties
@@ -110,7 +109,7 @@ public class FormPropertyConfig extends BaseConfig {
      *                to its initial value.
      */
     public FormPropertyConfig(String name, String type, String initial,
-                              String reset) {
+        String reset) {
         this(name, type, initial, reset, 0);
     }
 
@@ -123,8 +122,7 @@ public class FormPropertyConfig extends BaseConfig {
      * @param size    Size of the array to be created if this property is an
      *                array with no defined initial value
      */
-    public FormPropertyConfig(String name, String type, String initial,
-                              int size) {
+    public FormPropertyConfig(String name, String type, String initial, int size) {
         this(name, type, initial, null, size);
     }
 
@@ -140,7 +138,7 @@ public class FormPropertyConfig extends BaseConfig {
      *                to its initial value.
      */
     public FormPropertyConfig(String name, String type, String initial,
-                              String reset, int size) {
+        String reset, int size) {
         super();
         setName(name);
         setType(type);
@@ -248,8 +246,8 @@ public class FormPropertyConfig extends BaseConfig {
         } else if ("short".equals(baseType)) {
             baseClass = Short.TYPE;
         } else {
-            ClassLoader classLoader = Thread.currentThread()
-                    .getContextClassLoader();
+            ClassLoader classLoader =
+                Thread.currentThread().getContextClassLoader();
 
             if (classLoader == null) {
                 classLoader = this.getClass().getClassLoader();
@@ -257,8 +255,7 @@ public class FormPropertyConfig extends BaseConfig {
 
             try {
                 baseClass = classLoader.loadClass(baseType);
-            }
-            catch (Throwable t) {
+            } catch (Throwable t) {
                 baseClass = null;
             }
         }
@@ -275,25 +272,44 @@ public class FormPropertyConfig extends BaseConfig {
 
     /**
      * <p>Return an object representing the initial value of this property.
-     * This is calculated according to the following algorithm:</p> <ul>
+     * This is calculated according to the following algorithm:</p>
+     *
+     * <ul>
+     *
      * <li>If the value you have specified for the <code>type</code> property
-     * represents an array (i.e. it ends with "[]"): <ul> <li>If you have
-     * specified a value for the <code>initial</code> property,
-     * <code>ConvertUtils.convert</code> will be called to convert it into an
-     * instance of the specified array type.</li> <li>If you have not
-     * specified a value for the <code>initial</code> property, an array of
-     * the length specified by the <code>size</code> property will be created.
-     * Each element of the array will be instantiated via the zero-args
+     * represents an array (i.e. it ends with "[]"):
+     *
+     * <ul>
+     *
+     * <li>If you have specified a value for the <code>initial</code>
+     * property, <code>ConvertUtils.convert</code> will be called to convert
+     * it into an instance of the specified array type.</li>
+     *
+     * <li>If you have not specified a value for the <code>initial</code>
+     * property, an array of the length specified by the <code>size</code>
+     * property will be created. Each element of the array will be
+     * instantiated via the zero-args constructor on the specified class (if
+     * any). Otherwise, <code>null</code> will be returned.</li>
+     *
+     * </ul></li>
+     *
+     * <li>If the value you have specified for the <code>type</code> property
+     * does not represent an array:
+     *
+     * <ul>
+     *
+     * <li>If you have specified a value for the <code>initial</code>
+     * property, <code>ConvertUtils.convert</code> will be called to convert
+     * it into an object instance.</li>
+     *
+     * <li>If you have not specified a value for the <code>initial</code>
+     * attribute, Struts will instantiate an instance via the zero-args
      * constructor on the specified class (if any). Otherwise,
-     * <code>null</code> will be returned.</li> </ul></li> <li>If the value
-     * you have specified for the <code>type</code> property does not
-     * represent an array: <ul> <li>If you have specified a value for the
-     * <code>initial</code> property, <code>ConvertUtils.convert</code> will
-     * be called to convert it into an object instance.</li> <li>If you have
-     * not specified a value for the <code>initial</code> attribute, Struts
-     * will instantiate an instance via the zero-args constructor on the
-     * specified class (if any). Otherwise, <code>null</code> will be
-     * returned.</li> </ul></li> </ul>
+     * <code>null</code> will be returned.</li>
+     *
+     * </ul></li>
+     *
+     * </ul>
      */
     public Object initial() {
         Object initialValue = null;
@@ -305,22 +321,19 @@ public class FormPropertyConfig extends BaseConfig {
                 if (initial != null) {
                     initialValue = ConvertUtils.convert(initial, clazz);
                 } else {
-                    initialValue = Array.newInstance(clazz.getComponentType(),
-                            size);
+                    initialValue =
+                        Array.newInstance(clazz.getComponentType(), size);
 
                     if (!(clazz.getComponentType().isPrimitive())) {
                         for (int i = 0; i < size; i++) {
                             try {
                                 Array.set(initialValue, i,
-                                        clazz.getComponentType().newInstance());
-                            }
-                            catch (Throwable t) {
+                                    clazz.getComponentType().newInstance());
+                            } catch (Throwable t) {
                                 log.error("Unable to create instance of "
-                                        + clazz.getName() + " for property="
-                                        + name
-                                        + ", type=" + type + ", initial="
-                                        + initial
-                                        + ", size=" + size + ".");
+                                    + clazz.getName() + " for property=" + name
+                                    + ", type=" + type + ", initial=" + initial
+                                    + ", size=" + size + ".");
 
                                 //FIXME: Should we just dump the entire application/module ?
                             }
@@ -334,8 +347,7 @@ public class FormPropertyConfig extends BaseConfig {
                     initialValue = clazz.newInstance();
                 }
             }
-        }
-        catch (Throwable t) {
+        } catch (Throwable t) {
             initialValue = null;
         }
 
@@ -362,7 +374,7 @@ public class FormPropertyConfig extends BaseConfig {
      *               values from.
      */
     public void inheritFrom(FormPropertyConfig config)
-            throws IllegalAccessException, InvocationTargetException,
+        throws IllegalAccessException, InvocationTargetException, 
             InstantiationException, ClassNotFoundException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");

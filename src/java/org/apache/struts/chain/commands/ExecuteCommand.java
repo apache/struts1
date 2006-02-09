@@ -40,7 +40,6 @@ import org.apache.struts.config.ActionConfig;
  * @version $Id$
  */
 public class ExecuteCommand extends ActionCommandBase {
-
     // ------------------------------------------------------ Instance Variables
 
     /**
@@ -60,7 +59,7 @@ public class ExecuteCommand extends ActionCommandBase {
      * @throws Exception on any error
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         if (shouldProcess(actionCtx)) {
             Command command = getCommand(actionCtx);
 
@@ -128,7 +127,7 @@ public class ExecuteCommand extends ActionCommandBase {
 
             if (catalog == null) {
                 LOG.warn("When looking up " + commandName + ","
-                        + " no catalog found under " + catalogName);
+                    + " no catalog found under " + catalogName);
 
                 return null;
             }
@@ -138,7 +137,7 @@ public class ExecuteCommand extends ActionCommandBase {
 
             if (catalog == null) {
                 LOG.warn("When looking up " + commandName + ","
-                        + " no default catalog found.");
+                    + " no default catalog found.");
 
                 return null;
             }
@@ -146,7 +145,7 @@ public class ExecuteCommand extends ActionCommandBase {
 
         if (LOG.isDebugEnabled()) {
             LOG.debug("looking up command " + commandName + " in "
-                    + catalogName);
+                + catalogName);
         }
 
         return catalog.getCommand(commandName);

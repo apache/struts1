@@ -27,7 +27,6 @@ import org.apache.struts.chain.contexts.ActionContext;
  *          $
  */
 public abstract class AbstractSetOriginalURI extends ActionCommandBase {
-
     // ---------------------------------------------------------- Public Methods
 
     /**
@@ -39,10 +38,9 @@ public abstract class AbstractSetOriginalURI extends ActionCommandBase {
      * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Set the original uri if not already set
-        if (!actionCtx.getRequestScope()
-                .containsKey(Globals.ORIGINAL_URI_KEY)) {
+        if (!actionCtx.getRequestScope().containsKey(Globals.ORIGINAL_URI_KEY)) {
             setOriginalURI(actionCtx);
         }
 

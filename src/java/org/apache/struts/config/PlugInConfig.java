@@ -18,6 +18,7 @@
 package org.apache.struts.config;
 
 import java.io.Serializable;
+
 import java.util.HashMap;
 import java.util.Map;
 

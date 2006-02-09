@@ -21,6 +21,7 @@ import org.apache.commons.beanutils.DynaBean;
 import org.apache.struts.action.ActionMapping;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.io.Serializable;
 
 /**
@@ -29,15 +30,19 @@ import java.io.Serializable;
  * is the action element's 'path' attribute from the struts-config.xml which
  * should match the form element's name attribute in the validation.xml.</p>
  *
- * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
- * for validation rules.</li></ul>
+ * <ul>
+ *
+ * <li>See <code>ValidatorPlugin</code> definition in struts-config.xml for
+ * validation rules.</li>
+ *
+ * </ul>
  *
  * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
  *          $
  * @since Struts 1.1
  */
 public class DynaValidatorActionForm extends DynaValidatorForm
-        implements DynaBean, Serializable {
+    implements DynaBean, Serializable {
     /**
      * Returns the Validation key.
      *
@@ -47,7 +52,7 @@ public class DynaValidatorActionForm extends DynaValidatorForm
      *         case
      */
     public String getValidationKey(ActionMapping mapping,
-                                   HttpServletRequest request) {
+        HttpServletRequest request) {
         return mapping.getPath();
     }
 }

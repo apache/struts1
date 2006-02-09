@@ -31,6 +31,7 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.PlugInConfig;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,9 +50,9 @@ import java.util.List;
  * @since Struts 1.1
  */
 public class ModuleConfigImpl extends BaseConfig implements Serializable,
-        ModuleConfig {
+    ModuleConfig {
     /**
-     * Commons Logging instance.
+     * <p>Commons Logging instance. </p>
      */
     protected static Log log = LogFactory.getLog(ModuleConfigImpl.class);
 
@@ -59,88 +60,89 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     // Instance Variables at end to make comparing Interface and implementation easier.
 
     /**
-     * The set of action configurations for this module, if any, keyed by the
-     * <code>path</code> property.
+     * <p>The set of action configurations for this module, if any, keyed by
+     * the <code>path</code> property.</p>
      */
     protected HashMap actionConfigs = null;
 
     /**
-     * The set of action configurations for this module, if any, listed in the
-     * order in which they are added.
+     * <p>The set of action configurations for this module, if any, listed in
+     * the order in which they are added.</p>
      */
     protected List actionConfigList = null;
 
     /**
-     * The set of exception handling configurations for this module, if any,
-     * keyed by the <code>type</code> property.
+     * <p>The set of exception handling configurations for this module, if
+     * any, keyed by the <code>type</code> property.</p>
      */
     protected HashMap exceptions = null;
 
     /**
-     * The set of form bean configurations for this module, if any, keyed by
-     * the <code>name</code> property.
+     * <p>The set of form bean configurations for this module, if any, keyed
+     * by the <code>name</code> property.</p>
      */
     protected HashMap formBeans = null;
 
     /**
-     * The set of global forward configurations for this module, if any, keyed
-     * by the <code>name</code> property.
+     * <p>The set of global forward configurations for this module, if any,
+     * keyed by the <code>name</code> property.</p>
      */
     protected HashMap forwards = null;
 
     /**
-     * The set of message resources configurations for this module, if any,
-     * keyed by the <code>key</code> property.
+     * <p>The set of message resources configurations for this module, if any,
+     * keyed by the <code>key</code> property.</p>
      */
     protected HashMap messageResources = null;
 
     /**
-     * The set of configured plug-in Actions for this module, if any, in the
-     * order they were declared and configured.
+     * <p>The set of configured plug-in Actions for this module, if any, in
+     * the order they were declared and configured.</p>
      */
     protected ArrayList plugIns = null;
 
     /**
-     * The controller configuration object for this module.
+     * <p>The controller configuration object for this module.</p>
      */
     protected ControllerConfig controllerConfig = null;
 
     /**
-     * The prefix of the context-relative portion of the request URI, used to
-     * select this configuration versus others supported by the controller
+     * <p>The prefix of the context-relative portion of the request URI, used
+     * to select this configuration versus others supported by the controller
      * servlet.  A configuration with a prefix of a zero-length String is the
-     * default configuration for this web module.
+     * default configuration for this web module.</p>
      */
     protected String prefix = null;
 
     /**
-     * The default class name to be used when creating action form bean
-     * instances.
+     * <p>The default class name to be used when creating action form bean
+     * instances.</p>
      */
     protected String actionFormBeanClass =
-            "org.apache.struts.action.ActionFormBean";
+        "org.apache.struts.action.ActionFormBean";
 
     /**
      * The default class name to be used when creating action mapping
      * instances.
      */
     protected String actionMappingClass =
-            "org.apache.struts.action.ActionMapping";
+        "org.apache.struts.action.ActionMapping";
 
     /**
      * The default class name to be used when creating action forward
      * instances.
      */
     protected String actionForwardClass =
-            "org.apache.struts.action.ActionForward";
+        "org.apache.struts.action.ActionForward";
 
     /**
-     * Matches action config paths against compiled wildcard patterns
+     * <p>Matches action config paths against compiled wildcard patterns</p>
      */
     protected ActionConfigMatcher matcher = null;
 
     /**
-     * Constructor for ModuleConfigImpl.  Assumes default configuration.
+     * <p>Constructor for ModuleConfigImpl.  Assumes default
+     * configuration.</p>
      *
      * @since Struts 1.2.8
      */
@@ -149,8 +151,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * Construct an ModuleConfigImpl object according to the specified
-     * parameter values.
+     * <p>Construct an ModuleConfigImpl object according to the specified
+     * parameter values.</p>
      *
      * @param prefix Context-relative URI prefix for this module
      */
@@ -174,16 +176,16 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     // --------------------------------------------------------- Public Methods
 
     /**
-     * Has this module been completely configured yet.  Once this flag has
-     * been set, any attempt to modify the configuration will return an
-     * IllegalStateException.
+     * </p> Has this module been completely configured yet.  Once this flag
+     * has been set, any attempt to modify the configuration will return an
+     * IllegalStateException.</p>
      */
     public boolean getConfigured() {
         return (this.configured);
     }
 
     /**
-     * The controller configuration object for this module.
+     * <p>The controller configuration object for this module.</p>
      */
     public ControllerConfig getControllerConfig() {
         if (this.controllerConfig == null) {
@@ -194,7 +196,7 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * The controller configuration object for this module.
+     * <p>The controller configuration object for this module.</p>
      *
      * @param cc The controller configuration object for this module.
      */
@@ -204,20 +206,20 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * The prefix of the context-relative portion of the request URI, used to
-     * select this configuration versus others supported by the controller
+     * <p>The prefix of the context-relative portion of the request URI, used
+     * to select this configuration versus others supported by the controller
      * servlet.  A configuration with a prefix of a zero-length String is the
-     * default configuration for this web module.
+     * default configuration for this web module.</p>
      */
     public String getPrefix() {
         return (this.prefix);
     }
 
     /**
-     * The prefix of the context-relative portion of the request URI, used to
-     * select this configuration versus others supported by the controller
+     * <p>The prefix of the context-relative portion of the request URI, used
+     * to select this configuration versus others supported by the controller
      * servlet.  A configuration with a prefix of a zero-length String is the
-     * default configuration for this web module.
+     * default configuration for this web module.</p>
      */
     public void setPrefix(String prefix) {
         throwIfConfigured();
@@ -225,16 +227,16 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * The default class name to be used when creating action form bean
-     * instances.
+     * <p>The default class name to be used when creating action form bean
+     * instances.</p>
      */
     public String getActionFormBeanClass() {
         return this.actionFormBeanClass;
     }
 
     /**
-     * The default class name to be used when creating action form bean
-     * instances.
+     * <p>The default class name to be used when creating action form bean
+     * instances.</p>
      *
      * @param actionFormBeanClass default class name to be used when creating
      *                            action form bean instances.
@@ -244,16 +246,16 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * The default class name to be used when creating action mapping
-     * instances.
+     * <p>The default class name to be used when creating action mapping
+     * instances.</p>
      */
     public String getActionMappingClass() {
         return this.actionMappingClass;
     }
 
     /**
-     * The default class name to be used when creating action mapping
-     * instances.
+     * <p> The default class name to be used when creating action mapping
+     * instances. </p>
      *
      * @param actionMappingClass default class name to be used when creating
      *                           action mapping instances.
@@ -263,8 +265,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * Add a new <code>ActionConfig</code> instance to the set associated with
-     * this module.
+     * </p> Ad   d a new <code>ActionConfig</code> instance to the set
+     * associated with this module. </p>
      *
      * @param config The new configuration instance to be added
      * @throws IllegalStateException if this module configuration has been
@@ -285,8 +287,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * Add a new <code>ExceptionConfig</code> instance to the set associated
-     * with this module.
+     * <p> Add a new <code>ExceptionConfig</code> instance to the set
+     * associated with this module. </p>
      *
      * @param config The new configuration instance to be added
      * @throws IllegalStateException if this module configuration has been
@@ -305,8 +307,10 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Add a new <code>FormBeanConfig</code> instance to the set associated
      * with this module.
+     * </p>
      *
      * @param config The new configuration instance to be added
      * @throws IllegalStateException if this module configuration has been
@@ -325,16 +329,20 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * The default class name to be used when creating action forward
      * instances.
+     * </p>
      */
     public String getActionForwardClass() {
         return this.actionForwardClass;
     }
 
     /**
+     * <p>
      * The default class name to be used when creating action forward
      * instances.
+     * </p>
      *
      * @param actionForwardClass default class name to be used when creating
      *                           action forward instances.
@@ -344,8 +352,10 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Add a new <code>ForwardConfig</code> instance to the set of global
      * forwards associated with this module.
+     * </p>
      *
      * @param config The new configuration instance to be added
      * @throws IllegalStateException if this module configuration has been
@@ -364,8 +374,10 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Add a new <code>MessageResourcesConfig</code> instance to the set
      * associated with this module.
+     * </p>
      *
      * @param config The new configuration instance to be added
      * @throws IllegalStateException if this module configuration has been
@@ -384,8 +396,10 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Add a newly configured {@link org.apache.struts.config.PlugInConfig}
      * instance to the set of plug-in Actions for this module.
+     * </p>
      *
      * @param plugInConfig The new configuration instance to be added
      */
@@ -395,9 +409,11 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Return the action configuration for the specified path, first looking a
      * direct match, then if none found, a wildcard pattern match; otherwise
      * return <code>null</code>.
+     * </p>
      *
      * @param path Path of the action configuration to return
      */
@@ -414,8 +430,10 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Return the action configurations for this module.  If there are none, a
      * zero-length array is returned.
+     * </p>
      */
     public ActionConfig[] findActionConfigs() {
         ActionConfig[] results = new ActionConfig[actionConfigList.size()];
@@ -424,8 +442,10 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Return the exception configuration for the specified type, if any;
      * otherwise return <code>null</code>.
+     * </p>
      *
      * @param type Exception class name to find a configuration for
      */
@@ -476,8 +496,10 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Return the exception configurations for this module.  If there are
      * none, a zero-length array is returned.
+     * </p>
      */
     public ExceptionConfig[] findExceptionConfigs() {
         ExceptionConfig[] results = new ExceptionConfig[exceptions.size()];
@@ -486,8 +508,10 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Return the form bean configuration for the specified key, if any;
      * otherwise return <code>null</code>.
+     * </p>
      *
      * @param name Name of the form bean configuration to return
      */
@@ -496,8 +520,10 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Return the form bean configurations for this module.  If there are
      * none, a zero-length array is returned.
+     * </p>
      */
     public FormBeanConfig[] findFormBeanConfigs() {
         FormBeanConfig[] results = new FormBeanConfig[formBeans.size()];
@@ -506,8 +532,10 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Return the forward configuration for the specified key, if any;
      * otherwise return <code>null</code>.
+     * </p>
      *
      * @param name Name of the forward configuration to return
      */
@@ -516,8 +544,10 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Return the form bean configurations for this module.  If there are
      * none, a zero-length array is returned.
+     * </p>
      */
     public ForwardConfig[] findForwardConfigs() {
         ForwardConfig[] results = new ForwardConfig[forwards.size()];
@@ -526,8 +556,10 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Return the message resources configuration for the specified key, if
      * any; otherwise return <code>null</code>.
+     * </p>
      *
      * @param key Key of the data source configuration to return
      */
@@ -536,21 +568,23 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Return the message resources configurations for this module. If there
      * are none, a zero-length array is returned.
+     * </p>
      */
     public MessageResourcesConfig[] findMessageResourcesConfigs() {
         MessageResourcesConfig[] results =
-                new MessageResourcesConfig[messageResources
-                        .size()];
+            new MessageResourcesConfig[messageResources.size()];
 
-        return ((MessageResourcesConfig[]) messageResources.values()
-                .toArray(results));
+        return ((MessageResourcesConfig[]) messageResources.values().toArray(results));
     }
 
     /**
+     * <p>
      * Return the configured plug-in actions for this module.  If there are
      * none, a zero-length array is returned.
+     * </p>
      */
     public PlugInConfig[] findPlugInConfigs() {
         PlugInConfig[] results = new PlugInConfig[plugIns.size()];
@@ -559,9 +593,11 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Freeze the configuration of this module.  After this method returns,
      * any attempt to modify the configuration will return an
      * IllegalStateException.
+     * </p>
      */
     public void freeze() {
         super.freeze();
@@ -608,7 +644,9 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Remove the specified action configuration instance.
+     * </p>
      *
      * @param config ActionConfig instance to be removed
      * @throws IllegalStateException if this module configuration has been
@@ -622,7 +660,9 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Remove the specified exception configuration instance.
+     * </p>
      *
      * @param config ActionConfig instance to be removed
      * @throws IllegalStateException if this module configuration has been
@@ -634,7 +674,9 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Remove the specified form bean configuration instance.
+     * </p>
      *
      * @param config FormBeanConfig instance to be removed
      * @throws IllegalStateException if this module configuration has been
@@ -646,7 +688,9 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Remove the specified forward configuration instance.
+     * </p>
      *
      * @param config ForwardConfig instance to be removed
      * @throws IllegalStateException if this module configuration has been
@@ -658,7 +702,9 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
+     * <p>
      * Remove the specified message resources configuration instance.
+     * </p>
      *
      * @param config MessageResourcesConfig instance to be removed
      * @throws IllegalStateException if this module configuration has been

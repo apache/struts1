@@ -31,9 +31,7 @@ import org.apache.struts.util.MessageResources;
  *          $
  */
 public abstract class AbstractSelectModule extends ActionCommandBase {
-
     // ------------------------------------------------------ Instance Variables
-
     // ---------------------------------------------------------- Public Methods
 
     /**
@@ -49,31 +47,28 @@ public abstract class AbstractSelectModule extends ActionCommandBase {
      * @throws Exception                if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         String prefix = getPrefix(actionCtx);
 
         // Cache the corresponding ModuleConfig and MessageResources instances
         ModuleConfig moduleConfig =
-                (ModuleConfig) actionCtx.getApplicationScope()
-                        .get(Globals.MODULE_KEY
-                                + prefix);
+            (ModuleConfig) actionCtx.getApplicationScope().get(Globals.MODULE_KEY
+                + prefix);
 
         if (moduleConfig == null) {
             throw new IllegalArgumentException("No module config for prefix '"
-                    + prefix + "'");
+                + prefix + "'");
         }
 
         actionCtx.setModuleConfig(moduleConfig);
 
         String key = Globals.MESSAGES_KEY + prefix;
         MessageResources messageResources =
-                (MessageResources) actionCtx.getApplicationScope()
-                        .get(key);
+            (MessageResources) actionCtx.getApplicationScope().get(key);
 
         if (messageResources == null) {
             throw new IllegalArgumentException(
-                    "No message resources found in application scope under "
-                            + key);
+                "No message resources found in application scope under " + key);
         }
 
         actionCtx.setMessageResources(messageResources);

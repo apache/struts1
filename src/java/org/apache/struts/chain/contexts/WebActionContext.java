@@ -141,8 +141,7 @@ public class WebActionContext extends ActionContextBase {
         ModuleConfig mc = super.getModuleConfig();
 
         if (mc == null) {
-            mc = (ModuleConfig) this.getRequestScope()
-                    .get(Globals.MODULE_KEY);
+            mc = (ModuleConfig) this.getRequestScope().get(Globals.MODULE_KEY);
         }
 
         return mc;
@@ -170,7 +169,7 @@ public class WebActionContext extends ActionContextBase {
 
         if (cancelled == null) {
             cancelled =
-                    (Boolean) this.getRequestScope().get(Globals.CANCEL_KEY);
+                (Boolean) this.getRequestScope().get(Globals.CANCEL_KEY);
         }
 
         return cancelled;

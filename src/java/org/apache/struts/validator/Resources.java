@@ -36,6 +36,7 @@ import org.apache.struts.util.RequestUtils;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.Locale;
 
 /**
@@ -50,8 +51,9 @@ public class Resources {
     /**
      * The message resources for this package.
      */
-    private static MessageResources sysmsgs = MessageResources
-            .getMessageResources("org.apache.struts.validator.LocalStrings");
+    private static MessageResources sysmsgs =
+        MessageResources.getMessageResources(
+            "org.apache.struts.validator.LocalStrings");
 
     /**
      * <p>Commons Logging instance.</p>
@@ -62,19 +64,19 @@ public class Resources {
      * Resources key the <code>ServletContext</code> is stored under.
      */
     private static String SERVLET_CONTEXT_PARAM =
-            "javax.servlet.ServletContext";
+        "javax.servlet.ServletContext";
 
     /**
      * Resources key the <code>HttpServletRequest</code> is stored under.
      */
     private static String HTTP_SERVLET_REQUEST_PARAM =
-            "javax.servlet.http.HttpServletRequest";
+        "javax.servlet.http.HttpServletRequest";
 
     /**
      * Resources key the <code>ActionMessages</code> is stored under.
      */
     private static String ACTION_MESSAGES_PARAM =
-            "org.apache.struts.action.ActionMessages";
+        "org.apache.struts.action.ActionMessages";
 
     /**
      * Retrieve <code>ValidatorResources</code> for the current module.
@@ -83,14 +85,13 @@ public class Resources {
      * @param request     The ServletRequest
      */
     public static ValidatorResources getValidatorResources(
-            ServletContext application, HttpServletRequest request) {
-        String prefix = ModuleUtils.getInstance()
-                .getModuleConfig(request, application)
-                .getPrefix();
+        ServletContext application, HttpServletRequest request) {
+        String prefix =
+            ModuleUtils.getInstance().getModuleConfig(request, application)
+                       .getPrefix();
 
-        return (ValidatorResources) application
-                .getAttribute(ValidatorPlugIn.VALIDATOR_KEY
-                        + prefix);
+        return (ValidatorResources) application.getAttribute(ValidatorPlugIn.VALIDATOR_KEY
+            + prefix);
     }
 
     /**
@@ -99,7 +100,7 @@ public class Resources {
      * @param request the servlet request
      */
     public static MessageResources getMessageResources(
-            HttpServletRequest request) {
+        HttpServletRequest request) {
         return (MessageResources) request.getAttribute(Globals.MESSAGES_KEY);
     }
 
@@ -111,21 +112,20 @@ public class Resources {
      * @param bundle      the bundle key
      */
     public static MessageResources getMessageResources(
-            ServletContext application, HttpServletRequest request,
-            String bundle) {
+        ServletContext application, HttpServletRequest request, String bundle) {
         if (bundle == null) {
             bundle = Globals.MESSAGES_KEY;
         }
 
         MessageResources resources =
-                (MessageResources) request.getAttribute(bundle);
+            (MessageResources) request.getAttribute(bundle);
 
         if (resources == null) {
-            ModuleConfig moduleConfig = ModuleUtils.getInstance()
-                    .getModuleConfig(request,
-                            application);
+            ModuleConfig moduleConfig =
+                ModuleUtils.getInstance().getModuleConfig(request, application);
 
-            resources = (MessageResources) application.getAttribute(bundle
+            resources =
+                (MessageResources) application.getAttribute(bundle
                     + moduleConfig.getPrefix());
         }
 
@@ -135,7 +135,7 @@ public class Resources {
 
         if (resources == null) {
             throw new NullPointerException(
-                    "No message resources found for bundle: " + bundle);
+                "No message resources found for bundle: " + bundle);
         }
 
         return resources;
@@ -152,9 +152,7 @@ public class Resources {
      * @return The variable's value
      */
     public static String getVarValue(String varName, Field field,
-                                     Validator validator,
-                                     HttpServletRequest request,
-                                     boolean required) {
+        Validator validator, HttpServletRequest request, boolean required) {
         Var var = field.getVar(varName);
 
         if (var == null) {
@@ -171,8 +169,8 @@ public class Resources {
             return null;
         }
 
-        ServletContext application = (ServletContext) validator
-                .getParameterValue(SERVLET_CONTEXT_PARAM);
+        ServletContext application =
+            (ServletContext) validator.getParameterValue(SERVLET_CONTEXT_PARAM);
 
         return getVarValue(var, application, request, required);
     }
@@ -187,8 +185,7 @@ public class Resources {
      * @return The variables values
      */
     public static String getVarValue(Var var, ServletContext application,
-                                     HttpServletRequest request,
-                                     boolean required) {
+        HttpServletRequest request, boolean required) {
         String varName = var.getName();
         String varValue = var.getValue();
 
@@ -199,8 +196,8 @@ public class Resources {
 
         // Get the message resources
         String bundle = var.getBundle();
-        MessageResources messages = getMessageResources(application, request,
-                bundle);
+        MessageResources messages =
+            getMessageResources(application, request, bundle);
 
         // Retrieve variable's value from message resources
         Locale locale = RequestUtils.getUserLocale(request, null);
@@ -214,7 +211,7 @@ public class Resources {
 
         if (log.isDebugEnabled()) {
             log.debug("Var=[" + varName + "], " + "bundle=[" + bundle + "], "
-                    + "key=[" + varValue + "], " + "value=[" + value + "]");
+                + "key=[" + varValue + "], " + "value=[" + value + "]");
         }
 
         return value;
@@ -229,7 +226,7 @@ public class Resources {
      * @param key      Key used to lookup the message
      */
     public static String getMessage(MessageResources messages, Locale locale,
-                                    String key) {
+        String key) {
         String message = null;
 
         if (messages != null) {
@@ -250,7 +247,7 @@ public class Resources {
         MessageResources messages = getMessageResources(request);
 
         return getMessage(messages, RequestUtils.getUserLocale(request, null),
-                key);
+            key);
     }
 
     /**
@@ -263,10 +260,11 @@ public class Resources {
      * @param field    The Validator Field
      */
     public static String getMessage(MessageResources messages, Locale locale,
-                                    ValidatorAction va, Field field) {
+        ValidatorAction va, Field field) {
         String[] args = getArgs(va.getName(), messages, locale, field);
-        String msg = (field.getMsg(va.getName()) != null)
-                ? field.getMsg(va.getName()) : va.getMsg();
+        String msg =
+            (field.getMsg(va.getName()) != null) ? field.getMsg(va.getName())
+                                                 : va.getMsg();
 
         return messages.getMessage(locale, msg, args);
     }
@@ -283,10 +281,8 @@ public class Resources {
      * @param field           The Validator Field
      */
     public static String getMessage(ServletContext application,
-                                    HttpServletRequest request,
-                                    MessageResources defaultMessages,
-                                    Locale locale, ValidatorAction va,
-                                    Field field) {
+        HttpServletRequest request, MessageResources defaultMessages,
+        Locale locale, ValidatorAction va, Field field) {
         Msg msg = field.getMessage(va.getName());
 
         if ((msg != null) && !msg.isResource()) {
@@ -304,8 +300,8 @@ public class Resources {
             msgBundle = msg.getBundle();
 
             if (msg.getBundle() != null) {
-                messages = getMessageResources(application, request,
-                        msg.getBundle());
+                messages =
+                    getMessageResources(application, request, msg.getBundle());
             }
         }
 
@@ -315,8 +311,8 @@ public class Resources {
 
         // Get the arguments
         Arg[] args = field.getArgs(va.getName());
-        String[] argValues = getArgValues(application, request, messages,
-                locale, args);
+        String[] argValues =
+            getArgValues(application, request, messages, locale, args);
 
         // Return the message
         return messages.getMessage(locale, msgKey, argValues);
@@ -332,13 +328,14 @@ public class Resources {
      * @param field   the validator Field
      */
     public static ActionMessage getActionMessage(HttpServletRequest request,
-                                                 ValidatorAction va,
-                                                 Field field) {
-        String[] args = getArgs(va.getName(), getMessageResources(request),
+        ValidatorAction va, Field field) {
+        String[] args =
+            getArgs(va.getName(), getMessageResources(request),
                 RequestUtils.getUserLocale(request, null), field);
 
-        String msg = (field.getMsg(va.getName()) != null)
-                ? field.getMsg(va.getName()) : va.getMsg();
+        String msg =
+            (field.getMsg(va.getName()) != null) ? field.getMsg(va.getName())
+                                                 : va.getMsg();
 
         return new ActionMessage(msg, args);
     }
@@ -354,9 +351,7 @@ public class Resources {
      * @param field     the validator Field
      */
     public static ActionMessage getActionMessage(Validator validator,
-                                                 HttpServletRequest request,
-                                                 ValidatorAction va,
-                                                 Field field) {
+        HttpServletRequest request, ValidatorAction va, Field field) {
         Msg msg = field.getMessage(va.getName());
 
         if ((msg != null) && !msg.isResource()) {
@@ -375,18 +370,18 @@ public class Resources {
 
         if ((msgKey == null) || (msgKey.length() == 0)) {
             return new ActionMessage("??? " + va.getName() + "."
-                    + field.getProperty() + " ???", false);
+                + field.getProperty() + " ???", false);
         }
 
-        ServletContext application = (ServletContext) validator
-                .getParameterValue(SERVLET_CONTEXT_PARAM);
-        MessageResources messages = getMessageResources(application, request,
-                msgBundle);
+        ServletContext application =
+            (ServletContext) validator.getParameterValue(SERVLET_CONTEXT_PARAM);
+        MessageResources messages =
+            getMessageResources(application, request, msgBundle);
         Locale locale = RequestUtils.getUserLocale(request, null);
 
         Arg[] args = field.getArgs(va.getName());
-        String[] argValues = getArgValues(application, request, messages,
-                locale, args);
+        String[] argValues =
+            getArgValues(application, request, messages, locale, args);
 
         ActionMessage actionMessage = null;
 
@@ -411,14 +406,14 @@ public class Resources {
      * @param field      the validator field
      */
     public static String[] getArgs(String actionName,
-                                   MessageResources messages, Locale locale,
-                                   Field field) {
+        MessageResources messages, Locale locale, Field field) {
         String[] argMessages = new String[4];
 
-        Arg[] args = new Arg[]{
+        Arg[] args =
+            new Arg[] {
                 field.getArg(actionName, 0), field.getArg(actionName, 1),
                 field.getArg(actionName, 2), field.getArg(actionName, 3)
-        };
+            };
 
         for (int i = 0; i < args.length; i++) {
             if (args[i] == null) {
@@ -426,8 +421,7 @@ public class Resources {
             }
 
             if (args[i].isResource()) {
-                argMessages[i] =
-                        getMessage(messages, locale, args[i].getKey());
+                argMessages[i] = getMessage(messages, locale, args[i].getKey());
             } else {
                 argMessages[i] = args[i].getKey();
             }
@@ -447,9 +441,8 @@ public class Resources {
      * @param args            The arguments for the message
      */
     private static String[] getArgValues(ServletContext application,
-                                         HttpServletRequest request,
-                                         MessageResources defaultMessages,
-                                         Locale locale, Arg[] args) {
+        HttpServletRequest request, MessageResources defaultMessages,
+        Locale locale, Arg[] args) {
         if ((args == null) || (args.length == 0)) {
             return null;
         }
@@ -462,7 +455,8 @@ public class Resources {
                     MessageResources messages = defaultMessages;
 
                     if (args[i].getBundle() != null) {
-                        messages = getMessageResources(application, request,
+                        messages =
+                            getMessageResources(application, request,
                                 args[i].getBundle());
                     }
 
@@ -491,12 +485,10 @@ public class Resources {
      *                    to this page value, it will be processed.
      */
     public static Validator initValidator(String key, Object bean,
-                                          ServletContext application,
-                                          HttpServletRequest request,
-                                          ActionMessages errors, int page) {
+        ServletContext application, HttpServletRequest request,
+        ActionMessages errors, int page) {
         ValidatorResources resources =
-                Resources.getValidatorResources(application,
-                        request);
+            Resources.getValidatorResources(application, request);
 
         Locale locale = RequestUtils.getUserLocale(request, null);
 

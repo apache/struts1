@@ -35,8 +35,10 @@ import org.apache.struts.upload.MultipartRequestWrapper;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -72,7 +74,7 @@ public class RequestUtils {
      * @throws MalformedURLException if we cannot create an absolute URL
      */
     public static URL absoluteURL(HttpServletRequest request, String path)
-            throws MalformedURLException {
+        throws MalformedURLException {
         return (new URL(serverURL(request), request.getContextPath() + path));
     }
 
@@ -85,7 +87,7 @@ public class RequestUtils {
      * @throws ClassNotFoundException if the class cannot be found
      */
     public static Class applicationClass(String className)
-            throws ClassNotFoundException {
+        throws ClassNotFoundException {
         return applicationClass(className, null);
     }
 
@@ -99,8 +101,8 @@ public class RequestUtils {
      * @throws ClassNotFoundException if the class cannot be found
      */
     public static Class applicationClass(String className,
-                                         ClassLoader classLoader)
-            throws ClassNotFoundException {
+        ClassLoader classLoader)
+        throws ClassNotFoundException {
         if (classLoader == null) {
             // Look up the class loader to be used
             classLoader = Thread.currentThread().getContextClassLoader();
@@ -132,7 +134,7 @@ public class RequestUtils {
      *                                constructor
      */
     public static Object applicationInstance(String className)
-            throws ClassNotFoundException, IllegalAccessException,
+        throws ClassNotFoundException, IllegalAccessException, 
             InstantiationException {
         return applicationInstance(className, null);
     }
@@ -156,8 +158,8 @@ public class RequestUtils {
      *                                constructor
      */
     public static Object applicationInstance(String className,
-                                             ClassLoader classLoader)
-            throws ClassNotFoundException, IllegalAccessException,
+        ClassLoader classLoader)
+        throws ClassNotFoundException, IllegalAccessException, 
             InstantiationException {
         return (applicationClass(className, classLoader).newInstance());
     }
@@ -174,9 +176,7 @@ public class RequestUtils {
      * @return ActionForm instance associated with this request
      */
     public static ActionForm createActionForm(HttpServletRequest request,
-                                              ActionMapping mapping,
-                                              ModuleConfig moduleConfig,
-                                              ActionServlet servlet) {
+        ActionMapping mapping, ModuleConfig moduleConfig, ActionServlet servlet) {
         // Is there a form bean associated with this mapping?
         String attribute = mapping.getAttribute();
 
@@ -194,8 +194,8 @@ public class RequestUtils {
             return (null);
         }
 
-        ActionForm instance = lookupActionForm(request, attribute,
-                mapping.getScope());
+        ActionForm instance =
+            lookupActionForm(request, attribute, mapping.getScope());
 
         // Can we recycle the existing form bean instance (if there is one)?
         if ((instance != null) && config.canReuse(instance)) {
@@ -206,12 +206,11 @@ public class RequestUtils {
     }
 
     private static ActionForm lookupActionForm(HttpServletRequest request,
-                                               String attribute,
-                                               String scope) {
+        String attribute, String scope) {
         // Look up any existing form bean instance
         if (log.isDebugEnabled()) {
             log.debug(" Looking for ActionForm bean instance in scope '"
-                    + scope + "' under attribute key '" + attribute + "'");
+                + scope + "' under attribute key '" + attribute + "'");
         }
 
         ActionForm instance = null;
@@ -240,7 +239,7 @@ public class RequestUtils {
      * @return ActionForm instance associated with this request
      */
     public static ActionForm createActionForm(FormBeanConfig config,
-                                              ActionServlet servlet) {
+        ActionServlet servlet) {
         if (config == null) {
             return (null);
         }
@@ -253,13 +252,11 @@ public class RequestUtils {
 
             if (log.isDebugEnabled()) {
                 log.debug(" Creating new "
-                        + (config.getDynamic() ? "DynaActionForm" :
-                        "ActionForm")
-                        + " instance of type '" + config.getType() + "'");
+                    + (config.getDynamic() ? "DynaActionForm" : "ActionForm")
+                    + " instance of type '" + config.getType() + "'");
                 log.trace(" --> " + instance);
             }
-        }
-        catch (Throwable t) {
+        } catch (Throwable t) {
             log.error(servlet.getInternal().getMessage("formBean",
                     config.getType()), t);
         }
@@ -278,8 +275,7 @@ public class RequestUtils {
      * @return current user locale
      * @since Struts 1.2
      */
-    public static Locale getUserLocale(HttpServletRequest request,
-                                       String locale) {
+    public static Locale getUserLocale(HttpServletRequest request, String locale) {
         Locale userLocale = null;
         HttpSession session = request.getSession(false);
 
@@ -314,7 +310,7 @@ public class RequestUtils {
      *                          property values
      */
     public static void populate(Object bean, HttpServletRequest request)
-            throws ServletException {
+        throws ServletException {
         populate(bean, null, null, request);
     }
 
@@ -344,8 +340,8 @@ public class RequestUtils {
      *                          property values
      */
     public static void populate(Object bean, String prefix, String suffix,
-                                HttpServletRequest request)
-            throws ServletException {
+        HttpServletRequest request)
+        throws ServletException {
         // Build a list of relevant request parameters from this request
         HashMap properties = new HashMap();
 
@@ -360,8 +356,8 @@ public class RequestUtils {
         boolean isMultipart = false;
 
         if ((contentType != null)
-                && (contentType.startsWith("multipart/form-data"))
-                && (method.equalsIgnoreCase("POST"))) {
+            && (contentType.startsWith("multipart/form-data"))
+            && (method.equalsIgnoreCase("POST"))) {
             // Get the ActionServletWrapper from the form bean
             ActionServletWrapper servlet;
 
@@ -369,14 +365,14 @@ public class RequestUtils {
                 servlet = ((ActionForm) bean).getServletWrapper();
             } else {
                 throw new ServletException("bean that's supposed to be "
-                        + "populated from a multipart request is not of type "
-                        + "\"org.apache.struts.action.ActionForm\", but type "
-                        + "\"" + bean.getClass().getName() + "\"");
+                    + "populated from a multipart request is not of type "
+                    + "\"org.apache.struts.action.ActionForm\", but type "
+                    + "\"" + bean.getClass().getName() + "\"");
             }
 
             // Obtain a MultipartRequestHandler
             MultipartRequestHandler multipartHandler =
-                    getMultipartHandler(request);
+                getMultipartHandler(request);
 
             // Set the multipart request handler for our ActionForm.
             // If the bean isn't an ActionForm, an exception would have been
@@ -390,24 +386,24 @@ public class RequestUtils {
                 // Set servlet and mapping info
                 servlet.setServletFor(multipartHandler);
                 multipartHandler.setMapping((ActionMapping) request
-                        .getAttribute(Globals.MAPPING_KEY));
+                    .getAttribute(Globals.MAPPING_KEY));
 
                 // Initialize multipart request class handler
                 multipartHandler.handleRequest(request);
 
                 //stop here if the maximum length has been exceeded
-                Boolean maxLengthExceeded = (Boolean) request
-                        .getAttribute(MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED);
+                Boolean maxLengthExceeded =
+                    (Boolean) request.getAttribute(MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED);
 
                 if ((maxLengthExceeded != null)
-                        && (maxLengthExceeded.booleanValue())) {
+                    && (maxLengthExceeded.booleanValue())) {
                     return;
                 }
 
                 //retrieve form values and put into properties
                 multipartParameters =
-                        getAllParametersForMultipartRequest(request,
-                                multipartHandler);
+                    getAllParametersForMultipartRequest(request,
+                        multipartHandler);
                 names = Collections.enumeration(multipartParameters.keySet());
             }
         }
@@ -433,8 +429,8 @@ public class RequestUtils {
                     continue;
                 }
 
-                stripped = stripped.substring(0,
-                        stripped.length() - suffix.length());
+                stripped =
+                    stripped.substring(0, stripped.length() - suffix.length());
             }
 
             Object parameterValue = null;
@@ -455,8 +451,7 @@ public class RequestUtils {
         // Set the corresponding properties of our bean
         try {
             BeanUtils.populate(bean, properties);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new ServletException("BeanUtils.populate", e);
         }
     }
@@ -474,11 +469,11 @@ public class RequestUtils {
      *                          locate the multipart handler.
      */
     private static MultipartRequestHandler getMultipartHandler(
-            HttpServletRequest request)
-            throws ServletException {
+        HttpServletRequest request)
+        throws ServletException {
         MultipartRequestHandler multipartHandler = null;
         String multipartClass =
-                (String) request.getAttribute(Globals.MULTIPART_KEY);
+            (String) request.getAttribute(Globals.MULTIPART_KEY);
 
         request.removeAttribute(Globals.MULTIPART_KEY);
 
@@ -486,27 +481,21 @@ public class RequestUtils {
         if (multipartClass != null) {
             try {
                 multipartHandler =
-                        (MultipartRequestHandler) applicationInstance(
-                                multipartClass);
-            }
-            catch (ClassNotFoundException cnfe) {
+                    (MultipartRequestHandler) applicationInstance(multipartClass);
+            } catch (ClassNotFoundException cnfe) {
                 log.error("MultipartRequestHandler class \"" + multipartClass
-                        + "\" in mapping class not found, "
-                        + "defaulting to global multipart class");
-            }
-            catch (InstantiationException ie) {
+                    + "\" in mapping class not found, "
+                    + "defaulting to global multipart class");
+            } catch (InstantiationException ie) {
                 log.error("InstantiationException when instantiating "
-                        + "MultipartRequestHandler \"" + multipartClass
-                        + "\", "
-                        + "defaulting to global multipart class, exception: "
-                        + ie.getMessage());
-            }
-            catch (IllegalAccessException iae) {
+                    + "MultipartRequestHandler \"" + multipartClass + "\", "
+                    + "defaulting to global multipart class, exception: "
+                    + ie.getMessage());
+            } catch (IllegalAccessException iae) {
                 log.error("IllegalAccessException when instantiating "
-                        + "MultipartRequestHandler \"" + multipartClass
-                        + "\", "
-                        + "defaulting to global multipart class, exception: "
-                        + iae.getMessage());
+                    + "MultipartRequestHandler \"" + multipartClass + "\", "
+                    + "defaulting to global multipart class, exception: "
+                    + iae.getMessage());
             }
 
             if (multipartHandler != null) {
@@ -515,36 +504,29 @@ public class RequestUtils {
         }
 
         ModuleConfig moduleConfig =
-                ModuleUtils.getInstance().getModuleConfig(request);
+            ModuleUtils.getInstance().getModuleConfig(request);
 
-        multipartClass =
-                moduleConfig.getControllerConfig().getMultipartClass();
+        multipartClass = moduleConfig.getControllerConfig().getMultipartClass();
 
         // Try to initialize the global request handler
         if (multipartClass != null) {
             try {
                 multipartHandler =
-                        (MultipartRequestHandler) applicationInstance(
-                                multipartClass);
-            }
-            catch (ClassNotFoundException cnfe) {
+                    (MultipartRequestHandler) applicationInstance(multipartClass);
+            } catch (ClassNotFoundException cnfe) {
                 throw new ServletException("Cannot find multipart class \""
-                        + multipartClass + "\"" + ", exception: "
-                        + cnfe.getMessage());
-            }
-            catch (InstantiationException ie) {
+                    + multipartClass + "\"" + ", exception: "
+                    + cnfe.getMessage());
+            } catch (InstantiationException ie) {
                 throw new ServletException(
-                        "InstantiationException when instantiating "
-                                + "multipart class \"" + multipartClass
-                                + "\", exception: "
-                                + ie.getMessage());
-            }
-            catch (IllegalAccessException iae) {
+                    "InstantiationException when instantiating "
+                    + "multipart class \"" + multipartClass + "\", exception: "
+                    + ie.getMessage());
+            } catch (IllegalAccessException iae) {
                 throw new ServletException(
-                        "IllegalAccessException when instantiating "
-                                + "multipart class \"" + multipartClass
-                                + "\", exception: "
-                                + iae.getMessage());
+                    "IllegalAccessException when instantiating "
+                    + "multipart class \"" + multipartClass + "\", exception: "
+                    + iae.getMessage());
             }
 
             if (multipartHandler != null) {
@@ -568,8 +550,7 @@ public class RequestUtils {
      * @return the map containing all parameters for this multipart request.
      */
     private static Map getAllParametersForMultipartRequest(
-            HttpServletRequest request,
-            MultipartRequestHandler multipartHandler) {
+        HttpServletRequest request, MultipartRequestHandler multipartHandler) {
         Map parameters = new HashMap();
         Hashtable elements = multipartHandler.getAllElements();
         Enumeration e = elements.keys();
@@ -581,8 +562,9 @@ public class RequestUtils {
         }
 
         if (request instanceof MultipartRequestWrapper) {
-            request = (HttpServletRequest) ((MultipartRequestWrapper) request)
-                    .getRequest();
+            request =
+                (HttpServletRequest) ((MultipartRequestWrapper) request)
+                .getRequest();
             e = request.getParameterNames();
 
             while (e.hasMoreElements()) {
@@ -638,7 +620,7 @@ public class RequestUtils {
      * @since Struts 1.1
      */
     public static String actionURL(HttpServletRequest request,
-                                   ActionConfig action, String pattern) {
+        ActionConfig action, String pattern) {
         StringBuffer sb = new StringBuffer();
 
         if (pattern.endsWith("/*")) {
@@ -646,7 +628,7 @@ public class RequestUtils {
             sb.append(action.getPath());
         } else if (pattern.startsWith("*.")) {
             ModuleConfig appConfig =
-                    ModuleUtils.getInstance().getModuleConfig(request);
+                ModuleUtils.getInstance().getModuleConfig(request);
 
             sb.append(appConfig.getPrefix());
             sb.append(action.getPath());
@@ -661,27 +643,52 @@ public class RequestUtils {
     /**
      * <p>Return the context-relative URL that corresponds to the specified
      * <code>ForwardConfig</code>. The URL is calculated based on the
-     * properties of the {@link ForwardConfig} instance as follows:</p> <ul>
+     * properties of the {@link ForwardConfig} instance as follows:</p>
+     *
+     * <ul>
+     *
+     *
      * <li>If the <code>contextRelative</code> property is set, it is assumed
      * that the <code>path</code> property contains a path that is already
-     * context-relative: <ul> <li>If the <code>path</code> property value
-     * starts with a slash, it is returned unmodified.</li> <li>If the
-     * <code>path</code> property value does not start with a slash, a slash
-     * is prepended.</li> </ul></li> <li>Acquire the <code>forwardPattern</code>
-     * property from the <code>ControllerConfig</code> for the application
-     * module used to process this request. If no pattern was configured,
-     * default to a pattern of <code>$M$P</code>, which is compatible with the
-     * hard-coded mapping behavior in Struts 1.0.</li> <li>Process the
-     * acquired <code>forwardPattern</code>, performing the following
-     * substitutions: <ul> <li><strong>$M</strong> - Replaced by the module
-     * prefix for the application module processing this request.</li>
+     * context-relative:
+     *
+     * <ul>
+     *
+     * <li>If the <code>path</code> property value starts with a slash, it is
+     * returned unmodified.</li> <li>If the <code>path</code> property value
+     * does not start with a slash, a slash is prepended.</li>
+     *
+     * </ul></li>
+     *
+     * <li>Acquire the <code>forwardPattern</code> property from the
+     * <code>ControllerConfig</code> for the application module used to
+     * process this request. If no pattern was configured, default to a
+     * pattern of <code>$M$P</code>, which is compatible with the hard-coded
+     * mapping behavior in Struts 1.0.</li>
+     *
+     * <li>Process the acquired <code>forwardPattern</code>, performing the
+     * following substitutions:
+     *
+     * <ul>
+     *
+     * <li><strong>$M</strong> - Replaced by the
+     * module prefix for the application module processing this request.</li>
+     *
      * <li><strong>$P</strong> - Replaced by the <code>path</code> property of
      * the specified {@link ForwardConfig}, prepended with a slash if it does
-     * not start with one.</li> <li><strong>$$</strong> - Replaced by a single
-     * dollar sign character.</li> <li><strong>$x</strong> (where "x" is any
-     * charater not listed above) - Silently omit these two characters from
-     * the result value.  (This has the side effect of causing all other
-     * $+letter combinations to be reserved.)</li> </ul></li> </ul>
+     * not start with one.</li>
+     *
+     * <li><strong>$$</strong> - Replaced by a single dollar sign
+     * character.</li>
+     *
+     * <li><strong>$x</strong> (where "x" is any charater not listed above) -
+     * Silently omit these two characters from the result value.  (This has
+     * the side effect of causing all other $+letter combinations to be
+     * reserved.)</li>
+     *
+     * </ul></li>
+     *
+     * </ul>
      *
      * @param request The servlet request we are processing
      * @param forward ForwardConfig to be evaluated
@@ -689,34 +696,52 @@ public class RequestUtils {
      * @since Struts 1.1
      */
     public static String forwardURL(HttpServletRequest request,
-                                    ForwardConfig forward) {
+        ForwardConfig forward) {
         return forwardURL(request, forward, null);
     }
 
     /**
      * <p>Return the context-relative URL that corresponds to the specified
      * <code>ForwardConfig</code>. The URL is calculated based on the
-     * properties of the {@link ForwardConfig} instance as follows:</p> <ul>
+     * properties of the {@link ForwardConfig} instance as follows:</p>
+     *
+     * <ul>
+     *
      * <li>If the <code>contextRelative</code> property is set, it is assumed
      * that the <code>path</code> property contains a path that is already
-     * context-relative: <ul> <li>If the <code>path</code> property value
+     * context-relative: <ul>
+
+     * <li>If the <code>path</code> property value
      * starts with a slash, it is returned unmodified.</li> <li>If the
      * <code>path</code> property value does not start with a slash, a slash
-     * is prepended.</li> </ul></li> <li>Acquire the <code>forwardPattern</code>
+     * is prepended.</li>
+     *
+     * </ul></li>
+     *
+     * <li>Acquire the <code>forwardPattern</code>
      * property from the <code>ControllerConfig</code> for the application
      * module used to process this request. If no pattern was configured,
      * default to a pattern of <code>$M$P</code>, which is compatible with the
-     * hard-coded mapping behavior in Struts 1.0.</li> <li>Process the
+     * hard-coded mapping behavior in Struts 1.0.</li>
+     *
+     * <li>Process the
      * acquired <code>forwardPattern</code>, performing the following
      * substitutions: <ul> <li><strong>$M</strong> - Replaced by the module
      * prefix for the application module processing this request.</li>
+     *
      * <li><strong>$P</strong> - Replaced by the <code>path</code> property of
      * the specified {@link ForwardConfig}, prepended with a slash if it does
-     * not start with one.</li> <li><strong>$$</strong> - Replaced by a single
-     * dollar sign character.</li> <li><strong>$x</strong> (where "x" is any
+     * not start with one.</li>
+     *
+     * <li><strong>$$</strong> - Replaced by a single
+     * dollar sign character.</li>
+     *
+     * <li><strong>$x</strong> (where "x" is any
      * charater not listed above) - Silently omit these two characters from
      * the result value.  (This has the side effect of causing all other
-     * $+letter combinations to be reserved.)</li> </ul></li> </ul>
+     * $+letter combinations to be reserved.)</li>
+     *
+     * </ul></li></ul>
      *
      * @param request      The servlet request we are processing
      * @param forward      ForwardConfig to be evaluated
@@ -725,8 +750,7 @@ public class RequestUtils {
      * @since Struts 1.2
      */
     public static String forwardURL(HttpServletRequest request,
-                                    ForwardConfig forward,
-                                    ModuleConfig moduleConfig) {
+        ForwardConfig forward, ModuleConfig moduleConfig) {
         //load the current moduleConfig, if null
         if (moduleConfig == null) {
             moduleConfig = ModuleUtils.getInstance().getModuleConfig(request);
@@ -749,8 +773,8 @@ public class RequestUtils {
         StringBuffer sb = new StringBuffer();
 
         // Calculate a context relative path for this ForwardConfig
-        String forwardPattern = moduleConfig.getControllerConfig()
-                .getForwardPattern();
+        String forwardPattern =
+            moduleConfig.getControllerConfig().getForwardPattern();
 
         if (forwardPattern == null) {
             // Performance optimization for previous default behavior
@@ -770,29 +794,29 @@ public class RequestUtils {
 
                 if (dollar) {
                     switch (ch) {
-                        case 'M':
-                            sb.append(prefix);
+                    case 'M':
+                        sb.append(prefix);
 
-                            break;
+                        break;
 
-                        case 'P':
+                    case 'P':
 
-                            // add '/' if needed
-                            if (!path.startsWith("/")) {
-                                sb.append("/");
-                            }
+                        // add '/' if needed
+                        if (!path.startsWith("/")) {
+                            sb.append("/");
+                        }
 
-                            sb.append(path);
+                        sb.append(path);
 
-                            break;
+                        break;
 
-                        case '$':
-                            sb.append('$');
+                    case '$':
+                        sb.append('$');
 
-                            break;
+                        break;
 
-                        default:
-                            ; // Silently swallow
+                    default:
+                        ; // Silently swallow
                     }
 
                     dollar = false;
@@ -818,7 +842,7 @@ public class RequestUtils {
      * @throws MalformedURLException if a URL cannot be created
      */
     public static URL requestURL(HttpServletRequest request)
-            throws MalformedURLException {
+        throws MalformedURLException {
         StringBuffer url = requestToServerUriStringBuffer(request);
 
         return (new URL(url.toString()));
@@ -835,7 +859,7 @@ public class RequestUtils {
      * @throws MalformedURLException if a URL cannot be created
      */
     public static URL serverURL(HttpServletRequest request)
-            throws MalformedURLException {
+        throws MalformedURLException {
         StringBuffer url = requestToServerStringBuffer(request);
 
         return (new URL(url.toString()));
@@ -852,11 +876,11 @@ public class RequestUtils {
      * @since Struts 1.2.0
      */
     public static StringBuffer requestToServerUriStringBuffer(
-            HttpServletRequest request) {
+        HttpServletRequest request) {
         StringBuffer serverUri =
-                createServerUriStringBuffer(request.getScheme(),
-                        request.getServerName(), request.getServerPort(),
-                        request.getRequestURI());
+            createServerUriStringBuffer(request.getScheme(),
+                request.getServerName(), request.getServerPort(),
+                request.getRequestURI());
 
         return serverUri;
     }
@@ -873,9 +897,9 @@ public class RequestUtils {
      * @since Struts 1.2.0
      */
     public static StringBuffer requestToServerStringBuffer(
-            HttpServletRequest request) {
+        HttpServletRequest request) {
         return createServerStringBuffer(request.getScheme(),
-                request.getServerName(), request.getServerPort());
+            request.getServerName(), request.getServerPort());
     }
 
     /**
@@ -889,8 +913,7 @@ public class RequestUtils {
      * @since Struts 1.2.0
      */
     public static StringBuffer createServerStringBuffer(String scheme,
-                                                        String server,
-                                                        int port) {
+        String server, int port) {
         StringBuffer url = new StringBuffer();
 
         if (port < 0) {
@@ -902,7 +925,7 @@ public class RequestUtils {
         url.append(server);
 
         if ((scheme.equals("http") && (port != 80))
-                || (scheme.equals("https") && (port != 443))) {
+            || (scheme.equals("https") && (port != 443))) {
             url.append(':');
             url.append(port);
         }
@@ -922,11 +945,8 @@ public class RequestUtils {
      * @since Struts 1.2.0
      */
     public static StringBuffer createServerUriStringBuffer(String scheme,
-                                                           String server,
-                                                           int port,
-                                                           String uri) {
-        StringBuffer serverUri =
-                createServerStringBuffer(scheme, server, port);
+        String server, int port, String uri) {
+        StringBuffer serverUri = createServerStringBuffer(scheme, server, port);
 
         serverUri.append(uri);
 

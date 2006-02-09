@@ -31,7 +31,6 @@ import org.apache.struts.config.ActionConfig;
  * @version $Id$
  */
 public class CopyFormToContext extends ActionCommandBase {
-
     // ------------------------------------------------------ Instance Variables
 
     /**
@@ -75,7 +74,7 @@ public class CopyFormToContext extends ActionCommandBase {
     // ------------------------------------------------------ Properties
 
     /**
-     * Return ActionPath property.
+     * <p>Return ActionPath property.</p>
      *
      * @return ActionPath property
      */
@@ -84,7 +83,7 @@ public class CopyFormToContext extends ActionCommandBase {
     }
 
     /**
-     * Set ActionPath property.
+     * <p>Set ActionPath property.</p>
      *
      * @param actionPath New valuefor ActionPath
      */
@@ -93,7 +92,7 @@ public class CopyFormToContext extends ActionCommandBase {
     }
 
     /**
-     * Return FormName property.
+     * <p>Return FormName property.</p>
      *
      * @return FormName property
      */
@@ -102,7 +101,7 @@ public class CopyFormToContext extends ActionCommandBase {
     }
 
     /**
-     * Set FormName property.
+     * <p>Set FormName property.</p>
      *
      * @param formName New valuefor FormName
      */
@@ -111,7 +110,7 @@ public class CopyFormToContext extends ActionCommandBase {
     }
 
     /**
-     * Return Scope property.
+     * <p>Return Scope property.</p>
      *
      * @return Scope property
      */
@@ -120,7 +119,7 @@ public class CopyFormToContext extends ActionCommandBase {
     }
 
     /**
-     * Set Scope property.
+     * <p>Set Scope property.</p>
      *
      * @param scope New valuefor Scope
      */
@@ -129,7 +128,7 @@ public class CopyFormToContext extends ActionCommandBase {
     }
 
     /**
-     * Return ToKey property.
+     * <p>Return ToKey property.</p>
      *
      * @return ToKey property
      */
@@ -138,7 +137,7 @@ public class CopyFormToContext extends ActionCommandBase {
     }
 
     /**
-     * Set ToKey property.
+     * <p>Set ToKey property.</p>
      *
      * @param toKey New valuefor FormName
      */
@@ -161,12 +160,11 @@ public class CopyFormToContext extends ActionCommandBase {
      * @throws Exception on any error
      */
     public boolean execute(ActionContext actionContext)
-            throws Exception {
+        throws Exception {
         ActionForm form = findOrCreateForm(actionContext);
 
         if (isEmpty(getToKey())) {
-            throw new IllegalStateException(
-                    "Property 'toKey' must be defined.");
+            throw new IllegalStateException("Property 'toKey' must be defined.");
         }
 
         actionContext.put(getToKey(), form);
@@ -188,19 +186,17 @@ public class CopyFormToContext extends ActionCommandBase {
      *                                  ActionContextBase
      */
     protected ActionForm findOrCreateForm(ActionContext context)
-            throws IllegalAccessException, InstantiationException {
+        throws IllegalAccessException, InstantiationException {
         String effectiveFormName;
         String effectiveScope;
 
         if (!(isEmpty(this.getActionPath()))) {
-            ActionConfig actionConfig = context.getModuleConfig()
-                    .findActionConfig(this
-                            .getActionPath());
+            ActionConfig actionConfig =
+                context.getModuleConfig().findActionConfig(this.getActionPath());
 
             if (actionConfig == null) {
                 throw new IllegalArgumentException(
-                        "No ActionConfig found for path " + this
-                                .getActionPath());
+                    "No ActionConfig found for path " + this.getActionPath());
             }
 
             effectiveFormName = actionConfig.getName();
@@ -212,8 +208,7 @@ public class CopyFormToContext extends ActionCommandBase {
 
         if (isEmpty(effectiveScope) || isEmpty(effectiveFormName)) {
             throw new IllegalStateException("Both scope [" + effectiveScope
-                    + "] and formName [" + effectiveFormName
-                    + "] must be defined.");
+                + "] and formName [" + effectiveFormName + "] must be defined.");
         }
 
         return findOrCreateForm(context, effectiveFormName, effectiveScope);
@@ -244,25 +239,23 @@ public class CopyFormToContext extends ActionCommandBase {
      *                                  ActionBase
      */
     protected ActionForm findOrCreateForm(ActionContext ctx,
-                                          String effectiveFormName,
-                                          String effectiveScope)
-            throws IllegalAccessException, InstantiationException {
+        String effectiveFormName, String effectiveScope)
+        throws IllegalAccessException, InstantiationException {
         ActionContextBase context;
 
         try {
             context = (ActionContextBase) ctx;
         } catch (ClassCastException e) {
             throw new IllegalStateException("ActionContext [" + ctx + "]"
-                    + " must be subclass of ActionContextBase");
+                + " must be subclass of ActionContextBase");
         }
 
-        ActionForm form = context.findOrCreateActionForm(effectiveFormName,
-                effectiveScope);
+        ActionForm form =
+            context.findOrCreateActionForm(effectiveFormName, effectiveScope);
 
         if (form == null) {
             throw new IllegalArgumentException("No form found under scope ["
-                    + effectiveScope + "] and formName [" + effectiveFormName
-                    + "]");
+                + effectiveScope + "] and formName [" + effectiveFormName + "]");
         }
 
         return form;

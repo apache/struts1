@@ -39,13 +39,12 @@ public class PerformInclude extends AbstractPerformInclude {
      * @param uri     The uri to be included
      */
     protected void perform(ActionContext context, String uri)
-            throws Exception {
+        throws Exception {
         ServletActionContext swcontext = (ServletActionContext) context;
 
         HttpServletRequest request = swcontext.getRequest();
 
-        RequestDispatcher rd =
-                swcontext.getContext().getRequestDispatcher(uri);
+        RequestDispatcher rd = swcontext.getContext().getRequestDispatcher(uri);
 
         rd.forward(request, swcontext.getResponse());
     }

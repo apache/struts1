@@ -22,8 +22,11 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import java.io.BufferedReader;
+
 import java.security.Principal;
+
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Locale;
@@ -50,52 +53,53 @@ public class MockHttpServletRequest implements HttpServletRequest {
     // ----------------------------------------------------- Instance Variables
 
     /**
-     * The set of request attributes.
+     * <p> The set of request attributes. </p>
      */
     protected HashMap attributes = new HashMap();
 
     /**
-     * The context path for this request.
+     * <p> The context path for this request. </p>
      */
     protected String contextPath = null;
 
     /**
-     * The preferred locale for this request.
+     * <p> The preferred locale for this request. </p>
      */
     protected Locale locale = null;
 
     /**
-     * The set of arrays of parameter values, keyed by parameter name.
+     * <p> The set of arrays of parameter values, keyed by parameter name.
+     * </p>
      */
     protected HashMap parameters = new HashMap();
 
     /**
-     * The extra path information for this request.
+     * <p> The extra path information for this request. v     * </p>
      */
     protected String pathInfo = null;
 
     /**
-     * The authenticated user for this request.
+     * <p> The authenticated user for this request. </p>
      */
     protected Principal principal = null;
 
     /**
-     * The query string for this request.
+     * <p> The query string for this request. </p>
      */
     protected String queryString = null;
 
     /**
-     * The servlet path for this request.
+     * <p> The servlet path for this request. </p>
      */
     protected String servletPath = null;
 
     /**
-     * The HttpSession with which we are associated.
+     * <p> The HttpSession with which we are associated. </p>
      */
     protected HttpSession session = null;
 
     /**
-     * The HTTP request method.
+     * <p> The HTTP request method. </p>
      */
     protected String method = null;
 
@@ -110,14 +114,13 @@ public class MockHttpServletRequest implements HttpServletRequest {
     }
 
     public MockHttpServletRequest(String contextPath, String servletPath,
-                                  String pathInfo, String queryString) {
+        String pathInfo, String queryString) {
         super();
         setPathElements(contextPath, servletPath, pathInfo, queryString);
     }
 
     public MockHttpServletRequest(String contextPath, String servletPath,
-                                  String pathInfo, String queryString,
-                                  HttpSession session) {
+        String pathInfo, String queryString, HttpSession session) {
         super();
         setPathElements(contextPath, servletPath, pathInfo, queryString);
         setHttpSession(session);
@@ -128,7 +131,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
         String[] values = (String[]) parameters.get(name);
 
         if (values == null) {
-            String[] results = new String[]{value};
+            String[] results = new String[] { value };
 
             parameters.put(name, results);
 
@@ -155,7 +158,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
     }
 
     public void setPathElements(String contextPath, String servletPath,
-                                String pathInfo, String queryString) {
+        String pathInfo, String queryString) {
         this.contextPath = contextPath;
         this.servletPath = servletPath;
         this.pathInfo = pathInfo;

@@ -26,7 +26,6 @@ package org.apache.struts.chain.commands;
  *          $
  */
 public class UnauthorizedActionException extends Exception {
-
     /**
      * <p> Default no-argument constructor. </p>
      */

@@ -20,6 +20,7 @@ package org.apache.struts.mock;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionFormBean;
 import org.apache.struts.action.ActionForward;
@@ -60,8 +61,7 @@ public class TestMockBase extends TestCase {
     }
 
     public static void main(String[] args) {
-        junit.awtui.TestRunner
-                .main(new String[]{TestMockBase.class.getName()});
+        junit.awtui.TestRunner.main(new String[] { TestMockBase.class.getName() });
     }
 
     public static Test suite() {
@@ -75,8 +75,8 @@ public class TestMockBase extends TestCase {
         config = new MockServletConfig(context);
         session = new MockHttpSession(context);
         request = new MockHttpServletRequest(session);
-        principal = new MockPrincipal("username",
-                new String[]{"admin", "manager"});
+        principal =
+            new MockPrincipal("username", new String[] { "admin", "manager" });
         request.setUserPrincipal(principal);
         response = new MockHttpServletResponse();
         page = new MockPageContext(config, request, response);
@@ -97,8 +97,7 @@ public class TestMockBase extends TestCase {
         ActionFormBean formBean = null;
         ActionMapping mapping = null;
 
-        ModuleConfigFactory factoryObject =
-                ModuleConfigFactory.createFactory();
+        ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
 
         moduleConfig = factoryObject.createModuleConfig("");
 
@@ -109,9 +108,7 @@ public class TestMockBase extends TestCase {
                 "http://jakarta.apache.org/", false));
 
         // Forward "foo" to "/bar.jsp"
-        moduleConfig.addForwardConfig(new ActionForward("foo",
-                "/bar.jsp",
-                false));
+        moduleConfig.addForwardConfig(new ActionForward("foo", "/bar.jsp", false));
 
         // Forward "relative1" to "relative.jsp" non-context-relative
         moduleConfig.addForwardConfig(new ActionForward("relative1",
@@ -122,8 +119,8 @@ public class TestMockBase extends TestCase {
                 "relative.jsp", false));
 
         // Form Bean "static" is a standard ActionForm subclass
-        formBean = new ActionFormBean("static",
-                "org.apache.struts.mock.MockFormBean");
+        formBean =
+            new ActionFormBean("static", "org.apache.struts.mock.MockFormBean");
         moduleConfig.addFormBeanConfig(formBean);
 
         // Action "/static" uses the "static" form bean in request scope
@@ -136,7 +133,8 @@ public class TestMockBase extends TestCase {
         moduleConfig.addActionConfig(mapping);
 
         // Form Bean "dynamic" is a DynaActionForm with the same properties
-        formBean = new ActionFormBean("dynamic",
+        formBean =
+            new ActionFormBean("dynamic",
                 "org.apache.struts.action.DynaActionForm");
         formBean.addFormPropertyConfig(new FormPropertyConfig(
                 "booleanProperty", "boolean", "false"));
@@ -154,7 +152,8 @@ public class TestMockBase extends TestCase {
         moduleConfig.addActionConfig(mapping);
 
         // Form Bean "/dynamic0" is a DynaActionForm with initializers
-        formBean = new ActionFormBean("dynamic0",
+        formBean =
+            new ActionFormBean("dynamic0",
                 "org.apache.struts.action.DynaActionForm");
         formBean.addFormPropertyConfig(new FormPropertyConfig(
                 "booleanProperty", "boolean", "true"));
@@ -167,9 +166,7 @@ public class TestMockBase extends TestCase {
         formBean.addFormPropertyConfig(new FormPropertyConfig("principal",
                 "org.apache.struts.mock.MockPrincipal", null));
         formBean.addFormPropertyConfig(new FormPropertyConfig("stringArray1",
-                "java.lang.String[]",
-                "{aaa,bbb,ccc}",
-                2)); // 2 should be ignored
+                "java.lang.String[]", "{aaa,bbb,ccc}", 2)); // 2 should be ignored
         formBean.addFormPropertyConfig(new FormPropertyConfig("stringArray2",
                 "java.lang.String[]", null, 3)); // 3 should be respected
         moduleConfig.addFormBeanConfig(formBean);
@@ -215,8 +212,7 @@ public class TestMockBase extends TestCase {
         ActionFormBean formBean = null;
         ActionMapping mapping = null;
 
-        ModuleConfigFactory factoryObject =
-                ModuleConfigFactory.createFactory();
+        ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
 
         moduleConfig2 = factoryObject.createModuleConfig("/2");
 
@@ -239,8 +235,8 @@ public class TestMockBase extends TestCase {
                 "relative.jsp", false));
 
         // Form Bean "static" is a standard ActionForm subclass (same as default)
-        formBean = new ActionFormBean("static",
-                "org.apache.struts.mock.MockFormBean");
+        formBean =
+            new ActionFormBean("static", "org.apache.struts.mock.MockFormBean");
         moduleConfig2.addFormBeanConfig(formBean);
 
         // Action "/static" uses the "static" form bean in request scope (same as default)
@@ -253,7 +249,8 @@ public class TestMockBase extends TestCase {
         moduleConfig2.addActionConfig(mapping);
 
         // Form Bean "dynamic2" is a DynaActionForm with the same properties
-        formBean = new ActionFormBean("dynamic2",
+        formBean =
+            new ActionFormBean("dynamic2",
                 "org.apache.struts.action.DynaActionForm");
         formBean.addFormPropertyConfig(new FormPropertyConfig(
                 "booleanProperty", "boolean", "false"));
@@ -301,8 +298,7 @@ public class TestMockBase extends TestCase {
 
     // Set up third app for testing URL mapping
     protected void setUpThirdApp() {
-        ModuleConfigFactory factoryObject =
-                ModuleConfigFactory.createFactory();
+        ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
 
         moduleConfig3 = factoryObject.createModuleConfig("/3");
 
@@ -372,20 +368,18 @@ public class TestMockBase extends TestCase {
         assertEquals("page-->response", response, page.getResponse());
         assertEquals("page-->session", session, page.getSession());
         assertEquals("request-->principal", principal,
-                request.getUserPrincipal());
+            request.getUserPrincipal());
         assertEquals("request-->session", session, request.getSession());
-        assertEquals("session-->context",
-                context,
-                session.getServletContext());
+        assertEquals("session-->context", context, session.getServletContext());
 
         // Validate the configuration for the default module
         assertNotNull("moduleConfig is present", moduleConfig);
         assertEquals("context-->moduleConfig", moduleConfig,
-                context.getAttribute(Globals.MODULE_KEY));
+            context.getAttribute(Globals.MODULE_KEY));
 
         // Validate the configuration for the second module
         assertNotNull("moduleConfig2 is present", moduleConfig2);
         assertEquals("context-->moduleConfig2", moduleConfig2,
-                context.getAttribute(Globals.MODULE_KEY + "/2"));
+            context.getAttribute(Globals.MODULE_KEY + "/2"));
     }
 }

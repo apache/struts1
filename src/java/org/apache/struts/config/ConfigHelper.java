@@ -33,25 +33,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * NOTE: THIS CLASS IS UNDER ACTIVE DEVELOPMENT. THE CURRENT CODE IS WRITTEN
- * FOR CLARITY NOT EFFICIENCY. NOT EVERY API FUNCTION HAS BEEN IMPLEMENTED
- * YET.
- *
- * A helper object to expose the Struts shared resources, which are be stored
- * in the application, session, or request contexts, as appropriate.
- *
- * An instance should be created for each request processed. The  methods
- * which return resources from the request or session contexts are not
- * thread-safe.
- *
- * Provided for use by other servlets in the application so they can easily
- * access the Struts shared resources.
- *
- * The resources are stored under attributes in the application, session, or
- * request contexts.
- *
- * The ActionConfig methods simply return the resources from under the context
- * and key used by the Struts ActionServlet when the resources are created.
+ * <p> NOTE: THIS CLASS IS UNDER ACTIVE DEVELOPMENT. THE CURRENT CODE IS
+ * WRITTEN FOR CLARITY NOT EFFICIENCY. NOT EVERY API FUNCTION HAS BEEN
+ * IMPLEMENTED YET. </p><p> A helper object to expose the Struts shared
+ * resources, which are be stored in the application, session, or request
+ * contexts, as appropriate. </p><p> An instance should be created for each
+ * request processed. The  methods which return resources from the request or
+ * session contexts are not thread-safe. </p><p> Provided for use by other
+ * servlets in the application so they can easily access the Struts shared
+ * resources. </p><p> The resources are stored under attributes in the
+ * application, session, or request contexts. </p><p> The ActionConfig methods
+ * simply return the resources from under the context and key used by the
+ * Struts ActionServlet when the resources are created. </p>
  *
  * @version $Rev$ $Date: 2005-05-14 02:09:06 -0400 (Sat, 14 May 2005)
  *          $
@@ -61,27 +54,27 @@ public class ConfigHelper implements ConfigHelperInterface {
     // --------------------------------------------------------  Properites
 
     /**
-     * The application associated with this instance.
+     * <p> The application associated with this instance. </p>
      */
     private ServletContext application = null;
 
     /**
-     * The session associated with this instance.
+     * <p> The session associated with this instance. </p>
      */
     private HttpSession session = null;
 
     /**
-     * The request associated with this instance.
+     * <p> The request associated with this instance. </p>
      */
     private HttpServletRequest request = null;
 
     /**
-     * The response associated with this instance.
+     * <p> The response associated with this instance. </p>
      */
     private HttpServletResponse response = null;
 
     /**
-     * The forward associated with this instance.
+     * <p> The forward associated with this instance. </p>
      */
     private ActionForward forward = null;
 
@@ -89,31 +82,30 @@ public class ConfigHelper implements ConfigHelperInterface {
         super();
     }
 
-    public ConfigHelper(ServletContext application,
-                        HttpServletRequest request,
-                        HttpServletResponse response) {
+    public ConfigHelper(ServletContext application, HttpServletRequest request,
+        HttpServletResponse response) {
         super();
         this.setResources(application, request, response);
     }
 
     /**
-     * Set the application associated with this instance.
-     * [servlet.getServletContext()]
+     * <p> Set the application associated with this instance.
+     * [servlet.getServletContext()] </p>
      */
     public void setApplication(ServletContext application) {
         this.application = application;
     }
 
     /**
-     * Set the session associated with this instance.
+     * <p> Set the session associated with this instance. </p>
      */
     public void setSession(HttpSession session) {
         this.session = session;
     }
 
     /**
-     * Set the request associated with this object. Session object is also set
-     * or cleared.
+     * <p> Set the request associated with this object. Session object is also
+     * set or cleared. </p>
      */
     public void setRequest(HttpServletRequest request) {
         this.request = request;
@@ -126,8 +118,8 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Set the response associated with this isntance. Session object is also
-     * set or cleared.
+     * <p> Set the response associated with this isntance. Session object is
+     * also set or cleared. </p>
      */
     public void setResponse(HttpServletResponse response) {
         this.response = response;
@@ -141,20 +133,19 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Set the application and request for this object instance. The
+     * <p> Set the application and request for this object instance. The
      * ServletContext can be set by any servlet in the application. The
      * request should be the instant request. Most of the other methods
      * retrieve their own objects by reference to the application, request, or
      * session attributes. Do not call other methods without setting these
-     * first! This is also called by the convenience constructor.
+     * first! This is also called by the convenience constructor. </p>
      *
      * @param application - The associated ServletContext.
      * @param request     - The associated HTTP request.
      * @param response    - The associated HTTP response.
      */
     public void setResources(ServletContext application,
-                             HttpServletRequest request,
-                             HttpServletResponse response) {
+        HttpServletRequest request, HttpServletResponse response) {
         setApplication(application);
         setRequest(request);
         setResponse(response);
@@ -166,26 +157,24 @@ public class ConfigHelper implements ConfigHelperInterface {
             return null;
         }
 
-        return (ActionMessages) this.application
-                .getAttribute(Globals.MESSAGE_KEY);
+        return (ActionMessages) this.application.getAttribute(Globals.MESSAGE_KEY);
     }
 
     /**
-     * The application resources for this application.
+     * <p> The application resources for this application. </p>
      */
     public MessageResources getMessageResources() {
         if (this.application == null) {
             return null;
         }
 
-        return (MessageResources) this.application
-                .getAttribute(Globals.MESSAGES_KEY);
+        return (MessageResources) this.application.getAttribute(Globals.MESSAGES_KEY);
     }
 
     /**
-     * The path-mapped pattern (<code>/action/*</code>) or extension mapped
-     * pattern ((<code>*.do</code>) used to determine our Action URIs in this
-     * application.
+     * <p> The path-mapped pattern (<code>/action/*</code>) or extension
+     * mapped pattern ((<code>*.do</code>) used to determine our Action URIs
+     * in this application. </p>
      */
     public String getServletMapping() {
         if (this.application == null) {
@@ -198,7 +187,7 @@ public class ConfigHelper implements ConfigHelperInterface {
     // ---------------------------------------------------- Session Context
 
     /**
-     * The transaction token stored in this session, if it is used.
+     * <p> The transaction token stored in this session, if it is used. </p>
      */
     public String getToken() {
         if (this.session == null) {
@@ -211,9 +200,9 @@ public class ConfigHelper implements ConfigHelperInterface {
     // ---------------------------------------------------- Request Context
 
     /**
-     * The runtime JspException that may be been thrown by a Struts tag
+     * <p> The runtime JspException that may be been thrown by a Struts tag
      * extension, or compatible presentation extension, and placed in the
-     * request.
+     * request. </p>
      */
     public Throwable getException() {
         if (this.request == null) {
@@ -224,20 +213,19 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * The multipart object for this request.
+     * <p> The multipart object for this request. </p>
      */
     public MultipartRequestWrapper getMultipartRequestWrapper() {
         if (this.request == null) {
             return null;
         }
 
-        return (MultipartRequestWrapper) this.request
-                .getAttribute(Globals.MULTIPART_KEY);
+        return (MultipartRequestWrapper) this.request.getAttribute(Globals.MULTIPART_KEY);
     }
 
     /**
-     * The <code>org.apache.struts.ActionMapping</code> instance for this
-     * request.
+     * <p> The <code>org.apache.struts.ActionMapping</code> instance for this
+     * request. </p>
      */
     public ActionMapping getMapping() {
         if (this.request == null) {
@@ -250,8 +238,8 @@ public class ConfigHelper implements ConfigHelperInterface {
     // ---------------------------------------------------- Utility Methods
 
     /**
-     * Return true if a message string for the specified message key is
-     * present for the user's Locale.
+     * <p> Return true if a message string for the specified message key is
+     * present for the user's Locale. </p>
      *
      * @param key Message key
      */
@@ -265,14 +253,15 @@ public class ConfigHelper implements ConfigHelperInterface {
 
         // Return the requested message presence indicator
         return resources.isPresent(RequestUtils.getUserLocale(request, null),
-                key);
+            key);
     }
 
     /*
+     * <p>
      * Retrieve and return the <code>ActionForm</code> bean associated with
      * this mapping, creating and stashing one if necessary.  If there is no
      * form bean associated with this mapping, return <code>null</code>.
-     *
+     * </p>
      */
     public ActionForm getActionForm() {
         // Is there a mapping associated with this request?
@@ -290,7 +279,7 @@ public class ConfigHelper implements ConfigHelperInterface {
         }
 
         // Look up the existing form bean, if any
-        ActionForm instance = null;
+        ActionForm instance;
 
         if ("request".equals(mapping.getScope())) {
             instance = (ActionForm) this.request.getAttribute(attribute);
@@ -302,8 +291,8 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Return the form bean definition associated with the specified logical
-     * name, if any; otherwise return <code>null</code>.
+     * <p> Return the form bean definition associated with the specified
+     * logical name, if any; otherwise return <code>null</code>. </p>
      *
      * @param name Logical name of the requested form bean definition
      */
@@ -312,8 +301,8 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Return the forwarding associated with the specified logical name, if
-     * any; otherwise return <code>null</code>.
+     * <p> Return the forwarding associated with the specified logical name,
+     * if any; otherwise return <code>null</code>. </p>
      *
      * @param name Logical name of the requested forwarding
      */
@@ -322,8 +311,8 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Return the mapping associated with the specified request path, if any;
-     * otherwise return <code>null</code>.
+     * <p> Return the mapping associated with the specified request path, if
+     * any; otherwise return <code>null</code>. </p>
      *
      * @param path Request path for which a mapping is requested
      */
@@ -332,12 +321,19 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Return the form action converted into an action mapping path.  The
+     * <p> Return the form action converted into an action mapping path.  The
      * value of the <code>action</code> property is manipulated as follows in
-     * computing the name of the requested mapping: <ul> <li>Any filename
-     * extension is removed (on the theory that extension mapping is being
-     * used to select the controller servlet).</li> <li>If the resulting value
-     * does not start with a slash, then a slash is prepended.</li> </ul>
+     * computing the name of the requested mapping:</p>
+     *
+     * <ul>
+     *
+     * <li>Any filename extension is removed (on the theory that extension
+     * mapping is being used to select the controller servlet).</li>
+     *
+     * <li>If the resulting value does not start with a slash, then a slash is
+     * prepended.</li>
+     *
+     * </ul>
      */
     public String getActionMappingName(String action) {
         String value = action;
@@ -362,7 +358,7 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Return the form action converted into a server-relative URL.
+     * <p> Return the form action converted into a server-relative URL. </p>
      */
     public String getActionMappingURL(String action) {
         StringBuffer value = new StringBuffer(this.request.getContextPath());
@@ -393,7 +389,6 @@ public class ConfigHelper implements ConfigHelperInterface {
                 value.append(queryString);
             }
         }
-
         // Otherwise, assume extension mapping is in use and extension is
         // already included in the action property
         else {
@@ -409,7 +404,7 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Return the url encoded to maintain the user session, if any.
+     * <p> Return the url encoded to maintain the user session, if any. </p>
      */
     public String getEncodeURL(String url) {
         if ((session != null) && (response != null)) {
@@ -432,7 +427,7 @@ public class ConfigHelper implements ConfigHelperInterface {
     // ------------------------------------------------ Presentation API
 
     /**
-     * Renders the reference for a HTML <base> element
+     * <p> Renders the reference for a HTML <base> element </p>
      */
     public String getOrigRef() {
         // HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
@@ -441,22 +436,21 @@ public class ConfigHelper implements ConfigHelperInterface {
         }
 
         StringBuffer result =
-                RequestUtils.requestToServerUriStringBuffer(request);
+            RequestUtils.requestToServerUriStringBuffer(request);
 
         return result.toString();
     }
 
     /**
-     * Renders the reference for a HTML <base> element.
+     * <p> Renders the reference for a HTML <base> element. </p>
      */
     public String getBaseRef() {
         if (request == null) {
             return null;
         }
 
-        StringBuffer result =
-                RequestUtils.requestToServerStringBuffer(request);
-        String path = null;
+        StringBuffer result = RequestUtils.requestToServerStringBuffer(request);
+        String path;
 
         if (forward == null) {
             path = request.getRequestURI();
@@ -470,8 +464,8 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Return the path for the specified forward, otherwise return
-     * <code>null</code>.
+     * <p> Return the path for the specified forward, otherwise return
+     * <code>null</code>. </p>
      *
      * @param name Name given to local or global forward.
      */
@@ -491,8 +485,8 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Return the localized message for the specified key, otherwise return
-     * <code>null</code>.
+     * <p> Return the localized message for the specified key, otherwise
+     * return <code>null</code>. </p>
      *
      * @param key Message key
      */
@@ -504,12 +498,12 @@ public class ConfigHelper implements ConfigHelperInterface {
         }
 
         return resources.getMessage(RequestUtils.getUserLocale(request, null),
-                key);
+            key);
     }
 
     /**
-     * Look up and return a message string, based on the specified
-     * parameters.
+     * <p> Look up and return a message string, based on the specified
+     * parameters. </p>
      *
      * @param key  Message key to be looked up and returned
      * @param args Replacement parameters for this message
@@ -523,19 +517,17 @@ public class ConfigHelper implements ConfigHelperInterface {
 
         // Return the requested message
         if (args == null) {
-            return resources
-                    .getMessage(RequestUtils.getUserLocale(request, null),
-                            key);
+            return resources.getMessage(RequestUtils.getUserLocale(request, null),
+                key);
         } else {
-            return resources
-                    .getMessage(RequestUtils.getUserLocale(request, null),
-                            key, args);
+            return resources.getMessage(RequestUtils.getUserLocale(request, null),
+                key, args);
         }
     }
 
     /**
-     * Return the URL for the specified ActionMapping, otherwise return
-     * <code>null</code>.
+     * <p> Return the URL for the specified ActionMapping, otherwise return
+     * <code>null</code>. </p>
      *
      * @param path Name given to local or global forward.
      */
@@ -546,7 +538,7 @@ public class ConfigHelper implements ConfigHelperInterface {
     // --------------------------------------------- Presentation Wrappers
 
     /**
-     * Wrapper for getLink(String)
+     * <p> Wrapper for getLink(String) </p>
      *
      * @param name Name given to local or global forward.
      */
@@ -555,7 +547,7 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Wrapper for getMessage(String)
+     * <p> Wrapper for getMessage(String) </p>
      *
      * @param key Message key
      */
@@ -564,7 +556,7 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Wrapper for getMessage(String,Object[])
+     * <p> Wrapper for getMessage(String,Object[]) </p>
      *
      * @param key  Message key to be looked up and returned
      * @param args Replacement parameters for this message
@@ -574,7 +566,7 @@ public class ConfigHelper implements ConfigHelperInterface {
     }
 
     /**
-     * Wrapper for getAction(String)
+     * <p> Wrapper for getAction(String) </p>
      *
      * @param path Name given to local or global forward.
      */

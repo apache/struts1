@@ -18,12 +18,13 @@
 package org.apache.struts.config;
 
 import java.io.Serializable;
+
 import java.util.Enumeration;
 import java.util.Properties;
 
 /**
- * A abstract base class for all config classes.  Provide basic support for
- * arbitrary properties
+ * <p> A abstract base class for all config classes.  Provide basic support
+ * for arbitrary properties </p>
  *
  * @since Struts 1.3
  */
@@ -60,12 +61,12 @@ public abstract class BaseConfig implements Serializable {
     }
 
     /**
-     * Set an arbitary key/value pair which can be retrieved by this config
-     * class. This facility should eliminate many use cases for subclassing
-     * <code>*Config</code> classes by providing a mechanism to pass any
-     * amount of arbitrary configuration information into an config class. <p
-     * /> This method must not be called after configuration is complete, or
-     * an <code>IllegalStateException</code> will be thrown.</p>
+     * <p> Set an arbitary key/value pair which can be retrieved by this
+     * config class. This facility should eliminate many use cases for
+     * subclassing <code>*Config</code> classes by providing a mechanism to
+     * pass any amount of arbitrary configuration information into an config
+     * class. <p /> This method must not be called after configuration is
+     * complete, or an <code>IllegalStateException</code> will be thrown.</p>
      *
      * <p><b>Example</b>
      * <code><pre>
@@ -99,11 +100,11 @@ public abstract class BaseConfig implements Serializable {
     }
 
     /**
-     * Return the entire set of properties configured for this object. At this
-     * time, this only needs to be exposed to support inheritance, so choosing
-     * a conservative access modifier ("protected").
+     * <p> Return the entire set of properties configured for this object. At
+     * this time, this only needs to be exposed to support inheritance, so
+     * choosing a conservative access modifier ("protected"). </p>
      *
-     * @return
+     * @return set of properties configured for this object
      */
     protected Properties getProperties() {
         return this.properties;

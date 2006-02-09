@@ -33,11 +33,11 @@ import javax.servlet.http.HttpServletRequest;
 public class AuthorizeAction extends AbstractAuthorizeAction {
     // ------------------------------------------------------- Protected Methods
     protected boolean isAuthorized(ActionContext context, String[] roles,
-                                   ActionConfig mapping)
-            throws Exception {
+        ActionConfig mapping)
+        throws Exception {
         // Identify the HTTP request object
         ServletActionContext servletActionContext =
-                (ServletActionContext) context;
+            (ServletActionContext) context;
         HttpServletRequest request = servletActionContext.getRequest();
 
         // Check the current user against the list of required roles
@@ -52,9 +52,9 @@ public class AuthorizeAction extends AbstractAuthorizeAction {
     }
 
     protected String getErrorMessage(ActionContext context,
-                                     ActionConfig actionConfig) {
+        ActionConfig actionConfig) {
         ServletActionContext servletActionContext =
-                (ServletActionContext) context;
+            (ServletActionContext) context;
 
         // Retrieve internal message resources
         ActionServlet servlet = servletActionContext.getActionServlet();

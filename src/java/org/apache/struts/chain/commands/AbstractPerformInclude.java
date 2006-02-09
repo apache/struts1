@@ -38,7 +38,7 @@ public abstract class AbstractPerformInclude extends ActionCommandBase {
      * @throws Exception if thrown by the <code>Action</code>
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         ModuleConfig moduleConfig = actionCtx.getModuleConfig();
 
         // Is there an include to be performed?
@@ -67,5 +67,5 @@ public abstract class AbstractPerformInclude extends ActionCommandBase {
      * @throws Exception if thrown by the <code>Action</code>
      */
     protected abstract void perform(ActionContext context, String include)
-            throws Exception;
+        throws Exception;
 }

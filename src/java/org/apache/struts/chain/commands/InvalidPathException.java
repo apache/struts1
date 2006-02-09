@@ -25,7 +25,6 @@ package org.apache.struts.chain.commands;
  *          $
  */
 public class InvalidPathException extends Exception {
-
     /**
      * Field for Path property.
      */

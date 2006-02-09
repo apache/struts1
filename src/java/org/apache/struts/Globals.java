@@ -35,7 +35,7 @@ public class Globals implements Serializable {
      * @since Struts 1.1
      */
     public static final String ACTION_SERVLET_KEY =
-            "org.apache.struts.action.ACTION_SERVLET";
+        "org.apache.struts.action.ACTION_SERVLET";
 
     /**
      * The request attributes key under which a boolean <code>true</code>
@@ -67,7 +67,7 @@ public class Globals implements Serializable {
      * @since Struts 1.2
      */
     public static final String MODULE_PREFIXES_KEY =
-            "org.apache.struts.globals.MODULE_PREFIXES";
+        "org.apache.struts.globals.MODULE_PREFIXES";
 
     /**
      * The request attribute under which we store the original URI of the
@@ -76,7 +76,7 @@ public class Globals implements Serializable {
      * @since Struts 1.3
      */
     public static final String ORIGINAL_URI_KEY =
-            "org.apache.struts.globals.ORIGINAL_URI_KEY";
+        "org.apache.struts.globals.ORIGINAL_URI_KEY";
 
     /**
      * The request attributes key under which your action should store an
@@ -92,7 +92,7 @@ public class Globals implements Serializable {
      * detailed information about what really went wrong.
      */
     public static final String EXCEPTION_KEY =
-            "org.apache.struts.action.EXCEPTION";
+        "org.apache.struts.action.EXCEPTION";
 
     /**
      * The session attributes key under which the user's selected
@@ -109,7 +109,7 @@ public class Globals implements Serializable {
      * instance is passed.
      */
     public static final String MAPPING_KEY =
-            "org.apache.struts.action.mapping.instance";
+        "org.apache.struts.action.mapping.instance";
 
     /**
      * The request attributes key under which your action should store an
@@ -119,7 +119,7 @@ public class Globals implements Serializable {
      * @since Struts 1.1
      */
     public static final String MESSAGE_KEY =
-            "org.apache.struts.action.ACTION_MESSAGE";
+        "org.apache.struts.action.ACTION_MESSAGE";
 
     /**
      * <p>The base of the context attributes key under which our module
@@ -133,13 +133,13 @@ public class Globals implements Serializable {
      * key as a request attribute.</p>
      */
     public static final String MESSAGES_KEY =
-            "org.apache.struts.action.MESSAGE";
+        "org.apache.struts.action.MESSAGE";
 
     /**
      * The request attributes key under which our multipart class is stored.
      */
     public static final String MULTIPART_KEY =
-            "org.apache.struts.action.mapping.multipartclass";
+        "org.apache.struts.action.mapping.multipartclass";
 
     /**
      * <p>The base of the context attributes key under which an array of
@@ -150,7 +150,7 @@ public class Globals implements Serializable {
      * @since Struts 1.1
      */
     public static final String PLUG_INS_KEY =
-            "org.apache.struts.action.PLUG_INS";
+        "org.apache.struts.action.PLUG_INS";
 
     /**
      * <p>The base of the context attributes key under which our
@@ -161,7 +161,7 @@ public class Globals implements Serializable {
      * @since Struts 1.1
      */
     public static final String REQUEST_PROCESSOR_KEY =
-            "org.apache.struts.action.REQUEST_PROCESSOR";
+        "org.apache.struts.action.REQUEST_PROCESSOR";
 
     /**
      * The context attributes key under which we store the mapping defined for
@@ -170,14 +170,14 @@ public class Globals implements Serializable {
      * (<code>*.do</code>).
      */
     public static final String SERVLET_KEY =
-            "org.apache.struts.action.SERVLET_MAPPING";
+        "org.apache.struts.action.SERVLET_MAPPING";
 
     /**
      * The session attributes key under which our transaction token is stored,
      * if it is used.
      */
     public static final String TRANSACTION_TOKEN_KEY =
-            "org.apache.struts.action.TOKEN";
+        "org.apache.struts.action.TOKEN";
 
     /**
      * The page attributes key under which xhtml status is stored.  This may
@@ -190,8 +190,7 @@ public class Globals implements Serializable {
     /**
      * The name of the taglib package.
      */
-    public static final String TAGLIB_PACKAGE =
-            "org.apache.struts.taglib.html";
+    public static final String TAGLIB_PACKAGE = "org.apache.struts.taglib.html";
 
     /**
      * The property under which a Cancel button press is reported.
@@ -202,8 +201,7 @@ public class Globals implements Serializable {
      * The property under which a Cancel button press is reported, if the
      * Cancel button is rendered as an image.
      */
-    public static final String CANCEL_PROPERTY_X =
-            TAGLIB_PACKAGE + ".CANCEL.x";
+    public static final String CANCEL_PROPERTY_X = TAGLIB_PACKAGE + ".CANCEL.x";
 
     /**
      * The property under which a transaction token is reported.

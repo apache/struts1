@@ -20,6 +20,7 @@ package org.apache.struts.mock;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionContext;
+
 import java.util.Enumeration;
 import java.util.HashMap;
 
@@ -43,12 +44,12 @@ public class MockHttpSession implements HttpSession {
     // ----------------------------------------------------- Instance Variables
 
     /**
-     * The set of session attributes.
+     * <p> The set of session attributes. </p>
      */
     protected HashMap attributes = new HashMap();
 
     /**
-     * The ServletContext with which we are associated.
+     * <p> The ServletContext with which we are associated. </p>
      */
     protected ServletContext servletContext = null;
 

@@ -43,7 +43,7 @@ import java.util.Map;
  * <code>getSessionScope</code>. </p>
  */
 public abstract class ActionContextBase extends ContextWrapper
-        implements ActionContext {
+    implements ActionContext {
     /**
      * @see Constants.ACTION_KEY
      */
@@ -52,8 +52,7 @@ public abstract class ActionContextBase extends ContextWrapper
     /**
      * @see
      */
-    public static final String ACTION_CONFIG_KEY =
-            Constants.ACTION_CONFIG_KEY;
+    public static final String ACTION_CONFIG_KEY = Constants.ACTION_CONFIG_KEY;
 
     /**
      * @see Constants.ACTION_FORM_KEY
@@ -64,13 +63,12 @@ public abstract class ActionContextBase extends ContextWrapper
      * @see Constants.FORWARD_CONFIG_KEY
      */
     public static final String FORWARD_CONFIG_KEY =
-            Constants.FORWARD_CONFIG_KEY;
+        Constants.FORWARD_CONFIG_KEY;
 
     /**
      * @see Constants.MODULE_CONFIG_KEY
      */
-    public static final String MODULE_CONFIG_KEY =
-            Constants.MODULE_CONFIG_KEY;
+    public static final String MODULE_CONFIG_KEY = Constants.MODULE_CONFIG_KEY;
 
     /**
      * @see Constants.EXCEPTION_KEY
@@ -93,7 +91,7 @@ public abstract class ActionContextBase extends ContextWrapper
      * @see Constants.MESSAGE_RESOURCES_KEY
      */
     public static final String MESSAGE_RESOURCES_KEY =
-            Constants.MESSAGE_RESOURCES_KEY;
+        Constants.MESSAGE_RESOURCES_KEY;
 
     /**
      * @see Constants.INCLUDE_KEY
@@ -119,8 +117,7 @@ public abstract class ActionContextBase extends ContextWrapper
      * Provide the default context attribute under which to store the
      * transaction token key.
      */
-    public static final String TRANSACTION_TOKEN_KEY =
-            "TRANSACTION_TOKEN_KEY";
+    public static final String TRANSACTION_TOKEN_KEY = "TRANSACTION_TOKEN_KEY";
 
     /**
      * Provide the default context attribute under which to store the token
@@ -333,7 +330,7 @@ public abstract class ActionContextBase extends ContextWrapper
      * @param messages
      */
     public void saveActionMessages(String scopeId, String key,
-                                   ActionMessages messages) {
+        ActionMessages messages) {
         Map scope = getScope(scopeId);
 
         if ((messages == null) || messages.isEmpty()) {
@@ -493,11 +490,10 @@ public abstract class ActionContextBase extends ContextWrapper
      * @throws InstantiationException If object cannot be created
      * @see this.findOrCreateActionForm(String, String, ModuleConfig)
      */
-    public ActionForm findOrCreateActionForm(String formName,
-                                             String scopeName)
-            throws IllegalAccessException, InstantiationException {
+    public ActionForm findOrCreateActionForm(String formName, String scopeName)
+        throws IllegalAccessException, InstantiationException {
         return this.findOrCreateActionForm(formName, scopeName,
-                this.getModuleConfig());
+            this.getModuleConfig());
     }
 
     /**
@@ -514,19 +510,18 @@ public abstract class ActionContextBase extends ContextWrapper
      * @throws IllegalArgumentException If form config is missing from module or
      *                                  scopeName is invalid
      */
-    public ActionForm findOrCreateActionForm(String formName,
-                                             String scopeName,
-                                             ModuleConfig moduleConfig)
-            throws IllegalAccessException, InstantiationException {
+    public ActionForm findOrCreateActionForm(String formName, String scopeName,
+        ModuleConfig moduleConfig)
+        throws IllegalAccessException, InstantiationException {
         Map scope = this.getScope(scopeName);
 
         ActionForm instance;
         FormBeanConfig formBeanConfig =
-                moduleConfig.findFormBeanConfig(formName);
+            moduleConfig.findFormBeanConfig(formName);
 
         if (formBeanConfig == null) {
             throw new IllegalArgumentException("No form config found under "
-                    + formName + " in module " + moduleConfig.getPrefix());
+                + formName + " in module " + moduleConfig.getPrefix());
         }
 
         instance = (ActionForm) scope.get(formName);
@@ -534,7 +529,7 @@ public abstract class ActionContextBase extends ContextWrapper
         // ISSUE: Can we recycle the existing instance (if any)?
         if (instance != null) {
             getLogger().trace("Found an instance in scope " + scopeName
-                    + "; test for reusability");
+                + "; test for reusability");
 
             if (formBeanConfig.canReuse(instance)) {
                 return instance;

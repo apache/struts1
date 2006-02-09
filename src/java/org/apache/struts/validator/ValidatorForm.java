@@ -28,7 +28,9 @@ import org.apache.struts.action.ActionMapping;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+
 import java.io.Serializable;
+
 import java.util.Map;
 
 /**
@@ -37,8 +39,12 @@ import java.util.Map;
  * action element's 'name' attribute from the struts-config.xml which should
  * match the form element's name attribute in the validation.xml.</p>
  *
- * <ul><li>See <code>ValidatorPlugin</code> definition in struts-config.xml
- * for validation rules.</li></ul>
+ * <ul>
+ *
+ * <li>See <code>ValidatorPlugin</code> definition in struts-config.xml for
+ * validation rules.</li>
+ *
+ * </ul>
  *
  * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
  *          $
@@ -93,19 +99,19 @@ public class ValidatorForm extends ActionForm implements Serializable {
      *         validation errors
      */
     public ActionErrors validate(ActionMapping mapping,
-                                 HttpServletRequest request) {
+        HttpServletRequest request) {
         ServletContext application = getServlet().getServletContext();
         ActionErrors errors = new ActionErrors();
 
         String validationKey = getValidationKey(mapping, request);
 
-        Validator validator = Resources.initValidator(validationKey, this,
-                application, request, errors, page);
+        Validator validator =
+            Resources.initValidator(validationKey, this, application, request,
+                errors, page);
 
         try {
             validatorResults = validator.validate();
-        }
-        catch (ValidatorException e) {
+        } catch (ValidatorException e) {
             log.error(e.getMessage(), e);
         }
 
@@ -120,7 +126,7 @@ public class ValidatorForm extends ActionForm implements Serializable {
      * @return validation key - the form element's name in this case
      */
     public String getValidationKey(ActionMapping mapping,
-                                   HttpServletRequest request) {
+        HttpServletRequest request) {
         return mapping.getAttribute();
     }
 
@@ -163,6 +169,6 @@ public class ValidatorForm extends ActionForm implements Serializable {
      */
     public Map getResultValueMap() {
         return ((validatorResults != null)
-                ? validatorResults.getResultValueMap() : null);
+        ? validatorResults.getResultValueMap() : null);
     }
 }

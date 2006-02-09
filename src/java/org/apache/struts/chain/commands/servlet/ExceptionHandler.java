@@ -43,10 +43,9 @@ public class ExceptionHandler extends AbstractExceptionHandler {
 
     // ------------------------------------------------------- Protected Methods
     protected ForwardConfig handle(ActionContext context, Exception exception,
-                                   ExceptionConfig exceptionConfig,
-                                   ActionConfig actionConfig,
-                                   ModuleConfig moduleConfig)
-            throws Exception {
+        ExceptionConfig exceptionConfig, ActionConfig actionConfig,
+        ModuleConfig moduleConfig)
+        throws Exception {
         // Look up the remaining properties needed for this handler
         ServletActionContext sacontext = (ServletActionContext) context;
         ActionForm actionForm = (ActionForm) sacontext.getActionForm();
@@ -55,10 +54,10 @@ public class ExceptionHandler extends AbstractExceptionHandler {
 
         // Handle this exception
         org.apache.struts.action.ExceptionHandler handler =
-                (org.apache.struts.action.ExceptionHandler) ClassUtils
-                        .getApplicationInstance(exceptionConfig.getHandler());
+            (org.apache.struts.action.ExceptionHandler) ClassUtils
+            .getApplicationInstance(exceptionConfig.getHandler());
 
         return (handler.execute(exception, exceptionConfig,
-                (ActionMapping) actionConfig, actionForm, request, response));
+            (ActionMapping) actionConfig, actionForm, request, response));
     }
 }

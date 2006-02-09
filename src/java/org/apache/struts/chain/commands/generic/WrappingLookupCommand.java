@@ -34,12 +34,11 @@ import java.lang.reflect.InvocationTargetException;
  * passes to the looked up command in an alternative class.</p>
  */
 public class WrappingLookupCommand implements Filter {
-
     /**
      * Provide Commons Logging instance for this class.
      */
     private static final Log LOG =
-            LogFactory.getLog(WrappingLookupCommand.class);
+        LogFactory.getLog(WrappingLookupCommand.class);
 
     // ------------------------------------------------------ Instance Variables
 
@@ -177,7 +176,7 @@ public class WrappingLookupCommand implements Filter {
      * @throws Exception On any error
      */
     public boolean execute(Context context)
-            throws Exception {
+        throws Exception {
         if (LOG.isTraceEnabled()) {
             LOG.trace("execute [" + this + "]");
         }
@@ -204,7 +203,7 @@ public class WrappingLookupCommand implements Filter {
         if ((command != null) && (command instanceof Filter)) {
             try {
                 return ((Filter) command).postprocess(getContext(context),
-                        exception);
+                    exception);
             } catch (NoSuchMethodException ex) {
                 LOG.error("Error wrapping context in postprocess", ex);
             } catch (IllegalAccessException ex) {
@@ -241,7 +240,7 @@ public class WrappingLookupCommand implements Filter {
 
         if (catalog == null) {
             throw new IllegalArgumentException("Cannot find catalog '"
-                    + catalogName + "'");
+                + catalogName + "'");
         }
 
         Command command;
@@ -254,21 +253,19 @@ public class WrappingLookupCommand implements Filter {
         if (name != null) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("Lookup command " + name + " in catalog "
-                        + catalogName);
+                    + catalogName);
             }
 
             command = catalog.getCommand(name);
 
             if (LOG.isDebugEnabled()) {
                 LOG.debug("Found command " + command + ";" + " optional: "
-                        + isOptional());
+                    + isOptional());
             }
 
             if ((command == null) && !isOptional()) {
-                throw new IllegalArgumentException(
-                        "Cannot find command " + "'"
-                                + name + "' in catalog '" + catalogName
-                                + "'");
+                throw new IllegalArgumentException("Cannot find command " + "'"
+                    + name + "' in catalog '" + catalogName + "'");
             } else {
                 return command;
             }
@@ -295,13 +292,13 @@ public class WrappingLookupCommand implements Filter {
      * @throws NoSuchMethodException     On failed instantiation
      */
     protected Context getContext(Context context)
-            throws ClassNotFoundException, InstantiationException,
-            InvocationTargetException, IllegalAccessException,
+        throws ClassNotFoundException, InstantiationException, 
+            InvocationTargetException, IllegalAccessException, 
             NoSuchMethodException {
         if (wrapperClassName == null) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("No defined wrapper class; "
-                        + "returning original context.");
+                    + "returning original context.");
             }
 
             return context;
@@ -318,6 +315,6 @@ public class WrappingLookupCommand implements Filter {
         }
 
         return (Context) ConstructorUtils.invokeConstructor(wrapperClass,
-                new Object[]{context});
+            new Object[] { context });
     }
 }

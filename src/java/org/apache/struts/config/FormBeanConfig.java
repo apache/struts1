@@ -33,6 +33,7 @@ import org.apache.struts.util.RequestUtils;
 import org.apache.struts.validator.BeanValidatorForm;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.HashMap;
 
 /**
@@ -210,7 +211,7 @@ public class FormBeanConfig extends BaseConfig {
 
             // get our ancestor's ancestor
             FormBeanConfig ancestor =
-                    moduleConfig.findFormBeanConfig(ancestorName);
+                moduleConfig.findFormBeanConfig(ancestorName);
 
             ancestorName = ancestor.getExtends();
         }
@@ -226,7 +227,7 @@ public class FormBeanConfig extends BaseConfig {
      * @see #inheritFrom(FormBeanConfig)
      */
     protected void inheritFormProperties(FormBeanConfig config)
-            throws ClassNotFoundException, IllegalAccessException,
+        throws ClassNotFoundException, IllegalAccessException, 
             InstantiationException, InvocationTargetException {
         throwIfConfigured();
 
@@ -237,14 +238,14 @@ public class FormBeanConfig extends BaseConfig {
             FormPropertyConfig baseFpc = baseFpcs[i];
 
             // Do we have this prop?
-            FormPropertyConfig prop = this.findFormPropertyConfig(baseFpc
-                    .getName());
+            FormPropertyConfig prop =
+                this.findFormPropertyConfig(baseFpc.getName());
 
             if (prop == null) {
                 // We don't have this, so let's copy it
-                prop = (FormPropertyConfig) RequestUtils
-                        .applicationInstance(baseFpc.getClass()
-                                .getName());
+                prop =
+                    (FormPropertyConfig) RequestUtils.applicationInstance(baseFpc.getClass()
+                                                                                 .getName());
 
                 BeanUtils.copyProperties(prop, baseFpc);
                 this.addFormPropertyConfig(prop);
@@ -275,7 +276,7 @@ public class FormBeanConfig extends BaseConfig {
      *                                some other reason
      */
     public ActionForm createActionForm(ActionServlet servlet)
-            throws IllegalAccessException, InstantiationException {
+        throws IllegalAccessException, InstantiationException {
         Object obj = null;
 
         // Create a new form bean instance
@@ -296,11 +297,10 @@ public class FormBeanConfig extends BaseConfig {
         form.setServlet(servlet);
 
         if (form instanceof DynaBean
-                && ((DynaBean) form)
-                .getDynaClass() instanceof MutableDynaClass) {
+            && ((DynaBean) form).getDynaClass() instanceof MutableDynaClass) {
             DynaBean dynaBean = (DynaBean) form;
-            MutableDynaClass dynaClass = (MutableDynaClass) dynaBean
-                    .getDynaClass();
+            MutableDynaClass dynaClass =
+                (MutableDynaClass) dynaBean.getDynaClass();
 
             // Add properties
             dynaClass.setRestricted(false);
@@ -338,7 +338,7 @@ public class FormBeanConfig extends BaseConfig {
      *                                some other reason
      */
     public ActionForm createActionForm(ActionContext context)
-            throws IllegalAccessException, InstantiationException {
+        throws IllegalAccessException, InstantiationException {
         ActionServlet actionServlet = null;
 
         if (context instanceof ServletActionContext) {
@@ -379,25 +379,22 @@ public class FormBeanConfig extends BaseConfig {
                         // what we really want is to compare against the
                         //  BeanValidatorForm's getInstance()
                         BeanValidatorForm beanValidatorForm =
-                                (BeanValidatorForm) form;
+                            (BeanValidatorForm) form;
 
-                        formClass =
-                                beanValidatorForm.getInstance().getClass();
+                        formClass = beanValidatorForm.getInstance().getClass();
                     }
 
-                    Class configClass = ClassUtils.getApplicationClass(this
-                            .getType());
+                    Class configClass =
+                        ClassUtils.getApplicationClass(this.getType());
 
                     if (configClass.isAssignableFrom(formClass)) {
                         log.debug("Can reuse existing instance (non-dynamic)");
 
                         return (true);
                     }
-                }
-                catch (Exception e) {
-                    log.debug(
-                            "Error testing existing instance for reusability; just create a new instance",
-                            e);
+                } catch (Exception e) {
+                    log.debug("Error testing existing instance for reusability; just create a new instance",
+                        e);
                 }
             }
         }
@@ -418,7 +415,7 @@ public class FormBeanConfig extends BaseConfig {
 
         if (formProperties.containsKey(config.getName())) {
             throw new IllegalArgumentException("Property " + config.getName()
-                    + " already defined");
+                + " already defined");
         }
 
         formProperties.put(config.getName(), config);
@@ -439,11 +436,10 @@ public class FormBeanConfig extends BaseConfig {
      * none, a zero-length array is returned.
      */
     public FormPropertyConfig[] findFormPropertyConfigs() {
-        FormPropertyConfig[] results = new FormPropertyConfig[formProperties
-                .size()];
+        FormPropertyConfig[] results =
+            new FormPropertyConfig[formProperties.size()];
 
-        return ((FormPropertyConfig[]) formProperties.values()
-                .toArray(results));
+        return ((FormPropertyConfig[]) formProperties.values().toArray(results));
     }
 
     /**
@@ -485,7 +481,7 @@ public class FormBeanConfig extends BaseConfig {
      * @see #processExtends(ModuleConfig)
      */
     public void inheritFrom(FormBeanConfig config)
-            throws ClassNotFoundException, IllegalAccessException,
+        throws ClassNotFoundException, IllegalAccessException, 
             InstantiationException, InvocationTargetException {
         throwIfConfigured();
 
@@ -516,7 +512,7 @@ public class FormBeanConfig extends BaseConfig {
      * @see #inheritFrom(FormBeanConfig)
      */
     public void processExtends(ModuleConfig moduleConfig)
-            throws ClassNotFoundException, IllegalAccessException,
+        throws ClassNotFoundException, IllegalAccessException, 
             InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -526,19 +522,18 @@ public class FormBeanConfig extends BaseConfig {
 
         if ((!extensionProcessed) && (ancestor != null)) {
             FormBeanConfig baseConfig =
-                    moduleConfig.findFormBeanConfig(ancestor);
+                moduleConfig.findFormBeanConfig(ancestor);
 
             if (baseConfig == null) {
                 throw new NullPointerException("Unable to find "
-                        + "form bean '" + ancestor + "' to extend.");
+                    + "form bean '" + ancestor + "' to extend.");
             }
 
             // Check against circule inheritance and make sure the base config's
             //  own extends have been processed already
             if (checkCircularInheritance(moduleConfig)) {
                 throw new IllegalArgumentException(
-                        "Circular inheritance detected for form bean "
-                                + getName());
+                    "Circular inheritance detected for form bean " + getName());
             }
 
             // Make sure the ancestor's own extension has been processed.
@@ -593,7 +588,7 @@ public class FormBeanConfig extends BaseConfig {
      */
     protected Class formBeanClass() {
         ClassLoader classLoader =
-                Thread.currentThread().getContextClassLoader();
+            Thread.currentThread().getContextClassLoader();
 
         if (classLoader == null) {
             classLoader = this.getClass().getClassLoader();
@@ -601,8 +596,7 @@ public class FormBeanConfig extends BaseConfig {
 
         try {
             return (classLoader.loadClass(getType()));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return (null);
         }
     }

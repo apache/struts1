@@ -37,17 +37,16 @@ import java.util.Map;
  * be cast to <code>ServletActionContext</code>.</p>
  */
 public class CreateAction
-        extends org.apache.struts.chain.commands.AbstractCreateAction {
+    extends org.apache.struts.chain.commands.AbstractCreateAction {
     // ------------------------------------------------------ Instance Variables
     private static final Log log = LogFactory.getLog(CreateAction.class);
 
     /* :TODO The Action class' dependency on having its "servlet" property set
      * requires this API-dependent subclass of AbstractCreateAction.
      */
-    protected synchronized Action getAction(ActionContext context,
-                                            String type,
-                                            ActionConfig actionConfig)
-            throws Exception {
+    protected synchronized Action getAction(ActionContext context, String type,
+        ActionConfig actionConfig)
+        throws Exception {
         ModuleConfig moduleConfig = actionConfig.getModuleConfig();
         String actionsKey = Constants.ACTIONS_KEY + moduleConfig.getPrefix();
         Map actions = (Map) context.getApplicationScope().get(actionsKey);

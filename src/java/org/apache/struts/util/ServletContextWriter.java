@@ -18,6 +18,7 @@
 package org.apache.struts.util;
 
 import javax.servlet.ServletContext;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 

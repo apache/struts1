@@ -40,10 +40,7 @@ public class SelectForward extends AbstractSelectForward {
      * @param uri          The module-relative URI to be the destination
      */
     protected ForwardConfig forward(ActionContext context,
-                                    ModuleConfig moduleConfig, String uri) {
-        return (new ActionForward(null,
-                uri,
-                false,
-                moduleConfig.getPrefix()));
+        ModuleConfig moduleConfig, String uri) {
+        return (new ActionForward(null, uri, false, moduleConfig.getPrefix()));
     }
 }

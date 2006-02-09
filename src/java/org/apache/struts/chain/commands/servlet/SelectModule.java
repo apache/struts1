@@ -38,21 +38,20 @@ public class SelectModule extends AbstractSelectModule {
         ServletActionContext sacontext = (ServletActionContext) context;
         HttpServletRequest request = sacontext.getRequest();
         String uri =
-                (String) request.getAttribute(Constants.INCLUDE_SERVLET_PATH);
+            (String) request.getAttribute(Constants.INCLUDE_SERVLET_PATH);
 
         if (uri == null) {
             uri = request.getServletPath();
         }
 
         if (uri == null) {
-            throw new IllegalArgumentException(
-                    "No path information in request");
+            throw new IllegalArgumentException("No path information in request");
         }
 
         // Identify the module prefix for the current module
         String prefix = ""; // Initialize to default prefix
-        String[] prefixes = (String[]) sacontext.getApplicationScope()
-                .get(Globals.MODULE_PREFIXES_KEY);
+        String[] prefixes =
+            (String[]) sacontext.getApplicationScope().get(Globals.MODULE_PREFIXES_KEY);
         int lastSlash = 0;
 
         while (prefix.equals("") && ((lastSlash = uri.lastIndexOf("/")) > 0)) {

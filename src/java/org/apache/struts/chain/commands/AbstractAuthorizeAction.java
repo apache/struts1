@@ -37,7 +37,7 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
      * Provide a Commons logging instance for this class.
      */
     private static final Log LOG =
-            LogFactory.getLog(AbstractAuthorizeAction.class);
+        LogFactory.getLog(AbstractAuthorizeAction.class);
 
     // ---------------------------------------------------------- Public Methods
 
@@ -52,7 +52,7 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
      * @throws Exception if authorization fails
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Retrieve ActionConfig
         ActionConfig actionConfig = actionCtx.getActionConfig();
 
@@ -64,7 +64,8 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
         boolean throwEx;
 
         try {
-            throwEx = !(isAuthorized(actionCtx, actionConfig.getRoleNames(),
+            throwEx =
+                !(isAuthorized(actionCtx, actionConfig.getRoleNames(),
                     actionConfig));
         } catch (Exception ex) {
             throwEx = true;
@@ -108,10 +109,8 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
      * @throws Exception If the action cannot be tested for authorization
      */
     protected abstract boolean isAuthorized(ActionContext context,
-                                            String[] roles,
-                                            ActionConfig actionConfig)
-            throws Exception;
-
+        String[] roles, ActionConfig actionConfig)
+        throws Exception;
 
     /**
      * <p> Retrieve error message from context. </p>
@@ -121,5 +120,5 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
      * @return error message
      */
     protected abstract String getErrorMessage(ActionContext context,
-                                              ActionConfig actionConfig);
+        ActionConfig actionConfig);
 }

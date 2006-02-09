@@ -25,12 +25,18 @@ import java.io.Serializable;
 
 /**
  * Factory for <code>MessageResources</code> instances.  The general usage
- * pattern for this class is: <ul> <li>Call <code>MessageResourcesFactory().createFactory()</code>
+ * pattern for this class is:
+ *
+ * <ul>
+ *
+ * <li>Call <code>MessageResourcesFactory().createFactory()</code>
  * to retrieve a <code>MessageResourcesFactory</code> instance.</li> <li>Set
  * properties as required to configure this factory instance to create
  * <code>MessageResources</code> instances with desired characteristics.</li>
+ *
  * <li>Call the <code>createResources()</code> method of the factory to
  * retrieve a newly instantiated <code>MessageResources</code> instance.</li>
+ *
  * </ul>
  *
  * @version $Rev$ $Date: 2005-08-29 23:57:50 -0400 (Mon, 29 Aug 2005)
@@ -55,7 +61,7 @@ public abstract class MessageResourcesFactory implements Serializable {
      * instances.
      */
     protected static String factoryClass =
-            "org.apache.struts.util.PropertyMessageResourcesFactory";
+        "org.apache.struts.util.PropertyMessageResourcesFactory";
 
     // ---------------------------------------------------- Instance Properties
 
@@ -158,12 +164,11 @@ public abstract class MessageResourcesFactory implements Serializable {
                 clazz = RequestUtils.applicationClass(factoryClass);
             }
 
-            MessageResourcesFactory factory = (MessageResourcesFactory) clazz
-                    .newInstance();
+            MessageResourcesFactory factory =
+                (MessageResourcesFactory) clazz.newInstance();
 
             return (factory);
-        }
-        catch (Throwable t) {
+        } catch (Throwable t) {
             LOG.error("MessageResourcesFactory.createFactory", t);
 
             return (null);

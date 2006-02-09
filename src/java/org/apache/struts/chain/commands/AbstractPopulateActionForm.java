@@ -41,7 +41,7 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
      * @throws Exception On an unexpected error
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Is there a form bean for this request?
         ActionForm actionForm = actionCtx.getActionForm();
 
@@ -71,8 +71,7 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
      * @param actionForm   The form bean for this request
      */
     protected abstract void reset(ActionContext context,
-                                  ActionConfig actionConfig,
-                                  ActionForm actionForm);
+        ActionConfig actionConfig, ActionForm actionForm);
 
     /**
      * <p> Populate the given <code>ActionForm</code> with request parameter
@@ -85,9 +84,9 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
      * @throws Exception On an unexpected error
      */
     protected abstract void populate(ActionContext context,
-                                     ActionConfig actionConfig,
-                                     ActionForm actionForm)
-            throws Exception;
+        ActionConfig actionConfig, ActionForm actionForm)
+        throws Exception;
+
     // original implementation casting context to WebContext is not safe
     // when the input value is an ActionContext.
 
@@ -101,8 +100,7 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
      * @param name         The request parameter name to proceess
      * @return The request parameter name trimmed of any suffix or prefix
      */
-    protected String trimParameterName(ActionConfig actionConfig,
-                                       String name) {
+    protected String trimParameterName(ActionConfig actionConfig, String name) {
         String stripped = name;
         String prefix = actionConfig.getPrefix();
         String suffix = actionConfig.getSuffix();
@@ -120,8 +118,8 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
                 return null;
             }
 
-            stripped = stripped.substring(0, stripped.length()
-                    - suffix.length());
+            stripped =
+                stripped.substring(0, stripped.length() - suffix.length());
         }
 
         return stripped;
@@ -142,15 +140,13 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
      * @see Globals.CANCEL_PROPERTY_X
      */
     protected void handleCancel(ActionContext context,
-                                ActionConfig actionConfig,
-                                ActionForm actionForm)
-            throws Exception {
+        ActionConfig actionConfig, ActionForm actionForm)
+        throws Exception {
         Map paramValues = context.getParameterMap();
 
         // Set the cancellation attribute if appropriate
-
         if ((paramValues.get(Globals.CANCEL_PROPERTY) != null)
-                || (paramValues.get(Globals.CANCEL_PROPERTY_X) != null)) {
+            || (paramValues.get(Globals.CANCEL_PROPERTY_X) != null)) {
             context.setCancelled(Boolean.TRUE);
         } else {
             context.setCancelled(Boolean.FALSE);

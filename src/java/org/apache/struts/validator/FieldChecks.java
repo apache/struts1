@@ -32,7 +32,9 @@ import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.io.Serializable;
+
 import java.util.Locale;
 import java.util.StringTokenizer;
 
@@ -53,8 +55,9 @@ public class FieldChecks implements Serializable {
     /**
      * The message resources for this package.
      */
-    private static MessageResources sysmsgs = MessageResources
-            .getMessageResources("org.apache.struts.validator.LocalStrings");
+    private static MessageResources sysmsgs =
+        MessageResources.getMessageResources(
+            "org.apache.struts.validator.LocalStrings");
     public static final String FIELD_TEST_NULL = "NULL";
     public static final String FIELD_TEST_NOTNULL = "NOTNULL";
     public static final String FIELD_TEST_EQUAL = "EQUAL";
@@ -76,19 +79,15 @@ public class FieldChecks implements Serializable {
      * @return true if meets stated requirements, false otherwise.
      */
     public static boolean validateRequired(Object bean, ValidatorAction va,
-                                           Field field, ActionMessages errors,
-                                           Validator validator,
-                                           HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         String value = null;
 
         value = evaluateBean(bean, field);
 
         if (GenericValidator.isBlankOrNull(value)) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
 
             return false;
         } else {
@@ -112,12 +111,10 @@ public class FieldChecks implements Serializable {
      * @return true if meets stated requirements, false otherwise.
      */
     public static boolean validateRequiredIf(Object bean, ValidatorAction va,
-                                             Field field,
-                                             ActionMessages errors,
-                                             Validator validator,
-                                             HttpServletRequest request) {
-        Object form = validator
-                .getParameterValue(org.apache.commons.validator.Validator.BEAN_PARAM);
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
+        Object form =
+            validator.getParameterValue(org.apache.commons.validator.Validator.BEAN_PARAM);
         String value = null;
         boolean required = false;
 
@@ -135,13 +132,11 @@ public class FieldChecks implements Serializable {
         }
 
         while (!GenericValidator.isBlankOrNull(field.getVarValue("field[" + i
-                + "]"))) {
+                    + "]"))) {
             String dependProp = field.getVarValue("field[" + i + "]");
             String dependTest = field.getVarValue("fieldTest[" + i + "]");
-            String dependTestValue =
-                    field.getVarValue("fieldValue[" + i + "]");
-            String dependIndexed =
-                    field.getVarValue("fieldIndexed[" + i + "]");
+            String dependTestValue = field.getVarValue("fieldValue[" + i + "]");
+            String dependIndexed = field.getVarValue("fieldIndexed[" + i + "]");
 
             if (dependIndexed == null) {
                 dependIndexed = "false";
@@ -194,10 +189,7 @@ public class FieldChecks implements Serializable {
         if (required) {
             if (GenericValidator.isBlankOrNull(value)) {
                 errors.add(field.getKey(),
-                        Resources.getActionMessage(validator,
-                                request,
-                                va,
-                                field));
+                    Resources.getActionMessage(validator, request, va, field));
 
                 return false;
             } else {
@@ -225,31 +217,26 @@ public class FieldChecks implements Serializable {
      * @return true if field matches mask, false otherwise.
      */
     public static boolean validateMask(Object bean, ValidatorAction va,
-                                       Field field, ActionMessages errors,
-                                       Validator validator,
-                                       HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         String value = null;
 
         value = evaluateBean(bean, field);
 
         try {
-            String mask = Resources.getVarValue("mask", field, validator,
-                    request, true);
+            String mask =
+                Resources.getVarValue("mask", field, validator, request, true);
 
             if (!GenericValidator.isBlankOrNull(value)
-                    && !GenericValidator.matchRegexp(value, mask)) {
+                && !GenericValidator.matchRegexp(value, mask)) {
                 errors.add(field.getKey(),
-                        Resources.getActionMessage(validator,
-                                request,
-                                va,
-                                field));
+                    Resources.getActionMessage(validator, request, va, field));
 
                 return false;
             } else {
                 return true;
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             processFailure(errors, field, "mask", e);
 
             return false;
@@ -272,9 +259,8 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateByte(Object bean, ValidatorAction va,
-                                      Field field, ActionMessages errors,
-                                      Validator validator,
-                                      HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -288,10 +274,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -313,10 +296,8 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateByteLocale(Object bean, ValidatorAction va,
-                                            Field field,
-                                            ActionMessages errors,
-                                            Validator validator,
-                                            HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -332,10 +313,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -352,8 +330,7 @@ public class FieldChecks implements Serializable {
         if (isString(bean)) {
             value = (String) bean;
         } else {
-            value = ValidatorUtils
-                    .getValueAsString(bean, field.getProperty());
+            value = ValidatorUtils.getValueAsString(bean, field.getProperty());
         }
 
         return value;
@@ -375,9 +352,8 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateShort(Object bean, ValidatorAction va,
-                                       Field field, ActionMessages errors,
-                                       Validator validator,
-                                       HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -391,10 +367,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -416,10 +389,8 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateShortLocale(Object bean, ValidatorAction va,
-                                             Field field,
-                                             ActionMessages errors,
-                                             Validator validator,
-                                             HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -435,10 +406,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -460,9 +428,8 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateInteger(Object bean, ValidatorAction va,
-                                         Field field, ActionMessages errors,
-                                         Validator validator,
-                                         HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -476,10 +443,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -500,12 +464,9 @@ public class FieldChecks implements Serializable {
      * @param request   Current request object.
      * @return true if valid, false otherwise.
      */
-    public static Object validateIntegerLocale(Object bean,
-                                               ValidatorAction va,
-                                               Field field,
-                                               ActionMessages errors,
-                                               Validator validator,
-                                               HttpServletRequest request) {
+    public static Object validateIntegerLocale(Object bean, ValidatorAction va,
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -521,10 +482,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -546,9 +504,8 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateLong(Object bean, ValidatorAction va,
-                                      Field field, ActionMessages errors,
-                                      Validator validator,
-                                      HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -562,10 +519,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -587,10 +541,8 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateLongLocale(Object bean, ValidatorAction va,
-                                            Field field,
-                                            ActionMessages errors,
-                                            Validator validator,
-                                            HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -606,10 +558,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -631,9 +580,8 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateFloat(Object bean, ValidatorAction va,
-                                       Field field, ActionMessages errors,
-                                       Validator validator,
-                                       HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -647,10 +595,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -672,10 +617,8 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateFloatLocale(Object bean, ValidatorAction va,
-                                             Field field,
-                                             ActionMessages errors,
-                                             Validator validator,
-                                             HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -691,10 +634,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -716,9 +656,8 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateDouble(Object bean, ValidatorAction va,
-                                        Field field, ActionMessages errors,
-                                        Validator validator,
-                                        HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -732,10 +671,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -757,10 +693,8 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateDoubleLocale(Object bean, ValidatorAction va,
-                                              Field field,
-                                              ActionMessages errors,
-                                              Validator validator,
-                                              HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -776,10 +710,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -809,21 +740,22 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateDate(Object bean, ValidatorAction va,
-                                      Field field, ActionMessages errors,
-                                      Validator validator,
-                                      HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
         value = evaluateBean(bean, field);
 
         boolean isStrict = false;
-        String datePattern = Resources.getVarValue("datePattern", field,
-                validator, request, false);
+        String datePattern =
+            Resources.getVarValue("datePattern", field, validator, request,
+                false);
 
         if (GenericValidator.isBlankOrNull(datePattern)) {
-            datePattern = Resources.getVarValue("datePatternStrict", field,
-                    validator, request, false);
+            datePattern =
+                Resources.getVarValue("datePatternStrict", field, validator,
+                    request, false);
 
             if (!GenericValidator.isBlankOrNull(datePattern)) {
                 isStrict = true;
@@ -840,20 +772,16 @@ public class FieldChecks implements Serializable {
             if (GenericValidator.isBlankOrNull(datePattern)) {
                 result = GenericTypeValidator.formatDate(value, locale);
             } else {
-                result = GenericTypeValidator.formatDate(value, datePattern,
-                        isStrict);
+                result =
+                    GenericTypeValidator.formatDate(value, datePattern, isStrict);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -876,20 +804,18 @@ public class FieldChecks implements Serializable {
      * @return True if in range, false otherwise.
      */
     public static boolean validateLongRange(Object bean, ValidatorAction va,
-                                            Field field,
-                                            ActionMessages errors,
-                                            Validator validator,
-                                            HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         String value = null;
 
         value = evaluateBean(bean, field);
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
-                String minVar = Resources.getVarValue("min", field, validator,
-                        request, true);
-                String maxVar = Resources.getVarValue("max", field, validator,
-                        request, true);
+                String minVar =
+                    Resources.getVarValue("min", field, validator, request, true);
+                String maxVar =
+                    Resources.getVarValue("max", field, validator, request, true);
                 long longValue = Long.parseLong(value);
                 long min = Long.parseLong(minVar);
                 long max = Long.parseLong(maxVar);
@@ -901,15 +827,11 @@ public class FieldChecks implements Serializable {
 
                 if (!GenericValidator.isInRange(longValue, min, max)) {
                     errors.add(field.getKey(),
-                            Resources.getActionMessage(validator,
-                                    request,
-                                    va,
-                                    field));
+                        Resources.getActionMessage(validator, request, va, field));
 
                     return false;
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 processFailure(errors, field, "longRange", e);
 
                 return false;
@@ -936,19 +858,18 @@ public class FieldChecks implements Serializable {
      * @return True if in range, false otherwise.
      */
     public static boolean validateIntRange(Object bean, ValidatorAction va,
-                                           Field field, ActionMessages errors,
-                                           Validator validator,
-                                           HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         String value = null;
 
         value = evaluateBean(bean, field);
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
-                String minVar = Resources.getVarValue("min", field, validator,
-                        request, true);
-                String maxVar = Resources.getVarValue("max", field, validator,
-                        request, true);
+                String minVar =
+                    Resources.getVarValue("min", field, validator, request, true);
+                String maxVar =
+                    Resources.getVarValue("max", field, validator, request, true);
                 int min = Integer.parseInt(minVar);
                 int max = Integer.parseInt(maxVar);
                 int intValue = Integer.parseInt(value);
@@ -960,15 +881,11 @@ public class FieldChecks implements Serializable {
 
                 if (!GenericValidator.isInRange(intValue, min, max)) {
                     errors.add(field.getKey(),
-                            Resources.getActionMessage(validator,
-                                    request,
-                                    va,
-                                    field));
+                        Resources.getActionMessage(validator, request, va, field));
 
                     return false;
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 processFailure(errors, field, "intRange", e);
 
                 return false;
@@ -995,20 +912,18 @@ public class FieldChecks implements Serializable {
      * @return True if in range, false otherwise.
      */
     public static boolean validateDoubleRange(Object bean, ValidatorAction va,
-                                              Field field,
-                                              ActionMessages errors,
-                                              Validator validator,
-                                              HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         String value = null;
 
         value = evaluateBean(bean, field);
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
-                String minVar = Resources.getVarValue("min", field, validator,
-                        request, true);
-                String maxVar = Resources.getVarValue("max", field, validator,
-                        request, true);
+                String minVar =
+                    Resources.getVarValue("min", field, validator, request, true);
+                String maxVar =
+                    Resources.getVarValue("max", field, validator, request, true);
                 double doubleValue = Double.parseDouble(value);
                 double min = Double.parseDouble(minVar);
                 double max = Double.parseDouble(maxVar);
@@ -1020,15 +935,11 @@ public class FieldChecks implements Serializable {
 
                 if (!GenericValidator.isInRange(doubleValue, min, max)) {
                     errors.add(field.getKey(),
-                            Resources.getActionMessage(validator,
-                                    request,
-                                    va,
-                                    field));
+                        Resources.getActionMessage(validator, request, va, field));
 
                     return false;
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 processFailure(errors, field, "doubleRange", e);
 
                 return false;
@@ -1055,20 +966,18 @@ public class FieldChecks implements Serializable {
      * @return True if in range, false otherwise.
      */
     public static boolean validateFloatRange(Object bean, ValidatorAction va,
-                                             Field field,
-                                             ActionMessages errors,
-                                             Validator validator,
-                                             HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         String value = null;
 
         value = evaluateBean(bean, field);
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
-                String minVar = Resources.getVarValue("min", field, validator,
-                        request, true);
-                String maxVar = Resources.getVarValue("max", field, validator,
-                        request, true);
+                String minVar =
+                    Resources.getVarValue("min", field, validator, request, true);
+                String maxVar =
+                    Resources.getVarValue("max", field, validator, request, true);
                 float floatValue = Float.parseFloat(value);
                 float min = Float.parseFloat(minVar);
                 float max = Float.parseFloat(maxVar);
@@ -1080,15 +989,11 @@ public class FieldChecks implements Serializable {
 
                 if (!GenericValidator.isInRange(floatValue, min, max)) {
                     errors.add(field.getKey(),
-                            Resources.getActionMessage(validator,
-                                    request,
-                                    va,
-                                    field));
+                        Resources.getActionMessage(validator, request, va, field));
 
                     return false;
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 processFailure(errors, field, "floatRange", e);
 
                 return false;
@@ -1114,10 +1019,8 @@ public class FieldChecks implements Serializable {
      * @return true if valid, false otherwise.
      */
     public static Object validateCreditCard(Object bean, ValidatorAction va,
-                                            Field field,
-                                            ActionMessages errors,
-                                            Validator validator,
-                                            HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         Object result = null;
         String value = null;
 
@@ -1131,10 +1034,7 @@ public class FieldChecks implements Serializable {
 
         if (result == null) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
         }
 
         return (result == null) ? Boolean.FALSE : result;
@@ -1156,20 +1056,16 @@ public class FieldChecks implements Serializable {
      * @return True if valid, false otherwise.
      */
     public static boolean validateEmail(Object bean, ValidatorAction va,
-                                        Field field, ActionMessages errors,
-                                        Validator validator,
-                                        HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         String value = null;
 
         value = evaluateBean(bean, field);
 
         if (!GenericValidator.isBlankOrNull(value)
-                && !GenericValidator.isEmail(value)) {
+            && !GenericValidator.isEmail(value)) {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
 
             return false;
         } else {
@@ -1194,31 +1090,26 @@ public class FieldChecks implements Serializable {
      * @return True if stated conditions met.
      */
     public static boolean validateMaxLength(Object bean, ValidatorAction va,
-                                            Field field,
-                                            ActionMessages errors,
-                                            Validator validator,
-                                            HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         String value = null;
 
         value = evaluateBean(bean, field);
 
         if (value != null) {
             try {
-                String maxVar = Resources.getVarValue("maxlength", field,
-                        validator, request, true);
+                String maxVar =
+                    Resources.getVarValue("maxlength", field, validator,
+                        request, true);
                 int max = Integer.parseInt(maxVar);
 
                 if (!GenericValidator.maxLength(value, max)) {
                     errors.add(field.getKey(),
-                            Resources.getActionMessage(validator,
-                                    request,
-                                    va,
-                                    field));
+                        Resources.getActionMessage(validator, request, va, field));
 
                     return false;
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 processFailure(errors, field, "floatRange", e);
 
                 return false;
@@ -1245,31 +1136,26 @@ public class FieldChecks implements Serializable {
      * @return True if stated conditions met.
      */
     public static boolean validateMinLength(Object bean, ValidatorAction va,
-                                            Field field,
-                                            ActionMessages errors,
-                                            Validator validator,
-                                            HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         String value = null;
 
         value = evaluateBean(bean, field);
 
         if (!GenericValidator.isBlankOrNull(value)) {
             try {
-                String minVar = Resources.getVarValue("minlength", field,
-                        validator, request, true);
+                String minVar =
+                    Resources.getVarValue("minlength", field, validator,
+                        request, true);
                 int min = Integer.parseInt(minVar);
 
                 if (!GenericValidator.minLength(value, min)) {
                     errors.add(field.getKey(),
-                            Resources.getActionMessage(validator,
-                                    request,
-                                    va,
-                                    field));
+                        Resources.getActionMessage(validator, request, va, field));
 
                     return false;
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 processFailure(errors, field, "minlength", e);
 
                 return false;
@@ -1281,21 +1167,31 @@ public class FieldChecks implements Serializable {
 
     /**
      * Checks if a field has a valid url. Four optional variables can be
-     * specified to configure url validation. <ul> <li>Variable
+     * specified to configure url validation.
+     *
+     * <ul>
+     *
+     * <li>Variable
      * <code>allow2slashes</code> can be set to <code>true</code> or
      * <code>false</code> to control whether two slashes are allowed - default
      * is <code>false</code> (i.e. two slashes are NOT allowed).</li>
+     *
      * <li>Variable <code>nofragments</code> can be set to <code>true</code>
      * or <code>false</code> to control whether fragments are allowed -
      * default is <code>false</code> (i.e. fragments ARE allowed).</li>
+     *
      * <li>Variable <code>allowallschemes</code> can be set to
      * <code>true</code> or <code>false</code> to control if all schemes are
      * allowed - default is <code>false</code> (i.e. all schemes are NOT
-     * allowed).</li> <li>Variable <code>schemes</code> can be set to a comma
+     * allowed).</li>
+     *
+     * <li>Variable <code>schemes</code> can be set to a comma
      * delimited list of valid schemes. This value is ignored if
      * <code>allowallschemes</code> is set to <code>true</code>. Default
      * schemes allowed are "http", "https" and "ftp" if this variable is not
-     * specified.</li> </ul>
+     * specified.</li>
+     *
+     * </ul>
      *
      * @param bean      The bean validation is being performed on.
      * @param va        The <code>ValidatorAction</code> that is currently
@@ -1310,9 +1206,8 @@ public class FieldChecks implements Serializable {
      * @return True if valid, false otherwise.
      */
     public static boolean validateUrl(Object bean, ValidatorAction va,
-                                      Field field, ActionMessages errors,
-                                      Validator validator,
-                                      HttpServletRequest request) {
+        Field field, ActionMessages errors, Validator validator,
+        HttpServletRequest request) {
         String value = null;
 
         value = evaluateBean(bean, field);
@@ -1322,29 +1217,32 @@ public class FieldChecks implements Serializable {
         }
 
         // Get the options and schemes Vars
-        String allowallschemesVar = Resources.getVarValue("allowallschemes",
-                field, validator, request, false);
+        String allowallschemesVar =
+            Resources.getVarValue("allowallschemes", field, validator, request,
+                false);
         boolean allowallschemes = "true".equalsIgnoreCase(allowallschemesVar);
         int options = allowallschemes ? UrlValidator.ALLOW_ALL_SCHEMES : 0;
 
         String allow2slashesVar =
-                Resources.getVarValue("allow2slashes", field,
-                        validator, request, false);
+            Resources.getVarValue("allow2slashes", field, validator, request,
+                false);
 
         if ("true".equalsIgnoreCase(allow2slashesVar)) {
             options += UrlValidator.ALLOW_2_SLASHES;
         }
 
-        String nofragmentsVar = Resources.getVarValue("nofragments", field,
-                validator, request, false);
+        String nofragmentsVar =
+            Resources.getVarValue("nofragments", field, validator, request,
+                false);
 
         if ("true".equalsIgnoreCase(nofragmentsVar)) {
             options += UrlValidator.NO_FRAGMENTS;
         }
 
-        String schemesVar = allowallschemes ? null
-                : Resources.getVarValue("schemes",
-                field, validator, request, false);
+        String schemesVar =
+            allowallschemes ? null
+                            : Resources.getVarValue("schemes", field,
+                validator, request, false);
 
         // No options or schemes - use GenericValidator as default
         if ((options == 0) && (schemesVar == null)) {
@@ -1352,10 +1250,7 @@ public class FieldChecks implements Serializable {
                 return true;
             } else {
                 errors.add(field.getKey(),
-                        Resources.getActionMessage(validator,
-                                request,
-                                va,
-                                field));
+                    Resources.getActionMessage(validator, request, va, field));
 
                 return false;
             }
@@ -1383,10 +1278,7 @@ public class FieldChecks implements Serializable {
             return true;
         } else {
             errors.add(field.getKey(),
-                    Resources.getActionMessage(validator,
-                            request,
-                            va,
-                            field));
+                Resources.getActionMessage(validator, request, va, field));
 
             return false;
         }
@@ -1396,11 +1288,11 @@ public class FieldChecks implements Serializable {
      * Process a validation failure.
      */
     private static void processFailure(ActionMessages errors, Field field,
-                                       String validator, Throwable t) {
+        String validator, Throwable t) {
         // Log the error
         String logErrorMsg =
-                sysmsgs.getMessage("validation.failed", validator,
-                        field.getProperty(), t.toString());
+            sysmsgs.getMessage("validation.failed", validator,
+                field.getProperty(), t.toString());
 
         log.error(logErrorMsg);
 

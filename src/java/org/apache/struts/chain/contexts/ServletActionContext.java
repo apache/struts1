@@ -52,8 +52,7 @@ public class ServletActionContext extends WebActionContext {
      * @param response The instant HttpServletResponse
      */
     public ServletActionContext(ServletContext context,
-                                HttpServletRequest request,
-                                HttpServletResponse response) {
+        HttpServletRequest request, HttpServletResponse response) {
         this(new ServletWebContext(context, request, response));
     }
 
@@ -131,8 +130,7 @@ public class ServletActionContext extends WebActionContext {
     }
 
     public MessageResources getMessageResources() {
-        return ((MessageResources) getRequest()
-                .getAttribute(Globals.MESSAGES_KEY));
+        return ((MessageResources) getRequest().getAttribute(Globals.MESSAGES_KEY));
     }
 
     // ISSUE: This method would probably be better handled by a "Struts"
@@ -143,7 +141,7 @@ public class ServletActionContext extends WebActionContext {
 
         // Return the requested message resources instance
         return (MessageResources) context.getAttribute(key
-                + getModuleConfig().getPrefix());
+            + getModuleConfig().getPrefix());
     }
 
     public void setMessageResources(MessageResources resources) {
@@ -160,7 +158,7 @@ public class ServletActionContext extends WebActionContext {
      */
     public void setMessageResources(String key, MessageResources resources) {
         this.getRequest().setAttribute(key + getModuleConfig().getPrefix(),
-                resources);
+            resources);
     }
 
     // -------------------------------
@@ -219,13 +217,11 @@ public class ServletActionContext extends WebActionContext {
     }
 
     public ActionMessages getErrors() {
-        return (ActionMessages) this.getRequest()
-                .getAttribute(Globals.ERROR_KEY);
+        return (ActionMessages) this.getRequest().getAttribute(Globals.ERROR_KEY);
     }
 
     public ActionMessages getMessages() {
-        return (ActionMessages) this.getRequest()
-                .getAttribute(Globals.MESSAGE_KEY);
+        return (ActionMessages) this.getRequest().getAttribute(Globals.MESSAGE_KEY);
     }
 
     // -------------------------------

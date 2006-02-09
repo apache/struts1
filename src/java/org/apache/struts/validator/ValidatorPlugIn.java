@@ -27,8 +27,11 @@ import org.xml.sax.SAXException;
 
 import javax.servlet.ServletException;
 import javax.servlet.UnavailableException;
+
 import java.io.IOException;
+
 import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -57,7 +60,7 @@ public class ValidatorPlugIn implements PlugIn {
      * under.
      */
     public final static String VALIDATOR_KEY =
-            "org.apache.commons.validator.VALIDATOR_RESOURCES";
+        "org.apache.commons.validator.VALIDATOR_RESOURCES";
 
     /**
      * Application scope key that <code>StopOnError</code> is stored under.
@@ -65,7 +68,7 @@ public class ValidatorPlugIn implements PlugIn {
      * @since Struts 1.2
      */
     public final static String STOP_ON_ERROR_KEY =
-            "org.apache.struts.validator.STOP_ON_ERROR";
+        "org.apache.struts.validator.STOP_ON_ERROR";
 
     /**
      * The module configuration for our owning module.
@@ -148,7 +151,7 @@ public class ValidatorPlugIn implements PlugIn {
      * @throws ServletException if we cannot configure ourselves correctly
      */
     public void init(ActionServlet servlet, ModuleConfig config)
-            throws ServletException {
+        throws ServletException {
         // Remember our associated configuration and servlet
         this.config = config;
         this.servlet = servlet;
@@ -158,17 +161,15 @@ public class ValidatorPlugIn implements PlugIn {
             this.initResources();
 
             servlet.getServletContext().setAttribute(VALIDATOR_KEY
-                    + config.getPrefix(), resources);
+                + config.getPrefix(), resources);
 
             servlet.getServletContext().setAttribute(STOP_ON_ERROR_KEY + '.'
-                    + config.getPrefix(),
-                    (this.stopOnFirstError ? Boolean.TRUE : Boolean.FALSE));
-        }
-        catch (Exception e) {
+                + config.getPrefix(),
+                (this.stopOnFirstError ? Boolean.TRUE : Boolean.FALSE));
+        } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new UnavailableException(
-                    "Cannot load a validator resource from '" + pathnames
-                            + "'");
+                "Cannot load a validator resource from '" + pathnames + "'");
         }
     }
 
@@ -194,7 +195,7 @@ public class ValidatorPlugIn implements PlugIn {
      * @throws ServletException if we cannot initialize these resources
      */
     protected void initResources()
-            throws IOException, ServletException {
+        throws IOException, ServletException {
         if ((pathnames == null) || (pathnames.length() <= 0)) {
             return;
         }
@@ -209,11 +210,11 @@ public class ValidatorPlugIn implements PlugIn {
 
                 if (log.isInfoEnabled()) {
                     log.info("Loading validation rules file from '"
-                            + validatorRules + "'");
+                        + validatorRules + "'");
                 }
 
-                URL input = servlet.getServletContext()
-                        .getResource(validatorRules);
+                URL input =
+                    servlet.getServletContext().getResource(validatorRules);
 
                 // If the config isn't in the servlet context, try the class loader
                 // which allows the config files to be stored in a jar
@@ -225,9 +226,8 @@ public class ValidatorPlugIn implements PlugIn {
                     urlList.add(input);
                 } else {
                     throw new ServletException(
-                            "Skipping validation rules file from '"
-                                    + validatorRules
-                                    + "'.  No url could be located.");
+                        "Skipping validation rules file from '"
+                        + validatorRules + "'.  No url could be located.");
                 }
             }
 
@@ -241,8 +241,7 @@ public class ValidatorPlugIn implements PlugIn {
             }
 
             this.resources = new ValidatorResources(urlArray);
-        }
-        catch (SAXException sex) {
+        } catch (SAXException sex) {
             log.error("Skipping all validation", sex);
             throw new ServletException(sex);
         }

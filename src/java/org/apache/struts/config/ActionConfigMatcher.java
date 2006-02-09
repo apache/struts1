@@ -24,6 +24,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.util.WildcardHelper;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,36 +33,35 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * Matches paths against pre-compiled wildcard expressions pulled from action
- * configs. It uses the wildcard matcher from the Apache Cocoon project.
- * Patterns will be matched in the order they exist in the Struts config file.
- * The last match wins, so more specific patterns should be defined after less
- * specific patterns.
+ * <p> Matches paths against pre-compiled wildcard expressions pulled from
+ * action configs. It uses the wildcard matcher from the Apache Cocoon
+ * project. Patterns will be matched in the order they exist in the Struts
+ * config file. The last match wins, so more specific patterns should be
+ * defined after less specific patterns.
  *
  * @since Struts 1.2
  */
 public class ActionConfigMatcher implements Serializable {
     /**
-     * The logging instance
+     * <p> The logging instance </p>
      */
-    private static final Log log =
-            LogFactory.getLog(ActionConfigMatcher.class);
+    private static final Log log = LogFactory.getLog(ActionConfigMatcher.class);
 
     /**
-     * Handles all wildcard pattern matching.
+     * <p> Handles all wildcard pattern matching. </p>
      */
     private static final WildcardHelper wildcard = new WildcardHelper();
 
     /**
-     * The compiled paths and their associated ActionConfig's
+     * <p> The compiled paths and their associated ActionConfig's </p>
      */
     private List compiledPaths;
 
     /**
-     * Finds and precompiles the wildcard patterns from the ActionConfig
+     * <p> Finds and precompiles the wildcard patterns from the ActionConfig
      * "path" attributes. ActionConfig's will be evaluated in the order they
      * exist in the Struts config file. Only paths that actually contain a
-     * wildcard will be compiled.
+     * wildcard will be compiled. </p>
      *
      * @param configs An array of ActionConfig's to process
      */
@@ -90,7 +90,7 @@ public class ActionConfigMatcher implements Serializable {
     }
 
     /**
-     * Matches the path against the compiled wildcard patterns.
+     * <p> Matches the path against the compiled wildcard patterns. </p>
      *
      * @param path The portion of the request URI for selecting a config.
      * @return The action config if matched, else null
@@ -101,7 +101,7 @@ public class ActionConfigMatcher implements Serializable {
         if (compiledPaths.size() > 0) {
             if (log.isDebugEnabled()) {
                 log.debug("Attempting to match '" + path
-                        + "' to a wildcard pattern");
+                    + "' to a wildcard pattern");
             }
 
             if ((path.length() > 0) && (path.charAt(0) == '/')) {
@@ -117,10 +117,11 @@ public class ActionConfigMatcher implements Serializable {
                 if (wildcard.match(vars, path, m.getPattern())) {
                     if (log.isDebugEnabled()) {
                         log.debug("Path matches pattern '"
-                                + m.getActionConfig().getPath() + "'");
+                            + m.getActionConfig().getPath() + "'");
                     }
 
-                    config = convertActionConfig(path,
+                    config =
+                        convertActionConfig(path,
                             (ActionConfig) m.getActionConfig(), vars);
                 }
             }
@@ -130,8 +131,8 @@ public class ActionConfigMatcher implements Serializable {
     }
 
     /**
-     * Clones the ActionConfig and its children, replacing various properties
-     * with the values of the wildcard-matched strings.
+     * <p> Clones the ActionConfig and its children, replacing various
+     * properties with the values of the wildcard-matched strings. </p>
      *
      * @param path The requested path
      * @param orig The original ActionConfig
@@ -140,15 +141,14 @@ public class ActionConfigMatcher implements Serializable {
      *         wildcard-matched values
      */
     protected ActionConfig convertActionConfig(String path, ActionConfig orig,
-                                               Map vars) {
+        Map vars) {
         ActionConfig config = null;
 
         try {
             config = (ActionConfig) BeanUtils.cloneBean(orig);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             log.warn("Unable to clone action config, recommend not using "
-                    + "wildcards", ex);
+                + "wildcards", ex);
 
             return null;
         }
@@ -169,8 +169,7 @@ public class ActionConfigMatcher implements Serializable {
         config.setInput(convertParam(orig.getInput(), vars));
         config.setCatalog(convertParam(orig.getCatalog(), vars));
         config.setCommand(convertParam(orig.getCommand(), vars));
-        config.setMultipartClass(convertParam(orig.getMultipartClass(),
-                vars));
+        config.setMultipartClass(convertParam(orig.getMultipartClass(), vars));
         config.setPrefix(convertParam(orig.getPrefix(), vars));
         config.setSuffix(convertParam(orig.getSuffix(), vars));
 
@@ -185,9 +184,8 @@ public class ActionConfigMatcher implements Serializable {
             cfg.setCommand(convertParam(fConfigs[x].getCommand(), vars));
             cfg.setCatalog(convertParam(fConfigs[x].getCatalog(), vars));
 
-            replaceProperties(fConfigs[x].getProperties(),
-                    cfg.getProperties(),
-                    vars);
+            replaceProperties(fConfigs[x].getProperties(), cfg.getProperties(),
+                vars);
 
             config.removeForwardConfig(fConfigs[x]);
             config.addForwardConfig(cfg);
@@ -207,25 +205,26 @@ public class ActionConfigMatcher implements Serializable {
     }
 
     /**
-     * Replaces placeholders from one Properties values set to another.
+     * <p> Replaces placeholders from one Properties values set to another.
+     * </p>
      *
      * @param orig  The original properties set with placehold values
      * @param props The target properties to store the processed values
      * @param vars  A Map of wildcard-matched strings
      */
-    protected void replaceProperties(Properties orig, Properties props,
-                                     Map vars) {
+    protected void replaceProperties(Properties orig, Properties props, Map vars) {
         Map.Entry entry = null;
 
         for (Iterator i = orig.entrySet().iterator(); i.hasNext();) {
             entry = (Map.Entry) i.next();
             props.setProperty((String) entry.getKey(),
-                    convertParam((String) entry.getValue(), vars));
+                convertParam((String) entry.getValue(), vars));
         }
     }
 
     /**
-     * Inserts into a value wildcard-matched strings where specified.
+     * <p> Inserts into a value wildcard-matched strings where specified.
+     * </p>
      *
      * @param val  The value to convert
      * @param vars A Map of wildcard-matched strings
@@ -259,21 +258,22 @@ public class ActionConfigMatcher implements Serializable {
     }
 
     /**
-     * Stores a compiled wildcard pattern and the ActionConfig it came from.
+     * <p> Stores a compiled wildcard pattern and the ActionConfig it came
+     * from. </p>
      */
     private class Mapping implements Serializable {
         /**
-         * The compiled pattern.
+         * <p> The compiled pattern. </p>
          */
         private int[] pattern;
 
         /**
-         * The original ActionConfig.
+         * <p> The original ActionConfig. </p>
          */
         private ActionConfig config;
 
         /**
-         * Contructs a read-only Mapping instance.
+         * <p> Contructs a read-only Mapping instance. </p>
          *
          * @param pattern The compiled pattern
          * @param config  The original ActionConfig
@@ -284,7 +284,7 @@ public class ActionConfigMatcher implements Serializable {
         }
 
         /**
-         * Gets the compiled wildcard pattern.
+         * <p> Gets the compiled wildcard pattern. </p>
          *
          * @return The compiled pattern
          */
@@ -293,7 +293,7 @@ public class ActionConfigMatcher implements Serializable {
         }
 
         /**
-         * Gets the ActionConfig that contains the pattern.
+         * <p> Gets the ActionConfig that contains the pattern. </p>
          *
          * @return The associated ActionConfig
          */

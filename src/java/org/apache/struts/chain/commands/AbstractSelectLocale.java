@@ -31,14 +31,13 @@ import java.util.Locale;
  *          $
  */
 public abstract class AbstractSelectLocale extends ActionCommandBase {
-
     // ------------------------------------------------------ Instance Variables
 
     /**
      * <p> Provide Commons Logging instance for this class. </p>
      */
     private static final Log LOG =
-            LogFactory.getLog(AbstractSelectLocale.class);
+        LogFactory.getLog(AbstractSelectLocale.class);
 
     // ---------------------------------------------------------- Public Methods
 
@@ -50,7 +49,7 @@ public abstract class AbstractSelectLocale extends ActionCommandBase {
      * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)
-            throws Exception {
+        throws Exception {
         // Are we configured to select Locale automatically?
         LOG.trace("retrieve config...");
 
@@ -59,7 +58,7 @@ public abstract class AbstractSelectLocale extends ActionCommandBase {
         if (!moduleConfig.getControllerConfig().getLocale()) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("module is not configured for a specific locale; "
-                        + "nothing to do");
+                    + "nothing to do");
             }
 
             return (false);
