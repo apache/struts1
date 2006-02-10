@@ -18,13 +18,13 @@
 package org.apache.struts.chain.commands.generic;
 
 import junit.framework.TestCase;
+
 import org.apache.commons.chain.Context;
 import org.apache.commons.chain.impl.ContextBase;
 import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
 
 /* JUnitTest case for class: org.apache.struts.chain.commands.generic.WrappingLookupCommand */
-
 public class TestWrappingLookupCommand extends TestCase {
     public TestWrappingLookupCommand(String _name) {
         super(_name);
@@ -49,7 +49,7 @@ public class TestWrappingLookupCommand extends TestCase {
     }
 
     public void testWrapContextSubclass()
-            throws Exception {
+        throws Exception {
         WrappingLookupCommand command = new WrappingLookupCommand();
 
         command.setWrapperClassName(ServletActionContext.class.getName());
@@ -64,7 +64,7 @@ public class TestWrappingLookupCommand extends TestCase {
 
     /* Executes the test case */
     public static void main(String[] argv) {
-        String[] testCaseList = {TestWrappingLookupCommand.class.getName()};
+        String[] testCaseList = { TestWrappingLookupCommand.class.getName() };
 
         junit.textui.TestRunner.main(testCaseList);
     }

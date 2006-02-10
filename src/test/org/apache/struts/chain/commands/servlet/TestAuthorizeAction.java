@@ -1,6 +1,7 @@
 package org.apache.struts.chain.commands.servlet;
 
 import junit.framework.TestCase;
+
 import org.apache.commons.chain.web.servlet.ServletWebContext;
 import org.apache.struts.chain.commands.UnauthorizedActionException;
 import org.apache.struts.chain.contexts.ServletActionContext;
@@ -13,7 +14,6 @@ import org.apache.struts.mock.MockServletConfig;
 import org.apache.struts.mock.MockServletContext;
 
 /* JUnitTest case for class: org.apache.struts.chain.commands.servlet.AuthorizeAction */
-
 public class TestAuthorizeAction extends TestCase {
     MockHttpServletRequest request = null;
     MockPrincipal principal = null;
@@ -28,18 +28,19 @@ public class TestAuthorizeAction extends TestCase {
     /* setUp method for test case */
     protected void setUp() throws Exception {
         this.request = new MockHttpServletRequest();
-        this.principal = new MockPrincipal("Mr. Macri",
-                new String[]{"administrator"});
+        this.principal =
+            new MockPrincipal("Mr. Macri", new String[] { "administrator" });
         this.request.setUserPrincipal(principal);
 
         MockServletConfig servletConfig = new MockServletConfig();
         MockServletContext servletContext = new MockServletContext();
-        MockActionServlet servlet = new MockActionServlet(servletContext,
-                servletConfig);
+        MockActionServlet servlet =
+            new MockActionServlet(servletContext, servletConfig);
 
         servlet.initInternal();
 
-        this.saContext = new ServletActionContext(servletContext, request,
+        this.saContext =
+            new ServletActionContext(servletContext, request,
                 new MockHttpServletResponse());
 
         this.saContext.setActionServlet(servlet);
@@ -51,7 +52,7 @@ public class TestAuthorizeAction extends TestCase {
     }
 
     public void testAuthorizeOneRole()
-            throws Exception {
+        throws Exception {
         ActionConfig config = new ActionConfig();
 
         config.setPath("/testAuthorizeOneRole");
@@ -64,7 +65,7 @@ public class TestAuthorizeAction extends TestCase {
     }
 
     public void testAuthorizeOneOfManyRoles()
-            throws Exception {
+        throws Exception {
         ActionConfig config = new ActionConfig();
 
         config.setPath("/testAuthorizeOneOfManyRoles");
@@ -77,7 +78,7 @@ public class TestAuthorizeAction extends TestCase {
     }
 
     public void testAuthorizeNoRoles()
-            throws Exception {
+        throws Exception {
         ActionConfig config = new ActionConfig();
 
         config.setPath("/testAuthorizeNoRoles");
@@ -89,7 +90,7 @@ public class TestAuthorizeAction extends TestCase {
     }
 
     public void testNotAuthorizedOneRole()
-            throws Exception {
+        throws Exception {
         ActionConfig config = new ActionConfig();
 
         config.setPath("/testNotAuthorizedOneRole");
@@ -98,13 +99,12 @@ public class TestAuthorizeAction extends TestCase {
 
         try {
             boolean result = command.execute(saContext);
-        }
-        catch (UnauthorizedActionException ex) {
+        } catch (UnauthorizedActionException ex) {
         }
     }
 
     public void testNotAuthorizedOneOfManyRoles()
-            throws Exception {
+        throws Exception {
         ActionConfig config = new ActionConfig();
 
         config.setPath("/testNotAuthorizedOneOfManyRoles");
@@ -113,14 +113,13 @@ public class TestAuthorizeAction extends TestCase {
 
         try {
             boolean result = command.execute(saContext);
-        }
-        catch (UnauthorizedActionException ex) {
+        } catch (UnauthorizedActionException ex) {
         }
     }
 
     /* Executes the test case */
     public static void main(String[] argv) {
-        String[] testCaseList = {TestAuthorizeAction.class.getName()};
+        String[] testCaseList = { TestAuthorizeAction.class.getName() };
 
         junit.textui.TestRunner.main(testCaseList);
     }

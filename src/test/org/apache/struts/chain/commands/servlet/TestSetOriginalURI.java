@@ -1,6 +1,7 @@
 package org.apache.struts.chain.commands.servlet;
 
 import junit.framework.TestCase;
+
 import org.apache.struts.Globals;
 import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.mock.MockActionServlet;
@@ -10,7 +11,6 @@ import org.apache.struts.mock.MockServletConfig;
 import org.apache.struts.mock.MockServletContext;
 
 /* JUnitTest case for class: org.apache.struts.chain.commands.servlet.SetOriginalURI */
-
 public class TestSetOriginalURI extends TestCase {
     SetOriginalURI command = null;
 
@@ -28,19 +28,19 @@ public class TestSetOriginalURI extends TestCase {
     }
 
     public void testSetOriginalURI()
-            throws Exception {
-        MockHttpServletRequest request = new MockHttpServletRequest("foo/",
-                "bar.do", null, null);
+        throws Exception {
+        MockHttpServletRequest request =
+            new MockHttpServletRequest("foo/", "bar.do", null, null);
         MockServletConfig servletConfig = new MockServletConfig();
         MockServletContext servletContext = new MockServletContext();
-        MockActionServlet servlet = new MockActionServlet(servletContext,
-                servletConfig);
+        MockActionServlet servlet =
+            new MockActionServlet(servletContext, servletConfig);
 
         servlet.initInternal();
 
         ServletActionContext saContext =
-                new ServletActionContext(servletContext,
-                        request, new MockHttpServletResponse());
+            new ServletActionContext(servletContext, request,
+                new MockHttpServletResponse());
 
         saContext.setActionServlet(servlet);
 
@@ -59,7 +59,7 @@ public class TestSetOriginalURI extends TestCase {
 
     /* Executes the test case */
     public static void main(String[] argv) {
-        String[] testCaseList = {TestSetOriginalURI.class.getName()};
+        String[] testCaseList = { TestSetOriginalURI.class.getName() };
 
         junit.textui.TestRunner.main(testCaseList);
     }
