@@ -20,6 +20,7 @@ package org.apache.struts.validator;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.validator.util.ValidatorUtils;
@@ -53,8 +54,7 @@ public class TestValidWhen extends TestCase {
      * @param theArgs the arguments. Not used
      */
     public static void main(String[] theArgs) {
-        junit.awtui.TestRunner
-                .main(new String[]{TestValidWhen.class.getName()});
+        junit.awtui.TestRunner.main(new String[] { TestValidWhen.class.getName() });
     }
 
     /**
@@ -70,11 +70,10 @@ public class TestValidWhen extends TestCase {
         testBean = new PojoBean(123, 789);
         testBean.setStringValue1("ABC");
         testBean.setStringValue2(null);
-        testBean.setBeans(new PojoBean[]{
-                new PojoBean(11, 12), new PojoBean(21, 22),
-                new PojoBean(31, 42),
+        testBean.setBeans(new PojoBean[] {
+                new PojoBean(11, 12), new PojoBean(21, 22), new PojoBean(31, 42),
                 new PojoBean(41, 52), new PojoBean(51, 62)
-        });
+            });
         testBean.setMapped("testKey", "mappedValue");
     }
 
@@ -134,11 +133,11 @@ public class TestValidWhen extends TestCase {
 
         // single quote
         doParse("(*this* == '" + testValue + "')", testValue, 0,
-                "stringValue1", true);
+            "stringValue1", true);
 
         // double quote
         doParse("(*this* == \"" + testValue + "\")", testValue, 0,
-                "stringValue1", true);
+            "stringValue1", true);
     }
 
     /**
@@ -160,41 +159,24 @@ public class TestValidWhen extends TestCase {
         doParse("(integerValue1 == 123)", testBean, 0, "integerValue1", true);
 
         // Negative Numbers
-        doParse("((intValue2 < -10)     and (intValue2 > -60))",
-                numberBean,
-                0,
-                "intValue2",
-                true);
+        doParse("((intValue2 < -10)     and (intValue2 > -60))", numberBean, 0,
+            "intValue2", true);
         doParse("((integerValue2 < -10) and (integerValue2 > -60))",
-                numberBean, 0, "integerValue2", true);
+            numberBean, 0, "integerValue2", true);
 
         // Hex
-        doParse("(integerValue1 == 0x7B)",
-                testBean,
-                0,
-                "integerValue1",
-                true);
+        doParse("(integerValue1 == 0x7B)", testBean, 0, "integerValue1", true);
 
         // Octal
-        doParse("(integerValue1 == 0173)",
-                testBean,
-                0,
-                "integerValue1",
-                true);
+        doParse("(integerValue1 == 0173)", testBean, 0, "integerValue1", true);
 
         // Test 'String' numbers
         PojoBean stringBean = new PojoBean("11", "2");
 
-        doParse("(stringValue1 > stringValue2)",
-                stringBean,
-                0,
-                "stringValue1",
-                true);
-        doParse("(stringValue1 < stringValue2)",
-                stringBean,
-                0,
-                "stringValue1",
-                false);
+        doParse("(stringValue1 > stringValue2)", stringBean, 0, "stringValue1",
+            true);
+        doParse("(stringValue1 < stringValue2)", stringBean, 0, "stringValue1",
+            false);
     }
 
     /**
@@ -214,23 +196,23 @@ public class TestValidWhen extends TestCase {
     public void testJoined() {
         // Join with 'or'
         doParse("((*this* == 'ABC') or (stringValue2 == null))", testBean, 0,
-                "stringValue1", true);
+            "stringValue1", true);
         doParse("((*this* != 'ABC') or (stringValue2 == null))", testBean, 0,
-                "stringValue1", true);
+            "stringValue1", true);
         doParse("((*this* == 'ABC') or (stringValue2 != null))", testBean, 0,
-                "stringValue1", true);
+            "stringValue1", true);
         doParse("((*this* != 'ABC') or (stringValue2 != null))", testBean, 0,
-                "stringValue1", false);
+            "stringValue1", false);
 
         // Join with 'and'
         doParse("((*this* == 'ABC') and (stringValue2 == null))", testBean, 0,
-                "stringValue1", true);
+            "stringValue1", true);
         doParse("((*this* != 'ABC') and (stringValue2 == null))", testBean, 0,
-                "stringValue1", false);
+            "stringValue1", false);
         doParse("((*this* == 'ABC') and (stringValue2 != null))", testBean, 0,
-                "stringValue1", false);
+            "stringValue1", false);
         doParse("((*this* != 'ABC') and (stringValue2 != null))", testBean, 0,
-                "stringValue1", false);
+            "stringValue1", false);
     }
 
     /**
@@ -245,23 +227,20 @@ public class TestValidWhen extends TestCase {
      * @param expected Expected Result
      */
     private void doParse(String test, Object bean, int index, String property,
-                         boolean expected) {
+        boolean expected) {
         boolean result = false;
 
         try {
             result = doParse(test, bean, index, property);
-        }
-        catch (Exception ex) {
-            log.error("Parsing " + test + " for property '" + property + "'",
-                    ex);
+        } catch (Exception ex) {
+            log.error("Parsing " + test + " for property '" + property + "'", ex);
             fail("Parsing " + test + " threw " + ex);
         }
 
         if (expected) {
             assertTrue(test + " didn't return TRUE for " + property, result);
         } else {
-            assertFalse(test + " didn't return FALSE for " + property,
-                    result);
+            assertFalse(test + " didn't return FALSE for " + property, result);
         }
     }
 
@@ -275,14 +254,13 @@ public class TestValidWhen extends TestCase {
      * @param property Bean property
      */
     private void doParseFail(String test, Object bean, int index,
-                             String property) {
+        String property) {
         try {
             boolean result = doParse(test, bean, index, property);
 
             fail("Parsing " + test + " didn't throw exception as expected "
-                    + result);
-        }
-        catch (Exception expected) {
+                + result);
+        } catch (Exception expected) {
             // ignore exception - expected result
         }
     }
@@ -295,17 +273,17 @@ public class TestValidWhen extends TestCase {
      * @param index    index value
      * @param property Bean property
      */
-    private boolean doParse(String test, Object bean, int index,
-                            String property)
-            throws Exception {
+    private boolean doParse(String test, Object bean, int index, String property)
+        throws Exception {
         if (bean == null) {
             throw new NullPointerException("Bean is null for property '"
-                    + property + "'");
+                + property + "'");
         }
 
-        String value = String.class.isInstance(bean) ? (String) bean
-                : ValidatorUtils
-                .getValueAsString(bean, property);
+        String value =
+            String.class.isInstance(bean) ? (String) bean
+                                          : ValidatorUtils.getValueAsString(bean,
+                property);
 
         ValidWhenLexer lexer = new ValidWhenLexer(new StringReader(test));
 
