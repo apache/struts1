@@ -84,7 +84,7 @@ public class TestActionRedirect extends TestCase {
         assertHasParameter(ar.parameterValues, "param", "param2");
         assertHasParameter(ar.parameterValues, "param", "someString");
         assertEquals("Incorrect number of parameters", 3,
-                countParameters(ar.parameterValues, "param"));
+            countParameters(ar.parameterValues, "param"));
     }
 
     /**
@@ -103,7 +103,7 @@ public class TestActionRedirect extends TestCase {
         assertHasParameter(ar.parameterValues, "param", "param2");
         assertHasParameter(ar.parameterValues, "object1", "someString");
         assertEquals("Incorrect original path.", forward.getPath(),
-                ar.getOriginalPath());
+            ar.getOriginalPath());
     }
 
     /**
@@ -115,18 +115,18 @@ public class TestActionRedirect extends TestCase {
      * @param paramValue the value to check for
      */
     static void assertHasParameter(Map parameters, String paramName,
-                                   String paramValue) {
+        String paramValue) {
         Object value = parameters.get(paramName);
 
         if (value == null) {
             throw new AssertionFailedError("Parameter [" + paramName
-                    + "] not found");
+                + "] not found");
         }
 
         if (value instanceof String) {
             if (!paramValue.equals(value)) {
                 throw new ComparisonFailure("Incorrect value found",
-                        paramValue, (String) value);
+                    paramValue, (String) value);
             }
         } else if (value instanceof String[]) {
             // see if our value is among those in the array
@@ -139,14 +139,12 @@ public class TestActionRedirect extends TestCase {
             }
 
             throw new AssertionFailedError(
-                    "Expected value not found for parameter [" + paramName
-                            + "]");
+                "Expected value not found for parameter [" + paramName + "]");
         } else {
             // can't recognize the value
             throw new AssertionFailedError(
-                    "Unexpected type found as parameter value for ["
-                            + paramName
-                            + "]");
+                "Unexpected type found as parameter value for [" + paramName
+                + "]");
         }
     }
 
@@ -174,9 +172,8 @@ public class TestActionRedirect extends TestCase {
         } else {
             // can't recognize the value
             throw new AssertionFailedError(
-                    "Unexpected type found as parameter value for ["
-                            + paramName
-                            + "]");
+                "Unexpected type found as parameter value for [" + paramName
+                + "]");
         }
     }
 }

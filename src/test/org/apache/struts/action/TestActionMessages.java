@@ -54,9 +54,9 @@ public class TestActionMessages extends TestCase {
      * @param theArgs the arguments. Not used
      */
     public static void main(String[] theArgs) {
-        junit.awtui.TestRunner.main(new String[]{
+        junit.awtui.TestRunner.main(new String[] {
                 TestActionMessages.class.getName()
-        });
+            });
     }
 
     /**
@@ -72,8 +72,8 @@ public class TestActionMessages extends TestCase {
         aMsgs = new ActionMessages();
         anMsgs = new ActionMessages();
 
-        Object[] objs1 = new Object[]{"a", "b", "c", "d", "e"};
-        Object[] objs2 = new Object[]{"f", "g", "h", "i", "j"};
+        Object[] objs1 = new Object[] { "a", "b", "c", "d", "e" };
+        Object[] objs2 = new Object[] { "f", "g", "h", "i", "j" };
 
         msg1 = new ActionMessage("aMessage", objs1);
         msg2 = new ActionMessage("anMessage", objs2);
@@ -108,7 +108,7 @@ public class TestActionMessages extends TestCase {
         aMsgs.add("myProp3", msg4);
         aMsgs.add("myProp4", msg5);
         assertTrue("number of messages for myProp1 is not 1",
-                aMsgs.size("myProp1") == 1);
+            aMsgs.size("myProp1") == 1);
         assertTrue("number of messages", aMsgs.size() == 5);
     }
 
