@@ -36,9 +36,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * <p> Provide an abstract but semi-complete implementation of ActionContext to
- * serve as the base for concrete implementations. </p> <p> The abstract methods
- * to implement are the accessors for the named states,
+ * <p> Provide an abstract but semi-complete implementation of ActionContext
+ * to serve as the base for concrete implementations. </p> <p> The abstract
+ * methods to implement are the accessors for the named states,
  * <code>getApplicationScope</code>, <code>getRequestScope</code>, and
  * <code>getSessionScope</code>. </p>
  */
@@ -147,7 +147,8 @@ public abstract class ActionContextBase extends ContextWrapper
     }
 
     /**
-     * Instantiate ActionContextBase, wrapping a default ContextBase instance.
+     * Instantiate ActionContextBase, wrapping a default ContextBase
+     * instance.
      */
     public ActionContextBase() {
         this(new ContextBase());
@@ -279,8 +280,8 @@ public abstract class ActionContextBase extends ContextWrapper
     // ISSUE: do we want to add this to the public API?
 
     /**
-     * <p> Add the given messages to a cache stored in this Context, under key.
-     * </p>
+     * <p> Add the given messages to a cache stored in this Context, under
+     * key. </p>
      *
      * @param key      The attribute name for the message cache
      * @param messages The ActionMessages to add
@@ -311,8 +312,9 @@ public abstract class ActionContextBase extends ContextWrapper
     // ISSUE: do we want to add this to the public API?
 
     /**
-     * <p> Save the given ActionMessages into the request scope under the given
-     * key, clearing the attribute if the messages are empty or null. </p>
+     * <p> Save the given ActionMessages into the request scope under the
+     * given key, clearing the attribute if the messages are empty or null.
+     * </p>
      *
      * @param key      The attribute name for the message cache
      * @param messages The ActionMessages to add
@@ -479,8 +481,8 @@ public abstract class ActionContextBase extends ContextWrapper
 
     /**
      * <p> Using this <code>ActionContext</code>'s default
-     * <code>ModuleConfig</code>, return an existing <code>ActionForm</code> in
-     * the specified scope, or create a new one and add it to the specified
+     * <code>ModuleConfig</code>, return an existing <code>ActionForm</code>
+     * in the specified scope, or create a new one and add it to the specified
      * scope. </p>
      *
      * @param formName  The name attribute of our ActionForm
@@ -498,17 +500,18 @@ public abstract class ActionContextBase extends ContextWrapper
 
     /**
      * <p> In the context of the given <code>ModuleConfig</code> and this
-     * <code>ActionContext</code>, look for an existing <code>ActionForm</code>
-     * in the specified scope. If one is found, return it; otherwise, create a
-     * new instance, add it to that scope, and then return it. </p>
+     * <code>ActionContext</code>, look for an existing
+     * <code>ActionForm</code> in the specified scope. If one is found, return
+     * it; otherwise, create a new instance, add it to that scope, and then
+     * return it. </p>
      *
      * @param formName  The name attribute of our ActionForm
      * @param scopeName The scope identier (request, session)
      * @return The ActionForm for this request
      * @throws IllegalAccessException   If object cannot be created
      * @throws InstantiationException   If object cannot be created
-     * @throws IllegalArgumentException If form config is missing from module or
-     *                                  scopeName is invalid
+     * @throws IllegalArgumentException If form config is missing from module
+     *                                  or scopeName is invalid
      */
     public ActionForm findOrCreateActionForm(String formName, String scopeName,
         ModuleConfig moduleConfig)

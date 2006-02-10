@@ -19,7 +19,8 @@ package org.apache.struts.chain.commands;
 
 
 /**
- * <p>Exception thrown when no mapping can be found for the specified path.</p>
+ * <p>Exception thrown when no mapping can be found for the specified
+ * path.</p>
  *
  * @version $Rev$ $Date: 2005-11-05 21:44:59 -0500 (Sat, 05 Nov 2005)
  *          $

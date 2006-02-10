@@ -28,13 +28,13 @@ import org.apache.struts.config.ActionConfig;
 /**
  * <p>Invoke the appropriate <code>Command</code> for this request.  If the
  * context's <code>ActionConfig</code> has no <code>command</code> property
- * defined, no action will be taken.  If the specified command cannot be found,
- * a warning will be logged, but processing will continue.  Depending on how the
- * chain is configured, this can be used in place of an <code>Action</code> or
- * as a method of performing pre-processing. </p>
+ * defined, no action will be taken.  If the specified command cannot be
+ * found, a warning will be logged, but processing will continue.  Depending
+ * on how the chain is configured, this can be used in place of an
+ * <code>Action</code> or as a method of performing pre-processing. </p>
  *
- * <p>If used instead of an action, the command which is looked up should put an
- * ActionForward into the context, unless it has already dealt with the
+ * <p>If used instead of an action, the command which is looked up should put
+ * an ActionForward into the context, unless it has already dealt with the
  * response.</p>
  *
  * @version $Id$

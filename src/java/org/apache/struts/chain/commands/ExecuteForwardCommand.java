@@ -23,7 +23,8 @@ import org.apache.struts.config.ForwardConfig;
 
 /**
  * <p>Look up and execute a commons-chain <code>Command</code> based on
- * properties of the ActionContext's <code>forwardConfig</code> property. </p>
+ * properties of the ActionContext's <code>forwardConfig</code> property.
+ * </p>
  */
 public class ExecuteForwardCommand extends ExecuteCommand {
     /**
@@ -49,8 +50,8 @@ public class ExecuteForwardCommand extends ExecuteCommand {
      * <p> Determine whether the forwardConfig should be processed. </p>
      *
      * @param context The ActionContext we are processing
-     * @return <p><code>true</code> if the given <code>ActionContext</code> has
-     *         a non-null <code>forwardConfig</code> property.</p>
+     * @return <p><code>true</code> if the given <code>ActionContext</code>
+     *         has a non-null <code>forwardConfig</code> property.</p>
      */
     protected boolean shouldProcess(ActionContext context) {
         return (context.getForwardConfig() != null);

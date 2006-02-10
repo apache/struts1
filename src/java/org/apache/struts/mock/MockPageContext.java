@@ -75,9 +75,7 @@ public class MockPageContext extends PageContext {
     }
 
     /**
-     * <p>
-     * Construct a new PageContext impl.
-     * </p>
+     * <p> Construct a new PageContext impl. </p>
      *
      * @param throwIOException Determines if the returned JspWriter should
      *                         throw an IOException on any method call.
@@ -216,10 +214,8 @@ public class MockPageContext extends PageContext {
     }
 
     /**
-     * <p>
-     * Custom JspWriter that throws the specified exception (supplied on the
-     * constructor...if any), else it simply returns.
-     * </p>
+     * <p> Custom JspWriter that throws the specified exception (supplied on
+     * the constructor...if any), else it simply returns. </p>
      */
     public JspWriter getOut() {
         JspWriter jspWriter =

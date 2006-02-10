@@ -367,17 +367,14 @@ public class Action {
      *
      * <ul>
      *
-     * <li>No session associated
-     * with this request</li>
+     * <li>No session associated with this request</li>
      *
-     *  <li>No transaction token saved in the
-     * session</li>
+     * <li>No transaction token saved in the session</li>
      *
-     * <li>No transaction token included as a request
-     * parameter</li>
+     * <li>No transaction token included as a request parameter</li>
      *
-     * <li>The included transaction token value does not match
-     * the transaction token in the user's session</li>
+     * <li>The included transaction token value does not match the transaction
+     * token in the user's session</li>
      *
      * </ul>
      *
@@ -397,15 +394,13 @@ public class Action {
      *
      * <ul>
      *
-     * <li>No session associated
-     * with this request</li> <li>No transaction token saved in the
-     * session</li>
+     * <li>No session associated with this request</li> <li>No transaction
+     * token saved in the session</li>
      *
-     * <li>No transaction token included as a request
-     * parameter</li>
+     * <li>No transaction token included as a request parameter</li>
      *
-     * <li>The included transaction token value does not match
-     * the transaction token in the user's session</li>
+     * <li>The included transaction token value does not match the transaction
+     * token in the user's session</li>
      *
      * </ul>
      *

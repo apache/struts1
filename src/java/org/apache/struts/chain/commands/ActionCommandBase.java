@@ -22,8 +22,8 @@ import org.apache.struts.chain.contexts.ActionContext;
 
 /**
  * <p>Simple abstract class which avoids frequent casting to
- * <code>ActionContext</code> in commands explicitly intended for use with that
- * class.</p>
+ * <code>ActionContext</code> in commands explicitly intended for use with
+ * that class.</p>
  */
 public abstract class ActionCommandBase implements ActionCommand {
     // See interface for Javadoc

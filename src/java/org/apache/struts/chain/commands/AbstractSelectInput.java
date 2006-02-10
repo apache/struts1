@@ -25,8 +25,8 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 
 /**
- * <p>Select and cache a <code>ForwardConfig</code> that returns us to the input
- * page for the current action, if any.</p>
+ * <p>Select and cache a <code>ForwardConfig</code> that returns us to the
+ * input page for the current action, if any.</p>
  *
  * @version $Rev$ $Date: 2005-06-04 10:58:46 -0400 (Sat, 04 Jun 2005)
  *          $

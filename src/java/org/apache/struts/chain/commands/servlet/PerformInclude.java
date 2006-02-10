@@ -33,7 +33,8 @@ public class PerformInclude extends AbstractPerformInclude {
     // ------------------------------------------------------- Protected Methods
 
     /**
-     * <p>Perform the appropriate processing on the specified include uri.</p>
+     * <p>Perform the appropriate processing on the specified include
+     * uri.</p>
      *
      * @param context The context for this request
      * @param uri     The uri to be included

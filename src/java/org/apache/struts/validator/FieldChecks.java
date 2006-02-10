@@ -1171,10 +1171,9 @@ public class FieldChecks implements Serializable {
      *
      * <ul>
      *
-     * <li>Variable
-     * <code>allow2slashes</code> can be set to <code>true</code> or
-     * <code>false</code> to control whether two slashes are allowed - default
-     * is <code>false</code> (i.e. two slashes are NOT allowed).</li>
+     * <li>Variable <code>allow2slashes</code> can be set to <code>true</code>
+     * or <code>false</code> to control whether two slashes are allowed -
+     * default is <code>false</code> (i.e. two slashes are NOT allowed).</li>
      *
      * <li>Variable <code>nofragments</code> can be set to <code>true</code>
      * or <code>false</code> to control whether fragments are allowed -
@@ -1185,11 +1184,10 @@ public class FieldChecks implements Serializable {
      * allowed - default is <code>false</code> (i.e. all schemes are NOT
      * allowed).</li>
      *
-     * <li>Variable <code>schemes</code> can be set to a comma
-     * delimited list of valid schemes. This value is ignored if
-     * <code>allowallschemes</code> is set to <code>true</code>. Default
-     * schemes allowed are "http", "https" and "ftp" if this variable is not
-     * specified.</li>
+     * <li>Variable <code>schemes</code> can be set to a comma delimited list
+     * of valid schemes. This value is ignored if <code>allowallschemes</code>
+     * is set to <code>true</code>. Default schemes allowed are "http",
+     * "https" and "ftp" if this variable is not specified.</li>
      *
      * </ul>
      *

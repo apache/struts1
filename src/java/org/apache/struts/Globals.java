@@ -104,8 +104,7 @@ public class Globals implements Serializable {
     public static final String LOCALE_KEY = "org.apache.struts.action.LOCALE";
 
     /**
-     * The request attributes key under which our
-     * <code>org.apache.struts.ActionMapping</code>
+     * The request attributes key under which our <code>org.apache.struts.ActionMapping</code>
      * instance is passed.
      */
     public static final String MAPPING_KEY =

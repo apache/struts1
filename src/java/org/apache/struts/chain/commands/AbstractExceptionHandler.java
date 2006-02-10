@@ -26,8 +26,8 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 
 /**
- * <p>Invoke the local or global exception handler configured for the exception
- * class that occurred.</p>
+ * <p>Invoke the local or global exception handler configured for the
+ * exception class that occurred.</p>
  *
  * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
  *          $
@@ -44,8 +44,8 @@ public abstract class AbstractExceptionHandler extends ActionCommandBase {
     // ---------------------------------------------------------- Public Methods
 
     /**
-     * <p>Invoke the appropriate <code>Action</code> for this request, and cache
-     * the returned <code>ActionForward</code>.</p>
+     * <p>Invoke the appropriate <code>Action</code> for this request, and
+     * cache the returned <code>ActionForward</code>.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> if a <code>ForwardConfig</code> is returned,
@@ -116,8 +116,8 @@ public abstract class AbstractExceptionHandler extends ActionCommandBase {
      * @param exceptionConfig The corresponding {@link ExceptionConfig}
      * @param actionConfig    The {@link ActionConfig} for this request
      * @param moduleConfig    The {@link ModuleConfig} for this request
-     * @return the <code>ForwardConfig</code> to be processed next (if any), or
-     *         <code>null</code> if processing has been completed
+     * @return the <code>ForwardConfig</code> to be processed next (if any),
+     *         or <code>null</code> if processing has been completed
      * @throws Exception if there are any problems handling the exception
      */
     protected abstract ForwardConfig handle(ActionContext context,

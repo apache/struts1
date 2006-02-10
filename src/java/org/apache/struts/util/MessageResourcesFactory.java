@@ -29,9 +29,9 @@ import java.io.Serializable;
  *
  * <ul>
  *
- * <li>Call <code>MessageResourcesFactory().createFactory()</code>
- * to retrieve a <code>MessageResourcesFactory</code> instance.</li> <li>Set
- * properties as required to configure this factory instance to create
+ * <li>Call <code>MessageResourcesFactory().createFactory()</code> to retrieve
+ * a <code>MessageResourcesFactory</code> instance.</li> <li>Set properties as
+ * required to configure this factory instance to create
  * <code>MessageResources</code> instances with desired characteristics.</li>
  *
  * <li>Call the <code>createResources()</code> method of the factory to

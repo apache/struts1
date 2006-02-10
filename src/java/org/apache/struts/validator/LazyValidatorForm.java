@@ -39,12 +39,12 @@ import java.util.Map;
  *
  * <ul>
  *
- * <li><b><i>lazy</i> property addition</b> - properties
- * which do not exist are automatically added.</li>
+ * <li><b><i>lazy</i> property addition</b> - properties which do not exist
+ * are automatically added.</li>
  *
- * <li><b><i>lazy</i> List
- * facilities</b> - automatically <i>grows</i> a <code>List</code> or
- * <code>Array</code> to accomodate the index value being set.</li>
+ * <li><b><i>lazy</i> List facilities</b> - automatically <i>grows</i> a
+ * <code>List</code> or <code>Array</code> to accomodate the index value being
+ * set.</li>
  *
  * <li><b><i>lazy</i> List creation</b> - automatic creation of a
  * <code>List</code> or <code>Array</code> for <i>indexed</i> properties, if

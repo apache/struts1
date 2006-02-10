@@ -64,7 +64,8 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
     // ------------------------------------------------------- Protected Methods
 
     /**
-     * <p>Call the <code>reset()</code> method on the specified form bean.</p>
+     * <p>Call the <code>reset()</code> method on the specified form
+     * bean.</p>
      *
      * @param context      The context for this request
      * @param actionConfig The actionConfig for this request
@@ -91,9 +92,9 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
     // when the input value is an ActionContext.
 
     /**
-     * <p>For a given request parameter name, trim off any prefix and/or suffix
-     * which are defined in <code>actionConfig</code> and return what remains.
-     * If either prefix or suffix is defined, then return null for
+     * <p>For a given request parameter name, trim off any prefix and/or
+     * suffix which are defined in <code>actionConfig</code> and return what
+     * remains. If either prefix or suffix is defined, then return null for
      * <code>name</code> values which do not begin or end accordingly.</p>
      *
      * @param actionConfig The ActionConfig we are processing
@@ -128,9 +129,9 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
     /**
      * <p>Take into account whether the request includes any defined value for
      * the global "cancel" parameter.</p> <p> An issue was raised (but I don't
-     * think a Bugzilla ticket created) about the security implications of using
-     * a well-known cancel property which skips form validation, as you may not
-     * write your actions to deal with the cancellation case. </p>
+     * think a Bugzilla ticket created) about the security implications of
+     * using a well-known cancel property which skips form validation, as you
+     * may not write your actions to deal with the cancellation case. </p>
      *
      * @param context      The ActionContext we are processing
      * @param actionConfig The ActionConfig we are processing

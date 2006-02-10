@@ -28,8 +28,9 @@ import org.apache.struts.chain.contexts.ActionContext;
 
 /**
  * <p>Intercept any exception thrown by a subsequent <code>Command</code> in
- * this processing chain, and fire the configured exception handler chain after
- * storing the exception that has occurred into the <code>Context</code>. </p>
+ * this processing chain, and fire the configured exception handler chain
+ * after storing the exception that has occurred into the
+ * <code>Context</code>. </p>
  *
  * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
  *          $
@@ -56,7 +57,8 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
 
     /**
      * <p> Return the name of the <code>Catalog</code> in which to perform
-     * lookups, or <code>null</code> for the default <code>Catalog</code>. </p>
+     * lookups, or <code>null</code> for the default <code>Catalog</code>.
+     * </p>
      *
      * @return Name of catalog to use, or null
      */
@@ -65,8 +67,8 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
     }
 
     /**
-     * <p>Set the name of the <code>Catalog</code> in which to perform lookups,
-     * or <code>null</code> for the default <code>Catalog</code>.</p>
+     * <p>Set the name of the <code>Catalog</code> in which to perform
+     * lookups, or <code>null</code> for the default <code>Catalog</code>.</p>
      *
      * @param catalogName The new catalog name or <code>null</code>
      */
@@ -75,8 +77,8 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
     }
 
     /**
-     * <p> Return the name of the command to be executed if an exception occurs.
-     * </p>
+     * <p> Return the name of the command to be executed if an exception
+     * occurs. </p>
      *
      * @return The name of the command to be executed on an exception
      */
@@ -97,8 +99,8 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
     // ---------------------------------------------------------- Public Methods
 
     /**
-     * <p>Clear any existing stored exception and pass the <code>context</code>
-     * on to the remainder of the current chain.</p>
+     * <p>Clear any existing stored exception and pass the
+     * <code>context</code> on to the remainder of the current chain.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> so that processing continues
@@ -112,8 +114,8 @@ public class ExceptionCatcher extends ActionCommandBase implements Filter {
     }
 
     /**
-     * <p>If an exception was thrown by a subsequent <code>Command</code>, pass
-     * it on to the specified exception handling chain.  Otherwise, do
+     * <p>If an exception was thrown by a subsequent <code>Command</code>,
+     * pass it on to the specified exception handling chain.  Otherwise, do
      * nothing.</p>
      *
      * @param context   The {@link Context} to be processed by this {@link

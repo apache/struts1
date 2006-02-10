@@ -671,8 +671,8 @@ public class RequestUtils {
      *
      * <ul>
      *
-     * <li><strong>$M</strong> - Replaced by the
-     * module prefix for the application module processing this request.</li>
+     * <li><strong>$M</strong> - Replaced by the module prefix for the
+     * application module processing this request.</li>
      *
      * <li><strong>$P</strong> - Replaced by the <code>path</code> property of
      * the specified {@link ForwardConfig}, prepended with a slash if it does
@@ -710,36 +710,34 @@ public class RequestUtils {
      * <li>If the <code>contextRelative</code> property is set, it is assumed
      * that the <code>path</code> property contains a path that is already
      * context-relative: <ul>
-
-     * <li>If the <code>path</code> property value
-     * starts with a slash, it is returned unmodified.</li> <li>If the
-     * <code>path</code> property value does not start with a slash, a slash
-     * is prepended.</li>
+     *
+     * <li>If the <code>path</code> property value starts with a slash, it is
+     * returned unmodified.</li> <li>If the <code>path</code> property value
+     * does not start with a slash, a slash is prepended.</li>
      *
      * </ul></li>
      *
-     * <li>Acquire the <code>forwardPattern</code>
-     * property from the <code>ControllerConfig</code> for the application
-     * module used to process this request. If no pattern was configured,
-     * default to a pattern of <code>$M$P</code>, which is compatible with the
-     * hard-coded mapping behavior in Struts 1.0.</li>
+     * <li>Acquire the <code>forwardPattern</code> property from the
+     * <code>ControllerConfig</code> for the application module used to
+     * process this request. If no pattern was configured, default to a
+     * pattern of <code>$M$P</code>, which is compatible with the hard-coded
+     * mapping behavior in Struts 1.0.</li>
      *
-     * <li>Process the
-     * acquired <code>forwardPattern</code>, performing the following
-     * substitutions: <ul> <li><strong>$M</strong> - Replaced by the module
-     * prefix for the application module processing this request.</li>
+     * <li>Process the acquired <code>forwardPattern</code>, performing the
+     * following substitutions: <ul> <li><strong>$M</strong> - Replaced by the
+     * module prefix for the application module processing this request.</li>
      *
      * <li><strong>$P</strong> - Replaced by the <code>path</code> property of
      * the specified {@link ForwardConfig}, prepended with a slash if it does
      * not start with one.</li>
      *
-     * <li><strong>$$</strong> - Replaced by a single
-     * dollar sign character.</li>
+     * <li><strong>$$</strong> - Replaced by a single dollar sign
+     * character.</li>
      *
-     * <li><strong>$x</strong> (where "x" is any
-     * charater not listed above) - Silently omit these two characters from
-     * the result value.  (This has the side effect of causing all other
-     * $+letter combinations to be reserved.)</li>
+     * <li><strong>$x</strong> (where "x" is any charater not listed above) -
+     * Silently omit these two characters from the result value.  (This has
+     * the side effect of causing all other $+letter combinations to be
+     * reserved.)</li>
      *
      * </ul></li></ul>
      *

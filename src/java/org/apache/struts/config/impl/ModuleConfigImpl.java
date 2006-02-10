@@ -307,10 +307,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Add a new <code>FormBeanConfig</code> instance to the set associated
-     * with this module.
-     * </p>
+     * <p> Add a new <code>FormBeanConfig</code> instance to the set
+     * associated with this module. </p>
      *
      * @param config The new configuration instance to be added
      * @throws IllegalStateException if this module configuration has been
@@ -329,20 +327,16 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * The default class name to be used when creating action forward
-     * instances.
-     * </p>
+     * <p> The default class name to be used when creating action forward
+     * instances. </p>
      */
     public String getActionForwardClass() {
         return this.actionForwardClass;
     }
 
     /**
-     * <p>
-     * The default class name to be used when creating action forward
-     * instances.
-     * </p>
+     * <p> The default class name to be used when creating action forward
+     * instances. </p>
      *
      * @param actionForwardClass default class name to be used when creating
      *                           action forward instances.
@@ -352,10 +346,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Add a new <code>ForwardConfig</code> instance to the set of global
-     * forwards associated with this module.
-     * </p>
+     * <p> Add a new <code>ForwardConfig</code> instance to the set of global
+     * forwards associated with this module. </p>
      *
      * @param config The new configuration instance to be added
      * @throws IllegalStateException if this module configuration has been
@@ -374,10 +366,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Add a new <code>MessageResourcesConfig</code> instance to the set
-     * associated with this module.
-     * </p>
+     * <p> Add a new <code>MessageResourcesConfig</code> instance to the set
+     * associated with this module. </p>
      *
      * @param config The new configuration instance to be added
      * @throws IllegalStateException if this module configuration has been
@@ -396,10 +386,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Add a newly configured {@link org.apache.struts.config.PlugInConfig}
-     * instance to the set of plug-in Actions for this module.
-     * </p>
+     * <p> Add a newly configured {@link org.apache.struts.config.PlugInConfig}
+     * instance to the set of plug-in Actions for this module. </p>
      *
      * @param plugInConfig The new configuration instance to be added
      */
@@ -409,11 +397,9 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Return the action configuration for the specified path, first looking a
-     * direct match, then if none found, a wildcard pattern match; otherwise
-     * return <code>null</code>.
-     * </p>
+     * <p> Return the action configuration for the specified path, first
+     * looking a direct match, then if none found, a wildcard pattern match;
+     * otherwise return <code>null</code>. </p>
      *
      * @param path Path of the action configuration to return
      */
@@ -430,10 +416,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Return the action configurations for this module.  If there are none, a
-     * zero-length array is returned.
-     * </p>
+     * <p> Return the action configurations for this module.  If there are
+     * none, a zero-length array is returned. </p>
      */
     public ActionConfig[] findActionConfigs() {
         ActionConfig[] results = new ActionConfig[actionConfigList.size()];
@@ -442,10 +426,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Return the exception configuration for the specified type, if any;
-     * otherwise return <code>null</code>.
-     * </p>
+     * <p> Return the exception configuration for the specified type, if any;
+     * otherwise return <code>null</code>. </p>
      *
      * @param type Exception class name to find a configuration for
      */
@@ -496,10 +478,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Return the exception configurations for this module.  If there are
-     * none, a zero-length array is returned.
-     * </p>
+     * <p> Return the exception configurations for this module.  If there are
+     * none, a zero-length array is returned. </p>
      */
     public ExceptionConfig[] findExceptionConfigs() {
         ExceptionConfig[] results = new ExceptionConfig[exceptions.size()];
@@ -508,10 +488,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Return the form bean configuration for the specified key, if any;
-     * otherwise return <code>null</code>.
-     * </p>
+     * <p> Return the form bean configuration for the specified key, if any;
+     * otherwise return <code>null</code>. </p>
      *
      * @param name Name of the form bean configuration to return
      */
@@ -520,10 +498,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Return the form bean configurations for this module.  If there are
-     * none, a zero-length array is returned.
-     * </p>
+     * <p> Return the form bean configurations for this module.  If there are
+     * none, a zero-length array is returned. </p>
      */
     public FormBeanConfig[] findFormBeanConfigs() {
         FormBeanConfig[] results = new FormBeanConfig[formBeans.size()];
@@ -532,10 +508,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Return the forward configuration for the specified key, if any;
-     * otherwise return <code>null</code>.
-     * </p>
+     * <p> Return the forward configuration for the specified key, if any;
+     * otherwise return <code>null</code>. </p>
      *
      * @param name Name of the forward configuration to return
      */
@@ -544,10 +518,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Return the form bean configurations for this module.  If there are
-     * none, a zero-length array is returned.
-     * </p>
+     * <p> Return the form bean configurations for this module.  If there are
+     * none, a zero-length array is returned. </p>
      */
     public ForwardConfig[] findForwardConfigs() {
         ForwardConfig[] results = new ForwardConfig[forwards.size()];
@@ -556,10 +528,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Return the message resources configuration for the specified key, if
-     * any; otherwise return <code>null</code>.
-     * </p>
+     * <p> Return the message resources configuration for the specified key,
+     * if any; otherwise return <code>null</code>. </p>
      *
      * @param key Key of the data source configuration to return
      */
@@ -568,10 +538,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Return the message resources configurations for this module. If there
-     * are none, a zero-length array is returned.
-     * </p>
+     * <p> Return the message resources configurations for this module. If
+     * there are none, a zero-length array is returned. </p>
      */
     public MessageResourcesConfig[] findMessageResourcesConfigs() {
         MessageResourcesConfig[] results =
@@ -581,10 +549,8 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Return the configured plug-in actions for this module.  If there are
-     * none, a zero-length array is returned.
-     * </p>
+     * <p> Return the configured plug-in actions for this module.  If there
+     * are none, a zero-length array is returned. </p>
      */
     public PlugInConfig[] findPlugInConfigs() {
         PlugInConfig[] results = new PlugInConfig[plugIns.size()];
@@ -593,11 +559,9 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Freeze the configuration of this module.  After this method returns,
-     * any attempt to modify the configuration will return an
-     * IllegalStateException.
-     * </p>
+     * <p> Freeze the configuration of this module.  After this method
+     * returns, any attempt to modify the configuration will return an
+     * IllegalStateException. </p>
      */
     public void freeze() {
         super.freeze();
@@ -644,9 +608,7 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Remove the specified action configuration instance.
-     * </p>
+     * <p> Remove the specified action configuration instance. </p>
      *
      * @param config ActionConfig instance to be removed
      * @throws IllegalStateException if this module configuration has been
@@ -660,9 +622,7 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Remove the specified exception configuration instance.
-     * </p>
+     * <p> Remove the specified exception configuration instance. </p>
      *
      * @param config ActionConfig instance to be removed
      * @throws IllegalStateException if this module configuration has been
@@ -674,9 +634,7 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Remove the specified form bean configuration instance.
-     * </p>
+     * <p> Remove the specified form bean configuration instance. </p>
      *
      * @param config FormBeanConfig instance to be removed
      * @throws IllegalStateException if this module configuration has been
@@ -688,9 +646,7 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Remove the specified forward configuration instance.
-     * </p>
+     * <p> Remove the specified forward configuration instance. </p>
      *
      * @param config ForwardConfig instance to be removed
      * @throws IllegalStateException if this module configuration has been
@@ -702,8 +658,7 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     }
 
     /**
-     * <p>
-     * Remove the specified message resources configuration instance.
+     * <p> Remove the specified message resources configuration instance.
      * </p>
      *
      * @param config MessageResourcesConfig instance to be removed

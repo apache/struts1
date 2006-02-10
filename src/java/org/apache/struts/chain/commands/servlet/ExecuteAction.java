@@ -25,8 +25,8 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
 
 /**
- * <p>Invoke the appropriate <code>Action</code> for this request, and cache the
- * returned <code>ActionForward</code>.</p>
+ * <p>Invoke the appropriate <code>Action</code> for this request, and cache
+ * the returned <code>ActionForward</code>.</p>
  *
  * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
  *          $
@@ -41,7 +41,8 @@ public class ExecuteAction extends AbstractExecuteAction {
      * @param context      The <code>Context</code> for this request
      * @param action       The <code>Action</code> to be executed
      * @param actionConfig The <code>ActionConfig</code> defining this action
-     * @param actionForm   The <code>ActionForm</code> (if any) for this action
+     * @param actionForm   The <code>ActionForm</code> (if any) for this
+     *                     action
      * @throws Exception if thrown by the <code>Action</code>
      */
     protected ForwardConfig execute(ActionContext context, Action action,

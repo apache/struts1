@@ -22,8 +22,8 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ModuleConfig;
 
 /**
- * <p>Cache the <code>ActionConfig</code> instance for the action to be used for
- * processing this request.</p>
+ * <p>Cache the <code>ActionConfig</code> instance for the action to be used
+ * for processing this request.</p>
  *
  * @version $Rev$ $Date: 2005-11-05 21:44:59 -0500 (Sat, 05 Nov 2005)
  *          $
@@ -32,8 +32,8 @@ public abstract class AbstractSelectAction extends ActionCommandBase {
     // ---------------------------------------------------------- Public Methods
 
     /**
-     * <p>Cache the <code>ActionConfig</code> instance for the action to be used
-     * for processing this request.</p>
+     * <p>Cache the <code>ActionConfig</code> instance for the action to be
+     * used for processing this request.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> so that processing continues
@@ -77,8 +77,8 @@ public abstract class AbstractSelectAction extends ActionCommandBase {
     // ------------------------------------------------------- Protected Methods
 
     /**
-     * <p>Return the path to be used to select the <code>ActionConfig</code> for
-     * this request.</p>
+     * <p>Return the path to be used to select the <code>ActionConfig</code>
+     * for this request.</p>
      *
      * @param context The <code>Context</code> for this request
      * @return Path to be used to select the ActionConfig

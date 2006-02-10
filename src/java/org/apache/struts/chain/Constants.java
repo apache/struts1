@@ -55,8 +55,8 @@ public final class Constants {
     public static final String CANCEL_KEY = "cancel";
 
     /**
-     * <p>The default context attribute under which an Exception will be stored
-     * before passing it to an exception handler chain.</p>
+     * <p>The default context attribute under which an Exception will be
+     * stored before passing it to an exception handler chain.</p>
      */
     public static final String EXCEPTION_KEY = "exception";
 
@@ -79,8 +79,8 @@ public final class Constants {
     public static final String LOCALE_KEY = "locale";
 
     /**
-     * <p>The default context attribute under which the MessageResources for the
-     * current request will be stored.</p>
+     * <p>The default context attribute under which the MessageResources for
+     * the current request will be stored.</p>
      */
     public static final String MESSAGE_RESOURCES_KEY = "messageResources";
 
@@ -101,9 +101,9 @@ public final class Constants {
 
     /**
      * <p>The base part of the context attribute under which a Map containing
-     * the Action instances associated with this module are stored. This
-     * value must be suffixed with the module prefix in order to create a unique
-     * key per module.</p>
+     * the Action instances associated with this module are stored. This value
+     * must be suffixed with the module prefix in order to create a unique key
+     * per module.</p>
      */
     public static final String ACTIONS_KEY = "actions";
 

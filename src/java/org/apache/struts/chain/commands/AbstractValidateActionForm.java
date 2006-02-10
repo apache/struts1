@@ -40,8 +40,8 @@ public abstract class AbstractValidateActionForm extends ActionCommandBase {
      * otherwise, proceed normally.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
-     * @return <code>false</code> so that processing continues, if there are no
-     *         validation errors; otherwise <code>true</code>
+     * @return <code>false</code> so that processing continues, if there are
+     *         no validation errors; otherwise <code>true</code>
      * @throws Exception if thrown by the Action class
      */
     public boolean execute(ActionContext actionCtx)

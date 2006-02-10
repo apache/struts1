@@ -23,9 +23,9 @@ import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 
 /**
- * <p>Determine whether the requested action is authorized for the current user.
- * If not, abort chain processing and perferably, return an error message of
- * some kind.</p>
+ * <p>Determine whether the requested action is authorized for the current
+ * user. If not, abort chain processing and perferably, return an error
+ * message of some kind.</p>
  *
  * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
  *          $
@@ -83,8 +83,8 @@ public abstract class AbstractAuthorizeAction extends ActionCommandBase {
 
     /**
      * <p>Must authorization rules be consulted?  The base implementation
-     * returns <code>true</code> if the given <code>ActionConfig</code> has one
-     * or more roles defined.</p>
+     * returns <code>true</code> if the given <code>ActionConfig</code> has
+     * one or more roles defined.</p>
      *
      * @param actionConfig the current ActionConfig object
      * @return true if the <code>isAuthorized</code> method should be

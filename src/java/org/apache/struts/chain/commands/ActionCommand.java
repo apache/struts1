@@ -21,8 +21,8 @@ import org.apache.commons.chain.Command;
 import org.apache.struts.chain.contexts.ActionContext;
 
 /**
- * <p>Marks a commons-chain <code>Command</code> which expects to operate upon a
- * Struts <code>ActionContext</code>.</p>
+ * <p>Marks a commons-chain <code>Command</code> which expects to operate upon
+ * a Struts <code>ActionContext</code>.</p>
  */
 public interface ActionCommand extends Command {
     /**

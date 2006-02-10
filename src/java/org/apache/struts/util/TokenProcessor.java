@@ -61,10 +61,10 @@ public class TokenProcessor {
     }
 
     /**
-     * <p>Return <code>true</code> if there is a transaction token stored in the
-     * user's current session, and the value submitted as a request parameter
-     * with this action matches it.  Returns <code>false</code> under any of
-     * the following circumstances:</p>
+     * <p>Return <code>true</code> if there is a transaction token stored in
+     * the user's current session, and the value submitted as a request
+     * parameter with this action matches it.  Returns <code>false</code>
+     * under any of the following circumstances:</p>
      *
      * <ul>
      *

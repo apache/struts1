@@ -168,8 +168,8 @@ public class WrappingLookupCommand implements Filter {
     }
 
     /**
-     * <p>Invoke the Command for a Context, returning TRUE if processing should
-     * halt.</p>
+     * <p>Invoke the Command for a Context, returning TRUE if processing
+     * should halt.</p>
      *
      * @param context Our ActionContext
      * @return TRUE if processing should halt
@@ -275,8 +275,8 @@ public class WrappingLookupCommand implements Filter {
     }
 
     /**
-     * <p>If the wrapperClassName property is not null, return a Context of the
-     * type specified by wrapperClassName, instantiated using a single-arg
+     * <p>If the wrapperClassName property is not null, return a Context of
+     * the type specified by wrapperClassName, instantiated using a single-arg
      * constructor which takes the context passed as an argument to this
      * method.</p>
      *

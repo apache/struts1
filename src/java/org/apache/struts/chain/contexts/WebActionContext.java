@@ -56,8 +56,8 @@ public class WebActionContext extends ActionContextBase {
     // -------------------------------
 
     /**
-     * <p> Return an immutable Map that maps header names to the first (or only)
-     * header value (as a String). </p>
+     * <p> Return an immutable Map that maps header names to the first (or
+     * only) header value (as a String). </p>
      *
      * @return A immutable Map of web request header names
      */
@@ -67,8 +67,8 @@ public class WebActionContext extends ActionContextBase {
 
     /**
      * <p> Return an immutable Map that maps header names to the set of all
-     * values specified in the request (as a String array). Header names must be
-     * matched in a case-insensitive manner. </p>
+     * values specified in the request (as a String array). Header names must
+     * be matched in a case-insensitive manner. </p>
      *
      * @return An immutable Map of web request header values
      */
@@ -77,8 +77,8 @@ public class WebActionContext extends ActionContextBase {
     }
 
     /**
-     * <p> Return an immutable Map that maps context application initialization
-     * parameters to their values. </p>
+     * <p> Return an immutable Map that maps context application
+     * initialization parameters to their values. </p>
      *
      * @return An immutable Map of web context initialization parameters
      */
@@ -89,8 +89,8 @@ public class WebActionContext extends ActionContextBase {
     /**
      * <p> Return a map whose keys are <code>String</code> request parameter
      * names and whose values are <code>String</code> values. </p> <p> For
-     * parameters which were submitted with more than one value, only one value
-     * will be returned, as if one called <code>ServletRequest.getParameter(String)</code>
+     * parameters which were submitted with more than one value, only one
+     * value will be returned, as if one called <code>ServletRequest.getParameter(String)</code>
      * </p>
      *
      * @return A map of web request parameters

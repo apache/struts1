@@ -43,21 +43,20 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 
 /**
- * <p> ComposableRequestProcessor uses the Chain Of Resposibility design pattern
- * (as implemented by the commons-chain package in Jakarta Commons) to support
- * external configuration of command chains to be used.  It is configured via
- * the following context initialization parameters: </p>
+ * <p> ComposableRequestProcessor uses the Chain Of Resposibility design
+ * pattern (as implemented by the commons-chain package in Jakarta Commons) to
+ * support external configuration of command chains to be used.  It is
+ * configured via the following context initialization parameters: </p>
  *
  * <ul>
  *
- * <li>[org.apache.struts.chain.CATALOG_NAME] - Name of the Catalog in which we
- * will look up the Command to be executed for each request.  If not specified,
- * the default value is struts. </li>
+ * <li>[org.apache.struts.chain.CATALOG_NAME] - Name of the Catalog in which
+ * we will look up the Command to be executed for each request.  If not
+ * specified, the default value is struts. </li>
  *
- * <li> org.apache.struts.chain.COMMAND_NAME
- * - Name of the Command which we will execute for each request, to be looked up
- * in the specified Catalog.  If not specified, the default value is
- * servlet-standard. </li>
+ * <li> org.apache.struts.chain.COMMAND_NAME - Name of the Command which we
+ * will execute for each request, to be looked up in the specified Catalog.
+ * If not specified, the default value is servlet-standard. </li>
  *
  * </ul>
  *
@@ -91,14 +90,14 @@ public class ComposableRequestProcessor extends RequestProcessor {
         LogFactory.getLog(ComposableRequestProcessor.class);
 
     /**
-     * <p>The {@link CatalogFactory} from which catalog containing the the base
-     * request-processing {@link Command} will be retrieved.</p>
+     * <p>The {@link CatalogFactory} from which catalog containing the the
+     * base request-processing {@link Command} will be retrieved.</p>
      */
     protected CatalogFactory catalogFactory = null;
 
     /**
-     * <p>The {@link Catalog} containing all of the available command chains for
-     * this module.
+     * <p>The {@link Catalog} containing all of the available command chains
+     * for this module.
      */
     protected Catalog catalog = null;
 
@@ -108,8 +107,8 @@ public class ComposableRequestProcessor extends RequestProcessor {
     protected Command command = null;
 
     /**
-     * <p> ActionContext class as cached by createActionContextInstance method.
-     * </p>
+     * <p> ActionContext class as cached by createActionContextInstance
+     * method. </p>
      */
     private Class actionContextClass;
 
@@ -174,9 +173,10 @@ public class ComposableRequestProcessor extends RequestProcessor {
     }
 
     /**
-     * <p> Set and cache ActionContext class. </p><p> If there is a custom class
-     * provided and if it uses our "preferred" constructor, cache a reference to
-     * that constructor rather than looking it up every time. </p>
+     * <p> Set and cache ActionContext class. </p><p> If there is a custom
+     * class provided and if it uses our "preferred" constructor, cache a
+     * reference to that constructor rather than looking it up every time.
+     * </p>
      *
      * @param actionContextClass The ActionContext class to process
      */
@@ -193,14 +193,14 @@ public class ComposableRequestProcessor extends RequestProcessor {
     }
 
     /**
-     * <p>Make sure that the specified <code>className</code> identfies a class
-     * which can be found and which implements the <code>ActionContext</code>
-     * interface.</p>
+     * <p>Make sure that the specified <code>className</code> identfies a
+     * class which can be found and which implements the
+     * <code>ActionContext</code> interface.</p>
      *
      * @param className Fully qualified name of
      * @throws ServletException     If an error occurs during initialization
-     * @throws UnavailableException if class does not implement ActionContext or
-     *                              is not found
+     * @throws UnavailableException if class does not implement ActionContext
+     *                              or is not found
      */
     private void setActionContextClassName(String className)
         throws ServletException {
@@ -288,8 +288,8 @@ public class ComposableRequestProcessor extends RequestProcessor {
     }
 
     /**
-     * <p>Provide the initialized <code>ActionContext</code> instance which will
-     * be used by this request. Internally, this simply calls
+     * <p>Provide the initialized <code>ActionContext</code> instance which
+     * will be used by this request. Internally, this simply calls
      * <code>createActionContextInstance</code> followed by
      * <code>initializeActionContext</code>.</p>
      *
@@ -311,16 +311,16 @@ public class ComposableRequestProcessor extends RequestProcessor {
 
     /**
      * <p>Create a new instance of <code>ActionContext</code> according to
-     * configuration.  If no alternative was specified at initialization, a new
-     * instance <code>ServletActionContext</code> is returned.  If an
+     * configuration.  If no alternative was specified at initialization, a
+     * new instance <code>ServletActionContext</code> is returned.  If an
      * alternative was specified using the <code>ACTION_CONTEXT_CLASS</code>
      * property, then that value is treated as a classname, and an instance of
      * that class is created.  If that class implements the same constructor
      * that <code>ServletActionContext</code> does, then that constructor will
      * be used: <code>ServletContext, HttpServletRequest,
-     * HttpServletResponse</code>; otherwise, it is assumed that the class has a
-     * no-arguments constructor.  If these constraints do not suit you, simply
-     * override this method in a subclass.</p>
+     * HttpServletResponse</code>; otherwise, it is assumed that the class has
+     * a no-arguments constructor.  If these constraints do not suit you,
+     * simply override this method in a subclass.</p>
      *
      * @param servletContext The servlet context we are processing
      * @param request        The servlet request we are processing
@@ -351,12 +351,12 @@ public class ComposableRequestProcessor extends RequestProcessor {
     }
 
     /**
-     * <p>Set common properties on the given <code>ActionContext</code> instance
-     * so that commands in the chain can count on their presence. Note that
-     * while this method does not require that its argument be an instance of
-     * <code>ServletActionContext</code>, at this time many common Struts
-     * commands will be expecting to receive an <code>ActionContext</code> which
-     * is also a <code>ServletActionContext</code>.</p>
+     * <p>Set common properties on the given <code>ActionContext</code>
+     * instance so that commands in the chain can count on their presence.
+     * Note that while this method does not require that its argument be an
+     * instance of <code>ServletActionContext</code>, at this time many common
+     * Struts commands will be expecting to receive an <code>ActionContext</code>
+     * which is also a <code>ServletActionContext</code>.</p>
      *
      * @param context The ActionContext we are processing
      */
@@ -392,8 +392,8 @@ public class ComposableRequestProcessor extends RequestProcessor {
 
     /**
      * <p>Set the <code>CatalogFactory</code> instance which should be used to
-     * find the request-processing command.  In the base implementation, if this
-     * value is not already set, then it will be initialized when {@link
+     * find the request-processing command.  In the base implementation, if
+     * this value is not already set, then it will be initialized when {@link
      * #initCatalogFactory} is called. </p>
      *
      * @param catalogFactory Our CatalogFactory instance

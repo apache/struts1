@@ -24,8 +24,8 @@ import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 
 /**
- * <p> Create (if necessary) and cache an <code>Action</code> for this request.
- * </p>
+ * <p> Create (if necessary) and cache an <code>Action</code> for this
+ * request. </p>
  *
  * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
  *          $
@@ -94,9 +94,9 @@ public abstract class AbstractCreateAction extends ActionCommandBase {
 
     /**
      * <p> Create and return the appropriate <code>Action</code> class for the
-     * given <code>type</code> and <code>actionConfig</code>. </p> <p> NOTE: The
-     * dependence on ActionServlet suggests that this should be broken up along
-     * the lines of the other Abstract/concrete pairs in the
+     * given <code>type</code> and <code>actionConfig</code>. </p> <p> NOTE:
+     * The dependence on ActionServlet suggests that this should be broken up
+     * along the lines of the other Abstract/concrete pairs in the
      * org.apache.struts.chain.commands package. </p>
      *
      * @param context      The <code>Context</code> for this request

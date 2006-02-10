@@ -30,9 +30,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * <p>An ActionContext represents a view of a commons-chain <code>Context</code>
- * which encapsulates access to request and session-scoped resources and
- * services</p>
+ * <p>An ActionContext represents a view of a commons-chain
+ * <code>Context</code> which encapsulates access to request and
+ * session-scoped resources and services</p>
  */
 public interface ActionContext extends Context {
     public static final String APPLICATION_SCOPE = "application";
@@ -83,9 +83,9 @@ public interface ActionContext extends Context {
      * understood as the fundamental motivation for any particular instance of
      * an <code>ActionContext</code>.</p>
      *
-     * <p>This is implemented in analogy with the Request Context in the Servlet
-     * API, but it seems reasonable to expect that any Struts implementation
-     * will have an equivalent concept.</p>
+     * <p>This is implemented in analogy with the Request Context in the
+     * Servlet API, but it seems reasonable to expect that any Struts
+     * implementation will have an equivalent concept.</p>
      *
      * <p>The ultimate meaning of "request scope" is an implementation detail
      * left unspecified by Struts.</p>
@@ -109,9 +109,9 @@ public interface ActionContext extends Context {
     Map getScope(String scopeName);
 
     /**
-     * <p>Return a <code>Map</code> of parameters submitted by the user as part
-     * of this request.  The keys to this map will be request parameter names
-     * (of type <code>String</code>), and the values will be
+     * <p>Return a <code>Map</code> of parameters submitted by the user as
+     * part of this request.  The keys to this map will be request parameter
+     * names (of type <code>String</code>), and the values will be
      * <code>String[]</code>.</p>
      *
      * <p>This is implemented in analogy with the Request parameters of the
@@ -192,16 +192,16 @@ public interface ActionContext extends Context {
     ForwardConfig getForwardConfig();
 
     /**
-     * <p> Set the include path which should be processed as part of processing
-     * this request. </p>
+     * <p> Set the include path which should be processed as part of
+     * processing this request. </p>
      *
      * @param include The include path to be used with this request
      */
     void setInclude(String include);
 
     /**
-     * <p> Get the include path which should be processed as part of processing
-     * this request. </p>
+     * <p> Get the include path which should be processed as part of
+     * processing this request. </p>
      *
      * @return The include path being used with this request
      */
@@ -225,18 +225,19 @@ public interface ActionContext extends Context {
 
     /**
      * <p> Is the ActionForm for this context valid? This method <em>does
-     * not</em> actually perform form validation. It is simply a holder property
-     * where processes which perform validation can store the results of the
-     * validation for other processes' benefit. </p>
+     * not</em> actually perform form validation. It is simply a holder
+     * property where processes which perform validation can store the results
+     * of the validation for other processes' benefit. </p>
      *
      * @return <code>Boolean.TRUE</code> if the form passed validation;
-     *         <code>Boolean.FALSE</code> if the form failed validation; null if
-     *         the form has not yet been validated
+     *         <code>Boolean.FALSE</code> if the form failed validation; null
+     *         if the form has not yet been validated
      */
     Boolean getFormValid();
 
     /**
-     * <p> Store the result of the validation of the Context's ActionForm. </p>
+     * <p> Store the result of the validation of the Context's ActionForm.
+     * </p>
      *
      * @param valid Whether the ActionForm for this request passes validation
      */
@@ -271,8 +272,8 @@ public interface ActionContext extends Context {
     void addMessages(ActionMessages messages);
 
     /**
-     * <p> Append the given errors keys to an internal cache, creating the cache
-     * if one is not already present. </p>
+     * <p> Append the given errors keys to an internal cache, creating the
+     * cache if one is not already present. </p>
      *
      * @param errors New ActionMessages to cache as errors
      */
@@ -287,8 +288,8 @@ public interface ActionContext extends Context {
     ActionMessages getErrors();
 
     /**
-     * <p> Retrieve messages from an internal cache, creating an empty cache if
-     * one is not already present. </p>
+     * <p> Retrieve messages from an internal cache, creating an empty cache
+     * if one is not already present. </p>
      *
      * @return The ActionMessage cache for errors
      */
@@ -304,18 +305,19 @@ public interface ActionContext extends Context {
     void saveErrors(ActionMessages errors);
 
     /**
-     * <p> Save the given messages to the internal cache, clearing any previous
-     * messages in the cache. </p> <p> If the parameter is null or empty, the
-     * internal cache is removed. </p>
+     * <p> Save the given messages to the internal cache, clearing any
+     * previous messages in the cache. </p> <p> If the parameter is null or
+     * empty, the internal cache is removed. </p>
      *
      * @param messages ActionMesssages to cache
      */
     void saveMessages(ActionMessages messages);
 
     /**
-     * <p> Save the given messages to the internal cache, clearing any previous
-     * messages in the cache, but only for the specified scope. </p> <p> If the
-     * parameter is null or empty, the internal cache is removed. </p>
+     * <p> Save the given messages to the internal cache, clearing any
+     * previous messages in the cache, but only for the specified scope. </p>
+     * <p> If the parameter is null or empty, the internal cache is removed.
+     * </p>
      *
      * @param scope    The scope for the internal cache
      * @param messages ActionMesssages to cache
@@ -333,32 +335,33 @@ public interface ActionContext extends Context {
     String generateToken();
 
     /**
-     * <p> Indicate whether a transaction token for this context is valid. </p>
-     * <p> A typical implementation will place a transaction token in the
+     * <p> Indicate whether a transaction token for this context is valid.
+     * </p> <p> A typical implementation will place a transaction token in the
      * session" scope Map and a matching value in the  "parameter" Map. If the
-     * "session" token does not match the "parameter" attribute, or the session
-     * token is missing, then the transactional token is deemed invalid. </p>
+     * "session" token does not match the "parameter" attribute, or the
+     * session token is missing, then the transactional token is deemed
+     * invalid. </p>
      */
     boolean isTokenValid();
 
     /**
-     * <p> Indicate whether a transaction token is stored in the "session" scope
-     * for this context, optionally clearing the token, so that the next check
-     * would return false. </p>
+     * <p> Indicate whether a transaction token is stored in the "session"
+     * scope for this context, optionally clearing the token, so that the next
+     * check would return false. </p>
      *
      * @param reset On true, clear the transactional token
      */
     boolean isTokenValid(boolean reset);
 
     /**
-     * <p> Clear any transactional token stored in the "session" scope for this
-     * context, so that the next check would return false. </p>
+     * <p> Clear any transactional token stored in the "session" scope for
+     * this context, so that the next check would return false. </p>
      */
     void resetToken();
 
     /**
-     * <p> Save a new transaction token in the "session" scope for this context,
-     * creating new resources, if needed. </p>
+     * <p> Save a new transaction token in the "session" scope for this
+     * context, creating new resources, if needed. </p>
      */
     void saveToken();
 
@@ -417,8 +420,8 @@ public interface ActionContext extends Context {
     /**
      * <p>Set the user's currently selected <code>Locale</code>.</p>
      *
-     * @param locale The user's selected Locale to be set, or null to select the
-     *               server's default Locale
+     * @param locale The user's selected Locale to be set, or null to select
+     *               the server's default Locale
      */
     void setLocale(Locale locale);
 }

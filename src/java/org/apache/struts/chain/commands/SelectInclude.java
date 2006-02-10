@@ -40,8 +40,8 @@ public class SelectInclude extends ActionCommandBase {
     // ---------------------------------------------------------- Public Methods
 
     /**
-     * <p>Select and cache the include uri for this <code>ActionConfig</code> if
-     * specified.</p>
+     * <p>Select and cache the include uri for this <code>ActionConfig</code>
+     * if specified.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
      * @return <code>false</code> so that processing continues
