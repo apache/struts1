@@ -20,6 +20,7 @@ package org.apache.struts.config;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
 import org.apache.commons.digester.Digester;
 
 import java.io.InputStream;
@@ -55,8 +56,7 @@ public class TestModuleConfig extends TestCase {
      * Set up instance variables required by this test case.
      */
     public void setUp() {
-        ModuleConfigFactory factoryObject =
-                ModuleConfigFactory.createFactory();
+        ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
 
         config = factoryObject.createModuleConfig("");
     }
@@ -77,7 +77,7 @@ public class TestModuleConfig extends TestCase {
 
     // ------------------------------------------------ Individual Test Methods
     private void parseConfig(String publicId, String entityURL,
-                             String strutsConfig) {
+        String strutsConfig) {
         // Prepare a Digester for parsing a struts-config.xml file
         Digester digester = new Digester();
 
@@ -86,18 +86,17 @@ public class TestModuleConfig extends TestCase {
         digester.setValidating(true);
         digester.addRuleSet(new ConfigRuleSet());
         digester.register(publicId,
-                this.getClass().getResource(entityURL).toString());
+            this.getClass().getResource(entityURL).toString());
 
         // Parse the test struts-config.xml file
         try {
             InputStream input =
-                    this.getClass().getResourceAsStream(strutsConfig);
+                this.getClass().getResourceAsStream(strutsConfig);
 
             assertNotNull("Got an input stream for " + strutsConfig, input);
             digester.parse(input);
             input.close();
-        }
-        catch (Throwable t) {
+        } catch (Throwable t) {
             t.printStackTrace(System.out);
             fail("Parsing threw exception:  " + t);
         }
@@ -107,21 +106,19 @@ public class TestModuleConfig extends TestCase {
      * Test parsing of a struts-config.xml file.
      */
     public void testParse() {
-        testParseBase(
-                "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN",
-                "/org/apache/struts/resources/struts-config_1_2.dtd",
-                "/org/apache/struts/config/struts-config.xml");
+        testParseBase("-//Apache Software Foundation//DTD Struts Configuration 1.2//EN",
+            "/org/apache/struts/resources/struts-config_1_2.dtd",
+            "/org/apache/struts/config/struts-config.xml");
     }
 
     public void testParse1_1() {
-        testParseBase(
-                "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN",
-                "/org/apache/struts/resources/struts-config_1_1.dtd",
-                "/org/apache/struts/config/struts-config-1.1.xml");
+        testParseBase("-//Apache Software Foundation//DTD Struts Configuration 1.1//EN",
+            "/org/apache/struts/resources/struts-config_1_1.dtd",
+            "/org/apache/struts/config/struts-config-1.1.xml");
     }
 
     public void testParseBase(String publicId, String entityURL,
-                              String strutsConfig) {
+        String strutsConfig) {
         parseConfig(publicId, entityURL, strutsConfig);
 
         // Perform assertion tests on the parsed information
@@ -139,7 +136,7 @@ public class TestModuleConfig extends TestCase {
 
         assertNotNull("Found logon action configuration", logon);
         assertEquals("Found correct logon configuration", "logonForm",
-                logon.getName());
+            logon.getName());
     }
 
     /**
@@ -147,10 +144,9 @@ public class TestModuleConfig extends TestCase {
      */
     public void testCustomMappingParse() {
         // Prepare a Digester for parsing a struts-config.xml file
-        testCustomMappingParseBase(
-                "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN",
-                "/org/apache/struts/resources/struts-config_1_2.dtd",
-                "/org/apache/struts/config/struts-config-custom-mapping.xml");
+        testCustomMappingParseBase("-//Apache Software Foundation//DTD Struts Configuration 1.2//EN",
+            "/org/apache/struts/resources/struts-config_1_2.dtd",
+            "/org/apache/struts/config/struts-config-custom-mapping.xml");
     }
 
     /**
@@ -158,47 +154,46 @@ public class TestModuleConfig extends TestCase {
      */
     public void testCustomMappingParse1_1() {
         // Prepare a Digester for parsing a struts-config.xml file
-        testCustomMappingParseBase(
-                "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN",
-                "/org/apache/struts/resources/struts-config_1_1.dtd",
-                "/org/apache/struts/config/struts-config-custom-mapping.xml");
+        testCustomMappingParseBase("-//Apache Software Foundation//DTD Struts Configuration 1.1//EN",
+            "/org/apache/struts/resources/struts-config_1_1.dtd",
+            "/org/apache/struts/config/struts-config-custom-mapping.xml");
     }
 
     /**
      * Tests a struts-config.xml that contains a custom mapping and property.
      */
     private void testCustomMappingParseBase(String publicId, String entityURL,
-                                            String strutsConfig) {
+        String strutsConfig) {
         parseConfig(publicId, entityURL, strutsConfig);
 
         // Perform assertion tests on the parsed information
-        CustomMappingTest map = (CustomMappingTest) config.findActionConfig(
-                "/editRegistration");
+        CustomMappingTest map =
+            (CustomMappingTest) config.findActionConfig("/editRegistration");
 
         assertNotNull("Cannot find editRegistration mapping", map);
         assertTrue("The custom mapping attribute has not been set",
-                map.getPublic());
+            map.getPublic());
     }
 
     /**
      * Test order of action mappings defined perserved.
      */
     public void testPreserveActionMappingsOrder() {
-        parseConfig(
-                "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN",
-                "/org/apache/struts/resources/struts-config_1_2.dtd",
-                "/org/apache/struts/config/struts-config.xml");
+        parseConfig("-//Apache Software Foundation//DTD Struts Configuration 1.2//EN",
+            "/org/apache/struts/resources/struts-config_1_2.dtd",
+            "/org/apache/struts/config/struts-config.xml");
 
-        String[] paths = new String[]{
+        String[] paths =
+            new String[] {
                 "/editRegistration", "/editSubscription", "/logoff", "/logon",
                 "/saveRegistration", "/saveSubscription", "/tour"
-        };
+            };
 
         ActionConfig[] actions = config.findActionConfigs();
 
         for (int x = 0; x < paths.length; x++) {
             assertTrue("Action config out of order:" + actions[x].getPath(),
-                    paths[x].equals(actions[x].getPath()));
+                paths[x].equals(actions[x].getPath()));
         }
     }
 }

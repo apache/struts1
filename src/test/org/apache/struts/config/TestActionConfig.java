@@ -61,8 +61,7 @@ public class TestActionConfig extends TestCase {
      * Set up instance variables required by this test case.
      */
     public void setUp() {
-        ModuleConfigFactory factoryObject =
-                ModuleConfigFactory.createFactory();
+        ModuleConfigFactory factoryObject = ModuleConfigFactory.createFactory();
 
         config = factoryObject.createModuleConfig("");
 
@@ -72,8 +71,8 @@ public class TestActionConfig extends TestCase {
         baseConfig.setType("org.apache.struts.actions.DummyAction");
 
         // set up success and failure forward
-        ForwardConfig forward = new ForwardConfig("success", "/success.jsp",
-                false);
+        ForwardConfig forward =
+            new ForwardConfig("success", "/success.jsp", false);
 
         baseConfig.addForwardConfig(forward);
 
@@ -132,7 +131,7 @@ public class TestActionConfig extends TestCase {
         config.addActionConfig(grandChild);
 
         assertTrue("Circular inheritance shouldn't have been detected",
-                !grandChild.checkCircularInheritance(config));
+            !grandChild.checkCircularInheritance(config));
     }
 
     /**
@@ -156,7 +155,7 @@ public class TestActionConfig extends TestCase {
         config.addActionConfig(grandChild);
 
         assertTrue("Circular inheritance should've been detected",
-                grandChild.checkCircularInheritance(config));
+            grandChild.checkCircularInheritance(config));
     }
 
     /**
@@ -164,7 +163,7 @@ public class TestActionConfig extends TestCase {
      * extension has been processed.
      */
     public void testProcessExtendsActionExtends()
-            throws Exception {
+        throws Exception {
         CustomActionConfig first = new CustomActionConfig();
 
         first.setPath("/first");
@@ -183,9 +182,9 @@ public class TestActionConfig extends TestCase {
         baseConfig.processExtends(config);
 
         assertTrue("The first action's processExtends() wasn't called",
-                first.processExtendsCalled);
+            first.processExtendsCalled);
         assertTrue("The second action's processExtends() wasn't called",
-                second.processExtendsCalled);
+            second.processExtendsCalled);
     }
 
     /**
@@ -193,18 +192,16 @@ public class TestActionConfig extends TestCase {
      * found.
      */
     public void testProcessExtendsMissingAction()
-            throws Exception {
+        throws Exception {
         baseConfig.setExtends("/someMissingAction");
 
         try {
             baseConfig.processExtends(config);
             fail(
-                    "An exception should be thrown if a super form can't be found.");
-        }
-        catch (NullPointerException e) {
+                "An exception should be thrown if a super form can't be found.");
+        } catch (NullPointerException e) {
             // succeed
-        }
-        catch (InstantiationException e) {
+        } catch (InstantiationException e) {
             fail("Unrecognized exception thrown.");
         }
     }
@@ -215,7 +212,7 @@ public class TestActionConfig extends TestCase {
      * method checks all the subelements.
      */
     public void testInheritFrom()
-            throws Exception {
+        throws Exception {
         // create a basic subform
         ActionConfig subConfig = new ActionConfig();
         String subConfigPath = "subConfig";
@@ -247,13 +244,13 @@ public class TestActionConfig extends TestCase {
 
         // check that our subConfig is still the one in the config
         assertSame("subConfig no longer in ModuleConfig", subConfig,
-                config.findActionConfig("subConfig"));
+            config.findActionConfig("subConfig"));
 
         // check our configured sub config
         assertNotNull("Action type was not inherited", subConfig.getType());
         assertEquals("Wrong config path", subConfigPath, subConfig.getPath());
         assertEquals("Wrong config type", baseConfig.getType(),
-                subConfig.getType());
+            subConfig.getType());
 
         // check our forwards
         ForwardConfig[] forwards = subConfig.findForwardConfigs();
@@ -263,7 +260,7 @@ public class TestActionConfig extends TestCase {
         forward = subConfig.findForwardConfig("success");
         assertNotNull("'success' forward was not found", forward);
         assertEquals("Wrong path for success", "/newSuccess.jsp",
-                forward.getPath());
+            forward.getPath());
 
         forward = subConfig.findForwardConfig("failure");
 
@@ -271,10 +268,10 @@ public class TestActionConfig extends TestCase {
 
         assertNotNull("'failure' forward was not inherited", forward);
         assertEquals("Wrong type for 'failure'", origForward.getPath(),
-                forward.getPath());
+            forward.getPath());
         assertEquals("Arbitrary property not copied",
-                origForward.getProperty("forwardCount"),
-                forward.getProperty("forwardCount"));
+            origForward.getProperty("forwardCount"),
+            forward.getProperty("forwardCount"));
 
         // check our exceptions
         ExceptionConfig[] handlers = subConfig.findExceptionConfigs();
@@ -283,30 +280,30 @@ public class TestActionConfig extends TestCase {
 
         handler = subConfig.findExceptionConfig("java.sql.SQLException");
 
-        ExceptionConfig origHandler = baseConfig.findExceptionConfig(
-                "java.sql.SQLException");
+        ExceptionConfig origHandler =
+            baseConfig.findExceptionConfig("java.sql.SQLException");
 
         assertNotNull("'SQLException' handler was not found", handler);
         assertEquals("Wrong key for 'SQLException'", origHandler.getKey(),
-                handler.getKey());
+            handler.getKey());
         assertEquals("Arbitrary property not copied",
-                origHandler.getProperty("exceptionCount"),
-                handler.getProperty("exceptionCount"));
+            origHandler.getProperty("exceptionCount"),
+            handler.getProperty("exceptionCount"));
 
-        handler = subConfig.findExceptionConfig(
-                "java.lang.NullPointerException");
+        handler =
+            subConfig.findExceptionConfig("java.lang.NullPointerException");
         assertNotNull("'NullPointerException' handler disappeared", handler);
 
         // check the arbitrary properties
         String version = subConfig.getProperty("version");
 
         assertEquals("Arbitrary property 'version' wasn't inherited", "1a",
-                version);
+            version);
 
         String label = subConfig.getProperty("label");
 
         assertEquals("Arbitrary property 'label' shouldn't have changed",
-                "sub", label);
+            "sub", label);
     }
 
     /**
@@ -316,7 +313,7 @@ public class TestActionConfig extends TestCase {
         boolean processExtendsCalled = false;
 
         public void processExtends(ModuleConfig moduleConfig)
-                throws ClassNotFoundException, IllegalAccessException,
+            throws ClassNotFoundException, IllegalAccessException, 
                 InstantiationException, InvocationTargetException {
             super.processExtends(moduleConfig);
             processExtendsCalled = true;

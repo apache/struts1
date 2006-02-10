@@ -19,6 +19,7 @@ package org.apache.struts.config;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.mock.TestMockBase;
@@ -36,9 +37,9 @@ public class TestActionConfigMatcher extends TestMockBase {
     }
 
     public static void main(String[] args) {
-        junit.awtui.TestRunner.main(new String[]{
+        junit.awtui.TestRunner.main(new String[] {
                 TestActionConfigMatcher.class.getName()
-        });
+            });
     }
 
     public static Test suite() {
@@ -65,8 +66,7 @@ public class TestActionConfigMatcher extends TestMockBase {
 
         ActionConfigMatcher matcher = new ActionConfigMatcher(configs);
 
-        assertNull("ActionConfig shouldn't be matched",
-                matcher.match("/test"));
+        assertNull("ActionConfig shouldn't be matched", matcher.match("/test"));
     }
 
     public void testNoWildcardMatch() {
@@ -77,8 +77,7 @@ public class TestActionConfigMatcher extends TestMockBase {
 
         ActionConfigMatcher matcher = new ActionConfigMatcher(configs);
 
-        assertNull("ActionConfig shouldn't be matched",
-                matcher.match("/fooBar"));
+        assertNull("ActionConfig shouldn't be matched", matcher.match("/fooBar"));
     }
 
     public void testShouldMatch() {
@@ -93,11 +92,11 @@ public class TestActionConfigMatcher extends TestMockBase {
 
         assertNotNull("ActionConfig should be matched", matched);
         assertTrue("ActionConfig should have two action forward",
-                matched.findForwardConfigs().length == 2);
+            matched.findForwardConfigs().length == 2);
         assertTrue("ActionConfig should have two exception forward",
-                matched.findExceptionConfigs().length == 2);
+            matched.findExceptionConfigs().length == 2);
         assertTrue("ActionConfig should have properties",
-                matched.getProperties().size() == 2);
+            matched.getProperties().size() == 2);
     }
 
     public void testCheckSubstitutionsMatch() {
@@ -109,35 +108,33 @@ public class TestActionConfigMatcher extends TestMockBase {
         ActionConfigMatcher matcher = new ActionConfigMatcher(configs);
         ActionConfig m = matcher.match("/fooBar");
 
-        assertTrue("Name hasn't been replaced",
-                "name,Bar".equals(m.getName()));
-        assertTrue("Path hasn't been replaced",
-                "/fooBar".equals(m.getPath()));
+        assertTrue("Name hasn't been replaced", "name,Bar".equals(m.getName()));
+        assertTrue("Path hasn't been replaced", "/fooBar".equals(m.getPath()));
         assertTrue("Scope isn't correct", "request".equals(m.getScope()));
         assertTrue("Unknown isn't correct", !m.getUnknown());
         assertTrue("Validate isn't correct", m.getValidate());
 
         assertTrue("Prefix hasn't been replaced",
-                "foo,Bar".equals(m.getPrefix()));
+            "foo,Bar".equals(m.getPrefix()));
         assertTrue("Suffix hasn't been replaced",
-                "bar,Bar".equals(m.getSuffix()));
+            "bar,Bar".equals(m.getSuffix()));
         assertTrue("Type hasn't been replaced",
-                "foo.bar.BarAction".equals(m.getType()));
+            "foo.bar.BarAction".equals(m.getType()));
         assertTrue("Roles hasn't been replaced",
-                "public,Bar".equals(m.getRoles()));
+            "public,Bar".equals(m.getRoles()));
         assertTrue("Parameter hasn't been replaced",
-                "param,Bar".equals(m.getParameter()));
+            "param,Bar".equals(m.getParameter()));
         assertTrue("Attribute hasn't been replaced",
-                "attrib,Bar".equals(m.getAttribute()));
+            "attrib,Bar".equals(m.getAttribute()));
         assertTrue("Forward hasn't been replaced",
-                "fwd,Bar".equals(m.getForward()));
+            "fwd,Bar".equals(m.getForward()));
         assertTrue("Include hasn't been replaced",
-                "include,Bar".equals(m.getInclude()));
+            "include,Bar".equals(m.getInclude()));
         assertTrue("Input hasn't been replaced",
-                "input,Bar".equals(m.getInput()));
+            "input,Bar".equals(m.getInput()));
 
         assertTrue("ActionConfig property not replaced",
-                "testBar".equals(m.getProperty("testprop2")));
+            "testBar".equals(m.getProperty("testprop2")));
 
         ForwardConfig[] fConfigs = m.findForwardConfigs();
         boolean found = false;
@@ -148,9 +145,9 @@ public class TestActionConfigMatcher extends TestMockBase {
             if ("name".equals(cfg.getName())) {
                 found = true;
                 assertTrue("Path hasn't been replaced",
-                        "path,Bar".equals(cfg.getPath()));
+                    "path,Bar".equals(cfg.getPath()));
                 assertTrue("Property foo hasn't been replaced",
-                        "bar,Bar".equals(cfg.getProperty("foo")));
+                    "bar,Bar".equals(cfg.getProperty("foo")));
             }
         }
 
@@ -168,7 +165,7 @@ public class TestActionConfigMatcher extends TestMockBase {
         ActionConfig m = matcher.match("/fooBar");
 
         assertTrue("Name hasn't been replaced correctly: " + m.getName(),
-                "name,Bar-Bar".equals(m.getName()));
+            "name,Bar-Bar".equals(m.getName()));
     }
 
     private ActionConfig buildActionConfig(String path) {
