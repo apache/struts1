@@ -19,6 +19,7 @@ package org.apache.struts.util;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
+
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
@@ -45,9 +46,9 @@ public class TestRequestUtils extends TestMockBase {
     }
 
     public static void main(String[] args) {
-        junit.awtui.TestRunner.main(new String[]{
+        junit.awtui.TestRunner.main(new String[] {
                 TestRequestUtils.class.getName()
-        });
+            });
     }
 
     public static Test suite() {
@@ -72,12 +73,10 @@ public class TestRequestUtils extends TestMockBase {
         String url = null;
 
         try {
-            url = RequestUtils.absoluteURL(request, "/foo/bar.jsp")
-                    .toString();
+            url = RequestUtils.absoluteURL(request, "/foo/bar.jsp").toString();
             assertEquals("absoluteURL is correct",
-                    "http://localhost:8080/myapp/foo/bar.jsp", url);
-        }
-        catch (MalformedURLException e) {
+                "http://localhost:8080/myapp/foo/bar.jsp", url);
+        } catch (MalformedURLException e) {
             fail("Threw MalformedURLException: " + e);
         }
     }
@@ -88,7 +87,8 @@ public class TestRequestUtils extends TestMockBase {
         request.setAttribute(Globals.MODULE_KEY, moduleConfig);
         request.setPathElements("/myapp", "/foo.do", null, null);
 
-        String url = RequestUtils.actionURL(request,
+        String url =
+            RequestUtils.actionURL(request,
                 moduleConfig.findActionConfig("/dynamic"), "*.do");
 
         assertNotNull("URL was returned", url);
@@ -100,7 +100,8 @@ public class TestRequestUtils extends TestMockBase {
         request.setAttribute(Globals.MODULE_KEY, moduleConfig2);
         request.setPathElements("/myapp", "/2/foo.do", null, null);
 
-        String url = RequestUtils.actionURL(request,
+        String url =
+            RequestUtils.actionURL(request,
                 moduleConfig2.findActionConfig("/dynamic2"), "*.do");
 
         assertNotNull("URL was returned", url);
@@ -112,7 +113,8 @@ public class TestRequestUtils extends TestMockBase {
         request.setAttribute(Globals.MODULE_KEY, moduleConfig);
         request.setPathElements("/myapp", "/do/foo", null, null);
 
-        String url = RequestUtils.actionURL(request,
+        String url =
+            RequestUtils.actionURL(request,
                 moduleConfig.findActionConfig("/dynamic"), "/do/*");
 
         assertNotNull("URL was returned", url);
@@ -124,13 +126,13 @@ public class TestRequestUtils extends TestMockBase {
     public void testCreateActionForm1a() {
         request.setPathElements("/myapp", "/noform.do", null, null);
 
-        ActionMapping mapping = (ActionMapping) moduleConfig.findActionConfig(
-                "/noform");
+        ActionMapping mapping =
+            (ActionMapping) moduleConfig.findActionConfig("/noform");
 
         assertNotNull("Found /noform mapping", mapping);
 
-        ActionForm form = RequestUtils.createActionForm(request, mapping,
-                moduleConfig, null);
+        ActionForm form =
+            RequestUtils.createActionForm(request, mapping, moduleConfig, null);
 
         assertNull("No ActionForm returned", form);
     }
@@ -140,13 +142,12 @@ public class TestRequestUtils extends TestMockBase {
         request.setPathElements("/myapp", "/2/noform.do", null, null);
 
         ActionMapping mapping =
-                (ActionMapping) moduleConfig2.findActionConfig(
-                        "/noform");
+            (ActionMapping) moduleConfig2.findActionConfig("/noform");
 
         assertNotNull("Found /noform mapping", mapping);
 
-        ActionForm form = RequestUtils.createActionForm(request, mapping,
-                moduleConfig2, null);
+        ActionForm form =
+            RequestUtils.createActionForm(request, mapping, moduleConfig2, null);
 
         assertNull("No ActionForm returned", form);
     }
@@ -155,21 +156,20 @@ public class TestRequestUtils extends TestMockBase {
     public void testCreateActionForm2a() {
         request.setPathElements("/myapp", "/static.do", null, null);
 
-        ActionMapping mapping = (ActionMapping) moduleConfig.findActionConfig(
-                "/static");
+        ActionMapping mapping =
+            (ActionMapping) moduleConfig.findActionConfig("/static");
 
         assertNotNull("Found /static mapping", mapping);
         assertNotNull("Mapping has non-null name", mapping.getName());
         assertEquals("Mapping has correct name", "static", mapping.getName());
         assertNotNull("AppConfig has form bean " + mapping.getName(),
-                moduleConfig.findFormBeanConfig(mapping.getName()));
+            moduleConfig.findFormBeanConfig(mapping.getName()));
 
-        ActionForm form = RequestUtils.createActionForm(request, mapping,
-                moduleConfig, null);
+        ActionForm form =
+            RequestUtils.createActionForm(request, mapping, moduleConfig, null);
 
         assertNotNull("ActionForm returned", form);
-        assertTrue("ActionForm of correct type",
-                form instanceof MockFormBean);
+        assertTrue("ActionForm of correct type", form instanceof MockFormBean);
     }
 
     // Second module -- Standard ActionForm should be created
@@ -177,44 +177,39 @@ public class TestRequestUtils extends TestMockBase {
         request.setPathElements("/myapp", "/2/static.do", null, null);
 
         ActionMapping mapping =
-                (ActionMapping) moduleConfig2.findActionConfig(
-                        "/static");
+            (ActionMapping) moduleConfig2.findActionConfig("/static");
 
         assertNotNull("Found /static mapping", mapping);
         assertNotNull("Mapping has non-null name", mapping.getName());
         assertEquals("Mapping has correct name", "static", mapping.getName());
         assertNotNull("AppConfig has form bean " + mapping.getName(),
-                moduleConfig.findFormBeanConfig(mapping.getName()));
+            moduleConfig.findFormBeanConfig(mapping.getName()));
 
-        ActionForm form = RequestUtils.createActionForm(request, mapping,
-                moduleConfig2, null);
+        ActionForm form =
+            RequestUtils.createActionForm(request, mapping, moduleConfig2, null);
 
         assertNotNull("ActionForm returned", form);
-        assertTrue("ActionForm of correct type",
-                form instanceof MockFormBean);
+        assertTrue("ActionForm of correct type", form instanceof MockFormBean);
     }
 
     // Default module -- Dynamic ActionForm should be created
     public void testCreateActionForm3a() {
         request.setPathElements("/myapp", "/dynamic.do", null, null);
 
-        ActionMapping mapping = (ActionMapping) moduleConfig.findActionConfig(
-                "/dynamic");
+        ActionMapping mapping =
+            (ActionMapping) moduleConfig.findActionConfig("/dynamic");
 
         assertNotNull("Found /dynamic mapping", mapping);
         assertNotNull("Mapping has non-null name", mapping.getName());
-        assertEquals("Mapping has correct name",
-                "dynamic",
-                mapping.getName());
+        assertEquals("Mapping has correct name", "dynamic", mapping.getName());
         assertNotNull("AppConfig has form bean " + mapping.getName(),
-                moduleConfig.findFormBeanConfig(mapping.getName()));
+            moduleConfig.findFormBeanConfig(mapping.getName()));
 
-        ActionForm form = RequestUtils.createActionForm(request, mapping,
-                moduleConfig, null);
+        ActionForm form =
+            RequestUtils.createActionForm(request, mapping, moduleConfig, null);
 
         assertNotNull("ActionForm returned", form);
-        assertTrue("ActionForm of correct type",
-                form instanceof DynaActionForm);
+        assertTrue("ActionForm of correct type", form instanceof DynaActionForm);
     }
 
     // Second module -- Dynamic ActionForm should be created
@@ -222,23 +217,19 @@ public class TestRequestUtils extends TestMockBase {
         request.setPathElements("/myapp", "/2/dynamic2.do", null, null);
 
         ActionMapping mapping =
-                (ActionMapping) moduleConfig2.findActionConfig(
-                        "/dynamic2");
+            (ActionMapping) moduleConfig2.findActionConfig("/dynamic2");
 
         assertNotNull("Found /dynamic2 mapping", mapping);
         assertNotNull("Mapping has non-null name", mapping.getName());
-        assertEquals("Mapping has correct name",
-                "dynamic2",
-                mapping.getName());
+        assertEquals("Mapping has correct name", "dynamic2", mapping.getName());
         assertNotNull("AppConfig has form bean " + mapping.getName(),
-                moduleConfig2.findFormBeanConfig(mapping.getName()));
+            moduleConfig2.findFormBeanConfig(mapping.getName()));
 
-        ActionForm form = RequestUtils.createActionForm(request, mapping,
-                moduleConfig2, null);
+        ActionForm form =
+            RequestUtils.createActionForm(request, mapping, moduleConfig2, null);
 
         assertNotNull("ActionForm returned", form);
-        assertTrue("ActionForm of correct type",
-                form instanceof DynaActionForm);
+        assertTrue("ActionForm of correct type", form instanceof DynaActionForm);
     }
 
     // Default module -- Dynamic ActionForm with initializers
@@ -246,23 +237,20 @@ public class TestRequestUtils extends TestMockBase {
         // Retrieve an appropriately configured DynaActionForm instance
         request.setPathElements("/myapp", "/dynamic0.do", null, null);
 
-        ActionMapping mapping = (ActionMapping) moduleConfig.findActionConfig(
-                "/dynamic0");
+        ActionMapping mapping =
+            (ActionMapping) moduleConfig.findActionConfig("/dynamic0");
 
         assertNotNull("Found /dynamic0 mapping", mapping);
         assertNotNull("Mapping has non-null name", mapping.getName());
-        assertEquals("Mapping has correct name",
-                "dynamic0",
-                mapping.getName());
+        assertEquals("Mapping has correct name", "dynamic0", mapping.getName());
         assertNotNull("AppConfig has form bean " + mapping.getName(),
-                moduleConfig.findFormBeanConfig(mapping.getName()));
+            moduleConfig.findFormBeanConfig(mapping.getName()));
 
-        ActionForm form = RequestUtils.createActionForm(request, mapping,
-                moduleConfig, null);
+        ActionForm form =
+            RequestUtils.createActionForm(request, mapping, moduleConfig, null);
 
         assertNotNull("ActionForm returned", form);
-        assertTrue("ActionForm of correct type",
-                form instanceof DynaActionForm);
+        assertTrue("ActionForm of correct type", form instanceof DynaActionForm);
 
         // Validate the property values
         DynaActionForm dform = (DynaActionForm) form;
@@ -273,7 +261,7 @@ public class TestRequestUtils extends TestMockBase {
         String stringProperty = (String) dform.get("stringProperty");
 
         assertEquals("stringProperty is correct", "String Property",
-                stringProperty);
+            stringProperty);
 
         Object value = null;
 
@@ -303,8 +291,7 @@ public class TestRequestUtils extends TestMockBase {
 
         value = dform.get("principal");
         assertNotNull("principal exists", value);
-        assertTrue("principal is MockPrincipal",
-                value instanceof MockPrincipal);
+        assertTrue("principal is MockPrincipal", value instanceof MockPrincipal);
 
         value = dform.get("stringArray1");
         assertNotNull("stringArray1 exists", value);
@@ -312,18 +299,10 @@ public class TestRequestUtils extends TestMockBase {
 
         String[] stringArray1 = (String[]) value;
 
-        assertEquals("stringArray1 length is correct",
-                3,
-                stringArray1.length);
-        assertEquals("stringArray1[0] value is correct",
-                "aaa",
-                stringArray1[0]);
-        assertEquals("stringArray1[1] value is correct",
-                "bbb",
-                stringArray1[1]);
-        assertEquals("stringArray1[2] value is correct",
-                "ccc",
-                stringArray1[2]);
+        assertEquals("stringArray1 length is correct", 3, stringArray1.length);
+        assertEquals("stringArray1[0] value is correct", "aaa", stringArray1[0]);
+        assertEquals("stringArray1[1] value is correct", "bbb", stringArray1[1]);
+        assertEquals("stringArray1[2] value is correct", "ccc", stringArray1[2]);
 
         value = dform.get("stringArray2");
         assertNotNull("stringArray2 exists", value);
@@ -331,39 +310,37 @@ public class TestRequestUtils extends TestMockBase {
 
         String[] stringArray2 = (String[]) value;
 
-        assertEquals("stringArray2 length is correct",
-                3,
-                stringArray2.length);
+        assertEquals("stringArray2 length is correct", 3, stringArray2.length);
         assertEquals("stringArray2[0] value is correct", new String(),
-                stringArray2[0]);
+            stringArray2[0]);
         assertEquals("stringArray2[1] value is correct", new String(),
-                stringArray2[1]);
+            stringArray2[1]);
         assertEquals("stringArray2[2] value is correct", new String(),
-                stringArray2[2]);
+            stringArray2[2]);
 
         // Different form beans should get different property value instances
         Object value1 = null;
         DynaActionForm dform1 =
-                (DynaActionForm) RequestUtils.createActionForm(request,
-                        mapping, moduleConfig, null);
+            (DynaActionForm) RequestUtils.createActionForm(request, mapping,
+                moduleConfig, null);
 
         value = dform.get("principal");
         value1 = dform1.get("principal");
         assertEquals("Different form beans get equal instance values", value,
-                value1);
+            value1);
         assertTrue("Different form beans get different instances 1",
-                value != value1);
+            value != value1);
 
         value = dform.get("stringArray1");
         value1 = dform1.get("stringArray1");
         assertTrue("Different form beans get different instances 2",
-                value != value1);
+            value != value1);
 
         dform1.set("stringProperty", "Different stringProperty value");
         value = dform.get("stringProperty");
         value1 = dform1.get("stringProperty");
         assertTrue("Different form beans get different instances 3",
-                value != value1);
+            value != value1);
     }
 
     // ----------------------------------------------------------- forwardURL()
@@ -483,7 +460,7 @@ public class TestRequestUtils extends TestMockBase {
         result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("moduleForward computed", result);
         assertEquals("moduleForward value", "/forwarding/3/module/forward",
-                result);
+            result);
 
         // redirect=true, module=null
         forward = moduleConfig3.findForwardConfig("moduleRedirect");
@@ -491,7 +468,7 @@ public class TestRequestUtils extends TestMockBase {
         result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("moduleRedirect computed", result);
         assertEquals("moduleRedirect value", "/forwarding/3/module/redirect",
-                result);
+            result);
 
         // redirect=false, module=/context
         forward = moduleConfig3.findForwardConfig("contextForward");
@@ -499,7 +476,7 @@ public class TestRequestUtils extends TestMockBase {
         result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("contextForward computed", result);
         assertEquals("contextForward value", "/forwarding/context/forward",
-                result);
+            result);
 
         // redirect=true, module=/context
         forward = moduleConfig3.findForwardConfig("contextRedirect");
@@ -507,7 +484,7 @@ public class TestRequestUtils extends TestMockBase {
         result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("contextRedirect computed", result);
         assertEquals("contextRedirct value", "/forwarding/context/redirect",
-                result);
+            result);
 
         // noslash, module=null
         forward = moduleConfig3.findForwardConfig("moduleNoslash");
@@ -515,7 +492,7 @@ public class TestRequestUtils extends TestMockBase {
         result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("moduleNoslash computed", result);
         assertEquals("moduleNoslash value", "/forwarding/3/module/noslash",
-                result);
+            result);
 
         // noslash, module=/
         forward = moduleConfig3.findForwardConfig("contextNoslash");
@@ -523,7 +500,7 @@ public class TestRequestUtils extends TestMockBase {
         result = RequestUtils.forwardURL(request, forward, null);
         assertNotNull("contextNoslash computed", result);
         assertEquals("contextNoslash value", "/forwarding/context/noslash",
-                result);
+            result);
     }
 
     // Cross module forwards
@@ -540,7 +517,7 @@ public class TestRequestUtils extends TestMockBase {
         result = RequestUtils.forwardURL(request, forward, moduleConfig3);
         assertNotNull("moduleForward computed", result);
         assertEquals("moduleForward value", "/forwarding/3/module/forward",
-                result);
+            result);
 
         // redirect=true, contextRelative=false, link to module 3
         forward = moduleConfig3.findForwardConfig("moduleRedirect");
@@ -548,7 +525,7 @@ public class TestRequestUtils extends TestMockBase {
         result = RequestUtils.forwardURL(request, forward, moduleConfig3);
         assertNotNull("moduleRedirect computed", result);
         assertEquals("moduleRedirect value", "/forwarding/3/module/redirect",
-                result);
+            result);
 
         // redirect=false, module=/context
         forward = moduleConfig3.findForwardConfig("contextForward");
@@ -556,7 +533,7 @@ public class TestRequestUtils extends TestMockBase {
         result = RequestUtils.forwardURL(request, forward, moduleConfig3);
         assertNotNull("contextForward computed", result);
         assertEquals("contextForward value", "/forwarding/context/forward",
-                result);
+            result);
 
         // redirect=true, module=/context
         forward = moduleConfig3.findForwardConfig("contextRedirect");
@@ -564,7 +541,7 @@ public class TestRequestUtils extends TestMockBase {
         result = RequestUtils.forwardURL(request, forward, moduleConfig3);
         assertNotNull("contextRedirect computed", result);
         assertEquals("contextRedirct value", "/forwarding/context/redirect",
-                result);
+            result);
 
         // noslash, contextRelative=false, link to module 3
         forward = moduleConfig3.findForwardConfig("moduleNoslash");
@@ -572,7 +549,7 @@ public class TestRequestUtils extends TestMockBase {
         result = RequestUtils.forwardURL(request, forward, moduleConfig3);
         assertNotNull("moduleNoslash computed", result);
         assertEquals("moduleNoslash value", "/forwarding/3/module/noslash",
-                result);
+            result);
 
         // noslash, module=/
         forward = moduleConfig3.findForwardConfig("contextNoslash");
@@ -580,7 +557,7 @@ public class TestRequestUtils extends TestMockBase {
         result = RequestUtils.forwardURL(request, forward, moduleConfig3);
         assertNotNull("contextNoslash computed", result);
         assertEquals("contextNoslash value", "/forwarding/context/noslash",
-                result);
+            result);
     }
 
     // ----------------------------------------------------------- requestURL()
@@ -591,8 +568,7 @@ public class TestRequestUtils extends TestMockBase {
 
         try {
             url = RequestUtils.requestURL(request).toString();
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             fail("MalformedURLException: " + e);
         }
 
@@ -607,7 +583,7 @@ public class TestRequestUtils extends TestMockBase {
         ModuleUtils.getInstance().selectModule(request, context);
 
         ModuleConfig moduleConfig =
-                (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+            (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
 
         assertNotNull("Selected a module", moduleConfig);
         assertEquals("Selected correct module", "", moduleConfig.getPrefix());
@@ -617,7 +593,7 @@ public class TestRequestUtils extends TestMockBase {
 
     // Map to the second module -- direct
     public void testSelectApplication1b() {
-        String[] prefixes = {"/1", "/2"};
+        String[] prefixes = { "/1", "/2" };
 
         context.setAttribute(Globals.MODULE_PREFIXES_KEY, prefixes);
         request.setPathElements("/myapp", "/2/noform.do", null, null);
@@ -625,12 +601,10 @@ public class TestRequestUtils extends TestMockBase {
         ModuleUtils.getInstance().selectModule(request, context);
 
         ModuleConfig moduleConfig =
-                (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+            (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
 
         assertNotNull("Selected a module", moduleConfig);
-        assertEquals("Selected correct module",
-                "/2",
-                moduleConfig.getPrefix());
+        assertEquals("Selected correct module", "/2", moduleConfig.getPrefix());
 
         // FIXME - check module resources?
     }
@@ -638,37 +612,34 @@ public class TestRequestUtils extends TestMockBase {
     // Map to the default module -- include
     public void testSelectApplication2a() {
         request.setPathElements("/myapp", "/2/noform.do", null, null);
-        request.setAttribute(RequestProcessor.INCLUDE_SERVLET_PATH,
-                "/noform.do");
+        request.setAttribute(RequestProcessor.INCLUDE_SERVLET_PATH, "/noform.do");
         ModuleUtils.getInstance().selectModule(request, context);
 
         ModuleConfig moduleConfig =
-                (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+            (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
 
         assertNotNull("Selected an application", moduleConfig);
         assertEquals("Selected correct application", "",
-                moduleConfig.getPrefix());
+            moduleConfig.getPrefix());
 
         // FIXME - check application resources?
     }
 
     // Map to the second module -- include
     public void testSelectApplication2b() {
-        String[] prefixes = {"/1", "/2"};
+        String[] prefixes = { "/1", "/2" };
 
         context.setAttribute(Globals.MODULE_PREFIXES_KEY, prefixes);
         request.setPathElements("/myapp", "/noform.do", null, null);
         request.setAttribute(RequestProcessor.INCLUDE_SERVLET_PATH,
-                "/2/noform.do");
+            "/2/noform.do");
         ModuleUtils.getInstance().selectModule(request, context);
 
         ModuleConfig moduleConfig =
-                (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
+            (ModuleConfig) request.getAttribute(Globals.MODULE_KEY);
 
         assertNotNull("Selected a module", moduleConfig);
-        assertEquals("Selected correct module",
-                "/2",
-                moduleConfig.getPrefix());
+        assertEquals("Selected correct module", "/2", moduleConfig.getPrefix());
 
         // FIXME - check application resources?
     }
@@ -680,8 +651,7 @@ public class TestRequestUtils extends TestMockBase {
 
         try {
             url = RequestUtils.serverURL(request).toString();
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             fail("Threw MalformedURLException: " + e);
         }
 
