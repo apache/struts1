@@ -82,7 +82,7 @@ limitations under the License.
                     implementation for a servlet 2.3 and JSP 1.2 container.
                 </p>
                 <p>After serving as the co-lead of the JSR 127 specification
-                    (JavaServerFaces), Craig created another version of Struts
+                    (JavaServerFaces), Craig created another rendition of Struts
                     based on JavaServerFaces, called Shale. Both Struts Action
                     Framework and Struts Shale are first-class citizens of the
                     Apache Struts project.</p>
