@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-Copyright 1999-2005 The Apache Software Foundation
+Copyright 1999-2006 The Apache Software Foundation
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -402,6 +402,16 @@ limitations under the License.
                         ' instead of
                         <code>null</code>
                         .
+                        [true] (optional)
+                    </li>
+
+                    <li>
+                        <strong>escape</strong>
+                        - Set to
+                        <code>true</code>
+                         if  
+                         <i>escape processing</i>
+                         should be performed on the error message string. 
                         [true] (optional)
                     </li>
 
