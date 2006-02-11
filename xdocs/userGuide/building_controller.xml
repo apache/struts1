@@ -1225,9 +1225,9 @@ limitations under the License.
 ]]></source>
 
                 <p>
-                    Note that there is nothing special about the name value.
-                    Your map-backed property could instead be named property,
-                    thingy, or any other bean property name you prefer.
+                    Note that there is nothing special about the name "value".
+                    Your map-backed property could instead be named "property",
+                    "thingy", or any other bean property name you prefer.
                     You can even have multiple map-backed properties on the
                     same bean.
                 </p>
@@ -1867,7 +1867,7 @@ limitations under the License.
                     named
                     struts-config.xml and place it in the WEB-INF directory of
                     your application.
-                    This format of this document is described by the Document
+                    The format of this document is described by the Document
                     Type Definition
                     (DTD) maintained at
                     <a href="http://struts.apache.org/dtds/struts-config_1_3.dtd">
@@ -2203,7 +2203,7 @@ limitations under the License.
                     [Since Apache Struts 1.2.0] As an application grows in
                     size,
                     so will the number of action mappings.
-                    Wildcards can be used to combine similiar mappings
+                    Wildcards can be used to combine similar mappings
                     into one more generic mapping.
                 </p>
                 <p>
@@ -2262,7 +2262,7 @@ limitations under the License.
                     against
                     a path without any wildcards in it, no wildcard matching
                     is performed
-                    and order in not important.
+                    and order is not important.
                 </p>
                 <p>
                     Wildcard patterns can contain one or more of the following
