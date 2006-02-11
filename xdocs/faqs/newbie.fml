@@ -16,124 +16,12 @@ limitations under the License.
 <!--
 // ======================================================================== 78
 -->
-<document>
+<faqs title="Newbie FAQ">
+        <part>
 
-    <properties>
-        <title>Newbie FAQ</title>
-    </properties>
-    <body>
-        <section href="faq" name="Newbie FAQ">
-
-            <a name="contents"/>
-            <subsection name="Index">
-
-                <p>
-                    Here are answers to the most common questions people ask
-                    when using
-                    the framework on their first project.
-                </p>
-
-                <ul>
-
-                    <li>
-                        <a href="#modules">What is a modular application? What
-                            does
-                            module-relative mean?</a>
-                    </li>
-
-                    <li>
-                        <a href="#naming">Why are some of the class and
-                            element names
-                            counter-intuitive?</a>
-                    </li>
-
-                    <li>
-                        <a href="#actionForms">Whither ActionForms?</a>
-                    </li>
-
-                    <li>
-                        <a href="#actionFormInterface">Why is ActionForm a
-                            base class rather than an interface?</a>
-                    </li>
-
-                    <li>
-                        <a href="#news">Can I use other beans or hashmaps with
-                            ActionForms?</a>
-                    </li>
-
-                    <li>
-                        <a href="#authenticate">How can I authenticate my
-                            users?</a>
-                    </li>
-
-                    <li>
-                        <a href="#jsp">Do I have to use JSPs with my
-                            application?</a>
-                    </li>
-
-                    <li>
-                        <a href="#formbeans">Do ActionForms have to be true
-                            JavaBeans?</a>
-                    </li>
-
-                    <li>
-                        <a href="#separate">Do I have to have a separate
-                            ActionForm bean
-                            for every HTML form?</a>
-                    </li>
-
-                    <li>
-                        <a href="#prepopulate">How can I prepopulate a
-                            form?</a>
-                    </li>
-
-                    <li>
-                        <a href="#noForm">Can I have an Action without a
-                            form?</a>
-                    </li>
-
-                    <li>
-                        <a href="#requiredif">Can you give me a simple example
-                            of using the requiredif Validator rule?</a>
-                    </li>
-
-                    <li>
-                        <a href="#validate">When is the best time to validate
-                            input?</a>
-                    </li>
-
-                    <li>
-                        <a href="#avoidValidate">How can I avoid validating a
-                            form before data is entered?</a>
-                    </li>
-
-                    <li>
-                        <a href="#wizard">How can I create a "wizard"
-                            workflow?</a>
-                    </li>
-
-                    <li>
-                        <a href="#chaining">How can I "chain" Actions?</a>
-                    </li>
-
-                </ul>
-
-                <p>
-                    If you like to
-                    <a href="helping.html">contribute</a>
-                    ,
-                    there is a list of
-                    <a href="#undocumented">undocumented questions</a>
-                    at the end of this page.
-                </p>
-
-            </subsection>
-
-
-            <a name="modules"/>
-            <subsection
-                    name="What is a modular application? What does module-relative mean?">
-
+            <faq id="modules">
+	    <question>What is a modular application? What does module-relative mean?</question>                    
+            <answer>
                 <p>
                     Since Struts 1.1, the framework supports multiple
                     application modules. All applications have at
@@ -178,12 +66,12 @@ limitations under the License.
                     that was assembled from several
                     applications that were created independently.
                 </p>
+            </answer>
+            </faq>
 
-            </subsection>
-
-            <a name="naming"/>
-            <subsection
-                    name="Why are some of the class and element names counter-intuitive?">
+            <faq id="naming">
+            <question>Why are some of the class and element names counter-intuitive?</question>
+            <answer>
                 <p>
                     The framework grew in the telling and, as it evolved, some
                     of the names
@@ -197,10 +85,12 @@ limitations under the License.
                     down early and
                     then become difficult to change.
                 </p>
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="actionForms"/>
-            <subsection name="Whither ActionForms?">
+            <faq id="actionForms">
+            <question>Whither ActionForms?</question>
+	    <answer>
                 <p>
                     <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19281.html">
                         http://www.mail-archive.com/struts-user@jakarta.apache.org/msg19281.html</a>
@@ -212,11 +102,12 @@ limitations under the License.
                         http://www.mail-archive.com/struts-user@jakarta.apache.org/msg20833.html</a>
                     <br/>
                 </p>
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="actionFormInterface"/>
-            <subsection
-                    name="Why is ActionForm a base class rather than an interface?">
+            <faq id="actionFormInterface">
+            <question>Why is ActionForm a base class rather than an interface?</question>
+            <answer>
                 <p>
                     Originally, the rationale as that making ActionForm a
                     class takes advantage of the single
@@ -248,10 +139,12 @@ limitations under the License.
                     <a href="https://formdef.dev.java.net/">FormDef</a>
                     .
                 </p>
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="JavaBeans"/>
-            <subsection name="Do ActionForms have to be true JavaBeans?">
+            <faq id="JavaBeans">
+            <question>Do ActionForms have to be true JavaBeans?</question>
+            <answer>
                 <p>
                     The utilities that the framework uses (Commons-BeanUtils
                     since 1.1) require that ActionForm properties follow
@@ -278,11 +171,12 @@ limitations under the License.
                     <a href="#otherBeans">Using Hashmaps with ActionForms</a>
                     in this FAQ.
                 </p>
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="otherBeans"/>
-            <subsection
-                    name="Can I use other beans or hashmaps with ActionForms?">
+            <faq id="otherBeans">
+            <question>Can I use other beans or hashmaps with ActionForms?</question>
+            <answer>
                 <p>
                     Yes. There are several ways that you can use other beans
                     or hashmaps with ActionForms.
@@ -404,10 +298,12 @@ limitations under the License.
                         Map-Backed ActionForms</a>
                     (since Struts 1.1)
                 </p>
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="authenticate"/>
-            <subsection name="How can I authenticate my users?">
+            <faq id="authenticate">
+            <question>How can I authenticate my users?</question>
+            <answer>
                 <p>
                     <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24504.html">
                         http://www.mail-archive.com/struts-user@jakarta.apache.org/msg24504.html</a>
@@ -415,10 +311,12 @@ limitations under the License.
                     <a href="http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22949.html">
                         http://www.mail-archive.com/struts-user@jakarta.apache.org/msg22949.html</a>
                 </p>
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="jsp"/>
-            <subsection name="Do I have to use JSPs with my application?">
+            <faq id="jsp">
+            <question>Do I have to use JSPs with my application?</question>
+            <answer>
 
                 <p>
                     The short answer to this question is: No, you are not
@@ -467,10 +365,12 @@ limitations under the License.
                     like PHP, into the same web application.
                 </p>
 
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="formbeans"/>
-            <subsection name="Do ActionForms have to be true JavaBeans?">
+            <faq id="formbeans">
+            <question>Do ActionForms have to be true JavaBeans?</question>
+            <answer>
 
                 <p>ActionForms are added to a servlet scope (session or
                     request)
@@ -612,11 +512,12 @@ limitations under the License.
                     http://java.sun.com/products/javabeans/docs/beans.101.pdf</a>
 
 
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="separate"/>
-            <subsection
-                    name="Do I have to have a separate ActionForm bean for every HTML form?">
+            <faq id="separate">
+            <question>Do I have to have a separate ActionForm bean for every HTML form?</question>
+            <answer>
 
                 <p>This is an interesting question. As a newbie, it is a good
                     practice to create a new
@@ -711,10 +612,12 @@ limitations under the License.
                     combinations.
                 </p>
 
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="prepopulate"/>
-            <subsection name="How can I prepopulate a form?">
+            <faq id="prepopulate">
+            <question>How can I prepopulate a form?</question>
+            <answer>
 
                 <p>The simplest way to prepopulate a form is to have an
                     <code>Action</code>
@@ -844,10 +747,12 @@ limitations under the License.
                     </li>
                 </ul>
 
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="noForm"/>
-            <subsection name="Can I have an Action without a form?">
+            <faq id="noForm">
+            <question>Can I have an Action without a form?</question>
+            <answer>
                 <p>
                     Yes. If your
                     <code>Action</code>
@@ -887,11 +792,12 @@ limitations under the License.
                     even if it is an empty subclass without any properties.
                 </p>
 
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="requiredif"/>
-            <subsection
-                    name="Can you give me a simple example of using the requiredif Validator rule?">
+            <faq id="requiredif">
+            <question>Can you give me a simple example of using the requiredif Validator rule?</question>
+            <answer>
                 <p>First off, there's an even newer Validator rule called
                     <code>validwhen</code>
                     ,
@@ -971,10 +877,12 @@ limitations under the License.
                     &lt;/field&gt;
                     &lt;/form&gt;
                 </pre>
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="validate"/>
-            <subsection name="When is the best time to validate input?">
+            <faq id="validate">
+            <question>When is the best time to validate input?</question>
+            <answer>
                 <p>
                     This is an excellent question. Let's step back a second
                     and think about a
@@ -1061,11 +969,12 @@ limitations under the License.
                     <a href="../userGuide/dev_validator.html">
                         User Guide</a>
                 </p>
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="avoidValidate"/>
-            <subsection
-                    name="How can I avoid validating a form before data is entered?">
+            <faq id="avoidValidate">
+            <question>How can I avoid validating a form before data is entered?"</question>
+            <answer>
                 <p>
                     The simplest way is to have two actions. The first one has
                     the job of setting
@@ -1108,10 +1017,12 @@ limitations under the License.
                     .
                 </p>
 
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="wizard"/>
-            <subsection name="How can I create a wizard workflow?">
+            <faq id="wizard">
+            <question>How can I create a wizard workflow?</question>
+            <answer>
                 <p>
                     The basic idea is a series of actions with next, back,
                     cancel
@@ -1213,10 +1124,12 @@ limitations under the License.
                     - the 'cancel' page
                 </p>
 
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="chaining"/>
-            <subsection name="How can I 'chain' Actions?">
+            <faq id="chaining">
+            <question>How can I 'chain' Actions?</question>
+            <answer>
                 <p>
                     Chaining actions can be done by simply using the proper
                     mapping in your
@@ -1348,12 +1261,12 @@ limitations under the License.
                     the formbean when the second Action is called.
                 </p>
 
-            </subsection>
+            </answer>
+            </faq>
 
-            <a name="undocumented"/>
-            <subsection
-                    name="If you would like to contribute, here is a list of
-    popular but undocumented questions">
+            <faq id="undocumented">
+            <question>If you would like to contribute, here is a list of popular but undocumented questions</question>
+            <answer>
 
                 <ul>
 
@@ -1366,9 +1279,8 @@ limitations under the License.
                         ActionMapping, ActionServlet) class?</li>
 
                 </ul>
-
-            </subsection>
-
-        </section>
-    </body>
-</document>
+                
+            </answer>
+            </faq>
+        </part>
+</faqs>
