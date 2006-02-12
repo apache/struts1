@@ -1,5 +1,5 @@
 /*
- * Copyright 2003-2005 The Apache Software Foundation.
+ * Copyright 2003-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -31,10 +33,10 @@ import javax.servlet.http.HttpServletRequest;
  * <p>Perform forwarding or redirection based on the specified
  * <code>ForwardConfig</code> (if any).</p>
  *
- * @version $Rev$ $Date: 2005-11-12 13:01:44 -0500 (Sat, 12 Nov 2005)
- *          $
+ * @version $Rev$ $Date$
  */
 public class PerformForward extends AbstractPerformForward {
+    private static final Log LOG = LogFactory.getLog(PerformForward.class);
     // ------------------------------------------------------- Protected Methods
 
     /**
@@ -77,13 +79,18 @@ public class PerformForward extends AbstractPerformForward {
             if (uri.startsWith("/")) {
                 uri = request.getContextPath() + uri;
             }
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Redirecting to " + uri);
+            }
 
             sacontext.getResponse().sendRedirect(sacontext.getResponse()
                                                           .encodeRedirectURL(uri));
         } else {
             RequestDispatcher rd =
                 sacontext.getContext().getRequestDispatcher(uri);
-
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Forwarding to " + uri);
+            }
             rd.forward(request, sacontext.getResponse());
         }
     }
