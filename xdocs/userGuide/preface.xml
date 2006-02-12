@@ -84,8 +84,8 @@ limitations under the License.
                 <p id="JavaWebServicesTutorial">If you are familiar with Java,
                     but not these technologies,
                     the best overall starting point is
-                    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html">
-                        <strong>The Java Web Services Tutorial</strong>
+                    <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/index.html">
+                        <strong>The J2EE Tutorial</strong>
                     </a>
                     .
                     This document is also available for download in
@@ -110,14 +110,14 @@ limitations under the License.
                         <strong>The Java Tutorial</strong>
                     </a>
                     .
-                    This overlaps with the Java Web Services Tutorial in some
+                    This overlaps with The J2EE Tutorial in some
                     places, but the two work well together.
                 </p>
 
                 <p>
                     For more about building Java application in general, see
                     the
-                    <a href="http://developer.java.sun.com/developer/onlineTraining/new2java/divelog/part1/toc.jsp">
+                    <a href="http://java.sun.com/developer/onlineTraining/new2java/">
                         New to
                         Java Center</a>
                     .
@@ -158,10 +158,10 @@ limitations under the License.
                         by Dave Raggett
                     </li>
                     <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/HTTP.html#63796">
+                        <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/HTTP.html">
                             <strong>HTTP Overview</strong>
                         </a>
-                        in the Java Web Services Tutorial.
+                        in The J2EE Tutorial.
                     </li>
                     <li>
                         <a href="http://www.rfc-editor.org/rfc/rfc2616.txt">
@@ -204,9 +204,9 @@ limitations under the License.
                     cycle, we
                     <strong>strongly</strong>
                     recommend the
-                    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/HTTP.html#63796">
+                    <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/HTTP.html">
                         HTTP Overview</a>
-                    in the Java Web Services Tutorial.
+                    in The J2EE Tutorial.
                 </p>
 
             </subsection>
@@ -390,10 +390,10 @@ limitations under the License.
                         in the Java Tutorial
                     </li>
                     <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPBeans.html">
+                        <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPBeans.html">
                             <strong>JavaBeans Components in JSP Pages</strong>
                         </a>
-                        in the Java Web Services Tutorial
+                        in The J2EE Tutorial
                     </li>
                 </ul>
 
@@ -666,22 +666,22 @@ limitations under the License.
                     <li>
                         <a href="http://java.sun.com/products/servlet/download.html">
                             <strong>The
-                                Servlet 2.2 and 2.3 Specifications</strong>
+                                Servlet 2.3 and 2.4 Specifications</strong>
                         </a>
                         download page at
                         <code>java.sun.com</code>
                     </li>
                     <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets.html">
+                        <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/Servlets.html">
                             <strong>Java Servlet Technology</strong>
                         </a>
-                        in the Java Web Services Tutorial.
+                        in The J2EE Tutorial.
                     </li>
                     <li>
                         <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html">
                             <strong>Web Applications</strong>
                         </a>
-                        in the Java Web Services Tutorial.
+                        in The J2EE Tutorial.
                     </li>
                 </ul>
 
@@ -713,10 +713,10 @@ limitations under the License.
 
                 <ul>
                     <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets5.html#64386">
+                        <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/Servlets5.html#102985">
                             Controlling Concurrent Access to Shared
                             Resources</a>
-                        in Java Web Services Tutorial.
+                        in The J2EE Tutorial.
                     </li>
                 </ul>
 
@@ -780,9 +780,9 @@ limitations under the License.
 
                 <ul>
                     <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets10.html#64724">
+                        <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/Servlets10.html#75507">
                             Accessing the Web Context</a>
-                        in Java Web Services Tutorial.
+                        in The J2EE Tutorial.
                     </li>
                 </ul>
 
@@ -887,9 +887,9 @@ limitations under the License.
 
                 <ul>
                     <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets7.html#64433">
+                        <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/Servlets7.html#63090">
                             Getting Information from Requests</a>
-                        in Java Web Services Tutorial.
+                        in The J2EE Tutorial.
                     </li>
                 </ul>
 
@@ -993,9 +993,9 @@ limitations under the License.
 
                 <ul>
                     <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets7.html#64531">
+                        <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/Servlets7.html#79563">
                             Constructing Responses</a>
-                        in Java Web Services Tutorial.
+                        in The J2EE Tutorial.
                     </li>
                 </ul>
 
@@ -1039,7 +1039,7 @@ limitations under the License.
 
                 <ul>
                     <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets8.html#64572">
+                        <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/Servlets8.html#103101">
                             Filtering Requests and Responses</a>
                     </li>
                 </ul>
@@ -1138,9 +1138,9 @@ limitations under the License.
                 </p>
                 <ul>
                     <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/Servlets11.html#64744">
+                        <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/Servlets11.html#63281">
                             Maintaining Client State</a>
-                        in Java Web Services Tutorial
+                        in The J2EE Tutorial
                     </li>
                     <li>
                         <a href="http://java.sun.com/products/servlet/2.1/api/javax.servlet.http.HttpSession.html">
@@ -1195,7 +1195,7 @@ limitations under the License.
                     <li>
                         <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html#76431">
                             Web Applications</a>
-                        in Java Web Services Tutorial
+                        in The J2EE Tutorial
                     </li>
                 </ul>
 
@@ -1221,7 +1221,7 @@ limitations under the License.
                     <li>
                         <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp2.html#64550">
                             Web Application Life Cycle</a>
-                        in Java Web Services Tutorial
+                        in The J2EE Tutorial
                     </li>
                 </ul>
 
@@ -1249,7 +1249,7 @@ limitations under the License.
                     <li>
                         <a href="http://java.sun.com/webservices/docs/1.2/tutorial/doc/index.html">
                             Web Application Security (Chapter 24)</a>
-                        in the Java Web Services Tutorial
+                        in The J2EE Tutorial
                     </li>
                 </ul>
 
@@ -1310,16 +1310,16 @@ limitations under the License.
                         <code>java.sun.com</code>
                     </li>
                     <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPIntro.html">
+                        <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPIntro.html">
                             <strong>JavaServer Pages Technology</strong>
                         </a>
-                        in the Java Web Services Tutorial
+                        in The J2EE Tutorial
                     </li>
                     <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPTags.html">
+                        <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPTags.html">
                             <strong>Custom Tags in JSP Pages</strong>
                         </a>
-                        in the Java Web Services Tutorial
+                        in The J2EE Tutorial
                     </li>
                 </ul>
 
@@ -1327,9 +1327,9 @@ limitations under the License.
                     application sends a JavaBean to
                     the JSP, and the JSP tag uses the bean to customize the
                     page for the instant user. For more, see
-                    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JSPBeans.html">
+                    <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPBeans.html">
                         JavaBeans Components in JSP Pages</a>
-                    in the Java Web Services Tutorial.
+                    in The J2EE Tutorial.
                 </p>
 
                 <p>The framework also works well with the
@@ -1446,16 +1446,15 @@ limitations under the License.
                         <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp4.html#64678">
                             Configuring Web
                             Applications</a>
-                        in the Java Web Services Tutorial
+                        in The J2EE Tutorial
                     </li>
                 </ul>
 
                 <p>
                     For more about how XML is used with Java applications
-                    generally, see
-                    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JAXPIntro.html">
-                        Java API for XML Processing</a>
-                    in the Java Web Services Tutorial.
+                    generally, see the
+                    <a href="http://java.sun.com/webservices/jaxp/dist/1.1/docs/tutorial/index.html">
+                        Java API for XML Processing</a> Tutorial.
                     While the framework makes good use of this API internally,
                     it is not something most Struts developers would use
                     when writing their own applications.
@@ -1503,9 +1502,9 @@ limitations under the License.
                     and the
                     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebAppSecurity.html">
                         Web Application Security</a>
-                    chapter of the
-                    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html">
-                        Java Web Services Tutorial</a>
+                    chapter of
+                    <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/index.html">
+                        The J2EE Tutorial</a>
                     .
                 </p>
 
