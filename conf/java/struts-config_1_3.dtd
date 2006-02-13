@@ -333,6 +333,13 @@ The "form-bean" element describes a particular form bean, which is a
                      the bean's specified "name". Optional if "name" is specified,
                      else not valid.
 
+     cancellable     Set to "true" if the Action can be cancelled. By default,
+                     when an Action is cancelled, validation is bypassed
+                     and the Action should not execute the business operation.
+                     If a request tries to cancel an Action when cancellable
+                    is not set, a "InvalidCancelException" is thrown.
+                     [false]
+
      catalog         The name of a commons-chain catalog in which to look up
                      a command to be executed as part of servicing this request.
                      Only meaningful if "command" is also specified.
@@ -425,6 +432,7 @@ The "form-bean" element describes a particular form bean, which is a
 <!ELEMENT action (icon?, display-name?, description?, set-property*, exception*, forward*)>
 <!ATTLIST action         id             ID              #IMPLIED>
 <!ATTLIST action         attribute      %BeanName;      #IMPLIED>
+<!ATTLIST action         cancellable    %Boolean;       #IMPLIED>
 <!ATTLIST action         catalog        CDATA           #IMPLIED>
 <!ATTLIST action         className      %ClassName;     #IMPLIED>
 <!ATTLIST action         command        CDATA           #IMPLIED>
