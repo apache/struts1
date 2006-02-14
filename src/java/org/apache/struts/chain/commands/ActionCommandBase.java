@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2005 The Apache Software Foundation.
+ * Copyright 2005-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@
  */
 package org.apache.struts.chain.commands;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.chain.Context;
 import org.apache.struts.chain.contexts.ActionContext;
 
@@ -26,6 +28,13 @@ import org.apache.struts.chain.contexts.ActionContext;
  * that class.</p>
  */
 public abstract class ActionCommandBase implements ActionCommand {
+
+    /**
+     * <p> Provide Commons Logging instance for this class. </p>
+     */
+    private static final Log LOG =
+        LogFactory.getLog(ActionCommandBase.class);
+
     // See interface for Javadoc
     public abstract boolean execute(ActionContext actionContext)
         throws Exception;
@@ -33,6 +42,9 @@ public abstract class ActionCommandBase implements ActionCommand {
     // See interface for Javadoc
     public boolean execute(Context context)
         throws Exception {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Executing " + getClass().getName());
+        }
         return execute((ActionContext) context);
     }
 }
