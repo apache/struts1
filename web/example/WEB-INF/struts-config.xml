@@ -5,7 +5,7 @@
 <!--
  $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config.xml,v 1.43 2004/09/02 03:43:15 niallp Exp $
  $Revision: 1.43 $
- $Date: 2004/09/02 03:43:15 $
+ $Date$
 
  Copyright 2000-2004 Apache Software Foundation
 
@@ -90,6 +90,7 @@
                   name="LogonForm"
                  scope="request"
                  input="logon">
+         <set-property property="cancellable" value="true"/>
          <exception
                    key="expired.password"
                   type="org.apache.struts.webapp.example.ExpiredPasswordException"
@@ -118,6 +119,7 @@
                   name="SubscriptionForm"
                  scope="request"
                  input="subscription">
+         <set-property property="cancellable" value="true"/>
          <forward name="subscription"    path="/subscription.jsp"/>
          <forward name="success"         path="/EditRegistration.do?action=Edit"/>
        </action>

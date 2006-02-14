@@ -5,7 +5,7 @@
 <!--
  $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config-registration.xml,v 1.8 2004/09/02 03:43:15 niallp Exp $
  $Revision: 1.8 $
- $Date: 2004/09/02 03:43:15 $
+ $Date$
 
  Copyright 2000-2004 Apache Software Foundation
 
@@ -63,7 +63,9 @@
                type="org.apache.struts.webapp.example.Save{1}Action"
                name="{1}Form"
               scope="request"
-              input="{1}"/>
+              input="{1}">
+      <set-property property="cancellable" value="true"/>
+    </action>
 
   </action-mappings>
 

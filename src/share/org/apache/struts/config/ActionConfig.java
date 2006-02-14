@@ -525,7 +525,39 @@ public class ActionConfig implements Serializable {
         }
         this.validate = validate;
     }
+    
+    /**
+     * <p>Can this Action be cancelled? [false]</p> <p> By default, when an
+     * Action is cancelled, validation is bypassed and the Action should not
+     * execute the business operation. If a request tries to cancel an Action
+     * when cancellable is not set, a "InvalidCancelException" is thrown.</p>
+     * @since Struts 1.2.9
+     */ 
+    protected boolean cancellable = false;
 
+    /**
+     * <p>Accessor for cancellable property</p>
+     *
+     * @return True if Action can be cancelled
+     * @since  Struts 1.2.9
+     */
+    public boolean getCancellable() {
+        return (this.cancellable);
+    }
+
+    /**
+     * <p>Mutator for for cancellable property</p>
+     *
+     * @param cancellable
+     * @since Struts 1.2.9
+     */
+    public void setCancellable(boolean cancellable) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.cancellable = cancellable;
+    }
+    
 
     // --------------------------------------------------------- Public Methods
 
@@ -775,6 +807,10 @@ public class ActionConfig implements Serializable {
             sb.append(",type=");
             sb.append(type);
         }
+        sb.append(",validate=");
+        sb.append(validate);
+        sb.append(",cancellable=");
+        sb.append(cancellable);
         return (sb.toString());
 
     }
