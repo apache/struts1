@@ -1,24 +1,10 @@
-/*
- * $Id$
- *
- * Copyright 2003-2005 The Apache Software Foundation.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package org.apache.struts.chain.commands;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.InvalidCancelException;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 
@@ -32,6 +18,44 @@ import org.apache.struts.config.ActionConfig;
  */
 public abstract class AbstractValidateActionForm extends ActionCommandBase {
     // ------------------------------------------------------ Instance Variables
+
+    /**
+     * <p> Provide Commons Logging instance for this class. </p>
+     */
+    private static final Log LOG =
+        LogFactory.getLog(AbstractSelectForward.class);
+
+    // ------------------------------------------------------ Protected Methods
+
+    /**
+     * <p>Helper method to verify the Cancel state.</p>
+     *
+     * <p>If the state is invalid, Cancel is unset and an
+     * InvalidCancelException is thrown.</p>
+     *
+     * @param actionCtx    Our ActionContext
+     * @param actionConfig Our ActionConfig
+     * @return true if cancel is set, false otherwise.
+     * @throws InvalidCancelException
+     */
+    private boolean isCancelled(ActionContext actionCtx,
+        ActionConfig actionConfig)
+        throws InvalidCancelException {
+        Boolean cancel = actionCtx.getCancelled();
+        boolean cancelled = ((cancel != null) && cancel.booleanValue());
+        boolean cancellable = actionConfig.getCancellable();
+
+        boolean invalidState = (cancelled && !cancellable);
+
+        if (invalidState) {
+            actionCtx.setCancelled(Boolean.FALSE);
+            actionCtx.setFormValid(Boolean.FALSE);
+            throw new InvalidCancelException();
+        }
+
+        return cancelled;
+    }
+
     // ---------------------------------------------------------- Public Methods
 
     /**
@@ -46,31 +70,30 @@ public abstract class AbstractValidateActionForm extends ActionCommandBase {
      */
     public boolean execute(ActionContext actionCtx)
         throws Exception {
+        // Set form valid until found otherwise
+        actionCtx.setFormValid(Boolean.TRUE);
+
         // Is there a form bean for this request?
         ActionForm actionForm = actionCtx.getActionForm();
 
         if (actionForm == null) {
-            actionCtx.setFormValid(Boolean.TRUE);
-
-            return (false);
-        }
-
-        // Was this request cancelled?
-        Boolean cancel = actionCtx.getCancelled();
-
-        if ((cancel != null) && cancel.booleanValue()) {
-            actionCtx.setFormValid(Boolean.TRUE);
-
-            return (false);
+            return false;
         }
 
         // Is validation disabled on this request?
         ActionConfig actionConfig = actionCtx.getActionConfig();
 
         if (!actionConfig.getValidate()) {
-            actionCtx.setFormValid(Boolean.TRUE);
+            return false;
+        }
 
-            return (false);
+        // Was this request cancelled?
+        if (isCancelled(actionCtx, actionConfig)) {
+            if (LOG.isDebugEnabled()) {
+                LOG.debug(" Cancelled transaction, skipping validation");
+            }
+
+            return false;
         }
 
         // Call the validate() method of this form bean
@@ -78,9 +101,7 @@ public abstract class AbstractValidateActionForm extends ActionCommandBase {
 
         // If there were no errors, proceed normally
         if ((errors == null) || (errors.isEmpty())) {
-            actionCtx.setFormValid(Boolean.TRUE);
-
-            return (false);
+            return false;
         }
 
         // Flag the validation failure and proceed
@@ -90,7 +111,7 @@ public abstract class AbstractValidateActionForm extends ActionCommandBase {
         actionCtx.saveErrors(errors);
         actionCtx.setFormValid(Boolean.FALSE);
 
-        return (false);
+        return false;
     }
 
     // ------------------------------------------------------- Protected Methods

@@ -15,6 +15,8 @@
  */
 package org.apache.struts.chain.commands.servlet;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.chain.commands.AbstractPerformForward;
 import org.apache.struts.chain.contexts.ActionContext;
@@ -23,8 +25,6 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +37,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class PerformForward extends AbstractPerformForward {
     private static final Log LOG = LogFactory.getLog(PerformForward.class);
+
     // ------------------------------------------------------- Protected Methods
 
     /**
@@ -79,6 +80,7 @@ public class PerformForward extends AbstractPerformForward {
             if (uri.startsWith("/")) {
                 uri = request.getContextPath() + uri;
             }
+
             if (LOG.isDebugEnabled()) {
                 LOG.debug("Redirecting to " + uri);
             }
@@ -88,9 +90,11 @@ public class PerformForward extends AbstractPerformForward {
         } else {
             RequestDispatcher rd =
                 sacontext.getContext().getRequestDispatcher(uri);
+
             if (LOG.isDebugEnabled()) {
                 LOG.debug("Forwarding to " + uri);
             }
+
             rd.forward(request, sacontext.getResponse());
         }
     }

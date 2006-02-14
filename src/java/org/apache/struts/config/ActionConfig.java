@@ -74,7 +74,16 @@ public class ActionConfig extends BaseConfig {
     protected String inherit = null;
 
     /**
-     * <p> Have the inheritance values for this class been applied?
+     * <p>Can this Action be cancelled? [false]</p> <p> By default, when an
+     * Action is cancelled, validation is bypassed and the Action should not
+     * execute the business operation. If a request tries to cancel an Action
+     * when cancellable is not set, a "InvalidCancelException" is thrown.
+     * </p>
+     */
+    protected boolean cancellable = false;
+
+    /**
+     * <p> Have the inheritance values for this class been applied?</p>
      */
     protected boolean extensionProcessed = false;
 
@@ -247,6 +256,28 @@ public class ActionConfig extends BaseConfig {
         }
 
         this.attribute = attribute;
+    }
+
+    /**
+     * <p>Accessor for cancellable property</p>
+     *
+     * @return True if Action can be cancelled
+     */
+    public boolean getCancellable() {
+        return (this.cancellable);
+    }
+
+    /**
+     * <p>Mutator for for cancellable property</p>
+     *
+     * @param cancellable
+     */
+    public void setCancellable(boolean cancellable) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+
+        this.cancellable = cancellable;
     }
 
     /**
@@ -844,7 +875,7 @@ public class ActionConfig extends BaseConfig {
      */
     public ExceptionConfig findException(Class type) {
         // Check through the entire superclass hierarchy as needed
-        ExceptionConfig config = null;
+        ExceptionConfig config;
 
         while (true) {
             // Check for a locally defined handler
@@ -1103,8 +1134,14 @@ public class ActionConfig extends BaseConfig {
     public String toString() {
         StringBuffer sb = new StringBuffer("ActionConfig[");
 
+        sb.append("cancellable=");
+        sb.append(cancellable);
+
         sb.append("path=");
         sb.append(path);
+
+        sb.append("validate=");
+        sb.append(validate);
 
         if (attribute != null) {
             sb.append(",attribute=");
