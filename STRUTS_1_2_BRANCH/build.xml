@@ -96,7 +96,7 @@
  <property name="project.name" value="jakarta-struts-el"/>
 
  <!-- Version of the project -->
- <property name="project.version" value="1.0"/>
+ <property name="project.version" value="1.2.9-SNAPSHOT"/>
 
  <!-- ========== Derived Properties ======================================== -->
 
