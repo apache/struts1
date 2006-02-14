@@ -52,7 +52,7 @@
      These default values assume that the checked out locations are the same
      as the full repository paths, and that you are building the trunk.
  -->
- <property name="struts.core.home" value="../.."/>
+ <property name="struts.core.home" value="../action"/>
 
  <!-- Load local and user build preferences -->
  <property file="build.properties"/>
@@ -196,6 +196,8 @@
   <echo message="struts.jar = ${struts.jar}"/>
   <echo message="struts-el.jar = ${struts-el.jar}"/>
 
+  <filter  token="version" value="${project.version}"/>
+
   <tstamp>
       <format property="year" pattern="yyyy"/>
   </tstamp>
@@ -212,6 +214,9 @@
   <copy file="${jstl.jar}" tofile="${build.home}/library/jstl.jar"/>
   <copy file="${jstl-standard.jar}"
         tofile="${build.home}/library/standard.jar"/>
+  <copy  todir="${build.home}/conf" filtering="on">
+    <fileset dir="${conf.share.dir}" includes="*.MF"/>
+  </copy>
 <!-- Compile-time dependency only
   <copy file="${jdbc20ext.jar}"
         tofile="${build.home}/library/jdbc2_0-stdext.jar"/>
@@ -289,6 +294,7 @@
                      value="http://jakarta.apache.org/struts/tags"/>
   </replace>
   <jar jarfile="${build.home}/library/${app.name}.jar"
+       manifest="${build.home}/conf/MANIFEST.MF"
        basedir="${build.home}/library/classes" includes="**"/>
  </target>
 
