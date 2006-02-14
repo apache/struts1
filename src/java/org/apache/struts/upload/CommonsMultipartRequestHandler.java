@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@
 package org.apache.struts.upload;
 
 import org.apache.commons.fileupload.DiskFileUpload;
+import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.logging.Log;
@@ -46,8 +47,7 @@ import java.util.List;
  * interface by providing a wrapper around the Jakarta Commons FileUpload
  * library. </p>
  *
- * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
- *          $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
@@ -380,7 +380,21 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         String name = item.getFieldName();
         String value = null;
         boolean haveValue = false;
-        String encoding = request.getCharacterEncoding();
+        String encoding = null;
+
+        if (item instanceof DiskFileItem) {
+            encoding = ((DiskFileItem)item).getCharSet();
+            if (log.isDebugEnabled()) {
+                log.debug("DiskFileItem.getCharSet=[" + encoding + "]");
+            }
+        }
+
+        if (encoding == null) {
+            encoding = request.getCharacterEncoding();
+            if (log.isDebugEnabled()) {
+                log.debug("request.getCharacterEncoding=[" + encoding + "]");
+            }
+        } 
 
         if (encoding != null) {
             try {
