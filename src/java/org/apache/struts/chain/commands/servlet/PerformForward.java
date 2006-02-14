@@ -28,6 +28,7 @@ import org.apache.struts.util.RequestUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <p>Perform forwarding or redirection based on the specified
@@ -51,12 +52,11 @@ public class PerformForward extends AbstractPerformForward {
         throws Exception {
         ServletActionContext sacontext = (ServletActionContext) context;
         String forwardPath = forwardConfig.getPath();
-        String uri = null;
+        String uri;
 
         if (forwardPath == null) {
             // Retrieve internal message resources
-            ActionServlet servlet =
-                (ActionServlet) sacontext.getActionServlet();
+            ActionServlet servlet = sacontext.getActionServlet();
             MessageResources resources = servlet.getInternal();
 
             throw new IllegalArgumentException(resources.getMessage(
@@ -74,6 +74,31 @@ public class PerformForward extends AbstractPerformForward {
         }
 
         HttpServletRequest request = sacontext.getRequest();
+
+        // Use of actions within tiles, jsp:include or c:import requires to
+        // convert forward (w/o redirect) to an include
+        // if response has been committed
+        HttpServletResponse response = sacontext.getResponse();
+
+        if (response.isCommitted() && !forwardConfig.getRedirect()) {
+            RequestDispatcher rd =
+                sacontext.getContext().getRequestDispatcher(uri);
+
+            if (rd == null) {
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                    "Error getting RequestDispatcher for " + uri);
+
+                return;
+            }
+
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Including " + uri);
+            }
+                
+            rd.include(request, response);
+
+            return;
+        }
 
         // Perform redirect or forward
         if (forwardConfig.getRedirect()) {
