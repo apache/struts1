@@ -246,7 +246,7 @@
         be used from global exception handlers.
 
         <command
-            className="org.apache.struts.chain.servlet.TilesPreProcessor"/>
+            className="org.apache.struts.tiles.commands.TilesPreProcessor"/>
         -->
 
         <!-- Follow the returned ForwardConfig (if any) -->
