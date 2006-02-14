@@ -983,6 +983,10 @@ public class ActionConfig extends BaseConfig {
             setAttribute(config.getAttribute());
         }
 
+        if (!getCancellable()) {
+            setCancellable(config.getCancellable());
+        }
+
         if (getCatalog() == null) {
             setCatalog(config.getCatalog());
         }
@@ -1062,7 +1066,7 @@ public class ActionConfig extends BaseConfig {
      * @see #inheritFrom(ActionConfig)
      */
     public void processExtends(ModuleConfig moduleConfig)
-        throws ClassNotFoundException, IllegalAccessException, 
+        throws ClassNotFoundException, IllegalAccessException,
             InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
