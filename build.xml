@@ -253,6 +253,8 @@
         <echo message="java.home = ${java.home}"/>
         <echo message="user.home = ${user.home}"/>
 
+        <filter  token="version" value="${project.version}"/>
+
         <tstamp>
             <format property="year" pattern="yyyy"/>
         </tstamp>
@@ -355,6 +357,9 @@
         <copy todir="${build.home}/library/classes/org/apache/struts/resources">
             <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
         </copy>
+        <copy  todir="${build.home}/conf" filtering="on">
+             <fileset dir="${conf.share.dir}" includes="*.MF"/>
+        </copy>
 
         <copy file="${commons-beanutils.jar}"
             tofile="${build.home}/library/commons-beanutils.jar"/>
@@ -422,7 +427,7 @@
                            value="http://jakarta.apache.org/struts/tags"/>
         </replace>
         <jar jarfile="${build.home}/library/${app.name}.jar"
-            manifest="${conf.share.dir}/MANIFEST.MF"
+            manifest="${build.home}/conf/MANIFEST.MF"
             basedir="${build.home}/library/classes"
             includes="**"/>
     </target>

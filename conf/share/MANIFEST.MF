@@ -2,11 +2,11 @@ Manifest-Version: 1.0
 Extension-Name: Struts Framework
 Specification-Title: Struts Framework
 Specification-Vendor: The Apache Software Foundation
-Specification-Version: 1.2.9-SNAPSHOT
+Specification-Version: @version@
 Implementation-Title: Struts Framework
 Implementation-Vendor: The Apache Software Foundation
 Implementation-Vendor-Id: org.apache
-Implementation-Version: 1.2.9-SNAPSHOT
+Implementation-Version: @version@
 Class-Path: 
   commons-beanutils.jar
   commons-digester.jar
