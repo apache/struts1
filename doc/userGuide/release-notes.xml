@@ -40,6 +40,13 @@
                  <th>Modification</th><th>Revision</th><th>Bugzilla</th><th>Description</th>
              </tr></thead>
              <tr>
+                 <td align="center">2006-02-15</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=XXXXX&amp;view=rev">XXXXX</a>
+                     (<a href="http://svn.apache.org/viewcvs?rev=XXXXX&amp;view=rev">XXXXX</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=38534">38534</a></td>
+                 <td>DOS attack, application hack.</td>
+             </tr>
+             <tr>
                  <td align="center">2006-02-14</td>
                  <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=377562&amp;view=rev">377562</a>
                      (<a href="http://svn.apache.org/viewcvs?rev=377805&amp;view=rev">377805</a>)</td>

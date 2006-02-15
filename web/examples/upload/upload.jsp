@@ -32,5 +32,22 @@
     <html:submit />
     </p>
     </html:form>
+    <hr/>
+    <html:form action="upload-submit.do?queryParam=Successful" enctype="multipart/form-data">
+    <p>This form is to test <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=38534">Bug 38534</a>.
+       If this bug is fixed then perversly a <code>NestedNullException</code> will be thrown by BeanUtils's
+       populate method, but the application should continue to function after that. If its not fixed then
+       the result page will be shown BUT after that the application will no longer function.
+    </p>
+    <p>
+        <input type="file"   name="theFile" />
+        <input type="hidden" name="multipartRequestHandler.servlet.servletContext.attribute(org.apache.struts.action.MODULE)" size="60" value="Field named to trash the default module!"/></br>
+        <input type="hidden" name="multipartRequestHandler.servlet.servletContext.attribute(org.apache.struts.globals.MODULE_PREFIXES)" size="60" value="Trash the prefixes to other modules!"/></br>
+        <input type="hidden" name="theText" value="ABCDEF"/>
+    </p>
+    <p>
+    <html:submit>Submit For Bug 38534</html:submit>
+    </p>
+    </html:form>
   </body>
 </html>

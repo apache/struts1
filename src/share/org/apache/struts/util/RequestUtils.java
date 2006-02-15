@@ -1,7 +1,7 @@
 /*
  * $Id$ 
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2006 The Apache Software Foundation.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -406,6 +406,11 @@ public class RequestUtils {
         String method = request.getMethod();
         boolean isMultipart = false;
 
+        if (bean instanceof ActionForm) {
+            ((ActionForm) bean).setMultipartRequestHandler(null);
+        }
+
+        MultipartRequestHandler multipartHandler = null;
         if ((contentType != null)
                 && (contentType.startsWith("multipart/form-data"))
                 && (method.equalsIgnoreCase("POST"))) {
@@ -425,13 +430,7 @@ public class RequestUtils {
             }
 
             // Obtain a MultipartRequestHandler
-            MultipartRequestHandler multipartHandler = getMultipartHandler(request);
-
-            // Set the multipart request handler for our ActionForm.
-            // If the bean isn't an ActionForm, an exception would have been
-            // thrown earlier, so it's safe to assume that our bean is
-            // in fact an ActionForm.
-            ((ActionForm) bean).setMultipartRequestHandler(multipartHandler);
+            multipartHandler = getMultipartHandler(request);
 
             if (multipartHandler != null) {
                 isMultipart = true;
@@ -493,6 +492,14 @@ public class RequestUtils {
             BeanUtils.populate(bean, properties);
         } catch(Exception e) {
             throw new ServletException("BeanUtils.populate", e);
+        } finally {
+            if (multipartHandler != null) {
+                // Set the multipart request handler for our ActionForm.
+                // If the bean isn't an ActionForm, an exception would have been
+                // thrown earlier, so it's safe to assume that our bean is
+                // in fact an ActionForm.
+                ((ActionForm) bean).setMultipartRequestHandler(multipartHandler);
+            }
         }
 
     }
