@@ -52,7 +52,7 @@
      These default values assume that the checked out locations are the same
      as the full repository paths, and that you are building the trunk.
  -->
- <property name="struts.core.home" value="../action"/>
+ <property name="struts.core.home" value="../.."/>
 
  <!-- Load local and user build preferences -->
  <property file="build.properties"/>
