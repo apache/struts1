@@ -351,6 +351,11 @@ public class Action {
      * an <strong>ActionForm</strong>'s <code>validate()</code> method will
      * have been skipped by the controller servlet.</p>
      *
+     * <p> Since Action 1.3.0, the mapping for a cancellable Action must also have
+     * the new "cancellable" property set to true. If "cancellable" is not set, and
+     * the magic Cancel token is found in the request, the standard Composable
+     * Request Processor will throw an InvalidCancelException. </p>
+     *
      * @param request The servlet request we are processing
      * @return <code>true</code> if the cancel button was pressed;
      *         <code>false</code> otherwise.

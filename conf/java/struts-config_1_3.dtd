@@ -538,7 +538,7 @@ The "form-bean" element describes a particular form bean, which is a
 
      processorClass  The fully qualified Java class name of the
                      RequestProcessor subclass to be used with this module.
-                     ["org.apache.struts.action.RequestProcessor"]
+                     ["org.apache.struts.chain.ComposableRequestProcessor"]
 
      tempDir         Temporary working directory to use when processing
                      file uploads.
