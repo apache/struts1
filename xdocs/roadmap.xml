@@ -305,7 +305,7 @@ limitations under the License.
 
                 <p>
                     <b>ViewContext</b>
-                    - A
+                    (pending) - A
                     <i>Chain Context</i>
                     that implements the
                     logical "Velocity Tools" API.
@@ -354,6 +354,14 @@ limitations under the License.
                     since "Context" is a suffix that identifies a member's
                     "family" history.)
                 </p>
+
+                <p>
+                    Another experimental member is the catalog element,
+                    which could be used to
+                    to support using a Chain of ActionCommands
+                    in lieu of an Action.
+                </p>
+
             </subsection>
 
             <a name="Struts_1_4_x"/>
@@ -377,15 +385,6 @@ limitations under the License.
                     This might not work-out for Tiles,
                     but we might be able to at least integrate the Validator
                     configuration with the DynaForm configuration.
-                </p>
-
-                <p>
-                    <b>Consider adding catalog element.</b>
-                    Depending on how the work goes with the experimental
-                    ActionCommand interface,
-                    we might identifiy a need to add a catalog element to the
-                    configuration,
-                    to support using a Chain of ActionCommands.
                 </p>
 
                 <p>
