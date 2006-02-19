@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+<!-- 
+/*
+ * Copyright 2001-2005 The Apache Software Foundation.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ -->
+
+  <!-- <extend>build/project.xml</extend> -->
+  <organization>
+    <name>The Apache Software Foundation</name>
+    <url>http://www.apache.org/</url>
+    <logo>http://www.apache.org/images/asf-logo.gif</logo>
+  </organization>
+  <logo>http://struts.apache.org/images/struts.gif</logo>
+
+  <id>struts-scripting</id>
+  <name>Struts Scripting</name>
+  <currentVersion>1.0.1</currentVersion>
+  
+  <inceptionYear>2003</inceptionYear>
+  <package>org.apache.struts.scripting</package>
+  <packageGroups>
+    <packageGroup>
+      <title>Struts Scripting</title>
+      <packages>org.apache.struts.scripting</packages>
+    </packageGroup>
+  </packageGroups>
+
+  <shortDescription>Scriptable Struts Actions Using BSF</shortDescription>
+
+  <description>
+    This project allows Struts Actions to be written in the scripting language 
+    of one's choice rather than as Java classes. It uses the Beans Scripting 
+    Framework to allow scripts to be written in any language BSF supports like 
+    Perl, Python, Ruby, JavaScript, BeanShell, and even VBScript.
+  </description>
+  
+  <siteAddress>people.apache.org</siteAddress>
+  <siteDirectory>/www/struts.apache.org/struts-scripting/</siteDirectory>
+   
+   <mailingLists>
+    <mailingList>
+      <name>Struts User List</name>
+      <subscribe>user-subscribe@struts.apache.org</subscribe>
+      <unsubscribe>user-unsubscribe@struts.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=42</archive>
+    </mailingList>
+    <mailingList>
+      <name>Struts Developer List</name>
+      <subscribe>dev-subscribe@struts.apache.org</subscribe>
+      <unsubscribe>dev-unsubscribe@struts.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=41</archive>
+    </mailingList>
+  </mailingLists>
+  
+  <url>http://struts.apache.org/struts-scripting</url>
+  <repository>
+    <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/scripting/trunk</connection>
+    <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/scripting/trunk</developerConnection>
+    <url>http://svn.apache.org/repos/asf/struts/scripting/trunk</url>
+  </repository>
+  
+  <developers>
+    <developer>
+      <name>Don Brown</name>
+      <id>mrdon</id>
+      <email>mrdon at apache.org</email>
+      <organization></organization>
+    </developer>
+  </developers>
+  
+  <dependencies>
+
+    <dependency>
+      <groupId>servletapi</groupId>
+      <artifactId>servletapi</artifactId>
+      <version>2.3</version>
+      <url>http://java.sun.com/products/servlet/</url>
+      <properties>
+        <scope>provided</scope>
+      </properties>
+      <comment>Required only for build</comment>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>1.7.0</version>
+      <url>http://jakarta.apache.org/commons/beanutils/</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+      <comment>Required for Struts 1.2.8</comment>
+    </dependency>
+ 
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.0.4</version>
+      <url>http://jakarta.apache.org/commons/logging/</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+      <comment>Required</comment>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-digester</groupId>
+      <artifactId>commons-digester</artifactId>
+      <version>1.7</version>
+      <url>http://jakarta.apache.org/commons/digester/</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+      <comment>Required for Struts 1.2.8</comment>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-validator</groupId>
+      <artifactId>commons-validator</artifactId>
+      <version>1.1.4</version>
+      <url>http://jakarta.apache.org/commons/validator/</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+      </properties>
+      <comment>Required for Struts 1.2.8</comment>
+    </dependency>
+
+    <dependency>
+      <groupId>struts</groupId>
+      <artifactId>struts</artifactId>
+      <version>1.2.8</version>
+      <url>http://struts.apache.org/</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
+      <url>http://struts.apache.org/</url>
+      <comment>Required</comment>
+    </dependency>
+
+    <dependency>
+      <groupId>oro</groupId>
+      <artifactId>oro</artifactId>
+      <version>2.0.7</version>
+      <url>http://jakarta.apache.org/oro/</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
+      <comment>Required for Struts 1.2.8</comment>
+    </dependency>
+    
+    <dependency>
+      <groupId>bsf</groupId>
+      <artifactId>bsf</artifactId>
+      <version>2.3.0</version>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
+      <url>http://jakarta.apache.org/bsf/</url>
+      <comment>Required</comment>
+    </dependency>
+    
+    
+    <dependency>
+      <groupId>struts</groupId>
+      <artifactId>struts-mailreader</artifactId>
+      <version>1.2.8</version>
+      <url>http://struts.apache.org/</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
+      <url>http://struts.apache.org/</url>
+      <comment>Optional - Used by the Mailreader example</comment>
+    </dependency>
+
+
+    <dependency>
+      <groupId>groovy</groupId>
+      <artifactId>groovy-all</artifactId>
+      <version>1.0-jsr-04</version>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
+      <url>http://groovy.codehaus.org/</url>
+      <comment>Optional - Used by the Mailreader example</comment>
+    </dependency>
+
+    <!-- The following two dependencies are only used during the build process -->
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.1</version>
+      <url>http://jakarta.apache.org/commons/lang/</url>
+      <properties>
+        <scope>compile</scope>
+      </properties>
+      <comment>Required only for build</comment>
+    </dependency>
+
+    <dependency>
+      <groupId>xalan</groupId>
+      <artifactId>xalan</artifactId>
+      <version>2.7.0</version>
+      <url>http://xalan.apache.org/</url>
+      <properties>
+        <scope>compile</scope>
+      </properties>
+      <comment>Required only for build</comment>
+    </dependency>
+ </dependencies>
+  
+  <build>
+    <nagEmailAddress>dev@struts.apache.org</nagEmailAddress>
+    <sourceDirectory>src/java</sourceDirectory>
+    <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
+    
+    <unitTest>
+      <includes>
+        <include>**/Test*.java</include>
+      </includes>
+    </unitTest>
+     <resources>
+      <resource>
+        <directory>${basedir}</directory>
+        <includes>
+          <include>NOTICE.txt</include>
+        </includes>
+      </resource>
+    </resources>
+
+   
+  </build>
+
+  <reports>
+    <report>maven-checkstyle-plugin</report>
+    <report>maven-changelog-plugin</report>
+    <report>maven-changes-plugin</report>
+    <report>maven-developer-activity-plugin</report>
+    <report>maven-faq-plugin</report>
+    <report>maven-file-activity-plugin</report>
+    <report>maven-javadoc-plugin</report>
+    <report>maven-jdepend-plugin</report>
+    <report>maven-junit-report-plugin</report>
+    <report>maven-jxr-plugin</report>
+    <!--report>maven-linkcheck-plugin</report-->
+    <report>maven-pmd-plugin</report>
+    <report>maven-simian-plugin</report>
+    <report>maven-tasklist-plugin</report>
+    <!--<report>maven-jcoverage-plugin</report>-->
+    <!--report>maven-findbugs-plugin</report-->
+  </reports>
+
+</project>
