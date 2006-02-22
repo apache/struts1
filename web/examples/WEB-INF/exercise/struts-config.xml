@@ -24,24 +24,33 @@
   <action-mappings>
     <action path="/welcome" forward="/index.html" />
     <action path="/bean-write-2" forward="/bean-write-2.jsp" />
-    <action path="/html-cancel" forward="/html-cancel.jsp"/>
+    <action path="/html-cancel" forward="/html-cancel.jsp">
+            <set-property property="cancellable" value="false"/>
+    </action>
     <action path="/html-cancel-true" name="testbean"
-                input="/html-cancel.jsp" cancellable="true" validate="true"
-                forward="/welcome.do"/>
-    <action path="/html-cancel-false" name="testbean"
-                input="/html-cancel.jsp" cancellable="false" validate="true"
+                input="/html-cancel.jsp" validate="true"
                 forward="/welcome.do">
+            <set-property property="cancellable" value="true"/>
+    </action>
+    <action path="/html-cancel-false" name="testbean"
+                input="/html-cancel.jsp" validate="true"
+                forward="/welcome.do">
+            <set-property property="cancellable" value="false"/>
             <exception
                     key="errors.invalidCancel"
                     type="org.apache.struts.action.InvalidCancelException"
                     path="/html-cancel.jsp"/>
     </action>
     <action path="/html-cancel-exception" name="testbean"
-                input="/html-cancel.jsp" cancellable="false" validate="true"
-                forward="/welcome.do"/>
+                input="/html-cancel.jsp" validate="true"
+                forward="/welcome.do">
+            <set-property property="cancellable" value="false"/>
+    </action>
     <action path="/html-cancel-novalidate" name="testbean"
-                input="/html-cancel.jsp" cancellable="false" validate="false"
-                forward="/welcome.do"/>
+                input="/html-cancel.jsp" validate="false"
+                forward="/welcome.do">
+            <set-property property="cancellable" value="false"/>
+    </action>
     <action path="/html-img" forward="/html-img.jsp" />
      <!-- :FIXME: ImageAction should compute module prefix -->
     <action path="/html-img-action" type="org.apache.struts.webapp.exercise.ImageAction" parameter="/exercise/struts-power.gif"/>
