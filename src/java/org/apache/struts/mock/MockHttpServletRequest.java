@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,8 +46,7 @@ import java.util.Map;
  * <p><strong>WARNING</strong> - Because unit tests operate in a single
  * threaded environment, no synchronization is performed.</p>
  *
- * @version $Rev$ $Date: 2005-11-12 11:52:08 -0500 (Sat, 12 Nov 2005)
- *          $
+ * @version $Rev$ $Date$
  */
 public class MockHttpServletRequest implements HttpServletRequest {
     // ----------------------------------------------------- Instance Variables
@@ -103,6 +102,11 @@ public class MockHttpServletRequest implements HttpServletRequest {
      */
     protected String method = null;
 
+    /**
+     * <p> The Content Type for this request. </p>
+     */
+    protected String contentType = null;
+
     // ----------------------------------------------------------- Constructors
     public MockHttpServletRequest() {
         super();
@@ -155,6 +159,10 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
     public void setMethod(String method) {
         this.method = method;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
     public void setPathElements(String contextPath, String servletPath,
@@ -322,7 +330,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
     }
 
     public String getContentType() {
-        throw new UnsupportedOperationException();
+        return (contentType);
     }
 
     public ServletInputStream getInputStream() {
