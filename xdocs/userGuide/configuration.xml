@@ -637,9 +637,9 @@ limitations under the License.
                 <p>
                     There are three approaches for switching from one module
                     to another.
-                    You can use the built-in
+                    You can use the
                     <code>org.apache.struts.actions.SwitchAction</code>
-                    ,
+                    from the Struts Extras subproject,
                     you can use a
                     <code>&lt;forward&gt;</code>
                     (global or local) and specify the contextRelative
@@ -715,28 +715,6 @@ limitations under the License.
    ...
    </action-mappings>
    ]]></source>
-
-                <p>
-                    Or, you can use
-                    <code>org.apache.struts.actions.SwitchAction</code>
-                    :
-                </p>
-
-                <source><![CDATA[
-   <action-mappings>
-   <action path="/toModule"
-           type="org.apache.struts.actions.SwitchAction"/>
-   ...
-   </action-mappings>
-   ]]></source>
-
-                <p>
-                    Now, to change to ModuleB, we would use a URI like this:
-                </p>
-
-                <source>
-                    http://localhost:8080/toModule.do?prefix=/moduleB&amp;page=/index.do
-                </source>
 
                 <p>
                     Using the module parameter with a hyperlink tag is even
