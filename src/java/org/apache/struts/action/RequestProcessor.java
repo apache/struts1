@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2000-2005 The Apache Software Foundation.
+ * Copyright 2000-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,8 +48,7 @@ import java.util.Locale;
  * this class and overriding the method(s) whose behavior you are interested
  * in changing.</p>
  *
- * @version $Rev$ $Date: 2005-11-09 00:11:45 -0500 (Wed, 09 Nov 2005)
- *          $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class RequestProcessor {
@@ -191,8 +190,19 @@ public class RequestProcessor {
 
         processPopulate(request, response, form, mapping);
 
-        if (!processValidate(request, response, form, mapping)) {
+        // Validate any fields of the ActionForm bean, if applicable
+        try {
+            if (!processValidate(request, response, form, mapping)) {
+                return;
+            }
+        } catch (InvalidCancelException e) {
+            ActionForward forward = processException(request, response, e, form, mapping);
+            processForwardConfig(request, response, forward);
             return;
+        } catch (IOException e) {
+            throw e;
+        } catch (ServletException e) {
+            throw e;
         }
 
         // Process a forward or include specified by this mapping
@@ -872,22 +882,32 @@ public class RequestProcessor {
      *         <code>false</code> if a response has been created.
      * @throws IOException      if an input/output error occurs
      * @throws ServletException if a servlet exception occurs
+     * @throws InvalidCancelException if a cancellation is attempted
+     *         without the proper action configuration.
      */
     protected boolean processValidate(HttpServletRequest request,
         HttpServletResponse response, ActionForm form, ActionMapping mapping)
-        throws IOException, ServletException {
+        throws IOException, ServletException, InvalidCancelException {
         if (form == null) {
             return (true);
         }
 
-        // Was this request cancelled?
+        // Was this request cancelled? If it has been, the mapping also
+        // needs to state whether the cancellation is permissable; otherwise
+        // the cancellation is considered to be a symptom of a programmer
+        // error or a spoof.
         if (request.getAttribute(Globals.CANCEL_KEY) != null) {
-            if (log.isDebugEnabled()) {
-                log.debug(" Cancelled transaction, skipping validation");
+            if (mapping.getCancellable()) {
+                if (log.isDebugEnabled()) {
+                    log.debug(" Cancelled transaction, skipping validation");
+                }
+                return (true);
+            } else {
+                request.removeAttribute(Globals.CANCEL_KEY);
+                throw new InvalidCancelException();
             }
-
-            return (true);
         }
+
 
         // Has validation been turned off for this mapping?
         if (!mapping.getValidate()) {
