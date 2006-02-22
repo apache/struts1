@@ -921,6 +921,11 @@ public class RequestProcessor {
         if (form == null) {
             return (true);
         }
+
+        // Has validation been turned off for this mapping?
+        if (!mapping.getValidate()) {
+            return (true);
+        }
         
         // Was this request cancelled? If it has been, the mapping also
         // needs to state whether the cancellation is permissable; otherwise
@@ -936,11 +941,6 @@ public class RequestProcessor {
                 request.removeAttribute(Globals.CANCEL_KEY);
                 throw new InvalidCancelException();
             }
-        }
-
-        // Has validation been turned off for this mapping?
-        if (!mapping.getValidate()) {
-            return (true);
         }
 
         // Call the form bean's validation method

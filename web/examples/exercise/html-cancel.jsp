@@ -77,12 +77,10 @@
     </p>
     <hr/>
 
-    <p><strong>Cancel Not Allowed - Exception (Validate false)</strong></p>
+    <p><strong>Cancel Ignored (Validate false)</strong></p>
     <p>
-        Pressing this Cancel button should throw an 
-        <code>org.apache.struts.action.InvalidCancelException</code>
-        since Cancellable is not set for this Action even though
-        the mapping is set to NOT validate.
+        Pressing this Cancel button should return to the Welcome page,
+        as validate is set to false for this Action.
     </p>
 
     <p>
