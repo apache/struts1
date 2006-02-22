@@ -1,7 +1,7 @@
 /*
  * $Id$ 
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2006 The Apache Software Foundation.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -144,6 +144,15 @@ public class MockHttpServletRequest implements HttpServletRequest {
      */
     protected HttpSession session = null;
 
+    /**
+     * <p> The HTTP request method. </p>
+     */
+    protected String method = null;
+
+    /**
+     * <p> The Content Type for this request. </p>
+     */
+    protected String contentType = null;
 
     // --------------------------------------------------------- Public Methods
 
@@ -171,6 +180,13 @@ public class MockHttpServletRequest implements HttpServletRequest {
         this.locale = locale;
     }
 
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
 
     public void setPathElements(String contextPath, String servletPath,
                                 String pathInfo, String queryString) {
@@ -233,7 +249,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 
     public String getMethod() {
-        throw new UnsupportedOperationException();
+        return (method);
     }
 
 
@@ -365,7 +381,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 
     public String getContentType() {
-        throw new UnsupportedOperationException();
+        return (contentType);
     }
 
 
