@@ -148,7 +148,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.0</version>
+            <version>1.1</version>
             <optional>true</optional>
         </dependency>
         <dependency>
