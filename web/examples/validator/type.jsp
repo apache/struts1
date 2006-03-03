@@ -55,6 +55,21 @@
             <bean:write name="error" />
           </li>
         </html:messages>
+        <html:messages id="error" property="mask">
+          <li>
+            <bean:write name="error" />
+          </li>
+        </html:messages>
+        <html:messages id="error" property="email">
+          <li>
+            <bean:write name="error" />
+          </li>
+        </html:messages>
+        <html:messages id="error" property="url">
+          <li>
+            <bean:write name="error" />
+          </li>
+        </html:messages>
       </ul>
       <hr />
     </logic:messagesPresent>
@@ -131,6 +146,30 @@
           </th>
           <td align="left">
           <html:text property="creditCard" size="16" maxlength="16" />(e.g. 4111111111111111, 5500000000000004)</td>
+        </tr>
+        <tr>
+          <th align="left">
+            <bean:message key="typeForm.mask.displayname" />
+          </th>
+          <td align="left">
+            <html:text property="mask" size="15" maxlength="15" />
+          </td>
+        </tr>
+        <tr>
+          <th align="left">
+            <bean:message key="typeForm.email.displayname" />
+          </th>
+          <td align="left">
+            <html:text property="email" size="15"/>
+          </td>
+        </tr>
+        <tr>
+          <th align="left">
+            <bean:message key="typeForm.url.displayname" />
+          </th>
+          <td align="left">
+            <html:text property="url" size="15" />
+          </td>
         </tr>
         <tr>
           <th align="left">

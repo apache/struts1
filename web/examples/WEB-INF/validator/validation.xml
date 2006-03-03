@@ -187,6 +187,20 @@
       <field property="creditCard" depends="required,creditCard">
         <arg key="typeForm.creditCard.displayname" />
       </field>
+      <field property="email" depends="required,email">
+        <arg key="typeForm.email.displayname" />
+      </field>
+      <field property="url" depends="required,url">
+        <arg key="typeForm.url.displayname" />
+      </field>
+      <field property="mask" depends="required,mask">
+        <arg key="typeForm.mask.displayname" />
+        <msg name="mask" key="typeForm.mask.error" /> 
+        <var>
+          <var-name>mask</var-name>
+          <var-value>^[A-Z]*$</var-value>
+        </var>
+      </field>
       <field property="value" indexedListProperty="nameList" depends="required">
         <arg key="typeForm.nested.name.displayname" />
       </field>

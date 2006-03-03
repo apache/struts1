@@ -49,6 +49,9 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     private String sOverallSatisfaction = null;
     private String sWouldRecommend = null;
     private String[] sUsedLanguages = null;
+    private String mask = null;
+    private String email = null;
+    private String url = null;
 
     private List lNames = initNames();
 
@@ -146,6 +149,30 @@ public final class TypeForm extends ValidatorForm implements Serializable {
 
     public void setCreditCard(String sCreditCard) {
        	this.sCreditCard = sCreditCard;
+    }
+
+    public String getMask() {
+       return mask;
+    }
+
+    public void setMask(String mask) {
+       	this.mask = mask;
+    }
+
+    public String getEmail() {
+       return email;
+    }
+
+    public void setEmail(String email) {
+       	this.email = email;
+    }
+
+    public String getUrl() {
+       return url;
+    }
+
+    public void setUrl(String url) {
+       	this.url = url;
     }
 
     public String getSatisfaction() {
