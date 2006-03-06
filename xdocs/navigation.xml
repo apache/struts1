@@ -22,7 +22,7 @@
                     />
             <item
                     name="Download"
-                    href="../downloads.html"/>
+                    href="http://struts.apache.org/downloads.html"/>
         </menu>
 
         <menu name="Quick Links">
@@ -48,7 +48,7 @@
                     />
             <item
                     name="Apache Struts Home"
-                    href="../index.html"/>
+                    href="http://struts.apache.org"/>
         </menu>
     </body>
 </project>
