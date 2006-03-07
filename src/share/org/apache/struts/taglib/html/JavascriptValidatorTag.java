@@ -766,34 +766,33 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         if (!this.isXhtml() && "true".equals(htmlComment)) {
             sb.append(HTML_BEGIN_COMMENT);
         }
-        sb.append("\n     var bCancel = false; \n\n");
+        sb.append("\n    var bCancel = false; \n\n");
 
-        if (methodName == null || methodName.length() == 0) {
-            sb.append(
-                "    function validate"
-                    + name
-                    + "(form) {                                                                   \n");
+        if ((methodName == null) || (methodName.length() == 0)) {
+            sb.append("    function validate" + name + "(form) { \n");
         } else {
-            sb.append(
-                "    function "
-                    + methodName
-                    + "(form) {                                                                   \n");
+            sb.append("    function " + methodName + "(form) { \n");
         }
-        sb.append("        if (bCancel) \n");
-        sb.append("      return true; \n");
-        sb.append("        else \n");
+
+        sb.append("        if (bCancel) { \n");
+        sb.append("            return true; \n");
+        sb.append("        } else { \n");
 
         // Always return true if there aren't any Javascript validation methods
-        if (methods == null || methods.length() == 0) {
-            sb.append("       return true; \n");
+        if ((methods == null) || (methods.length() == 0)) {
+            sb.append("            return true; \n");
         } else {
-            //Making Sure that Bitwise operator works:
-            sb.append(" var formValidationResult;\n");
-            sb.append("       formValidationResult = " + methods + "; \n");
-            sb.append("     return (formValidationResult == 1);\n");
+            sb.append("            var formValidationResult; \n");
+            sb.append("            formValidationResult = " + methods + "; \n");
+            if (methods.indexOf("&&") >= 0) {
+                sb.append("            return (formValidationResult); \n");
+            } else {
+                //Making Sure that Bitwise operator works:
+                sb.append("            return (formValidationResult == 1); \n");
+            }
         }
-
-        sb.append("   } \n\n");
+        sb.append("        } \n");
+        sb.append("    } \n\n");
 
         return sb.toString();
     }
