@@ -40,9 +40,16 @@
                  <th>Modification</th><th>Revision</th><th>Bugzilla</th><th>Description</th>
              </tr></thead>
              <tr>
+                 <td align="center">2006-03-07</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=383718&amp;view=rev">383718</a>
+                     (<a href="http://svn.apache.org/viewcvs?rev=383720&amp;view=rev">383720</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=38749">38749</a></td>
+                 <td>XSS vulnerability in LookupDispatchAction.</td>
+             </tr>
+             <tr>
                  <td align="center">2006-02-15</td>
-                 <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=XXXXX&amp;view=rev">XXXXX</a>
-                     (<a href="http://svn.apache.org/viewcvs?rev=XXXXX&amp;view=rev">XXXXX</a>)</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=379661&amp;view=rev">379661</a>
+                     (<a href="http://svn.apache.org/viewcvs?rev=377929&amp;view=rev">377929</a>)</td>
                  <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=38534">38534</a></td>
                  <td>DOS attack, application hack.</td>
              </tr>
