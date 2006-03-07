@@ -26,6 +26,10 @@
       <param-value>/WEB-INF/validator/struts-config.xml</param-value>
     </init-param>
     <init-param>
+        <param-name>config/dispatch</param-name>
+        <param-value>/WEB-INF/dispatch/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
       <param-name>debug</param-name>
       <param-value>2</param-value>
     </init-param>

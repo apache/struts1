@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<!-- ===================================== "dispatch" examples module config -->
+<struts-config>
+
+  <!-- ============================================= Form Bean Definitions  -->
+  <form-beans>
+
+    <!-- Test form bean -->
+    <form-bean name="testForm" type="org.apache.struts.action.DynaActionForm">
+        <form-property name="testString" type="java.lang.String" />
+    </form-bean>
+
+    <!-- Locale form bean -->
+    <form-bean name="localeForm" type="org.apache.struts.action.DynaActionForm">
+        <form-property name="language" type="java.lang.String" />
+        <form-property name="country"  type="java.lang.String" />
+    </form-bean>
+
+  </form-beans>
+
+  <!-- ======================================== Global Forward Definitions  -->
+  <global-forwards>
+        <forward name="module-root"     path="/welcome.do" module=""/>
+        <forward name="module-dispatch" path="/welcome.do" module="/dispatch"/>
+  </global-forwards>
+
+  <!-- ========================================= Action Mapping Definitions -->
+  <action-mappings>
+        <action path="/welcome" forward="/index.jsp"/>
+
+        <!-- ======================================= DispatchAction Example -->
+        <action path="/dispatch"  forward="/dispatch.jsp"/>
+        <action path="/dispatch-submit" 
+                type="org.apache.struts.webapp.dispatch.DispatchExampleAction"
+                parameter="dispatchMethod"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.NoSuchMethodException"
+                       type="java.lang.NoSuchMethodException"
+                       path="/dispatch.jsp"/>
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/dispatch.jsp"/>
+            <forward name="success" path="/dispatch.jsp"/>
+        </action>
+        <action path="/dispatch-noparam" 
+                type="org.apache.struts.webapp.dispatch.DispatchExampleAction"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/dispatch.jsp"/>
+            <forward name="success" path="/dispatch.jsp"/>
+        </action>
+
+        <action path="/dispatchLocale"
+                type="org.apache.struts.webapp.validator.LocaleAction"
+                name="localeForm" scope="request">
+            <forward name="success" path="/dispatch.do"/>
+        </action>
+
+        <!-- ================================ MappingDispatchAction Example -->
+        <action path="/mapping"  forward="/mapping.jsp"/>
+        <action path="/mapping-foo" 
+                type="org.apache.struts.webapp.dispatch.MappingDispatchExampleAction"
+                parameter="doFoo"
+                name="testForm"
+                scope="request">
+            <forward name="success" path="/mapping.jsp"/>
+        </action>
+        <action path="/mapping-bar" 
+                type="org.apache.struts.webapp.dispatch.MappingDispatchExampleAction"
+                parameter="doBar"
+                name="testForm"
+                scope="request">
+            <forward name="success" path="/mapping.jsp"/>
+        </action>
+        <action path="/mapping-invalid" 
+                type="org.apache.struts.webapp.dispatch.MappingDispatchExampleAction"
+                parameter="doInvalid"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.NoSuchMethodException"
+                       type="java.lang.NoSuchMethodException"
+                       path="/mapping.jsp"/>
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/mapping.jsp"/>
+            <forward name="success" path="/mapping.jsp"/>
+        </action>
+        <action path="/mapping-execute" 
+                type="org.apache.struts.webapp.dispatch.MappingDispatchExampleAction"
+                parameter="execute"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.NoSuchMethodException"
+                       type="java.lang.NoSuchMethodException"
+                       path="/mapping.jsp"/>
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/mapping.jsp"/>
+            <forward name="success" path="/mapping.jsp"/>
+        </action>
+        <action path="/mapping-noparam" 
+                type="org.apache.struts.webapp.dispatch.MappingDispatchExampleAction"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/mapping.jsp"/>
+            <forward name="success" path="/mapping.jsp"/>
+        </action>
+
+        <action path="/mappingLocale"
+                type="org.apache.struts.webapp.validator.LocaleAction"
+                name="localeForm" scope="request">
+            <forward name="success" path="/mapping.do"/>
+        </action>
+
+        <!-- ================================= LookupDispatchAction Example -->
+        <action path="/lookup"  forward="/lookup.jsp"/>
+        <action path="/lookup-submit" 
+                type="org.apache.struts.webapp.dispatch.LookupDispatchExampleAction"
+                parameter="dispatchParam"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/lookup.jsp"/>
+            <forward name="success" path="/lookup.jsp"/>
+        </action>
+        <action path="/lookup-noparam" 
+                type="org.apache.struts.webapp.dispatch.LookupDispatchExampleAction"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/lookup.jsp"/>
+            <forward name="success" path="/lookup.jsp"/>
+        </action>
+
+        <action path="/lookupLocale"
+                type="org.apache.struts.webapp.validator.LocaleAction"
+                name="localeForm" scope="request">
+            <forward name="success" path="/lookup.do"/>
+        </action>
+
+
+        <!-- ===================================== ActionDispatcher Example -->
+        <action path="/actionDispatcher"  forward="/actionDispatcher.jsp"/>
+        <action path="/actionDispatcher-submit" 
+                type="org.apache.struts.webapp.dispatch.ActionDispatcherExample"
+                parameter="actionDispatcherMethod"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.NoSuchMethodException"
+                       type="java.lang.NoSuchMethodException"
+                       path="/actionDispatcher.jsp"/>
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/actionDispatcher.jsp"/>
+            <forward name="success" path="/actionDispatcher.jsp"/>
+        </action>
+        <action path="/actionDispatcher-noparam" 
+                type="org.apache.struts.webapp.dispatch.ActionDispatcherExample"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/actionDispatcher.jsp"/>
+            <forward name="success" path="/actionDispatcher.jsp"/>
+        </action>
+
+        <action path="/actionDispatcherLocale"
+                type="org.apache.struts.webapp.validator.LocaleAction"
+                name="localeForm" scope="request">
+            <forward name="success" path="/actionDispatcher.do"/>
+        </action>
+
+        <!-- ================================================ Switch Locale -->
+        <!-- Locale Action -->
+        <action path="/locale"
+                type="org.apache.struts.webapp.validator.LocaleAction"
+                name="localeForm" scope="request">
+            <forward name="success" path="/welcome.do"/>
+        </action>
+
+  </action-mappings>
+
+  <!-- ====================================== Message Resources Definitions -->
+  <message-resources null="false"
+       parameter="org.apache.struts.webapp.dispatch.MessageResources" />
+
+</struts-config>
