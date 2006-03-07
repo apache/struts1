@@ -1,7 +1,7 @@
 /*
  * $Id$ 
  *
- * Copyright 2001-2004 The Apache Software Foundation.
+ * Copyright 2001-2006 The Apache Software Foundation.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -265,7 +265,10 @@ public abstract class DispatchAction extends Action {
             String message =
                     messages.getMessage("dispatch.method", mapping.getPath(), name);
             log.error(message, e);
-            throw e;
+
+            String userMsg =
+                messages.getMessage("dispatch.method.user", mapping.getPath());
+            throw new NoSuchMethodException(userMsg);
         }
 
         ActionForward forward = null;

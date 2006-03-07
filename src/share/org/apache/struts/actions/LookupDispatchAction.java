@@ -1,7 +1,7 @@
 /*
  * $Id$ 
  *
- * Copyright 2001-2004 The Apache Software Foundation.
+ * Copyright 2001-2006 The Apache Software Foundation.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -107,6 +109,11 @@ import org.apache.struts.util.MessageResources;
  *
  */
 public abstract class LookupDispatchAction extends DispatchAction {
+
+    /**
+     * Commons Logging instance.
+     */
+    private static Log LOG = LogFactory.getLog(LookupDispatchAction.class);
 
     /**
      * Reverse lookup map from resource value to resource key.
@@ -235,8 +242,9 @@ public abstract class LookupDispatchAction extends DispatchAction {
         // Find the key for the resource
         String key = (String) lookupMap.get(keyName);
         if (key == null) {
-            String message = messages.getMessage(
-                    "dispatch.resource", mapping.getPath(), keyName);
+            String message =
+                messages.getMessage("dispatch.resource", mapping.getPath());
+            LOG.error(message + " '" + keyName + "'");
             throw new ServletException(message);
         }
 
