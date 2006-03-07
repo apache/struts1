@@ -41,6 +41,13 @@
              </tr></thead>
              <tr>
                  <td align="center">2006-03-07</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=383907&amp;view=rev">383907</a>
+                     (<a href="http://svn.apache.org/viewcvs?rev=383908&amp;view=rev">383908</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=37685">37685</a></td>
+                 <td>Javascript tag does not work on Mozilla.</td>
+             </tr>
+             <tr>
+                 <td align="center">2006-03-07</td>
                  <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=383718&amp;view=rev">383718</a>
                      (<a href="http://svn.apache.org/viewcvs?rev=383720&amp;view=rev">383720</a>)</td>
                  <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=38749">38749</a></td>
