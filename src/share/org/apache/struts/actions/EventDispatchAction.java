@@ -27,6 +27,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionForward;
 
 /**
  * <p>An <strong>Action</strong> that dispatches to to one of the public methods
@@ -86,6 +87,33 @@ public class EventDispatchAction extends DispatchAction {
     // --------------------------------------------------------- Protected Methods
 
     /**
+     * Method which is dispatched to when there is no value for specified
+     * request parameter included in the request.  Subclasses of
+     * <code>DispatchAction</code> should override this method if they wish to
+     * provide default behavior different than throwing a ServletException.
+     *
+     * @param mapping  The ActionMapping used to select this instance
+     * @param form     The optional ActionForm bean for this request (if any)
+     * @param request  The non-HTTP request we are processing
+     * @param response The non-HTTP response we are creating
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     * @throws Exception if the application business logic throws an
+     *                   exception.
+     */
+    protected ActionForward unspecified(ActionMapping mapping, ActionForm form,
+        HttpServletRequest request, HttpServletResponse response)
+        throws Exception {
+        String message =
+            messages.getMessage("event.parameter", mapping.getPath(),
+                mapping.getParameter());
+
+        LOG.error(message + " " + mapping.getParameter());
+
+        throw new ServletException(message);
+    }
+
+    /**
      * Returns the method name, given a parameter's value.
      *
      * @param mapping   The ActionMapping used to select this instance
@@ -129,42 +157,6 @@ public class EventDispatchAction extends DispatchAction {
             }
         }
 
-        if (defaultMethodName == null || defaultMethodName.length() == 0) {
-            String message =
-                messages.getMessage("event.parameter", mapping.getPath());
-            LOG.error(message + " " + parameter);
-            throw new ServletException(message);
-        }
-
         return defaultMethodName;
-    }
-
-    /**
-     * Returns the parameter.
-     *
-     * @param mapping  The ActionMapping used to select this instance
-     * @param form     The optional ActionForm bean for this request (if any)
-     * @param request  The HTTP request we are processing
-     * @param response The HTTP response we are creating
-     * @return The <code>ActionMapping</code> parameter's value
-     * @throws Exception if the parameter is missing.
-     */
-    protected String getParameter(ActionMapping mapping, ActionForm form,
-            HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-
-        String parameter = mapping.getParameter();
-        if ("".equals(parameter)) {
-            parameter = null;
-        }
-
-        if (parameter == null) {
-            String message =
-                messages.getMessage("dispatch.handler", mapping.getPath());
-            LOG.error(message);
-            throw new ServletException(message);
-        }
-
-        return parameter;
     }
 }

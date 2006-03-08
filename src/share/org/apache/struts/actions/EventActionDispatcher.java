@@ -19,6 +19,7 @@
 package org.apache.struts.actions;
 
 import java.util.StringTokenizer;
+import java.lang.reflect.Method;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionForward;
 
 /**
  * <p>An Action helper class that dispatches to to one of the public methods
@@ -109,7 +111,47 @@ public class EventActionDispatcher extends ActionDispatcher {
      * @param action the action
      */
     public EventActionDispatcher(Action action) {
-        super(action, -1);
+        // N.B. MAPPING_FLAVOR causes the getParameter() method
+        //      in ActionDispatcher to throw an exception if the
+        //      parameter is missing
+        super(action, ActionDispatcher.MAPPING_FLAVOR);
+    }
+
+    /**
+     * <p>Dispatches to the target class' <code>unspecified</code> method, if
+     * present, otherwise throws a ServletException. Classes utilizing
+     * <code>EventActionDispatcher</code> should provide an <code>unspecified</code>
+     * method if they wish to provide behavior different than throwing a
+     * ServletException.</p>
+     *
+     * @param mapping  The ActionMapping used to select this instance
+     * @param form     The optional ActionForm bean for this request (if any)
+     * @param request  The non-HTTP request we are processing
+     * @param response The non-HTTP response we are creating
+     * @return The forward to which control should be transferred, or
+     *         <code>null</code> if the response has been completed.
+     * @throws Exception if the application business logic throws an
+     *                   exception.
+     */
+    protected ActionForward unspecified(ActionMapping mapping, ActionForm form,
+        HttpServletRequest request, HttpServletResponse response)
+        throws Exception {
+        // Identify if there is an "unspecified" method to be dispatched to
+        String name = "unspecified";
+        Method method = null;
+
+        try {
+            method = getMethod(name);
+        } catch (NoSuchMethodException e) {
+            String message =
+                messages.getMessage("event.parameter", mapping.getPath());
+
+            LOG.error(message + " " + mapping.getParameter());
+
+            throw new ServletException(message);
+        }
+
+        return dispatchMethod(mapping, form, request, response, name, method);
     }
 
     /**
@@ -156,42 +198,6 @@ public class EventActionDispatcher extends ActionDispatcher {
             }
         }
 
-        if (defaultMethodName == null || defaultMethodName.length() == 0) {
-            String message =
-                messages.getMessage("event.parameter", mapping.getPath());
-            LOG.error(message + " " + parameter);
-            throw new ServletException(message);
-        }
-
         return defaultMethodName;
-    }
-
-    /**
-     * Returns the parameter.
-     *
-     * @param mapping  The ActionMapping used to select this instance
-     * @param form     The optional ActionForm bean for this request (if any)
-     * @param request  The HTTP request we are processing
-     * @param response The HTTP response we are creating
-     * @return The <code>ActionMapping</code> parameter's value
-     * @throws Exception if the parameter is missing.
-     */
-    protected String getParameter(ActionMapping mapping, ActionForm form,
-            HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-
-        String parameter = mapping.getParameter();
-        if ("".equals(parameter)) {
-            parameter = null;
-        }
-
-        if (parameter == null) {
-            String message =
-                messages.getMessage("dispatch.handler", mapping.getPath());
-            LOG.error(message);
-            throw new ServletException(message);
-        }
-
-        return parameter;
     }
 }
