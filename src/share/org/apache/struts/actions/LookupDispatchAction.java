@@ -113,7 +113,7 @@ public abstract class LookupDispatchAction extends DispatchAction {
     /**
      * Commons Logging instance.
      */
-    private static Log LOG = LogFactory.getLog(LookupDispatchAction.class);
+    private static final Log LOG = LogFactory.getLog(LookupDispatchAction.class);
 
     /**
      * Reverse lookup map from resource value to resource key.
@@ -147,25 +147,7 @@ public abstract class LookupDispatchAction extends DispatchAction {
         HttpServletRequest request,
         HttpServletResponse response)
         throws Exception {
-
-        if (isCancelled(request)) {
-            ActionForward af = cancelled(mapping, form, request, response);
-            if (af != null) {
-                return af;
-            }
-        }
-        // Identify the request parameter containing the method name
-        String parameter = mapping.getParameter();
-        if (parameter == null) {
-            String message = messages.getMessage("dispatch.handler", mapping.getPath());
-            throw new ServletException(message);
-        }
-
-        // Identify the string to lookup
-        String methodName = getMethodName(mapping, form, request, response, parameter);
-
-        return dispatchMethod(mapping, form, request, response, methodName);
-
+        return super.execute(mapping, form, request, response);
     }
 
     /**

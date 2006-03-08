@@ -165,16 +165,9 @@ public abstract class DispatchAction extends Action {
                 return af;
             }
         }
-        // Identify the request parameter containing the method name
-        String parameter = mapping.getParameter();
-        if (parameter == null) {
-            String message =
-                    messages.getMessage("dispatch.handler", mapping.getPath());
 
-            log.error(message);
-
-            throw new ServletException(message);
-        }
+        // Get the parameter. This could be overridden in subclasses.
+        String parameter = getParameter(mapping, form, request, response);
 
         // Get the method's name. This could be overridden in subclasses.
         String name = getMethodName(mapping, form, request, response, parameter);
@@ -306,6 +299,35 @@ public abstract class DispatchAction extends Action {
         return (forward);
     }
 
+    /**
+     * <p>Returns the parameter value.</p>
+     *
+     * @param mapping  The ActionMapping used to select this instance
+     * @param form     The optional ActionForm bean for this request (if any)
+     * @param request  The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     * @return The <code>ActionMapping</code> parameter's value
+     * @throws Exception if the parameter is missing.
+     */
+    protected String getParameter(ActionMapping mapping, ActionForm form,
+        HttpServletRequest request, HttpServletResponse response)
+        throws Exception {
+
+        // Identify the request parameter containing the method name
+        String parameter = mapping.getParameter();
+
+        if (parameter == null) {
+            String message =
+                messages.getMessage("dispatch.handler", mapping.getPath());
+
+            log.error(message);
+
+            throw new ServletException(message);
+        }
+
+
+        return parameter;
+    }
 
     /**
      * Introspect the current class to identify a method of the specified
