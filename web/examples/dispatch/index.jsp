@@ -31,6 +31,8 @@
        <li><html:link action="/mapping"><bean:message key="mapping.title"/></html:link></li>
        <li><html:link action="/lookup"><bean:message key="lookup.title"/></html:link></li>
        <li><html:link action="/actionDispatcher"><bean:message key="actionDispatcher.title"/></html:link></li>
+       <li><html:link action="/eventAction"><bean:message key="eventAction.title"/></html:link></li>
+       <li><html:link action="/eventDispatcher"><bean:message key="eventDispatcher.title"/></html:link></li>
     </ul>
 
 </body>

@@ -181,6 +181,103 @@
             <forward name="success" path="/actionDispatcher.do"/>
         </action>
 
+
+        <!-- ================================ EventActionDispatcher Example -->
+        <action path="/eventDispatcher"  forward="/eventDispatcher.jsp"/>
+        <action path="/eventDispatcher-default" 
+                type="org.apache.struts.webapp.dispatch.EventActionDispatcherExample"
+                parameter="doFoo,bar=doBar,default=doBar"
+                name="testForm"
+                scope="request">
+            <forward name="success" path="/eventDispatcher.jsp"/>
+        </action>
+        <action path="/eventDispatcher-submit" 
+                type="org.apache.struts.webapp.dispatch.EventActionDispatcherExample"
+                parameter="doFoo,doBar"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/eventDispatcher.jsp"/>
+            <forward name="success" path="/eventDispatcher.jsp"/>
+        </action>
+        <action path="/eventDispatcher-error" 
+                type="org.apache.struts.webapp.dispatch.EventActionDispatcherExample"
+                parameter="execute,methodmissing"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/eventDispatcher.jsp"/>
+            <exception key="dispatch.NoSuchMethodException"
+                       type="java.lang.NoSuchMethodException"
+                       path="/eventDispatcher.jsp"/>
+            <forward name="success" path="/eventDispatcher.jsp"/>
+        </action>
+        <action path="/eventDispatcher-noparam" 
+                type="org.apache.struts.webapp.dispatch.EventActionDispatcherExample"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/eventDispatcher.jsp"/>
+            <forward name="success" path="/eventDispatcher.jsp"/>
+        </action>
+
+        <action path="/eventDispatcherLocale"
+                type="org.apache.struts.webapp.validator.LocaleAction"
+                name="localeForm" scope="request">
+            <forward name="success" path="/eventDispatcher.jsp"/>
+        </action>
+
+        <!-- ================================== EventDispatchAction Example -->
+        <action path="/eventAction"  forward="/eventAction.jsp"/>
+        <action path="/eventAction-default" 
+                type="org.apache.struts.webapp.dispatch.EventDispatchActionExample"
+                parameter="doFoo,bar=doBar,default=doBar"
+                name="testForm"
+                scope="request">
+            <forward name="success" path="/eventAction.jsp"/>
+        </action>
+        <action path="/eventAction-submit" 
+                type="org.apache.struts.webapp.dispatch.EventDispatchActionExample"
+                parameter="doFoo,doBar"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/eventAction.jsp"/>
+            <forward name="success" path="/eventAction.jsp"/>
+        </action>
+        <action path="/eventAction-error" 
+                type="org.apache.struts.webapp.dispatch.EventDispatchActionExample"
+                parameter="execute,methodmissing"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/eventAction.jsp"/>
+            <exception key="dispatch.NoSuchMethodException"
+                       type="java.lang.NoSuchMethodException"
+                       path="/eventAction.jsp"/>
+            <forward name="success" path="/eventAction.jsp"/>
+        </action>
+        <action path="/eventAction-noparam" 
+                type="org.apache.struts.webapp.dispatch.EventDispatchActionExample"
+                name="testForm"
+                scope="request">
+            <exception key="dispatch.ServletException"
+                       type="javax.servlet.ServletException"
+                       path="/eventAction.jsp"/>
+            <forward name="success" path="/eventAction.jsp"/>
+        </action>
+
+        <action path="/eventActionLocale"
+                type="org.apache.struts.webapp.validator.LocaleAction"
+                name="localeForm" scope="request">
+            <forward name="success" path="/eventAction.jsp"/>
+        </action>
+
         <!-- ================================================ Switch Locale -->
         <!-- Locale Action -->
         <action path="/locale"
