@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2005 The Apache Software Foundation.
+ * Copyright 1999-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -429,9 +429,10 @@ public class TagUtils {
             if (forwardConfig == null) {
                 throw new MalformedURLException(messages.getMessage("computeURL.forward", forward));
             }
-            if (forwardConfig.getRedirect()) {
-                redirect = true;
-            }
+            // **** removed - see bug 37817 ****
+            //  if (forwardConfig.getRedirect()) {
+            //      redirect = true;
+            //  }
             if (forwardConfig.getPath().startsWith("/")) {
                 url.append(request.getContextPath());
                 url.append(RequestUtils.forwardURL(request, forwardConfig, moduleConfig));
