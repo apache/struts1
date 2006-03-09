@@ -63,7 +63,7 @@ limitations under the License.
             <question>Who wrote Struts Action Framework"</question>
             <answer>
                 <p>There are several
-                    <a href="../volunteers.html">active committers</a>
+                    <a href="http://struts.apache.org/volunteers.html">active committers</a>
                     to the Apache Struts project, working cooperatively from
                     around the globe. Dozens of individual developers and
                     committers contributed to the Struts 1.x codebase. All

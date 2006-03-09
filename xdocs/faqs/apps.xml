@@ -214,7 +214,7 @@ limitations under the License.
                                         transformations, run unit tests,
                                         interact with version control systems,
                                         clean up, etc.
-                                        <a href="http://jakarta.apache.org/ant">
+                                        <a href="http://ant.apache.org">
                                             (more...)</a>
                                     </li>
                                     <li>Create and use build script
@@ -247,7 +247,7 @@ limitations under the License.
                                         <code>junit</code>
                                         tag to launch each TestCase
                                         descendent.
-                                        <a href="http://jakarta.apache.org/ant/manual/OptionalTasks/junit.html">
+                                        <a href="http://ant.apache.org/manual/OptionalTasks/junit.html">
                                             (more...)</a>
                                     </li>
                                 </ol>

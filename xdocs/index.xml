@@ -210,13 +210,10 @@ limitations under the License.
                     You can specify validations for the ActionForms in an XML
                     descriptor,
                     using the
-                    <a href="userGuide/dev_validator.html">Struts
-                        Validator</a>
-                    .
-                    A standard extension,
-                    <a href="userGuide/dev_tiles.html">Tiles</a>
-                    ,
-                    helps you build pages from smaller fragments.
+                    <a href="http://struts.apache.org/struts-taglib/dev_validator.html">
+                    Struts Validator</a>. A standard extension,
+                    <a href="http://struts.apache.org/struts-tiles/dev_tiles.html">
+                    Tiles</a>, helps you build pages from smaller fragments.
                 </p>
 
                 <p>

@@ -97,7 +97,7 @@ limitations under the License.
                         paths with
                         the controller components of your application, known
                         as
-                        <a href="../api/org/apache/struts/action/Action.html">
+                        <a href="../apidocs/org/apache/struts/action/Action.html">
                             <code>Action</code>
                         </a>
                         classes (i.e. "login" ==&gt; LoginAction class). This
