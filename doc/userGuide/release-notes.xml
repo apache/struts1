@@ -53,6 +53,13 @@
              </tr></thead>
              <tr>
                  <td align="center">2006-03-08</td>
+                 <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=384234&amp;view=rev">384234</a>
+                     (<a href="http://svn.apache.org/viewcvs?rev=384235&amp;view=rev">384235</a>)</td>
+                 <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=37817">37817</a></td>
+                 <td>TagUtils doesn't create XHTML compliant URLs using forwards defined with redirect="true".</td>
+             </tr>
+             <tr>
+                 <td align="center">2006-03-08</td>
                  <td align="center"><a href="http://svn.apache.org/viewcvs.cgi?rev=384090&amp;view=rev">384090</a>
                      (<a href="http://svn.apache.org/viewcvs?rev=384092&amp;view=rev">384092</a>)</td>
                  <td align="center"><a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=38343">38343</a></td>
