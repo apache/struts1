@@ -133,9 +133,6 @@
       </field>
     </form>
     <form name="typeForm">
-      <field property="name" depends="required,byte">
-        <arg key="typeForm.name.displayname" />
-      </field>
       <field property="byte" depends="required,byte">
         <arg key="typeForm.byte.displayname" />
       </field>
