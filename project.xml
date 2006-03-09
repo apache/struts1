@@ -4,7 +4,7 @@
   <name>struts</name>
   <groupId>struts</groupId>
   <artifactId>struts</artifactId>
-  <currentVersion>1.2.9</currentVersion>
+  <currentVersion>1.2.10-SNAPSHOT</currentVersion>
   <organization>
     <name>The Apache Software Foundation</name>
     <url>http://struts.apache.org/</url>
