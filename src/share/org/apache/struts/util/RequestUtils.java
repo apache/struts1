@@ -445,6 +445,7 @@ public class RequestUtils {
                         (Boolean) request.getAttribute(
                                 MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED);
                 if ((maxLengthExceeded != null) && (maxLengthExceeded.booleanValue())) {
+                    ((ActionForm) bean).setMultipartRequestHandler(multipartHandler);
                     return;
                 }
                 //retrieve form values and put into properties
