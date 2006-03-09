@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Struts Framework"
+         href="http://jakarta.apache.org/struts"
+        image="images/struts.gif">
+
+    <title>Struts Framework</title>
+
+    <menu name="Welcome">
+        <item name="Home"                    href="../index.html"/>
+        <item name="News &amp; Status"       href="../news_2002.html"/>
+        <item name="Kickstart FAQ"           href="../kickstart.html"/> 
+        <item name="Resources"               href="../resources.html"/>
+        <item name="Who We Are"              href="../volunteers.html"/>
+    </menu>
+
+    <menu name="Downloads">
+        <item name="Binaries"                href="http://jakarta.apache.org/site/binindex.html"/>
+        <item name="Source Code"             href="http://jakarta.apache.org/site/sourceindex.html"/>
+    </menu>
+
+    <menu name="Stable Release (1.0.2)">
+        <item name="User Guide"
+            href="http://jakarta.apache.org/struts/doc-1.0.2/index.html"/>
+        <item name="Javadoc"
+            href="http://jakarta.apache.org/struts/doc-1.0.2/api/index.html"/>
+        <item name="Release Notes" 
+            href="http://jakarta.apache.org/struts/doc-1.0.2/release-notes-1.0.2.html"/>
+        <item name="Installation"            
+            href="http://jakarta.apache.org/struts/doc-1.0.2/installation.html"/>
+    </menu>
+
+    <menu name="Nightly Build">
+        <item name="User Guide"
+            href="../userGuide/index.html"/>
+        <item name="Javadoc"
+            href="../api/index.html"/>
+        <item name="Release Notes" 
+            href="../userGuide/release-notes.html"/>
+        <item name="Installation"            
+            href="../userGuide/installation.html"/>
+        <item name="Workflow Proposal"
+            href="workflow.html"/>
+        <item name="Wish List"
+            href="todo-1.1.html"/>
+    </menu>
+
+</project>
+
+
+
+
+
+

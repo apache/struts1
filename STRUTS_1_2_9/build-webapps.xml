@@ -1,0 +1,287 @@
+<project name="Struts Web Applications" default="compile" basedir=".">
+
+
+<!--
+        This is a build file that creates all of the web applications included
+        in a Struts distribution, using the generic "build-webapp.xml" script
+        for the details
+-->
+
+
+<!-- ========== Prerequisite Properties =================================== -->
+
+
+<!--
+        These properties MUST be set on the "ant" command line, the "antrc"
+        properties file in your home directory, or from settings in a superior
+        build.xml script.
+
+        build.home                    Base directory into which we are building
+                                      the Struts components.
+
+        compile.classpath             If specified, contains a set of JAR files
+                                      and/or directories to be added to the
+                                      compilation classpath.
+
+        servlet.jar                   The pathname of the servlet API classes
+                                      that you wish to compile against.
+
+        struts.libs                   The directory containing struts.jar and
+                                      the associated TLD files.
+
+        webapp.libs                   If specified, must be the pathname of a
+                                      directory from which all available
+                                      "*.jar" files are copied to the web
+                                      application's WEB-INF/lib directory.
+-->
+
+<property name="build.home"           value="${basedir}/target"/>
+<property name="struts.libs"          value="${build.home}/library"/>
+
+
+
+<!-- ========== Initialization Properties ================================= -->
+
+
+<!--
+        These property values may optionally be overridden with property
+        settings from an "ant" command line, the "antrc" properties file
+        in your home directory, or from settings in a superior build.xml
+        script.
+-->
+
+
+<!-- Should Java compilations set the debug compiler option? -->
+<property name="compile.debug"         value="true" />
+
+<!-- Should Java compilations set the deprecation compiler option? -->
+<property name="compile.deprecation"   value="false" />
+
+<!-- Should Java compilations set the optimize compiler option? -->
+<property name="compile.optimize"      value="true" />
+
+<!-- The base directory for distribution targets -->
+<property name="dist.home"             value="${basedir}/dist" />
+
+<!-- The directory into which Struts JAR and TLD files have been created -->
+<property name="struts.home"           value="${build.home}/library" />
+
+<!-- Directory where core struts library configurations files are stored -->
+<property name="conf.share.dir" value="${basedir}/conf/share"/>
+
+<!-- Doc directory -->
+<property name="doc.dir" value="doc"/>
+
+
+<!-- ========== Executable Targets ======================================== -->
+
+
+<!--
+        The "static.generic" target causes the "static" target of each
+        individual web application to be executed.
+-->
+<target name="static.generic">
+  <ant  antfile="build-webapp.xml"    target="static">
+    <property name="webapp.name"      value="exercise-taglib"/>
+  </ant>
+</target>
+
+
+<!--
+        The "static" target causes non-generic static activity required
+        for specific tag libraries to be executed.
+-->
+<target name="static" depends="static.generic"
+        description="Copy static resources for individual web applications">
+    <!-- Copy DTDs for Struts constructs -->
+    <copy  todir="${build.home}/documentation/dtds">
+      <fileset dir="${conf.share.dir}" includes="**/*.dtd"/>
+    </copy>
+</target>
+
+
+<!--
+        The "compile.generic" target causes the "compile" target of each
+        individual web application to be executed.
+-->
+<target name="compile.generic">
+  <ant  antfile="build-webapp.xml"    target="compile">
+    <property name="webapp.name"      value="exercise-taglib"/>
+  </ant>
+</target>
+
+
+<!--
+        The "compile" target causes non-generic compile activity required
+        for specific tag libraries to be executed.
+-->
+<target name="compile" depends="compile.generic"
+        description="Compile individual web applications">
+    <!-- Create the taglib documentation -->
+    <style   basedir="${doc.dir}" destdir="${build.home}/documentation"
+           extension=".html" style="${doc.dir}/stylesheets/struts.xsl"
+            includes="*.xml"/>
+    <!-- Create the proposals -->
+<!--
+    <style   basedir="${doc.dir}/proposals"
+             destdir="${build.home}/documentation/proposals"
+           extension=".html" style="${doc.dir}/stylesheets/proposals.xsl"
+            includes="*.xml"/>
+-->
+    <!-- Create the user guide -->
+<!--
+    <style   basedir="${doc.dir}/userGuide"
+             destdir="${build.home}/documentation/userGuide"
+           extension=".html" style="${doc.dir}/stylesheets/userGuide.xsl"
+            includes="*.xml"/>
+-->
+    <!-- Copy the basic documentation files -->
+<!--
+    <copy      todir="${build.home}/documentation">
+      <fileset   dir="${doc.dir}">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+-->
+    <!-- Copy the basic user guide files -->
+<!--
+    <copy      todir="${build.home}/documentation/userGuide">
+      <fileset   dir="${doc.dir}/userGuide">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+-->
+    <!-- Copy the proposal files -->
+<!--
+    <copy      todir="${build.home}/documentation/proposals">
+      <fileset   dir="${doc.dir}/proposals">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+-->
+    <!-- Copy the basic user guide files -->
+<!--
+    <copy      todir="${build.home}/documentation/userGuide">
+      <fileset   dir="${doc.dir}/userGuide">
+        <include name="**/*.css"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.html"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.js"/>
+      </fileset>
+    </copy>
+-->
+    <!-- Create the Tiles documentation -->
+<!--
+    <style   basedir="${doc.dir}/tiles"
+             destdir="${build.home}/tiles-documentation"
+           extension=".html" style="${doc.dir}/stylesheets/tiles.xsl"
+            includes="*.xml"/>
+-->
+    
+    <!-- Compile Tiles contrib -->
+<!--
+    <ant  antFile="build.xml"  dir="contrib/tiles"  target="compile.for.struts">
+      <property name="struts.home"      value="${struts.home}"/>
+      <property name="struts.libs"      value="${struts.libs}"/>
+      <property name="build.home"       value="${build.home}/tiles"/>
+      <property name="dist.home"        value="${dist.home}"/>
+      <property name="app.name"         value="tiles"/>
+      <property name="project.name"     value="Tiles"/>
+    </ant>  
+-->
+
+</target>
+
+
+<!--
+        The "dist.generic" target causes the "dist" target of each
+        individual web application to be executed.
+-->
+<target name="dist.generic">
+  <ant  antfile="build-webapp.xml"    target="dist">
+    <property name="webapp.name"      value="exercise-taglib"/>
+    <property name="webapp.war"       value="strutsel-exercise-taglib.war"/>
+  </ant>
+</target>
+
+
+<!--
+        The "dist" target causes non-generic dist activity required
+        for specific tag libraries to be executed.
+-->
+<target name="dist" depends="dist.generic"
+        description="Create distribution output of web applications">
+        
+    <!-- Compile Tiles dist -->
+<!--
+    <ant  antFile="build.xml"  dir="contrib/tiles"  target="dist.for.struts">
+      <property name="struts.home"      value="${struts.home}"/>
+      <property name="struts.libs"      value="${struts.libs}"/>
+      <property name="build.home"       value="${build.home}/tiles"/>
+      <property name="dist.home"        value="${dist.home}"/>
+      <property name="app.name"         value="tiles"/>
+      <property name="project.name"     value="Tiles"/>
+    </ant>
+-->
+
+</target>
+
+
+<!--
+        The "clean.generic" target causes the "clean" target of each
+        individual web application to be executed.
+-->
+<target name="clean.generic">
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="blank"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="documentation"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="example"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="exercise-taglib"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="template-example"/>
+  </ant>
+  <!--ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="test"/>
+  </ant-->
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="tiles-documentation"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="upload"/>
+  </ant>
+  <ant  antfile="build-webapp.xml"    target="clean">
+    <property name="webapp.name"      value="validator"/>
+  </ant>
+</target>
+
+
+<!--
+        The "clean" target causes non-generic clean activity required
+        for specific tag libraries to be executed.
+-->
+<target name="clean" depends="clean.generic"
+        description="Clean output for individual web applications">
+</target>
+
+
+</project>

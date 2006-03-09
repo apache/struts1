@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<project>
+  <pomVersion>3</pomVersion>
+  <name>struts-el</name>
+  <groupId>struts</groupId>
+  <artifactId>struts-el</artifactId>
+  <currentVersion>1.2.9</currentVersion>
+  <inceptionYear>2003</inceptionYear>
+  <package>org.apache.strutsel</package>
+  <shortDescription>Extension/adaptation of Struts tag libraries to use JSP 1.2 expression language.</shortDescription>
+  <description>
+  This subproject is an extension of the Struts tag library.  Each JSP custom tag
+in this library is a subclass of an associated tag in the Struts tag library.
+One difference is that this tag library does not use "rtexprvalues", it uses
+the expression evaluation engine in the Jakarta Taglibs implementation of the
+JSP Standard Tag Library (version 1.0) to evaluate attribute values.
+
+In addition, some of the Struts tags were not ported to this library, as it was
+determined that their functionality was entirely supplied by the JSTL.  These
+particular Struts tags, and the reason for their non-porting will be described
+in the documentation for this library.
+
+In order to fully understand the correct utilization of this library, you must
+understand the use and operation of the Struts tag library, and the use and
+operation of the JavaServer Pages Standard Tag Library (hereafter called the
+"JSTL"), along with the expression language (sometimes called the "EL") used
+for evaluating attribute values.
+
+  </description>
+  <url>http://jakarta.apache.org/</url>
+  <repository>
+    <connection>scm:cvs:pserver:anoncvs@cvs.apache.org:/home/cvspublic:jakarta-struts/contrib/struts-el</connection>
+    <developerConnection>scm:cvs:ext:${cvs.developer.id}@$cvs.apache.org:/home/cvs:jakarta-struts/contrib/struts-el</developerConnection>
+    <url>http://cvs.apache.org/viewcvs/jakarta-struts/contrib/struts-el/</url>
+  </repository>
+  <versions />
+  <dependencies>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.3</version>
+      <properties>
+        <scope>provided</scope>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>taglibs</groupId>
+      <artifactId>standard</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.0.6</version>
+      <url>http://jakarta.apache.org/taglibs/doc/standard-1.0-doc/intro.html</url>
+    </dependency>
+    <dependency>
+      <groupId>struts</groupId>
+      <artifactId>struts</artifactId>
+      <version>1.2.8</version>
+      <url>http://jakarta.apache.org/struts/</url>
+    </dependency>
+    <dependency>
+      <groupId>httpunit</groupId>
+      <artifactId>httpunit</artifactId>
+      <version>1.5.4</version>
+      <url>http://httpunit.org/</url>
+      <properties>
+        <scope>test</scope>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.0.4</version>
+      <url>http://jakarta.apache.org/commons/logging.html</url>
+    </dependency>
+    <dependency>
+      <groupId>cactus</groupId>
+      <artifactId>cactus</artifactId>
+      <version>12-1.4.1</version>
+      <url>http://jakarta.apache.org/cactus</url>
+      <properties>
+        <scope>test</scope>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>cactus</groupId>
+      <artifactId>cactus-ant</artifactId>
+      <version>1.4.1</version>
+      <url>http://jakarta.apache.org/cactus</url>
+      <properties>
+        <scope>test</scope>
+      </properties>
+    </dependency>
+  </dependencies>
+  <build>
+    <nagEmailAddress>struts-dev@jakarta.apache.org</nagEmailAddress>
+    <sourceDirectory>src/share</sourceDirectory>
+    <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
+    <integrationUnitTestSourceDirectory />
+    <aspectSourceDirectory />
+    <unitTest>
+      <excludes>
+        <!-- all tests in src/test are for Cactus, not plain JUnit -->
+        <exclude>**/*.java</exclude>
+      </excludes>
+    </unitTest>
+    <!-- J A R  R E S O U R C E S -->
+    <!-- Resources that are packaged up inside the JAR file -->
+    <resources />
+  </build>
+  <reports>
+    <!--
+             |
+             | These should all be completely self contained. You should be able
+             | to generate each of them individually without needing the final
+             | xdoc transformation.
+             |
+             | Each report plugin with it's POM and plugin.jelly logic should
+             | contain everything needed to produced the report.
+             |
+            -->
+    <report>maven-jdepend-plugin</report>
+    <report>maven-checkstyle-plugin</report>
+    <report>maven-changes-plugin</report>
+    <report>maven-changelog-plugin</report>
+    <report>maven-file-activity-plugin</report>
+    <report>maven-developer-activity-plugin</report>
+    <report>maven-javadoc-plugin</report>
+    <report>maven-jxr-plugin</report>
+    <report>maven-junit-report-plugin</report>
+    <report>maven-tasklist-plugin</report>
+    <report>maven-pmd-plugin</report>
+    <report>maven-simian-plugin</report>
+    <!-- <report>maven-faq-plugin</report> -->
+  </reports>
+</project>

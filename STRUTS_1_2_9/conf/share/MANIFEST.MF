@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Extension-Name: Struts Framework EL Extension
+Specification-Title: Struts Framework EL Extension
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: @version@
+Implementation-Title: Struts Framework EL Extension
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: org.apache
+Implementation-Version: @version@
