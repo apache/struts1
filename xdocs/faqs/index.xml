@@ -66,15 +66,6 @@ limitations under the License.
                     <a href="apps.html">Building Applications</a>
                 </li>
 
-                <li>
-                    <a href="dispatchValidator.html">Dispatching And
-                        Validating</a>
-                    <ul>
-                        <li>
-                            <a href="dispatchValidator.zip">Example Code</a>
-                        </li>
-                    </ul>
-                </li>
             </ul>
 
         </section>
