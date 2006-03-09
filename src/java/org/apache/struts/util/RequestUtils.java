@@ -394,6 +394,7 @@ public class RequestUtils {
 
                 if ((maxLengthExceeded != null)
                     && (maxLengthExceeded.booleanValue())) {
+                    ((ActionForm) bean).setMultipartRequestHandler(multipartHandler);
                     return;
                 }
 
