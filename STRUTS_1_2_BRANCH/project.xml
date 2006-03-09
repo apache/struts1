@@ -4,7 +4,7 @@
   <name>struts-el</name>
   <groupId>struts</groupId>
   <artifactId>struts-el</artifactId>
-  <currentVersion>1.2.9-SNAPSHOT</currentVersion>
+  <currentVersion>1.2.9</currentVersion>
   <inceptionYear>2003</inceptionYear>
   <package>org.apache.strutsel</package>
   <shortDescription>Extension/adaptation of Struts tag libraries to use JSP 1.2 expression language.</shortDescription>
