@@ -183,7 +183,7 @@
             Struts, along with different security packages and Hibernate for database persistence.
         </li>
         <li>
-            <a href="http://www.ibatis.com/jpetstore/jpetstore.html">JPetStore</a> - A streamlined version of the Java
+            <a href="http://ibatis.apache.org/petstore.html">JPetStore</a> - A streamlined version of the Java
             Petstore application implemented with Struts and iBATIS database layer.
         </li>
         <li>
