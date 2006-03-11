@@ -20,7 +20,7 @@
 
 
     <extend>build/project.xml</extend>
-    <id>struts-action</id>
+    <artifactId>struts-action</artifactId>
     <name>Struts Action Framework</name>
 
 
@@ -45,10 +45,8 @@
     <siteDirectory>/www/struts.apache.org/struts-action/</siteDirectory>
 
     <repository>
-        <connection>
-            scm|svn|http|//svn.apache.org/repos/asf/struts/action/trunk</connection>
-        <developerConnection>
-            scm|svn|https|//svn.apache.org/repos/asf/struts/action/trunk</developerConnection>
+        <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/action/trunk</connection>
+        <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/action/trunk</developerConnection>
         <url>http://svn.apache.org/repos/asf/struts/action/trunk</url>
     </repository>
     <versions>
