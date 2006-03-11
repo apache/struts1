@@ -166,7 +166,7 @@ limitations under the License.
                     The Apache Struts subprojects, including the website, are being
                     built with Maven.
                     But, of course, you can continue to build your own
-                    projects any way you like!)
+                    projects any way you like!
                 </p>
 
                 <h3>Dependency Changes</h3>
@@ -620,6 +620,10 @@ limitations under the License.
                         Added support for per-field character encoding in multipart
                         requests.
                     </li>
+                    <li>
+                        Resolved <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=38534">
+                        Bug 38534</a> DOS attack, application hack.
+                    </li>
                 </ul>
 
                 <h3>Struts EL</h3>
@@ -751,7 +755,7 @@ limitations under the License.
                     </li>
                     <li>
                         Fixed indexed behaviour to check for JSTL's LoopTag rather
-                        then LoopTagSupport to verify JSLT.
+                        than LoopTagSupport to verify JSTL.
                     </li>
                 </ul>
 
