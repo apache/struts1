@@ -533,8 +533,8 @@
              target="clean" inheritAll="false"/>
         <ant    dir="${struts.el.home}"
              target="dist" inheritAll="false"/>
-        <mkdir  dir="${dist.home}/contrib/struts-el"/>
-        <copy todir="${dist.home}/contrib/struts-el">
+        <mkdir  dir="${dist.home}/contrib/el"/>
+        <copy todir="${dist.home}/contrib/el">
            <fileset dir="${struts.el.home}/dist"/>
         </copy>
     </target>
@@ -595,23 +595,10 @@
                 <exclude name="dist/**"/>
                 <exclude name="release/**"/>
                 <exclude name="lib/**"/>
+                <exclude name="contrib/el/dist/**"/>
+                <exclude name="contrib/el/target/**"/>
             </fileset>
         </copy>
-
-        <!-- struts-el source -->
-        <mkdir dir="${stage.src.dir}/${upload.file.base}-src/contrib"/>
-        <mkdir dir="${stage.src.dir}/${upload.file.base}-src/contrib/struts-el"/>
-        <copy todir="${stage.src.dir}/${upload.file.base}-src/contrib/struts-el">
-            <fileset dir="${struts.el.home}">
-                <exclude name="build.properties"/>
-                <exclude name="target/**"/>
-                <exclude name="dist/**"/>
-                <exclude name="release/**"/>
-            </fileset>
-        </copy>
-
-        <!-- delete duplicate "el" directory -->
-        <delete dir="${stage.src.dir}/${upload.file.base}-src/contrib/el"/>
 
         <mkdir dir="${upload.dir}"/>
         <zip  zipfile="${upload.dir}/${upload.file.base}-bin.zip"
