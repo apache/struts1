@@ -61,7 +61,7 @@ and become a volunteer.
 Our challenge to any team using Struts is to donate the time of one team member
 one afternoon a week (or more if you can spare the resources).
 Have your team member browse
-<a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a> for any issues
+<a href="http://issues.apache.org/bugzilla/">Bugzilla</a> for any issues
 without a patch or unit test,
 and add the patch or test.
 Please note that Struts does not use @author tags in our JavaDocs.
@@ -96,8 +96,8 @@ that we can put in the User Guide.
 <p>
 Some Apache products like you to submit your patch to the mailing list.
 We would prefer that you create a
-<a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a>
-Bugzilla report and then attach the patch to the report.
+<a href="http://issues.apache.org/bugzilla/">Bugzilla</a>
+report and then attach the patch to the report.
 To do this, you must first create the report,
 and then modify the report to add your patch.
 We realize this is a bit clumsy, but it keeps us from losing things,
@@ -115,13 +115,13 @@ can pay us back by donating the time and energy that money represents.
 
 <p>
 You can research and report outstanding fixes and feature requests using
-<a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a>.
+<a href="http://issues.apache.org/bugzilla/">Bugzilla</a>.
 If you are unsure if this is an actual problem, feel free to bring it up the
 list first.
 But to be sure that an issue is resolved, read
 <a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html">
 How to Report Bugs Effectively</a> and report it to
-<a href="http://jakarta.apache.org/site/bugs.html"><strong>Bugzilla</strong></a>.
+<a href="http://issues.apache.org/bugzilla/"><strong>Bugzilla</strong></a>.
 </p>
 
 <p>
@@ -164,9 +164,9 @@ These are the same people who distribute the Apache Web server.
 Like all ASF projects, Struts is managed as a &quot;meritocracy&quot;,
 where everyone's contribution is welcome.
 Users can help other users through the
-<a href="http://jakarta.apache.org/site/mail.html">mailing lists</a>,
-<a href="http://jakarta.apache.org/site/bugs.html">report bugs</a>, and
-<a href="http://jakarta.apache.org/site/bugs.html">request new features</a>.
+<a href="http://struts.apache.org/mail.html">mailing lists</a>,
+<a href="http://issues.apache.org/bugzilla/">report bugs</a>, and
+<a href="http://issues.apache.org/bugzilla/">request new features</a>.
 Developers can
 contribute patches, new code, and documentation.
 The most active Developers may become
@@ -336,7 +336,7 @@ This way you are at least forewarned and forearmed.
   Most importantly, download the lastest nightly build or development release
   and test it against your own applications.
   Report any and all issues or suspected issues to
-  <a href="http://jakarta.apache.org/site/bugs.html">Bugzilla</a>.
+  <a href="http://issues.apache.org/bugzilla/">Bugzilla</a>.
   The sooner we resolve any problems, the fewer betas or release candidates
   we will have to distribute before we are done.
   (How do we know when we're done? -- When we run out of issues =:o)

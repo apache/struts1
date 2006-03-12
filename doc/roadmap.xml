@@ -35,7 +35,7 @@
     <section href="Bugzilla" name="Bugzilla Queries">
 
         <p>
-            The Struts development teams uses the <a href="http://jakarta.apache.org/site/bugs.html">Apache Bug Database</a> (Bugzilla)
+            The Struts development teams uses the <a href="http://issues.apache.org/bugzilla/">Apache Bug Database</a> (Bugzilla)
             to manage problem reports and enhancement requests.
             For your convenience, here are some common Bugzilla queries:
         </p>
