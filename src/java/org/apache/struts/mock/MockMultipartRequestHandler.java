@@ -88,9 +88,9 @@ public class MockMultipartRequestHandler implements MultipartRequestHandler {
       */
     public void handleRequest(HttpServletRequest request) throws ServletException {
         elements = new Hashtable();
-        Enumeration enum = request.getParameterNames();
-        while (enum.hasMoreElements()) {
-            String key = enum.nextElement().toString();
+        Enumeration enumer = request.getParameterNames();
+        while (enumer.hasMoreElements()) {
+            String key = enumer.nextElement().toString();
             elements.put(key, request.getParameter(key));
         }
     }
