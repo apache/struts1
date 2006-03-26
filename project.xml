@@ -21,6 +21,7 @@
 
     <extend>build/project.xml</extend>
     <artifactId>struts-action</artifactId>
+    <currentVersion>1.3.2-SNAPSHOT</currentVersion>
     <name>Struts Action Framework</name>
 
 
