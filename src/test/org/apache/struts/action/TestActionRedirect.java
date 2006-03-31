@@ -70,6 +70,18 @@ public class TestActionRedirect extends TestCase {
     }
 
     /**
+     * Test redirect with anchor.
+     */
+    public void testActionRedirectWithAnchor() {
+        ActionRedirect ar = new ActionRedirect("/path.do");
+
+        ar.addParameter("st", "test");
+        ar.setAnchor("foo");
+
+        assertTrue("Incorrect path", "/path.do?st=test#foo".equals(ar.getPath()));
+    }
+
+    /**
      * Test adding parameters with the same name.
      */
     public void testActionRedirectAddSameNameParameter() {
@@ -93,6 +105,7 @@ public class TestActionRedirect extends TestCase {
      */
     public void testActionRedirectFromExistingForward() {
         ActionForward forward = new ActionForward("/path.do?param=param1");
+        forward.setRedirect(false);
 
         ActionRedirect ar = new ActionRedirect(forward);
 
@@ -104,6 +117,7 @@ public class TestActionRedirect extends TestCase {
         assertHasParameter(ar.parameterValues, "object1", "someString");
         assertEquals("Incorrect original path.", forward.getPath(),
             ar.getOriginalPath());
+        assertTrue("Original had redirect to false", !ar.getRedirect());    
     }
 
     /**

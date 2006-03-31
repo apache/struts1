@@ -74,6 +74,11 @@ public class ActionRedirect extends ActionForward {
      * String[] depending on whether it has one or more entries.</p>
      */
     protected Map parameterValues = null;
+    
+    /**
+     * <p>Holds the anchor value.</p>
+     */
+    protected String anchorValue = null;
 
     // ----------------------------------------------------- Constructors
 
@@ -123,7 +128,7 @@ public class ActionRedirect extends ActionForward {
         setName(baseConfig.getName());
         setPath(baseConfig.getPath());
         setModule(baseConfig.getModule());
-        setRedirect(true);
+        setRedirect(baseConfig.getRedirect());
         initializeParameters();
     }
 
@@ -145,7 +150,7 @@ public class ActionRedirect extends ActionForward {
      * @param fieldName the name to use for the parameter
      * @param valueObj  the value for this parameter
      */
-    public void addParameter(String fieldName, Object valueObj) {
+    public ActionRedirect addParameter(String fieldName, Object valueObj) {
         String value = (valueObj != null) ? valueObj.toString() : "";
 
         if (parameterValues == null) {
@@ -182,6 +187,23 @@ public class ActionRedirect extends ActionForward {
             parameterValues.put(fieldName,
                 newValues.toArray(new String[newValues.size()]));
         }
+        return this;
+    }
+    
+    /**
+     * <p>Adds an anchor to the path.  Technically, the anchor value is
+     * just stored for later and will be added to the path in getPath().
+     * Note that this is a considerably simpler method than the
+     * addParmaeter method because aside from encoding the value, there
+     * isn't really anything to do.  Passing in null is fine because that
+     * is the value that will be checked for later to determine whether
+     * to append an anchor to the path or not.</p>
+     *
+     * @param anchorValue The anchor to append to the path
+     */
+    public ActionRedirect setAnchor(String anchorValue) {
+        this.anchorValue = ResponseUtils.encodeURL(anchorValue);
+        return this;
     }
 
     /**
@@ -203,6 +225,7 @@ public class ActionRedirect extends ActionForward {
         // get the original path and the parameter string that was formed
         String originalPath = getOriginalPath();
         String parameterString = getParameterString();
+        String anchorString = getAnchorString();
 
         StringBuffer result = new StringBuffer(originalPath);
 
@@ -232,8 +255,28 @@ public class ActionRedirect extends ActionForward {
 
             result.append(parameterString);
         }
+        
+        // append anchor string (or blank if none was set)
+        result.append(anchorString);
+
 
         return result.toString();
+    }
+    
+    /**
+     * <p>Forms the string containing the parameters
+     *  passed onto this object thru calls to addParameter().</p>
+     *
+     * @return a string which can be appended to the URLs.  The
+     *    return string includes a leading hash
+     *    mark (#).
+     */
+    public String getAnchorString() {
+        String retVal = "";
+        if (anchorValue != null) {
+            retVal = "#" + anchorValue;
+        }
+        return retVal;
     }
 
     /**
@@ -294,6 +337,7 @@ public class ActionRedirect extends ActionForward {
         result.append("ActionRedirect [");
         result.append("originalPath=").append(getOriginalPath()).append(";");
         result.append("parameterString=").append(getParameterString()).append("]");
+        result.append("anchorString=").append(getAnchorString()).append("]");
 
         return result.toString();
     }
