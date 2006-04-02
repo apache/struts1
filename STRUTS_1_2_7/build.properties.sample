@@ -6,7 +6,7 @@
 # in the same directory that contains the "build.xml" file, then make any
 # changes you need.
 #
-# $Id: build.properties.sample,v 1.7 2004/02/10 16:35:10 germuska Exp $
+# $Id$
 # -----------------------------------------------------------------------------
 
 # struts.home is not used in build.xml; you only need to set it if you want
