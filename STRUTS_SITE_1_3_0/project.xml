@@ -19,7 +19,7 @@
  -->
 
 
-  <extend>build/project.xml</extend>
+  <!--<extend>build/project.xml</extend>-->
   <groupId>struts</groupId>
   <artifactId>struts-site</artifactId>
   <name>Struts Site</name>
