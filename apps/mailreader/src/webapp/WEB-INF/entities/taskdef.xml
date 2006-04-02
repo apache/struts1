@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<project name="taskdef">
+    <description>
+        This project provides following elements to use in your test scripts:
+
+        (0) all webtest's steps loaded and ready to use,
+        (1) the path "webtest.path.id" that includes all of webtest's
+        libraries,
+        (2) the class loader "webtest.loader" that is the original loader for
+        webtest.
+
+        Usage:
+        Set the property webtest.home to the directory in which the build.zip
+        is extracted,
+        and calls:
+        &lt;import file="${webtest.home}/lib/taskdef.xml" &gt;
+    </description>
+
+    <import file="${webtest.home}/lib/classpath.xml"/>
+
+    <taskdef resource="webtest.taskdef"
+             loaderref="webtest.loader"
+             classpathref="webtest.path.id"
+            />
+</project>

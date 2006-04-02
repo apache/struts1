@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.2.0//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_2_0.dtd">
+<form-validation>
+  <global>
+  </global>
+
+  <!-- ========================= Default Formset ========================= -->
+  <formset>
+
+    <form name="validWhenForm">
+
+      <!-- validwhen: simple validation -->
+      <field property="lastName" depends="validwhen">
+        <arg key="validWhenForm.lastName" />
+        <var>
+          <var-name>test</var-name>
+          <var-value>((firstName == null) or (*this* != null))</var-value>
+        </var>
+      </field>
+
+      <!-- validwhen: both fields validation -->
+      <field property="fieldA" depends="validwhen">
+        <msg name="validwhen" key="validWhenForm.error.both" />
+        <var>
+          <var-name>test</var-name>
+          <var-value>( ((fieldB == null) and (*this* == null)) or ((fieldB != null) and (*this* != null)) )</var-value>
+        </var>
+      </field>
+
+      <!-- validwhen: numeric compare validation -->
+      <field property="max" depends="required,integer,validwhen">
+        <arg key="validWhenForm.max" />
+        <msg name="validwhen" key="validWhenForm.error.numeric" />
+        <var>
+          <var-name>test</var-name>
+          <var-value>(*this* &gt; min)</var-value>
+        </var>
+      </field>
+
+      <!-- validwhen: address validation -->
+      <field property="address1" depends="validwhen">
+        <arg key="validWhenForm.address1" />
+        <var>
+          <var-name>test</var-name>
+          <var-value>( (*this* != null) or 
+                     ( (address2 == null) and
+                     ( (city == null) and
+                       (zip == null) )))</var-value>
+        </var>
+      </field>
+      <field property="city" depends="validwhen">
+        <arg key="validWhenForm.city" />
+        <var>
+          <var-name>test</var-name>
+          <var-value>( (*this* != null) or 
+                     ( (address1 == null) and
+                     ( (address2 == null) and
+                       (zip == null) )))</var-value>
+        </var>
+      </field>
+      <field property="zip" depends="validwhen">
+        <arg key="validWhenForm.zip" />
+        <var>
+          <var-name>test</var-name>
+          <var-value>( (*this* != null) or 
+                     ( (address1 == null) and
+                     ( (address2 == null) and
+                       (city == null) )))</var-value>
+        </var>
+      </field>
+    </form>
+
+  </formset>
+</form-validation>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE struts-config PUBLIC 
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+
+  <!--============================================== Form Bean Definitions  -->
+  <form-beans>
+
+    <form-bean name="bundlesForm" type="org.apache.struts.validator.DynaValidatorForm">
+        <form-property name="name"    type="java.lang.String" />
+        <form-property name="address" type="java.lang.String" />
+        <form-property name="phone"   type="java.lang.String" />
+        <form-property name="dob"     type="java.lang.String" />
+        <form-property name="age"     type="java.lang.String" />
+    </form-bean>
+
+  </form-beans>
+
+  <!-- ========================================= Action Mapping Definitions -->
+  <action-mappings>
+
+    <!-- Bundles Examples -->
+    <action path="/viewBundleExamples" forward="/bundleExamples.jsp" />
+
+    <action path="/validateBundleExamples" 
+            type="org.apache.struts.actions.ForwardAction" 
+            name="bundlesForm" 
+            scope="request" 
+            parameter="/welcome.do" 
+            validate="true"
+            cancellable="true"
+            input="input" >
+        <forward name="input" path="/viewBundleExamples.do" />
+    </action>
+
+    <!-- JavaScript Bundles Examples -->
+    <action path="/viewJsBundleExamples" forward="/bundleExamplesJS.jsp" />
+
+    <action path="/validateJsBundleExamples" 
+            type="org.apache.struts.actions.ForwardAction" 
+            name="bundlesForm" 
+            scope="request" 
+            parameter="/welcome.do" 
+            validate="true"
+            cancellable="true"
+            input="input" >
+        <forward name="input" path="/viewJsBundleExamples.do" />
+    </action>
+
+    <!-- Show struts-config.xml -->
+    <action path="/showStrutsConfigBundles" 
+            type="org.apache.struts.webapp.validator.ShowFileAction" 
+            scope="request" 
+            parameter="/WEB-INF/validator/struts-config-bundles.xml">
+        <forward name="success" path="/showFile.jsp" />
+    </action>
+
+    <!-- Show validations.xml -->
+    <action path="/showValidationBundles" 
+            type="org.apache.struts.webapp.validator.ShowFileAction" 
+            scope="request" 
+            parameter="/WEB-INF/validator/validation-bundles.xml">
+        <forward name="success" path="/showFile.jsp" />
+    </action>
+
+  </action-mappings>
+
+  <!-- ===================================== Message Resources Definitions  -->
+  <message-resources key="other"     parameter="org.apache.struts.webapp.validator.OtherMessageResources" />
+  <message-resources key="different" parameter="org.apache.struts.webapp.validator.DifferentMessageResources" />
+
+</struts-config>

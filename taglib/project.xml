@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+<!-- 
+/*
+ * Copyright 2001-2005 The Apache Software Foundation.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ -->
+
+
+  <extend>../build/project.xml</extend>
+  <artifactId>struts-taglib</artifactId>
+  <name>Struts Taglibs</name>
+  
+  <package>org.apache.struts.taglib</package>
+  <packageGroups>
+    <packageGroup>
+      <title>Struts Taglib</title>
+      <packages>org.apache.struts.taglib</packages>
+    </packageGroup>
+  </packageGroups>
+
+  <shortDescription>JSP custom tags for use with Struts Core.</shortDescription>
+
+  <description>
+    This library simplifies development of a JSP-based view layer of a Struts Action Framework Application.
+    These tags were previously packaged as part of the base Struts 1.2 distribution, but have
+    been extracted into a separate library.
+  </description>
+    
+  <siteAddress>people.apache.org</siteAddress>
+  <siteDirectory>/www/struts.apache.org/struts-taglib</siteDirectory>
+
+  <repository>
+    <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/taglib/trunk</connection>
+    <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/taglib/trunk</developerConnection>
+    <url>http://svn.apache.org/repos/asf/struts/taglib/trunk</url>
+  </repository>
+  
+  <versions/>
+  
+  <branches/>
+  
+  <dependencies>
+      
+	<dependency>
+	  <groupId>${pom.groupId}</groupId>
+	  <artifactId>struts-core</artifactId>
+	  <version>${pom.currentVersion}</version>
+	  <properties>
+        <cactus.bundle>true</cactus.bundle>
+	  </properties>
+      <url>http://struts.apache.org/</url>
+	</dependency>
+
+
+    <!-- XDoclet dependencies -->
+    <dependency>
+      <id>xdoclet</id>
+      <version>1.2</version>
+      <properties>
+        <scope>compile</scope>
+      </properties>
+    </dependency>
+
+    <dependency>
+      <groupId>xdoclet</groupId>
+      <artifactId>xdoclet-web-module</artifactId>
+      <version>1.2</version>
+      <url>http://xdoclet.sourceforge.net/</url>
+      <properties>
+        <scope>compile</scope>
+      </properties>
+    </dependency>
+    
+    <dependency>
+      <groupId>xdoclet</groupId>
+      <artifactId>xjavadoc</artifactId>
+      <version>1.0.2</version>
+      <url>http://xdoclet.sourceforge.net/</url>
+      <properties>
+        <scope>compile</scope>
+      </properties>
+    </dependency>
+
+    <dependency>
+      <groupId>xdoclet</groupId>
+      <artifactId>maven-xdoclet-plugin</artifactId>
+      <version>1.2.3</version>
+      <type>plugin</type>
+      <url>http://xdoclet.sourceforge.net/</url>
+    </dependency> 
+
+    <!-- HttpUnit dependencies -->
+   <dependency>
+      <groupId>httpunit</groupId>
+      <artifactId>httpunit</artifactId>
+      <version>1.5.4</version>
+      <properties>
+        <cactus.bundle>true</cactus.bundle>
+        <scope>test</scope>
+      </properties>
+    </dependency>
+    
+    <dependency>
+      <groupId>jtidy</groupId>
+      <artifactId>jtidy</artifactId>
+      <version>4aug2000r7-dev</version>
+      <properties>
+        <cactus.bundle>true</cactus.bundle>
+        <scope>compile</scope>
+      </properties>
+    </dependency>
+
+    <dependency>
+      <groupId>maven-taglib</groupId>
+      <artifactId>maven-taglib-plugin</artifactId>
+      <version>1.4.2</version>
+      <type>plugin</type>
+      <url>http://maven-taglib.sourceforge.net</url>
+    </dependency>
+    
+  </dependencies>
+
+  <build>
+    <nagEmailAddress/>
+    <resources>
+      <resource>
+        <directory>src/java</directory>
+        <includes>
+          <include>**/*.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/tld</directory>
+        <includes>
+          <include>**/*.tld</include>
+        </includes>
+        <targetPath>META-INF/tlds</targetPath>
+      </resource>
+      <resource>
+        <directory>build</directory>
+        <includes>
+          <include>LICENSE.txt</include>
+          <include>NOTICE.txt</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+
+  <reports>
+  	<!-- reports specific to taglibs-->
+  	<!--report>maven-cactus-plugin</report-->
+    <report>taglib</report>
+    
+    <report>maven-checkstyle-plugin</report>
+    <report>maven-changelog-plugin</report>
+    <report>maven-changes-plugin</report>
+    <report>maven-developer-activity-plugin</report>
+    <report>maven-faq-plugin</report>
+    <report>maven-file-activity-plugin</report>
+    <report>maven-javadoc-plugin</report>
+    <report>maven-jdepend-plugin</report>
+    <report>maven-junit-report-plugin</report>
+    <report>maven-jxr-plugin</report>
+    <!--report>maven-linkcheck-plugin</report-->
+    <report>maven-pmd-plugin</report>
+    <report>maven-simian-plugin</report>
+    <report>maven-tasklist-plugin</report>
+    <report>maven-jcoverage-plugin</report>
+    <!--report>maven-findbugs-plugin</report-->
+	
+  </reports>
+</project>

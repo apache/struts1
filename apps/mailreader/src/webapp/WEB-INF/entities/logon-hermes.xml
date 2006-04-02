@@ -1,0 +1,13 @@
+&logon-open;
+<setInputField
+        description="Registered username"
+        name="username"
+        value="hermes"/>
+<setInputField
+        description="Correct password"
+        name="password"
+        value="m3dus4"/>
+<clickButton
+        description="Submit"
+        name="Submit"/>
+        &menu-page;

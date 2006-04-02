@@ -1,0 +1,19 @@
+<action path="/testIncludeTagTransaction"
+        type="org.apache.struts.taglib.bean.resources.IncludeTagTransactionTestAction">
+    <forward name="success"
+             path="/org/apache/struts/taglib/bean/resources/IncludeTagTest.jsp"/>
+</action>
+
+<action path="/simpleAction"
+        type="does.not.exist.SimpleAction">
+    <forward name="success"
+             path="/does/not/exist/jsp.jsp"/>
+</action>
+
+<action path="/testFormTag"
+        type="org.apache.struts.taglib.html.resources.FormTagTestAction"
+        name="testFormBean"
+        scope="request">
+    <forward name="success"
+             path="/org/apache/struts/taglib/html/TestFormTag1.jsp"/>
+</action>

@@ -1,0 +1,14 @@
+&logon-hermes;
+        &profile-open;
+<clickLink
+        description="Click Edit"
+        label="${registration.editSubscription}"/>
+<verifyTitle
+        description="Edit Subscription title"
+        text="${subscription.title.edit}"/>
+<setInputField
+        description="Change Mail Password"
+        name="password"
+        value="Fl0r1d4"/>
+        &save-click;
+        &profile-page;

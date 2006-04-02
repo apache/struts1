@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<project>
+<!-- 
+/*
+ * Copyright 2005-2006 The Apache Software Foundation.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ -->
+
+
+  <extend>../build/project.xml</extend>
+  <artifactId>struts-extras</artifactId>
+
+  <name>Struts Extras</name>
+  
+  <package>org.apache.struts</package>
+  
+    <!-- ################################################################ -->
+    <!--        Project management section                                -->
+    <!-- ################################################################ -->
+
+  
+  <shortDescription>
+  	Optional but often useful extension classes to Struts Action.
+  </shortDescription>
+  
+  <description>
+The purpose of this subproject is to provide a separate and common location to 
+provide optional but often useful extension classes to Struts Action Framework.  
+  </description>
+  <siteAddress>people.apache.org</siteAddress>
+  <siteDirectory>/www/struts.apache.org/struts-extras</siteDirectory>
+  <repository>
+    <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/extras/trunk</connection>
+    <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/extras/trunk</developerConnection>
+    <url>http://svn.apache.org/repos/asf/struts/extras/trunk</url>
+  </repository>
+  
+  <versions />
+
+  <developers/>
+
+  <dependencies>
+
+    <dependency>
+       <groupId>${pom.groupId}</groupId>
+       <artifactId>struts-core</artifactId>
+       <version>${pom.currentVersion}</version>
+       <properties>
+       	 <war.bundle>true</war.bundle>
+         <cactus.bundle>true</cactus.bundle>
+       </properties>
+      <url>http://struts.apache.org/</url>
+    </dependency>
+
+  </dependencies>
+  
+  <build>
+    
+    <sourceDirectory>src/java</sourceDirectory>
+    <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
+    <unitTest>
+      <excludes>
+        <!-- all tests in src/test are for Cactus, not plain JUnit -->
+        <exclude>**/*.java</exclude>
+      </excludes>
+    </unitTest>
+    <!-- J A R  R E S O U R C E S -->
+    <!-- Resources that are packaged up inside the JAR file -->
+    <resources>
+      <resource>
+        <directory>src/java</directory>
+        <includes>
+          <include>**/*.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>build</directory>
+        <includes>
+          <include>LICENSE.txt</include>
+          <include>NOTICE.txt</include>
+        </includes>
+      </resource>
+    </resources>
+    <!-- Integration unit test cases -->
+    <integrationUnitTest>
+      <includes>
+        <include>**/Test*.java</include>
+      </includes>
+    </integrationUnitTest>
+  </build>
+  
+  <reports>
+    <!-- put plugins specific reports here -->
+    
+  </reports>
+</project>

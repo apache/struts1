@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<project xmlns:j="jelly:core"
+         xmlns:ant="jelly:ant"
+         xmlns:maven="jelly:maven">
+
+    <postGoal name="war:webapp">
+        <!-- Include the source code in the mailreader webapp -->
+        <attainGoal name="copy-webapp-src"/>
+
+    </postGoal>
+
+</project>

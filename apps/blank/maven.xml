@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<project>
+
+    <postGoal name="war:webapp">
+        <!-- Include the source code in the blank webapp -->
+        <attainGoal name="copy-webapp-src"/>
+    </postGoal>
+
+</project>

@@ -1,0 +1,54 @@
+<Server port="8005" shutdown="SHUTDOWN" debug="0">
+
+  <Listener className="org.apache.catalina.mbeans.ServerLifecycleListener"
+            debug="0"/>
+  <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener"
+            debug="0"/>
+
+  <GlobalNamingResources>
+
+    <!-- Editable user database that can also be used by
+         UserDatabaseRealm to authenticate users -->
+    <Resource name="UserDatabase" auth="Container"
+              type="org.apache.catalina.UserDatabase"
+       description="User database that can be updated and saved">
+    </Resource>
+    <ResourceParams name="UserDatabase">
+      <parameter>
+        <name>factory</name>
+        <value>org.apache.catalina.users.MemoryUserDatabaseFactory</value>
+      </parameter>
+      <parameter>
+        <name>pathname</name>
+        <value>conf/tomcat-users.xml</value>
+      </parameter>
+    </ResourceParams>
+
+  </GlobalNamingResources>
+
+  <Service name="Catalina">
+
+    <Connector port="@tomcat.connector.port@"
+               maxThreads="150" minSpareThreads="25" maxSpareThreads="75"
+               enableLookups="true" redirectPort="8443"
+               acceptCount="10" debug="0" connectionTimeout="20000" 
+               disableUploadTimeout="true" />
+
+    <Engine name="Standalone" defaultHost="localhost" debug="0">
+
+      <Logger className="org.apache.catalina.logger.FileLogger"
+              directory="@out.tomcat.50.full.dir@"
+                 prefix="cactus_test"
+                 suffix=".log"/>
+
+      <Realm  className="org.apache.catalina.realm.UserDatabaseRealm"
+                  debug="0" resourceName="UserDatabase" />
+
+      <Host name="localhost" debug="0" appBase="@out.tomcat.50.full.dir@/webapps">
+      </Host>
+
+    </Engine>
+
+  </Service>
+
+</Server>

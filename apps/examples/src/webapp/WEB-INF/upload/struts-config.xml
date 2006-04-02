@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+    <form-beans>
+        <form-bean name="uploadForm"
+                   type="org.apache.struts.webapp.upload.UploadForm"/>
+    </form-beans>
+    <action-mappings>
+
+        <action path="/upload" forward="/upload.jsp"/>
+
+        <!-- Upload Action -->
+        <action path="/upload-submit"
+                type="org.apache.struts.webapp.upload.UploadAction"
+                name="uploadForm"
+                scope="request"
+                validate="true"
+                input="input">
+            <forward name="input" path="/upload.jsp"/>
+            <forward name="display" path="/display.jsp"/>
+        </action>
+
+    </action-mappings>
+
+    <!-- This is where you set the maximum file size for your file uploads.
+-1 is an unlimited size. If you
+don't specify this here, it defaults to -1. -->
+    <controller maxFileSize="2M" inputForward="true"/>
+
+    <message-resources
+            parameter="org.apache.struts.webapp.upload.UploadResources"/>
+
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames"
+                      value="/org/apache/struts/validator/validator-rules.xml,
+                         /WEB-INF/upload/validation.xml"/>
+        <set-property property="stopOnFirstError" value="false"/>
+    </plug-in>
+
+</struts-config>

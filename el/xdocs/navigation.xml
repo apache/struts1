@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Struts EL">
+    <title>Apache Struts - Struts EL</title>
+    <body>
+        <menu name="Struts EL Taglib">
+            <item name="Welcome" href="index.html"/>
+            <item name="FAQ" href="struts-el.html"/>
+        </menu>
+        <menu name="Struts EL Taglib Reference">
+            <item name="Bean EL" href="tagreference-struts-bean-el.html"/>
+            <item name="HTML EL" href="tagreference-struts-html-el.html"/>
+            <item name="Logic EL" href="tagreference-struts-logic-el.html"/>
+            <item name="Tiles EL" href="tagreference-struts-tiles-el.html"/>
+        </menu>
+        <menu name="Quick Links">
+            <item
+                    name="Apache Struts Home"
+                    href="../index.html"/>
+        </menu>
+    </body>
+</project>

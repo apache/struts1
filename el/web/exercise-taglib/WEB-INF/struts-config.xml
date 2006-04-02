@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+
+    <form-beans>
+        <form-bean name="testbean"
+                   type="org.apache.struts.webapp.exercise.TestBean"/>
+        <form-bean name="dynabean"
+                   type="org.apache.struts.action.DynaActionForm">
+            <form-property name="foo" type="java.lang.String"/>
+            <form-property name="bar" type="java.lang.String"/>
+        </form-bean>
+    </form-beans>
+
+    <global-forwards>
+        <forward name="index" path="/index.jsp"/>
+        <forward name="redirectForward"
+                 path="/logic-redirect.jsp?redirectType=forward&amp;param1=index"/>
+        <forward name="redirectHref"
+                 path="/logic-redirect.jsp?redirectType=href&amp;param1=http://localhost:9090/strutsel-exercise-taglib/index.jsp"/>
+        <forward name="redirectPage"
+                 path="/logic-redirect.jsp?redirectType=page&amp;param1=/index.jsp"/>
+    </global-forwards>
+
+    <action-mappings>
+
+        <action path="/html-link"
+                type="org.apache.struts.webapp.exercise.HtmlSettersAction"
+                name="testbean"
+                scope="session"
+                validate="false">
+            <forward name="input" path="/html-link.jsp"/>
+        </action>
+
+        <action path="/html-multibox"
+                type="org.apache.struts.webapp.exercise.HtmlSettersAction"
+                name="testbean"
+                scope="session"
+                validate="false">
+            <forward name="input" path="/html-multibox.jsp"/>
+        </action>
+
+        <action path="/html-radio"
+                type="org.apache.struts.webapp.exercise.HtmlSettersAction"
+                name="testbean"
+                scope="session"
+                validate="false">
+            <forward name="input" path="/html-radio.jsp"/>
+        </action>
+
+        <action path="/html-button"
+                type="org.apache.struts.webapp.exercise.HtmlSettersAction"
+                name="testbean"
+                scope="session"
+                validate="false">
+            <forward name="input" path="/html-button.jsp"/>
+        </action>
+
+        <action path="/html-file"
+                type="org.apache.struts.webapp.exercise.HtmlSettersAction"
+                name="testbean"
+                scope="session"
+                validate="false">
+            <forward name="input" path="/html-file.jsp"/>
+        </action>
+
+        <action path="/html-input"
+                type="org.apache.struts.webapp.exercise.HtmlSettersAction"
+                name="testbean"
+                scope="session"
+                validate="false">
+            <forward name="input" path="/html-input.jsp"/>
+        </action>
+
+        <action path="/html-select"
+                type="org.apache.struts.webapp.exercise.HtmlSettersAction"
+                name="testbean"
+                scope="session"
+                validate="false">
+            <forward name="input" path="/html-select.jsp"/>
+        </action>
+
+        <action path="/html-setters"
+                type="org.apache.struts.webapp.exercise.HtmlSettersAction"
+                name="testbean"
+                scope="session"
+                validate="false">
+            <forward name="input" path="/bean-dyna.jsp"/>
+        </action>
+        <action path="/bean-dyna"
+                type="org.apache.struts.webapp.exercise.DynaSetAction"
+                name="dynabean"
+                scope="session"
+                validate="false">
+            <forward name="success" path="/bean-dyna.jsp"/>
+        </action>
+        <action path="/html-indexed"
+                type="org.apache.struts.webapp.exercise.HtmlSettersAction"
+                name="testbean"
+                scope="session"
+                validate="false">
+            <forward name="input" path="/html-indexed.jsp"/>
+        </action>
+    </action-mappings>
+
+    <message-resources
+            parameter="org.apache.struts.webapp.exercise.ApplicationResources"
+            null="false"/>
+
+</struts-config>

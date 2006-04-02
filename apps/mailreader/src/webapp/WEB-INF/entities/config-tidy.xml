@@ -1,0 +1,10 @@
+<config
+        host="${host}"
+        port="${port}"
+        basepath="${basepath}"
+        protocol="http"
+        summary="false"
+        saveresponse="false"
+        resultpath="results"
+        resultfile="result.txt"
+        showhtmlparseroutput="true"/>

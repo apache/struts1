@@ -1,0 +1,3 @@
+<verifyTitle
+        description="Registration page title"
+        text="${registration.title.create}"/>

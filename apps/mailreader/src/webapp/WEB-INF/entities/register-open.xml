@@ -1,0 +1,5 @@
+&welcome-open;
+<clickLink
+        description="Click Register"
+        label="${index.registration}"/>
+        &register-page;

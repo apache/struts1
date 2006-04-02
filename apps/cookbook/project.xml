@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<project>
+  <extend>${basedir}/../project.xml</extend>
+  <artifactId>struts-cookbook</artifactId>
+  <name>Struts cookbook web application</name>
+  <package>example.*</package>
+
+  <description>Struts cookbook web application</description>
+  <shortDescription>Struts cookbook webapp</shortDescription>
+
+  <dependencies/>
+
+</project>

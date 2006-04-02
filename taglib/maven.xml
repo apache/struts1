@@ -1,0 +1,105 @@
+<project    default="jar:jar"
+            xmlns:j="jelly:core"
+            xmlns:ant="jelly:ant"
+            xmlns:maven="jelly:maven"
+            xmlns:util="jelly:util">
+
+	<preGoal name="ignore-jar:jar">
+                <attainGoal name="cactus:test"/>
+        </preGoal>
+
+	<postGoal name="dist">
+		<attainGoal name="jar:install"/>
+	</postGoal>
+
+	<preGoal name="xdoc:jelly-transform">
+		<attainGoal name="html2xdoc"/>
+	</preGoal>
+
+	<preGoal name="java:compile">
+		<mkdir dir="${maven.build.dir}/xdoclet/webdoclet/WEB-INF" />
+		<attainGoal name="xdoclet:webdoclet" />
+	</preGoal>
+  
+
+	<preGoal name="war:webapp">
+	  <j:set var="precompileJsp" value="${precompile.jsp}"/>
+	  <j:if test="${precompileJsp == 'true'}">
+		<attainGoal name="precompile-jsp"/>
+	  </j:if>
+	</preGoal>
+
+	<goal name="precompile-jsp" description="Precompile all JSPs into java classes, and then into classes" prereqs="war:load,java:compile">
+	  
+	  <maven:get var="warSource" property="maven.war.src" plugin="maven-war-plugin" />
+	  
+	  <ant:mkdir dir="${maven.build.dir}/jspc"/>
+	  <ant:mkdir dir="${maven.build.dir}/jspc-processed"/>
+	  <ant:mkdir dir="${maven.build.dir}/jspc-classes"/>
+
+	  <j:set var="jspOutDir" value="${maven.build.dir}/jspc"/>
+	  <j:set var="jspClassesOutDir" value="${maven.build.dest}"/>
+	  
+	  <ant:path id="jspc.classpath">
+		<ant:pathelement location="${tomcat.home}/common/lib/jasper-runtime.jar"/>
+		<ant:pathelement location="${tomcat.home}/common/lib/jasper-compiler.jar"/>
+		<ant:pathelement location="${tomcat.home}/common/lib/servlet.jar"/>
+		<ant:path refid="maven.dependency.classpath"/>
+		<ant:pathelement path="${maven.build.dest}"/>
+	  </ant:path>
+	  
+<!--	  
+	  <ant:path id="jspc.classpath">
+		<ant:pathelement location="${tomcat.home}/common/lib/jasper-runtime.jar"/>
+		<ant:pathelement location="${tomcat.home}/common/lib/jasper-compiler.jar"/>
+		<ant:pathelement location="${tomcat.home}/common/lib/servlet-api.jar"/>
+		<ant:pathelement location="${tomcat.home}/common/lib/jsp-api.jar"/>
+		<ant:path refid="maven.dependency.classpath"/>
+		<ant:pathelement path="${maven.build.dest}"/>
+	  </ant:path>
+-->	  
+	  
+	  <ant:taskdef name="jasper2" 
+	  		classname="org.apache.jasper.JspC" 
+	  		classpathref="jspc.classpath"/>
+	  
+	  <echo>jspc.classpath=${jspc.classpath}</echo>
+	  <echo>maven.build.dir=${maven.build.dir}</echo>
+	  <echo>jspOutDir=${jspOutDir}</echo>
+	  <echo>warSource=${warSource}</echo>
+	  <echo>/pom.artifactId=/${pom.artifactId}</echo>
+	  
+	  <ant:jasper2
+		webXmlFragment="${maven.build.dir}/web-fragment.xml"
+		package="${pom.package}.jsp.${pom.artifactId}"
+		outputDir="${jspOutDir}"
+		srcdir="${warSource}"
+		uriroot="${warSource}"
+		uribase="/${pom.artifactId}"
+		verbose="9"/>
+
+	  <ant:javac
+		srcdir="${jspOutDir}"
+		destdir="${jspClassesOutDir}"
+		debug="${maven.compile.debug}"
+		deprecation="${maven.compile.deprecation}"
+		optimize="${maven.compile.optimize}"
+		classpathref="jspc.classpath"/>
+
+	</goal>
+
+
+	<postGoal name="war:webapp">
+	  <j:set var="precompileJsp" value="${precompile.jsp}"/>
+	  <j:if test="${precompileJsp == 'true'}">
+		<maven:get var="target" property="maven.war.webapp.dir" plugin="maven-war-plugin" />
+		<util:available file="${maven.build.dir}/web-fragment.xml">
+		  <util:loadText var="fragment" file="${maven.build.dir}/web-fragment.xml"/>
+		  <ant:replace file="${target}/WEB-INF/web.xml" token="&lt;!-- [INSERT FRAGMENT HERE] --&gt;" value="${fragment}"/>
+		</util:available>
+	  </j:if>
+	</postGoal>
+
+
+
+</project>

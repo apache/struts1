@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+<!-- 
+/*
+ * Copyright 2001-2004 The Apache Software Foundation.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ -->
+
+
+  <extend>../build/project.xml</extend>
+  <id>struts-faces</id>
+  <name>Struts JSF Integration Library</name>
+  <currentVersion>1.0</currentVersion>
+  
+  <package>org.apache.struts.faces</package>
+  <packageGroups>
+    <packageGroup>
+      <title>Struts Faces</title>
+      <packages>org.apache.struts.faces</packages>
+    </packageGroup>
+  </packageGroups>
+
+  <shortDescription>Struts JSF Integration Library.</shortDescription>
+
+  <description>
+  This package contains an add-on library that supports the use of
+  JavaServer Faces (JSF) user interface technology in a Struts based web
+  application, in place of the Struts custom tag libraries.  As a proof of
+  concept, it also includes the canonical "struts-example" example
+  web application, converted to use JSF tags, as well as tags from the
+  JSP Standard Tag Library (JSTL), version 1.0 or later.  It also includes
+  a very basic Tiles based application, modified in a similar manner.
+  
+  The Struts-Faces Integration Library should work with any implementation
+  of JavaServer Faces, version 1.0 or later.  It has primarily been tested
+  against version 1.1 of the JavaServer Faces reference implementation,
+  available at:
+  
+    http://java.sun.com/j2ee/javaserverfaces/
+  
+  </description>
+    
+  <repository>
+    <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/faces/trunk</connection>
+    <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/faces/trunk</developerConnection>
+    <url>http://svn.apache.org/repos/asf/struts/faces/trunk</url>
+  </repository>
+  
+  <versions/>
+  
+  <branches/>
+  
+  <dependencies>
+      
+	<dependency>
+	  <groupId>struts</groupId>
+	  <artifactId>struts</artifactId>
+	  <version>1.2.2</version>
+	  <properties>
+		<war.bundle>true</war.bundle>
+	  </properties>
+      <url>http://struts.apache.org/</url>
+	</dependency>
+
+
+	<dependency>
+	  <groupId>myfaces</groupId>
+	  <artifactId>myfaces-jsf-api</artifactId>
+	  <version>1.0.8-beta</version>
+	  <properties>
+		<war.bundle>true</war.bundle>
+	  </properties>
+      <url>http://incubator.apache.org/myfaces/index.html</url>
+	</dependency>
+
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+      <version>2.0.1</version>
+      <url>http://jakarta.apache.org/commons/httpclient/</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
+    </dependency>
+
+    <dependency>
+      <groupId>htmlunit</groupId>
+      <artifactId>htmlunit</artifactId>
+      <version>1.5</version>
+      <url>http://htmlunit.sourceforge.net/</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
+    </dependency>
+
+
+    
+  </dependencies>
+
+  <build>
+    <nagEmailAddress/>
+    <sourceDirectory>${basedir}/core-library/src/java</sourceDirectory>
+    <unitTestSourceDirectory>${basedir}/core-library/src/test</unitTestSourceDirectory>
+
+    <unitTest>
+      <includes>
+        <include>**/*TestCase</include>
+      </includes>
+    </unitTest>
+    
+    <resources>
+      <resource>
+        <directory>${basedir}/core-library/src/java</directory>
+        <includes>
+          <include>**/*.properties</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+
+  <reports>
+  	<!-- reports specific to faces-->
+  	
+  </reports>
+</project>

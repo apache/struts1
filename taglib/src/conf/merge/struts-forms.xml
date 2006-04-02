@@ -1,0 +1,12 @@
+<form-bean name="testDynaFormBean"
+           type="org.apache.struts.validator.DynaValidatorForm">
+    <form-property name="field1" type="java.lang.String"/>
+    <form-property name="field2" type="java.lang.String"/>
+</form-bean>
+
+
+        <!-- Registration form bean -->
+<form-bean name="testFormBean"
+           type="org.apache.struts.taglib.SimpleBeanForTesting"/>
+
+

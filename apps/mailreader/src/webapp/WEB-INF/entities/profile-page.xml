@@ -1,0 +1,3 @@
+<verifyTitle
+        description="Edit registration title"
+        text="${registration.title.edit}"/>

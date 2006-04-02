@@ -1,0 +1,1 @@
+<p style="border-left: 5px solid #ccc; padding-left: 10px;">This paragraph was included using the &lt;bean:include&gt; tag</p>

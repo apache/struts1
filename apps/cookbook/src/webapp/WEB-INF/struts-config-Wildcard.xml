@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+    <action-mappings>
+      <action path="/Prepare*" forward="/jsp/Wildcard/{1}.jsp" />
+      <action path="/Source*" forward="/jsp/{1}/Source.jsp" />
+      <action path="/Wildcard*" forward="/jsp/Wildcard/MatchAny.jsp" />
+      <action path="/Wildcard-Not" forward="/jsp/Wildcard/MatchOne.jsp" />
+    </action-mappings>
+</struts-config>

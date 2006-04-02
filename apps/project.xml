@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<project>
+<!-- 
+/*
+ * Copyright 2001-2004 The Apache Software Foundation.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ -->
+
+
+  <extend>../build/project.xml</extend>
+  <artifactId>struts-apps</artifactId>
+  <name>Struts Applications</name>
+
+
+    <!-- ################################################################ -->
+    <!--        Project management section                                -->
+    <!-- ################################################################ -->
+
+  
+  <package>org.apache.struts.apps.*</package>
+  <shortDescription>MVC Web Application Framework</shortDescription>
+
+
+  <description>
+  	The Struts Apps subproject hosts "example" or "sample" type applications
+  	that are virtually ready to drop into your servlet container.
+  	
+  	The only ones that won't run out-of-the box are those that require
+  	libraries that the Apache Software Foundation cannot distribute.
+  	
+  	In the cases where there are required jars, the documentation will
+  	indicate as such.  	
+  </description>
+  	
+  <repository>
+    <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/apps/trunk</connection>
+    <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/apps/trunk</developerConnection>
+    <url>http://svn.apache.org/repos/asf/struts/apps/trunk</url>
+  </repository>
+  
+  <versions/>
+
+  <!-- ################################################################ -->
+  <!--        Project dependency section                                -->
+  <!-- ################################################################ -->
+
+  <dependencies>
+
+    <dependency>
+      <groupId>${pom.groupId}</groupId>
+      <artifactId>struts-core</artifactId>
+      <version>${pom.currentVersion}</version>
+      <url>http://struts.apache.org/</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
+    </dependency>
+
+    <dependency>
+	  <groupId>${pom.groupId}</groupId>
+	  <artifactId>struts-extras</artifactId>
+	  <version>${pom.currentVersion}</version>
+      <url>http://struts.apache.org/download.cgi</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
+    </dependency>
+
+    <dependency>
+	  <groupId>${pom.groupId}</groupId>
+	  <artifactId>struts-taglib</artifactId>
+	  <version>${pom.currentVersion}</version>
+      <url>http://struts.apache.org/download.cgi</url>
+      <properties>
+        <war.bundle>true</war.bundle>
+        <cactus.bundle>true</cactus.bundle>
+      </properties>
+    </dependency>
+
+  </dependencies>
+
+
+  <!-- ################################################################ -->
+  <!--        Project build and reports section                         -->
+  <!-- ################################################################ -->
+
+  <build>
+    <nagEmailAddress>struts-dev@jakarta.apache.org</nagEmailAddress>
+    <sourceDirectory>src/java</sourceDirectory>
+    <!-- Unit test cases -->
+    <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
+
+    <aspectSourceDirectory />
+    
+    <unitTest>
+    	<includes>
+    		<include>**/*Test.java</include>
+    	</includes>
+		<resources>
+		  <resource>
+			<directory>${basedir}/src/test</directory>
+			<includes>
+			  <include>*.xml</include>
+			  <include>**/*.txt</include>
+			</includes>
+		  </resource>
+		</resources>
+    </unitTest>
+    
+    <resources>
+      <resource>
+        <directory>${basedir}/src/java</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.txt</include>
+          <include>*.xml</include>
+        </includes>
+      </resource>
+    </resources>
+
+    <integrationUnitTest />
+
+  </build>
+
+  <reports>
+
+    <!--
+             |
+             | These should all be completely self contained. You should be able
+             | to generate each of them individually without needing the final
+             | xdoc transformation.
+             |
+             | Each report plugin with it's POM and plugin.jelly logic should
+             | contain everything needed to produce the report.
+             |
+
+	<report>maven-faq-plugin</report>
+    <report>maven-changes-plugin</report>
+    <report>maven-changelog-plugin</report>
+    <report>maven-file-activity-plugin</report>
+    <report>maven-developer-activity-plugin</report>
+            -->
+    <report>maven-jdepend-plugin</report>
+    <report>maven-checkstyle-plugin</report>
+    <report>maven-javadoc-plugin</report>
+    <report>maven-jxr-plugin</report>
+    <report>maven-junit-report-plugin</report>
+    <report>maven-tasklist-plugin</report>
+    <report>maven-pmd-plugin</report>
+    <report>maven-simian-plugin</report>
+
+    <!-- 
+
+
+    -->
+  </reports>
+</project>
+
+
