@@ -269,7 +269,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
     <profiles/>
 
     <modules>
-        <module>../action</module>
+        <module>../core</module>
         <module>../el</module>
         <module>../extras</module>
         <module>../taglib</module>
