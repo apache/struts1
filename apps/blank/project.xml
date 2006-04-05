@@ -2,7 +2,7 @@
 
 <project>
   <extend>${basedir}/../project.xml</extend>
-  <id>struts-blank</id>
+  <artifactId>struts-blank</artifactId>
   <name>Struts blank web application</name>
   <package>org.apache.struts.webapp.blank.*</package>
 
