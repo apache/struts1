@@ -21,6 +21,7 @@
         <ant:mkdir dir="nightly/struts-core/"/>
         <ant:mkdir dir="nightly/struts-el/"/>
         <ant:mkdir dir="nightly/struts-extras/"/>
+        <ant:mkdir dir="nightly/struts-faces/"/>
         <ant:mkdir dir="nightly/struts-taglib/"/>
 
         <attainGoal name="clean-all"/>
