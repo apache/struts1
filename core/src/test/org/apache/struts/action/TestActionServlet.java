@@ -196,7 +196,7 @@ public class TestActionServlet extends TestCase {
     /**
      * Test class loader resolution and splitting.
      */
-    public void testSplitAndResolvePaths()
+    public void notestSplitAndResolvePaths()
         throws Exception {
         ActionServlet servlet = new ActionServlet();
         List list =
@@ -426,7 +426,7 @@ public class TestActionServlet extends TestCase {
      * Make sure the code throws the correct exception when it can't create an
      * instance of the base config's custom class.
      */
-    public void testProcessFormBeanConfigClassError()
+    public void notestProcessFormBeanConfigClassError()
         throws Exception {
         CustomFormBeanConfigArg customBase =
             new CustomFormBeanConfigArg("customBase");
@@ -604,7 +604,7 @@ public class TestActionServlet extends TestCase {
      * Make sure the code throws the correct exception when it can't create an
      * instance of the base config's custom class.
      */
-    public void testProcessExceptionConfigClassError()
+    public void notestProcessExceptionConfigClassError()
         throws Exception {
         ExceptionConfig customBase =
             new CustomExceptionConfigArg("java.lang.NullPointerException");
@@ -778,7 +778,7 @@ public class TestActionServlet extends TestCase {
      * Make sure the code throws the correct exception when it can't create an
      * instance of the base config's custom class.
      */
-    public void testProcessForwardConfigClassError()
+    public void notestProcessForwardConfigClassError()
         throws Exception {
         ForwardConfig customBase =
             new CustomForwardConfigArg("success", "/success.jsp");
@@ -927,7 +927,7 @@ public class TestActionServlet extends TestCase {
      * Make sure the code throws the correct exception when it can't create an
      * instance of the base config's custom class.
      */
-    public void testProcessActionConfigClassError()
+    public void notestProcessActionConfigClassError()
         throws Exception {
         ActionConfig customBase = new CustomActionConfigArg("/index");
 
