@@ -148,6 +148,8 @@ public class TestActionConfigMatcher extends TestMockBase {
                     "path,Bar".equals(cfg.getPath()));
                 assertTrue("Property foo hasn't been replaced",
                     "bar,Bar".equals(cfg.getProperty("foo")));
+                assertTrue("Module hasn't been replaced",
+                    "modBar".equals(cfg.getModule()));
             }
         }
 
@@ -192,12 +194,14 @@ public class TestActionConfigMatcher extends TestMockBase {
 
         cfg.setName("name");
         cfg.setPath("path,{1}");
+        cfg.setModule("mod{1}");
         cfg.setProperty("foo", "bar,{1}");
         mapping.addForwardConfig(cfg);
 
         cfg = new ActionForward();
         cfg.setName("name2");
         cfg.setPath("path2");
+        cfg.setModule("mod{1}");
         mapping.addForwardConfig(cfg);
 
         ExceptionConfig excfg = new ExceptionConfig();
