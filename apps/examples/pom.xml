@@ -52,6 +52,11 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
          <version>${pom.version}</version>
       </dependency>
       <dependency>
+         <groupId>${pom.groupId}</groupId>
+         <artifactId>struts-extras</artifactId>
+         <version>${pom.version}</version>
+      </dependency>
+      <dependency>
          <groupId>javax.servlet</groupId>
          <artifactId>servlet-api</artifactId>
          <version>2.3</version>
@@ -71,15 +76,6 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
    
    <build>
      <finalName>${pom.artifactId}</finalName>
-     <resources>
-        <resource>
-           <directory>src/main/java</directory>
-           <targetPath>../${pom.artifactId}/WEB-INF/src/main/java</targetPath>
-           <includes>
-               <include>**/*.java</include>
-           </includes>
-        </resource>
-     </resources>   
   </build>
 
 </project>
