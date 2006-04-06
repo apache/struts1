@@ -137,16 +137,17 @@
 			  false : no validation
 
 	  Paths found in Tiles definitions are relative to the main context.
-  -->
+
+      To use this plugin, download and add the Tiles jar to your WEB-INF/lib
+      directory then uncomment the plugin definition below.
 
     <plug-in className="org.apache.struts.tiles.TilesPlugin" >
 
-      <!-- Path to XML definition file -->
       <set-property property="definitions-config"
                        value="/WEB-INF/tiles-defs.xml" />
-      <!-- Set Module-awareness to true -->
       <set-property property="moduleAware" value="true" />
     </plug-in>
+  -->  
 
 
   <!-- =================================================== Validator plugin -->
