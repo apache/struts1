@@ -275,7 +275,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
         <module>taglib</module>
         <module>faces</module>
         <module>scripting</module>
-        <!--module>apps</module-->
+        <module>apps</module>
     </modules>
 
     <licenses>
@@ -314,10 +314,9 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
 
     <repositories>
         <repository>
-            <id>apache-internal</id>
+            <id>apache-snapshot</id>
             <name>Apache Internal Repository</name>
-            <url>http://cvs.apache.org/repository</url>
-            <layout>legacy</layout>
+            <url>http://cvs.apache.org/maven-snapshot-repository</url>
         </repository>
     </repositories>
 

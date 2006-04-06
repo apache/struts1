@@ -113,7 +113,12 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
                 </includes>
             </testResource>
         </testResources>
+     </build>
         
+     <profiles>
+       <profile>
+        <id>generate-assembly</id>
+        <build>
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -136,8 +141,9 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
             </executions>
           </plugin>
        </plugins>
-
-    </build>
+       </build>
+      </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
