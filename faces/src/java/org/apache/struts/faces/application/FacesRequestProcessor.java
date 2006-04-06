@@ -38,6 +38,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.RequestProcessor;
+import org.apache.struts.action.InvalidCancelException;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.faces.Constants;
@@ -403,7 +404,7 @@ public class FacesRequestProcessor extends RequestProcessor {
                                       HttpServletResponse response,
                                       ActionForm form,
                                       ActionMapping mapping)
-        throws IOException, ServletException {
+        throws IOException, ServletException, InvalidCancelException {
 
         if (log.isTraceEnabled()) {
             log.trace("Performing standard validation");

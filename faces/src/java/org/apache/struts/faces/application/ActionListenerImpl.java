@@ -36,6 +36,7 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.faces.Constants;
 import org.apache.struts.faces.component.FormComponent;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ModuleUtils;
 
 
 /**
@@ -152,7 +153,7 @@ public final class ActionListenerImpl implements ActionListener {
         // Invoke the appropriate request processor for this request
         try {
             request.setAttribute(Constants.ACTION_EVENT_KEY, event);
-            RequestUtils.selectModule(request, servletContext);
+            ModuleUtils.getInstance().selectModule(request, servletContext);
             ModuleConfig moduleConfig = (ModuleConfig)
                 request.getAttribute(Globals.MODULE_KEY);
             if (log.isTraceEnabled()) {
