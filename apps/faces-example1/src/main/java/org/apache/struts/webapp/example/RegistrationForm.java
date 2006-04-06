@@ -20,6 +20,7 @@ package org.apache.struts.webapp.example;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionMapping;
@@ -287,11 +288,11 @@ public final class RegistrationForm extends ValidatorForm  {
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
      */
-    public ActionMessages validate(ActionMapping mapping,
+    public ActionErrors validate(ActionMapping mapping,
                                  HttpServletRequest request) {
 
         // Perform validator framework validations
-        ActionMessages errors = super.validate(mapping, request);
+        ActionErrors errors = super.validate(mapping, request);
 
         // Only need crossfield validations here
         if (((password == null) && (password2 != null)) ||

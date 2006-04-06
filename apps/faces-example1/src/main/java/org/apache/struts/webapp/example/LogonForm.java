@@ -19,6 +19,7 @@ package org.apache.struts.webapp.example;
 
 
 import javax.servlet.http.HttpServletRequest;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionForm;
@@ -129,10 +130,10 @@ public final class LogonForm extends ActionForm {
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
      */
-    public ActionMessages validate(ActionMapping mapping,
+    public ActionErrors validate(ActionMapping mapping,
                                  HttpServletRequest request) {
 
-        ActionMessages errors = new ActionMessages();
+        ActionErrors errors = new ActionErrors();
         if ((username == null) || (username.length() < 1))
             errors.add("username", new ActionMessage("error.username.required"));
         if ((password == null) || (password.length() < 1))
