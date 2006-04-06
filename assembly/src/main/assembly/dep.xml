@@ -27,5 +27,12 @@
         <include>*.jar</include>
       </includes>
     </fileSet>
+    <fileSet>
+      <directory>target/webapps</directory>
+      <outputDirectory>webapps</outputDirectory>
+      <includes>
+        <include>*.war</include>
+      </includes>
+    </fileSet>
   </fileSets>
 </assembly>
