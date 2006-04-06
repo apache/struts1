@@ -19,8 +19,8 @@ package org.apache.struts.webapp.example;
 
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 
@@ -241,34 +241,34 @@ public final class SubscriptionForm extends ActionForm  {
 
     /**
      * Validate the properties that have been set from this HTTP request,
-     * and return an <code>ActionErrors</code> object that encapsulates any
+     * and return an <code>ActionMessages</code> object that encapsulates any
      * validation errors that have been found.  If no errors are found, return
-     * <code>null</code> or an <code>ActionErrors</code> object with no
+     * <code>null</code> or an <code>ActionMessages</code> object with no
      * recorded error messages.
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
      */
-    public ActionErrors validate(ActionMapping mapping,
+    public ActionMessages validate(ActionMapping mapping,
                                  HttpServletRequest request) {
 
-        ActionErrors errors = new ActionErrors();
+        ActionMessages errors = new ActionMessages();
 
 	if ((host == null) || (host.length() < 1))
             errors.add("host",
-                       new ActionError("error.host.required"));
+                       new ActionMessage("error.host.required"));
 	if ((username == null) || (username.length() < 1))
             errors.add("username",
-                       new ActionError("error.username.required"));
+                       new ActionMessage("error.username.required"));
 	if ((password == null) || (password.length() < 1))
             errors.add("password",
-                       new ActionError("error.password.required"));
+                       new ActionMessage("error.password.required"));
 	if ((type == null) || (type.length() < 1))
             errors.add("type",
-                       new ActionError("error.type.required"));
+                       new ActionMessage("error.type.required"));
 	else if (!"imap".equals(type) && !"pop3".equals(type))
             errors.add("type",
-                       new ActionError("error.type.invalid", type));
+                       new ActionMessage("error.type.invalid", type));
 
 	return (errors);
 

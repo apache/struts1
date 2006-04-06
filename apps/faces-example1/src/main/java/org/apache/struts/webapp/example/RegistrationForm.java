@@ -20,8 +20,8 @@ package org.apache.struts.webapp.example;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.validator.ValidatorForm;
 
@@ -279,19 +279,19 @@ public final class RegistrationForm extends ValidatorForm  {
 
     /**
      * Validate the properties that have been set from this HTTP request,
-     * and return an <code>ActionErrors</code> object that encapsulates any
+     * and return an <code>ActionMessages</code> object that encapsulates any
      * validation errors that have been found.  If no errors are found, return
-     * <code>null</code> or an <code>ActionErrors</code> object with no
+     * <code>null</code> or an <code>ActionMessages</code> object with no
      * recorded error messages.
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
      */
-    public ActionErrors validate(ActionMapping mapping,
+    public ActionMessages validate(ActionMapping mapping,
                                  HttpServletRequest request) {
 
         // Perform validator framework validations
-        ActionErrors errors = super.validate(mapping, request);
+        ActionMessages errors = super.validate(mapping, request);
 
         // Only need crossfield validations here
         if (((password == null) && (password2 != null)) ||
@@ -299,7 +299,7 @@ public final class RegistrationForm extends ValidatorForm  {
             ((password != null) && (password2 != null) &&
              !password.equals(password2))) {
             errors.add("password2",
-                       new ActionError("error.password.match"));
+                       new ActionMessage("error.password.match"));
         }
         return errors;
 

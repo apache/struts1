@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -83,7 +83,7 @@ public final class LogonAction extends Action {
 	User user = null;
 
 	// Validate the request parameters specified by the user
-	ActionErrors errors = new ActionErrors();
+	ActionMessages errors = new ActionMessages();
 	String username = (String)
             PropertyUtils.getSimpleProperty(form, "username");
         String password = (String)
@@ -91,15 +91,15 @@ public final class LogonAction extends Action {
 	UserDatabase database = (UserDatabase)
 	  servlet.getServletContext().getAttribute(Constants.DATABASE_KEY);
 	if (database == null)
-            errors.add(ActionErrors.GLOBAL_ERROR,
-                       new ActionError("error.database.missing"));
+            errors.add(ActionMessages.GLOBAL_MESSAGE,
+                       new ActionMessage("error.database.missing"));
 	else {
 	    user = getUser(database, username);
 	    if ((user != null) && !user.getPassword().equals(password))
 		user = null;
 	    if (user == null)
-                errors.add(ActionErrors.GLOBAL_ERROR,
-                           new ActionError("error.password.mismatch"));
+                errors.add(ActionMessages.GLOBAL_MESSAGE,
+                           new ActionMessage("error.password.mismatch"));
 	}
 
 	// Report any errors we have discovered back to the original form
