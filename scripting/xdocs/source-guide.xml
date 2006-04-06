@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+Copyright 1999-2006 The Apache Software Foundation
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!--
+// ======================================================================== 78
+-->
+<document>
+  <properties>
+    <title>Struts Scripting Source Code Guide</title>
+  </properties>
+
+  <body>
+    <section name="Struts Scripting Source Code Guide">
+      <a name="overview"/>
+      <p>The Struts Scripting project, for the most part, follows Apache Struts build and
+      source code layout, so if you are familiar with another Struts project, you'll be
+      at home here.  If not, this guide first walks you though what is where and why.
+      Next, it gives help on how to build common artifacts.
+      </p>
+      <p>Again, since the heavy lifting is done by the 
+      <a href="http://jakarta.apache.org/bsf">Bean Scripting Framework </a> 
+      and the scripting engines themselves, there isn't much code to this project itself.
+      </p>
+      <ul>
+        <li><a href="#layout">Source code layout</a></li>
+        <li><a href="#build">Build instructions</a></li>
+      </ul>  
+    <subsection name="Source code layout">
+      <a name="layout"/>
+         <p>When you unzip the latest release Struts Scripting or check it out from subversion
+         (more help on Subversion at the Struts <a href="http://struts.apache.org/downloads.html#Source_Code">source code</a>), you'll be staring at the following directory structure:
+         </p>
+         <ul>
+         <li><code>/src</code> - All source code can be found here</li>
+         <li><code>/src/java</code> - The source code for the Struts Scripting framework itself</li>
+         <li><code>/src/struts-example</code> - A modified version of the Struts 1.2.8 Mailreader example application.  
+         This version replaces Java-coded Struts Actions with <a href="http://groovy.codehaus.org">Groovy</a> scripts.</li>
+         </ul>
+         <ul>
+         <li><code>/xdocs</code> - The XML source code for all documentation, including this guide.</li>
+         <li><code>/target</code> - Maven puts all compiled files into this temporary directory.</li>
+         </ul>
+        <p>Next, we'll look at how to build both Struts Scripting library and the included example application.</p>
+    </subsection>     
+    <subsection name="Build Instructions">
+      <a name="build"/>
+         <p>Struts Scripting uses <a href="http://maven.apache.org">Apache Maven</a> 1.0 to build its jar, example application, documentation, and distribution files.  Maven 1.0 is used throughout Struts for building subprojects, providing a consistent build environment to Struts users.  To follow these build instructions, you will need to have <a href="http://maven.apache.org">Apache Maven</a> 1.0 installed and its <code>maven</code> executable available in your command path.
+         </p>
+         <p>
+         Since there are a bunch of build targets, we will break the build down into tasks that you might want to accomplish and show the best way to complete them.
+         </p>
+         <ul>
+         <li><strong>Build the Struts Scripting jar</strong> - Run '<code>maven jar:jar</code>' which will create the jar as <code>/target/struts-scripting-VERSION.jar</code>.</li>
+         <li><strong>Build the Mailreader example</strong> - Run '<code>maven war:war</code>' to create <code>/target/struts-example.war</code>.</li>
+         <li><strong>Build the documentation</strong> - Run '<code>maven site:generate</code>' to create the Struts Scripting website at <code>/target/docs</code>.</li>
+         </ul>
+         <p>While this list only covers a few build targets, there are many other you can discover by typing  '<code>maven -g</code>' from the Struts Scripting directory.</p>
+      </subsection>
+   </section> 
+          
+          </body>
+
+</document>
