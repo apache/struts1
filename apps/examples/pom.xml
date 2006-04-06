@@ -74,8 +74,4 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
       </dependency>
    </dependencies>
    
-   <build>
-     <finalName>${pom.artifactId}</finalName>
-  </build>
-
 </project>
