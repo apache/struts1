@@ -20,7 +20,7 @@
 
 
   <extend>../build/project.xml</extend>
-  <id>struts-faces</id>
+  <artifactId>struts-faces</artifactId>
   <name>Struts JSF Integration Library</name>
   <currentVersion>1.0</currentVersion>
   

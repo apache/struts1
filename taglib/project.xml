@@ -67,7 +67,8 @@
 
     <!-- XDoclet dependencies -->
     <dependency>
-      <id>xdoclet</id>
+      <groupId>xdoclet</groupId>
+      <artifactId>xdoclet</artifactId>
       <version>1.2</version>
       <properties>
         <scope>compile</scope>
