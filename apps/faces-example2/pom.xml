@@ -41,7 +41,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
    </parent>
 
    <modelVersion>4.0.0</modelVersion>
-   <artifactId>struts-faces-example1</artifactId>
+   <artifactId>struts-faces-example2</artifactId>
    <packaging>war</packaging>
    <name>Struts Action - Apps - Faces Example 2</name>
    
