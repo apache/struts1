@@ -58,9 +58,5 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
          <scope>provided</scope>
       </dependency>
    </dependencies>
-   
-   <build>
-     <finalName>${pom.artifactId}</finalName>
-   </build>
 
 </project>
