@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Struts Action - Scripting">
+    <bannerLeft>
+        <name>Apache Software Foundation</name>
+        <src>http://www.apache.org/images/asf-logo.gif</src>
+        <href>http://www.apache.org</href>
+    </bannerLeft>
+    <bannerRight>
+        <name>Apache Struts</name>
+        <src>http://struts.apache.org/images/struts.gif</src>
+        <href>http://struts.apache.org</href>
+    </bannerRight>     
+    <body>
+        <links>
+            <item name="Apache" href="http://www.apache.org" /> 
+            <item name="Action" href="http://struts.apache.org/struts-action" /> 
+            <item name="Shale" href="http://struts.apache.org/struts-shale" /> 
+            <item name="Tiles" href="http://struts.apache.org/struts-tiles" /> 
+        </links>
+        <menu name="Struts Action - Scripting">
+            <item name="Welcome" href="index.html"/>
+            <item name="Features" href="index.html#features"/>
+            <item name="Documentation" href="index.html#documentation"/>
+            <item name="User Guide" href="user-guide.html"/>
+            <item name="Source Guide" href="source-guide.html"/>
+            <item name="Download" href="http://struts.apache.org/downloads.html"/>
+        </menu>
+    
+        <menu name="Quick Links">
+            <item 
+                name="Apache Struts Home"                 
+                href="../index.html"/>
+        </menu>
+     
+       ${reports}
+    </body>
+</project>
