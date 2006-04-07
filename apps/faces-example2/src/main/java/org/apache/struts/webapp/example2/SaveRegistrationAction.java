@@ -28,7 +28,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -124,8 +124,8 @@ public final class SaveRegistrationAction extends Action {
             log.trace(" Checking transactional control token");
         }
         if (!isTokenValid(request)) {
-            errors.add(ActionErrors.GLOBAL_ERROR,
-                       new ActionError("error.transaction.token"));
+            errors.add(ActionErrors.GLOBAL_MESSAGE,
+                       new ActionMessage("error.transaction.token"));
         }
         resetToken(request);
 
@@ -138,19 +138,19 @@ public final class SaveRegistrationAction extends Action {
 	if (("Create".equals(action)) &&
             (database.findUser(value) != null)) {
             errors.add("username",
-                       new ActionError("error.username.unique",
+                       new ActionMessage("error.username.unique",
                                        regform.getUsername()));
         }
 	if ("Create".equals(action)) {
 	    value = regform.getPassword();
 	    if ((value == null) || (value.length() <1)) {
                 errors.add("password",
-                           new ActionError("error.password.required"));
+                           new ActionMessage("error.password.required"));
             }
 	    value = regform.getPassword2();
 	    if ((value == null) || (value.length() < 1)) {
                 errors.add("password2",
-                           new ActionError("error.password2.required"));
+                           new ActionMessage("error.password2.required"));
             }
 	}
 

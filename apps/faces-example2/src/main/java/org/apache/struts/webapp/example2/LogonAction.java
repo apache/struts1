@@ -26,7 +26,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -90,15 +90,15 @@ public final class LogonAction extends Action {
 	UserDatabase database = (UserDatabase)
 	  servlet.getServletContext().getAttribute(Constants.DATABASE_KEY);
 	if (database == null)
-            errors.add(ActionErrors.GLOBAL_ERROR,
-                       new ActionError("error.database.missing"));
+            errors.add(ActionErrors.GLOBAL_MESSAGE,
+                       new ActionMessage("error.database.missing"));
 	else {
 	    user = getUser(database, username);
 	    if ((user != null) && !user.getPassword().equals(password))
 		user = null;
 	    if (user == null)
-                errors.add(ActionErrors.GLOBAL_ERROR,
-                           new ActionError("error.password.mismatch"));
+                errors.add(ActionErrors.GLOBAL_MESSAGE,
+                           new ActionMessage("error.password.mismatch"));
 	}
 
 	// Report any errors we have discovered back to the original form

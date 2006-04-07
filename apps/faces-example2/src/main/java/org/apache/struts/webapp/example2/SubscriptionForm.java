@@ -19,7 +19,7 @@ package org.apache.struts.webapp.example2;
 
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
@@ -256,19 +256,19 @@ public final class SubscriptionForm extends ActionForm  {
 
 	if ((host == null) || (host.length() < 1))
             errors.add("host",
-                       new ActionError("error.host.required"));
+                       new ActionMessage("error.host.required"));
 	if ((username == null) || (username.length() < 1))
             errors.add("username",
-                       new ActionError("error.username.required"));
+                       new ActionMessage("error.username.required"));
 	if ((password == null) || (password.length() < 1))
             errors.add("password",
-                       new ActionError("error.password.required"));
+                       new ActionMessage("error.password.required"));
 	if ((type == null) || (type.length() < 1))
             errors.add("type",
-                       new ActionError("error.type.required"));
+                       new ActionMessage("error.type.required"));
 	else if (!"imap".equals(type) && !"pop3".equals(type))
             errors.add("type",
-                       new ActionError("error.type.invalid", type));
+                       new ActionMessage("error.type.invalid", type));
 
 	return (errors);
 

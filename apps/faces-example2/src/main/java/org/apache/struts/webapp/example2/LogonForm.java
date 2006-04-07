@@ -19,7 +19,7 @@ package org.apache.struts.webapp.example2;
 
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
@@ -134,9 +134,9 @@ public final class LogonForm extends ActionForm {
 
         ActionErrors errors = new ActionErrors();
         if ((username == null) || (username.length() < 1))
-            errors.add("username", new ActionError("error.username.required"));
+            errors.add("username", new ActionMessage("error.username.required"));
         if ((password == null) || (password.length() < 1))
-            errors.add("password", new ActionError("error.password.required"));
+            errors.add("password", new ActionMessage("error.password.required"));
 
         return errors;
 

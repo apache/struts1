@@ -19,7 +19,7 @@ package org.apache.struts.webapp.example2;
 
 
 import javax.servlet.http.HttpServletRequest;
-import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.validator.ValidatorForm;
@@ -298,7 +298,7 @@ public final class RegistrationForm extends ValidatorForm  {
             ((password != null) && (password2 != null) &&
              !password.equals(password2))) {
             errors.add("password2",
-                       new ActionError("error.password.match"));
+                       new ActionMessage("error.password.match"));
         }
         return errors;
 
