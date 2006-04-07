@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<!--
+ $Header: /home/cvs/jakarta-struts/web/example/WEB-INF/struts-config.xml,v 1.43 2004/09/02 03:43:15 niallp Exp $
+ $Revision$
+ $Date$
+
+ Copyright 2000-2004 Apache Software Foundation
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<struts-config>
+  <display-name><![CDATA[
+     account maintenance
+  ]]>
+  </display-name>
+    <description><![CDATA[
+     Allows the updating of users accounts and subscriptions.
+  ]]>
+  </description>
+
+  <!-- ========== Form Bean Definitions =================================== -->
+  <form-beans>
+
+    <!-- Logon form bean -->
+    <form-bean       name="LogonForm"
+                     type="org.apache.struts.validator.DynaValidatorForm">
+      <form-property name="username" type="java.lang.String"/>
+      <form-property name="password" type="java.lang.String"/>
+    </form-bean>
+
+    <!-- Subscription form bean -->
+    <form-bean      name="SubscriptionForm"
+                    type="org.apache.struts.webapp.example.SubscriptionForm"/>
+    </form-beans>
+
+
+  <!-- ========== Global Forward Definitions ============================== -->
+  <global-forwards>
+    <forward   name="welcome"              path="/Welcome.do"/>
+    <forward   name="logoff"               path="/Logoff.do"/>
+    <forward   name="logon"                path="/Logon.do"/>
+    <forward   name="success"              path="/MainMenu.do"/>
+  </global-forwards>
+
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+  <action-mappings>
+
+      <!-- Display welcome page -->
+      <action    path="/Welcome"
+                 type="org.apache.struts.scripting.ScriptAction"
+                 parameter="/WEB-INF/scripts/Welcome.gv">
+          <forward name="failure" path="/Error.jsp" />
+          <forward name="success" path="/welcome.jsp" />
+      </action>
+
+      <!-- Change locale action -->
+      <action
+          path="/Locale"
+          type="org.apache.struts.scripting.ScriptAction"
+          parameter="/WEB-INF/scripts/Locale.gv?defaultTarget=welcome" />
+
+      <!-- Display registration page -->
+      <action    path="/Registration"
+                 forward="/registration.jsp"/>
+
+      <!-- Display logon page -->
+      <action    path="/MainMenu"
+                 forward="/mainMenu.jsp"/>
+
+      <!-- Display logon page -->
+      <action    path="/Logon"
+                 forward="/logon.jsp"/>
+
+       <!-- Process a user logon -->
+       <action    path="/SubmitLogon"
+                  type="org.apache.struts.scripting.ScriptAction"
+                  parameter="/WEB-INF/scripts/Logon.gv"
+                  name="LogonForm"
+                 scope="request"
+                 input="logon">
+         <exception
+                   key="expired.password"
+                  type="org.apache.struts.webapp.example.ExpiredPasswordException"
+                  path="/ExpiredPassword.do"/>
+       </action>
+
+      <!-- Process a user logoff -->
+       <action    path="/Logoff"
+                  type="org.apache.struts.scripting.ScriptAction"
+                  parameter="/WEB-INF/scripts/Logoff.gv">
+         <forward name="success"              path="/Welcome.do"/>
+       </action>
+
+      <!-- Edit mail subscription -->
+      <action    path="/EditSubscription"
+                 type="org.apache.struts.scripting.ScriptAction"
+                 parameter="/WEB-INF/scripts/EditSubscription.gv"
+                 name="SubscriptionForm"
+                scope="request"
+             validate="false">
+        <forward name="failure"              path="/MainMenu.do"/>
+        <forward name="success"              path="/subscription.jsp"/>
+      </action>
+
+       <!-- Save mail subscription -->
+       <action    path="/SaveSubscription"
+                  type="org.apache.struts.scripting.ScriptAction"
+                  parameter="/WEB-INF/scripts/SaveSubscription.gv"
+                  name="SubscriptionForm"
+                 scope="request"
+                 input="subscription">
+         <forward name="subscription"    path="/subscription.jsp"/>
+         <forward name="success"         path="/EditRegistration.do?action=Edit"/>
+       </action>
+
+      <!-- Display the change password page when a password expires -->
+      <action    path="/ExpiredPassword"
+              forward="/changePassword.jsp">
+      </action>
+
+      <!-- Display the "walking tour" documentation -->
+      <action    path="/Tour"
+              forward="/tour.html">
+      </action>
+
+  </action-mappings>
+
+  <!-- ========== Controller Configuration ================================ -->
+
+  <controller pagePattern="$M$P" inputForward="true" />
+    <!-- pagePattern: use this pattern when creating URIs to resources.
+        $M=module, $P=path -->
+    <!-- inputForward: The "input" parameter on "action" elements is the name of a
+         local or global "forward" rather than a module-relative path -->
+
+
+  <!-- ========== Message Resources Definitions =========================== -->
+
+  <message-resources
+    parameter="org.apache.struts.webapp.example.ApplicationResources"/>
+
+  <message-resources
+    parameter="org.apache.struts.webapp.example.AlternateApplicationResources"
+    key="alternate"/>
+
+
+  <!-- ========== Plug Ins Configuration ================================== -->
+
+  <plug-in className="org.apache.struts.plugins.ModuleConfigVerifier"/>
+
+  <plug-in className="org.apache.struts.webapp.example.memory.MemoryDatabasePlugIn">
+    <set-property property="pathname" value="/WEB-INF/database.xml"/>
+  </plug-in>
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathnames"
+                     value="/WEB-INF/validator-rules.xml,
+                            /WEB-INF/validation.xml"/>
+  </plug-in>
+
+  <plug-in className="org.apache.struts.plugins.DigestingPlugIn">
+    <set-property property="key" value="serverTypes"/>
+    <set-property property="configPath" value="/WEB-INF/server-types.xml"/>
+    <set-property property="digesterPath" value="/WEB-INF/lvb-digester-rules.xml"/>
+  </plug-in>
+
+</struts-config>

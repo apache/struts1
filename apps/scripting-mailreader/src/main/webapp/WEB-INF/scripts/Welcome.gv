@@ -1,0 +1,27 @@
+import org.apache.struts.webapp.example.*;
+import java.util.ArrayList;
+
+// Setup message array in case there are errors
+messages = [];
+
+// Confirm message resources loaded
+resources = struts.getMessages();
+if (resources==null) {
+    messages.add(Constants.ERROR_MESSAGES_NOT_LOADED);
+}
+
+// Confirm database loaded
+userDatabase = application.getAttribute(Constants.DATABASE_KEY);
+if (userDatabase==null) {
+    messages.add(Constants.ERROR_DATABASE_NOT_LOADED);
+}
+
+// If there were errors, forward to our failure page
+if (messages.size()>0) {
+    request.setAttribute(Constants.ERROR_KEY,messages);
+    struts.setForwardName(Constants.FAILURE);
+    return;
+}
+
+// Forward to our success page
+struts.setForwardName(Constants.SUCCESS);

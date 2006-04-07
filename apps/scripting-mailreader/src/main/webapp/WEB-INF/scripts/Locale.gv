@@ -1,0 +1,31 @@
+import java.util.Locale;
+import org.apache.struts.Globals;
+import org.apache.struts.action.ActionForward;
+
+def isBlank(str) {
+    return ((str == null) || (str.trim().length()==0));
+}
+
+language = request.getParameter("language");
+country = request.getParameter("country");
+
+locale = struts.action.getLocale(request);
+
+if ((!isBlank(language)) && (!isBlank(country))) {
+    locale = new Locale(language, country);
+}
+else if (!isBlank(language)) {
+    locale = new Locale(language, "");
+}
+
+session.setAttribute(Globals.LOCALE_KEY, locale);
+
+String target = request.getParameter("page");
+if (!isBlank(target)) {
+    struts.setForward(new ActionForward(target));
+    return;
+}
+
+target = request.getParameter("forward");
+if (isBlank(target)) target = defaultTarget;
+struts.setForwardName(target);
