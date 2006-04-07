@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * $Id$
+ * $Id: pom.xml 392117 2006-04-06 23:26:51Z wsmoak $
  */
 -->
 
@@ -36,46 +36,37 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
 
    <parent>
       <groupId>org.apache.struts.action</groupId>
-      <artifactId>struts-build</artifactId>
+      <artifactId>struts-apps</artifactId>
       <version>1.3.2-SNAPSHOT</version>
    </parent>
 
    <modelVersion>4.0.0</modelVersion>
-   <artifactId>struts-apps</artifactId>
-   <packaging>pom</packaging>
-   <name>Struts Action - Apps</name>
-
-   <modules>
-      <module>cookbook</module>
-      <module>faces-example1</module>
-      <module>faces-example2</module>
-      <module>examples</module>
-      <module>blank</module>
-      <module>mailreader</module>
-   </modules>
+   <artifactId>struts-mailreader</artifactId>
+   <packaging>war</packaging>
+   <name>Struts Action - Apps - Mailreader</name>
    
-   <build>
-     <resources>
-        <!-- Include source code under WEB-INF/src for example apps -->
-        <resource>
-           <directory>src/main/java</directory>
-           <targetPath>${basedir}/target/${pom.artifactId}/WEB-INF/src/main/java</targetPath>
-           <includes>
-              <include>**/*.java</include>
-              <include>**/*.properties</include>
-              <include>**/*.xml</include>
-           </includes>
-        </resource>
-        <!-- Include resources under src/main/java in WEB-INF/classes -->
-        <resource>
-            <directory>src/main/java</directory>
-            <includes>
-                <include>**/*.properties</include>
-                <include>**/*.xml</include>
-            </includes>
-        </resource>
-     </resources>
-     <finalName>${pom.artifactId}</finalName>
-  </build>
+   <dependencies>
+      <dependency>
+         <groupId>${pom.groupId}</groupId>
+         <artifactId>struts-taglib</artifactId>
+         <version>${pom.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>${pom.groupId}</groupId>
+         <artifactId>struts-extras</artifactId>
+         <version>${pom.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>${pom.groupId}</groupId>
+         <artifactId>struts-mailreader-dao</artifactId>
+         <version>${pom.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>servlet-api</artifactId>
+         <version>2.3</version>
+         <scope>provided</scope>
+      </dependency>
+   </dependencies>
 
 </project>
