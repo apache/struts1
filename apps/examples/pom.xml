@@ -72,6 +72,11 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
          <artifactId>standard</artifactId>
          <version>1.0.6</version>
       </dependency>
+      <dependency>
+         <groupId>commons-fileupload</groupId>
+         <artifactId>commons-fileupload</artifactId>
+         <version>1.1</version>
+     </dependency>
    </dependencies>
    
 </project>
