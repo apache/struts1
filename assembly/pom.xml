@@ -154,9 +154,12 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
 
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.0-beta-1</version>
+        <version>2.0.1</version>
         <configuration>
-          <descriptor>src/main/assembly/dep.xml</descriptor>
+          <descriptors>
+            <descriptor>src/main/assembly/dep.xml</descriptor>
+            <!-- descriptor>src/main/assembly/src.xml</descriptor -->
+          </descriptors>
           <finalName>struts-action-${version}</finalName>
           <outputDirectory>target/assembly/out</outputDirectory>
           <workDirectory>target/assembly/work</workDirectory>

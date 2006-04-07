@@ -266,25 +266,6 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
         </developer>
       </developers>
 
-      <profiles>
-         <profile>
-            <id>assemble-src</id>
-            <build>
-              <plugins>
-                <plugin>
-                  <artifactId>maven-assembly-plugin</artifactId>
-                  <configuration>
-                     <descriptor>src/main/assembly/src.xml</descriptor>
-                     <finalName>struts-action-${version}</finalName>
-                     <outputDirectory>target/assembly/out</outputDirectory>
-                     <workDirectory>target/assembly/work</workDirectory>
-                  </configuration>
-                </plugin>
-              </plugins>
-            </build>
-         </profile>
-      </profiles>
-
     <modules>
         <module>core</module>
         <module>el</module>

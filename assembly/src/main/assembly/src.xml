@@ -13,7 +13,6 @@
     </fileSet>
   </fileSets-->
   <modules>
-    <module>.</module>
     <module>apps</module>
     <module>core</module>
     <module>el</module>
