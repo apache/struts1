@@ -32,6 +32,7 @@
       <xsl:if test="uri">
         <uri><xsl:value-of select="uri"/></uri>
       </xsl:if>
+      <xsl:apply-templates select="description" />
       <xsl:apply-templates select="validator"/>
       <xsl:apply-templates select="listener"/>
       <xsl:apply-templates select="tag"/>
@@ -65,6 +66,7 @@
       <xsl:if test="body-content">
         <body-content><xsl:value-of select="body-content"/></body-content>
       </xsl:if>
+      <xsl:apply-templates select="description" />
       <xsl:apply-templates select="attribute"/>
     </tag>
   </xsl:template>
@@ -81,7 +83,24 @@
       <xsl:if test="rtexprvalue">
         <rtexprvalue><xsl:value-of select="rtexprvalue"/></rtexprvalue>
       </xsl:if>
+      <xsl:apply-templates select="description" />
     </attribute>
+  </xsl:template>
+  
+  <xsl:template match="description">
+    <description>
+    <xsl:if test="p">
+      <xsl:value-of disable-output-escaping="yes" select="concat('&lt;','![CDATA[')" /><xsl:text>
+      </xsl:text>
+      <xsl:copy-of select="p" /><xsl:text>
+      </xsl:text>
+      <xsl:value-of disable-output-escaping="yes" select="concat(']]', '&gt;')" /><xsl:text>
+      </xsl:text>
+    </xsl:if>
+    <xsl:if test="not(p)">
+      <xsl:value-of select="." />
+    </xsl:if>  
+    </description>
   </xsl:template>
 
   <!-- Process everything else by just passing it through -->
