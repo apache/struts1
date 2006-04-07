@@ -58,9 +58,12 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
      <resources>
         <!-- Include source code under WEB-INF/src for example apps -->
         <!--resource>
-           <directory>src/main/java</directory>
-           <targetPath>${basedir}/target/${pom.artifactId}/WEB-INF/src/main/java</targetPath>
-           <includes>
+           <directory>src/main/java</directory-->
+           <!--targetPath>${basedir}/target/${pom.artifactId}/WEB-INF/src/main/java</targetPath-->
+           <!--targetPath>../${pom.artifactId}/WEB-INF/src/main/java</targetPath-->
+           <!--targetPath>${pom.build.directory}/${pom.artifactId}/WEB-INF/src/main/java</targetPath-->
+           <!--targetPath>${project.build.directory}/${pom.artifactId}/WEB-INF/src/main/java</targetPath-->
+           <!--includes>
               <include>**/*.java</include>
               <include>**/*.properties</include>
               <include>**/*.xml</include>
