@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="Struts JSP Taglib">
-    <title>Apache Struts - Struts JSP Taglib</title>
+<project name="Struts Action Framework">
+    <bannerLeft>
+        <name>Apache Software Foundation</name>
+        <src>http://www.apache.org/images/asf-logo.gif</src>
+        <href>http://www.apache.org</href>
+    </bannerLeft>
+    <bannerRight>
+        <name>Apache Struts</name>
+        <src>http://struts.apache.org/images/struts.gif</src>
+        <href>http://struts.apache.org</href>
+    </bannerRight>     
     <body>
+        <links>
+            <item name="Apache" href="http://www.apache.org" /> 
+            <item name="Action" href="http://struts.apache.org/struts-action" /> 
+            <item name="Shale" href="http://struts.apache.org/struts-shale" /> 
+            <item name="Tiles" href="http://struts.apache.org/struts-tiles" /> 
+        </links>
         <menu name="Struts JSP Taglib Guides">
             <item name="Bean" href="dev_bean.html"/>
             <item name="HTML" href="dev_html.html"/>
@@ -21,7 +36,7 @@
             <item name="Display Tag"
                   href="http://displaytag.sourceforge.net/"/>
 
-            <item name="&lt;html2&gt;"
+            <item name="html2"
                   href="http://www.rabago.net/struts/html2/"/>
 
             <item name="JSTL"
@@ -31,7 +46,7 @@
                   href="http://java.sun.com/j2ee/javaserverfaces/"/>
 
             <item name="Struts Faces"
-                  href="../struts-faces/index.html"/>
+                  href="http://struts-apach.org/struts-faces"/>
 
             <item name="Struts Layout"
                   href="http://struts.application-servers.com"/>
@@ -40,10 +55,11 @@
                   href="http://struts-menu.sourceforge.net/"/>
 
             <item name="Struts Shale"
-                  href="../shale/index.html"/>
+                  href="http://struts.apache.org/struts-shale"/>
 
             <item name="Apache Struts Home"
-                  href="../index.html"/>
+                  href="http://struts.apache.org"/>
         </menu>
+        ${reports}
     </body>
 </project>
