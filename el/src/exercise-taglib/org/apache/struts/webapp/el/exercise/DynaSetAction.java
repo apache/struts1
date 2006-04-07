@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.struts.webapp.exercise;
+package org.apache.struts.webapp.el.exercise;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;

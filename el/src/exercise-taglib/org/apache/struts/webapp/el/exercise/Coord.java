@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.struts.webapp.exercise;
+package org.apache.struts.webapp.el.exercise;
 
 /**
  * Simple bean to use for testing indexed tags.

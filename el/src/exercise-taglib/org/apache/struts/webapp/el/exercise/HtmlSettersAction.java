@@ -17,7 +17,7 @@
  */
 
 
-package org.apache.struts.webapp.exercise;
+package org.apache.struts.webapp.el.exercise;
 
 
 import org.apache.struts.action.Action;
