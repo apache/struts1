@@ -149,6 +149,42 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
               <outputDirectory>${project.build.directory}/webapps</outputDirectory>
             </configuration>
           </execution>
+          <execution>
+            <id>copy-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.apache.struts.action</groupId>
+                  <artifactId>struts-core</artifactId>
+                  <version>${version}</version>
+                  <classifier>sources</classifier>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.apache.struts.action</groupId>
+                  <artifactId>struts-el</artifactId>
+                  <version>${version}</version>
+                  <classifier>sources</classifier>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.apache.struts.action</groupId>
+                  <artifactId>struts-extras</artifactId>
+                  <version>${version}</version>
+                  <classifier>sources</classifier>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.apache.struts.action</groupId>
+                  <artifactId>struts-taglib</artifactId>
+                  <version>${version}</version>
+                  <classifier>sources</classifier>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.directory}/sources</outputDirectory>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
@@ -157,7 +193,8 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
         <version>2.0.1</version>
         <configuration>
           <descriptors>
-            <descriptor>src/main/assembly/dep.xml</descriptor>
+            <descriptor>src/main/assembly/all.xml</descriptor>
+            <!-- descriptor>src/main/assembly/dep.xml</descriptor -->
             <!-- descriptor>src/main/assembly/src.xml</descriptor -->
           </descriptors>
           <finalName>struts-action-${version}</finalName>
