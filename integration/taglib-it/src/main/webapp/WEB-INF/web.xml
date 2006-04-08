@@ -6,4 +6,39 @@
 
 <web-app>
   <display-name>Struts Taglib Testing Application</display-name>
+
+    <filter>
+        <filter-name>FilterRedirector</filter-name>
+        <filter-class>org.apache.cactus.server.FilterTestRedirector</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>FilterRedirector</filter-name>
+        <url-pattern>/FilterRedirector</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>ServletRedirector</servlet-name>
+        <servlet-class>org.apache.cactus.server.ServletTestRedirector</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>JspRedirector</servlet-name>
+        <jsp-file>/jspRedirector.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletRedirector</servlet-name>
+        <url-pattern>/ServletRedirector</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>JspRedirector</servlet-name>
+        <url-pattern>/JspRedirector</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+       <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
 </web-app>

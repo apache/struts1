@@ -23,11 +23,13 @@
              Experimental Maven 2 Build for Apache Struts
              ============================================
 
-To build and install this module into your local repo:
+To run the Cactus tests for Struts Taglib:
 
-   $ mvn install
-   
-For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
+   $ mvn integration-test -Dcargo.tomcat5x.home=c:/java/apache-tomcat-5.5.16
+
+   (The cargo.tomcat5x.home property may be configured in settings.xml)
+
+For more information, see:  http://wiki.apache.org/struts/StrutsMaintenanceMaven
 
 -->
 
@@ -50,19 +52,22 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
          <version>3.8.1</version>
-         <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>cactus</groupId>
-        <artifactId>cactus</artifactId>
-        <version>13-1.7</version>
-        <scope>test</scope>
-        <exclusions>
-          <exclusion>
-            <groupId>j2ee</groupId>
-            <artifactId>j2ee</artifactId>
-          </exclusion>
-        </exclusions>
+         <groupId>cactus</groupId>
+         <artifactId>cactus</artifactId>
+         <version>13-1.7</version>
+         <exclusions>
+            <exclusion>
+               <groupId>j2ee</groupId>
+               <artifactId>j2ee</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <dependency>
+         <groupId>aspectj</groupId>
+         <artifactId>aspectjrt</artifactId>
+         <version>1.2.1</version>
       </dependency>
       <dependency>
          <groupId>httpunit</groupId>
@@ -93,34 +98,108 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
          <scope>test</scope>
       </dependency>
    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>compiler-it</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>surefire-it</id>
-                        <phase>integration-test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+
+   <build>
+
+      <sourceDirectory>src/test/java</sourceDirectory>
+      <testSourceDirectory>src/test/java</testSourceDirectory>
+
+      <finalName>${pom.artifactId}</finalName>
+
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>package-war</id>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>war</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>compiler-for-webapp</id>
+                  <phase>compile</phase>
+                  <goals>
+                     <goal>compile</goal>
+                  </goals>
+               </execution>
+               <execution>
+                  <id>compiler-for-tests</id>
+                  <phase>test-compile</phase>
+                  <goals>
+                     <goal>testCompile</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+               <systemProperties>
+                  <property>
+                     <name>cactus.contextURL</name>
+                     <value>http://localhost:8080/${artifactId}</value>
+                  </property>
+               </systemProperties>
+            </configuration>
+            <executions>
+               <execution>
+                  <id>surefire-it</id>
+                  <phase>integration-test</phase>
+                  <goals>
+                     <goal>test</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven2-plugin</artifactId>
+            <configuration>
+               <wait>false</wait>
+               <container>
+                  <containerId>tomcat5x</containerId>
+                  <home>${cargo.tomcat5x.home}</home>
+                  <log>${project.build.directory}/tomcat5x.log</log>
+               </container>
+               <configuration>
+                  <home>${project.build.directory}/tomcat</home>
+                  <deployables>
+                     <deployable>
+                        <location>${project.build.directory}/${artifactId}.war</location>
+                        <type>war</type>
+                        <pingURL>http://localhost:8080/${artifactId}</pingURL>
+                     </deployable>
+                  </deployables>
+               </configuration>
+            </configuration>
+            <executions>
+               <execution>
+                  <id>start-container</id>
+                  <phase>pre-integration-test</phase>
+                  <goals>
+                     <goal>start</goal>
+                  </goals>
+               </execution>
+               <execution>
+                  <id>stop-container</id>
+                  <phase>post-integration-test</phase>
+                  <goals>
+                     <goal>stop</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+
 </project>

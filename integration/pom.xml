@@ -46,12 +46,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
    <name>Struts Action - Integration Tests</name>
 
    <modules>
-      <module>taglib-webapp</module>
       <module>taglib-it</module>
    </modules>
-   
-  <build>
-   <finalName>${pom.artifactId}</finalName>
-  </build>
 
 </project>
