@@ -53,7 +53,6 @@ public class ShowFileAction extends Action {
 
         if(fileName != null) {
             
-            byte[] bytes = new byte[1000];
             InputStream input = servlet.getServletContext().getResourceAsStream(fileName);
             if (input == null) {
                 log.warn("File Not Found: "+fileName);

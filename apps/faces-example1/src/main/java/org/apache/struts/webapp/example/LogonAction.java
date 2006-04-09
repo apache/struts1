@@ -18,7 +18,6 @@
 package org.apache.struts.webapp.example;
 
 
-import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
@@ -79,7 +78,6 @@ public final class LogonAction extends Action {
 	throws Exception {
 
 	// Extract attributes we will need
-	Locale locale = getLocale(request);
 	User user = null;
 
 	// Validate the request parameters specified by the user

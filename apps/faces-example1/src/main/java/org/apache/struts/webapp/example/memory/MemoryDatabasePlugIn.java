@@ -58,12 +58,6 @@ public final class MemoryDatabasePlugIn implements PlugIn {
 
 
     /**
-     * The application configuration for our owning module.
-     */
-    private ModuleConfig config = null;
-
-
-    /**
      * The {@link MemoryUserDatabase} object we construct and make available.
      */
     private MemoryUserDatabase database = null;
@@ -122,7 +116,6 @@ public final class MemoryDatabasePlugIn implements PlugIn {
         database = null;
         servlet = null;
         database = null;
-        config = null;
 
     }
 
@@ -142,7 +135,6 @@ public final class MemoryDatabasePlugIn implements PlugIn {
                  pathname + "'");
 
         // Remember our associated configuration and servlet
-        this.config = config;
         this.servlet = servlet;
 
         // Construct a new database and make it available

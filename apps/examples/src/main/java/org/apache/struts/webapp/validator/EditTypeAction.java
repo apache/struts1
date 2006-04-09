@@ -79,6 +79,8 @@ public final class EditTypeAction extends Action {
             ActionMapping mapping, ActionForm form,
             HttpServletRequest request) {
 
+    	log.debug("initFromBeans");
+    	
         // Initialize
         ArrayList satisfactionList = new ArrayList();
         satisfactionList.add(new LabelValueBean("Very Satisfied", "4"));

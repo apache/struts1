@@ -19,7 +19,6 @@ package org.apache.struts.webapp.example;
 
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -84,7 +83,6 @@ public final class SaveRegistrationAction extends Action {
 	throws Exception {
 
 	// Extract attributes and parameters we will need
-	Locale locale = getLocale(request);
 	HttpSession session = request.getSession();
 	RegistrationForm regform = (RegistrationForm) form;
 	String action = regform.getAction();

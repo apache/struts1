@@ -17,8 +17,6 @@
  */
 package org.apache.struts.webapp.dispatch;
 
-import java.util.Map;
-import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.actions.DispatchAction;
@@ -35,7 +33,6 @@ import org.apache.struts.action.ActionMessages;
  */
 public class DispatchExampleAction extends DispatchAction {
 
-    private Map keyMethodMap = new HashMap();
     private int fooCount;
     private int barCount;
 

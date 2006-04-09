@@ -19,7 +19,6 @@ package org.apache.struts.webapp.example2;
 
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Locale;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -80,7 +79,6 @@ public final class SaveSubscriptionAction extends Action {
 	throws Exception {
 
 	// Extract attributes and parameters we will need
-	Locale locale = getLocale(request);
 	MessageResources messages = getResources(request);
 	HttpSession session = request.getSession();
 	SubscriptionForm subform = (SubscriptionForm) form;

@@ -340,10 +340,7 @@ public final class MemoryUserDatabase implements UserDatabase {
 class MemorySubscriptionCreationFactory implements ObjectCreationFactory {
 
     public MemorySubscriptionCreationFactory(MemoryUserDatabase database) {
-        this.database = database;
     }
-
-    private MemoryUserDatabase database = null;
 
     private Digester digester = null;
 

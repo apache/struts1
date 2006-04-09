@@ -18,7 +18,6 @@
 package org.apache.struts.webapp.example;
 
 
-import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
@@ -75,7 +74,6 @@ public final class LogoffAction extends Action {
 	throws Exception {
 
 	// Extract attributes we will need
-	Locale locale = getLocale(request);
 	HttpSession session = request.getSession();
 	User user = (User) session.getAttribute(Constants.USER_KEY);
 
