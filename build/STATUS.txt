@@ -11,7 +11,7 @@ PMC Members
 
     * Craig R. McClanahan  (craigmcc at apache.org)
     * Ted Husted (husted at apache.org)
-    * Cedric Dumoulin (cedric.dumoulin at lifl.fr)
+    * Cedric Dumoulin (cedric at apache.org)
     * Martin Cooper, Vice President and Chair (martinc at apache.org)
     * James Holmes (jholmes at apache.org)
     * David M. Karr (dmkarr at apache.org)
@@ -39,7 +39,7 @@ Other Active Committers
     * Alexandru Popescu (apopescu at apache.org)
     * Rene Gielen (rgielen at apache.org)
     * Rainer Hermanns (hermanns at apache.org)
-    * Toby Jee (TBD)
+    * Toby Jee (tmjee at apache.org)
     * Ian Roughley (roughley at apache.org)
 
 Emeritus Committers 
