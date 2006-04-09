@@ -75,6 +75,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
         <module>apps</module>
         <module>mailreader-dao</module>
         <module>assembly</module>
+        <module>integration</module>
     </modules>
 
     <licenses>

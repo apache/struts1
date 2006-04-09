@@ -20,12 +20,10 @@
 -->
 
 <!-- 
-             Experimental Maven 2 Build for Apache Struts
-             ============================================
 
 To run the Cactus tests for Struts Taglib:
 
-   $ mvn integration-test -Dcargo.tomcat5x.home=c:/java/apache-tomcat-5.5.16
+   $ mvn -P perform-itest -Dcargo.tomcat5x.home=c:/java/apache-tomcat-5.5.16
 
    (The cargo.tomcat5x.home property may be configured in settings.xml)
 
@@ -106,6 +104,12 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaintenanceMaven
 
       <finalName>${pom.artifactId}</finalName>
 
+   </build>
+
+   <profiles>
+   <profile>
+   <id>perform-itest</id>
+   <build>
       <plugins>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -201,5 +205,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaintenanceMaven
          </plugin>
       </plugins>
    </build>
+   </profile>
+   </profiles>
 
 </project>
