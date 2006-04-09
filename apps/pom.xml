@@ -53,6 +53,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
       <module>blank</module>
       <module>mailreader</module>
       <module>strutsel-exercise-taglib</module>
+      <module>scripting-mailreader</module>
    </modules>
    
    <build>
