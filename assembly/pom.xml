@@ -43,7 +43,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
 
   <parent>
     <groupId>org.apache.struts.action</groupId>
-    <artifactId>struts-build</artifactId>
+    <artifactId>struts-action-parent</artifactId>
     <version>1.3.2-SNAPSHOT</version>
   </parent>
 
