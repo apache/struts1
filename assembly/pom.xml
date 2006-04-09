@@ -52,7 +52,10 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
     <developerConnection>scm:svn:https://svn.apache.org/repos/asf/struts/action/trunk/assembly</developerConnection>
     <url>http://svn.apache.org/viewcvs.cgi/struts/action/trunk/assembly</url>
   </scm>
-
+  
+  <profiles>
+  <profile>
+  <id>generate-assembly</id>
   <build>
     <plugins>
        <plugin>
@@ -205,6 +208,8 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
     </plugins>
 
   </build>
+  </profile>
+  </profiles>
 
   <dependencies>
 
