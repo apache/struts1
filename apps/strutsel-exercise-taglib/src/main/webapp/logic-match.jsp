@@ -16,7 +16,7 @@
 </div>
 
 <jsp:useBean id="bean" scope="page"
-             class="org.apache.struts.webapp.exercise.TestBean"/>
+             class="org.apache.struts.webapp.el.exercise.TestBean"/>
 <c:set var="jcookie" value='${cookie["JSESSIONID"].value}'/>
 <c:set var="uaheader" value='${header["User-Agent"]}'/>
 <c:set var="rparam" value='${param["param1"]}'/>

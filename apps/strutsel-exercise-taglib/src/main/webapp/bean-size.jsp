@@ -38,7 +38,7 @@
 </div>
 
 <jsp:useBean id="bean" scope="page"
-             class="org.apache.struts.webapp.exercise.TestBean"/>
+             class="org.apache.struts.webapp.el.exercise.TestBean"/>
 <bean-el:size id="stringSize" name="bean" property="stringArray"/>
 <bean-el:size id="intSize" name="bean" property="intArray"/>
 <jsp:useBean id="list" scope="page" class="java.util.ArrayList"/>

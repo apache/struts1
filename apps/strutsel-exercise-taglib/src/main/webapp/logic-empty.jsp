@@ -15,7 +15,7 @@
     </div>
 
     <jsp:useBean id="bean" scope="page"
-                 class="org.apache.struts.webapp.exercise.TestBean"/>
+                 class="org.apache.struts.webapp.el.exercise.TestBean"/>
 
     <table border="1">
         <tr>

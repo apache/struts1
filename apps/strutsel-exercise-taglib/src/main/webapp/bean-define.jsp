@@ -17,7 +17,7 @@
 <h3>Test 1 -- Direct Scalar Variable Defines</h3>
 
 <jsp:useBean id="test1" scope="page"
-             class="org.apache.struts.webapp.exercise.TestBean"/>
+             class="org.apache.struts.webapp.el.exercise.TestBean"/>
 
 <c:set var="test1_boolean" value="${test1.booleanProperty}"/>
 <c:set var="test1_double" value="${test1.doubleProperty}"/>
@@ -71,7 +71,7 @@
 <h3>Test 2 -- Nested Scalar Variable Defines</h3>
 
 <jsp:useBean id="test2" scope="page"
-             class="org.apache.struts.webapp.exercise.TestBean"/>
+             class="org.apache.struts.webapp.el.exercise.TestBean"/>
 
 <bean:define id="test2_boolean" name="test2"
              property="nested.booleanProperty"/>

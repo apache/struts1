@@ -8,7 +8,7 @@
 
     <form-beans>
         <form-bean name="testbean"
-                   type="org.apache.struts.webapp.exercise.TestBean"/>
+                   type="org.apache.struts.webapp.el.exercise.TestBean"/>
         <form-bean name="dynabean"
                    type="org.apache.struts.action.DynaActionForm">
             <form-property name="foo" type="java.lang.String"/>
@@ -92,7 +92,7 @@
             <forward name="input" path="/bean-dyna.jsp"/>
         </action>
         <action path="/bean-dyna"
-                type="org.apache.struts.webapp.exercise.DynaSetAction"
+                type="org.apache.struts.webapp.el.exercise.DynaSetAction"
                 name="dynabean"
                 scope="session"
                 validate="false">
@@ -108,7 +108,7 @@
     </action-mappings>
 
     <message-resources
-            parameter="org.apache.struts.webapp.exercise.ApplicationResources"
+            parameter="org.apache.struts.webapp.el.exercise.ApplicationResources"
             null="false"/>
 
 </struts-config>

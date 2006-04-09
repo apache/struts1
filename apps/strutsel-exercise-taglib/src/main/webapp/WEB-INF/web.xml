@@ -15,7 +15,7 @@
         <init-param>
             <param-name>application</param-name>
             <param-value>
-                org.apache.struts.webapp.exercise.ApplicationResources</param-value>
+                org.apache.struts.webapp.el.exercise.ApplicationResources</param-value>
         </init-param>
         <init-param>
             <param-name>config</param-name>

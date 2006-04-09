@@ -34,7 +34,7 @@
 </div>
 
 <jsp:useBean id="bean" scope="page"
-             class="org.apache.struts.webapp.exercise.TestBean"/>
+             class="org.apache.struts.webapp.el.exercise.TestBean"/>
 <jsp:useBean id="list" scope="page" class="java.util.ArrayList"/>
 
 <h3>Test 1 - Iterate Over A String Array [0..4]</h3>

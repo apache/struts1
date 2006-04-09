@@ -56,7 +56,7 @@ main menu.
      have an Action class set the initial values.
 --%>
 <jsp:useBean id="testbean" scope="session"
-             class="org.apache.struts.webapp.exercise.TestBean"/>
+             class="org.apache.struts.webapp.el.exercise.TestBean"/>
 
 <html-el:form action="html-select.do">
     <table border="0" width="100%">
