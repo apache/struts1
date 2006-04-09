@@ -132,7 +132,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
 
      <profiles>
        <profile>
-        <id>generate-assembly</id>
+        <id>pre-assembly</id>
         <build>
         <plugins>
           <plugin>
