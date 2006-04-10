@@ -51,6 +51,12 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
 
     <inceptionYear>2000</inceptionYear>
 
+    <scm>
+       <connection>scm:svn:http://svn.apache.org/repos/asf/struts/action/trunk</connection>
+       <developerConnection>scm:svn:https://svn.apache.org/repos/asf/struts/action/trunk</developerConnection>
+       <url>http://svn.apache.org/viewcvs.cgi/struts/action/trunk</url>
+    </scm>
+
     <issueManagement>
         <system>Bugzilla</system>
         <url>http://issues.apache.org/bugzilla</url>
