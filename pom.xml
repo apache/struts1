@@ -120,9 +120,11 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
 
     <repositories>
         <repository>
-            <id>apache-snapshot</id>
-            <name>Apache Internal Repository</name>
+            <id>apache.snapshots</id>
+            <name>Apache Maven Repository (Snapshots and Test Builds)</name>
             <url>http://cvs.apache.org/maven-snapshot-repository</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
         </repository>
     </repositories>
 
