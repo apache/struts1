@@ -18,6 +18,8 @@
 
 package org.apache.struts.apps.mailreader.dao.impl.memory;
 
+import java.io.File;
+
 import org.apache.struts.apps.mailreader.dao.BaseTestUserDatabase;
 import org.apache.struts.apps.mailreader.dao.Subscription;
 import org.apache.struts.apps.mailreader.dao.User;
@@ -28,8 +30,15 @@ import org.apache.struts.apps.mailreader.dao.UserDatabase;
 public class MemoryUserDatabaseTest extends BaseTestUserDatabase {
 
     protected String defaultPathName = "test-database.xml";
+    private boolean deleteDatabaseFile = true;
     
-    protected UserDatabase getNewUserDatabase(){
+    public boolean isDeleteDatabaseFile() {
+		return deleteDatabaseFile;
+	}
+	public void setDeleteDatabaseFile(boolean deleteDatabaseFile) {
+		this.deleteDatabaseFile = deleteDatabaseFile;
+	}
+	protected UserDatabase getNewUserDatabase(){
         // using default impl
         MemoryUserDatabase memoryUserDatabase = new MemoryUserDatabase();
         memoryUserDatabase.setPathname(defaultPathName);
@@ -49,5 +58,12 @@ public class MemoryUserDatabaseTest extends BaseTestUserDatabase {
         super.setUp();
         // force write to disk
 	     userDatabase.close();
+    }
+    protected void tearDown() throws Exception {
+    	super.tearDown();
+    	if (isDeleteDatabaseFile()){
+    		File file = new File(defaultPathName);
+    		file.delete();
+    	}
     }
 }
