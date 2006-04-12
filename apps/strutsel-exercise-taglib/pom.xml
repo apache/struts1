@@ -29,6 +29,7 @@
    </parent>
 
    <modelVersion>4.0.0</modelVersion>
+   <groupId>org.apache.struts.action</groupId>
    <artifactId>strutsel-exercise-taglib</artifactId>
    <packaging>war</packaging>
    <name>Struts Action - Apps - Struts EL Exercise</name>

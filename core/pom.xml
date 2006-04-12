@@ -42,6 +42,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
+    <groupId>org.apache.struts.action</groupId>
     <artifactId>struts-core</artifactId>
     <packaging>jar</packaging>
     <name>Struts Action - Core</name>

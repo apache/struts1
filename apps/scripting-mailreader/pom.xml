@@ -41,6 +41,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
    </parent>
 
    <modelVersion>4.0.0</modelVersion>
+   <groupId>org.apache.struts.action</groupId>
    <artifactId>struts-scripting-mailreader</artifactId>
    <packaging>war</packaging>
    <name>Struts Action - Apps - Scripting Mailreader</name>
