@@ -58,6 +58,11 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
          <version>2.3</version>
          <scope>provided</scope>
       </dependency>
+      <dependency>
+         <groupId>${pom.groupId}</groupId>
+         <artifactId>struts-taglib</artifactId>
+         <version>${pom.version}</version>
+      </dependency>
    </dependencies>
 
 </project>
