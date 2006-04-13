@@ -31,8 +31,9 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
 
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
    <parent>
       <groupId>org.apache.struts.action</groupId>
@@ -43,6 +44,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.apache.struts.action</groupId>
    <artifactId>struts-faces</artifactId>
+
    <packaging>jar</packaging>
    <name>Struts Action - Faces</name>
    <url>http://struts.apache.org</url>
