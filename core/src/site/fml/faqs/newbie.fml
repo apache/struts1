@@ -17,7 +17,7 @@ limitations under the License.
 // ======================================================================== 78
 -->
 <faqs title="Newbie FAQ">
-        <part>
+        <part id="general">
 
             <faq id="modules">
 	    <question>What is a modular application? What does module-relative mean?</question>                    

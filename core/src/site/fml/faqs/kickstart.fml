@@ -17,7 +17,7 @@ limitations under the License.
 // ======================================================================== 78
 -->
 <faqs title="Kickstart FAQ">
-    <part>
+    <part id="general">
 
         <faq id="why">
             <question>Why do we need Struts Action Framework?"</question>
