@@ -62,7 +62,12 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
 	     <groupId>myfaces</groupId>
 	     <artifactId>myfaces-impl</artifactId>
 	     <version>1.0.9</version>
-	  </dependency>
+      </dependency>
+      <dependency>
+	     <groupId>myfaces</groupId>
+	     <artifactId>myfaces-extensions</artifactId>
+	     <version>1.0.9</version>
+      </dependency>
 
    </dependencies>
    
