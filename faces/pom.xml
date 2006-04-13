@@ -119,7 +119,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
       <dependency>
 	     <groupId>myfaces</groupId>
 	     <artifactId>myfaces-jsf-api</artifactId>
-	     <version>1.0.8-beta</version>
+	     <version>1.0.9</version>
 	  </dependency>
 
    </dependencies>
