@@ -33,6 +33,103 @@
   <property file="${user.home}/build.properties"/>
   <property name="dist.home" value="${basedir}/dist"/>
 
+	<!-- This is only used if you execute "ant download-dependencies" -->
+  <property name="libdir" value="${basedir}/lib" />
+
+    <target name="download-dependencies">
+
+    <!--
+      To use this Maven-like freedom with respect to dependency setup,
+      do the following:
+
+      - run ant as you normally would, but add the following target to the command
+        line:
+
+        download-dependencies
+
+          For example:
+             C:>myproject\ant download-dependencies dist
+
+
+    -->
+
+        <mkdir dir="${libdir}"/>
+
+        <get dest="${libdir}/jstl-1.0.6.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/jstl/jars/jstl-1.0.6.jar"/>
+
+        <get dest="${libdir}/standard-1.0.6.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/taglibs/jars/standard-1.0.6.jar"/>
+
+        <get dest="${libdir}/commons-beanutils.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/commons-beanutils/jars/commons-beanutils-1.7.0.jar"/>
+
+        <get dest="${libdir}/commons-collections.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/commons-collections/jars/commons-collections-2.1.1.jar"/>
+
+        <get dest="${libdir}/commons-digester.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/commons-digester/jars/commons-digester-1.6.jar"/>
+
+        <get dest="${libdir}/commons-fileupload.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/commons-fileupload/jars/commons-fileupload-1.0.jar"/>
+
+        <get dest="${libdir}/commons-lang.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/commons-lang/jars/commons-lang-2.1.jar"/>
+
+        <get dest="${libdir}/commons-logging.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/commons-logging/jars/commons-logging-1.0.4.jar"/>
+
+        <get dest="${libdir}/commons-validator.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/commons-validator/jars/commons-validator-1.1.4.jar"/>
+
+        <get dest="${libdir}/jakarta-oro.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/oro/jars/oro-2.0.7.jar"/>
+
+        <get dest="${libdir}/struts.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/struts/jars/struts-1.2.9.jar"/>
+
+        <get dest="${libdir}/myfaces-api-1.1.1.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/myfaces/jars/myfaces-api-1.1.1.jar"/>
+
+        <get dest="${libdir}/servlet.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/servletapi/jars/servletapi-2.2.jar"/>
+
+        <get dest="${libdir}/junit-3.8.1.jar"
+            usetimestamp="true" ignoreerrors="true"
+            src="http://www.ibiblio.org/maven/junit/jars/junit-3.8.1.jar"/>
+
+        <property name="jstl.jar"               value="${libdir}/jstl-1.0.6.jar"/>
+        <property name="jstl-standard.jar"      value="${libdir}/standard-1.0.6.jar"/>
+        <property name="commons-beanutils.jar"  value="${libdir}/commons-beanutils.jar"/>
+        <property name="commons-collection.jar" value="${libdir}/commons-collection.jar"/>
+        <property name="commons-digester.jar"   value="${libdir}/commons-digester.jar"/>
+        <property name="commons-fileupload.jar" value="${libdir}/commons-fileupload.jar"/>
+        <property name="commons-lang.jar"       value="${libdir}/commons-lang.jar"/>
+        <property name="commons-logging.jar"    value="${libdir}/commons-logging.jar"/>
+        <property name="commons-validator.jar"  value="${libdir}/commons-validator.jar"/>
+        <property name="jakarta-oro.jar"        value="${libdir}/jakarta-oro.jar"/>
+        <property name="struts-1.2.9.jar"       value="${libdir}/struts-1.2.9.jar"/>
+        <property name="myfaces-api-1.1.1.jar"  value="${libdir}/myfaces-api-1.1.1.jar"/>
+        <property name="servlet.jar"            value="${libdir}/servlet.jar"/>
+        <property name="junit.jar"              value="${libdir}/junit-3.8.1.jar"/>
+
+
+    </target>
+	
+	
   <!-- ======================== Delegation Targets ========================= -->
 
 
