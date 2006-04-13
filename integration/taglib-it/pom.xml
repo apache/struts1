@@ -42,7 +42,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaintenanceMaven
 
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.apache.struts.action</groupId>
-   <artifactId>taglib-it</artifactId>
+   <artifactId>struts-action-it-taglib</artifactId>
    <packaging>pom</packaging>
    <name>Struts Action - Integration - Taglib Tests</name>
 
