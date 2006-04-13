@@ -29,8 +29,9 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionError;
 import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 
 
 /**
@@ -60,21 +61,21 @@ public class LogonAction extends Action {
             PropertyUtils.getSimpleProperty(form, "username");
         if ((username == null) || ("".equals(username))) {
             errors.add("username",
-                         new ActionError("logon.username"));
+                         new ActionMessage("logon.username"));
         }
         String password = (String)
             PropertyUtils.getSimpleProperty(form, "password");
         if ((password == null) || ("".equals(password))) {
             errors.add("password",
-                         new ActionError("logon.password"));
+                         new ActionMessage("logon.password"));
         }
         if (log.isTraceEnabled()) {
             log.trace("username=" + username + ",password=" + password);
         }
         if (errors.isEmpty() &&
             (!"gooduser".equals(username) || !"goodpass".equals(password))) {
-            errors.add(ActionErrors.GLOBAL_ERROR,
-                         new ActionError("logon.mismatch"));
+            errors.add(ActionMessages.GLOBAL_MESSAGE,
+                         new ActionMessage("logon.mismatch"));
         }
         if (errors.isEmpty()) {
             if (log.isDebugEnabled()) {
