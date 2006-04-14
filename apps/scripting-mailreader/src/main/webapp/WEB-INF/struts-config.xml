@@ -114,32 +114,24 @@
         </action>
 
         <!-- Display welcome page -->
-        <action
-                path="/Welcome"
-                type="org.apache.struts.apps.mailreader.actions.WelcomeAction">
+      <action    path="/Welcome"
+                 type="org.apache.struts.scripting.ScriptAction"
+                 parameter="/WEB-INF/scripts/Welcome.gv">
             <forward
                     name="Success"
                     path="/Welcome.jsp"/>
         </action>
-        <!-- Display welcome page -->
-        <action
-                path="/Welcome"
-                forward="/Welcome.jsp"/>
 
         <!-- Change locale action -->
-        <action
-                path="/Locale"
-                type="org.apache.struts.apps.mailreader.actions.LocaleAction"
-                parameter="Success">
-            <forward
-                    name="Success"
-                    path="/Welcome.do"/>
-        </action>
+      <action
+          path="/Locale"
+          type="org.apache.struts.scripting.ScriptAction"
+          parameter="/WEB-INF/scripts/Locale.gv?defaultTarget=welcome" />
 
         <!-- Process a user logon -->
         <action
                 path="/SubmitLogon"
-                type="org.apache.struts.apps.mailreader.actions.LogonAction"
+                type="org.apache.struts.scripting.ScriptAction"
                 name="LogonForm"
                 scope="request"
                 cancellable="true"
@@ -157,7 +149,7 @@
         <!-- Display MainMenu -->
         <action
                 path="/MainMenu"
-                type="org.apache.struts.apps.mailreader.actions.MainMenuAction">
+                type="org.apache.struts.scripting.ScriptAction">
             <forward
                     name="Success"
                     path="/MainMenu.jsp"/>
@@ -166,7 +158,7 @@
         <!-- Process a user logoff -->
         <action
                 path="/Logoff"
-                type="org.apache.struts.apps.mailreader.actions.LogoffAction">
+                type="org.apache.struts.scripting.ScriptAction">
             <forward
                     name="Success"
                     path="/Welcome.do"/>
@@ -175,7 +167,7 @@
         <!-- "Abstract" mapping to use as base  -->
         <action path="//BaseAction"
                 input="Input"
-                type="org.apache.struts.apps.mailreader.actions.{1}Action"
+                type="org.apache.struts.scripting.ScriptAction"
                 name="{1}Form"
                 scope="request">
             <forward
@@ -214,7 +206,7 @@
         <action
                 path="/SaveSubscription"
                 extends="/Save*"
-                type="org.apache.struts.apps.mailreader.actions.SubscriptionAction"
+                type="org.apache.struts.scripting.ScriptAction"
                 name="SubscriptionForm">
             <forward
                     name="Success"

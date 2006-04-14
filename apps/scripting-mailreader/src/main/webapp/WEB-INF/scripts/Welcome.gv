@@ -1,4 +1,4 @@
-import org.apache.struts.webapp.example.*;
+import org.apache.struts.apps.mailreader.*;
 import java.util.ArrayList;
 
 // Setup message array in case there are errors
