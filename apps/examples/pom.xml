@@ -64,7 +64,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
          <scope>provided</scope>
       </dependency>
       <dependency>
-         <groupId>jstl</groupId>
+         <groupId>javax.servlet</groupId>
          <artifactId>jstl</artifactId>
          <version>1.0.6</version>
       </dependency>
