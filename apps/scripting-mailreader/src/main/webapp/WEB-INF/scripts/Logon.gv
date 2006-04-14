@@ -4,7 +4,7 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.util.ModuleException;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.struts.webapp.example.*;
+import org.apache.struts.apps.mailreader.*;
 
 form = struts.form;
 

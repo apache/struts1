@@ -1,12 +1,12 @@
 import java.lang.reflect.InvocationTargetException;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.struts.webapp.example.*;
+import org.apache.struts.apps.mailreader.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
 form = struts.form;
 
-act = form.getAction();
+act = form.get("action")();
 if (act == null) {
     act = "?";
 }

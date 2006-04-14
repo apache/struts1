@@ -1,9 +1,10 @@
 import java.lang.reflect.InvocationTargetException;
 import javax.servlet.ServletException;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.struts.webapp.example.*;
+import org.apache.struts.apps.mailreader.*;
+import org.apache.struts.apps.mailreader.dao.*;
 
-act = request.getParameter("action");
+act = request.getParameter("task");
 if (act == null) {
     act = "Create";
     if (log.isDebugEnabled()) {
@@ -21,7 +22,7 @@ if (!"Create".equals(act)) {
             log.debug(" User is not logged on in session "
                       + session.getId());
         }
-        struts.setForwardName("logon");
+        struts.setForwardName("Logon");
         return;
     }
 }
@@ -34,9 +35,9 @@ if (user != null) {
     try {
         PropertyUtils.copyProperties((Object)form, user);
         
-        form.action=act;
-        form.password=null;
-        form.password2=null;
+        form.set("task", act);
+        form.set("password", null);
+        form.set("password2", null);
     } catch (InvocationTargetException e) {
         Throwable t = e.getTargetException();
         if (t == null)
@@ -60,4 +61,4 @@ if (log.isTraceEnabled()) {
     log.trace(" Forwarding to 'success' page");
 }
 
-struts.setForwardName("success");
+struts.setForwardName("Success");

@@ -1,11 +1,11 @@
 import java.lang.reflect.InvocationTargetException;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.action.*;
-import org.apache.struts.webapp.example.*;
+import org.apache.struts.apps.mailreader.*;
 import javax.servlet.ServletException;
 
 form = struts.getForm();
-String act = form.getAction();
+String act = form.get("task");
 if (act == null) {
     act = "Create";
 }
@@ -22,7 +22,7 @@ if (!"Create".equals(act) && (user == null)) {
         log.trace(" User is not logged on in session "
                   + session.getId());
     }
-    struts.setForwardName("logon");
+    struts.setForwardName("Logon");
     return;
 }
 // Was this transact cancelled?
@@ -32,7 +32,7 @@ if (struts.action.isCancelled(request)) {
                   "' was cancelled");
     }
     session.removeAttribute(Constants.SUBSCRIPTION_KEY);
-    struts.setForwardName("success");
+    struts.setForwardName("Success");
     return;
 }
 
@@ -42,8 +42,8 @@ if (log.isTraceEnabled()) {
     log.trace(" Checking transactal control token");
 }
 if (!struts.action.isTokenValid(request)) {
-    errors.add(ActionErrors.GLOBAL_ERROR,
-               new ActionError("error.transact.token"));
+    errors.add(ActionMessages.GLOBAL_MESSAGE,
+               new ActionMessage("error.transaction.token"));
 }
 struts.action.resetToken(request);
 
@@ -51,23 +51,23 @@ struts.action.resetToken(request);
 if (log.isTraceEnabled()) {
     log.trace(" Performing extra validations");
 }
-value = form.getUsername();
+value = form.get("username");
 if (("Create".equals(act)) &&
         (database.findUser(value) != null)) {
         errors.add("username",
-                   new ActionError("error.username.unique",
-                                   form.getUsername()));
+                   new ActionMessage("error.username.unique",
+                                   form.get("username")));
 }
 if ("Create".equals(act)) {
-    value = form.password;
+    value = form.get("password");
     if ((value == null) || (value.length() <1)) {
         errors.add("password",
-                   new ActionError("error.password.required"));
+                   new ActionMessage("error.password.required"));
     }
-    value = form.password2;
+    value = form.get("password2");
     if ((value == null) || (value.length() < 1)) {
         errors.add("password2",
-                   new ActionError("error.password2.required"));
+                   new ActionMessage("error.password2.required"));
     }
 }
 
@@ -82,12 +82,12 @@ if (!errors.isEmpty()) {
 // Update the user's persistent profile information
 try {
     if ("Create".equals(act)) {
-        user = database.createUser(form.username);
+        user = database.createUser(form.get("username"));
     }
     oldPassword = user.password;
     PropertyUtils.copyProperties(user, form);
-    if ((form.password == null) ||
-        (form.password.length() < 1)) {
+    if ((form.get("password") == null) ||
+        (form.get("password").length() < 1)) {
         user.setPassword(oldPassword);
     }
 } catch (InvocationTargetException e) {
@@ -130,5 +130,5 @@ if (log.isTraceEnabled()) {
     log.trace(" Forwarding to success page");
 }
 
-struts.setForwardName("success");
+struts.setForwardName("Success");
 
