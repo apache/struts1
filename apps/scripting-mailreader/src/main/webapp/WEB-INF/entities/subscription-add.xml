@@ -1,0 +1,28 @@
+&logon-hermes;
+        &profile-open;
+<clickLink
+        description="Click Add"
+        label="${registration.addSubscription}"/>
+        &subscription-add-page;
+<setInputField
+        description="Mail Server"
+        name="host"
+        value="mail.agoraware.com"/>
+<setInputField
+        description="Mail Username"
+        name="username"
+        value="hermes"/>
+<setInputField
+        description="Mail Password"
+        name="password"
+        value="Ar14Dn3"/>
+<setSelectField
+        description="Server Type"
+        name="type"
+        value="imap"/>
+<setCheckbox
+        description="Auto connect"
+        name="autoConnect"
+        checked="true"/>
+        &save-click;
+        &profile-page;

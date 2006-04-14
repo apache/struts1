@@ -1,0 +1,3 @@
+<verifytitle
+        description="Menu page title"
+        text="${mainMenu.title}"/>

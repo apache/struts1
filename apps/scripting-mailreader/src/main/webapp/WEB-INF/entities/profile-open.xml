@@ -1,0 +1,3 @@
+<clickLink
+        description="Click Edit Profile"
+        label="${mainMenu.registration}"/>

@@ -1,0 +1,12 @@
+&logon-hermes;
+        &profile-open;
+<clickLink
+        description="Click Delete"
+        label="${registration.deleteSubscription}"/>
+<verifyTitle
+        description="Delete Subscription title"
+        text="${subscription.title.delete}"/>
+<clickButton
+        description="Confirm"
+        name="${button.doSubmit}"/>
+        &profile-page;

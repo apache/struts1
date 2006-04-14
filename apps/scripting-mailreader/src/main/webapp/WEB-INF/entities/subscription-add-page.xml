@@ -1,0 +1,3 @@
+<verifyTitle
+        description="Add Subscription title"
+        text="${subscription.title.create}"/>

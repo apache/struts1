@@ -1,0 +1,6 @@
+<clickLink
+        description="Click Welcome"
+        label="${index.title}"/>
+<verifyTitle
+        description="Welcome page title"
+        text="${index.title}"/>

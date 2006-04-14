@@ -1,0 +1,21 @@
+<setInputField
+        description="username"
+        name="username"
+        value="hermes"/>
+<setInputField
+        description="password"
+        name="password"
+        value="m3dus4"/>
+<setInputField
+        description="password2"
+        name="password2"
+        value="m3dus4"/>
+<setInputField
+        description="fullName"
+        name="fullName"
+        value="Hermes Katsopolis"/>
+<setInputField
+        description="fromAddress"
+        name="fromAddress"
+        value="hermes@somewhere.com"/>
+        &save-click;
