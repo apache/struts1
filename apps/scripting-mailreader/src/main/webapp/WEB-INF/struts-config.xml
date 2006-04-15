@@ -205,11 +205,12 @@
         <action
                 path="/SaveSubscription"
                 extends="/Save*"
+                parameter="/WEB-INF/scripts/SaveSubscription.gv"
                 type="org.apache.struts.scripting.ScriptAction"
                 name="SubscriptionForm">
             <forward
                     name="Success"
-                    path="/EditRegistration.do"/>
+                    path="/EditRegistration.do?task=Edit"/>
             <forward
                     name="Input"
                     path="/Subscription.do"/>

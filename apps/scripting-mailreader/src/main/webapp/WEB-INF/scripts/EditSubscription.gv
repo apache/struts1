@@ -2,9 +2,12 @@
 import java.lang.reflect.InvocationTargetException;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.apps.mailreader.*;
+import org.apache.struts.apps.mailreader.dao.*;
 import javax.servlet.ServletException;
 
-act = request.getParameter("action");
+System.out.println(" EditSubscription.gv (debug) begin");
+
+act = request.getParameter("task");
 if (act == null) {
     act = "Create";
 }
@@ -12,7 +15,7 @@ if (act == null) {
 host = request.getParameter("host");
 if (log.isDebugEnabled()) {
     log.debug("EditSubscriptionAction:  Processing " + act +
-              " action");
+              " task");
 }
 
 // Is there a currently logged on user?
@@ -22,18 +25,21 @@ if (user == null) {
         log.trace(" User is not logged on in session "
                   + session.getId());
     }
-    struts.setForwardName("logon");
+    struts.setForwardName("Logon");
+	System.out.println(" EditSubscription.gv (debug) -> Logon");
     return;
 }
 // Identify the relevant subscription
 subscription =
         user.findSubscription(request.getParameter("host"));
+
 if ((subscription == null) && !act.equals("Create")) {
     if (log.isTraceEnabled()) {
         log.trace(" No subscription for user " +
                   user.getUsername() + " and host " + host);
     }
-    struts.setForwardName("failure");
+	System.out.println(" EditSubscription.gv (debug) -> Failure");
+    struts.setForwardName("Failure");
     return;
 }
 
@@ -41,15 +47,18 @@ if (subscription != null) {
     session.setAttribute(Constants.SUBSCRIPTION_KEY, subscription);
 }
 
+
 form = struts.form;
-form.setAction(act);
-if (!act.equals("Create")) {
+System.out.println(" EditSubscription.gv (debug) Form:" + form.toString());
+
+form.set("task", act);
+if (act.equals("Edit")) {
+	System.out.println(" EditSubscription.gv (debug) act=" + act);
     if (log.isTraceEnabled()) {
         log.trace(" Populating form from " + subscription);
     }
     try {
         PropertyUtils.copyProperties(form, subscription);
-        form.setAction(act);
     } catch (InvocationTargetException e) {
         Throwable t = e.getTargetException();
         if (t == null)
@@ -64,8 +73,9 @@ if (!act.equals("Create")) {
 
 // Forward control to the edit subscription page
 if (log.isTraceEnabled()) {
-    log.trace(" Forwarding to 'success' page");
+    log.trace(" Forwarding to 'Success' page");
 }
 
-struts.setForwardName("success");
+System.out.println(" EditSubscription.gv (debug) Form:" + form.toString());
+struts.setForwardName("Success");
 

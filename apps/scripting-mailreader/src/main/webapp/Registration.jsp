@@ -148,13 +148,13 @@
                     <bean:write name="subscription" property="autoConnect"/>
                 </td>
                 <td align="center">
-                    <html:link action="/DeleteSubscription"
+                    <html:link action="/EditSubscription?task=Delete"
                                paramName="subscription" paramId="host"
                                paramProperty="host">
                         <bean:message key="registration.deleteSubscription"/>
                     </html:link>
                     &nbsp;
-                    <html:link action="/EditSubscription"
+                    <html:link action="/EditSubscription?task=Edit"
                                paramName="subscription" paramId="host"
                                paramProperty="host">
                         <bean:message key="registration.editSubscription"/>

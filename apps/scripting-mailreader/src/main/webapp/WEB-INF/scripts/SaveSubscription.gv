@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 
 form = struts.form;
 
-act = form.get("action")();
+act = form.get("task");
 if (act == null) {
     act = "?";
 }
@@ -35,7 +35,7 @@ if (struts.action.isCancelled(request)) {
                   "' was cancelled");
     }
     session.removeAttribute(Constants.SUBSCRIPTION_KEY);
-    struts.setForwardName("success");
+    struts.setForwardName("Success");
     return;
 }
 
@@ -72,7 +72,7 @@ if (act.equals("Delete")) {
     } catch (Exception e) {
         log.error("Database save", e);
     }
-    struts.setForwardName("success");
+    struts.setForwardName("Success");
     return;
 }
 
@@ -116,4 +116,4 @@ if (log.isTraceEnabled()) {
     log.trace(" Forwarding to success page");
 }
 
-struts.setForwardName("success");
+struts.setForwardName("Success");

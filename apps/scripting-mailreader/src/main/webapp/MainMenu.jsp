@@ -11,7 +11,7 @@
 <h3><bean:message key="mainMenu.heading"/> <bean:write name="user"
                                                        property="fullName"/></h3>
 <ul>
-    <li><html:link action="/EditRegistration"><bean:message
+    <li><html:link action="/EditRegistration?task=Edit"><bean:message
             key="mainMenu.registration"/></html:link></li>
     <li><html:link action="/Logoff"><bean:message key="mainMenu.logoff"/>
     </html:link></li>
