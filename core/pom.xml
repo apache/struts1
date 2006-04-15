@@ -58,35 +58,14 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
 
     <build>
 
-        <sourceDirectory>src/java</sourceDirectory>
-        <testSourceDirectory>src/test</testSourceDirectory>
-
         <resources>
             <resource>
-                <directory>src/java</directory>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.properties</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>conf/java</directory>
-                <targetPath>org/apache/struts/resources</targetPath>
-                <includes>
-                    <include>**/*.dtd</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>conf/java</directory>
-                <targetPath>org/apache/struts/chain</targetPath>
-                <includes>
-                    <include>chain-config.xml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>conf/java</directory>
-                <targetPath>org/apache/struts/validator</targetPath>
-                <includes>
-                    <include>validator-rules.xml</include>
                 </includes>
             </resource>
             <resource>
@@ -100,15 +79,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
 
         <testResources>
             <testResource>
-                <targetPath>org/apache/struts/resources</targetPath>
-                <directory>conf/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                    <include>**/*.dtd</include>
-                </includes>
-            </testResource>
-            <testResource>
-                <directory>src/test</directory>
+                <directory>src/test/java</directory>
                 <includes>
                     <include>**/*.xml</include>
                 </includes>
