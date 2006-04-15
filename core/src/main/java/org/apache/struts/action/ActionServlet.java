@@ -266,8 +266,6 @@ public class ActionServlet extends HttpServlet {
             "/org/apache/struts/resources/struts-config_1_2.dtd",
             "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN",
             "/org/apache/struts/resources/struts-config_1_3.dtd",
-            "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN",
-            "/org/apache/struts/resources/web-app_2_2.dtd",
             "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN",
             "/org/apache/struts/resources/web-app_2_3.dtd"
         };
