@@ -52,7 +52,7 @@ form = struts.form;
 System.out.println(" EditSubscription.gv (debug) Form:" + form.toString());
 
 form.set("task", act);
-if (act.equals("Edit")) {
+if (!act.equals("Create")) {
 	System.out.println(" EditSubscription.gv (debug) act=" + act);
     if (log.isTraceEnabled()) {
         log.trace(" Populating form from " + subscription);
