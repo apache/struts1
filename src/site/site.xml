@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Struts Action Framework">
+    <bannerLeft>
+        <name>Apache Software Foundation</name>
+        <src>http://www.apache.org/images/asf-logo.gif</src>
+        <href>http://www.apache.org</href>
+    </bannerLeft>
+    <bannerRight>
+        <name>Apache Struts</name>
+        <src>http://struts.apache.org/images/struts.gif</src>
+        <href>http://struts.apache.org</href>
+    </bannerRight>     
+    <body>
+        <links>
+            <item name="Apache" href="http://www.apache.org" /> 
+            <item name="Action" href="http://struts.apache.org/struts-action" /> 
+            <item name="Shale" href="http://struts.apache.org/struts-shale" /> 
+            <item name="Tiles" href="http://struts.apache.org/struts-tiles" /> 
+        </links>
+        <menu name="Struts Action Framework">
+            <item
+                    name="Welcome"
+                    href="index.html"
+                    />
+            <item
+                    name="Learning"
+                    href="learning.html"
+                    />
+            <item
+                    name="Roadmap"
+                    href="roadmap.html"
+                    />
+            <item
+                    name="Milestones"
+                    href="milestones.html"
+                    />
+            <item
+                    name="Download"
+                    href="http://struts.apache.org/downloads.html"/>
+        </menu>
+
+        <menu name="Quick Links">
+            <item
+                    name="User Guide"
+                    href="userGuide/index.html"
+                    />
+            <item
+                    name="FAQs and HOWTOs"
+                    href="faqs/index.html"
+                    />
+            <item
+                    name="JavaDocs"
+                    href="apidocs/index.html"
+                    />
+            <item
+                    name="Release Notes"
+                    href="userGuide/release-notes.html"
+                    />
+            <item
+                    name="Source Repository"
+                    href="http://svn.apache.org/viewcvs.cgi/struts/action/trunk/?root=Apache-SVN"
+                    />
+            <item
+                    name="Apache Struts Home"
+                    href="http://struts.apache.org"/>
+        </menu>
+        ${reports}
+    </body>
+</project>
