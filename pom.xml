@@ -116,6 +116,18 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
         
     </build>
 
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <aggregate>true</aggregate>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
     <dependencies/>
 
     <repositories>
