@@ -121,6 +121,13 @@
             </plugin>
             <plugin>
                 <artifactId>maven-checkstyle-plugin</artifactId>
+                <!--configuration>
+                  <configLocation>build/struts_checks.xml</configLocation>
+                </configuration-->
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jxr-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </reporting>
