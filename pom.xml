@@ -19,18 +19,6 @@
  */
 -->
 
-<!-- 
-             Experimental Maven 2 Build for Apache Struts
-             ============================================
-
-To build and install this parent pom and its modules into your local repo:
-
-   $ mvn install
-
-For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
-
--->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -69,6 +57,10 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
            <name>Apache Maven Repository (Test Builds)</name>
            <url>scp://people.apache.org/www/cvs.apache.org/maven-snapshot-repository</url>
         </repository>
+        <site>
+            <id>apache-site</id>
+            <url>scp://people.apache.org/www/struts.apache.org/struts-action/</url>
+        </site>
     </distributionManagement>
 
     <modules>
@@ -119,11 +111,16 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
     <reporting>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
                     <aggregate>true</aggregate>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
         </plugins>
     </reporting>
