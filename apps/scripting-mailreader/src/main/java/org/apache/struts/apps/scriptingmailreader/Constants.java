@@ -17,7 +17,7 @@
  */
 
 
-package org.apache.struts.apps.mailreader;
+package org.apache.struts.apps.scriptingmailreader;
 
 
 /**

@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.struts.apps.mailreader.plugin;
+package org.apache.struts.apps.scriptingmailreader.plugin;
 
 
 import org.apache.commons.logging.Log;
