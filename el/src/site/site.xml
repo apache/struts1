@@ -22,10 +22,11 @@
             <item name="FAQ" href="struts-el.html"/>
         </menu>
         <menu name="Reference">
-            <item name="Bean EL" href="tagreference-struts-bean-el.html"/>
-            <item name="HTML EL" href="tagreference-struts-html-el.html"/>
-            <item name="Logic EL" href="tagreference-struts-logic-el.html"/>
-            <item name="Tiles EL" href="tagreference-struts-tiles-el.html"/>
+            <item name="Bean EL" href="tagreference.html#struts-bean-el.tld"/>
+            <item name="HTML EL" href="tagreference.html#struts-html-el.tld"/>
+            <item name="Logic EL" href="tagreference.html#struts-logic-el.tld"/>
+            <item name="Tiles EL" href="tagreference.html#struts-tiles-el.tld"/>
+            <item name="Javadoc" href="apidocs/index.html"/>
         </menu>
         <menu name="Quick Links">
             <item
