@@ -22,7 +22,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.PlugIn;
-import org.apache.struts.apps.mailreader.Constants;
+import org.apache.struts.apps.scriptingmailreader.Constants;
 import org.apache.struts.apps.mailreader.dao.impl.memory.MemoryUserDatabase;
 import org.apache.struts.config.ModuleConfig;
 
