@@ -1,0 +1,87 @@
+<assembly>
+  <id>all</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>lib</outputDirectory>
+      <scope>runtime</scope>
+    </dependencySet>
+  </dependencySets>
+  <fileSets>
+    <fileSet>
+    	<directory>src/main/resources</directory>
+    	<outputDirectory></outputDirectory>
+      <includes>
+        <include>README*</include>
+        <include>LICENSE*</include>
+        <include>NOTICE*</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>target/webapps</directory>
+      <outputDirectory>webapps</outputDirectory>
+      <includes>
+        <include>*.war</include>
+      </includes>
+    </fileSet>
+    
+    <!-- Include the source code in the assembly -->
+    <fileSet>
+      <directory>../</directory>
+      <outputDirectory>src/</outputDirectory>
+      <includes>
+        <include>pom.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>../core</directory>
+      <outputDirectory>src/core</outputDirectory>
+      <includes>
+        <include>pom.xml</include>
+        <include>src/</include>
+      </includes>
+   </fileSet>
+   <fileSet>
+     <directory>../el</directory>
+     <outputDirectory>src/el</outputDirectory>
+     <includes>
+        <include>pom.xml</include>
+        <include>src/</include>
+      </includes>
+   </fileSet>
+   <fileSet>
+     <directory>../taglib</directory>
+     <outputDirectory>src/taglib</outputDirectory>
+     <includes>
+        <include>pom.xml</include>
+        <include>src/</include>
+      </includes>
+   </fileSet>
+
+   
+   <!-- Include the website docs in the assembly -->
+   <fileSet>
+     <directory>../target/site</directory>
+     <outputDirectory>docs/</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../apps/target/site</directory>
+     <outputDirectory>docs/struts-apps</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../core/target/site</directory>
+     <outputDirectory>docs/struts-core</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../el/target/site</directory>
+     <outputDirectory>docs/struts-el</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../taglib/target/site</directory>
+     <outputDirectory>docs/struts-taglib</outputDirectory>
+   </fileSet>
+   
+  </fileSets>
+</assembly>
