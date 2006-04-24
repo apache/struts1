@@ -33,7 +33,7 @@
 
    <artifactId>struts-tiles</artifactId>
    <packaging>jar</packaging>
-   <name>Struts Tiles</name>
+   <name>Struts Action - Tiles</name>
    
    <distributionManagement>
       <site>
