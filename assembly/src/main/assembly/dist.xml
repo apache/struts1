@@ -71,12 +71,52 @@
      <outputDirectory>docs/struts-apps</outputDirectory>
    </fileSet>
    <fileSet>
+     <directory>../apps/blank/target/site</directory>
+     <outputDirectory>docs/struts-apps/struts-blank</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../apps/cookbook/target/site</directory>
+     <outputDirectory>docs/struts-apps/struts-cookbook</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../apps/examples/target/site</directory>
+     <outputDirectory>docs/struts-apps/struts-examples</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../apps/faces-example1/target/site</directory>
+     <outputDirectory>docs/struts-apps/struts-faces-example1</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../apps/mailreader/target/site</directory>
+     <outputDirectory>docs/struts-apps/struts-mailreader</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../apps/scripting-mailreader/target/site</directory>
+     <outputDirectory>docs/struts-apps/struts-scripting-mailreader</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../apps/strutsel-exercise-taglib/target/site</directory>
+     <outputDirectory>docs/struts-apps/strutsel-exercise-taglib</outputDirectory>
+   </fileSet>
+   <fileSet>
      <directory>../core/target/site</directory>
      <outputDirectory>docs/struts-core</outputDirectory>
    </fileSet>
    <fileSet>
      <directory>../el/target/site</directory>
      <outputDirectory>docs/struts-el</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../extras/target/site</directory>
+     <outputDirectory>docs/struts-extras</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../faces/target/site</directory>
+     <outputDirectory>docs/struts-faces</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../scripting/target/site</directory>
+     <outputDirectory>docs/struts-scripting</outputDirectory>
    </fileSet>
    <fileSet>
      <directory>../taglib/target/site</directory>
