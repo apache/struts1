@@ -1,4 +1,4 @@
-import org.apache.struts.webapp.example.*;
+import org.apache.struts.apps.scriptingmailreader.*;
 
 user = session.getAttribute(Constants.USER_KEY);
 

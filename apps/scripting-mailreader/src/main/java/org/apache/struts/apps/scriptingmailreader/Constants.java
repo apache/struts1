@@ -88,7 +88,7 @@ public final class Constants {
      * The package name for this application.
      * </p>
      */
-    public static final String PACKAGE = "org.apache.struts.apps.mailreader";
+    public static final String PACKAGE = "org.apache.struts.apps.scriptingmailreader";
 
     /**
      * <p>

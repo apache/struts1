@@ -1,7 +1,7 @@
 import java.lang.reflect.InvocationTargetException;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.struts.action.*;
-import org.apache.struts.apps.mailreader.*;
+import org.apache.struts.apps.scriptingmailreader.*;
 import javax.servlet.ServletException;
 
 form = struts.getForm();

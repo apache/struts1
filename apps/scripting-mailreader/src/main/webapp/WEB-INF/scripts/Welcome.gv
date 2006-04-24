@@ -1,4 +1,4 @@
-import org.apache.struts.apps.mailreader.*;
+import org.apache.struts.apps.scriptingmailreader.*;
 import java.util.ArrayList;
 
 // Setup message array in case there are errors

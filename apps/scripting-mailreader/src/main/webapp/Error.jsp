@@ -22,7 +22,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="org.apache.struts.Globals" %>
-<%@ page import="org.apache.struts.apps.mailreader.Constants" %>
+<%@ page import="org.apache.struts.apps.scriptingmailreader.Constants" %>
 
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>

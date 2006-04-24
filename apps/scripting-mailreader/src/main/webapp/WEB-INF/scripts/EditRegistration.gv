@@ -1,7 +1,7 @@
 import java.lang.reflect.InvocationTargetException;
 import javax.servlet.ServletException;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.struts.apps.mailreader.*;
+import org.apache.struts.apps.scriptingmailreader.*;
 import org.apache.struts.apps.mailreader.dao.*;
 
 act = request.getParameter("task");

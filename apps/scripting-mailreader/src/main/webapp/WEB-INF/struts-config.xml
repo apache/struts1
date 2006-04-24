@@ -237,10 +237,10 @@
 
     <!-- ==== Message Resources Definitions ==== -->
     <message-resources
-            parameter="org.apache.struts.apps.mailreader.resources.ApplicationResources"/>
+            parameter="org.apache.struts.apps.scriptingmailreader.resources.ApplicationResources"/>
 
     <message-resources
-            parameter="org.apache.struts.apps.mailreader.resources.AlternateApplicationResources"
+            parameter="org.apache.struts.apps.scriptingmailreader.resources.AlternateApplicationResources"
             key="alternate"/>
 
 
@@ -249,7 +249,7 @@
             className="org.apache.struts.plugins.ModuleConfigVerifier"/>
 
     <plug-in
-            className="org.apache.struts.apps.mailreader.plugin.MemoryDatabasePlugIn">
+            className="org.apache.struts.apps.scriptingmailreader.plugin.MemoryDatabasePlugIn">
         <set-property
                 property="pathname"
                 value="/WEB-INF/database.xml"/>
