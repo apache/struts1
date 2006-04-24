@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Struts Tiles"
+         href="http://struts.apache.org/"
+        image="images/struts.gif">
+
+  <title>Apache Struts - Struts Tiles</title>
+  <body>
+
+    <menu name="Struts Tiles">
+        <item href="index.html" name="Tiles Home"/>
+        <item href="installation.html" name="Installation"/>
+        <item href="userGuide.html" name="User Guide"/>
+        <item href="examples.html" name="Examples"/>
+        <item href="faq.html" name="FAQs"/>
+    </menu>
+    <menu name="Taglib Reference">
+        <item name="Struts Tiles" href="tagreference-struts-tiles.html"/>    
+    </menu>
+    <!--
+    <menu name="Examples">
+        <item href="examples/index.jsp" name="Home"/>
+    </menu>
+
+    <menu name="Documentation">
+        <item href="doc/index.jsp" name="Home"/>
+        <item href="examples/index.jsp" name="Examples"/>
+        <item href="test/quickOverview.jsp" name="Quick overview"/>
+        <item href="doc/index.jsp" name="Home"/>
+        <item href="tutorial/index.jsp" name="Tutorial Live Examples"/>
+    </menu>
+    -->
+    <menu name="Quick Links">
+        <item 
+            name="Apache Struts Home"
+            href="../index.html"/>
+    </menu>
+    
+  </body>
+</project>
+
+
+
+
+
+
