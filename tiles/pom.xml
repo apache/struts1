@@ -36,11 +36,10 @@
    <name>Struts Tiles</name>
    
    <distributionManagement>
-      <snapshotRepository>
-         <id>apache-snapshot</id>
-         <name>Apache Snapshot Repository</name>
-         <url>scp://people.apache.org/www/cvs.apache.org/maven-snapshot-repository</url>
-      </snapshotRepository>
+      <site>
+         <id>apache-site</id>
+         <url>scp://people.apache.org/www/struts.apache.org/struts-action/struts-tiles</url>
+      </site>
    </distributionManagement>
 
    <build>
@@ -60,7 +59,7 @@
             <targetPath>META-INF/tlds</targetPath>
          </resource>
          <resource>
-            <directory>build</directory>
+            <directory>../build</directory>
             <includes>
                <include>LICENSE.txt</include>
                <include>NOTICE.txt</include>
@@ -98,7 +97,7 @@
       <dependency>
          <groupId>org.apache.struts.action</groupId>
          <artifactId>struts-core</artifactId>
-         <version>${version}</version>
+         <version>${pom.version}</version>
       </dependency>
 
    </dependencies>
@@ -114,5 +113,35 @@
          </plugin>
       </plugins>
    </reporting>
+   
+   <profiles>
+       <profile>
+        <id>pre-assembly</id>
+        <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadoc</id>
+                <goals><goal>jar</goal></goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-source</id>
+                <goals><goal>jar</goal></goals>
+              </execution>
+            </executions>
+          </plugin>
+       </plugins>
+       </build>
+      </profile>
+    </profiles>
 
 </project>
