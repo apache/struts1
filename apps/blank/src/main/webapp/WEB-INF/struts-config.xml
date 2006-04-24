@@ -8,8 +8,8 @@
      This is a blank Struts configuration file with an example
      welcome action/page and other commented sample elements.
 
-     Tiles and the Struts Validator are configured using the factory defaults
-     and are ready-to-use.
+     Struts Validator is configured using the factory defaults
+     and is ready-to-use.
 
      NOTE: If you have a generator tool to create the corresponding Java classes
      for you, you could include the details in the "form-bean" declarations.
