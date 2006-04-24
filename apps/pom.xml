@@ -34,6 +34,14 @@
    <packaging>pom</packaging>
    <name>Struts Action - Apps</name>
 
+   <distributionManagement>
+       <site>
+           <id>apache-site</id>
+           <url>scp://people.apache.org/www/struts.apache.org/struts-action/struts-apps</url>
+       </site>
+   </distributionManagement>
+
+
    <modules>
       <module>cookbook</module>
       <module>faces-example1</module>
