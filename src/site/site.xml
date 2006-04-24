@@ -88,6 +88,9 @@
             <item   name="Struts Taglib"
                     href="struts-taglib/index.html" />
 
+            <item   name="Struts Tiles"
+                    href="struts-tiles/index.html" />
+
         </menu>
 
         ${modules}
