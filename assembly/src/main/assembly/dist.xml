@@ -193,6 +193,14 @@
         <include>src/</include>
       </includes>
    </fileSet>
+   <fileSet>
+     <directory>../tiles</directory>
+     <outputDirectory>src/tiles</outputDirectory>
+     <includes>
+        <include>pom.xml</include>
+        <include>src/</include>
+      </includes>
+   </fileSet>
 
    
    <!-- Include the website docs in the assembly -->
@@ -255,6 +263,10 @@
    <fileSet>
      <directory>../taglib/target/site</directory>
      <outputDirectory>docs/struts-taglib</outputDirectory>
+   </fileSet>
+   <fileSet>
+     <directory>../tiles/target/site</directory>
+     <outputDirectory>docs/struts-tiles</outputDirectory>
    </fileSet>
    
   </fileSets>

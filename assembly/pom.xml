@@ -51,60 +51,6 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>dependency-maven-plugin</artifactId>
         <executions>
-          <!--execution>
-            <id>copy-javadoc</id>
-            <phase>package</phase>
-            <goals>
-              <goal>copy</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-core</artifactId>
-                  <version>${version}</version>
-                  <classifier>javadoc</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-el</artifactId>
-                  <version>${version}</version>
-                  <classifier>javadoc</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-extras</artifactId>
-                  <version>${version}</version>
-                  <classifier>javadoc</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-faces</artifactId>
-                  <version>${version}</version>
-                  <classifier>javadoc</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-mailreader-dao</artifactId>
-                  <version>${version}</version>
-                  <classifier>javadoc</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-scripting</artifactId>
-                  <version>${version}</version>
-                  <classifier>javadoc</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-taglib</artifactId>
-                  <version>${version}</version>
-                  <classifier>javadoc</classifier>
-                </artifactItem>
-              </artifactItems>
-              <outputDirectory>${project.build.directory}/javadoc</outputDirectory>
-            </configuration>
-          </execution-->
           <execution>
             <id>copy-war</id>
             <phase>package</phase>
@@ -171,60 +117,6 @@
               <outputDirectory>${project.build.directory}/webapps</outputDirectory>
             </configuration>
           </execution>
-          <!--execution>
-            <id>copy-sources</id>
-            <phase>package</phase>
-            <goals>
-              <goal>copy</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-core</artifactId>
-                  <version>${version}</version>
-                  <classifier>sources</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-el</artifactId>
-                  <version>${version}</version>
-                  <classifier>sources</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-extras</artifactId>
-                  <version>${version}</version>
-                  <classifier>sources</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-faces</artifactId>
-                  <version>${version}</version>
-                  <classifier>sources</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-mailreader-dao</artifactId>
-                  <version>${version}</version>
-                  <classifier>sources</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-scripting</artifactId>
-                  <version>${version}</version>
-                  <classifier>sources</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-taglib</artifactId>
-                  <version>${version}</version>
-                  <classifier>sources</classifier>
-                </artifactItem>
-              </artifactItems>
-              <outputDirectory>${project.build.directory}/sources</outputDirectory>
-            </configuration>
-          </execution-->
         </executions>
       </plugin>
     </plugins>
@@ -240,9 +132,6 @@
         <configuration>
           <descriptors>
             <descriptor>src/main/assembly/dist.xml</descriptor>
-            <!-- descriptor>src/main/assembly/all.xml</descriptor -->
-            <!-- descriptor>src/main/assembly/dep.xml</descriptor -->
-            <!-- descriptor>src/main/assembly/src.xml</descriptor -->
           </descriptors>
           <finalName>struts-action-${version}</finalName>
           <outputDirectory>target/assembly/out</outputDirectory>
@@ -288,6 +177,26 @@
       <groupId>org.apache.struts.action</groupId>
       <artifactId>struts-mailreader-dao</artifactId>
       <version>${version}</version>
+    </dependency>
+    
+    <!-- Avoid transitive dependencies by marking these as provided -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.3</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <version>2.0.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>provided</scope>
     </dependency>
 
   </dependencies>
