@@ -49,8 +49,8 @@
                     href="faqs/index.html"
                     />
             <item
-                    name="JavaDocs"
-                    href="apidocs/index.html"
+                    name="Javadoc"
+                    href="javadoc.html"
                     />
             <item
                     name="Release Notes"
@@ -64,6 +64,33 @@
                     name="Apache Struts Home"
                     href="http://struts.apache.org"/>
         </menu>
+        
+        <menu name="Components">
+        
+            <item   name="Struts Action Core"
+                    href="struts-core/index.html" />
+
+            <item   name="Struts Apps"
+                    href="struts-apps/index.html" />
+
+            <item   name="Struts EL"
+                    href="struts-el/index.html" />
+
+            <item   name="Struts Extras"
+                    href="struts-extras/index.html" />
+
+            <item   name="Struts Faces"
+                    href="struts-faces/index.html" />
+
+            <item   name="Struts Scripting"
+                    href="struts-scripting/index.html" />
+
+            <item   name="Struts Taglib"
+                    href="struts-taglib/index.html" />
+
+        </menu>
+
+        ${modules}
         ${reports}
     </body>
 </project>

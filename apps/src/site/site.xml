@@ -28,12 +28,28 @@
         </menu>
         
         <menu name="Apps">
-            <item
-                    name="Cookbook"
-                    href="struts-cookbook/"/>
-            <item
-                    name="Mailreader"
-                    href="struts-mailreader/"/>
+        
+            <item   name="Struts Blank"
+                    href="struts-blank/index.html" />
+                    
+            <item   name="Struts Cookbook"
+                    href="struts-cookbook/index.html" />
+                    
+            <item   name="Struts Examples"
+                    href="struts-examples/index.html" />
+
+            <item   name="Struts Faces 1"
+                    href="struts-faces-example1/index.html" />
+
+            <item   name="Struts Faces 2"
+                    href="struts-faces-example2/index.html" />
+
+            <item   name="Struts Mailreader"
+                    href="struts-mailreader/index.html" />
+
+            <item   name="Struts EL Exercise Taglib"
+                    href="strutsel-exercise-taglib/index.html" />
+
         </menu>
         
         ${modules}
