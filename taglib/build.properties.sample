@@ -1,6 +1,0 @@
-#cactus.home.tomcat4x = D:/cygwin/home/jmitchell/apache_home/jakarta-tomcat-4.1.29
-#tomcat.home          = D:/cygwin/home/jmitchell/apache_home/jakarta-tomcat-4.1.29
-
-cactus.home.tomcat5x = D:/cygwin/home/jmitchell/apache_home/jakarta-tomcat-5.0.28
-tomcat.home          = D:/cygwin/home/jmitchell/apache_home/jakarta-tomcat-5.0.28
-
