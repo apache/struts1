@@ -32,7 +32,6 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.apache.struts.action</groupId>
    <artifactId>struts-faces</artifactId>
-
    <packaging>jar</packaging>
    <name>Struts Action - Faces</name>
    <url>http://struts.apache.org</url>
