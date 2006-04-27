@@ -94,6 +94,9 @@
     <!-- ==== Global Forward Definitions ==== -->
     <global-forwards>
         <forward
+                name="Welcome"
+                path="/Welcome.do"/>
+        <forward
                 name="Logoff"
                 path="/Logoff.do"/>
         <forward
@@ -126,7 +129,7 @@
       <action
           path="/Locale"
           type="org.apache.struts.scripting.ScriptAction"
-          parameter="/WEB-INF/scripts/Locale.gv?defaultTarget=welcome" />
+          parameter="/WEB-INF/scripts/Locale.gv?defaultTarget=Welcome" />
 
         <!-- Process a user logon -->
         <action

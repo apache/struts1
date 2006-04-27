@@ -33,7 +33,7 @@
 MYFACES_BEGIN
   <listener>
     <listener-class>
-      net.sourceforge.myfaces.webapp.StartupServletContextListener
+      org.apache.myfaces.webapp.StartupServletContextListener
     </listener-class>
   </listener>
 MYFACES_END
