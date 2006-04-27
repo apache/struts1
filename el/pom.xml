@@ -44,18 +44,6 @@
    </distributionManagement>
 
    <build>
-      <resources>
-         <resource>
-            <directory>src/tld</directory>
-            <includes>
-               <include>**/*.tld</include>
-            </includes>
-            <targetPath>META-INF/tlds</targetPath>
-         </resource>
-      </resources>
-
-      <testResources/>
-
       <pluginManagement>
          <plugins>
             <!-- all tests in src/test are for Cactus, not plain JUnit -->
