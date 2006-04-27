@@ -281,8 +281,8 @@ limitations under the License.
                     If you do come up with a JavaScript that provides the
                     final solution to this project,
                     please post your patch to this
-                    <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=13454">
-                        Bugzilla ticket</a>
+                    <a href="http://issues.apache.org/struts/browse/STR-899">
+                        JIRA ticket</a>
                     .
                 </p>
             </subsection>

@@ -55,55 +55,31 @@ limitations under the License.
 
             </subsection>
 
-            <a name="Bugzilla"/>
-            <subsection name="Bugzilla Queries">
+            <a name="JIRA"/>
+            <subsection name="JIRA Queries">
 
                 <p>
                     The Struts development community uses the
-                    <a href="http://issues.apache.org/bugzilla">
+                    <a href="http://issues.apache.org/struts/">
                         Apache Bug Database</a>
-                    (Bugzilla) to manage problem reports
+                    (JIRA) to manage problem reports
                     and enhancement suggestions.
-                    For your convenience, here are some common Bugzilla
+                    For your convenience, here are some common JIRA 
                     queries:
                 </p>
 
                 <ul>
                     <li>
-                        <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;order=bugs.bug_id">
-                            Open reports</a>
+                        <a href="http://issues.apache.org/struts/browse/STR?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Struts Action 1)</a>
                     </li>
                     <li>
-                        <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=3&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">
-                            Open reports with at least 3 votes</a>
+                        <a href="http://issues.apache.org/struts/browse/WW?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Struts Action 2)</a>
                     </li>
                     <li>
-                        <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=bugs.bug_id">
-                            Open problem reports</a>
-                        <ul>
-                            <li>
-                                <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;order=bugs.bug_id">
-                                    major problem reports</a>
-                            </li>
-                            <li>
-                                <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;bug_severity=Blocker&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;order=bugs.bug_id">
-                                    normal/minor problem reports</a>
-                            </li>
-                        </ul>
+                        <a href="http://issues.apache.org/struts/browse/SHALE?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Struts Shale)</a>
                     </li>
                     <li>
-                        <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;product=Struts&amp;bug_severity=Enhancement&amp;order=Bug+Number">
-                            Open enhancement reports</a>
-                        <ul>
-                            <li>
-                                <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_severity=Enhancement&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Struts&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=PatchAvailable&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;newqueryname=&amp;order=Bug+Number">
-                                    Patch Available</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=RESOLVED&amp;resolution=LATER&amp;resolution=REMIND&amp;product=Struts&amp;order=bugs.bug_id">
-                            Reports to be handled "LATER"</a>
+                        <a href="http://issues.apache.org/struts/browse/SB?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Struts Sandbox)</a>
                     </li>
                 </ul>
 
@@ -178,9 +154,9 @@ limitations under the License.
                 </p>
 
                 <p>
-                    Enhancement requests are logged in Bugzilla as they are
+                    Enhancement requests are logged in JIRA as they are
                     suggested.
-                    <strong>The listing of an enhancement in Bugzilla does not
+                    <strong>The listing of an enhancement in JIRA does not
                         imply that
                         it is being "planned"</strong>
                     ,

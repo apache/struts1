@@ -46,8 +46,8 @@
     </scm>
 
     <issueManagement>
-        <system>Bugzilla</system>
-        <url>http://issues.apache.org/bugzilla</url>
+        <system>JIRA</system>
+        <url>http://issues.apache.org/struts/</url>
     </issueManagement>
 
     <ciManagement/>
