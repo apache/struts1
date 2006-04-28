@@ -43,45 +43,6 @@
       </site>
    </distributionManagement>
    
-   <build>
-
-      <sourceDirectory>src/java</sourceDirectory>
-      <testSourceDirectory>src/test</testSourceDirectory>
-
-      <resources>
-         <resource>
-            <directory>src/java</directory>
-            <includes>
-               <include>**/*.properties</include>
-            </includes>
-         </resource>
-         <resource>
-            <directory>src/tld</directory>
-            <includes>
-               <include>**/*.tld</include>
-            </includes>
-            <targetPath>META-INF/tlds</targetPath>
-         </resource>
-         <resource>
-            <directory>../build</directory>
-            <includes>
-               <include>LICENSE.txt</include>
-               <include>NOTICE.txt</include>
-            </includes>
-         </resource>
-      </resources>
-
-      <testResources>
-         <testResource>
-            <directory>src/test</directory>
-            <excludes>
-               <exclude>**/*.java</exclude>
-            </excludes>
-         </testResource>
-      </testResources>
-
-   </build>
-
    <dependencies>
 
       <dependency>
