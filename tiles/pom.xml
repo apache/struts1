@@ -52,13 +52,12 @@
 
       <testResources>
          <testResource>
-            <directory>src/test</directory>
-            <excludes>
-               <exclude>**/*.java</exclude>
-            </excludes>
+            <directory>src/test/java</directory>
+            <includes>
+               <include>**/*.xml</include>
+            </includes>
          </testResource>
       </testResources>
-
    </build>
 
    <dependencies>
