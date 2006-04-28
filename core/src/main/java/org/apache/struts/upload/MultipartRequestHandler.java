@@ -98,7 +98,7 @@ public interface MultipartRequestHandler {
      * <p> This method returns all elements of a multipart request. </p>
      *
      * @return A Hashtable where the keys are input names and values are
-     *         either Strings or FormFiles
+     *         either String arrays or FormFiles
      */
     public Hashtable getAllElements();
 
