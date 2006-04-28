@@ -175,6 +175,11 @@
     </dependency>
     <dependency>
       <groupId>org.apache.struts.action</groupId>
+      <artifactId>struts-tiles</artifactId>
+      <version>${version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.struts.action</groupId>
       <artifactId>struts-mailreader-dao</artifactId>
       <version>${version}</version>
     </dependency>
