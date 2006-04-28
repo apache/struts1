@@ -44,36 +44,21 @@
    </distributionManagement>
 
    <build>
-
-      <sourceDirectory>src/java</sourceDirectory>
-      <testSourceDirectory>src/test</testSourceDirectory>
-
       <resources>
          <resource>
-            <directory>src/java</directory>
+            <directory>src/main/resources</directory>
+         </resource>
+         <resource>
+            <directory>src/main/java</directory>
             <includes>
                <include>**/*.properties</include>
-            </includes>
-         </resource>
-         <resource>
-            <directory>src/tld</directory>
-            <includes>
-               <include>**/*.tld</include>
-            </includes>
-            <targetPath>META-INF/tlds</targetPath>
-         </resource>
-         <resource>
-            <directory>../build</directory>
-            <includes>
-               <include>LICENSE.txt</include>
-               <include>NOTICE.txt</include>
             </includes>
          </resource>
       </resources>
 
       <testResources>
          <testResource>
-            <directory>src/test</directory>
+            <directory>src/test/java</directory>
             <excludes>
                <exclude>**/*.java</exclude>
             </excludes>
@@ -112,7 +97,7 @@
             <groupId>net.sourceforge.maven-taglib</groupId>
             <artifactId>maven-taglib-plugin</artifactId>
             <configuration>
-               <taglib.src.dir>${basedir}/src/tld</taglib.src.dir>
+               <taglib.src.dir>${basedir}/src/main/resources/META-INF/tld</taglib.src.dir>
             </configuration>
          </plugin>
       </plugins>
