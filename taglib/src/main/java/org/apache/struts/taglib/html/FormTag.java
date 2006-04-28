@@ -659,8 +659,9 @@ public class FormTag extends TagSupport {
         results.append(lineEnd);
         results.append(lineEnd);
 
-        results.append(
-            "  if (focusControl.type != \"hidden\" && !focusControl.disabled) {");
+        results.append("  if (focusControl.type != \"hidden\" && ");
+        results.append("!focusControl.disabled && ");
+        results.append("focusControl.style.display != \"none\") {");
         results.append(lineEnd);
 
         // Construct the index if needed and insert into focus statement
