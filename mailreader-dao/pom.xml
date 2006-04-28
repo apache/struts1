@@ -36,17 +36,6 @@
    <name>Struts Action - Mailreader DAO</name>
    <url>http://struts.apache.org</url>
 
-   <build>
-        <testResources>
-            <testResource>
-                <directory>src/test/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </testResource>
-        </testResources>
-   </build>
-   
    <dependencies>
         <dependency>
             <groupId>commons-digester</groupId>
