@@ -2315,8 +2315,8 @@
 &lt;nested:nest property="myNestedLevel" /&gt;
   &lt;nested:define property="collectionList" /&gt;
   &lt;html:options collection="collectionList"
-                  property="labelProperty"
-             valueProperty="valueProperty" /&gt;
+                  property="valueProperty"
+             labelProperty="labelProperty" /&gt;
 &lt;/nested:nest &gt;
 </pre>
     ]]>
