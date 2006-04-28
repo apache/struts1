@@ -19,18 +19,6 @@
  */
 -->
 
-<!-- 
-             Experimental Maven 2 Build for Apache Struts
-             ============================================
-
-To build and install this module into your local repo:
-
-   $ mvn install
-   
-For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
-
--->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
@@ -48,6 +36,7 @@ For more information, see:  http://wiki.apache.org/struts/StrutsMaven2Plan
 
    <modules>
       <module>taglib-it</module>
+      <module>apps-it</module>
    </modules>
 
 </project>
