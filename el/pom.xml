@@ -43,24 +43,6 @@
       </site>
    </distributionManagement>
 
-   <build>
-      <pluginManagement>
-         <plugins>
-            <!-- all tests in src/test are for Cactus, not plain JUnit -->
-            <plugin>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-surefire-plugin</artifactId>
-               <configuration>
-                  <excludes>
-                     <exclude>**/*.java</exclude>
-                  </excludes>
-               </configuration>
-            </plugin>
-         </plugins>
-      </pluginManagement>
-
-   </build>
-
    <dependencies>
 
       <dependency>
