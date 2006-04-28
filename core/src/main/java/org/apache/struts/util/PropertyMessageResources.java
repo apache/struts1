@@ -257,11 +257,15 @@ public class PropertyMessageResources extends MessageResources {
                     log.error("loadLocale()", e);
                 }
             }
+            if (log.isTraceEnabled()) {
+                log.trace("  Loading resource completed");
+            }
+        } else {
+            if (log.isWarnEnabled()) {
+                log.warn("  Resource Not Found.");
+            }
         }
-
-        if (log.isTraceEnabled()) {
-            log.trace("  Loading resource completed");
-        }
+        
 
         // Copy the corresponding values into our cache
         if (props.size() < 1) {
