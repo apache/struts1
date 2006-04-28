@@ -714,11 +714,12 @@ public class TagUtils {
 
     /**
      * Return the specified ModuleConfig object for the given prefix if it
-     * exists, null if otherwise.
+     * exists, otherwise a NullPointerException will be thrown.
      *
      * @param module      The module prefix
      * @param pageContext The page context.
      * @return the ModuleConfig object
+     * @throws NullPointerException Thrown when module cannot be found
      */
     public ModuleConfig getModuleConfig(String module, PageContext pageContext) {
         ModuleConfig config =
