@@ -45,12 +45,9 @@
 
    <build>
 
-      <sourceDirectory>src/java</sourceDirectory>
-      <testSourceDirectory>src/test</testSourceDirectory>
-
       <resources>
          <resource>
-            <directory>src/java</directory>
+            <directory>src/main/java</directory>
             <includes>
                <include>**/*.properties</include>
             </includes>
