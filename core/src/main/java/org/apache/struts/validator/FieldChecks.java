@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2000-2005 The Apache Software Foundation.
+ * Copyright 2000-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1103,7 +1103,17 @@ public class FieldChecks implements Serializable {
                         request, true);
                 int max = Integer.parseInt(maxVar);
 
-                if (!GenericValidator.maxLength(value, max)) {
+                boolean isValid = false;
+                String endLth = Resources.getVarValue("lineEndLength", field,
+                    validator, request, false);
+                if (GenericValidator.isBlankOrNull(endLth)) {
+                    isValid = GenericValidator.maxLength(value, max);
+                } else {
+                    isValid = GenericValidator.maxLength(value, max,
+                        Integer.parseInt(endLth));
+                }
+
+                if (!isValid) {
                     errors.add(field.getKey(),
                         Resources.getActionMessage(validator, request, va, field));
 
@@ -1149,7 +1159,17 @@ public class FieldChecks implements Serializable {
                         request, true);
                 int min = Integer.parseInt(minVar);
 
-                if (!GenericValidator.minLength(value, min)) {
+                boolean isValid = false;
+                String endLth = Resources.getVarValue("lineEndLength", field,
+                    validator, request, false);
+                if (GenericValidator.isBlankOrNull(endLth)) {
+                    isValid = GenericValidator.minLength(value, min);
+                } else {
+                    isValid = GenericValidator.minLength(value, min,
+                        Integer.parseInt(endLth));
+                }
+
+                if (!isValid) {
                     errors.add(field.getKey(),
                         Resources.getActionMessage(validator, request, va, field));
 
