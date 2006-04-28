@@ -52,16 +52,14 @@
             </includes>
          </resource>
       </resources>
-
-      <testResources>
-         <testResource>
-            <directory>src/test</directory>
-            <excludes>
-               <exclude>**/*.java</exclude>
-            </excludes>
-         </testResource>
-      </testResources>
-
+        <testResources>
+            <testResource>
+                <directory>src/test/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </testResource>
+        </testResources>
    </build>
 
    <dependencies>
