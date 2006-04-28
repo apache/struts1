@@ -61,7 +61,7 @@ limitations under the License.
                 <a href="apidocs/org/apache/struts/scripting/StrutsInfo.html"><code>struts</code></a> variable and 
                 <a href="apidocs/org/apache/struts/scripting/BSFManagerFilter.html">Filter</a> API's.</li>
             <li><a href="http://svn.apache.org/viewcvs.cgi/struts/scripting/trunk/src/struts-example/">Struts 
-                Mailreader</a> - A rewrite of the Struts 1.2.8 Mailreader example application using Struts Scripting 
+                Mailreader</a> - A rewrite of the Struts Mailreader example application using Struts Scripting 
                 and <a href="http://groovy.codehaus.org">Groovy</a></li>
         </ul>        
       </subsection>   
