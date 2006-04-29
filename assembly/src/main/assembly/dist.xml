@@ -162,8 +162,8 @@
       </includes>
    </fileSet>
    <fileSet>
-     <directory>../integration/taglib-it</directory>
-     <outputDirectory>src/integration/taglib-it</outputDirectory>
+     <directory>../integration/apps-it</directory>
+     <outputDirectory>src/integration/apps-it</outputDirectory>
      <includes>
         <include>pom.xml</include>
         <include>src/</include>
