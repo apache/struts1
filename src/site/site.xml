@@ -50,7 +50,7 @@
                     />
             <item
                     name="Javadoc"
-                    href="javadoc.html"
+                    href="apidocs/index.html"
                     />
             <item
                     name="Release Notes"
@@ -67,9 +67,6 @@
         
         <menu name="Components">
         
-            <item   name="Struts Action Core"
-                    href="struts-core/index.html" />
-
             <item   name="Struts Apps"
                     href="struts-apps/index.html" />
 
@@ -93,7 +90,6 @@
 
         </menu>
 
-        ${modules}
         ${reports}
     </body>
 </project>
