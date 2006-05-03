@@ -118,10 +118,6 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>../build</directory>
-      <outputDirectory>src/build</outputDirectory>
-    </fileSet>
-    <fileSet>
       <directory>../core</directory>
       <outputDirectory>src/core</outputDirectory>
       <includes>
