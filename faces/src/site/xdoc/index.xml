@@ -58,9 +58,9 @@ limitations under the License.
     <a name="issue"/>
 
       <p>Please report any bugs, or log any enhancement requests, in the
-      <a href="http://issues.apache.org/struts/>Apache Issue Tracking System</a>,
-      using product <code>Struts</code> and component
-      <code>Struts-Faces Library</code>.</p>
+      <a href="http://issues.apache.org/struts/">Struts JIRA Issue Tracker</a>,
+      using project <code>Struts Action 1</code> and component
+      <code>Faces</code>.</p>
 
     </section>
 
