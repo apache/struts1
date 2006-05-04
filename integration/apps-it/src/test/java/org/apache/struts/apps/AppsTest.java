@@ -27,8 +27,8 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * Verify that each of the example apps starts and displays its
- * default page.
+ * Verify that each of the example apps starts and (at least)
+ * displays its default page.
  */
 public class AppsTest extends TestCase {
 
@@ -81,7 +81,21 @@ public class AppsTest extends TestCase {
 
         assertEquals("Struts Cookbook", page.getTitleText());
     }
+    
+    /**
+     * Verify that the view source function is working
+     * in the Struts Cookbook app.
+     */
+    public void testStrutsCookbookViewSource() throws Exception {
+        WebClient webClient = new WebClient();
+        URL url = new URL("http://localhost:"
+                + port + "/struts-cookbook-" + version + "/source.jsp"
+                + "?src=/WEB-INF/src/java/examples/SuccessAction.java");
+        HtmlPage page = (HtmlPage) webClient.getPage(url);
 
+        assertEquals("View Source", page.getTitleText());
+    }
+    
     /**
      * Verify that the Struts Examples app has started
      */

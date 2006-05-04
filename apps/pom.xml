@@ -81,7 +81,7 @@
                </configuration>
             </configuration>
          </plugin>
-         <!-- Include source code under WEB-INF/src -->
+         <!-- Include source code under WEB-INF/src/java -->
          <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
@@ -89,7 +89,7 @@
                   <phase>process-sources</phase>
                   <configuration>
                      <tasks>
-                        <copy todir="${project.build.directory}/${pom.artifactId}/WEB-INF/src"
+                        <copy todir="${project.build.directory}/${pom.artifactId}/WEB-INF/src/java"
                               failonerror="false">
                            <fileset dir="${basedir}/src/main/java"/>
                         </copy>
