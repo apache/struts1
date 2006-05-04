@@ -46,6 +46,9 @@
    <build>
       <resources>
          <resource>
+            <directory>src/main/resources</directory>
+         </resource>
+         <resource>
             <directory>src/main/java</directory>
             <includes>
                <include>**/*.properties</include>
@@ -99,19 +102,18 @@
 
    </dependencies>
 
-   <!-- 
    <reporting>
       <plugins>
          <plugin>
             <groupId>net.sourceforge.maven-taglib</groupId>
             <artifactId>maven-taglib-plugin</artifactId>
             <configuration>
-               <taglib.src.dir>${basedir}/src/tld</taglib.src.dir>
+               <taglib.src.dir>${basedir}/src/main/resources/META-INF/tld</taglib.src.dir>
             </configuration>
          </plugin>
       </plugins>
    </reporting>
-   -->
+
      <profiles>
        <profile>
         <id>pre-assembly</id>
