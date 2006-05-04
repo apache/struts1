@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tg4w version="0.38.1">
+    <actions>
+        <action type="goto" refresh="true" step="0">
+            <xpath><![CDATA[window.location.href]]></xpath>
+            <value><![CDATA[http://localhost:8080/struts-blank/Welcome.do]]></value>
+        </action>
+        <action type="verify-title" refresh="true" step="1">
+            <xpath><![CDATA[*]]></xpath>
+            <value><![CDATA[Struts Blank Application]]></value>
+        </action>
+        <action type="verify-title" step="2">
+            <xpath><![CDATA[*]]></xpath>
+            <value><![CDATA[Struts Blank Application]]></value>
+        </action>
+        <action type="assert-text-exists" step="3">
+            <xpath><![CDATA[*]]></xpath>
+            <value><![CDATA[Welcome!]]></value>
+        </action>
+    </actions>
+</tg4w>
