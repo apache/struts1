@@ -26,7 +26,7 @@
    <parent>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts-parent</artifactId>
-      <version>1</version>
+      <version>2-SNAPSHOT</version>
    </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -64,17 +64,17 @@
     </distributionManagement>
 
     <modules>
+        <module>apps</module>
+        <module>assembly</module>
         <module>core</module>
         <module>el</module>
         <module>extras</module>
+        <module>faces</module>
+        <module>integration</module>
+        <module>mailreader-dao</module>
+        <module>scripting</module>
         <module>taglib</module>
         <module>tiles</module>
-        <module>faces</module>
-        <module>scripting</module>
-        <module>apps</module>
-        <module>mailreader-dao</module>
-        <module>assembly</module>
-        <module>integration</module>
     </modules>
 
     <licenses>
@@ -141,6 +141,9 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jxr-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-pmd-plugin</artifactId>
             </plugin>
         </plugins>
     </reporting>
