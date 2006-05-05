@@ -34,6 +34,7 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.Tag;
+import javax.servlet.ServletContext;
 
 import org.apache.commons.validator.Field;
 import org.apache.commons.validator.Form;
@@ -270,7 +271,9 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         StringBuffer results = new StringBuffer();
 
         HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
-        ModuleConfig config = ModuleUtils.getInstance().getModuleConfig(request);
+        ServletContext servletContext = pageContext.getServletContext();
+        ModuleConfig config = ModuleUtils.getInstance().getModuleConfig(request, servletContext);
+
         ValidatorResources resources =
             (ValidatorResources) pageContext.getAttribute(
                 ValidatorPlugIn.VALIDATOR_KEY + config.getPrefix(),
