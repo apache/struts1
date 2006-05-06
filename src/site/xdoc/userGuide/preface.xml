@@ -677,12 +677,6 @@ limitations under the License.
                         </a>
                         in The J2EE Tutorial.
                     </li>
-                    <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html">
-                            <strong>Web Applications</strong>
-                        </a>
-                        in The J2EE Tutorial.
-                    </li>
                 </ul>
 
             </subsection>
@@ -1188,17 +1182,6 @@ limitations under the License.
                     automatically deployed.
                 </p>
 
-                <p>
-                    For more about web applications, see:
-                </p>
-                <ul>
-                    <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html#76431">
-                            Web Applications</a>
-                        in The J2EE Tutorial
-                    </li>
-                </ul>
-
             </subsection>
 
             <a name="events"/>
@@ -1212,18 +1195,6 @@ limitations under the License.
                     The schema of the descriptor, or web.xml, is given by the
                     Java servlet specification.
                 </p>
-
-                <p>
-                    For more about the web.xml and application lifecycle
-                    events, see:
-                </p>
-                <ul>
-                    <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp2.html#64550">
-                            Web Application Life Cycle</a>
-                        in The J2EE Tutorial
-                    </li>
-                </ul>
 
             </subsection>
 
@@ -1242,16 +1213,6 @@ limitations under the License.
                     It can also be used to restrict authentication based on
                     information in a database.
                 </p>
-
-                <p>For more information about container-managed security,
-                    see:</p>
-                <ul>
-                    <li>
-                        <a href="http://java.sun.com/webservices/docs/1.2/tutorial/doc/index.html">
-                            Web Application Security (Chapter 24)</a>
-                        in The J2EE Tutorial
-                    </li>
-                </ul>
 
             </subsection>
 
@@ -1302,9 +1263,9 @@ limitations under the License.
                         <code>java.sun.com</code>
                     </li>
                     <li>
-                        <a href="http://java.sun.com/products/jsp/download.html">
+                        <a href="http://java.sun.com/products/jsp/reference/api/index.html">
                             <strong>The
-                                JSP 1.1 and 1.2 Specifications</strong>
+                                JSP 1.2 and 2.0 Specifications</strong>
                         </a>
                         download page at
                         <code>java.sun.com</code>
@@ -1438,18 +1399,6 @@ limitations under the License.
                     familiar approach.
                 </p>
 
-                <p>For more about XML configuration files and Java web
-                    applications, see</p>
-
-                <ul>
-                    <li>
-                        <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp4.html#64678">
-                            Configuring Web
-                            Applications</a>
-                        in The J2EE Tutorial
-                    </li>
-                </ul>
-
                 <p>
                     For more about how XML is used with Java applications
                     generally, see the
@@ -1498,14 +1447,7 @@ limitations under the License.
 
                 <p>For more about JAAS, see the Sun Developer Network
                     <a href="http://java.sun.com/products/jaas">product
-                        page</a>
-                    and the
-                    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebAppSecurity.html">
-                        Web Application Security</a>
-                    chapter of
-                    <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/index.html">
-                        The J2EE Tutorial</a>
-                    .
+                        page</a>.
                 </p>
 
                 <p>
