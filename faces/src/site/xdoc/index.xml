@@ -29,11 +29,7 @@ limitations under the License.
 
       <p>The "Struts-Faces" package contains an add-on library that supports the use of
   JavaServer Faces (JSF) user interface technology in a Struts based web
-  application, in place of the Struts custom tag libraries.  As a proof of
-  concept, it also includes the canonical "struts-example" example
-  web application, converted to use JSF tags, as well as tags from the
-  JSP Standard Tag Library (JSTL), version 1.0 or later.  It also includes
-  a very basic Tiles based application, modified in a similar manner.</p>
+  application, in place of the Struts custom tag libraries.</p>
   
   <p>The Struts-Faces Integration Library should work with any implementation
   of JavaServer Faces, version 1.0 or later.  It has primarily been tested
@@ -43,15 +39,10 @@ limitations under the License.
     http://java.sun.com/j2ee/javaserverfaces/
     </a>
   </p>
-    </section>  
 
-    <section name="Struts-Faces Download">
-    <a name="download"/>
-
-      <p>Nightly builds of the Struts-Faces Integration Library are available from
-      <a href="http://cvs.apache.org/builds/struts/nightly/struts-faces/">
-      http://cvs.apache.org/builds/struts/nightly/struts-faces/</a>.</p>
-
+  <p>For more information, consult the
+      <a href="README.txt" target="_blank">README</a> file.
+  </p>
     </section>
 
     <section name="Struts-Faces Issue Tracking">
