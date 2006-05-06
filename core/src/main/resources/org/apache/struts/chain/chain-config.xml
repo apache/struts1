@@ -58,7 +58,7 @@
     </chain>
 
 
-    <!-- ========== View Processing chain ======================== -->
+    <!-- ========== Action Processing chain ======================== -->
     <chain name="process-action">
 
         <!--
