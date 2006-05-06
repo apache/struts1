@@ -28,25 +28,25 @@ limitations under the License.
 
          <ul>
             <li>
-               <a href="struts-core/apidocs/index.html" target="_blank">
+               <a href="../struts-core/apidocs/index.html" target="_blank">
                Struts Action Core</a></li>
             <li>
-               <a href="struts-el/apidocs/index.html" target="_blank">
+               <a href="../struts-el/apidocs/index.html" target="_blank">
                Struts EL</a></li>
             <li>
-               <a href="struts-extras/apidocs/index.html" target="_blank">
+               <a href="../struts-extras/apidocs/index.html" target="_blank">
                Struts Extras</a></li>
             <li>
-               <a href="struts-faces/apidocs/index.html" target="_blank">
+               <a href="../struts-faces/apidocs/index.html" target="_blank">
                Struts Faces</a></li>
             <li>
-               <a href="struts-scripting/apidocs/index.html" target="_blank">
+               <a href="../struts-scripting/apidocs/index.html" target="_blank">
                Struts Scripting</a></li>
             <li>
-               <a href="struts-taglib/apidocs/index.html" target="_blank">
+               <a href="../struts-taglib/apidocs/index.html" target="_blank">
                Struts Taglib</a></li>
             <li>
-               <a href="struts-tiles/apidocs/index.html" target="_blank">
+               <a href="../struts-tiles/apidocs/index.html" target="_blank">
                Struts Tiles</a></li>
          </ul>
 
