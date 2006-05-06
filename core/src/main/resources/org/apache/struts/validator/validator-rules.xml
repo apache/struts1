@@ -1,18 +1,19 @@
 <!DOCTYPE form-validation PUBLIC
-        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.2.0//EN"
-        "http://jakarta.apache.org/commons/dtds/validator_1_2_0.dtd">
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
 
 <!--
   $Id$
 
    This file contains the default Struts Validator pluggable validator
-   definitions.  It should be placed somewhere under /WEB-INF and
+   definitions.  It is contained in struts-core.jar, and should be 
    referenced in the struts-config.xml under the plug-in element
    for the ValidatorPlugIn.
 
       <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
-        <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
-                                                  /WEB-INF/validation.xml"/>
+        <set-property property="pathnames" 
+                      value="/org/apache/struts/validator/validator-rules.xml,
+                             /WEB-INF/validation.xml"/>
       </plug-in>
 
    These are the default error messages associated with
