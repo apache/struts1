@@ -132,6 +132,7 @@
         <configuration>
           <descriptors>
             <descriptor>src/main/assembly/dist.xml</descriptor>
+            <descriptor>src/main/assembly/lib.xml</descriptor>
           </descriptors>
           <finalName>struts-action-${version}</finalName>
           <outputDirectory>target/assembly/out</outputDirectory>
