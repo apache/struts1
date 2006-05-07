@@ -202,7 +202,7 @@ limitations under the License.
                 </p>
     
                 <a name="struts_1_0"/>
-                <subsection name="Release 1.0.0 (complete)">
+                <subsection name="Release 1.0.x (complete)">
                     <p>
                         Major refactoring of Struts internals to provide support
                         for modules and a new
@@ -212,42 +212,22 @@ limitations under the License.
                         optional package.
                     </p>
                 </subsection>
-    
-                <a name="struts_1_2_4"/>
-                <subsection name="Release 1.2.4 (complete)">
+                
+                <a name="struts_1_1"/>
+                <subsection name="Release 1.1.x (complete)">
                     <p>
-                        Continued refactorings of the Struts 1.x product series.
-                    </p>
-                    <ul>
-                        <li>
-                            Removed deprecations created in the 1.0 to 1.1
-                            timeframe, and prior
-                        </li>
-                        <li>
-                            Added support for wildcard mappings.
-                        </li>
-                        <li>
-                            Other minor enhancements, improvements, and
-                            refactorings
-                        </li>
-                    </ul>
-                </subsection>
-    
-                <a name="struts_1_2_6"/>
-                <subsection name="Release 1.2.6 (complete)">
-                    <p>
-                        Migrated repository to Subversion; update website.
+                        Split internal libraries into their own projects in Jakarta
+                        Commons.  Added support for modules and plugins.
                     </p>
                 </subsection>
     
-                <a name="struts_1_2_x"/>
-                <subsection name="Release 1.2.x (pending)">
+                <a name="struts_1_2"/>
+                <subsection name="Release 1.2.x (complete)">
                     <p>
-                        Minor enhancements, improvements, and refactorings only,
-                        as needed.
-                        New features should be added to the 1.3.x series.
+                        Added support for wildcard mappings, internal project restructuring,
+                        removed deprecations, other minor enhancements.
                     </p>
-                </subsection>
+               </subsection>
     
                 <a name="struts_1_3_x"/>
                 <subsection name="Release 1.3.x (pending)">
@@ -257,16 +237,16 @@ limitations under the License.
                     </p>
                     <ul>
                         <li>
-                            Divide distribution into subprojects
+                            Divided distribution into subprojects
                         </li>
                         <li>
-                            Complete support for Maven 2 builds
+                            Completed support for Maven 2 builds
                         </li>
                         <li>
-                            Move action to "Struts Chain" Request Processor
+                            Moved action to "Struts Chain" Request Processor
                         </li>
                         <li>
-                            Enhance all configs to extend one configuration
+                            Enhanced all configs to extend one configuration
                             element from another,
                             as is done with Tiles Definitions
                         </li>
