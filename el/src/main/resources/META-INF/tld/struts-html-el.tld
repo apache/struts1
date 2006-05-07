@@ -1647,14 +1647,16 @@
         </description>
         <attribute>
             <name>action</name>
-            <required>true</required>
+            <required>false</required>
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
             <p>The URL to which this form will be submitted.  This
                         value is also used to select the ActionMapping we are
                         assumed to be processing, from which we can identify
-                        the appropriate form bean and scope.</p>
+                        the appropriate form bean and scope.   If a value is not
+                        provided, the original URI (servletPath) for the request is
+                        used.</p>
             <p>If you are using extension mapping for selecting the
                         controller servlet, this value should be equal to the
                         <code>path</code> attribute of the corresponding
