@@ -123,9 +123,7 @@ limitations under the License.
                 <a name="nutshell-config"/>
 
                 <p>
-                    A
-                    <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/WebApp.html">
-                        web application</a>
+                    A web application
                     uses a deployment descriptor to initialize resources
                     like
                     <a href="userGuide/preface.html#servlets">servlets</a>
