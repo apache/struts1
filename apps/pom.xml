@@ -86,6 +86,7 @@
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
                <execution>
+                  <id>copy-sources</id>
                   <phase>process-sources</phase>
                   <configuration>
                      <tasks>
