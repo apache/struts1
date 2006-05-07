@@ -15,7 +15,6 @@
             <item name="Apache" href="http://www.apache.org" /> 
             <item name="Action" href="http://struts.apache.org/struts-action" /> 
             <item name="Shale" href="http://struts.apache.org/struts-shale" /> 
-            <item name="Tiles" href="http://struts.apache.org/struts-tiles" /> 
         </links>
         <menu name="Struts JSP Taglib Guides">
             <item name="Bean" href="dev_bean.html"/>
@@ -27,12 +26,34 @@
             <item name="Taglib FAQ" href="faq.html"/>
             <item name="Building View Components" href="building_view.html"/>
             <item name="Indexed Properties" href="indexedprops.html"/>
-            <item name="Secure Socket Layer and Web Applications "
-                  href="ssl.html"/>
-            <item name="Struts Validator" href="dev_validator.html"/>
-        </menu>
+       </menu>
 
-        <menu name="Quick Links">
+       <menu name="Components">
+        
+            <item   name="Struts Apps"
+                    href="../struts-apps/index.html" />
+
+            <item   name="Struts EL"
+                    href="../struts-el/index.html" />
+
+            <item   name="Struts Extras"
+                    href="../struts-extras/index.html" />
+
+            <item   name="Struts Faces"
+                    href="../struts-faces/index.html" />
+
+            <item   name="Struts Scripting"
+                    href="../struts-scripting/index.html" />
+
+            <item   name="Struts Taglib"
+                    href="../struts-taglib/index.html" />
+
+            <item   name="Struts Tiles"
+                    href="../struts-tiles/index.html" />
+
+        </menu>
+        
+        <menu name="Related Resources">
             <item name="Display Tag"
                   href="http://displaytag.sourceforge.net/"/>
 
@@ -45,21 +66,25 @@
             <item name="JSF"
                   href="http://java.sun.com/j2ee/javaserverfaces/"/>
 
-            <item name="Struts Faces"
-                  href="http://struts-apach.org/struts-faces"/>
-
             <item name="Struts Layout"
                   href="http://struts.application-servers.com"/>
 
             <item name="Struts Menu"
                   href="http://struts-menu.sourceforge.net/"/>
-
-            <item name="Struts Shale"
-                  href="http://struts.apache.org/struts-shale"/>
-
-            <item name="Apache Struts Home"
-                  href="http://struts.apache.org"/>
         </menu>
+       
+        <menu name="Quick Links">
+            <item
+                    name="Javadoc"
+                    href="apidocs/index.html"/>
+            <item
+                    name="Apache Struts Home"
+                    href="http://struts.apache.org/"/>
+            <item
+                    name="Struts Action 1"
+                    href="../index.html"/>
+        </menu>
+        
         ${reports}
     </body>
 </project>

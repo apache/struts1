@@ -65,7 +65,10 @@ limitations under the License.
                 <li>
                     <a href="apps.html">Building Applications</a>
                 </li>
-
+                
+                <li>
+                    <a href="validator.html">Using Struts Validator</a>
+                </li>
             </ul>
 
         </section>

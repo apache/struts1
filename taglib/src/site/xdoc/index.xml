@@ -19,10 +19,18 @@ limitations under the License.
 <document>
 
     <properties>
-        <title>Struts Action - Taglib</title>
+        <title>Struts Action 1 - Taglib</title>
     </properties>
 
     <body>
+      <section name="Welcome to Struts Taglib">
+          <p>
+            The Struts JSP Taglib project provides JSP tag libraries to make developing
+            Struts applications easier.  These tags help with everything from displaying error messages
+            to dealing with nested ActionForm beans.  A good place to begin is to browse the 
+            tag guides in the left menu.
+          </p>
+      </section>
     </body>
 
 </document>

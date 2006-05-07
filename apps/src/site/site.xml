@@ -13,20 +13,11 @@
     <body>
         <links>
             <item name="Apache" href="http://www.apache.org" /> 
-            <item name="Action" href="http://struts.apache.org/struts-action" /> 
+            <item name="Action 1" href="http://struts.apache.org/struts-action" />
+            <item name="Action 2" href="http://struts.apache.org/struts-action2" />
             <item name="Shale" href="http://struts.apache.org/struts-shale" /> 
-            <item name="Tiles" href="http://struts.apache.org/struts-tiles" /> 
         </links>
 
-        <menu name="Quick Links">
-            <item
-                    name="Apache Struts Home"
-                    href="http://struts.apache.org/"/>
-            <item
-                    name="Struts Action"
-                    href="../index.html"/>
-        </menu>
-        
         <menu name="Apps">
         
             <item   name="Struts Blank"
@@ -50,6 +41,40 @@
             <item   name="Struts EL Exercise Taglib"
                     href="strutsel-exercise-taglib/index.html" />
 
+        </menu>
+        
+        <menu name="Components">
+        
+            <item   name="Struts Apps"
+                    href="../struts-apps/index.html" />
+
+            <item   name="Struts EL"
+                    href="../struts-el/index.html" />
+
+            <item   name="Struts Extras"
+                    href="../struts-extras/index.html" />
+
+            <item   name="Struts Faces"
+                    href="../struts-faces/index.html" />
+
+            <item   name="Struts Scripting"
+                    href="../struts-scripting/index.html" />
+
+            <item   name="Struts Taglib"
+                    href="../struts-taglib/index.html" />
+
+            <item   name="Struts Tiles"
+                    href="../struts-tiles/index.html" />
+
+        </menu>
+        
+        <menu name="Quick Links">
+            <item
+                    name="Apache Struts Home"
+                    href="http://struts.apache.org/"/>
+            <item
+                    name="Struts Action 1"
+                    href="../index.html"/>
         </menu>
         
         ${modules}

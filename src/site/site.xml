@@ -13,9 +13,9 @@
     <body>
         <links>
             <item name="Apache" href="http://www.apache.org" /> 
-            <item name="Action" href="http://struts.apache.org/struts-action" /> 
+            <item name="Action 1" href="http://struts.apache.org/struts-action" />
+            <item name="Action 2" href="http://struts.apache.org/struts-action2" />
             <item name="Shale" href="http://struts.apache.org/struts-shale" /> 
-            <item name="Tiles" href="http://struts.apache.org/struts-tiles" /> 
         </links>
         <menu name="Struts Action Framework">
             <item
@@ -31,15 +31,11 @@
                     href="roadmap.html"
                     />
             <item
-                    name="Milestones"
-                    href="milestones.html"
-                    />
-            <item
                     name="Download"
                     href="http://struts.apache.org/downloads.html"/>
         </menu>
 
-        <menu name="Quick Links">
+        <menu name="Documentation">
             <item
                     name="User Guide"
                     href="userGuide/index.html"
@@ -49,20 +45,17 @@
                     href="faqs/index.html"
                     />
             <item
-                    name="Javadoc"
-                    href="apidocs/index.html"
-                    />
-            <item
                     name="Release Notes"
                     href="userGuide/release-notes.html"
                     />
             <item
+                    name="Javadoc"
+                    href="apidocs/index.html"
+                    />        
+            <item
                     name="Source Repository"
                     href="http://svn.apache.org/viewcvs.cgi/struts/action/trunk/?root=Apache-SVN"
                     />
-            <item
-                    name="Apache Struts Home"
-                    href="http://struts.apache.org"/>
         </menu>
         
         <menu name="Components">
