@@ -153,10 +153,9 @@ public int doStartTag() throws JspException
       Object value = compContext.getAttribute(name);
         // Check if value exist and if we must send a runtime exception
       if( value == null )
-        if(!isErrorIgnored)
+        if(!isErrorIgnored) {
           throw new JspException ( "Error - tag importAttribute : property '"+  name + "' not found in context. Check tag syntax" );
-         else
-          return SKIP_BODY;
+        }    
 
       pageContext.setAttribute(name, value, scope);
       }
@@ -176,10 +175,9 @@ public int doStartTag() throws JspException
         Object value = compContext.getAttribute(name);
         // Check if value exist and if we must send a runtime exception
         if( value == null ) {
-          if(!isErrorIgnored)
+          if(!isErrorIgnored) {
             throw new JspException ( "Error - tag importAttribute : property '"+ name + "' has a value of 'null'" );
-          else
-            return SKIP_BODY;
+          }  
         }
         pageContext.setAttribute(name, value, scope);
         } // end loop
