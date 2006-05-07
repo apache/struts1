@@ -291,6 +291,7 @@ limitations under the License.
                     </li>
                 </ul>
 
+                <a name="composable-request-processor" />
                 <h4>Composable Request Processor</h4>
                 <p>
                     In prior versions, the request processing guantlet is
@@ -371,6 +372,7 @@ limitations under the License.
                     Processor.
                 </p>
 
+                <a name="arbitrary-config" />
                 <h4>Arbitrary configuration properties</h4>
                 <p>
                     Most every Struts configuration element now accepts a map
@@ -460,6 +462,7 @@ limitations under the License.
                     the legacy Request Processor included in Struts Action 1.3.
                 </p>
 
+                <a name="enhanced-exception" />
                 <h4>Enhanced Global Exception Handlers</h4>
                 <p>
                     We now support use of global exception handlers in cases
@@ -498,6 +501,7 @@ limitations under the License.
                     />
                 </source>
 
+                <a name="extends-attr" />
                 <h4>Extends attribute</h4>
                 <p>
                     In the Struts configuration file,
@@ -539,6 +543,7 @@ limitations under the License.
                     it's easier to see the forest for the trees.
                 </p>
 
+                <a name="isCommitted" />
                 <h4>"isCommitted" Exception Handling</h4>
                 <p>
                     When using Tiles, sometimes the response is already
@@ -570,6 +575,7 @@ limitations under the License.
                     &lt;/exception>
                 </source>
 
+                <a name="postback" />
                 <h4>Postback Forms</h4>
                 <p>
                     The action attribute of the Form taglib is now optional.
@@ -581,6 +587,7 @@ limitations under the License.
                     onsubmit="return validateLogonForm(this);">
                 </source>
 
+                <a name="wildcard-props" />
                 <h4>Wildcard ActionConfig properties</h4>
                 <p>
                     Wildcards can now be used in the properties of an
