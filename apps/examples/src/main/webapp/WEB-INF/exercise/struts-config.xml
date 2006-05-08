@@ -77,6 +77,10 @@
                 name="testbean" scope="session" validate="false">
             <forward name="input" path="/html-setters.do"/>
         </action>
+        <action path="/html-form" forward="/html-form.jsp"
+                name="testbean" scope="session" validate="false"/>
+        <action path="/html-form-postback" forward="/html-form.jsp"
+                name="testbean" scope="session" validate="false"/>
         <action path="/logic-forward" forward="/logic-forward.jsp"/>
         <action path="/logic-forward-test-forward"
                 forward="/logic-forward-test-forward.jsp"/>

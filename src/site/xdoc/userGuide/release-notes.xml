@@ -158,6 +158,7 @@ limitations under the License.
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2741'>STR-2741</a>] - [site] Broken Links</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2752'>STR-2752</a>] - forwardPattern implementation missing</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2793'>STR-2793</a>] - Postback form (optional 'action' attribute for html-el:form) is not working</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2795'>STR-2795</a>] - Postback Forms - caching and modules</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2805'>STR-2805</a>] - java.lang.NullPointerException</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2809'>STR-2809</a>] - ImportAttribute does not  import all attribute with ignore=true</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2826'>STR-2826</a>] - If a field's display property is set to 'none' using CSS or JavaScript, the focus code fails.</li>

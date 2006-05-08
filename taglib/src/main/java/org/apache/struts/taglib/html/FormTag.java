@@ -41,8 +41,7 @@ import java.io.IOException;
  * Custom tag that represents an input form, associated with a bean whose
  * properties correspond to the various fields of the form.
  *
- * @version $Rev$ $Date: 2005-06-22 12:23:18 -0400 (Wed, 22 Jun 2005)
- *          $
+ * @version $Rev$ $Date$
  */
 public class FormTag extends TagSupport {
     /**
@@ -63,6 +62,11 @@ public class FormTag extends TagSupport {
      * The action URL to which this form should be submitted, if any.
      */
     protected String action = null;
+
+    /**
+     * A postback action URL to which this form should be submitted, if any.
+     */
+    private String postbackAction = null;
 
     /**
      * The module configuration for our module.
@@ -406,6 +410,9 @@ public class FormTag extends TagSupport {
      * @throws JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
+
+        postbackAction = null;
+
         // Look up the form bean name, scope, and type if necessary
         this.lookup();
 
@@ -520,12 +527,13 @@ public class FormTag extends TagSupport {
      * Renders the action attribute
      */
     protected void renderAction(StringBuffer results) {
+        String calcAction = (this.action == null ? postbackAction : this.action);
         HttpServletResponse response =
             (HttpServletResponse) this.pageContext.getResponse();
 
         results.append(" action=\"");
         results.append(response.encodeURL(
-                TagUtils.getInstance().getActionMappingURL(this.action,
+                TagUtils.getInstance().getActionMappingURL(calcAction,
                     this.pageContext)));
 
         results.append("\"");
@@ -614,6 +622,8 @@ public class FormTag extends TagSupport {
         } catch (IOException e) {
             throw new JspException(messages.getMessage("common.io", e.toString()));
         }
+
+        postbackAction = null;
 
         // Continue processing this page
         return (EVAL_PAGE);
@@ -727,15 +737,6 @@ public class FormTag extends TagSupport {
      * @throws JspException if a required value cannot be looked up
      */
     protected void lookup() throws JspException {
-        // If the action is not specified, use the original request uri
-        if (this.action == null) {
-            HttpServletRequest request =
-                (HttpServletRequest) pageContext.getRequest();
-            String uri =
-                (String) request.getAttribute(Globals.ORIGINAL_URI_KEY);
-
-            setAction(uri);
-        }
 
         // Look up the module configuration information we need
         moduleConfig = TagUtils.getInstance().getModuleConfig(pageContext);
@@ -749,12 +750,28 @@ public class FormTag extends TagSupport {
             throw e;
         }
 
+        String calcAction = this.action;
+
+        // If the action is not specified, use the original request uri
+        if (this.action == null) {
+            HttpServletRequest request =
+                (HttpServletRequest) pageContext.getRequest();
+            postbackAction =
+                (String) request.getAttribute(Globals.ORIGINAL_URI_KEY);
+
+            String prefix = moduleConfig.getPrefix();
+            if (postbackAction != null && prefix.length() > 0 && postbackAction.startsWith(prefix)) {
+                postbackAction = postbackAction.substring(prefix.length());
+            }
+            calcAction = postbackAction;
+        }
+
         servlet =
             (ActionServlet) pageContext.getServletContext().getAttribute(Globals.ACTION_SERVLET_KEY);
 
         // Look up the action mapping we will be submitting to
         String mappingName =
-            TagUtils.getInstance().getActionMappingName(action);
+            TagUtils.getInstance().getActionMappingName(calcAction);
 
         mapping = (ActionMapping) moduleConfig.findActionConfig(mappingName);
 
@@ -776,10 +793,10 @@ public class FormTag extends TagSupport {
             JspException e = null;
 
             if (mapping.getName() == null) {
-                e = new JspException(messages.getMessage("formTag.name", action));
+                e = new JspException(messages.getMessage("formTag.name", calcAction));
             } else {
                 e = new JspException(messages.getMessage("formTag.formBean",
-                            mapping.getName(), action));
+                            mapping.getName(), calcAction));
             }
 
             pageContext.setAttribute(Globals.EXCEPTION_KEY, e,
