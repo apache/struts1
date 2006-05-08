@@ -48,13 +48,62 @@
       </dependency>
       <dependency>
 	     <groupId>myfaces</groupId>
+	     <artifactId>myfaces-impl</artifactId>
+	     <version>1.0.9</version>
+      </dependency>
+      <dependency>
+	     <groupId>myfaces</groupId>
+	     <artifactId>myfaces-extensions</artifactId>
+	     <version>1.0.9</version>
+      </dependency>
+      <dependency>
+	     <groupId>myfaces</groupId>
 	     <artifactId>myfaces-jsf-api</artifactId>
 	     <version>1.0.9</version>
 	  </dependency>
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>jstl</artifactId>
+         <version>1.0.2</version>
+      </dependency>
+      <dependency>
+         <groupId>taglibs</groupId>
+         <artifactId>standard</artifactId>
+         <version>1.0.2</version>
+      </dependency>
+
+      <!-- Required by MyFaces -->
+      <dependency>
+         <groupId>commons-codec</groupId>
+         <artifactId>commons-codec</artifactId>
+         <version>1.2</version>
+      </dependency>
+      <dependency>
+         <groupId>commons-el</groupId>
+         <artifactId>commons-el</artifactId>
+         <version>1.0</version>
+      </dependency>
+
+      <!-- This example needs Tiles as well -->
+      <dependency>
+          <groupId>org.apache.struts.action</groupId>
+          <artifactId>struts-tiles</artifactId>
+          <version>${pom.version}</version>
+      </dependency>
+
+
    </dependencies>
    
    <build>
-     <finalName>${pom.artifactId}</finalName>
+      <resources>
+         <resource>
+            <directory>src/main/java</directory>
+            <includes>
+               <include>**/*.properties</include>
+            </includes>
+         </resource>
+      </resources>
+      <finalName>${pom.artifactId}</finalName>
    </build>
 
 </project>

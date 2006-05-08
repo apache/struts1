@@ -2,7 +2,7 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
 <%@ taglib prefix="s" uri="http://struts.apache.org/tags-faces" %>
-<%@ taglib prefix="t" uri="/WEB-INF/struts-tiles.tld" %>
+<%@ taglib prefix="t" uri="http://struts.apache.org/tags-tiles" %>
 
 
 <!--
