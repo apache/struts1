@@ -46,7 +46,7 @@
    <build>
       <resources>
          <resource>
-            <directory>src/main/resource</directory>
+            <directory>src/main/resources</directory>
          </resource>
          <resource>
             <directory>${basedir}</directory>
