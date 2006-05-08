@@ -42,6 +42,20 @@
          <url>scp://people.apache.org/www/struts.apache.org/struts-action/struts-el</url>
       </site>
    </distributionManagement>
+   
+   <build>
+      <resources>
+         <resource>
+            <directory>src/main/resources</directory>
+         </resource>
+         <resource>
+            <directory>${basedir}</directory>
+            <includes>
+               <include>*.txt</include>
+            </includes>
+         </resource>
+      </resources>
+   </build>
 
    <dependencies>
 

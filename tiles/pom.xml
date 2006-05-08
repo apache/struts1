@@ -48,6 +48,12 @@
          <resource>
             <directory>src/main/resource</directory>
          </resource>
+         <resource>
+            <directory>${basedir}</directory>
+            <includes>
+               <include>*.txt</include>
+            </includes>
+         </resource>
       </resources>
 
       <testResources>

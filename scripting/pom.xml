@@ -43,6 +43,17 @@
       </site>
    </distributionManagement>
    
+   <build>
+      <resources>
+         <resource>
+            <directory>${basedir}</directory>
+            <includes>
+               <include>*.txt</include>
+            </includes>
+         </resource>
+      </resources>
+   </build>
+   
    <dependencies>
 
       <dependency>
