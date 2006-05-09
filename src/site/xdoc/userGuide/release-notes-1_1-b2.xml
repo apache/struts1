@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<document url="release-notes-1.1-b2.html">
+<document url="release-notes-1_1-b2.html">
 
     <properties>
         <title>Struts Release Notes (Version 1.1 Beta 2)</title>
@@ -13,7 +13,7 @@
                 <strong>Version 1.1 Beta 2</strong>
                 of the Struts Framework,
                 and covers changes that have taken place since
-                <a href="release-notes-1.0.2.html">Version 1.0.2</a>
+                <a href="release-notes-1_0_2.html">Version 1.0.2</a>
                 was released. The following sections cover
                 <a href="#New">New Features</a>
                 and

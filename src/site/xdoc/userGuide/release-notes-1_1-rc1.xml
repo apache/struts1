@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<document url="release-notes-1.1-rc1.html">
+<document url="release-notes-1_1-rc1.html">
 
     <properties>
         <title>Struts Release Notes (Version 1.1 Release Candidate 1)</title>
@@ -14,7 +14,7 @@
                     <strong>nightly build</strong>
                     of the Struts Framework,
                     for changes that have taken place since
-                    <a href="release-notes-1.1-b2.html">Version 1.1 beta 2</a>
+                    <a href="release-notes-1_1-b2.html">Version 1.1 beta 2</a>
                     was released. For a complete list of changes since the
                     last
                     production release, see the
@@ -53,7 +53,7 @@
                     <strong>nightly build</strong>
                     of the Struts Framework,
                     and covers changes that have taken place since
-                    <a href="release-notes-1.0.2.html">Version 1.0.2</a>
+                    <a href="release-notes-1_0_2.html">Version 1.0.2</a>
                     was released. The following sections cover
                     <a href="#New">New Features</a>
                     and
