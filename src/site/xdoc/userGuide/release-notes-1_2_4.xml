@@ -222,7 +222,7 @@
                     <li>ValidWhen - The Struts Validator now supports a
                         ValidWhen rule, so that one validation can be
                         dependant on another.
-                        <a href="dev_validator.html#validWhen">Details ...</a>
+                        <a href="../faqs/validator.html#validWhen">Details ...</a>
                     </li>
                     <li>IntRange now checks select-one and radio fields.
                         Example: This allows populating combo boxes with valid

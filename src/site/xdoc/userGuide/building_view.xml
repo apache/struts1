@@ -580,7 +580,7 @@ value="/org/apache/struts/validator/validator-rules.xml,
 
                 <p>
                     For more about the Struts Validator, see the
-                    <a href="http://struts.apache.org/struts-taglib/dev_validator.html">
+                    <a href="../faqs/validator.html">
                         Developers Guide</a>
                     .
                 </p>
