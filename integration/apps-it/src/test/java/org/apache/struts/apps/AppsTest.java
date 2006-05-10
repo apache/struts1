@@ -122,6 +122,19 @@ public class AppsTest extends TestCase {
     }
 
     /**
+     * Verify that the Struts Faces Example 2 app has started
+     */
+    public void testStrutsFacesExample2() throws Exception {
+        WebClient webClient = new WebClient();
+        URL url = new URL("http://localhost:"
+                + port + "/struts-faces-example2-" + version);
+        HtmlPage page = (HtmlPage) webClient.getPage(url);
+
+        assertEquals("Struts+Tiles+Faces Example Application",
+                page.getTitleText());
+    }
+
+    /**
      * Verify that the Struts Mailreader app has started
      */
     public void testStrutsMailreader() throws Exception {
