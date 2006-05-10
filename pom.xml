@@ -114,7 +114,7 @@
             <extension>
                 <groupId>org.apache.struts</groupId>
                 <artifactId>struts-build</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.1</version>
             </extension>
         </extensions>
         
@@ -130,9 +130,6 @@
              </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <aggregate>true</aggregate>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-report-plugin</artifactId>
