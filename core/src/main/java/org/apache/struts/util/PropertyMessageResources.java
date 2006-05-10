@@ -262,7 +262,7 @@ public class PropertyMessageResources extends MessageResources {
             }
         } else {
             if (log.isWarnEnabled()) {
-                log.warn("  Resource Not Found.");
+                log.warn("  Resource "+name+" Not Found.");
             }
         }
         
