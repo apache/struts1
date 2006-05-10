@@ -57,8 +57,8 @@
       </dependency>
       <dependency>
          <groupId>groovy</groupId>
-         <artifactId>groovy</artifactId>
-         <version>1.0-jsr-03</version>
+         <artifactId>groovy-all</artifactId>
+         <version>1.0-jsr-04</version>
          <exclusions>
             <exclusion>
                <groupId>xerces</groupId>
