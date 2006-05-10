@@ -910,7 +910,7 @@ limitations under the License.
 
                 <p>
                     If the
-                    <a href="tagreference-struts-html.html#html:javascript">
+                    <a href="../struts-taglib/tagreference.html#javascript">
                         Javascript Tag</a>
                     is used,
                     the client side Javascript generation looks for a value in
@@ -921,7 +921,7 @@ limitations under the License.
                     For a more detailed explanation of how the Javascript
                     Validator Tag works,
                     see the
-                    <a href="tagreference-struts-html.html">html taglib API
+                    <a href="../struts-taglib/tagreference.html#struts-html.tld">html taglib API
                         reference</a>
                     .
                 </p>
