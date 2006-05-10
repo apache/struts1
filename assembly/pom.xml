@@ -61,6 +61,12 @@
               <artifactItems>
                 <artifactItem>
                   <groupId>org.apache.struts.action</groupId>
+                  <artifactId>struts-blank</artifactId>
+                  <version>${version}</version>
+                  <type>war</type>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.apache.struts.action</groupId>
                   <artifactId>struts-cookbook</artifactId>
                   <version>${version}</version>
                   <type>war</type>
@@ -73,19 +79,7 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-mailreader</artifactId>
-                  <version>${version}</version>
-                  <type>war</type>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
                   <artifactId>struts-faces-example1</artifactId>
-                  <version>${version}</version>
-                  <type>war</type>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-cookbook</artifactId>
                   <version>${version}</version>
                   <type>war</type>
                 </artifactItem>
@@ -97,19 +91,19 @@
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.struts.action</groupId>
-                  <artifactId>struts-blank</artifactId>
-                  <version>${version}</version>
-                  <type>war</type>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.apache.struts.action</groupId>
-                  <artifactId>strutsel-exercise-taglib</artifactId>
+                  <artifactId>struts-mailreader</artifactId>
                   <version>${version}</version>
                   <type>war</type>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.struts.action</groupId>
                   <artifactId>struts-scripting-mailreader</artifactId>
+                  <version>${version}</version>
+                  <type>war</type>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.apache.struts.action</groupId>
+                  <artifactId>strutsel-exercise-taglib</artifactId>
                   <version>${version}</version>
                   <type>war</type>
                 </artifactItem>

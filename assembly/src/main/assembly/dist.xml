@@ -225,6 +225,10 @@
      <outputDirectory>docs/struts-apps/struts-faces-example1</outputDirectory>
    </fileSet>
    <fileSet>
+     <directory>../apps/faces-example2/target/site</directory>
+     <outputDirectory>docs/struts-apps/struts-faces-example2</outputDirectory>
+   </fileSet>
+   <fileSet>
      <directory>../apps/mailreader/target/site</directory>
      <outputDirectory>docs/struts-apps/struts-mailreader</outputDirectory>
    </fileSet>
