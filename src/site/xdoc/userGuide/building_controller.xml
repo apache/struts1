@@ -1272,7 +1272,7 @@ limitations under the License.
                     flexibility, they do not support the same range of syntax
                     available to conventional or DynaActionForms.
                     You might have difficulty referencing
-                    <a href="../faqs/indexedprops.html">indexed or mapped
+                    <a href="../struts-taglib/indexedprops.html">indexed or mapped
                         properties</a>
                     using a map-backed ActionForm.
                     The validwhen validator (since Apache Struts 1.2.1) also
