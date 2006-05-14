@@ -47,8 +47,10 @@ public class XmlParser
      * <strong>MUST</strong> be an even number of Strings in this list!
      */
     protected String registrations[] = {
+        "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN",
+        "/org/apache/struts/resources/tiles-config_1_1.dtd",
         "-//Apache Software Foundation//DTD Tiles Configuration 1.3//EN",
-        "/org/apache/struts/resources/tiles-config_1_3.dtd",
+        "/org/apache/struts/resources/tiles-config_1_3.dtd"
     };
 
      /**
