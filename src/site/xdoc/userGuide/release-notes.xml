@@ -64,7 +64,7 @@ limitations under the License.
                     <a href="../roadmap.html">Roadmap page</a>
                     .
                 </p>
-                <p>
+                <ul><li>
                     <b>Notes on upgrading</b>
                     are maintained in the
                     <a href="http://wiki.apache.org/struts/StrutsUpgrade">Wiki
@@ -74,11 +74,10 @@ limitations under the License.
                     free to add your
                     input so that everyone can benefit from the collective
                     experience.
-                </p>
+                </li></ul>
                 <p>
                     For the version requirements of each library, see the
-                    <a href="installation.html">Installation chapter</a>
-                    .
+                    <a href="installation.html">Installation chapter.</a>
                 </p>
 
             </subsection>
