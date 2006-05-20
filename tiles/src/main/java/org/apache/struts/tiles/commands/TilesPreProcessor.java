@@ -209,15 +209,14 @@ public class TilesPreProcessor implements Command
         if (doInclude) {
             log.info("Tiles process complete; doInclude with " + uri);
             doInclude(sacontext, uri);
-            return (true);
         } else {
-            // create an "instant" forward config which can be used
-            // by an AbstractPerformForward later as if our ForwardConfig
-            // were the one actually returned by an executing Action
             log.info("Tiles process complete; forward to " + uri);
-            sacontext.setForwardConfig( new ForwardConfig("tiles-chain", uri, false) );
-            return (false);
+            doForward(sacontext, uri);
         }
+
+        log.debug("Tiles processed, so clearing forward config from context.");
+        sacontext.setForwardConfig( null );
+        return (false);
     }
 
 
@@ -234,18 +233,50 @@ public class TilesPreProcessor implements Command
         String uri)
         throws IOException, ServletException {
 
-        HttpServletRequest request = context.getRequest();
+        RequestDispatcher rd = getRequiredDispatcher(context, uri);
 
-        HttpServletResponse response = context.getResponse();
+        if (rd != null) {
+            rd.include(context.getRequest(), context.getResponse());
+        }
+    }
+
+    /**
+     * <p>Do an include of specified URI using a <code>RequestDispatcher</code>.</p>
+     *
+     * @param context a chain servlet/web context
+     * @param uri Context-relative URI to include
+     */
+    protected void doForward(
+        ServletActionContext context,
+        String uri)
+        throws IOException, ServletException {
+
+        RequestDispatcher rd = getRequiredDispatcher(context, uri);
+
+        if (rd != null) {
+            rd.forward(context.getRequest(), context.getResponse());
+        }
+    }
+    
+    /**
+     * <p>Get the <code>RequestDispatcher</code> for the specified <code>uri</code>.  If it is not found, 
+     * send a 500 error as a response and return null; 
+     *  
+     * @param context the current <code>ServletActionContext</code>
+     * @param uri the ServletContext-relative URI of the request dispatcher to find.
+     * @return the <code>RequestDispatcher</code>, or null if none is returned from the <code>ServletContext</code>.
+     * @throws IOException if <code>getRequestDispatcher(uri)</code> has an error.
+     */
+    private RequestDispatcher getRequiredDispatcher(ServletActionContext context, String uri) throws IOException {
         RequestDispatcher rd = context.getContext().getRequestDispatcher(uri);
         if (rd == null) {
+            log.debug("No request dispatcher found for " + uri);
+            HttpServletResponse response = context.getResponse();
             response.sendError(
                 HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                 "Error getting RequestDispatcher for " + uri);
-            return;
         }
-        rd.include(request, response);
+        return rd;
     }
-
 
 }
