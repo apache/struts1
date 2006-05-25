@@ -15,6 +15,8 @@
  */
 package org.apache.struts.chain.commands.servlet;
 
+import java.io.IOException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionServlet;
@@ -25,8 +27,11 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.RequestUtils;
+import org.apache.struts.util.ModuleUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -51,76 +56,74 @@ public class PerformForward extends AbstractPerformForward {
     protected void perform(ActionContext context, ForwardConfig forwardConfig)
         throws Exception {
         ServletActionContext sacontext = (ServletActionContext) context;
-        String forwardPath = forwardConfig.getPath();
-        String uri;
+        String uri = forwardConfig.getPath();;
 
-        if (forwardPath == null) {
-            // Retrieve internal message resources
+        if (uri == null) {
             ActionServlet servlet = sacontext.getActionServlet();
             MessageResources resources = servlet.getInternal();
 
-            throw new IllegalArgumentException(resources.getMessage(
-                    "forwardPathNull"));
-        }
-
-        ModuleConfig moduleConfig = context.getModuleConfig();
-
-        // Resolve module-relative paths
-        if (forwardPath.startsWith("/")) {
-            uri = RequestUtils.forwardURL(sacontext.getRequest(),
-                    forwardConfig, moduleConfig);
-        } else {
-            uri = forwardPath;
+            throw new IllegalArgumentException(resources.getMessage("forwardPathNull"));
         }
 
         HttpServletRequest request = sacontext.getRequest();
-
-        // Use of actions within tiles, jsp:include or c:import requires to
-        // convert forward (w/o redirect) to an include
-        // if response has been committed
+        ServletContext servletContext = sacontext.getContext();
         HttpServletResponse response = sacontext.getResponse();
 
+        if (uri.startsWith("/")) {
+            uri = resolveModuleRelativePath(forwardConfig, servletContext, request);
+        }
+
+
         if (response.isCommitted() && !forwardConfig.getRedirect()) {
-            RequestDispatcher rd =
-                sacontext.getContext().getRequestDispatcher(uri);
+            handleAsInclude(uri, servletContext, request, response);
+        } else if (forwardConfig.getRedirect()) {
+            handleAsRedirect(uri, request, response);
+        } else {
+            handleAsForward(uri, servletContext, request, response);
+        }
+    }
 
-            if (rd == null) {
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    "Error getting RequestDispatcher for " + uri);
+    private String resolveModuleRelativePath(ForwardConfig forwardConfig, ServletContext servletContext, HttpServletRequest request) {
+        String prefix = forwardConfig.getModule();
+        ModuleConfig moduleConfig = ModuleUtils.getInstance().getModuleConfig(prefix, request, servletContext);
+        return RequestUtils.forwardURL(request,forwardConfig, moduleConfig);
+    }
 
-                return;
-            }
+    private void handleAsForward(String uri, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher rd = servletContext.getRequestDispatcher(uri);
 
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("Including " + uri);
-            }
-                
-            rd.include(request, response);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Forwarding to " + uri);
+        }
 
+        rd.forward(request, response);
+    }
+
+    private void handleAsRedirect(String uri, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        if (uri.startsWith("/")) {
+            uri = request.getContextPath() + uri;
+        }
+
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Redirecting to " + uri);
+        }
+
+        response.sendRedirect(response.encodeRedirectURL(uri));
+    }
+
+    private void handleAsInclude(String uri, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        RequestDispatcher rd = servletContext.getRequestDispatcher(uri);
+
+        if (rd == null) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                "Error getting RequestDispatcher for " + uri);
             return;
         }
 
-        // Perform redirect or forward
-        if (forwardConfig.getRedirect()) {
-            if (uri.startsWith("/")) {
-                uri = request.getContextPath() + uri;
-            }
-
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("Redirecting to " + uri);
-            }
-
-            sacontext.getResponse().sendRedirect(sacontext.getResponse()
-                                                          .encodeRedirectURL(uri));
-        } else {
-            RequestDispatcher rd =
-                sacontext.getContext().getRequestDispatcher(uri);
-
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("Forwarding to " + uri);
-            }
-
-            rd.forward(request, sacontext.getResponse());
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Including " + uri);
         }
+            
+        rd.include(request, response);
     }
 }
