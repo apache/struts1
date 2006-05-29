@@ -125,5 +125,15 @@
         <bean:write name="index" />]</li>
       </logic:iterate>
     </ol>
+    <h3>Test 11 - Iterate over a List using the 'collection' attribute</h3>
+    <ol>
+      <logic:iterate id="item" collection="<%= list %>" indexId="index">
+        <li>
+        <em>
+          <bean:write name="item" />
+        </em>&#160;[
+        <bean:write name="index" />]</li>
+      </logic:iterate>
+    </ol>
   </body>
 </html>
