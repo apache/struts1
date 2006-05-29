@@ -206,7 +206,7 @@ public class TestModuleConfig extends TestCase {
         testCustomMappingParseBase
              ("-//Apache Software Foundation//DTD Struts Configuration 1.1//EN",
               "/org/apache/struts/resources/struts-config_1_1.dtd",
-                     "/org/apache/struts/config/struts-config-custom-mapping.xml");
+                     "/org/apache/struts/config/struts-config-custom-mapping-1.1.xml");
 
      }
 
