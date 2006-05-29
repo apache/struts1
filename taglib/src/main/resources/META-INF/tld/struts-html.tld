@@ -812,7 +812,7 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-                  <p>Name of the request scope bean under which our error messages
+                  <p>Name of the bean (in any scope) under which our error messages
                   have been stored.  If not present, the name specified by the
                   <code>Globals.ERROR_KEY</code> constant string will be used.</p>
 
@@ -1156,7 +1156,7 @@
                 <p>Displays a set of error messages prepared by a business
                 logic component and stored as an <code>ActionMessages</code>
                 object, an <code>ActionErrors</code>
-                object, a String, or a String array in request scope.  If
+                object, a String, or a String array in any scope.  If
                 such a bean is not found, nothing will be rendered.</p>
 
                 <p>In order to use this tag successfully, you must have
@@ -1244,7 +1244,7 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-                  Name of the request scope bean under which our error messages
+                  Name of the bean (in any scope) under which our error messages
                   have been stored.  If not present, the name specified by the
                   <code>Globals.ERROR_KEY</code> constant string will be used.
                   ]]>
@@ -1404,7 +1404,7 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-                  <p>Name of the request scope bean under which our error messages
+                  <p>Name of the bean (in any scope) under which our error messages
                   have been stored.  If not present, the name specified by the
                   <code>Globals.ERROR_KEY</code> constant string will be used.</p>
 
@@ -4879,7 +4879,7 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-                  <p>Name of the request scope bean under which our error messages
+                  <p>Name of the bean (in any scope) under which our error messages
                   have been stored.  If not present, the name specified by the
                   <code>Globals.ERROR_KEY</code> constant string will be used.</p>
 
@@ -5697,7 +5697,7 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-                  <p>Name of the request scope bean under which our error messages
+                  <p>Name of the bean (in any scope) under which our error messages
                   have been stored.  If not present, the name specified by the
                   <code>Globals.ERROR_KEY</code> constant string will be used.</p>
 
@@ -6167,7 +6167,7 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-                  <p>Name of the request scope bean under which our error messages
+                  <p>Name of the bean (in any scope) under which our error messages
                   have been stored.  If not present, the name specified by the
                   <code>Globals.ERROR_KEY</code> constant string will be used.</p>
 
@@ -7152,7 +7152,7 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-                  <p>Name of the request scope bean under which our error messages
+                  <p>Name of the bean (in any scope) under which our error messages
                   have been stored.  If not present, the name specified by the
                   <code>Globals.ERROR_KEY</code> constant string will be used.</p>
 
@@ -7897,7 +7897,7 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-                  <p>Name of the request scope bean under which our error messages
+                  <p>Name of the bean (in any scope) under which our error messages
                   have been stored.  If not present, the name specified by the
                   <code>Globals.ERROR_KEY</code> constant string will be used.</p>
 
@@ -8360,7 +8360,7 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-                  <p>Name of the request scope bean under which our error messages
+                  <p>Name of the bean (in any scope) under which our error messages
                   have been stored.  If not present, the name specified by the
                   <code>Globals.ERROR_KEY</code> constant string will be used.</p>
 
