@@ -3653,7 +3653,7 @@
         <attribute>
             <name>dynamicJavascript</name>
             <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
+            <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
             <p>
@@ -3739,7 +3739,7 @@
         <attribute>
             <name>staticJavascript</name>
             <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
+            <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
             <p>

@@ -4008,7 +4008,7 @@
         <attribute>
             <name>staticJavascript</name>
             <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
+            <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
                <p>
