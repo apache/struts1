@@ -138,6 +138,7 @@
                type="org.apache.struts.webapp.example.SaveRegistrationAction"
                name="registrationForm"
               scope="request"
+        cancellable="true"
               input="registration">
     </action>
 
@@ -146,6 +147,7 @@
                type="org.apache.struts.webapp.example.SaveSubscriptionAction"
                name="subscriptionForm"
               scope="request"
+        cancellable="true"
               input="subscription">
       <forward name="success"         path="/editRegistration.do?action=Edit"/>
     </action>
