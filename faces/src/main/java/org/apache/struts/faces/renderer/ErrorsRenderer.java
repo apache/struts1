@@ -30,7 +30,7 @@ import javax.faces.context.ResponseWriter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
-import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.util.MessageResources;
 
@@ -136,7 +136,7 @@ public class ErrorsRenderer extends AbstractRenderer {
         }
 
         // Render any Struts messages
-        ActionErrors errors = (ActionErrors)
+        ActionMessages errors = (ActionMessages)
             context.getExternalContext().getRequestMap().get
             (Globals.ERROR_KEY);
         if (errors != null) {
