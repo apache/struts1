@@ -45,19 +45,19 @@
 
   <%-- FIXME - needs "?action=Create" modifier --%>
   <s:form          action="/editRegistration">
-    <h:commandLink     id="register"
+    <s:commandLink     id="register"
                    action="#{loggedOff.register}"
                 immediate="true">
       <s:message      key="loggedoff.register"/>
-    </h:commandLink>
+    </s:commandLink>
   </s:form>
 
   <s:form          action="/editLogon">
-    <h:commandLink     id="logon"
+    <s:commandLink     id="logon"
                    action="#{loggedOff.logon}"
                 immediate="true">
       <s:message      key="loggedoff.logon"/>
-    </h:commandLink>
+    </s:commandLink>
   </s:form>
 
 </h:panelGrid>
