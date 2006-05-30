@@ -111,6 +111,10 @@ public class FormRenderer extends AbstractRenderer {
         String action = form.getAction();
         ModuleConfig moduleConfig = form.lookupModuleConfig(context);
         ActionConfig actionConfig = moduleConfig.findActionConfig(action);
+        if (actionConfig == null) {
+            throw new IllegalArgumentException("Cannot find action '" +
+                                               action + "' configuration");
+        }
         String beanName = actionConfig.getAttribute();
         if (beanName != null) {
             form.getAttributes().put("beanName", beanName);
