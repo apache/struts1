@@ -510,7 +510,7 @@ limitations under the License.
             <subsection name="5.3.1 Module Configuration Files">
 
                 <p>
-                    Back in Struts 1.0, a few "boot-strap" options were placed
+                    Back in version 1.0, a few "boot-strap" options were placed
                     in the
                     <code>web.xml</code>
                     file, and the bulk of the configuration was done in a
@@ -523,7 +523,7 @@ limitations under the License.
                 </p>
 
                 <p>
-                    Since Struts 1.1, you have two options: you can list
+                    Since version 1.1, you have two options: you can list
                     <a href="#5_4_1_Configure_the_ActionServlet_Instance">
                         multiple struts-config files</a>
                     as a
@@ -548,12 +548,11 @@ limitations under the License.
             <subsection name="5.3.2 Informing the Controller">
 
                 <p>
-                    Since Struts 1.0, you listed your configuration file as an
+                    Since version 1.0, you listed your configuration file as an
                     initialization
                     parameter to the action servlet in
-                    <code>web.xml</code>
-                    .
-                    This is still done since Struts 1.1, but the parameter can
+                    <code>web.xml.</code>
+                    This is still done since version 1.1, but the parameter can
                     be extended.
                     In order to tell the framework machinery about your
                     different modules, you
@@ -606,14 +605,12 @@ limitations under the License.
                     (The
                     <code>struts-default.xml</code>
                     would be equivalent to what most folks call
-                    <code>struts-config.xml</code>
-                    .
+                    <code>struts-config.xml.</code>
                     I just like the symmetry of having all my module
                     configuration files being
                     named
                     <code>struts-
-                        <em>module</em>
-                        .xml
+                        <em>module.xml</em>
                     </code>
                     )
                 </p>
@@ -639,7 +636,7 @@ limitations under the License.
                     to another.
                     You can use the
                     <code>org.apache.struts.actions.SwitchAction</code>
-                    from the Struts Extras subproject,
+                    from the Extras JAR,
                     you can use a
                     <code>&lt;forward&gt;</code>
                     (global or local) and specify the contextRelative
@@ -828,7 +825,7 @@ limitations under the License.
                         (/${module}).
                         This can be repeated as many times as required for
                         multiple
-                        application modules. (Since Struts 1.1)
+                        application modules. (Since version 1.1)
                     </li>
 
                     <li>
@@ -842,13 +839,13 @@ limitations under the License.
 
                     <li>
                         <strong>convertNull</strong>
-                        - Force simulation of the Struts 1.0
+                        - Force simulation of the version 1.0
                         behavior when populating forms.
                         If set to "true", the numeric Java wrapper class types
                         (like
                         <code>java.lang.Integer</code>
                         ) will default to null (rather than 0).
-                        (Since Struts 1.1) [false]
+                        (Since version 1.1) [false]
                     </li>
 
                     <li>
@@ -865,7 +862,7 @@ limitations under the License.
                         By default, only the
                         <code>RuleSet</code>
                         for the standard
-                        configuration elements is loaded. (Since Struts 1.1)
+                        configuration elements is loaded. (Since version 1.1)
                     </li>
 
                     <li>
@@ -996,7 +993,7 @@ limitations under the License.
                 <p>
                     <strong>WARNING</strong>
                     - If you are using
-                    the new module support since Struts 1.1, you should be
+                    the new module support since version 1.1, you should be
                     aware
                     that
                     <strong>only</strong>
@@ -1051,28 +1048,21 @@ limitations under the License.
             </subsection>
 
             <a name="config_add"/>
-            <subsection name="5.5 Add Struts Components To Your Application">
+            <subsection name="5.5 Add Framework Components To Your Application">
 
                 <p>
                     To use the framework, you must copy
-                    <code>struts.jar</code>
+                    <code>struts-core-*.jar</code>
                     (and all of the
                     <code>commons-*.jar</code>
                     files) into your
                     <code>WEB-INF/lib</code>
                     directory. To use Struts Taglib,
-                    you must also copy the .tld files that you require into
-                    your
-                    <code>WEB-INF</code>
-                    directory and the struts-taglib.jar.
-                </p>
-
-                <p>
-                    <strong>Servlet 2.3/2.4 Users:</strong>
-                    See
-                    <a href="5_4_3_Configure_the_Struts_Tag_Libraries_23">
-                        section 4.5.3.1</a>
-                    for how to avoid copying the tlds into your application.
+                    you must also copy the 
+                    <code>struts-taglib-*.jar.</code>
+                    Likewise, to use other optional components, like
+                    Extras, Tiles, or the Validator, copy the corresponding 
+                    <code>struts-*.jar.</code>
                 </p>
 
                 <div class="notice">
@@ -1105,8 +1095,8 @@ limitations under the License.
                     </p>
 
                     <p>
-                        If you have multiple Struts-based web applications, it
-                        is tempting
+                        If you have multiple web applications based on the framework, 
+                        it is tempting
                         to consider taking advantage of this container
                         feature, and placing
                         <code>struts.jar</code>
@@ -1115,8 +1105,7 @@ limitations under the License.
                         files in the shared directory, rather than in each web
                         application.
                         However, there are several potential, and actual,
-                        problems with
-                        this approach:
+                        problems with this approach:
                     </p>
 
                     <ul>
@@ -1219,7 +1208,7 @@ limitations under the License.
             <subsection name="5.6 Logging">
 
                 <p>
-                    Since Struts 1.0, the logging functionality was fairly
+                    Since version 1.0, the logging functionality was fairly
                     limited. You could
                     set a debugging detail level with a servlet initialization
                     parameter, and
@@ -1231,13 +1220,11 @@ limitations under the License.
                     commons libraries
                     that it utilizes, flow through an abstract wrapper called
                     <a href="http://jakarta.apache.org/commons/logging">
-                        Commons Logging</a>
-                    ,
+                        Commons Logging,</a>
                     which can be used as a wrapper around any logging
                     implementation. The most
                     common implementations used are simple logging to
-                    <code>System.err</code>
-                    ,
+                    <code>System.err,</code>
                     the
                     <a href="http://jakarta.apache.org/log4j/">Apache
                         Log4J</a>
@@ -1260,8 +1247,7 @@ limitations under the License.
                     the logging system
                     you are using, plus the Commons Logging
                     <a href="http://jakarta.apache.org/commons/logging/commons-logging-1.0.3/docs/api/">
-                        Javadocs</a>
-                    .
+                        Javadocs.</a>
                 </p>
 
                 <p>
@@ -1279,8 +1265,7 @@ limitations under the License.
                     <code>RequestProcessor</code>
                     class are, naturally
                     enough, directed to a logger named
-                    <code>org.apache.struts.action.RequestProcessor</code>
-                    .
+                    <code>org.apache.struts.action.RequestProcessor.</code>
                 </p>
 
                 <p>
@@ -1300,8 +1285,7 @@ limitations under the License.
                     detail level if no configuration for any level of the
                     hierarchy has been
                     explicitly set. In the case of our messages from
-                    <code>RequestProcessor</code>
-                    ,
+                    <code>RequestProcessor,</code>
                     the logging system will look for explicit settings of the
                     following loggers,
                     in this order, until it finds one:
@@ -1379,8 +1363,7 @@ limitations under the License.
                 <p>
                     For more about putting it all together, see the
                     <a href="../faqs/apps.html">
-                        Building Applications HowTo</a>
-                    .
+                        Building Applications HowTo.</a>
                 </p>
 
                 <p class="right">

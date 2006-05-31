@@ -42,8 +42,7 @@ limitations under the License.
                     <a href="http://struts.apache.org/bylaws.html">a vote</a>
                     of the
                     <a href="http://struts.apache.org/volunteers.html#pmc">
-                        Struts PMC</a>
-                    .
+                        Apache Struts PMC.</a>
                 </p>
             </subsection>
 
@@ -51,7 +50,7 @@ limitations under the License.
             <subsection name="JIRA Queries">
 
                 <p>
-                    The Struts development community uses the
+                    The Apache Struts development community uses the
                     <a href="http://issues.apache.org/struts/">
                         Apache Bug Database</a>
                     (JIRA) to manage problem reports
@@ -62,16 +61,16 @@ limitations under the License.
 
                 <ul>
                     <li>
-                        <a href="http://issues.apache.org/struts/browse/STR?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Struts Action 1)</a>
+                        <a href="http://issues.apache.org/struts/browse/STR?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Action 1)</a>
                     </li>
                     <li>
-                        <a href="http://issues.apache.org/struts/browse/WW?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Struts Action 2)</a>
+                        <a href="http://issues.apache.org/struts/browse/WW?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Action 2)</a>
                     </li>
                     <li>
-                        <a href="http://issues.apache.org/struts/browse/SHALE?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Struts Shale)</a>
+                        <a href="http://issues.apache.org/struts/browse/SHALE?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Shale)</a>
                     </li>
                     <li>
-                        <a href="http://issues.apache.org/struts/browse/SB?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Struts Sandbox)</a>
+                        <a href="http://issues.apache.org/struts/browse/SB?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Sandbox)</a>
                     </li>
                 </ul>
 
@@ -82,47 +81,14 @@ limitations under the License.
             <subsection name="Struts Action Framework 1.x">
 
                 <p>
-                    Through version 1.2.x, the project's codebase was bundled
-                    as a single
-                    distribution with a single release cycle.
-                    Post version 1.2.x, the project's codebase is separated
-                    into several
-                    subprojects, each with its own distribution and release
-                    cycle.
-                    The core controller classes are now available as Struts
-                    Action
-                    Framework. The taglibs classes are now available as Struts
-                    Taglib,
-                    and so forth.
-                </p>
-
-                <p>
-                    Popular third-party extensions that are in active use by
-                    the Struts
-                    community may be considered as new subprojects,
-                    such as those distributed through the
-                    <a href="http://sourceforge.net/projects/struts">
-                        Struts SourceForge</a>
-                    site.
-                    (If you are the author of such an extension,
-                    and would like to donate it to Apache Struts,
-                    please contact the
-                    <a href="http://struts.apache.org/mail.html">
-                        Struts dev mailing list</a>
-                    .)
-                </p>
-
-                <p>
                     Releases in the 1.x series will focus on refactoring of
                     existing functionality, with a continued emphasis on
-                    backward
-                    compatibility.
+                    backward compatibility.
                 </p>
                 <p>
                     New features are being added to the 1.x series,
                     but only if backward compatability with the prior release
-                    can be
-                    retained.
+                    can be retained.
                     The framework's API is evolving through a strict
                     deprecate/replace/remove protocol.
                     Developers are encouraged to stay current with the "best
@@ -150,8 +116,7 @@ limitations under the License.
                     suggested.
                     <strong>The listing of an enhancement in JIRA does not
                         imply that
-                        it is being "planned"</strong>
-                    ,
+                        it is being "planned",</strong>
                     merely that someone has suggested it,
                     and the idea hasn't been ruled out (yet).
                 </p>
@@ -172,7 +137,7 @@ limitations under the License.
                     working on an
                     enhancement,
                     they should re-tag it for a specific release milestone,
-                    such as "1.3.1" or "1.3.2".
+                    such as "1.4.1" or "1.4.2".
                 </p>
 
                 <p>
@@ -204,7 +169,7 @@ limitations under the License.
                 <a name="struts_1_0"/>
                 <subsection name="Release 1.0.x (complete)">
                     <p>
-                        Major refactoring of Struts internals to provide support
+                        Major refactoring of framework internals to provide support
                         for modules and a new
                         "config" object series. Bundles Struts Tiles and Struts
                         Validator into main distribution.

@@ -44,10 +44,9 @@ limitations under the License.
 
                     <li>
                         Write an ActionForm class to mediate between the Model
-                        and the View. (See also
-                        <a href="../faqs/actionForm.html">Building
-                            an ActionForm</a>
-                        ).
+                        and the View. 
+                        <a href="../faqs/actionForm.html">(See also
+				Building an ActionForm.)</a>
                     </li>
 
                     <li>
@@ -88,9 +87,8 @@ limitations under the License.
 
                 <p>
                     The latter two items are covered in the
-                    "
-                    <a href="configuration.html">Configuring Applications</a>
-                    " chapter.
+                    <a href="configuration.html">"Configuring Applications"</a>
+                    chapter.
                 </p>
 
             </subsection>
@@ -185,12 +183,10 @@ limitations under the License.
                     processing
                     occurs for each request. Since version 1.3, the default
                     Request Processor
-                    (
-                    <code>ComposableRequestProcessor</code>
-                    ) is composed using
+                    <code>(ComposableRequestProcessor)</code>
+                    is composed using
                     <a href="http://jakarta.apache.org/commons/chain/">Jakarta
-                        Commons Chain</a>
-                    ,
+                        Commons Chain,</a>
                     which is an implementation of the
                     <i>Chain of Responsibility</i>
                     pattern (CoR).
@@ -201,7 +197,7 @@ limitations under the License.
                     Each step of the processing is represented as a separate
                     Command in the Chain.
                     By inserting, substituting, or removing Commands,
-                    you can customize Struts to work
+                    you can customize the framework to work
                     <i>your</i>
                     way.
                     Let's take a look at the
@@ -418,9 +414,9 @@ limitations under the License.
 
                 <p>
                     In Struts 1.2.x, Tiles processing required configuring
-                    Struts to use the
+                    the framework to use the
                     <code>TilesRequestProcessor</code>
-                    implementation. In the Struts 1.3
+                    implementation. In the SAF 1.3
                     <i>Chain</i>
                     based request processor using Tiles simply
                     involves configuring it to use an additional Tiles
@@ -627,11 +623,11 @@ limitations under the License.
                         standard application resource, The framework will
                         automatically validate the
                         input from the form (using your method).
-                        See "
+                        See 
                         <a href="building_view.html#3_3_4_Automatic_Form_Validation">
                             Automatic Form
                             Validation</a>
-                        " for details. Of course, you can also ignore the
+                        for details. Of course, you can also ignore the
                         ActionForm validation and provide your own in the
                         Action object.
                     </li>
@@ -838,7 +834,7 @@ limitations under the License.
                 </p>
 
                 <p>
-                    In JSP pages using the Apache Struts Taglib, attributes of
+                    In JSP pages using the Struts Taglib, attributes of
                     DynaActionForm objects can be referenced just like
                     ordinary
                     ActionForm objects. Wherever a Struts tag refers to a
@@ -958,10 +954,9 @@ limitations under the License.
                     <i>Lazy</i>
                     ActionForm which
                     <i>wraps</i>
-                    a LazyDynaBean (see
+                    a LazyDynaBean 
                     <a href="http://jakarta.apache.org/commons/beanutils/apidocs/org/apache/commons/beanutils/package-summary.html#dynamic.lazy">
-                        Commons BeanUtils JavaDoc</a>
-                    ).
+                        (see Commons BeanUtils JavaDoc).</a>
                 </p>
 
                 <p>
@@ -1105,7 +1100,7 @@ limitations under the License.
                 <p>
                     Rather than using this class, another alternative is to
                     either use a LazyDynaBean or
-                    custom version of LazyDynaBean directly. Struts now
+                    custom version of LazyDynaBean directly, the framework now
                     automatically
                     <i>wraps</i>
                     objects
@@ -1124,8 +1119,7 @@ limitations under the License.
                 <p>
                     For more coding examples, see the
                     <a href="http://www.niallp.pwp.blueyonder.co.uk/lazyactionform.html">
-                        LazyValidatorForm How-To</a>
-                    .
+                        LazyValidatorForm How-To.</a>
                 </p>
 
             </subsection>
@@ -1303,7 +1297,7 @@ limitations under the License.
                 </source>
 
                 <p>
-                    Since the majority of teams using Apache Struts are
+                    Since the majority of teams using the framework are
                     focused on building web
                     applications, most projects will only use the
                     "HttpServletRequest"
@@ -1440,8 +1434,8 @@ limitations under the License.
                         -
                         Our controller servlet creates
                         <strong>only one instance of your
-                            Action class</strong>
-                        , and uses this one instance to service
+                            Action class,</strong>
+                        and uses this one instance to service
                         all requests.
                         Thus, you need to write thread-safe Action classes.
                         Follow the same guidelines you would use to write
@@ -1786,8 +1780,8 @@ limitations under the License.
                     appropriate Action class.
                     The required knowledge has been encapsulated in a Java
                     class named
-                    <em>ActionMapping</em>
-                    , the most important properties are as follows:
+                    <em>ActionMapping,</em>
+                    the most important properties are as follows:
                 </p>
 
                 <ul>
@@ -2162,9 +2156,9 @@ limitations under the License.
                     The configuration file includes several other elements
                     that you
                     can use to customize your application.
-                    See "
+                    See 
                     <a href="configuration.html">Configuring Applications</a>
-                    " for details.
+                    for details.
                 </p>
 
             </subsection>

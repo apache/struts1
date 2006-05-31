@@ -35,17 +35,13 @@ limitations under the License.
                     own.
                     Several options are available, such as
                     <a href="http://struts.apache.org/struts-taglib/">Struts
-                        Taglib</a>
-                    ,
+                        Taglib,</a>
                     <a href="http://struts.sourceforge.net/struts-cocoon/">
-                        Struts Cocoon</a>
-                    ,
+                        Struts Cocoon,</a>
                     <a href="http://jakarta.apache.org/velocity/tools/struts/">
-                        Struts Velocity</a>
-                    ,
+                        Struts Velocity,</a>
                     and
-                    <a href="http://stxx.sourceforge.net/">Stxx</a>
-                    ,
+                    <a href="http://stxx.sourceforge.net/">Stxx,</a>
                     among others.
                 </p>
 
@@ -88,12 +84,11 @@ limitations under the License.
                     (often called "i18n"
                     because 18 is the number of letters in between the "i" and
                     the "n") and
-                    <em>localization</em>
-                    .
+                    <em>localization.</em>
                 </p>
 
                 <p>
-                    Struts builds upon the standard classes available on the
+                    The framework builds upon the standard classes available on the
                     Java platform to
                     build internationalized and localized applications.
                     The key concepts to become familiar with are:
@@ -225,11 +220,10 @@ limitations under the License.
                     <code>com.mycompany.mypackage</code>
                     , so it is stored in a directory
                     (relative to your source directory) named
-                    <code>com/mycompany/mypackage</code>
-                    .
+                    <code>com/mycompany/mypackage.</code>
                     To create a resource bundle called
-                    <code>com.mycompany.mypackage.MyApplication</code>
-                    , you would create the
+                    <code>com.mycompany.mypackage.MyApplication,</code>
+                    you would create the
                     following files in the
                     <code>com/mycompany/mypackage</code>
                     directory:
@@ -271,8 +265,7 @@ limitations under the License.
                     define is
                     the base name of the resource bundle for the application.
                     In the case described above, it would be
-                    <code>com.mycompany.mypackage.MyApplication</code>
-                    .
+                    <code>com.mycompany.mypackage.MyApplication.</code>
                 </p>
 
                 <source><![CDATA[
@@ -407,10 +400,9 @@ value="<%= loginBean.getUsername() >"/>
                 <p>
                     For an example of using the framework to create a simple
                     login form,
-                    see the "
+                    see the 
                     <a href="../faqs/actionForm.html">
-                        Buiding an ActionForm Howto</a>
-                    ".
+                        Buiding an ActionForm Howto.</a>
                 </p>
             </subsection>
 
@@ -466,8 +458,8 @@ HttpServletRequest request);
                         Perform the appropriate validations and find problems
                         -- Return an
                         ActionErrors instance containing
-                        <code>ActionMessage</code>
-                        's, which
+                        <code>ActionMessage's,</code>
+                        which
                         are classes that contain the error message keys (into
                         the
                         application's
@@ -494,8 +486,8 @@ HttpServletRequest request);
                     The default implementation of the
                     <code>validate</code>
                     method returns
-                    <code>null</code>
-                    , and the controller servlet will assume that any
+                    <code>null,</code>
+                    and the controller servlet will assume that any
                     required validation is done by the action class.
                 </p>
 
@@ -581,8 +573,7 @@ value="/org/apache/struts/validator/validator-rules.xml,
                 <p>
                     For more about the Struts Validator, see the
                     <a href="../faqs/validator.html">
-                        Developers Guide</a>
-                    .
+                        Developers Guide.</a>
                 </p>
 
             </subsection>

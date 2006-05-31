@@ -19,7 +19,7 @@ limitations under the License.
 <document>
 
     <properties>
-        <title>Struts Action 1</title>
+        <title>Struts Action Framework 1</title>
     </properties>
 
     <body>
@@ -36,13 +36,13 @@ limitations under the License.
                 <a href="http://jakarta.apache.org/commons/index.html">Jakarta
                     Commons</a>
                 packages, like BeanUtils and Chain of Responsibility.
-                Struts Action Framework helps you create an extensible
+                The framework helps you create an extensible
                 development
                 environment for your application,
                 based on published standards and proven design patterns.
             </p>
 
-            <subsection name="Action Framework in a Nutshell">
+            <subsection name="Struts Action Framework in a Nutshell">
                 <a name="nutshell"/>
 
                 <p>
@@ -52,42 +52,35 @@ limitations under the License.
                     integrates with other technologies to provide the Model
                     and the View.
                     For the
-                    <strong>Model</strong>
-                    , the framework can interact
+                    <strong>Model,</strong>
+                    the framework can interact
                     with standard data access technologies,
                     like
                     <a href="http://java.sun.com/products/jdbc/">JDBC</a>
                     and
-                    <a href="http://java.sun.com/products/ejb/">EJB</a>
-                    ,
+                    <a href="http://java.sun.com/products/ejb/">EJB,</a>
                     as well as most any third-party packages,
                     like
-                    <a href="http://hibernate.org/">Hibernate</a>
-                    ,
-                    <a href="http://ibatis.apache.org/">iBATIS</a>
-                    , or
+                    <a href="http://hibernate.org/">Hibernate,</a>
+                    <a href="http://ibatis.apache.org/">iBATIS,</a>
+                    or
                     <a href="http://db.apache.org/ojb/">Object Relational
-                        Bridge</a>
-                    .
+                        Bridge.</a>
                     For the
-                    <strong>View</strong>
-                    , the framework works well with
+                    <strong>View,</strong>
+                    the framework works well with
                     <a href="http://java.sun.com/products/jsp/">JavaServer
-                        Pages</a>
-                    ,
+                        Pages,</a>
                     including
-                    <a href="faqs/kickstart.html#jsf">JSTL and JSF</a>
-                    ,
+                    <a href="faqs/kickstart.html#jsf">JSTL and JSF,</a>
                     as well as
                     <a href="http://jakarta.apache.org/velocity/tools/struts/">
-                        Velocity Templates</a>
-                    ,
-                    <a href="http://stxx.sourceforge.net/">XSLT</a>
-                    ,
+                        Velocity Templates,</a>
+                    <a href="http://stxx.sourceforge.net/">XSLT,</a>
                     and other presentation systems.
                 </p>
 
-                <p>
+               <p>
                     The framework's Controller acts as a bridge between the
                     application's
                     Model and the web View. When a request is received, the
@@ -107,8 +100,7 @@ limitations under the License.
 
                 <p>
                     Most often, the Model is represented as a set of
-                    <strong>JavaBeans</strong>
-                    .
+                    <strong>JavaBeans.</strong>
                     Typically, developers will use the Commons
                     <strong>BeanUtils</strong>
                     to
@@ -128,8 +120,7 @@ limitations under the License.
                     like
                     <a href="userGuide/preface.html#servlets">servlets</a>
                     and
-                    <a href="userGuide/preface.html#jsp">taglibs</a>
-                    .
+                    <a href="userGuide/preface.html#jsp">taglibs.</a>
                     The deployment descriptor is formatted as a
                     <a href="userGuide/preface.html#xml">XML</a>
                     document
@@ -145,8 +136,7 @@ limitations under the License.
                         ActionMappings</a>
                     to direct input to server-side
                     <a href="http://struts.apache.org/userGuide/building_controller.html#action_classes">
-                        Actions</a>
-                    ,
+                        Actions,</a>
                     and ActionForwards to select output pages.
                 </p>
 
@@ -226,8 +216,7 @@ limitations under the License.
                     This is one reason why there are so many
                     <a href="http://wiki.apache.org/struts/StrutsResources/">
                         contributor
-                        extensions</a>
-                    .
+                        extensions.</a>
                     We provide the base framework, but you can still write
                     <b>your</b>
                     application
@@ -238,8 +227,7 @@ limitations under the License.
                 <p>
                     For more about the framework and its underlying
                     technologies, see the
-                    <a href="userGuide/index.html">User Guide</a>
-                    .
+                    <a href="userGuide/index.html">User Guide.</a>
                 </p>
 
             </subsection>
@@ -268,8 +256,7 @@ limitations under the License.
                         architecture</a>
                     and
                     <a href="http://www.scioworks.net/devnews/articles/struts_adoption_issues/index.html">
-                        Issues in Struts Adoption</a>
-                    .
+                        Issues in Struts Adoption.</a>
                 </p>
 
             </subsection>

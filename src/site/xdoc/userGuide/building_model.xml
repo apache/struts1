@@ -178,10 +178,10 @@ limitations under the License.
 
                 <p>
                     If you declare such beans in your Struts
-                    configuration file (see "
+                    configuration file 
                     <a href="building_controller.html#4_8_Writing_Action_Mappings">
-                        Writing Action Mappings</a>
-                    "), the Struts controller servlet
+                        (see Writing Action Mappings),</a>
+                    the Struts controller servlet
                     will automatically perform the following services for you,
                     before
                     invoking the appropriate
@@ -225,9 +225,8 @@ limitations under the License.
                         method of an
                         <code>Action</code>
                         class
-                        [
-                        <code>org.apache.struts.Action</code>
-                        ], so that the values can
+                        <code>[org.apache.struts.Action],</code>
+                        so that the values can
                         be made available to your system state and business
                         logic beans.
                     </li>
@@ -239,10 +238,10 @@ limitations under the License.
                     <code>Actions</code>
                     and
                     <code>ActionForm</code>
-                    beans, see the "
+                    beans, see the 
                     <a href="building_controller.html">Building
                         Controller Components</a>
-                    " section.
+                    section.
                 </p>
 
                 <p>
@@ -424,9 +423,9 @@ limitations under the License.
                     As of Struts 1.3, Commons Chain is used to construct the
                     default
                     Request Processor for the framework.
-                    See the "
+                    See the 
                     <a href="preface.html#chain">Preface</a>
-                    " section for more.
+                    section for more.
                 </p>
             </subsection>
 
@@ -470,8 +469,7 @@ limitations under the License.
                     For more about using a database with your application, see
                     the
                     <a href="../faqs/db-howto.html">Accessing a Database
-                        HowTo</a>
-                    .
+                        HowTo.</a>
                 </p>
             </subsection>
         </section>

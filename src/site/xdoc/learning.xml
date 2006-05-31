@@ -43,10 +43,8 @@ limitations under the License.
 
             <p>
                 Our documentation includes a
-                <a href="userGuide/index.html">User Guide</a>
-                ,
-                <a href="./faqs/index.html">FAQs, and Howto Guides</a>
-                ,
+                <a href="userGuide/index.html">User Guide,</a>
+                <a href="./faqs/index.html">FAQs and Howto Guides,</a>
                 along with this top-level introduction.
             </p>
 
@@ -71,13 +69,11 @@ limitations under the License.
                     <strong>NOTE:</strong>
                     If you are previewing the documentation on the website,
                     most of the links in this section will refer to the
-                    <strong>Nightly Build</strong>
-                    .
+                    <strong>Nightly Build.</strong>
                     When learning about the framework,
                     <strong>be sure to refer to the documentation for the
                         version
-                        you are actually using</strong>
-                    .
+                        you are actually using.</strong>
                 </p>
             </subsection>
 
@@ -127,7 +123,6 @@ limitations under the License.
                         answers the most common technical questions asked
                         developers using
                         the framework for the first-time.
-
                     </li>
                 </ul>
 
@@ -155,12 +150,10 @@ limitations under the License.
                     If you have any questions about how the framework actually
                     works,
                     do not hesitate to
-                    <em>use the source</em>
-                    .
+                    <em>use the source.</em>
                     For the complete, buildable source code,
                     see the "src" folder in your
-                    <strong>source distribution</strong>
-                    .
+                    <strong>source distribution.</strong>
                 </p>
             </subsection>
 
@@ -175,8 +168,7 @@ limitations under the License.
                     </a>
                     are
                     <strong>surprisingly comprehensive and
-                        carefully maintained</strong>
-                    .
+                        carefully maintained.</strong>
                     It is
                     <em>strongly</em>
                     recommended that you refer to the
@@ -193,11 +185,10 @@ limitations under the License.
             <a name="Examples"/>
             <subsection name="Struts Action Framework by Example">
                 <p>
-                    To help you see how it all fits together, several example
-                    applications
-                    are available that demonstrate using the framework with
-                    other
-                    Apache Struts subprojects.
+                    To help you see how it all fits together, 
+                    several example applications
+                    are bundled in the "webapp" folder in the distribution 
+                    that demonstrate using the framework.
                 </p>
 
                 <ul>
@@ -230,7 +221,10 @@ limitations under the License.
                             </li>
                         </ul>
                     </li>
-                    <li>
+                     <li>
+                        Faces - Demonstrates the Struts-Faces integration tag library.
+                    </li>
+                   <li>
                         <a href="http://opensource2.atlassian.com/confluence/oss/display/STRUTS/MailReader">
                             MailReader</a>
                         - The original Struts example
@@ -240,51 +234,56 @@ limitations under the License.
                 </ul>
 
                 <p>
-                    These applications are available for
-                    <a href="http://struts.apache.org/downloads.html">
-                        download</a>
-                    from
-                    the Struts Applications subproject, in both source and
-                    binary form.
-                </p>
-
-                <p>
                     There are also many third-party example applications
-                    available
-                    for study, including these three:
+                    available for study, including these three:
                 </p>
 
                 <ul>
                     <li>
                         <a href="http://raibledesigns.com/wiki/Wiki.jsp?page=AppFuse">
                             AppFuse</a>
-                        - Demonstrates using XDoclet with Struts Classic,
+                        - Demonstrates using XDoclet with the framework,
                         along with different security packages and Hibernate
-                        for
-                        database persistence.
+                        for database persistence.
                     </li>
                     <li>
                         <a href="http://ibatis.apache.org/petstore.html">
                             JPetStore</a>
                         -
                         A streamlined version of the Java Petstore application
-                        implemented with Struts Classic and iBATIS database
+                        implemented with SAF and iBATIS database
                         layer.
                     </li>
                     <li>
                         <a href="http://www.codeczar.com/products/logweb/index.html">
                             LogWeb</a>
-                        - A Struts Classic webapp for configuring
+                        - A SAF webapp for configuring
                         Log4J at runtime within a servlet container.
                     </li>
                 </ul>
 
+                <p>
+                    Other open source applications built using the framework include:
+                </p>
+
+                </ul>
+                    <li>
+                        <a href="http://rollerweblogger.org/page/project">
+                            Roller</a>
+                        -  open source blog server.
+                    </li>
+                    <li>
+                        <a href="http://www.xplanner.org/">
+                            XPlanner</a>
+                        - project planning and tracking tool for eXtreme Programming (XP) teams.
+                    </li>
+                </ul>
             </subsection>
 
             <a name="More"/>
             <subsection name="Learning More About Struts Action Framework">
                 <p>
-                    The Struts
+                    The Apache Struts
                     <a href="http://struts.apache.org/mail.html">Mailing
                         Lists</a>
                     are a treasure trove of useful, interactive information.
@@ -296,8 +295,7 @@ limitations under the License.
                     before
                     <a href="http://www.catb.org/~esr/faqs/smart-questions.html">
                         posting a
-                        new question</a>
-                    .
+                        new question.</a>
                     Like as not, it's already been asked and answered.
                 </p>
 
@@ -307,17 +305,16 @@ limitations under the License.
                     <a href="#faqs">FAQs</a>
                     or one of the
                     <a href="http://struts.apache.org/mail.html#Archives">
-                        list archives</a>
-                    , you can post your query to the Struts User list --
+                        list archives,</a>
+                    you can post your query to the Apache Struts User list --
                     <strong>BUT YOU MUST SUBSCRIBE TO THE
                         <a href="mailto:user-subscribe@struts.apache.org">USER
                             LIST</a>
                         OR THE
                         <a href="mailto:user-digest-subscribe@struts.apache.org">
                             USER LIST DIGEST</a>
-                        BEFORE POSTING
+                        BEFORE POSTING.
                     </strong>
-                    .
                 </p>
 
                 <p>
@@ -353,7 +350,7 @@ limitations under the License.
             </subsection>
 
             <a name="resources"/>
-            <subsection name="Struts Community Resources">
+            <subsection name="Community Resources">
                 <p>
                     Apache Struts has attracted a large and robust community
                     of developers,
@@ -362,52 +359,31 @@ limitations under the License.
                     Several pages on our wiki are devoted to listing
                     <a href="http://wiki.apache.org/struts/StrutsResources">
                         Apache Struts
-                        resources</a>
-                    .
+                        resources.</a>
                 </p>
+                
+                <p>
+                    For a comprehensive listing of all resources related to 
+                    Apache Struts, 
+                    including articles, books, and third-party extensions, 
+                    for Action 1, Shale, and Action 2, 
+                    visit <a href="http://www.StrutsCentral.net/">Struts Central.</a>
 
-                <ul>
-                    <li>
-                        <a href="http://wiki.apache.org/struts/StrutsArticles">
-                            articles</a>
-                        ,
-                    </li>
-
-                    <li>
-                        <a href="http://wiki.apache.org/struts/StrutsBooks">
-                            books</a>
-                        ,
-                    </li>
-
-                    <li>
-                        <a href="http://wiki.apache.org/struts/StrutsApplications">
-                            sample
-                            applications</a>
-                        ,
-                    </li>
-
-                    <li>
-                        <a href="http://wiki.apache.org/struts/StrutsTraining">
-                            training</a>
-                        , and more!
-                    </li>
-
-                </ul>
             </subsection>
 
             <a name="books"/>
-            <subsection name="Books about Apache Struts">
+            <subsection name="Books about Struts Action Framework">
 
                 <p>
                     The Apache Software Foundation does not provide printed
                     manuals,
-                    but several third-party books about Apache Struts are
+                    but several third-party books about Struts Action Framework are
                     available.
-                    A current list of books about Struts subprojects is
-                    maintained as a
-                    <a href="http://wiki.apache.org/struts/StrutsBooks">wiki
-                        page</a>
-                    .
+                    Visit <a href="http://www.StrutsCentral.net/Resources/Action/books.html">
+                    Struts Central</a> 
+                    or the 
+                    <a href="http://opensource.atlassian.com/confluence/oss/display/BOOKS/Books+about+Struts">
+                    Apache Bookstore</a> for complete listings.
                 </p>
             </subsection>
         </section>
