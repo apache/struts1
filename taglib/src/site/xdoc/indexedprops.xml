@@ -39,13 +39,13 @@ limitations under the License.
                     except with explicit JSP expressions (&lt;%= %&gt;).
                 </p>
                 <p>
-                    The Struts framework provides much more powerful features
+                    The Struts Action Framework provides much more powerful features
                     related to
                     indexed properties, but in truth most of the heavy lifting
                     is not even in
-                    the Struts framework, but in the Jakarta Commons Beanutils
+                    the Struts Action Framework, but in the Jakarta Commons Beanutils
                     package. This
-                    package is used by Struts to provide this functionality.
+                    package is used by the framework to provide this functionality.
                     You can see the
                     javadoc documentation for the Beanutils package at
                     <a
@@ -65,7 +65,7 @@ limitations under the License.
                     properties",
                     "nested properties" and "indexed tags", which are all
                     related but slightly
-                    different. The latter is exclusive to Struts, but the
+                    different. The latter is exclusive to the framework, but the
                     first two are also
                     provided by the Beanutils package. This article will cover
                     all three of
@@ -74,8 +74,8 @@ limitations under the License.
             </subsection>
             <subsection name="Indexed Properties">
                 <p>
-                    The simplest demonstration of using indexed properties in
-                    Struts can be
+                    The simplest demonstration of using indexed properties 
+                    can be
                     shown with the following simple bean and JSP page:
                 </p>
                 <pre>
@@ -100,7 +100,7 @@ limitations under the License.
                     an "int" and
                     the "set" method takes an "int" and "String". The
                     Beanutils package and
-                    Struts recognizes this arrangement of signatures as an
+                    the framework recognizes this arrangement of signatures as an
                     "indexed property",
                     in this case with the property name "stringIndexed".
                 </p>
@@ -269,7 +269,7 @@ limitations under the License.
                 <p>
                     First note the use of the class "LabelValueBean". This is
                     a simple class
-                    provided in the Struts library which represents a pair of
+                    provided in the framework which represents a pair of
                     two Strings, a
                     "label" and a "value". It itself is a bean, providing
                     these two
@@ -305,12 +305,9 @@ limitations under the License.
             </subsection>
             <subsection name="Dynamic Indexes for Indexed Properties">
                 <p>
-                    When people started using indexed properties in Struts
-                    tags, I'm
-                    reasonably certain they started out with a high level of
-                    enthusiasm, but
-                    were somewhat frustrated when they discovered reality. The
-                    reality is
+                    People often start using indexed properties with 
+                    enthusiasm, but soon become frustrated by an inconvenient  
+                    reality. The reality is
                     that the "index" for indexed properties often needs to be
                     a dynamic value,
                     usually from the "indexId" counter in the "&lt;logic:iterate&gt;"
@@ -561,13 +558,6 @@ limitations under the License.
                     &lt;/html-el:form&gt;
                     &lt;/body&gt;
                     &lt;/html&gt;</pre>
-                <p>
-                    The Struts-EL library is part of the Struts distribution,
-                    in the "contrib"
-                    directory. The one drawback to using Struts-EL is that it
-                    requires a web
-                    container supporting the Servlet 2.3 specification.
-                </p>
             </subsection>
         </section>
     </body>

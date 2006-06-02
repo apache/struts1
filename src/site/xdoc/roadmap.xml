@@ -27,9 +27,6 @@ limitations under the License.
         <section name="Development Roadmap">
             <a name="roadmap"/>
 
-            <a name="scope"/>
-            <subsection name="Scope">
-
                 <p>
                     This document outlines some of changes we expect to
                     see in future releases of Struts Action Framework and
@@ -44,7 +41,6 @@ limitations under the License.
                     <a href="http://struts.apache.org/volunteers.html#pmc">
                         Apache Struts PMC.</a>
                 </p>
-            </subsection>
 
             <a name="JIRA"/>
             <subsection name="JIRA Queries">
@@ -202,10 +198,10 @@ limitations under the License.
                     </p>
                     <ul>
                         <li>
-                            Divided distribution into subprojects
+                            Divided distribution into components with individual JARs
                         </li>
                         <li>
-                            Completed support for Maven 2 builds
+                            Support for Maven 2 builds
                         </li>
                         <li>
                             Moved action to "Struts Chain" Request Processor

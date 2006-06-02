@@ -85,9 +85,8 @@ limitations under the License.
                     but not these technologies,
                     the best overall starting point is
                     <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/index.html">
-                        <strong>The J2EE Tutorial</strong>
+                        <strong>The J2EE Tutorial.</strong>
                     </a>
-                    .
                     This document is also available for download in
                     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JavaWSTutorial.pdf">
                         PDF</a>
@@ -107,9 +106,8 @@ limitations under the License.
                     generally,
                     then the best starting point is
                     <a href="http://java.sun.com/docs/books/tutorial/index.html">
-                        <strong>The Java Tutorial</strong>
+                        <strong>The Java Tutorial.</strong>
                     </a>
-                    .
                     This overlaps with The J2EE Tutorial in some
                     places, but the two work well together.
                 </p>
@@ -119,8 +117,7 @@ limitations under the License.
                     the
                     <a href="http://java.sun.com/developer/onlineTraining/new2java/">
                         New to
-                        Java Center</a>
-                    .
+                        Java Center.</a>
                 </p>
 
             </subsection>
@@ -130,13 +127,11 @@ limitations under the License.
 
                 <p>The World Wide Web was built over the Hypertext Transfer
                     Protocol
-                    (
                     <a href="http://www.ietf.org/rfc/rfc2616.txt?number=2616">
-                        HTTP</a>
-                    ) and the Hypertext Markup Language
-                    (
-                    <a href="http://www.w3.org/MarkUp/">HTML</a>
-                    ). A User Agent, like a web browser, uses HTTP to request
+                        (HTTP)</a>
+                    and the Hypertext Markup Language
+                    <a href="http://www.w3.org/MarkUp/">(HTML).</a>
+                    A User Agent, like a web browser, uses HTTP to request
                     a HTML document. The browser then formats and displays the
                     document to its user. HTTP is used to
                     transport more than HTML, but HTML is the lingua franca of
@@ -217,15 +212,14 @@ limitations under the License.
 
                 <p>The framework is written in the popular and versatile
                     <a href="http://java.sun.com/docs/books/jls/first_edition/html/index.html">
-                        Java programming language</a>
-                    .
+                        Java programming language.</a>
                     Java is an object-orientated language, and the framework
                     makes good use of many
                     object-orientated techniques. In addition, Java natively
                     supports the
                     concept of
-                    <em>threads</em>
-                    , which allows more than one task to be
+                    <em>threads,</em>
+                    which allows more than one task to be
                     performed at the same time. A good understanding of Java,
                     and especially
                     object-orientated programming (OOP) and threading, will
@@ -293,7 +287,6 @@ limitations under the License.
                     as described (among many other places) in the classic
                     <a href="http://www.amazon.com/exec/obidos/tg/detail/-/0201633612/apachesoftwar-20/">
                         "Gang of Four" design patterns book.</a>
-                    .
                     The GoF summarizes the Chain of Responsibility pattern as
                     "Avoid coupling the sender of a request to its receiver
                     by giving more than one object a chance to handle the
@@ -357,8 +350,8 @@ limitations under the License.
                 <p>Like many Java applications, most of the framework objects
                     are designed as
                     <a href="http://java.sun.com/products/javabeans/">
-                        JavaBeans</a>
-                    . Following the JavaBean design patterns makes
+                        JavaBeans.</a>
+                    Following the JavaBean design patterns makes
                     the framework's classes easier to use -- both by Java
                     developers and by Java development tools.
                 </p>
@@ -378,8 +371,8 @@ limitations under the License.
                                 Documentation</strong>
                         </a>
                         page at
-                        <code>java.sun.com</code>
-                        , including a link to download the
+                        <code>java.sun.com,</code>
+                        including a link to download the
                         <a href="http://java.sun.com/products/javabeans/docs/spec.html">
                             JavaBeans 1.01 Specification</a>
                     </li>
@@ -445,9 +438,8 @@ limitations under the License.
                     data through other methods.
                     JavaBeans are flexible and powerful objects but are not
                     the only object that programmers use to store data.
-                    Another popular object is the Map [
-                    <code>java.util.Map</code>
-                    ].
+                    Another popular object is the Map 
+                    <code>[java.util.Map].</code>
                     A Map is a simple collection of name and value pairs.
                     Maps are often used "behind the scenes" as a flexible way
                     to store dynamic data.
@@ -490,8 +482,7 @@ limitations under the License.
                             Package Description</a>
                         and
                         <a href="http://jakarta.apache.org/commons/beanutils/api/index.html">
-                            Javadocs</a>
-                        .
+                            Javadocs.</a>
                     </li>
                     <li>
                         <a href="https://formdef.dev.java.net/">Struts
@@ -531,8 +522,7 @@ limitations under the License.
                     provide internationalized messages
                     to users based their
                     <a href="http://java.sun.com/j2se/1.4.1/docs/api/java/util/Locale.html">
-                        Locale</a>
-                    .
+                        Locale.</a>
                     Support for localizing an application was built into the
                     framework from the ground-up.
                 </p>
@@ -594,8 +584,7 @@ limitations under the License.
 
                 <p>
                     A servlet is generally a subclass of
-                    <code>javax.servlet.http.HttpServlet</code>
-                    .
+                    <code>javax.servlet.http.HttpServlet.</code>
                     A servlet must implement four methods, which are invoked
                     by the container as needed:
                 </p>
@@ -640,13 +629,12 @@ limitations under the License.
 
                 <p>
                     The framework provides a ready-to-use servlet for your
-                    application [
-                    <code>org.apache.struts.action.ActionServlet</code>
-                    ].
-                    As a Struts developer, you can then just write objects
-                    that the Struts ActionServlet calls when needed.
-                    But it is still helpful to understand the basics of what
-                    servlets are,
+                    application 
+                    <code>[org.apache.struts.action.ActionServlet].</code>
+                    As a developer, you can then just write objects
+                    that the ActionServlet calls when needed.
+                    But it is still helpful to understand the  
+                    servlet essentials,
                     and the role they play in a Java web application.
                 </p>
 
@@ -721,9 +709,9 @@ limitations under the License.
 
                 <p>The
                     <em>ServletContext</em>
-                    interface [
-                    <code>javax.servlet.ServletContext</code>
-                    ] defines a servlet's view of
+                    interface 
+                    <code>[javax.servlet.ServletContext]</code>
+                    defines a servlet's view of
                     the web application within which the servlet is running.
                     It is
                     accessible in a servlet via the
@@ -733,8 +721,7 @@ limitations under the License.
                     <code>application</code>
                     implicit variable.
                     Servlet contexts provide several APIs that are very useful
-                    in building
-                    Struts based web applications:
+                    in building web applications:
                 </p>
                 <ul>
                     <li>
@@ -755,12 +742,10 @@ limitations under the License.
                         These attributes are global to the entire web
                         application, and may
                         be accessed by a servlet using the
-                        <code>getAttribute()</code>
-                        ,
-                        <code>getAttributeNames()</code>
-                        ,
-                        <code>removeAttribute()</code>
-                        , and
+                        <code>getAttribute(),</code>
+                        <code>getAttributeNames(),</code>
+                        <code>removeAttribute(),</code>
+                        and
                         <code>setAttribute()</code>
                         methods. From a JSP page, servlet
                         context attributes are also known as "application
@@ -789,9 +774,7 @@ limitations under the License.
                     Java
                     interface, normally a
                     <code>HttpServletRequest</code>
-                    [
-                    <code>javax.servlet.http.HttpServletRequest</code>
-                    ].
+                    <code>[javax.servlet.http.HttpServletRequest].</code>
                     The request interface provides an object-oriented
                     mechanism to access
                     all of the information that was included in the underlying
@@ -894,15 +877,12 @@ limitations under the License.
 
                 <p>The primary purpose of a servlet is to process an incoming
                     <a href="#request">Servlet Request</a>
-                    [
-                    <code>javax.servlet.http.HttpServletRequest</code>
-                    ]
+                    <code>[javax.servlet.http.HttpServletRequest]</code>
                     and convert it into a
                     corresponding response. This is performed by calling
                     appropriate
-                    methods on the servlet response [
-                    <code>javax.servlet.http.HttpServletResponse</code>
-                    ]
+                    methods on the servlet response 
+                    <code>[javax.servlet.http.HttpServletResponse]</code>
                     interface. Available methods let you:
                 </p>
                 <ul>
@@ -1002,9 +982,8 @@ limitations under the License.
                     <strong>2.3</strong>
                     or later of the Servlet Specification (such as
                     Tomcat 4.x), you can take advantage of the new Filter APIs
-                    [
-                    <code>javax.servlet.Filter</code>
-                    ] that
+                    <code>[javax.servlet.Filter]</code>
+                    that
                     let you compose a set of components that will process a
                     request or
                     response. Filters are aggregated into a chain in which
@@ -1058,8 +1037,8 @@ limitations under the License.
                 <p>To alleviate this difficulty, the servlet API provides a
                     programmatic
                     concept called a
-                    <em>session</em>
-                    , represented as an object that
+                    <em>session,</em>
+                    represented as an object that
                     implements the
                     <code>javax.servlet.http.HttpSession</code>
                     interface.
@@ -1081,8 +1060,7 @@ limitations under the License.
                 <p>To avoid occupying resources forever when a user fails to
                     complete
                     an interaction, sessions have a configurable
-                    <em>timeout interval</em>
-                    .
+                    <em>timeout interval.</em>
                     If the time gap between two requests exceeds this
                     interval, the session
                     will be timed out, and all session attributes removed. You
@@ -1243,9 +1221,8 @@ limitations under the License.
                     dynamic features using statements in the Java language or
                     by using
                     <a href="http://java.sun.com/products/jsp/taglibraries.html">
-                        JSP tags</a>
-                    .
-                    The Struts Classic distribution includes several JSP tags
+                        JSP tags.</a>
+                    The framework distribution includes several JSP tags
                     that make it easy to access the framework's
                     features from a JavaServer Page.
                 </p>
@@ -1298,21 +1275,18 @@ limitations under the License.
                         <strong>JavaServer Pages Standard Tag Library</strong>
                     </a>
                     (JSTL) and taglibs from other sources, like
-                    <a href="http://jsptags.com/">JSP Tags</a>
-                    ,
+                    <a href="http://jsptags.com/">JSP Tags,</a>
                     <a href="http://jakarta.apache.org/taglibs/index.html">
-                        Jakarta Taglibs</a>
-                    ,
+                        Jakarta Taglibs,</a>
                     <a href="http://struts.application-servers.com">Struts
-                        Layout</a>
-                    , and
+                        Layout,</a>
+                    and
                     <a href="http://displaytag.sourceforge.net/">
-                        Display Tags</a>
-                    .
+                        Display Tags.</a>
                 </p>
 
                 <p>
-                    One of the subprojects available for Struts Classic is
+                    One of the components available with the framework is
                     <a href="http://struts.apache.org/struts-el/index.html">
                         Struts-EL</a>
                     .
@@ -1330,31 +1304,27 @@ limitations under the License.
                     <a href="http://stxx.sourceforge.net/">XSLT</a>
                     and
                     <a href="http://jakarta.apache.org/velocity/tools/index.html">
-                        Velocity Templates</a>
-                    .
+                        Velocity Templates.</a>
                 </p>
 
                 <p>
                     The newest star on the Java horizon is
                     <a href="http://java.sun.com/j2ee/javaserverfaces/">
-                        JavaServer Faces technology</a>
-                    .
+                        JavaServer Faces technology.</a>
                     JSF simplifies building user interfaces for JavaServer
                     applications, both for the web and for the desktop.
                     To keep pace, Apache Struts is offering a new framework to
                     go with this new technology, called
                     <a href="http://struts.apache.org/struts-shale/index.html">
-                        Struts Shale</a>
-                    .
-                    For teams looking for a smoother transition to JSF, we
+                        Struts Shale.</a>
+                    For teams looking for a step-wise transition to JSF, we
                     offer Struts-Faces taglib,
                     which lets you use JSF components with your existing
                     Actions.
                 </p>
                 <p>
                     For an open source implementation of JSF, visit our
-                    sibling project
-                    .
+                    sibling project.
                 </p>
 
                 <p>For more about JSTL and JavaServer Faces see</p>
@@ -1393,8 +1363,8 @@ limitations under the License.
                     objects that are
                     usually deployed using a configuration file written in
                     <a href="http://www.w3.org/XML/">Extensible Markup
-                        Language</a>
-                    . XML is also used to
+                        Language.</a>
+                    XML is also used to
                     configure Java web applications; so, this is yet another
                     familiar approach.
                 </p>
@@ -1405,8 +1375,8 @@ limitations under the License.
                     <a href="http://java.sun.com/webservices/jaxp/dist/1.1/docs/tutorial/index.html">
                         Java API for XML Processing</a> Tutorial.
                     While the framework makes good use of this API internally,
-                    it is not something most Struts developers would use
-                    when writing their own applications.
+                    it is not something most developers would use
+                    when writing their own applications with the framework.
                 </p>
 
             </subsection>
@@ -1416,8 +1386,7 @@ limitations under the License.
                 <p>
                     When Java applications use XML configuration files,
                     the elements are most often used as
-                    <em>descriptors</em>
-                    .
+                    <em>descriptors.</em>
                     The application does not use the XML elements directly.
                     The elements are used to create and configure (or deploy)
                     Java objects.
@@ -1437,7 +1406,7 @@ limitations under the License.
 
                 <p>
                     While the framework can work with any approach to user
-                    authentication and authorization, Struts 1.1 and later
+                    authentication and authorization, version 1.1 and later
                     offers
                     direct support for the standard Java Authentication and
                     Authorization Service (JAAS).
@@ -1474,18 +1443,16 @@ limitations under the License.
 
                 <p>
                     For more about creating business and data access layers,
-                    see the "
+                    see the 
                     <a href="building_model.html">Building Model
                         Components</a>
-                    "
                     section.
                 </p>
 
                 <p>
                     For more about creating the presentation layer,
-                    see the "
+                    see the
                     <a href="building_model.html">Building View Components</a>
-                    "
                     section.
                 </p>
 

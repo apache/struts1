@@ -28,7 +28,7 @@ limitations under the License.
 
             <a name="history"/>
             <subsection
-                    name="1.1 Forward into the Past! (or a brief history of Struts)"
+                    name="1.1 Forward into the Past! (or a brief history of Struts Action)"
                     href="history">
 
                 <p>
@@ -45,8 +45,7 @@ limitations under the License.
                     statements was tiresome and
                     problematic. The answer to that was
                     <a href="http://java.sun.com/products/jsp/product.html">
-                        JavaServer Pages</a>
-                    ,
+                        JavaServer Pages,</a>
                     which turned
                     <a href="http://www.novocode.com/doc/servlet-essentials/">
                         Servlet</a>
@@ -89,19 +88,18 @@ limitations under the License.
                         Model-View-Controller</a>
                     design pattern abstracted from the venerable
                     <a href="http://st-www.cs.uiuc.edu/users/smarch/st-docs/mvc.html">
-                        Smalltalk MVC framework</a>
-                    .
+                        Smalltalk MVC framework.</a>
                     Java Web developers now tend to use the terms Model 2 and
                     MVC interchangeably. In this guide, we use
-                    the MVC paradigm to describe the Struts architecture,
+                    the MVC paradigm to describe the framework architecture,
                     which might be best termed a Model 2/MVC
                     design.
                 </p>
 
                 <p>
-                    The Struts project was launched in May 2000 by Craig R.
+                    The Apache Struts project was launched in May 2000 by Craig R.
                     McClanahan to provide a standard MVC
-                    framework to the Java community. In July 2001, Struts 1.0
+                    framework to the Java community. In July 2001, version 1.0
                     was released, and IOHO, Java
                     Model 2 development will never be quite the same.
                 </p>
@@ -232,7 +230,7 @@ limitations under the License.
                     operations might be embedded within the
                     <code>Action</code>
                     classes that are
-                    part of the Struts control layer. This can be useful when
+                    part of the framework control layer. This can be useful when
                     the logic is very
                     simple or where reuse of the business logic in other
                     environments is not
@@ -240,7 +238,7 @@ limitations under the License.
                 </p>
 
                 <p>
-                    The Struts framework architecture is flexible enough to
+                    The framework architecture is flexible enough to
                     support most any
                     approach to accessing the Model, but we
                     <strong>strongly</strong>
@@ -253,7 +251,7 @@ limitations under the License.
 
                 <p>
                     For more about adapting your application's Model to
-                    Struts, see the
+                    the framework, see the
                     <a href="building_model.html">Building Model
                         Components</a>
                     chapter.
@@ -269,7 +267,7 @@ limitations under the License.
                 <p>
                     The
                     <em>View</em>
-                    portion of a Struts-based application is most often
+                    portion of a SAF-based application is most often
                     constructed using JavaServer Pages (JSP) technology. JSP
                     pages can
                     contain static HTML (or XML) text called "template text",
@@ -282,8 +280,7 @@ limitations under the License.
                     <code>&lt;jsp:useBean&gt;</code>
                     whose purpose is described in the
                     <a href="http://java.sun.com/products/jsp/download.html">
-                        JavaServer Pages Specification</a>
-                    .
+                        JavaServer Pages Specification.</a>
                     In addition to the built-in actions, there is a standard
                     facility to
                     define your own tags, which are organized into "custom tag
@@ -291,7 +288,7 @@ limitations under the License.
                 </p>
 
                 <p>
-                    Struts includes a set of custom tag libraries that
+                    The framework includes a set of custom tag libraries that
                     facilitate
                     creating user interfaces that are fully internationalized
                     and
@@ -307,9 +304,8 @@ limitations under the License.
                     For more about the Struts taglibs and using presentation
                     pages
                     with the framework, see the
-                    "
                     <a href="building_view.html">Building View Components</a>
-                    " section.
+                    section.
                     Additional documentation regarding the taglibs is also
                     available in
                     the Taglibs subproject.
@@ -335,11 +331,10 @@ limitations under the License.
                     an appropriate View component. The primary component of
                     the
                     Controller in the framework is a servlet of class
-                    <code>ActionServlet</code>
-                    . This servlet
+                    <code>ActionServlet.</code>
+                    This servlet
                     is configured by defining a set of
-                    <code>ActionMappings</code>
-                    .
+                    <code>ActionMappings.</code>
                     An ActionMapping defines a
                     <code>path</code>
                     that is matched against the
@@ -347,8 +342,8 @@ limitations under the License.
                     the
                     fully qualified class name of an Action class. All Actions
                     are subclassed from
-                    <code>org.apache.struts.action.Action</code>
-                    . Actions
+                    <code>[org.apache.struts.action.Action].</code>
+                    Actions
                     encapsulate calls to business logic classes, interpret the
                     outcome, and
                     ultimately dispatch control to the appropriate View
@@ -368,7 +363,7 @@ limitations under the License.
                     additional information
                     specific to your application and still utilize the
                     remaining features of
-                    the framework. In addition, Struts lets you define logical
+                    the framework. In addition, the framework lets you define logical
                     "names" to which
                     control should be forwarded so that an action method can
                     ask for the
@@ -390,7 +385,7 @@ limitations under the License.
             </subsection>
 
             <a name="flow"/>
-            <subsection name="1.3 Struts Control Flow" href="flow">
+            <subsection name="1.3 Framework Control Flow" href="flow">
 
                 <p>
                     The framework provides several components that make up the
@@ -402,7 +397,7 @@ limitations under the License.
                 </p>
 
                 <p>
-                    The Struts Taglibs (another subproject) provide direct
+                    The Struts Taglibs (another component) provide direct
                     support for the
                     <strong>View</strong>
                     layer
@@ -412,8 +407,7 @@ limitations under the License.
                     applications. Other
                     taglibs, including
                     <a href="http://java.sun.com/products/jsp/jstl/index.html">
-                        JSTL</a>
-                    ,
+                        JSTL,</a>
                     can also be used with the framework. Other presentation
                     technologies, like
                     <a href="http://jakarta.apache.org/velocity/index.html">
@@ -427,22 +421,19 @@ limitations under the License.
                     The
                     <strong>Model</strong>
                     layer in a MVC application is often project-specific.
-                    Struts is
+                    The framework is
                     designed to make it easy to access the business-end of
                     your application,
                     but leaves that part of the programming to other products,
                     like
                     <a href="http://java.sun.com/products/jdbc/index.html">
-                        JDBC</a>
-                    ,
+                        JDBC,</a>
                     <a href="http://java.sun.com/products/ejb/index.html">
-                        Enterprise Java Beans</a>
-                    ,
+                        Enterprise Java Beans,</a>
                     <a href="http://db.apache.org/ojb/">Object Relational
-                        Bridge</a>
-                    , or
-                    <a href="http://ibatis.apache.org/">iBATIS</a>
-                    ,
+                        Bridge,</a>
+                    or
+                    <a href="http://ibatis.apache.org/">iBATIS,</a>
                     to name a few.
                 </p>
 
@@ -452,18 +443,16 @@ limitations under the License.
 
                 <p>
                     When initialized, the controller parses a configuration
-                    file (
-                    <code>struts-config.xml</code>
-                    ) and uses it to deploy other control layer objects.
+                    file <code>(struts-config.xml)</code>
+                    and uses it to deploy other control layer objects.
                     Together, these objects form the
-                    <strong>Struts Configuration</strong>
-                    . The Struts Configuration
+                    <strong>Struts Configuration.</strong>
+                    The Configuration
                     defines (among other things) the
                     <a href="../struts-action/apidocs/org/apache/struts/action/ActionMappings.html">
                         ActionMappings</a>
-                    [
-                    <code>org.apache.struts.action.ActionMappings</code>
-                    ] for an application.
+                    <code>[org.apache.struts.action.ActionMappings]</code>
+                    for an application.
                 </p>
 
                 <p>
@@ -473,10 +462,9 @@ limitations under the License.
                     may be forwarded to JavaServer Pages or
                     <a href="../struts-action/apidocs/org/apache/struts/action/Action.html">
                         Action</a>
-                    [
-                    <code>org.apache.struts.action.Action</code>
-                    ] subclasses provided by the
-                    Struts developer. Often, a request is first forwarded to
+                    <code>[org.apache.struts.action.Action]</code>
+                    subclasses provided by the
+                    application developer. Often, a request is first forwarded to
                     an Action and then to a JSP
                     (or other presentation page). The mappings help the
                     controller turn HTTP requests into application
@@ -487,9 +475,7 @@ limitations under the License.
                     An individual
                     <a href="../struts-action/apidocs/org/apache/struts/action/ActionMapping.html">
                         ActionMapping</a>
-                    [
-                    <code>org.apache.struts.action.ActionMapping</code>
-                    ]
+                    <code>[org.apache.struts.action.ActionMapping]</code>
                     will usually contain a number of properties including:
                 </p>
                 <ul>
@@ -520,8 +506,8 @@ limitations under the License.
                     Action object can indirectly
                     forward one or more shared objects, including
                     <a href="http://java.sun.com/products/javabeans/">
-                        JavaBeans</a>
-                    , by placing them in one
+                        JavaBeans,</a>
+                    by placing them in one
                     of the standard contexts shared by Java Servlets.
                 </p>
 
@@ -555,9 +541,8 @@ limitations under the License.
                     subclassing
                     <a href="../struts-action/apidocs/org/apache/struts/action/ActionForm.html">
                         ActionForm</a>
-                    [
-                    <code>org.apache.struts.action.ActionForm</code>
-                    ]. The ActionForm class makes it
+                    <code>[org.apache.struts.action.ActionForm].</code>
+                    The ActionForm class makes it
                     easy to store
                     <strong>and validate</strong>
                     the data for your application's input forms.
@@ -580,12 +565,10 @@ limitations under the License.
                 </p>
 
                 <p>
-                    Another element of the Struts Configuration are the
+                    Another element of the Configuration are the
                     <a href="../struts-action/apidocs/org/apache/struts/action/ActionFormBeans.html">
                         ActionFormBeans</a>
-                    [
-                    <code>org.apache.struts.action.ActionFormBeans</code>
-                    ].
+                    <code>[org.apache.struts.action.ActionFormBeans].</code>
                     This is a collection of
                     <a href="../struts-action/apidocs/org/apache/struts/action/ActionFormBean.html">
                         descriptor objects</a>
@@ -619,7 +602,7 @@ limitations under the License.
                 </ul>
 
                 <p>
-                    The Struts Taglib subproject provides custom tags that can
+                    The Struts Taglib component provides custom tags that can
                     automatically populate
                     fields from a JavaBean. All most JavaServer Pages really
                     need to know
@@ -644,8 +627,7 @@ limitations under the License.
                     the Java platform. All the field labels
                     and messages can be retrieved from a
                     <a href="../struts-action/apidocs/org/apache/struts/util/MessageResources.html">
-                        message resource</a>
-                    .
+                        message resource.</a>
                     To provide messages for another language, simply add
                     another file to the resource bundle.
                 </p>
@@ -704,16 +686,15 @@ limitations under the License.
                     The Struts Taglib distribution includes several Developer
                     Guides
                     covering various aspects of the tag components.
-                    The Struts Applications subproject provides sample
+                    The Struts Applications component provides sample
                     applications
                     that show how it all comes together.
                 </p>
 
                 <p>
-                    Struts is distributed under the
+                    The framework is distributed under the
                     <a href="http://www.apache.org/licenses/">Apache Software
-                        Foundation license</a>
-                    .
+                        Foundation license.</a>
                     The code is copyrighted, but is free to use in any
                     application.
                 </p>

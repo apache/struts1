@@ -31,11 +31,11 @@ limitations under the License.
                     This chapter focuses on the task of building the
                     <em>View</em>
                     components
-                    for use with the Struts framework.
+                    for use with the Struts Action Framework.
                     Many applications rely on JavaServer Pages (JSP)
                     technology to create the
                     presentation layer.
-                    The Struts distribution includes a comprehensive JSP tag
+                    The distribution includes a comprehensive JSP tag
                     library that
                     provides support for building internationalized
                     applications, as well as
@@ -75,7 +75,7 @@ limitations under the License.
                 </p>
 
                 <p>
-                    Struts builds upon the standard classes available on the
+                    The framework builds upon the standard classes available on the
                     Java platform to
                     build internationalized and localized applications.
                     The key concepts to become familiar with are:
@@ -163,7 +163,7 @@ limitations under the License.
                         <a href="../struts-action/apidocs/org/apache/struts/util/MessageResources.html">
                             <strong>MessageResources</strong>
                         </a>
-                        - The Struts class
+                        - The framework class
                         <code>org.apache.struts.util.MessageResources</code>
                         lets you treat
                         a set of resource bundles like a database, and allows
@@ -179,7 +179,7 @@ limitations under the License.
 
                 <p>
                     Please note that the i18n support in a framework like
-                    Struts is limited to
+                    Struts Action is limited to
                     the
                     <strong>presentation</strong>
                     of internationalized text and images to the user.
@@ -315,13 +315,11 @@ org.apache.struts.action.ActionServlet
                 <p>
                     <strong>Note:</strong>
                     While the examples given here use JSP and custom tags,
-                    the ActionForm beans and the other Struts controller
-                    components are
-                    View neutral.
+                    the ActionForm beans and the other controller
+                    components are View neutral.
                     Struts can be used with Velocity Templates, XSL, and any
-                    other
-                    presentation technology that can be rendered via a Java
-                    servlet.
+                    other presentation technology that can be rendered via a 
+                    Java servlet.
                 </p>
 
                 <p>
@@ -395,10 +393,9 @@ value="<%= loginBean.getUsername() >"/>
                 <p>
                     For an example of using Struts to create a simple login
                     form,
-                    see the "
+                    see the 
                     <a href="../faqs/actionForm.html">
-                        Buiding an ActionForm Howto</a>
-                    ".
+                        Buiding an ActionForm Howto.</a>
                 </p>
 
             </subsection>
@@ -426,17 +423,15 @@ value="<%= loginBean.getUsername() >"/>
                 <p>
                     Documentation on the Beanutils package can be found at
                     <a href="http://jakarta.apache.org/commons/beanutils/api/index.html">
-                        http://jakarta.apache.org/commons/beanutils/api/index.html</a>
-                    .
+                        http://jakarta.apache.org/commons/beanutils/api/index.html.</a>
                     More information about using indexed and mapped properties
                     in Struts can
                     be found in the FAQ describing
                     <a
                             href="../faqs/indexedprops.html">
                         <em>Indexed Properties, Mapped Properties,
-                            and Indexed Tags</em>
+                            and Indexed Tags.</em>
                     </a>
-                    .
                 </p>
             </subsection>
 
@@ -605,7 +600,7 @@ value="<%= loginBean.getUsername() >"/>
 
                 <p>
                     In addition to the form and bean interactions described
-                    above, Struts
+                    above, the framework 
                     offers an additional facility to validate the input fields
                     it has received.
                     To utilize this feature, override the following method in
@@ -728,7 +723,7 @@ HttpServletRequest request);
                     are building, to
                     assist in creating the user interface. The MailReader
                     example application
-                    included with Struts Applications illustrates this
+                    included with the distribution illustrates this
                     principle by creating
                     the following tags unique to the implementation of this
                     application:
@@ -788,7 +783,7 @@ HttpServletRequest request);
                     very common
                     design approach, and was employed in the example
                     application included
-                    with Struts.
+                    with the distribution.
                     However, many applications require the display of multiple
                     logically
                     distinct portions of your application together on a single
@@ -837,7 +832,7 @@ HttpServletRequest request);
                     capability of JavaServer Pages
                     technology to combine the results into a single result
                     page, or use the
-                    include tag provided with Struts.
+                    include tag provided with the framework.
                     There are three types of
                     <em>include</em>
                     available, depending on when you w

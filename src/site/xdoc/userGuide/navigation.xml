@@ -3,7 +3,7 @@
          href="http://struts.apache.org/userGuide"
          image="../images/struts.gif"
          authors="false">
-    <title>Apache Struts - Struts Action Framework - User Guide</title>
+    <title>Apache Struts - Struts Action Framework 1 - User Guide</title>
     <body>
         <menu name="Action Framework User Guide">
             <item
@@ -35,7 +35,7 @@
                     href="userGuide/installation.html"/>
         </menu>
 
-        <menu name="Action Framework Developer Guides">
+        <menu name="Developer Guides">
             <item
                     name="Utilities"
                     href="userGuide/dev_util.html"/>

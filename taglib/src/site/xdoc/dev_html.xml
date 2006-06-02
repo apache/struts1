@@ -31,12 +31,12 @@ limitations under the License.
                     a JSP view and the other components of a Web application.
                     Since a dynamic Web application often depends on gathering
                     data from a user, input forms play an important role in
-                    the Struts framework. Consequently, the majority of the
+                    the Struts Action Framework. Consequently, the majority of the
                     HTML tags involve HTML forms.
                 </p>
 
                 <p>
-                    The HTML taglib contains tags used to create Struts input
+                    The HTML taglib contains tags used to create input
                     forms, as well as other tags generally useful
                     in the creation of HTML-based user interfaces. The output
                     is HTML 4.01 compliant or XHTML 1.0 when in XHTML mode.

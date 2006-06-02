@@ -18,7 +18,7 @@ limitations under the License.
 -->
 <document>
   <properties>
-    <title>Struts Action 1 - Scripting</title>
+    <title>Struts Action Framework - Scripting</title>
   </properties>
 
   <body>
@@ -60,7 +60,7 @@ limitations under the License.
             <li><a href="apidocs/index.html">Javadocs</a> - Includes 
                 <a href="apidocs/org/apache/struts/scripting/StrutsInfo.html"><code>struts</code></a> variable and 
                 <a href="apidocs/org/apache/struts/scripting/BSFManagerFilter.html">Filter</a> API's.</li>
-            <li><a href="http://svn.apache.org/viewcvs.cgi/struts/scripting/trunk/src/struts-example/">Struts 
+            <li><a href="http://svn.apache.org/viewvc/struts/action/trunk/apps/scripting-mailreader/src/main/">Struts 
                 Mailreader</a> - A rewrite of the Struts Mailreader example application using Struts Scripting 
                 and <a href="http://groovy.codehaus.org">Groovy</a></li>
         </ul>        

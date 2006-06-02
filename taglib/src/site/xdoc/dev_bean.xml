@@ -33,9 +33,8 @@ limitations under the License.
                     available in the
                     <a href="http://java.sun.com/products/jsp/jstl/">
                         JavaServer Pages
-                        Standard Tag Library (JSTL)</a>
-                    .
-                    The Struts team encourages the use of the standard tags
+                        Standard Tag Library (JSTL).</a>
+                    The Struts Action team encourages the use of the standard tags
                     over the Struts
                     specific tags when possible.
                 </p>

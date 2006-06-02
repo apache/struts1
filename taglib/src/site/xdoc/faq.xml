@@ -160,14 +160,14 @@ limitations under the License.
             <subsection name="Are the Struts tags XHTML compliant?">
                 <p>If you use an &lt;html:html xhtml="true&gt; or &lt;html:xhtml/&gt;
                     element on your page, the tags
-                    will render as XHTML (since Struts 1.1).</p>
+                    will render as XHTML (since version 1.1).</p>
             </subsection>
 
             <a name="wml"/>
             <subsection
                     name="Will the Struts tags support other markup languages such as WML">
                 <p>
-                    Struts itself is markup neutral. The original Struts
+                    The framework itself is markup neutral. The original Struts
                     taglibs are only one example of how
                     presentation layer components can access the framework.
                     The framework objects are exposed
@@ -176,11 +176,11 @@ limitations under the License.
                     the application can make use of them.
                 </p>
 
-                <p>Markup extensions that use Struts are available for
+                <p>Markup extensions that use the framework are available for
                     <a href="http://jakarta.apache.org/velocity">Velocity</a>
                     and
-                    <a href="http://www.openroad.ca/opencode/">XLST</a>
-                    , among others.
+                    <a href="http://www.openroad.ca/opencode/">XLST,</a>
+                    among others.
                     A new Struts tag library for
                     <a href="#jsf">Java Server Faces</a>
                     is also in development.
@@ -188,8 +188,7 @@ limitations under the License.
 
                 <p>For more about using WAP/WML with Struts see the article
                     <a href="http://www.sys-con.com/pbdj/archives2/0904/hamboeck/">
-                        WAP up your EAserver</a>
-                    .
+                        WAP up your EAserver.</a>
                 </p>
             </subsection>
 
@@ -197,7 +196,7 @@ limitations under the License.
             <subsection
                     name="Can I use multiple HTML form elements with the same name?">
                 <p>
-                    Yes. Define the element as an array and Struts will
+                    Yes. Define the element as an array and the framework will
                     autopopulate it like any other.
                 </p>
                 <pre>
@@ -226,12 +225,11 @@ limitations under the License.
                     There is more than one way to achieve this functionality.
                 </p>
                 <p>
-                    The way that is suggested by struts is right out of the
+                    The way that is suggested by the framework is right out of the
                     javadoc for
                     <a href="../api/org/apache/struts/actions/LookupDispatchAction.html">
-                        <code>LookupDispatchAction</code>
+                        <code>LookupDispatchAction.</code>
                     </a>
-                    .
                     Basically,
                     <code>LookupDispatchAction</code>
                     is using the keys from
@@ -245,7 +243,7 @@ limitations under the License.
                     to
                     decode the request and invoke the proper action. It also
                     takes advantage of
-                    the struts
+                    the 
                     <a href="../userGuide/struts-html.html#submit">
                         <code>&lt;html:submit&gt;</code>
                     </a>
@@ -282,8 +280,7 @@ limitations under the License.
                     final solution to this project,
                     please post your patch to this
                     <a href="http://issues.apache.org/struts/browse/STR-899">
-                        JIRA ticket</a>
-                    .
+                        JIRA ticket.</a>
                 </p>
             </subsection>
 
@@ -306,7 +303,7 @@ limitations under the License.
                     sent that the corresponding value is unchecked.
                 </p>
                 <p>
-                    The recommended approach for Struts applications is to use
+                    The recommended approach for framework applications is to use
                     the reset method in the
                     ActionForm to set all properties represented by checkboxes
                     to null or false. The
@@ -409,7 +406,7 @@ limitations under the License.
             <subsection name="How do I use JavaScript to ...">
 
                 <p>
-                    Struts is mainly a server-side technology.
+                    The framework is mainly a server-side technology.
                     We bundled in some JSP tags to expose the framework
                     components to your
                     presentation page, but past that, the usual development
@@ -421,12 +418,12 @@ limitations under the License.
                     (That's why it was invented.)
                     If you want things popping up or doing this when they
                     click that,
-                    you are outside the scope of Struts and back into the web
+                    you are outside the scope of the framework and back into the web
                     development mainstream.
                 </p>
 
                 <p>
-                    You use JavaScript with Struts the same way you use with
+                    You use JavaScript with the framework the same way you use with
                     any presentation
                     page.
                     Since JavaScript is a client-side technology, you can use
@@ -469,7 +466,7 @@ limitations under the License.
             <subsection
                     name="Can't I just create some of my JavaBeans in the JSP using a scriptlet?">
                 <p>
-                    Struts is designed to encourage a
+                    The framework is designed to encourage a
                     <a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html">
                         Model 2/MVC architecture</a>
                     . But there is nothing that prevents you from using Model
@@ -478,9 +475,9 @@ limitations under the License.
                     question is "Yes, you can".
                 </p>
                 <p>
-                    Though, using Model 1 techniques in a Struts application
+                    Though, using Model 1 techniques in a framework application
                     does go against the grain.
-                    The approach recommended by most Struts developers is to
+                    The approach recommended by most developers is to
                     create and populate whatever
                     objects the view may need in the Action, and then forward
                     these through the request.
@@ -490,8 +487,8 @@ limitations under the License.
                 </p>
                 <p>
                     Likewise, there is nothing to prevent you from using
-                    scriptlets along with JSP
-                    tags in your pages. Though, many Struts developers report
+                    scriptlets along with JSP tags in your pages. Though, 
+                    many developers report
                     writing very complex
                     scriplet-free applications and recommend the JSP tag
                     approach to others.
@@ -501,8 +498,8 @@ limitations under the License.
                     consider joining the
                     <a href="http://archives.java.sun.com/jsp-interest.html">
                         Javasoft JSP-interest
-                        mailing list</a>
-                    , where there are more people still using these
+                        mailing list,</a>
+                    where there are more people still using these
                     approaches.
                 </p>
             </subsection>
@@ -613,12 +610,11 @@ limitations under the License.
                     In the same arena, there is a well regarded contributor
                     taglib that can help you create
                     <a href="http://sourceforge.net/projects/struts-menu/">
-                        Menus for your Struts applications</a>
-                    .
+                        Menus for your Struts applications.</a>
                 </p>
                 <p>
                     Another very popular tag library is
-                    <a href="http://displaytag.sourceforge.net">DisplayTag</a>
+                    <a href="http://displaytag.sourceforge.net">DisplayTag.</a>
                     .
                     DisplayTag is an excellent choice when you have tabular
                     data to present.

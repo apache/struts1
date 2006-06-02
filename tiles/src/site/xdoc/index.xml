@@ -18,13 +18,13 @@ limitations under the License.
 -->
 <document>
 <properties>
-  <title>Struts Action 1 - Tiles</title>
+  <title>Struts Action Framework - Tiles</title>
 </properties>
 
 <body>
 
 <section name="Welcome To Tiles">
-    <p>Welcome to the Struts Tiles subproject.  Tiles is a templating 
+    <p>Welcome to the Struts Tiles component.  Tiles is a templating 
     framework.  It can be used to create a common look &amp; feel for a web site or
     application and to create reusable view components.  This site will give you
     all the information you need to get started.</p>
@@ -42,8 +42,8 @@ limitations under the License.
                    Definitions can take place : 
                    <ul>
                       <li>in a centralized xml file</li>
-                      <li>directly in jsp pages</li>
-                      <li>programatically in struts actions</li>
+                      <li>directly in JSP pages</li>
+                      <li>programatically in Actions</li>
                    </ul>
                 </li>
                 <li>

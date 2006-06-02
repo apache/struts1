@@ -35,10 +35,8 @@ limitations under the License.
                     painful than using straight HTML
                     and standard JSP facilities.
                     Consider the following page (based on the Struts
-                    MailReader, found in
-                    the Application subproject) named
-                    <code>logon.jsp</code>
-                    :
+                    MailReader example) named
+                    <code>logon.jsp:</code>
                 </p>
 
                 <hr/>
@@ -199,9 +197,7 @@ limitations under the License.
                         with a
                         <code>ActionForm</code>
                         bean
-                        [
-                        <code>org.apache.struts.action.ActionForm</code>
-                        ].
+                        <code>[org.apache.struts.action.ActionForm].</code>
                         The tag looks up the
                         <code>/logon</code>
                         action mapping in the Struts
@@ -210,8 +206,7 @@ limitations under the License.
                         <code>logon</code>
                         mapping tells the tag that the form bean is
                         stored in the session context under the key
-                        <code>logonForm</code>
-                        .
+                        <code>logonForm.</code>
                         The developer provides the Java implementation of the
                         ActionForm bean, subclassing the Struts class
                         <code>ActionForm</code>
@@ -241,8 +236,7 @@ limitations under the License.
                         everything is specified in the
                         <a href="../userGuide/building_controller.html#4_8_Writing_Action_Mappings">
                             Struts Configuration
-                            File</a>
-                        .
+                            File.</a>
                     </li>
 
                     <li>
@@ -316,8 +310,7 @@ limitations under the License.
                 <p>
                     For more about using this technique, see the
                     <a href="http://jakarta.apache.org/commons/beanutils/">
-                        Jakarta Commons BeanUtils documentation</a>
-                    ,
+                        Jakarta Commons BeanUtils documentation,</a>
                     and the Struts MailReader example application.
                 </p>
 

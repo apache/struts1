@@ -136,11 +136,11 @@ limitations under the License.
             </subsection>
 
             <a name="sslext"/>
-            <subsection name="The sslext Struts Extension">
+            <subsection name="The sslext Extension">
 
                 <p>
-                    An extension to Struts 1.1, named sslext, helps solve many
-                    of these issues for Struts
+                    An extension to version 1.1, named sslext, helps solve many
+                    of these issues for Struts Action 
                     developers. It extends the ActionConfig class,
                     RequestProcessor, and Plugin classes to
                     define a framework where developers may specify the

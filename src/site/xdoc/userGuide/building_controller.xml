@@ -1865,16 +1865,15 @@ limitations under the License.
                     Type Definition
                     (DTD) maintained at
                     <a href="http://struts.apache.org/dtds/struts-config_1_3.dtd">
-                        http://struts.apache.org/dtds/struts-config_1_3.dtd</a>
-                    .
+                        http://struts.apache.org/dtds/struts-config_1_3.dtd.</a>
                     This chapter covers the configuration elements that you
                     will typically
                     write as part of developing your application.
                     There are several other elements that can be placed in the
                     struts-config file to customize your application.
-                    See "
+                    See 
                     <a href="configuration.html">Configuring Applications</a>
-                    " for more
+                    for more
                     about the other elements in the framework's configuration
                     file.
                 </p>
@@ -2396,8 +2395,7 @@ limitations under the License.
                     please refer to the
                     <a href="http://jakarta.apache.org/commons/logging/api/index.html">
                         the description for the org.apache.commons.logging
-                        package</a>
-                    .
+                        package.</a>
                 </p>
 
                 <p>

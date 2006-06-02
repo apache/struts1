@@ -166,7 +166,7 @@ A mechanism similar to Java properties files is used for definition files: you c
 <subsection href="setup" name="Enabling your application for Tiles">
 
 <p>
-The Tiles framework is bundled with Struts but not enabled by default. To enable Tiles you need to:
+The Tiles framework is bundled with Struts Action but not enabled by default. To enable Tiles you need to:
 </p>
 
 <ul>
@@ -191,7 +191,7 @@ The Tiles framework is bundled with Struts but not enabled by default. To enable
 <pre>&lt;%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %&gt;</pre>
 <ul>
 <li>
-  If you plan to use Tiles definitions defined in a centralized file, you need to create this file and instruct Struts to load the Tiles plugin which will create the factory corresponding to the file. You can have more than one definitions file.
+  If you plan to use Tiles definitions defined in a centralized file, you need to create this file and instruct Struts Action to load the Tiles plugin which will create the factory corresponding to the file. You can have more than one definitions file.
 
 <ul>
 <li>
@@ -212,7 +212,7 @@ Create a file containing your definitions (e.g. <code>WEB-INF/tiles-defs.xml</co
 
 <ul>
 <li>
-  <strong>Note:</strong> This plugin creates one factory for each Struts modules. The plugin first reads the factory parameters from <code>web.xml</code> and then overloads them with the ones defined in the first <code>struts-config.xml</code> file.
+  <strong>Note:</strong> This plugin creates one factory for each Struts Action modules. The plugin first reads the factory parameters from <code>web.xml</code> and then overloads them with the ones defined in the first <code>struts-config.xml</code> file.
 </li>
 </ul>
 </li>
@@ -255,13 +255,13 @@ org.apache.commons.logging.simplelog.defaultlog=trace</pre>
 <a href="http://www.manning.com/getpage.html?project=husted&amp;filename=chapters.html">
 <strong>Developing applications with Tiles</strong></a> by Cedric Dumoulin and Ted Husted.
 Sample chapter from
-<a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/">Struts in Action</a>; available as a free download (PDF).
+<a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/apachesoftwar-20/">Struts in Action</a>; available as a free download (PDF).
 </p>
 
 <p>
 <a href="http://www.oreilly.com/catalog/jakarta/chapter/">
 <strong>Using Tiles</strong></a> Sample beta chapter from
-<a href="http://www.amazon.com/exec/obidos/ISBN=0596003285/hitchhikeguidetoA/">Programming Jakarta Struts</a>; available as a free download (PDF).
+<a href="http://www.amazon.com/exec/obidos/ISBN=0596003285/apachesoftwar-20/">Programming Jakarta Struts</a>; available as a free download (PDF).
 </p>
 
 <p>

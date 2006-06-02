@@ -27,7 +27,7 @@ limitations under the License.
     <body>
 
         <section href="netbeans"
-                 name="How to setup a basic Struts project using NetBeans IDE 4.0"/>
+                 name="How to setup a basic Struts Action project using NetBeans IDE 4.0"/>
         <section name="Legal Disclamer">
 
             Please read
@@ -39,8 +39,8 @@ limitations under the License.
                 * DISCLAIMER - This simple How-To shows you how easy it is to
                 use NetBeans IDE 4.0 to write code for the Struts
                 <br/>
-                framework. It just works straight out of the box. Simply
-                specify where your sources are
+                Action Framework. It just works straight out of the box. 
+                Simply specify where your sources are
                 <br/>
                 and where you want to store your application, and NetBeans IDE
                 4.0 does everything

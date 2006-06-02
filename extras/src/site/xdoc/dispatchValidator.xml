@@ -185,9 +185,7 @@ public ActionForward enterAddress(ActionMapping mapping,
                 definition
                 that specifies two field validations for the form bean
                 named
-                <code>acmeForm</code>
-                .
-
+                <code>acmeForm.</code>
 
                 <source><![CDATA[
 <formset>
@@ -290,8 +288,7 @@ public ActionForward enterAddress(ActionMapping mapping,
 ]]></source>
 
                 The full example is
-                <a href="dispatchValidator.zip">here</a>
-                .
+                <a href="dispatchValidator.zip">here,</a>
 
             </subsection>
 
