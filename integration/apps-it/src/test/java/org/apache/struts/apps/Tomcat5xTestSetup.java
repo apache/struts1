@@ -49,6 +49,13 @@ public class Tomcat5xTestSetup extends TestSetup {
         super(test);
     }
 
+    /**
+     * Required until MSUREFIRE-119 is fixed. 
+     */
+    public String getName() {
+        return "Tomcat5xTestSetup";
+    }
+
     protected void setUp() throws Exception {
         version = System.getProperty("version");
         port = System.getProperty("cargo.servlet.port");
