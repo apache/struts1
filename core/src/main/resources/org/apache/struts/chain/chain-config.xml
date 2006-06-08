@@ -87,6 +87,8 @@
                                      point in the chain without modifying the
                                      standard definition.
 
+             processCachedMessages   RemoveCachedMessages
+
              processMapping          SelectAction (which also does processPath)
 
              processRoles            AuthorizeAction
@@ -132,6 +134,11 @@
         <!-- Set (if needed) the HTTP response content type -->
         <command
                 className="org.apache.struts.chain.commands.servlet.SetContentType"/>
+
+
+        <!-- Remove messages cached in the Session -->
+        <command
+                className="org.apache.struts.chain.commands.RemoveCachedMessages"/>
 
 
         <!-- Identify the ActionConfig for this request -->

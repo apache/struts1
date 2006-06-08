@@ -245,6 +245,20 @@ limitations under the License.
 
                     <tr>
                         <td>
+                            RemoveCachedMessages
+                        </td>
+                        <td>
+                            Removes any <code>ActionMessages</code> object stored
+                            in the session under <code>Globals.MESSAGE_KEY</code>
+                            and <code>Globals.ERROR_KEY</code> if the messages' 
+                            <code>isAccessed</code> method returns true.  This 
+                            allows messages to be stored in the session, displayed
+                            one time, and be released.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
                             SetContentType
                         </td>
                         <td>
@@ -513,6 +527,12 @@ limitations under the License.
                             support additional processing hooks at any
                             point in the chain without modifying the
                             standard definition.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            processCachedMessages</td>
+                        <td>RemoveCachedMessages
                         </td>
                     </tr>
                     <tr>
