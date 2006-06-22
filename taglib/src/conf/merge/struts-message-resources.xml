@@ -1,6 +1,0 @@
-<message-resources
-        parameter="org.apache.struts.taglib.bean.resources.ApplicationResources"/>
-
-<message-resources
-        parameter="org.apache.struts.taglib.bean.resources.AlternateApplicationResources"
-        key="alternate"/>
