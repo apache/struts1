@@ -60,14 +60,15 @@ import java.util.Map;
 public class TagUtils {
     /**
      * The Singleton instance.
+     * @since 1.3.5 Changed to non-final so it may be overridden, use at your own risk (you've been warned!!)
      */
-    private static final TagUtils instance = new TagUtils();
+    private static TagUtils instance = new TagUtils();
 
     /**
      * Commons logging instance.
      */
     private static final Log log = LogFactory.getLog(TagUtils.class);
-
+    
     /**
      * The message resources for this package. TODO We need to move the
      * relevant messages out of this properties file.
@@ -107,6 +108,16 @@ public class TagUtils {
         return instance;
     }
 
+    /**
+     * Set the instance.
+     * This blatently violates the Singleton pattern, but then some say Singletons are an anti-pattern.
+     * @since 1.3.5 Changed to non-final and added setInstance() so TagUtils may be overridden, use at your own risk (you've been warned!!)
+     * @param instance The instance to set.
+     */
+    public static void setInstance(TagUtils instance){
+    	TagUtils.instance = instance;
+    }
+    
     /**
      * Compute a set of query parameters that will be dynamically added to a
      * generated URL.  The returned Map is keyed by parameter name, and the

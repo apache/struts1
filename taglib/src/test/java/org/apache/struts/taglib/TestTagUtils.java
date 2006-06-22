@@ -2168,4 +2168,24 @@ public class TestTagUtils extends TagTestBase {
             fail("JspException should not have been thrown");
         }
     }
+    
+    public void testOverrideInstance(){
+    	
+        class CustomTagUtils extends TagUtils{
+        	public String filter(String value) {
+        		return "I HAVE BEEN OVERRIDDEN!";
+        	}
+        }
+        // verify original logic
+        assertNull("Filter Test", TagUtils.getInstance().filter(null));
+        
+        // set the custom instance
+        TagUtils.setInstance(new CustomTagUtils());
+        assertEquals("Custom Instance Test", TagUtils.getInstance().filter(null), "I HAVE BEEN OVERRIDDEN!");
+        
+        // reset back to the cached instance
+        TagUtils.setInstance(tagutils);
+        assertNull("Filter Test", TagUtils.getInstance().filter(null));
+        
+    }
 }
