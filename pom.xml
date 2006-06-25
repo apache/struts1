@@ -64,14 +64,36 @@
         </site>
     </distributionManagement>
 
+    <profiles>
+        <profile>
+            <id>apps</id>
+            <activation>
+                <property>
+                    <name>apps</name>
+                </property>
+            </activation>
+            <modules>
+                <module>apps</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>itest</id>
+            <activation>
+                <property>
+                    <name>itest</name>
+                </property>
+            </activation>
+            <modules>
+                <module>integration</module>
+            </modules>
+        </profile>
+    </profiles>
+
     <modules>
-        <module>apps</module>
-        <module>assembly</module>
         <module>core</module>
         <module>el</module>
         <module>extras</module>
         <module>faces</module>
-        <module>integration</module>
         <module>mailreader-dao</module>
         <module>scripting</module>
         <module>taglib</module>
@@ -156,7 +178,7 @@
         <repository>
             <id>apache.snapshots</id>
             <name>Apache Maven Repository (Snapshots and Test Builds)</name>
-            <url>http://cvs.apache.org/maven-snapshot-repository</url>
+            <url>http://people.apache.org/maven-snapshot-repository</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>true</enabled></snapshots>
         </repository>

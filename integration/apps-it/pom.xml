@@ -68,8 +68,13 @@
 
    <profiles>
       <profile>
-         <id>perform-itest</id>
-         <build>
+          <id>itest</id>
+          <activation>
+              <property>
+                  <name>itest</name>
+              </property>
+          </activation>
+          <build>
             <plugins>
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
