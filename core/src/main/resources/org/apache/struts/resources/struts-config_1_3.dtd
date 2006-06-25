@@ -268,9 +268,16 @@ The "form-bean" element describes a particular form bean, which is a
      nested within an <action> element and only available to an Action object
      when it is invoked through that ActionMapping.
 
+     catalog         The name of a commons-chain catalog in which to look up
+                     a command to be executed as part of servicing this request.
+                     Only meaningful if "command" is also specified.
+
      className       Fully qualified Java class name of ActionForward
                      subclass to use for this object.
                      ["org.apache.struts.action.ActionForward"]
+
+     command         The name of a commons-chain command which should be looked up
+                     and executed as part of servicing this request.
 
      extends         The name of the forward configuration that this 
                      will inherit configuration information from.
@@ -383,6 +390,10 @@ The "form-bean" element describes a particular form bean, which is a
      name            Name of the form bean, if any, that is associated with this
                      action mapping.
 
+     parameter       General-purpose configuration parameter that can be used to
+                     pass extra information to the Action object selected by
+                     this action mapping.
+
      path            The module-relative path of the submitted request, starting
                      with a "/" character, and without the filename extension if
                      extension mapping is used.
@@ -390,10 +401,6 @@ The "form-bean" element describes a particular form bean, which is a
                      NOTE:  Do *not* include a period in your path name,
                      because it will look like a filename extension and
                      cause your Action to not be located.
-
-     parameter       General-purpose configuration parameter that can be used to
-                     pass extra information to the Action object selected by
-                     this action mapping.
 
      prefix          Prefix used to match request parameter names to ActionForm
                      property names, if any. Optional if "name" is specified,
@@ -461,11 +468,18 @@ The "form-bean" element describes a particular form bean, which is a
                      file uploads.
                      [4096]
 
+     catalog         Name of the catalog to use when processing requests
+                     for this module.
+                     [struts]
+
      className       Fully qualified Java class name of the
                      ControllerConfig subclass for this controller object.
                      If specified, the object must be a subclass of the
                      default class.
                      ["org.apache.struts.config.ControllerConfig"]
+
+     command         Name of the command to execute to process a request.
+                     [servlet-standard]
 
      contentType     Default content type (and optional character encoding) to
                      be set on each response. May be overridden by the Action,
@@ -544,17 +558,13 @@ The "form-bean" element describes a particular form bean, which is a
                      file uploads.
                      [{Directory provided by servlet container}]
 
-     catalog         Name of the catalog to use when processing requests
-                     for this module.
-                     [struts]
-
-     command         Name of the command to execute to process a request.
-                     [servlet-standard]
 -->
 <!ELEMENT controller     (set-property*)>
 <!ATTLIST controller     id             ID              #IMPLIED>
 <!ATTLIST controller     bufferSize     %Integer;       #IMPLIED>
+<!ATTLIST controller     catalog        CDATA           #IMPLIED>
 <!ATTLIST controller     className      %ClassName;     #IMPLIED>
+<!ATTLIST controller     command        CDATA           #IMPLIED>
 <!ATTLIST controller     contentType    CDATA           #IMPLIED>
 <!ATTLIST controller     forwardPattern CDATA           #IMPLIED>
 <!ATTLIST controller     inputForward   %Boolean;       #IMPLIED>
@@ -566,8 +576,6 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST controller     pagePattern    CDATA           #IMPLIED>
 <!ATTLIST controller     processorClass %ClassName;     #IMPLIED>
 <!ATTLIST controller     tempDir        CDATA           #IMPLIED>
-<!ATTLIST controller     catalog        CDATA           #IMPLIED>
-<!ATTLIST controller     command        CDATA           #IMPLIED>
 
 
 <!-- The "message-resources" element describes a MessageResources object with
