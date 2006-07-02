@@ -449,7 +449,7 @@ limitations under the License.
                     <strong>Struts Configuration.</strong>
                     The Configuration
                     defines (among other things) the
-                    <a href="../struts-action/apidocs/org/apache/struts/action/ActionMappings.html">
+                    <a href="../1.x/apidocs/org/apache/struts/action/ActionMappings.html">
                         ActionMappings</a>
                     <code>[org.apache.struts.action.ActionMappings]</code>
                     for an application.
@@ -460,7 +460,7 @@ limitations under the License.
                     routes HTTP
                     requests to other components in the framework. Requests
                     may be forwarded to JavaServer Pages or
-                    <a href="../struts-action/apidocs/org/apache/struts/action/Action.html">
+                    <a href="../1.x/apidocs/org/apache/struts/action/Action.html">
                         Action</a>
                     <code>[org.apache.struts.action.Action]</code>
                     subclasses provided by the
@@ -473,7 +473,7 @@ limitations under the License.
 
                 <p>
                     An individual
-                    <a href="../struts-action/apidocs/org/apache/struts/action/ActionMapping.html">
+                    <a href="../1.x/apidocs/org/apache/struts/action/ActionMapping.html">
                         ActionMapping</a>
                     <code>[org.apache.struts.action.ActionMapping]</code>
                     will usually contain a number of properties including:
@@ -539,7 +539,7 @@ limitations under the License.
                     requests. You can define your own set of input bean
                     classes, by
                     subclassing
-                    <a href="../struts-action/apidocs/org/apache/struts/action/ActionForm.html">
+                    <a href="../1.x/apidocs/org/apache/struts/action/ActionForm.html">
                         ActionForm</a>
                     <code>[org.apache.struts.action.ActionForm].</code>
                     The ActionForm class makes it
@@ -566,11 +566,11 @@ limitations under the License.
 
                 <p>
                     Another element of the Configuration are the
-                    <a href="../struts-action/apidocs/org/apache/struts/action/ActionFormBeans.html">
+                    <a href="../1.x/apidocs/org/apache/struts/action/ActionFormBeans.html">
                         ActionFormBeans</a>
                     <code>[org.apache.struts.action.ActionFormBeans].</code>
                     This is a collection of
-                    <a href="../struts-action/apidocs/org/apache/struts/action/ActionFormBean.html">
+                    <a href="../1.x/apidocs/org/apache/struts/action/ActionFormBean.html">
                         descriptor objects</a>
                     that are used to create instances of the ActionForm
                     objects at runtime.
@@ -626,7 +626,7 @@ limitations under the License.
                     to support the internationalization features built into
                     the Java platform. All the field labels
                     and messages can be retrieved from a
-                    <a href="../struts-action/apidocs/org/apache/struts/util/MessageResources.html">
+                    <a href="../1.x/apidocs/org/apache/struts/util/MessageResources.html">
                         message resource.</a>
                     To provide messages for another language, simply add
                     another file to the resource bundle.

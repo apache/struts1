@@ -57,13 +57,10 @@ limitations under the License.
 
                 <ul>
                     <li>
-                        <a href="http://issues.apache.org/struts/browse/STR?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Action 1)</a>
+                        <a href="http://issues.apache.org/struts/browse/STR?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Struts 1)</a>
                     </li>
                     <li>
-                        <a href="http://issues.apache.org/struts/browse/WW?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Action 2)</a>
-                    </li>
-                    <li>
-                        <a href="http://issues.apache.org/struts/browse/SHALE?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Shale)</a>
+                        <a href="http://issues.apache.org/struts/browse/WW?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Struts 2)</a>
                     </li>
                     <li>
                         <a href="http://issues.apache.org/struts/browse/SB?report=com.atlassian.jira.plugin.system.project:openissues-panel">Open Issues (Sandbox)</a>

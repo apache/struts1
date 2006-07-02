@@ -1313,11 +1313,9 @@ limitations under the License.
                         JavaServer Faces technology.</a>
                     JSF simplifies building user interfaces for JavaServer
                     applications, both for the web and for the desktop.
-                    To keep pace, Apache Struts is offering a new framework to
-                    go with this new technology, called
-                    <a href="http://struts.apache.org/struts-shale/index.html">
-                        Struts Shale.</a>
-                    For teams looking for a step-wise transition to JSF, we
+                    To keep pace, Struts 2 has support for this new technology, allowing
+                    Struts pages to use JSF components.
+                    For teams looking for a step-wise transition to JSF and Struts 1, we
                     offer Struts-Faces taglib,
                     which lets you use JSF components with your existing
                     Actions.
