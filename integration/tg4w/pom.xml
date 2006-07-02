@@ -23,11 +23,11 @@
       xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
    <modelVersion>4.0.0</modelVersion>
-   <groupId>org.apache.struts.action</groupId>
-   <artifactId>struts-action-it-httpunit-taglib</artifactId>
+   <groupId>org.apache.struts</groupId>
+   <artifactId>struts-it-httpunit-taglib</artifactId>
    <version>0.1-SNAPSHOT</version>
    <packaging>jar</packaging>
-   <name>Struts Action - Taglib (HttpUnit) Tests</name>
+   <name>Struts 1 - Taglib (HttpUnit) Tests</name>
 
    <build>
    	    <sourceDirectory>src/main/java</sourceDirectory>

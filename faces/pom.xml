@@ -24,22 +24,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
    <parent>
-      <groupId>org.apache.struts.action</groupId>
-      <artifactId>struts-action-parent</artifactId>
+      <groupId>org.apache.struts</groupId>
+      <artifactId>struts-parent</artifactId>
       <version>1.3.5-SNAPSHOT</version>
    </parent>
 
    <modelVersion>4.0.0</modelVersion>
-   <groupId>org.apache.struts.action</groupId>
+   <groupId>org.apache.struts</groupId>
    <artifactId>struts-faces</artifactId>
    <packaging>jar</packaging>
-   <name>Struts Action - Faces</name>
+   <name>Struts 1 - Faces</name>
    <url>http://struts.apache.org</url>
 
    <distributionManagement>
       <site>
          <id>apache-site</id>
-         <url>scp://people.apache.org/www/struts.apache.org/struts-action/struts-faces</url>
+         <url>scp://people.apache.org/www/struts.apache.org/struts/struts-faces</url>
       </site>
    </distributionManagement>
 
@@ -82,19 +82,19 @@
       </dependency>
 
       <dependency>
-         <groupId>org.apache.struts.action</groupId>
+         <groupId>org.apache.struts</groupId>
          <artifactId>struts-core</artifactId>
          <version>${pom.version}</version>
       </dependency>
 
       <dependency>
-         <groupId>org.apache.struts.action</groupId>
+         <groupId>org.apache.struts</groupId>
          <artifactId>struts-taglib</artifactId>
          <version>${pom.version}</version>
       </dependency>
 
       <dependency>
-         <groupId>org.apache.struts.action</groupId>
+         <groupId>org.apache.struts</groupId>
          <artifactId>struts-tiles</artifactId>
          <version>${pom.version}</version>  
       </dependency>
