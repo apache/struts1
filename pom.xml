@@ -60,7 +60,7 @@
         </repository>
         <site>
             <id>apache-site</id>
-            <url>scp://people.apache.org/www/struts.apache.org/struts/</url>
+            <url>scp://people.apache.org/www/struts.apache.org/1.x/</url>
         </site>
     </distributionManagement>
 

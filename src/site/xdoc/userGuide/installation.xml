@@ -114,7 +114,7 @@ limitations under the License.
             <subsection name="Install a Library Distribution"
                         href="Installing">
 
-                <p>First, download a binary distribution of Struts Action
+                <p>First, download a binary distribution of Struts
                     Framework Library by following the
                     instructions
                     <a href="http://struts.apache.org/downloads.html">here,</a>
@@ -168,7 +168,7 @@ limitations under the License.
                     </li>
                 </ul>
 
-                <p>To use Struts Action Library in your own application, you
+                <p>To use Struts Library in your own application, you
                     will need to follow
                     these steps:</p>
                 <ul>

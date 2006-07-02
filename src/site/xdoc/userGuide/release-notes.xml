@@ -53,7 +53,7 @@ limitations under the License.
             <subsection name="Introduction">
                 <p>
                     This section contains release notes for changes that have
-                    taken place to Struts Action Framework,
+                    taken place to Struts,
                     since the
                     <a href="release-notes-1_3_3.html">Version 1.3.3</a>
                     distribution.
@@ -104,16 +104,16 @@ limitations under the License.
                     interfaces.
                 </p>
 
-                <h3>Struts Action Framework</h3>
+                <h3>Struts</h3>
 
                 <p>
-                    The Struts Action 1.3.4 distribution contains the following eight
+                    The Struts 1.3.4 distribution contains the following eight
                     components: Core, Applications, EL, Extras, Faces, 
                     Scripting, Taglib, and Tiles.
                 </p>
 
                 <p>
-                    The Struts Action Framework, including the website, is being
+                    The Struts, including the website, is being
                     built with Maven 2.
                     But, of course, you can continue to build your own
                     projects any way you like!
@@ -121,7 +121,7 @@ limitations under the License.
 
                 <h4>Specification Changes</h4>
                 <p>
-                    The 1.3.x series of Struts Action Framework has
+                    The 1.3.x series of Struts has
                     a minimum requirement of the following specification
                     versions:
                     <ul>

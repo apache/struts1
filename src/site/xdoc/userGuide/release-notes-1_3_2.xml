@@ -53,7 +53,7 @@ limitations under the License.
             <subsection name="Introduction">
                 <p>
                     This section contains release notes for changes that have
-                    taken place to the Struts Action 1 project, previously known
+                    taken place to the Struts 1 project, previously known
                     as "Struts Classic" since 
                     <a href="release-notes-1_3_1.html">Version 1.3.1</a>.
                     To keep up-to-date on all changes to Struts, subscribe to
@@ -104,19 +104,19 @@ limitations under the License.
                     interfaces.
                 </p>
 
-                <h3>Struts Action Framework</h3>
+                <h3>Struts</h3>
 
                 <p>
-                    Since Struts 1.3.1, we have moved the Struts Action 1 related
-                    subprojects back into the Struts Action 1 project, leaving 
-                    Struts Action and Struts Shale the two remaining subprojects.
-                    The Struts Action 1.3.2 release contains the following seven
+                    Since Struts 1.3.1, we have moved the Struts 1 related
+                    subprojects back into the Struts 1 project, leaving 
+                    Struts and Struts Shale the two remaining subprojects.
+                    The Struts 1.3.2 release contains the following seven
                     components: Core, Applications, EL, Extras, Scripting, 
                     Taglibs, and Tiles.
                 </p>
 
                 <p>
-                    The Struts Action Framework, including the website, is being
+                    The Struts, including the website, is being
                     built with Maven 2.
                     But, of course, you can continue to build your own
                     projects any way you like!
@@ -126,7 +126,7 @@ limitations under the License.
 
                 <h4>Specification Changes</h4>
                 <p>
-                    The 1.3.x series of Struts Action Framework has
+                    The 1.3.x series of Struts has
                     a minumum requirement of the following specification
                     versions:
                     <ul>

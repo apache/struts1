@@ -138,7 +138,7 @@ limitations under the License.
                     to the Apache Struts PMC (Project Management Committee).
                 </p>
 
-                <h3>Struts Action Library</h3>
+                <h3>Struts Library</h3>
 
                 <p>
                     Since Struts 1.2.8, we have subdivided Struts into several
@@ -155,11 +155,11 @@ limitations under the License.
                 </p>
 
                 <p>
-                    Since many teams will use Struts Action Framework with one
+                    Since many teams will use Struts with one
                     or more extensions,
                     we are bundling the jars for extensions that utilize the
                     framework into a single distribution
-                    called "Struts Action Library".
+                    called "Struts Library".
                 </p>
 
                 <p>
@@ -173,7 +173,7 @@ limitations under the License.
 
                 <h4>Specification Changes</h4>
                 <p>
-                    The 1.3.x series of Struts Action Framework now has
+                    The 1.3.x series of Struts now has
                     a minumum requirement of the following specification
                     versions:
                     <ul>
@@ -255,7 +255,7 @@ limitations under the License.
                     </li>
                 </ul>
 
-                <h3>Struts Action Framework</h3>
+                <h3>Struts</h3>
 
                 <p>
                     Major changes to the framework include
@@ -428,7 +428,7 @@ limitations under the License.
                 </p>
 
                 <p>
-                    In Struts Action 1.3, the Cancel token is only honored if the
+                    In Struts 1.3, the Cancel token is only honored if the
                     new property "cancellable" is set for the Action Mapping.
                     If the Cancel token is present, but cancellable is not set,
                     then an InvalidCancelException is thrown.
@@ -459,7 +459,7 @@ limitations under the License.
                 <p>
                     Note that the Opt-In Cancel Handler is available for the
                     Composable Request Processor as well as
-                    the legacy Request Processor included in Struts Action 1.3.
+                    the legacy Request Processor included in Struts 1.3.
                 </p>
 
                 <a name="enhanced-exception" />

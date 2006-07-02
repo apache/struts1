@@ -24,12 +24,12 @@ limitations under the License.
 
     <body>
 
-        <section name="Struts Action - Checkstyle">
+        <section name="Struts - Checkstyle">
 
          <ul>
             <li>
                <a href="struts-core/checkstyle.html">
-               Struts Action Core</a></li>
+               Struts Core</a></li>
             <li>
                <a href="struts-el/checkstyle.html">
                Struts EL</a></li>

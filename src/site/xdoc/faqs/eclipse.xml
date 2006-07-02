@@ -20,21 +20,21 @@ limitations under the License.
 <document>
 
     <properties>
-        <title>How to setup a basic Struts Action Framework project using
+        <title>How to setup a basic Struts project using
             Eclipse IDE</title>
     </properties>
 
     <body>
 
         <section
-                name="How to setup a basic Struts Action Framework project using Eclipse IDE">
+                name="How to setup a basic Struts project using Eclipse IDE">
             <subsection name="Legal Disclamer">
 
                 <p>
                     * DISCLAIMER - This simple How-To shows you one of many
                     ways to setup a working project using
                     <br/>
-                    the Struts Action framework. This is mainly geared toward
+                    the Struts framework. This is mainly geared toward
                     Struts users who are new to Eclipse, and
                     <br/>
                     don't want to spend a lot of time figuring out the

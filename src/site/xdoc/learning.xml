@@ -25,7 +25,7 @@ limitations under the License.
     <body>
 
         <a name="Docs"/>
-        <section name="Learning About Struts Action Framework">
+        <section name="Learning About Struts">
 
             <p>
                 The
@@ -183,7 +183,7 @@ limitations under the License.
             </subsection>
 
             <a name="Examples"/>
-            <subsection name="Struts Action Framework by Example">
+            <subsection name="Struts by Example">
                 <p>
                     To help you see how it all fits together, 
                     several example applications
@@ -281,7 +281,7 @@ limitations under the License.
             </subsection>
 
             <a name="More"/>
-            <subsection name="Learning More About Struts Action Framework">
+            <subsection name="Learning More About Struts">
                 <p>
                     The Apache Struts
                     <a href="http://struts.apache.org/mail.html">Mailing
@@ -372,12 +372,12 @@ limitations under the License.
             </subsection>
 
             <a name="books"/>
-            <subsection name="Books about Struts Action Framework">
+            <subsection name="Books about Struts">
 
                 <p>
                     The Apache Software Foundation does not provide printed
                     manuals,
-                    but several third-party books about Struts Action Framework are
+                    but several third-party books about Struts are
                     available.
                     Visit <a href="http://www.StrutsCentral.net/Resources/Action/books.html">
                     Struts Central</a> 

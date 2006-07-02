@@ -19,16 +19,16 @@ limitations under the License.
 <document>
 
     <properties>
-        <title>Struts Action Framework 1</title>
+        <title>Struts 1</title>
     </properties>
 
     <body>
 
-        <section name="Welcome to Struts Action Framework">
+        <section name="Welcome to Struts 1.x">
             <a name="Welcome"/>
 
             <p>
-                Struts Action Framework is a flexible control layer based on
+                Struts is a flexible control layer based on
                 <a href="userGuide/preface.html">standard technologies</a>
                 like Java
                 Servlets, JavaBeans, ResourceBundles, and XML, as well as
@@ -42,7 +42,7 @@ limitations under the License.
                 based on published standards and proven design patterns.
             </p>
 
-            <subsection name="Struts Action Framework in a Nutshell">
+            <subsection name="Struts in a Nutshell">
                 <a name="nutshell"/>
 
                 <p>
@@ -205,7 +205,7 @@ limitations under the License.
                 </p>
 
                 <p>
-                    Struts Action Framework is extensible.
+                    Struts is extensible.
                     Every class deployed by the framework can be replaced by
                     your own default class.
                     The properties of your default class can be set using the
@@ -233,7 +233,7 @@ limitations under the License.
             </subsection>
 
             <subsection
-                    name="Is Struts Action Framework the best choice for every project?">
+                    name="Is Struts the best choice for every project?">
 
                 <p>
                     No. If you need to write a very simple application, with a
@@ -247,8 +247,8 @@ limitations under the License.
                 <p>
                     But, if you are writing a more complicated application,
                     with dozens of pages,
-                    that need to be maintained over time, then Struts Action
-                    Framework can help.
+                    that need to be maintained over time, then Struts
+                    can help.
                     For more about whether Model 1 or MVC/Model 2 is right for
                     you, see
                     <a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html">
@@ -262,7 +262,7 @@ limitations under the License.
         <section>
             <p class="right">
                 Next:
-                <a href="learning.html">Learning about Struts Action
+                <a href="learning.html">Learning about Struts
                     Framework</a>
             </p>
         </section>

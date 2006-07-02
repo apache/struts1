@@ -39,7 +39,7 @@
    <distributionManagement>
       <site>
          <id>apache-site</id>
-         <url>scp://people.apache.org/www/struts.apache.org/struts/struts-faces</url>
+         <url>scp://people.apache.org/www/struts.apache.org/1.x/struts-faces</url>
       </site>
    </distributionManagement>
 

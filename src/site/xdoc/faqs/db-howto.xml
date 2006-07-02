@@ -93,7 +93,7 @@ limitations under the License.
                 memory.
                 Other implementations could be defined and used instead,
                 without
-                changing any of the Struts Action classes.
+                changing any of the Struts classes.
             </p>
 
             <p>
@@ -313,7 +313,7 @@ limitations under the License.
                 as they use conventional JavaBean properties.
                 (See
                 <strong>DynaActionForm classes</strong>
-                in the Struts Action User Guide for details.)
+                in the Struts User Guide for details.)
             </p>
 
             <p>

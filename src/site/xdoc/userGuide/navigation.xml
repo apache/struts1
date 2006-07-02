@@ -3,7 +3,7 @@
          href="http://struts.apache.org/userGuide"
          image="../images/struts.gif"
          authors="false">
-    <title>Apache Struts - Struts Action Framework 1 - User Guide</title>
+    <title>Apache Struts - Struts 1 - User Guide</title>
     <body>
         <menu name="Action Framework User Guide">
             <item
@@ -55,7 +55,7 @@
                     name="Source Repository"
                     href="http://svn.apache.org/viewcvs.cgi/struts/action/trunk/?root=Apache-SVN"/>
             <item
-                    name="Struts Action Framework Home"
+                    name="Struts Home"
                     href="index.html"/>
         </menu>
     </body>

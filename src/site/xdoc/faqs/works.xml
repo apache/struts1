@@ -31,7 +31,7 @@ limitations under the License.
                     browsers.
                     Server pages are designed to create dynamic Web pages that
                     can turn billboard sites into live applications.
-                    Struts Action Framework uses a special Servlet as a
+                    Struts uses a special Servlet as a
                     switchboard to route requests from Web browsers to the
                     appropriate server page.
                     This makes Web applications much easier to design, create,

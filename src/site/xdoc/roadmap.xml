@@ -29,7 +29,7 @@ limitations under the License.
 
                 <p>
                     This document outlines some of changes we expect to
-                    see in future releases of Struts Action Framework and
+                    see in future releases of Struts and
                     related subprojects.
                 </p>
 
@@ -74,7 +74,7 @@ limitations under the License.
             </subsection>
 
             <a name="Struts_1_x"/>
-            <subsection name="Struts Action Framework 1.x">
+            <subsection name="Struts 1.x">
 
                 <p>
                     Releases in the 1.x series will focus on refactoring of

@@ -27,7 +27,7 @@ limitations under the License.
                 <p>
                     This document outlines one possible sequence of
                     development steps that can be followed to create a
-                    Struts Action Framework application. It is not intended as
+                    Struts application. It is not intended as
                     a complete description of each
                     referenced development activity. More detailed
                     documentation is available

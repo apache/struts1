@@ -896,7 +896,7 @@ limitations under the License.
                 <p>
                     <strong>Note:</strong>
                     The material in this section is not specific to
-                    Struts Action Framework.
+                    Struts.
                     The configuration of servlet mappings is defined in the
                     Java Servlet
                     Specification.
@@ -1241,7 +1241,7 @@ limitations under the License.
                     Logging is
                     configured and used. Instead, it focuses on pertinent
                     details of using
-                    Commons Logging in connection with the Struts Action
+                    Commons Logging in connection with the Struts
                     Framework. For complete documentation
                     on using Commons Logging, consult the documentation for
                     the logging system

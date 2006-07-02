@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<project name="Struts Action Framework">
+<project name="Struts">
 
-    <title>Apache Struts - Struts Action Framework - FAQs and HOWTOs</title>
+    <title>Apache Struts - Struts - FAQs and HOWTOs</title>
     <body>
         <menu name="FAQs">
             <item
@@ -13,7 +13,7 @@
                     name="Newbie FAQ"/>
             <item
                     href="faqs/works.html"
-                    name="How Does Struts Action Work?"/>
+                    name="How Does Struts Work?"/>
         </menu>
 
         <menu name="HOWTOs">
@@ -50,7 +50,7 @@
                     name="Source Repository"
                     href="http://svn.apache.org/viewcvs.cgi/struts/action/trunk/?root=Apache-SVN"/>
             <item
-                    name="Struts Action Home"
+                    name="Struts Home"
                     href="index.html"/>
         </menu>
     </body>

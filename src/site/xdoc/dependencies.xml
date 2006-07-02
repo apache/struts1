@@ -24,12 +24,12 @@ limitations under the License.
 
     <body>
 
-        <section name="Struts Action - Dependencies">
+        <section name="Struts - Dependencies">
 
          <ul>
             <li>
                <a href="struts-core/dependencies.html" target="_blank">
-               Struts Action Core</a></li>
+               Struts Core</a></li>
             <li>
                <a href="struts-el/dependencies.html" target="_blank">
                Struts EL</a></li>

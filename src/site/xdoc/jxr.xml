@@ -24,12 +24,12 @@ limitations under the License.
 
     <body>
 
-        <section name="Struts Action - Source Xref">
+        <section name="Struts - Source Xref">
 
          <ul>
             <li>
                <a href="struts-core/jxr.html" target="_blank">
-               Struts Action Core</a></li>
+               Struts Core</a></li>
             <li>
                <a href="struts-el/jxr.html" target="_blank">
                Struts EL</a></li>

@@ -20,14 +20,14 @@ limitations under the License.
 <document>
 
     <properties>
-        <title>How to setup a basic Struts Action Framework project using
+        <title>How to setup a basic Struts project using
             NetBeans IDE 4.0</title>
     </properties>
 
     <body>
 
         <section href="netbeans"
-                 name="How to setup a basic Struts Action project using NetBeans IDE 4.0"/>
+                 name="How to setup a basic Struts project using NetBeans IDE 4.0"/>
         <section name="Legal Disclamer">
 
             Please read
@@ -204,7 +204,7 @@ limitations under the License.
         </section>
 
         <section name="Let's set up a blank application">
-            Now you will use wizards to set up a new Struts Action Framework
+            Now you will use wizards to set up a new Struts
             application in NetBeans IDE 4.0, again in 5 steps.
             <br/>
             <br/>

@@ -53,7 +53,7 @@ limitations under the License.
             <subsection name="Introduction">
                 <p>
                     This section contains release notes for changes that have
-                    taken place to the Struts Action 1 project, previously known
+                    taken place to the Struts 1 project, previously known
                     as "Struts Classic" since 
                     <a href="release-notes-1_3_2.html">Version 1.3.2</a>.
                     To keep up-to-date on all changes to Struts, subscribe to
@@ -104,16 +104,16 @@ limitations under the License.
                     interfaces.
                 </p>
 
-                <h3>Struts Action Framework</h3>
+                <h3>Struts</h3>
 
                 <p>
-                    The Struts Action 1.3.3 release contains the following eight
+                    The Struts 1.3.3 release contains the following eight
                     components: Core, Applications, EL, Extras, Faces, 
                     Scripting, Taglib, and Tiles.
                 </p>
 
                 <p>
-                    The Struts Action Framework, including the website, is being
+                    The Struts, including the website, is being
                     built with Maven 2.
                     But, of course, you can continue to build your own
                     projects any way you like!
@@ -121,7 +121,7 @@ limitations under the License.
 
                 <h4>Specification Changes</h4>
                 <p>
-                    The 1.3.x series of Struts Action Framework has
+                    The 1.3.x series of Struts has
                     a minimum requirement of the following specification
                     versions:
                     <ul>
@@ -177,7 +177,7 @@ limitations under the License.
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2850'>STR-2850</a>] - Add tests to confirm that example apps work</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2852'>STR-2852</a>] - Move the non-working integration tests to the sandbox for review.</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2860'>STR-2860</a>] - Change DOCTYPE in validator config files to v1.3.0</li>
-<li>[<a href='http://issues.apache.org/struts/browse/STR-2863'>STR-2863</a>] - Create a library distribution for Struts Action 1</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2863'>STR-2863</a>] - Create a library distribution for Struts 1</li>
 </ul>
             
             </subsection>

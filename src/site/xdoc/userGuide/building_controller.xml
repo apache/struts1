@@ -1561,7 +1561,7 @@ limitations under the License.
                     The framework should be viewed as simply the
                     <strong>foundation</strong>
                     for implementing MVC in your applications.
-                    Struts Action Framework provides a useful control layer,
+                    Struts provides a useful control layer,
                     but it is not a fully
                     featured platform for building MVC applications, soup to
                     nuts.

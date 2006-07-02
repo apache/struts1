@@ -28,7 +28,7 @@ limitations under the License.
 
             <a name="history"/>
             <subsection
-                    name="1.1 Forward into the Past! (or a brief history of Struts Action)"
+                    name="1.1 Forward into the Past! (or a brief history of Struts)"
                     href="history">
 
                 <p>
@@ -318,7 +318,7 @@ limitations under the License.
                     href="controllerConcepts">
 
                 <p>
-                    Struts Action Framework provides the
+                    Struts provides the
                     <em>Controller</em>
                     portion of the application.
                     The Controller is focused on receiving

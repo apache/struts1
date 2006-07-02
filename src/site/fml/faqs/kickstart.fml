@@ -20,12 +20,12 @@ limitations under the License.
     <part id="general">
 
         <faq id="why">
-            <question>Why do we need Struts Action Framework?"</question>
+            <question>Why do we need Struts?"</question>
             <answer>
                 <p>Java technologies give developers a serious boost when
                     creating and maintaining applications to meet the demands
                     of today's public Web sites and enterprise intranets.
-                    Struts Action Framework combines standard Java
+                    Struts combines standard Java
                     technologies into a unified framework. The end result is a
                     cooperative, synergistic framework, suitable for
                     development teams, independent developers, and everyone in
@@ -36,12 +36,12 @@ limitations under the License.
         </faq>
 
         <faq id="how">
-            <question>How does Struts Action Framework work?</question>
+            <question>How does Struts work?</question>
             <answer>
                 <p>Java Servlets are designed to handle requests made by Web
                     browsers. Server pages are designed to create dynamic Web
                     pages that can turn billboard sites into live
-                    applications. Struts Action Framework uses a special
+                    applications. Struts uses a special
                     Servlet as a switchboard to route requests from Web
                     browsers to the appropriate server page. This makes Web
                     applications much easier to design, create, and
@@ -50,7 +50,7 @@ limitations under the License.
         </faq>
 
         <faq id="compat">
-            <question>Is Struts Action Framework compatible with other Java
+            <question>Is Struts compatible with other Java
                 technologies?</question>
             <answer>
                 <p>Yes. Struts is committed to supporting industry standards.
@@ -60,7 +60,7 @@ limitations under the License.
         </faq>
 
         <faq id="who">
-            <question>Who wrote Struts Action Framework"</question>
+            <question>Who wrote Struts"</question>
             <answer>
                 <p>There are several
                     <a href="http://struts.apache.org/volunteers.html">active committers</a>
@@ -84,14 +84,14 @@ limitations under the License.
                 <p>After serving as the co-lead of the JSR 127 specification
                     (JavaServerFaces), Craig created another rendition of
                     Struts
-                    based on JavaServerFaces, called Shale. Both Struts Action
+                    based on JavaServerFaces, called Shale. Both Struts
                     Framework and Struts Shale are first-class citizens of the
                     Apache Struts project.</p>
             </answer>
         </faq>
 
         <faq id="first">
-            <question>Was Struts Action the first web application framework
+            <question>Was Struts the first web application framework
                 for Java?</question>
             <answer>
                 <p>No, not by a long shot. When Struts 1.0 shipped in June
@@ -106,10 +106,10 @@ limitations under the License.
         </faq>
 
         <faq id="popular">
-            <question>Is Struts Action the most popular web application
+            <question>Is Struts the most popular web application
                 framework for Java?</question>
             <answer>
-                <p>Yes. By any objective measure, Struts Action continues to
+                <p>Yes. By any objective measure, Struts continues to
                     be the most popular web application framework for
                     Java.</p>
                 <p>As of 2006, the vast majority of job offerings for Java
@@ -123,7 +123,7 @@ limitations under the License.
                 <p>While some people characterize the space of Java web
                     application framework as being "fragmented", the truth is
                     that
-                    <b>more web developers use Struts Action than all other
+                    <b>more web developers use Struts than all other
                         alternatives combined.</b>
                     This observation is as true in 2006 as it was in 2005,
                     as it was in 2004. It's probably been true since Struts
@@ -138,22 +138,22 @@ limitations under the License.
                     applications
                     grow in complexity, Struts Shale is ready to do for
                     <em>JSF</em>
-                    developers what Struts Action has
+                    developers what Struts has
                     been doing for
                     <em>JSP</em>
                     developers, year after year
                     after year.
                 </p>
                 <p>Meanwhile, enterprise web developers who have standardized
-                    on Struts Action can be assured that new releases of
+                    on Struts can be assured that new releases of
                     Action 1 will continue, even as we break new ground with
-                    the upcoming release of Struts Action 2 (formerly known as
+                    the upcoming release of Struts 2 (formerly known as
                     WebWork).</p>
             </answer>
         </faq>
 
         <faq id="where">
-            <question>Where can I get a copy of Struts Action
+            <question>Where can I get a copy of Struts
                 Framework?</question>
             <answer>
                 <p>The best place to download Apache Struts products is at
@@ -165,7 +165,7 @@ limitations under the License.
         </faq>
 
         <faq id="install">
-            <question>How do I install Struts Action Framework?</question>
+            <question>How do I install Struts?</question>
             <answer>
                 <p>To develop applications with Struts, you can usually just
                     add the Struts JAR file
@@ -180,8 +180,8 @@ limitations under the License.
                     is provided, which you can just copy to get a quick-start
                     on your own brainchild.
                 </p>
-                <p>Aside from the Struts Action Framework jar, the blank
-                    application includes the other Struts Action Framework
+                <p>Aside from the Struts jar, the blank
+                    application includes the other Struts
                     Library JARs and dependencies.
                     All dependencies are compatible with the Apache License.
                 </p>
@@ -256,11 +256,11 @@ limitations under the License.
         </faq>
 
         <faq id="tests">
-            <question>Does Struts Action Framework include its own unit
+            <question>Does Struts include its own unit
                 tests?</question>
             <answer>
                 <p>
-                    Struts Action Framework currently has two testing
+                    Struts currently has two testing
                     environments, to reflect the fact that
                     some things can be tested statically, and some really need
                     to be done in
