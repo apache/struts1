@@ -132,14 +132,6 @@
             </plugins>
         </pluginManagement>
         
-        <extensions>
-            <extension>
-                <groupId>org.apache.struts</groupId>
-                <artifactId>struts-build</artifactId>
-                <version>1.0.1</version>
-            </extension>
-        </extensions>
-        
         <defaultGoal>install</defaultGoal>
         
     </build>
@@ -159,7 +151,7 @@
             <plugin>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <configuration>
-                  <configLocation>org/apache/struts/build/struts_checks.xml</configLocation>
+                  <configLocation>http://svn.apache.org/repos/asf/struts/maven/trunk/build/src/main/resources/org/apache/struts/build/struts_checks.xml</configLocation>
                 </configuration>
             </plugin>
             <plugin>
