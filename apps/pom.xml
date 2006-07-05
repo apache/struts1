@@ -32,7 +32,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>struts-apps</artifactId>
    <packaging>pom</packaging>
-   <name>Struts 1 - Apps</name>
+   <name>Struts Apps</name>
 
    <distributionManagement>
        <site>

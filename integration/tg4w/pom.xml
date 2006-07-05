@@ -27,7 +27,7 @@
    <artifactId>struts-it-httpunit-taglib</artifactId>
    <version>0.1-SNAPSHOT</version>
    <packaging>jar</packaging>
-   <name>Struts 1 - Taglib (HttpUnit) Tests</name>
+   <name>Struts Taglib (HttpUnit) Tests</name>
 
    <build>
    	    <sourceDirectory>src/main/java</sourceDirectory>

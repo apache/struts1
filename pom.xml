@@ -34,7 +34,7 @@
     <artifactId>struts-parent</artifactId>
     <version>1.3.5-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Struts 1</name>
+    <name>Struts</name>
     <url>http://struts.apache.org</url>
     <description>Apache Struts</description>
 

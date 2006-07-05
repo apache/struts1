@@ -33,7 +33,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>struts-tiles</artifactId>
    <packaging>jar</packaging>
-   <name>Struts 1 - Tiles</name>
+   <name>Struts Tiles</name>
    <url>http://struts.apache.org</url>
    
    <distributionManagement>

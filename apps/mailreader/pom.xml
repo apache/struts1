@@ -32,7 +32,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>struts-mailreader</artifactId>
    <packaging>war</packaging>
-   <name>Struts 1 - Apps - Mailreader</name>
+   <name>Struts Apps - Mailreader</name>
    
    <dependencies>
       <dependency>

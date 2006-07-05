@@ -33,7 +33,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>struts-el</artifactId>
    <packaging>jar</packaging>
-   <name>Struts 1 - EL</name>
+   <name>Struts EL</name>
    <url>http://struts.apache.org</url>
    
    <distributionManagement>

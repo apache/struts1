@@ -32,7 +32,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>struts-cookbook</artifactId>
    <packaging>war</packaging>
-   <name>Struts 1 - Apps - Cookbook</name>
+   <name>Struts Apps - Cookbook</name>
    
    <dependencies>
       <dependency>

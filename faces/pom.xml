@@ -33,7 +33,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>struts-faces</artifactId>
    <packaging>jar</packaging>
-   <name>Struts 1 - Faces</name>
+   <name>Struts Faces</name>
    <url>http://struts.apache.org</url>
 
    <distributionManagement>

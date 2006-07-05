@@ -32,7 +32,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>struts-it-apps</artifactId>
    <packaging>pom</packaging>
-   <name>Struts 1 - Integration - Apps Tests</name>
+   <name>Struts Integration - Apps Tests</name>
    <url>http://struts.apache.org</url>
 
    <dependencies>

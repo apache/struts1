@@ -33,7 +33,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>struts-extras</artifactId>
    <packaging>jar</packaging>
-   <name>Struts 1 - Extras</name>
+   <name>Struts Extras</name>
    <url>http://struts.apache.org</url>
 
    <distributionManagement>

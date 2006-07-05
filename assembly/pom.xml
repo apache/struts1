@@ -25,7 +25,7 @@
   <groupId>org.apache.struts</groupId>
   <artifactId>struts-assembly</artifactId>
   <packaging>pom</packaging>
-  <name>Struts 1 - Assembly</name>
+  <name>Struts Assembly</name>
   <description>
   	Struts 1 Assembly
   </description>

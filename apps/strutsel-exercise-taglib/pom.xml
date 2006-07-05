@@ -32,7 +32,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>strutsel-exercise-taglib</artifactId>
    <packaging>war</packaging>
-   <name>Struts 1 - Apps - Struts EL Exercise</name>
+   <name>Struts Apps - Struts EL Exercise</name>
    
    <dependencies>
       <dependency>

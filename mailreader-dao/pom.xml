@@ -33,7 +33,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>struts-mailreader-dao</artifactId>
    <packaging>jar</packaging>
-   <name>Struts 1 - Mailreader DAO</name>
+   <name>Struts Mailreader DAO</name>
    <url>http://struts.apache.org</url>
 
    <build>

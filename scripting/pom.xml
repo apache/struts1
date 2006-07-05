@@ -33,7 +33,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>struts-scripting</artifactId>
    <packaging>jar</packaging>
-   <name>Struts 1 - Scripting</name>
+   <name>Struts Scripting</name>
    <url>http://struts.apache.org</url>
 
    <distributionManagement>

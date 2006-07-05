@@ -32,7 +32,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>struts-blank</artifactId>
    <packaging>war</packaging>
-   <name>Struts 1 - Apps - Blank</name>
+   <name>Struts Apps - Blank</name>
    
    <dependencies>
       <dependency>

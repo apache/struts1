@@ -32,7 +32,7 @@
    <groupId>org.apache.struts</groupId>
    <artifactId>struts-examples</artifactId>
    <packaging>war</packaging>
-   <name>Struts 1 - Apps - Examples</name>
+   <name>Struts Apps - Examples</name>
    
    <dependencies>
       <dependency>
