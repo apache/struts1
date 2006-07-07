@@ -29,7 +29,10 @@ limitations under the License.
             <subsection name="4.1 Overview">
 
                 <p>
-                    Now that we understand how to construct the Model and View
+                    Now that we understand how to construct the 
+                    <a href="building_model.html">Model</a> 
+                    and 
+                    <a href="building_view.html">View</a>
                     components
                     of your application, it is time to focus on the Controller
                     components.
@@ -52,7 +55,9 @@ limitations under the License.
                     <li>
                         Write an Action class for each logical request that
                         may
-                        be received (extend org.apache.struts.action.Action).
+                        be received (extend the 
+                        <code>[org.apache.struts.action.Action]</code>
+                        class).
                     </li>
 
                     <li>
@@ -128,7 +133,7 @@ limitations under the License.
 
                 <p>
                     Our controller delegates most of this grunt work to the
-                    <a href="#4_2_1_Request_Processor">Request Processor</a>
+                    <a href="#request_processor">Request Processor</a>
                     and Action classes.
                 </p>
 
@@ -2050,8 +2055,7 @@ limitations under the License.
                         configuration DTD</a>
                     and the
                     <a href="../apidocs/org/apache/struts/action/ActionMapping.html">
-                        ActionMapping documentation</a>
-                    .
+                        ActionMapping documentation.</a>
                 </p>
 
             </subsection>

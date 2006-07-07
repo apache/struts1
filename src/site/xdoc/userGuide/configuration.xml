@@ -634,17 +634,26 @@ limitations under the License.
                 <p>
                     There are three approaches for switching from one module
                     to another.
+                </p>
+                
+                <ol>
+                	<li>
                     You can use the
                     <code>org.apache.struts.actions.SwitchAction</code>
                     from the Extras JAR,
+                  </li>
+                  <li>
                     you can use a
                     <code>&lt;forward&gt;</code>
                     (global or local) and specify the contextRelative
                     attribute with a value of true,
+                  </li>
+                  <li>
                     or you can specify the "module" parameter as part of any
                     of the Struts JSP hyperlink tags (Include, Img, Link,
                     Rewrite, or Forward).
-                </p>
+                  </li>
+                </ol>
 
                 <p>
                     You can use

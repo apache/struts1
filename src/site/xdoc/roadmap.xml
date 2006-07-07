@@ -29,8 +29,7 @@ limitations under the License.
 
                 <p>
                     This document outlines some of changes we expect to
-                    see in future releases of Struts and
-                    related subprojects.
+                    see in future releases of Struts 1.
                 </p>
 
                 <p>
@@ -46,10 +45,10 @@ limitations under the License.
             <subsection name="JIRA Queries">
 
                 <p>
-                    The Apache Struts development community uses the
+                    The Apache Struts Projects uses the
                     <a href="http://issues.apache.org/struts/">
-                        Apache Bug Database</a>
-                    (JIRA) to manage problem reports
+                        JIRA issuer tracker</a>
+                    to manage problem reports
                     and enhancement suggestions.
                     For your convenience, here are some common JIRA 
                     queries:

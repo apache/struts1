@@ -24,7 +24,7 @@ limitations under the License.
 
     <body>
 
-        <section name="Welcome to Struts 1.x">
+        <section name="Welcome to Struts 1">
             <a name="Welcome"/>
 
             <p>
@@ -72,7 +72,8 @@ limitations under the License.
                     <a href="http://java.sun.com/products/jsp/">JavaServer
                         Pages,</a>
                     including
-                    <a href="faqs/kickstart.html#jsf">JSTL and JSF,</a>
+                    <a href="struts-el/index.html">JSTL</a> and 
+                    <a href="struts-faces/index.html">JSF,</a>
                     as well as
                     <a href="http://jakarta.apache.org/velocity/tools/struts/">
                         Velocity Templates,</a>
@@ -214,7 +215,7 @@ limitations under the License.
                     <code>set-property</code>
                     feature.
                     This is one reason why there are so many
-                    <a href="http://wiki.apache.org/struts/StrutsResources/">
+                    <a href="learning.html#resources">
                         contributor
                         extensions.</a>
                     We provide the base framework, but you can still write

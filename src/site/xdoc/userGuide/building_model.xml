@@ -32,8 +32,7 @@ limitations under the License.
                     Many requirements documents used for building web
                     applications focus on
                     the
-                    <em>View</em>
-                    .
+                    <em>View.</em>
                     However, you should ensure that the processing required
                     for each submitted
                     request is also clearly defined from the

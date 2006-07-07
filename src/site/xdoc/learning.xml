@@ -32,13 +32,20 @@ limitations under the License.
                 <strong>official documentation</strong>
                 for the framework is
                 provided online and may be built locally from the source code
-                distribution.
+                distribution using <a href="http://maven.apache.org/">Apache Maven 2</a>.
                 To build the documentation, change to the subproject's
                 folder and run
             </p>
 
             <p>
-                $ maven site
+                $ mvn site
+            </p>
+            
+            <p>
+            For more help with building the website, visit the 
+            <a href="http://wiki.apache.org/struts/StrutsMaintenanceWebsite">
+            Struts Maintenance - Website</a> 
+            page. 
             </p>
 
             <p>
@@ -52,7 +59,7 @@ limitations under the License.
                 The
                 <a href="apidocs/index.html">Javadocs</a>
                 and
-                <a href="http://svn.apache.org/viewcvs.cgi/struts/action/trunk/">
+                <a href="http://svn.apache.org/viewcvs.cgi/struts/struts1/trunk/">
                     source code</a>
                 can also be browsed.
             </p>
@@ -98,7 +105,7 @@ limitations under the License.
                 </p>
             </subsection>
 
-            <a name="FAQS"/>
+            <a name="faqs"/>
             <subsection name="FAQS and HOWTOs">
 
                 <p>
@@ -251,13 +258,13 @@ limitations under the License.
                             JPetStore</a>
                         -
                         A streamlined version of the Java Petstore application
-                        implemented with SAF and iBATIS database
+                        implemented with Struts and iBATIS database
                         layer.
                     </li>
                     <li>
                         <a href="http://www.codeczar.com/products/logweb/index.html">
                             LogWeb</a>
-                        - A SAF webapp for configuring
+                        - A Struts webapp for configuring
                         Log4J at runtime within a servlet container.
                     </li>
                 </ul>
@@ -351,7 +358,7 @@ limitations under the License.
             <a name="resources"/>
             <subsection name="Community Resources">
                 <p>
-                    Apache Struts has attracted a large and robust community
+                    The framework has attracted a large and robust community
                     of developers,
                     which have created a vast number of Struts related
                     resources.
@@ -365,7 +372,7 @@ limitations under the License.
                     For a comprehensive listing of all resources related to 
                     Apache Struts, 
                     including articles, books, and third-party extensions, 
-                    for Struts 1 and Struts 2, 
+                    for both Struts 1 and Struts 2, 
                     visit <a href="http://www.StrutsCentral.net/">Struts Central.</a>
                 </p>
 

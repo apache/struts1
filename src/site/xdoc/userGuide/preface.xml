@@ -85,9 +85,9 @@ limitations under the License.
                     but not these technologies,
                     the best overall starting point is
                     <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/index.html">
-                        <strong>The J2EE Tutorial.</strong>
+                        The J2EE Tutorial.
                     </a>
-                    This document is also available for download in
+                    The tutorial is also available for download in
                     <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JavaWSTutorial.pdf">
                         PDF</a>
                     format.
@@ -106,7 +106,7 @@ limitations under the License.
                     generally,
                     then the best starting point is
                     <a href="http://java.sun.com/docs/books/tutorial/index.html">
-                        <strong>The Java Tutorial.</strong>
+                        The Java Tutorial.
                     </a>
                     This overlaps with The J2EE Tutorial in some
                     places, but the two work well together.
@@ -138,7 +138,7 @@ limitations under the License.
                     the Web and web applications.
                 </p>
 
-                <p>While building web applications, some Java developers will
+                <p>While building web applications, some Java developers 
                     write their own HTML. Others leave that responsibility to
                     the
                     page designers.</p>
@@ -148,34 +148,34 @@ limitations under the License.
                 <ul>
                     <li>
                         <a href="http://www.w3.org/MarkUp/Guide/">
-                            <strong>Getting started with HTML</strong>
+                            Getting started with HTML
                         </a>
                         by Dave Raggett
                     </li>
                     <li>
                         <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/HTTP.html">
-                            <strong>HTTP Overview</strong>
+                            HTTP Overview
                         </a>
                         in The J2EE Tutorial.
                     </li>
                     <li>
                         <a href="http://www.rfc-editor.org/rfc/rfc2616.txt">
-                            <strong>HTTP/1.1
-                            </strong>
+                            HTTP/1.1
+                            
                         </a>
                         Specification
                     </li>
                     <li>
                         <a href="http://www.rfc-editor.org/rfc/rfc2617.txt">
-                            <strong>HTTP
-                                Basic and Digest Authentication</strong>
+                            HTTP
+                                Basic and Digest Authentication
                         </a>
                         Specification
                     </li>
                     <li>
                         <a href="http://www.rfc-editor.org/rfc/rfc2109.txt">
-                            <strong>State
-                                Management Mechanism</strong>
+                            State
+                                Management Mechanism
                         </a>
                         Specification (Cookies)
                     </li>
@@ -232,14 +232,13 @@ limitations under the License.
                 <ul>
                     <li>
                         <a href="http://java.sun.com/docs/books/tutorial/java/index.html">
-                            <strong>Learning the Java Language</strong>
+                            Learning the Java Language
                         </a>
                         in the Java Tutorial
                     </li>
                     <li>
                         <a href="http://java.sun.com/docs/books/tutorial/essential/threads/index.html">
-                            <strong>Threads: Doing Two or More Tasks At
-                                Once</strong>
+                            Threads: Doing Two or More Tasks At Once
                         </a>
                         in the Java Language
                         Tutorial
@@ -255,14 +254,14 @@ limitations under the License.
                 <ul>
                     <li>
                         <a href="http://www.laputan.org/drc/drc.html">
-                            <strong>Designing Reusable Classes</strong>
+                            Designing Reusable Classes
                         </a>
                         by Ralph E. Johnson &amp; Brian Foote
                     </li>
                     <li>
                         <a href="http://www.cs.wustl.edu/~schmidt/CACM-frameworks.html">
-                            <strong>Object-Oriented Application
-                                Frameworks</strong>
+                            Object-Oriented Application
+                                Frameworks
                         </a>
                         by Mohamed Fayad and Douglas C. Schmidt
                     </li>
@@ -366,9 +365,9 @@ limitations under the License.
                 <ul>
                     <li>
                         <a href="http://java.sun.com/products/javabeans/docs/">
-                            <strong>The
+                            The
                                 JavaBeans Component Architecture
-                                Documentation</strong>
+                                Documentation
                         </a>
                         page at
                         <code>java.sun.com,</code>
@@ -378,13 +377,13 @@ limitations under the License.
                     </li>
                     <li>
                         <a href="http://java.sun.com/docs/books/tutorial/javabeans/index.html">
-                            <strong>The JavaBeans Trail</strong>
+                            The JavaBeans Trail
                         </a>
                         in the Java Tutorial
                     </li>
                     <li>
                         <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPBeans.html">
-                            <strong>JavaBeans Components in JSP Pages</strong>
+                            JavaBeans Components in JSP Pages
                         </a>
                         in The J2EE Tutorial
                     </li>
@@ -511,8 +510,8 @@ limitations under the License.
                 <ul>
                     <li>
                         <a href="http://java.sun.com/docs/books/tutorial/essential/attributes/properties.html">
-                            <strong>Using Properties to Manage Program
-                                Attributes</strong>
+                            Using Properties to Manage Program
+                                Attributes
                         </a>
                         in The Java Tutorial
                     </li>
@@ -532,7 +531,7 @@ limitations under the License.
                 <ul>
                     <li>
                         <a href="http://java.sun.com/docs/books/tutorial/i18n/resbundle/concept.html">
-                            <strong>About the ResourceBundle Class</strong>
+                            About the ResourceBundle Class
                         </a>
                         in the Java Tutorial
                     </li>
@@ -645,23 +644,23 @@ limitations under the License.
                 <ul>
                     <li>
                         <a href="http://java.sun.com/products/servlet/">
-                            <strong>The
-                                Java Servlet Technology</strong>
+                            The
+                                Java Servlet Technology
                         </a>
                         page at
                         <code>java.sun.com</code>
                     </li>
                     <li>
                         <a href="http://java.sun.com/products/servlet/download.html">
-                            <strong>The
-                                Servlet 2.3 and 2.4 Specifications</strong>
+                            The
+                                Servlet 2.3 and 2.4 Specifications
                         </a>
                         download page at
                         <code>java.sun.com</code>
                     </li>
                     <li>
                         <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/Servlets.html">
-                            <strong>Java Servlet Technology</strong>
+                            Java Servlet Technology
                         </a>
                         in The J2EE Tutorial.
                     </li>
@@ -1023,8 +1022,8 @@ limitations under the License.
             <subsection name="0.7.6 Sessions">
 
                 <p>One of the key characteristics of HTTP is that it is
-                    <em>stateless</em>
-                    . In other words, there is nothing built in to
+                    <em>stateless.</em>
+                    In other words, there is nothing built in to
                     HTTP that identifies a subsequent request from the same
                     user as being
                     related to a previous request from that user. This makes
@@ -1057,7 +1056,7 @@ limitations under the License.
                     (in JSP, they are known as "session scope beans").
                 </p>
 
-                <p>To avoid occupying resources forever when a user fails to
+                <p>To avoid occupying resources indefinately when a user fails to
                     complete
                     an interaction, sessions have a configurable
                     <em>timeout interval.</em>
@@ -1192,6 +1191,29 @@ limitations under the License.
                     information in a database.
                 </p>
 
+                <p>
+                    For more about security, see:
+                </p>
+                <ul>
+                    <li>
+                        <a href="http://java.sun.com/blueprints/guidelines/designing_enterprise_applications/security/index.html">
+                          J2EE Blueprints: Security</a>
+                    </li>
+                    <li>
+                        <a href="http://securityfilter.sourceforge.net/">
+                            SecurityFilter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://acegisecurity.org/">
+                            Acegi Security</a>
+                    </li>
+                    <li>
+                        <a href="http://sslext.sourceforge.net/">
+                            The Struts SSL Extension for HTTP/HTTPS switching </a>
+                    </li>
+                </ul>
+
             </subsection>
 
             <a name="jsp"/>
@@ -1233,29 +1255,29 @@ limitations under the License.
                 <ul>
                     <li>
                         <a href="http://java.sun.com/products/jsp/">
-                            <strong>The
-                                JavaServer Pages Technology</strong>
+                            The
+                                JavaServer Pages Technology
                         </a>
                         page at
                         <code>java.sun.com</code>
                     </li>
                     <li>
                         <a href="http://java.sun.com/products/jsp/reference/api/index.html">
-                            <strong>The
-                                JSP 1.2 and 2.0 Specifications</strong>
+                            The
+                                JSP 1.2 and 2.0 Specifications
                         </a>
                         download page at
                         <code>java.sun.com</code>
                     </li>
                     <li>
                         <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPIntro.html">
-                            <strong>JavaServer Pages Technology</strong>
+                            JavaServer Pages Technology
                         </a>
                         in The J2EE Tutorial
                     </li>
                     <li>
                         <a href="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPTags.html">
-                            <strong>Custom Tags in JSP Pages</strong>
+                            Custom Tags in JSP Pages
                         </a>
                         in The J2EE Tutorial
                     </li>
@@ -1272,7 +1294,7 @@ limitations under the License.
 
                 <p>The framework also works well with the
                     <a href="http://java.sun.com/products/jsp/jstl">
-                        <strong>JavaServer Pages Standard Tag Library</strong>
+                        JavaServer Pages Standard Tag Library
                     </a>
                     (JSTL) and taglibs from other sources, like
                     <a href="http://jsptags.com/">JSP Tags,</a>
@@ -1313,16 +1335,15 @@ limitations under the License.
                         JavaServer Faces technology.</a>
                     JSF simplifies building user interfaces for JavaServer
                     applications, both for the web and for the desktop.
-                    To keep pace, Struts 2 has support for this new technology, allowing
-                    Struts pages to use JSF components.
                     For teams looking for a step-wise transition to JSF and Struts 1, we
                     offer Struts-Faces taglib,
                     which lets you use JSF components with your existing
-                    Actions.
+                    Actions, so that you can migate to JSF one page a time. 
                 </p>
                 <p>
                     For an open source implementation of JSF, visit our
-                    sibling project.
+                    sibling project, <a href="httpL//myfaces.apache.org">
+                    Apache MyFaces.</a>
                 </p>
 
                 <p>For more about JSTL and JavaServer Faces see</p>
@@ -1335,13 +1356,13 @@ limitations under the License.
                     </li>
                     <li>
                         <a href="http://www.jsfcentral.com">
-                            <strong>JSF Central</strong>
+                            JSF Central
                         </a>
                         - JavaServer Faces resources.
                     </li>
                     <li>
                         <a href="http://www.jamesholmes.com/JavaServerFaces/">
-                            <strong>JavaServer Faces Resources</strong>
+                            JavaServer Faces Resources
                         </a>
                         - James Holmes dot Com.
                     </li>

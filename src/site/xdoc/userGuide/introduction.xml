@@ -101,7 +101,7 @@ limitations under the License.
                     McClanahan to provide a standard MVC
                     framework to the Java community. In July 2001, version 1.0
                     was released, and IOHO, Java
-                    Model 2 development will never be quite the same.
+                    Model 2 development has never been quite the same.
                 </p>
 
             </subsection>
@@ -267,7 +267,7 @@ limitations under the License.
                 <p>
                     The
                     <em>View</em>
-                    portion of a SAF-based application is most often
+                    portion of a Struts-based application is most often
                     constructed using JavaServer Pages (JSP) technology. JSP
                     pages can
                     contain static HTML (or XML) text called "template text",
@@ -397,7 +397,7 @@ limitations under the License.
                 </p>
 
                 <p>
-                    The Struts Taglibs (another component) provide direct
+                    The Struts Taglib component provides direct
                     support for the
                     <strong>View</strong>
                     layer
@@ -683,12 +683,11 @@ limitations under the License.
                     <a href="index.html">Other sections</a>
                     in this document cover the
                     various framework components in greater detail.
-                    The Struts Taglib distribution includes several Developer
+                    The Struts Taglib component includes several Developer
                     Guides
-                    covering various aspects of the tag components.
-                    The Struts Applications component provides sample
-                    applications
-                    that show how it all comes together.
+                    covering various aspects of the custom tags.
+                    A number of sample applications are bundled with the 
+                    distribution that show how it all comes together.
                 </p>
 
                 <p>

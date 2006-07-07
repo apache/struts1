@@ -33,26 +33,20 @@ limitations under the License.
                     components,
                     but does not provide any actual view components of its
                     own.
-                    Several options are available, such as
-                    <a href="http://struts.apache.org/struts-taglib/">Struts
-                        Taglib,</a>
-                    <a href="http://struts.sourceforge.net/struts-cocoon/">
-                        Struts Cocoon,</a>
-                    <a href="http://jakarta.apache.org/velocity/tools/struts/">
-                        Struts Velocity,</a>
-                    and
-                    <a href="http://stxx.sourceforge.net/">Stxx,</a>
-                    among others.
+                    Several <a href="#presentation_frameworks">
+                    	presentation technologies</a> are available, 
+                    including, among others, Cocoon, JSP, Velocity Templates, 
+                    and XSLT.
                 </p>
 
                 <p>
                     Features provided by the framework for direct use by view
                     components
                     include
-                    <a href="#resources">Message Resources</a>
+                    <a href="#i18n">Message Resources</a>
                     for localizing text and images,
                     and
-                    <a href="#formbeans">FormBeans</a>
+                    <a href="#form_beans">FormBeans</a>
                     to provide for automatic
                     population and validation.
                 </p>
@@ -316,7 +310,7 @@ limitations under the License.
                     the ActionForm beans and the other controller components
                     are
                     View neutral.
-                    The framework be used with Cocoon, Velocity Templates,
+                    The framework can also be used with Cocoon, Velocity Templates,
                     XSLT, and
                     any other presentation technology that can be rendered via
                     a Java servlet.
@@ -689,13 +683,13 @@ parameter="homepage"/>
                     technologies,
                     and there are a great number of extensions that
                     make creating view components even easier.
+                    Some popular presentation technologies include:
                 </p>
-
-                Some popular presentation layer technologies include:
+                
                 <ul>
                     <li>
                         <a href="http://struts.apache.org/struts-taglib/">
-                            Struts Taglibs</a>
+                            Struts Taglib</a>
                     </li>
                     <li>
                         <a href="http://struts.sourceforge.net/struts-cocoon/">

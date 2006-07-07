@@ -69,42 +69,12 @@ limitations under the License.
                     </li>
 
                     <li>
-                        <strong>XML Parser</strong>
-                        - The framework
-                        <strong>requires</strong>
-                        the presence of an XML
-                        parser that is compatible with the Java API for XML
-                        Parsing (JAXP)
-                        specification, 1.1 or later. This is bundled with J2SE
-                        1.4 and later.
-                        For earlier versions of Java, the easiest way to
-                        obtain JAXP is
-                        probably by downloading the Web Services Developers
-                        Kit
-                        (1.1 or later!). See the
-                        <a href="http://java.sun.com/xml/jaxp/faq.html#jaxp-ri-latest">
-                            Sun JAXP FAQ</a>
-                        for more information.)
-                        In your applications, you may replace the reference
-                        implementation classes with any other JAXP compliant
-                        parser, such as
-                        <a href="http://xml.apache.org/xerces-j">Xerces</a>
-                        . See detailed
-                        instructions related to the parser in the instructions
-                        for
-                        <a href="#Building">building</a>
-                        and
-                        <a href="#Installing">installing</a>
-                        the framework, below.
-                    </li>
-
-                    <li>
                         <strong>Maven Build System</strong>
-                        - If you are building the framework from the
+                        - (optional) If you are building the framework from the
                         source distribution, you must download and install the
-                        <a href="http://maven.apache.org/maven-1.x/">Apache
-                            Maven 1.0.2</a>
-                        build system.
+                        <a href="http://maven.apache.org/">Apache
+                            Maven 2</a>
+                        build system (2.0-beta-5, or later).
                     </li>
 
                 </ul>
@@ -115,7 +85,7 @@ limitations under the License.
                         href="Installing">
 
                 <p>First, download a binary distribution of Struts
-                    Framework Library by following the
+                    by following the
                     instructions
                     <a href="http://struts.apache.org/downloads.html">here,</a>
                     Then, make sure
@@ -127,9 +97,8 @@ limitations under the License.
 
                 <p>Unpack the Library distribution into a convenient
                     directory.
-                    (If you
-                    <a href="#Building">building from the source
-                        distribution,</a>
+                    (If you are <a href="http://struts.apache.org/downloads.html#Building">
+                    building from the source distribution,</a>
                     the result of the build will already be an unpacked binary
                     distribution
                     for you). The distribution consists of the following
@@ -329,33 +298,6 @@ limitations under the License.
                             Example Application.</a>
                     </li>
                 </ul>
-            </subsection>
-
-            <subsection name="Building From Source" href="Building">
-
-                <p>
-                    First, download a source distribution by following the
-                    instructions
-                    <a href="http://struts.apache.org/downloads.html">here.</a>
-                    Then, make sure
-                    you have downloaded and installed
-                    <a href="http://maven.apache.org/maven-1.x/">Apache Maven
-                        1.0.2</a>
-                </p>
-
-                <p>
-                    Change to the component you would like to build, and
-                    invoke
-                </p>
-
-                <source>mvn build</source>
-
-                <p>
-                    Go to the \build directory and run the command
-                </p>
-
-                <source>$mvn build-all</source>
-
             </subsection>
 
             <subsection>
