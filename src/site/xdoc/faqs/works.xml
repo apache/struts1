@@ -19,37 +19,41 @@ limitations under the License.
 <document>
 
     <properties>
-        <title>How Does It Work?</title>
+        <title>How Does Struts Work?</title>
     </properties>
     <body>
-        <section href="faq" name="How does it work?">
+        <section href="faq" name="How does Struts work?">
 
-            <subsection href="how" name="How does it work?">
+            <subsection href="how" name="How does Struts work?">
 
+								<blockquote>
                 <p>
-                    Java Servlets are designed to handle requests made by Web
+                    [From the <a href="kickstart.html#how">Kickstart FAQ</a>] <br/>
+                    <em>"Java Servlets are designed to handle requests made by Web
                     browsers.
                     Server pages are designed to create dynamic Web pages that
-                    can turn billboard sites into live applications.
+                    can turn billboard sites into interactive applications.
                     Struts uses a special Servlet as a
                     switchboard to route requests from Web browsers to the
                     appropriate server page.
                     This makes Web applications much easier to design, create,
-                    and maintain.
+                    and maintain."</em>
                 </p>
+								</blockquote>
 
                 <p>
-                    Here is some more detail on the mechanisms and
-                    dependencies of the framework:
+                    That's a good high-level description,
+                    but let's describe the mechanisms and
+                    dependencies of the framework in more detail.
                 </p>
 
                 <ul>
                     <li>
+                        <p>
                         The web application that you develop has a deployment
                         descriptor
-                        (
-                        <code>WEB-INF/web.xml</code>
-                        ) which you must write. This file describes
+                        <code>(WEB-INF/web.xml)</code>
+                        which you must write. This file describes
                         the configuration of your web application, including
                         welcome pages (the
                         file that is shown in a directory when none is
@@ -57,42 +61,42 @@ limitations under the License.
                         mappings to servlets (path or extension name), and
                         parameters to those
                         servlets.
-                        <br/>
-
-                        In this file, you configure the framework
+                        </p>
+                        <p>
+                        In the <code>web.xml</code> file, you configure the framework
                         <a href="../apidocs/org/apache/struts/action/ActionServlet.html">
                             <code>ActionServlet</code>
                         </a>
                         as the servlet that will handle all requests for a
                         given mapping (usually
                         the extension
-                        <code>.do</code>
-                        ). This is the "switchboard" mentioned
-                        above.
-                        <br/>
-
-                        In this same file, you configure the
+                        <code>.do</code> is used).
+                        The ActionServlet is the "switchboard" mentioned in the 
+                        opening paragraph.
+                        </p>
+                        <p>
+                        Also in the <code>web.xml,</code> you configure the
                         <code>ActionServlet</code>
                         to use
                         one or more configuration files for Struts itself.
-                        <br/>
-                        For this text, assume we are installing the web
-                        application on the server
-                        at
-                        <code>/myapp</code>
-                        , and are using the simplest possible configuration
+                        </p>
+                        <p>
+                        For now, let's say we are installing the web
+                        application on the server using
+                        <code>/myapp</code> as a location, 
+                        and we are using the simplest possible configuration
                         from there.
-                        <br/>
-
+                        </p>
+                        <p>
                         If you need more details on deployment descriptors,
                         read
-                        the Servlet Specification available from Sun
+                        the relevant Servlet Specification available from Sun
                         Microsystem's
-                        <a href="http://java.sun.com">Java site</a>
-                        .
-                        <br/>
+                        <a href="http://java.sun.com">Java site.</a>
+                        </p>
                     </li>
                     <li>
+                    	  <p>
                         In the framework configuration file(s), you associate
                         paths with
                         the controller components of your application, known
@@ -103,39 +107,37 @@ limitations under the License.
                         classes (i.e. "login" ==&gt; LoginAction class). This
                         tells the
                         <code>ActionServlet</code>
-                        that when the incoming request is
+                        that for the incoming request 
                         <code>http://myhost/myapp/login.do</code>
-                        it should invoke your
-                        controller component
-                        <code>LoginAction</code>
-                        .
-                        <br/>
-
+                        it should invoke your controller component, 
+                        <code>LoginAction.</code>
+                        </p>
+                        <p>
                         Note the extension
                         <code>.do</code>
                         in this URL. The extension causes
                         your container (i.e. Tomcat) to call the
-                        <code>ActionServlet</code>
-                        ,
+                        <code>ActionServlet,</code>
                         which sees the word "login" as the thing you want to
                         do. The
                         configuration is referenced, and your
                         <code>LoginAction</code>
                         is
                         executed.
-                        <br/>
+                        </p>
                     </li>
                     <li>
+                        <p>
                         For each
-                        <code>Action</code>
-                        , you also configure the framework with the names of
+                        <code>Action,</code>
+                        you also configure the framework with the names of
                         the resulting page(s) that can be shown as a result of
                         that action. There
                         can be more than one view as the result of an action
                         (often, there are at
-                        least two: one for success, and one for failure).
-                        <br/>
-
+                        least two: one for "success", and one for "failure").
+                        </p>
+                        <p>
                         Your
                         <code>Action</code>
                         (the controller component you write) is based on
@@ -153,8 +155,8 @@ limitations under the License.
                         of
                         the view layer by simply editing the XML configuration
                         file.
-                        <br/>
-
+                        </p>
+                        <p>
                         At this point, the framework knows how to delegate to
                         your controller components,
                         and what to show as a result of your controller
@@ -162,25 +164,28 @@ limitations under the License.
                         part of the application is completely up to you, and
                         is called from
                         within your controller components.
+                        </p>
                     </li>
                     <li>
-                        You may also associate a Java Bean with an action (or
+                        <p>
+                        You may also associate a JavaBean with an action (or
                         set of actions) in
-                        the framework's configuration file. The Java Bean is
+                        the framework's configuration file. The JavaBean is
                         used as a repository for
                         form or display data that can be communicated between
                         the view and
                         controller layer.
-                        <br/>
-
+                        </p>
+                        <p>
                         These Beans are automatically made visible to your
                         controller components
-                        (like
+                        (like the 
                         <code>LoginAction</code>
-                        ) and any view page that is associated with
+                        class) 
+                        and any view page that is associated with
                         that controller.
-                        <br/>
-
+                        </p>
+                        <p>
                         These Beans can also be validated with the help of the
                         framework to
                         help insure that the user is putting good data in the
@@ -188,10 +193,10 @@ limitations under the License.
                         carried along with a session, allowing forms to span
                         multiple pages of
                         the view, and Actions in the controller.
-                        <br/>
-
-                        <strong>Note</strong>
-                        : You must be using some sort of server-side
+                        </p>
+                        <p>
+                        <strong>Note:</strong>
+                        You must be using some sort of server-side
                         technology (JSP, Velocity, XSLT) for the view layer
                         (going
                         <em>to</em>
@@ -200,15 +205,17 @@ limitations under the License.
                         framework works on the
                         server side, so the client's view has to be composed
                         there.
-                        <br/>
-
+                        </p>
+                        <p>
                         The client feeds the data back through normal form
                         submission (POST/GET)
                         methods, and the framework updates that data in the
                         Bean before
                         calling your controller components.
+                        </p>
                     </li>
                     <li>
+                        <p>
                         Within your web application will be pages that
                         represent the view your
                         users will see. These can be JSP pages, Velocity
@@ -219,15 +226,14 @@ limitations under the License.
                         can get started right away, but any standard
                         presentation technology
                         can be used with the framework.
-                        <br/>
-
+                        </p>
+                        <p>
                         Even plain HTML files can be used within your
                         application,
                         although they will not take full advantage of all of
-                        the dynamic
-                        features.
-                        <br/>
-
+                        the dynamic features.
+                        </p>
+                        <p>
                         Following the example of the Struts JSP taglibs,
                         several other
                         packages are available to make the framework easy to
@@ -243,26 +249,26 @@ limitations under the License.
                         <a href="http://www.openroad.ca/opencode/">stxx</a>
                         and
                         <a href="http://it.cappuccinonet.com/strutscx/">
-                            StrutsCX</a>
-                        .
-                        <br/>
-
+                            StrutsCX.</a>
+                        </p>
+                        <p>
                         These packages make the standard Struts framework
                         elements look and
                         feel like a seamless part of the original presentation
                         technology.
                         Struts also makes it easy to mix and match.
                         If need be, you can use JSP, Velocity templates, and
-                        XSLT all in
-                        the same application!
-                        <br/>
-
+                        XSLT all in the same application!
+                        </p>
+                        <p>
                         Since Struts relies on standard Servlet technologies,
                         you should be
                         able to use any Java presentation technology with
                         Struts.
+                        </p>
                     </li>
                     <li>
+                        <p>
                         While the focus of the Struts framework is on the
                         controller,
                         the presentation layer is a significant part of any
@@ -270,8 +276,8 @@ limitations under the License.
                         The Struts JSP taglibs include a number of generic and
                         Struts-specific
                         tags to help you use dynamic data in your view.
-                        <br/>
-
+                        </p>
+                        <p>
                         The custom JSP tags account for a good deal of the
                         Struts code base. It
                         is educational to note that as of version 1.1b3 the
@@ -279,8 +285,8 @@ limitations under the License.
                         core of Struts was about 28,000 lines, and the Java
                         code for the tag
                         libraries (including tiles) was about 41,000 lines.
-                        <br/>
-
+                        </p>
+                        <p>
                         These tags help you glue your view layer to the
                         controller layer without
                         having to embed a lot of Java in the JSP. This gives
@@ -289,44 +295,42 @@ limitations under the License.
                         than a plain JSP. It
                         also helps minimize dependencies between the
                         controller and view.
-                        <br/>
-
+                        </p>
+                        <p>
                         The custom tags are used to create forms (and
                         invisibly interact with the
                         Bean mentioned previously), logically forward to other
                         pages, and invoke
                         other actions of the web application.
-                        <br/>
-
+                        </p>
+                        <p>
                         There are also tags that help you with
                         internationalization, error
                         messages, etc.
-                        <br/>
-
+                        </p>
+                        <p>
                         All of these abilities depend in some way on the
                         configuration files you
                         supplied to Struts.
+                        </p>
                     </li>
                 </ul>
                 <p>
                     It is important for you to remember that the mechanism
-                    described here is
-                    only in effect when the
+                    described here is only in effect when the
                     <code>ActionServlet</code>
-                    is handling the
-                    request.
+                    is handling the request.
                 </p>
                 <p>
                     Since this only happens when a request is submitted that
                     causes your
-                    container (i.e. Tomcat, WebSphere, etc.) to call
+                    container (i.e. Tomcat, WebSphere, whatever) to call
                     <code>ActionServlet</code>
                     ,
                     you must be sure that any page that relies on Struts is
-                    done through a
-                    request that will map to the
+                    done through a request that will map to the
                     <code>ActionServlet</code>
-                    (i.e. has a
+                    (i.e. it has a
                     <code>.do</code>
                     extension).
                 </p>

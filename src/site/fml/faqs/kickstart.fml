@@ -26,10 +26,7 @@ limitations under the License.
                     creating and maintaining applications to meet the demands
                     of today's public Web sites and enterprise intranets.
                     Struts combines standard Java
-                    technologies into a unified framework. The end result is a
-                    cooperative, synergistic framework, suitable for
-                    development teams, independent developers, and everyone in
-                    between.
+                    technologies into a unified framework. 
                 </p>
 
             </answer>
@@ -39,13 +36,19 @@ limitations under the License.
             <question>How does Struts work?</question>
             <answer>
                 <p>Java Servlets are designed to handle requests made by Web
-                    browsers. Server pages are designed to create dynamic Web
-                    pages that can turn billboard sites into live
+                    browsers. Server pages are designed to create dynamic web
+                    pages that can turn billboard sites into interactive 
                     applications. Struts uses a special
                     Servlet as a switchboard to route requests from Web
-                    browsers to the appropriate server page. This makes Web
-                    applications much easier to design, create, and
-                    maintain.</p>
+                    browsers to the appropriate server page. 
+                    Along the way, a special Java class, called an Action, 
+                    can interact with a data access framework or business 
+                    logic classes.
+                    A layered architecture makes enterprise-grade web
+                    applications easier to create and maintain.
+                    (For more detail, see the longer version of 
+                    <a href="works.html">"How Does Struts Work?".</a>)
+                </p>
             </answer>
         </faq>
 
@@ -53,14 +56,15 @@ limitations under the License.
             <question>Is Struts compatible with other Java
                 technologies?</question>
             <answer>
-                <p>Yes. Struts is committed to supporting industry standards.
+                <p>Yes. The Apache Struts Project is committed to supporting 
+                    industry standards.
                     Struts acts as an integrator of Java technologies so that
                     they can be used in the &quot;real world&quot;.</p>
             </answer>
         </faq>
 
         <faq id="who">
-            <question>Who wrote Struts"</question>
+            <question>Who wrote Struts?</question>
             <answer>
                 <p>There are several
                     <a href="http://struts.apache.org/volunteers.html">active committers</a>
@@ -84,9 +88,15 @@ limitations under the License.
                 <p>After serving as the co-lead of the JSR 127 specification
                     (JavaServerFaces), Craig created another rendition of
                     Struts
-                    based on JavaServerFaces, called Shale. Both Struts
-                    Framework and Struts Shale are first-class citizens of the
-                    Apache Struts project.</p>
+                    based on JavaServer Faces, called Shale. The new framework 
+                    began as an Apache Struts subproject, but later Shale 
+                    graduated to a  top-level Apache project
+                    in its own right. 
+                    <a href="http://shale.apache.org/">
+                      Apache Shale</a> is an excellent choice for teams 
+                    creating complex applications that utilize JSF
+                    as a foundation technology.
+	</p>
             </answer>
         </faq>
 
@@ -100,8 +110,8 @@ limitations under the License.
                     Maverick, Tapestry, and Turbine, to name a few. Struts did
                     not enter a "greenfield". Back in the day, there were
                     lively comparisons between the available frameworks,
-                    just as there is today.
-                </p>
+                    just as there are today. 
+               </p>
             </answer>
         </faq>
 
@@ -117,9 +127,12 @@ limitations under the License.
                     OnJava magazine between their reader surveys for 2005 and
                     2004 the popularity of Struts remained steady. Likewise,
                     the number of Struts articles published in all online
-                    journals also remained constant between 2004 and 2005. New
-                    and updated books about Struts continue to be published
-                    regularly.</p>
+                    journals also remained constant between 2004 and 2005. 
+                    (For a complete list, see the 
+                    <a href="http://www.StrutsCentral.net/">
+                    Struts Central website</a>.)                    
+                    New and updated books about Struts continue to be 
+                    published regularly.</p>
                 <p>While some people characterize the space of Java web
                     application framework as being "fragmented", the truth is
                     that
@@ -131,12 +144,13 @@ limitations under the License.
                 </p>
                 <p>Of course, some developers are finding that JavaServer
                     Faces can be a faster way to write new applications,
-                    especially clean-cut intranet applications. And
+                    especially modest intranet applications. And
                     that's great! More than anything else, every Struts
                     committer wants every developer to get more out of every
                     work day. (We're developers too!) As these new JSF
-                    applications
-                    grow in complexity, Struts Shale is ready to do for
+                    applications grow in complexity, we're glad that 
+                    <a href="http://shale.apache.org/">
+                      Apache Shale</a> is ready to do for
                     <em>JSF</em>
                     developers what Struts has
                     been doing for
@@ -146,9 +160,8 @@ limitations under the License.
                 </p>
                 <p>Meanwhile, enterprise web developers who have standardized
                     on Struts can be assured that new releases of
-                    Action 1 will continue, even as we break new ground with
-                    the upcoming release of Struts 2 (formerly known as
-                    WebWork).</p>
+                    Struts 1 will continue, even as we break new ground with
+                    Struts 2.</p>
             </answer>
         </faq>
 
@@ -158,8 +171,6 @@ limitations under the License.
             <answer>
                 <p>The best place to download Apache Struts products is at
                     <a href="http://struts.apache.org/">struts.apache.org</a>
-                    . The nightly builds are very stable, and recommended as
-                    the best place to start today.
                 </p>
             </answer>
         </faq>
@@ -187,10 +198,10 @@ limitations under the License.
                 </p>
                 <p>Since the full source code for Struts is available, we also
                     provide
-                    <a href="../userGuide/installation.html">complete
+                    <a href="http://struts.apache.org/downloads.html#Building">
                         instructions</a>
-                    for compiling your own Struts JAR from scratch. (This is
-                    actually easier than it looks!)
+                    for compiling your own Struts JAR from scratch. 
+                    (With Maven, building Struts is easy!)
                 </p>
                 <p>Your Struts application can usually be deployed using a
                     standard WAR file. In most
@@ -207,12 +218,11 @@ limitations under the License.
         </faq>
 
         <faq id="jar">
-            <question>When do I need &quot;struts-action.jar&quot; on my
+            <question>When do I need the Struts JARs on my
                 classpath?</question>
             <answer>
                 <p>When you are compiling an application that uses the Struts
-                    classes, you must have the &quot;struts-action.jar&quot;
-                    on the classpath your
+                    classes, you must have the Struts JARs on the classpath your
                     <strong>compiler</strong>
                     sees -- it does not
                     <em>have</em>
@@ -220,7 +230,7 @@ limitations under the License.
                 </p>
                 <p>Why is that an important distinction? Because if you are
                     using a servlet container on your development machine to
-                    test your application, the &quot;struts-action.jar&quot;
+                    test your application, the Struts JARs 
                     <strong>must not</strong>
                     be on your CLASSPATH environment variable when running the
                     container. (This is because each Web application must also
@@ -231,11 +241,9 @@ limitations under the License.
                 <p>There are several general approaches to this issue:</p>
                 <ul>
                     <li>
-                        <strong>Use ANT</strong>
+                        <strong>Use Ant or Maven</strong>
                         for building your projects -- it can easily assemble
-                        classpaths for the compiler. (This is how Struts
-                        itself is built, along with Tomcat and most other
-                        Java-based projects).
+                        classpaths for the compiler. 
                     </li>
                     <li>
                         <strong>Use an IDE</strong>
@@ -292,8 +300,7 @@ limitations under the License.
                         Struts TestCase</a>
                     which provides a useful harness for Action classes that
                     can be used with JUnit or
-                    <a href="http://jakarta.apache.org/cactus">Cactus</a>
-                    .
+                    <a href="http://jakarta.apache.org/cactus">Cactus</a>.
                 </p>
             </answer>
         </faq>

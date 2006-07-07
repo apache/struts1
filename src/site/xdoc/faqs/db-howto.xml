@@ -29,7 +29,7 @@ limitations under the License.
             <p>
                 Most developers would consider accessing a database part of
                 the "business
-                end" of an application. Most often, we don't access a databse
+                end" of an application. Most often, we don't access a database
                 for the sake
                 of accessing a database. We use the database as part of a
                 larger business
@@ -38,7 +38,7 @@ limitations under the License.
             </p>
 
             <p>
-                The best thing is use the Action as a thin adaptor between the
+                The best thing is to use the Action as a thin adaptor between the
                 web/presentation-tier and your business classes (including
                 those that
                 access a database).
@@ -312,12 +312,13 @@ limitations under the License.
                 The Struts custom tags can use DynaBean properties as easily
                 as they use conventional JavaBean properties.
                 (See
-                <strong>DynaActionForm classes</strong>
+                <a href="../userGuide/building_controller.html#dyna_action_form_classes">
+                DynaActionForm classes</a>
                 in the Struts User Guide for details.)
             </p>
 
             <p>
-                Since this is in the BeanUtils jar, you already have it on
+                Since these classes are in the BeanUtils JAR, you already have it on
                 board, and just need to implement the transfer routine
                 (see the ResultSetDynaClass link).
             </p>

@@ -133,11 +133,10 @@ limitations under the License.
                     Meanwhile, DynaActionForms relieve developers of
                     maintaining simple ActionForms.
                     For near zero maintenance, try
-                    <a href="http://www.niallp.pwp.blueyonder.co.uk/">
+                    <a href="../userGuide/building_controller.html#lazy_action_form_classes/">
                         LazyActionForm</a>
                     and Hubert Rabago's
-                    <a href="https://formdef.dev.java.net/">FormDef</a>
-                    .
+                    <a href="https://formdef.dev.java.net/">FormDef.</a>
                 </p>
             </answer>
             </faq>
@@ -153,9 +152,9 @@ limitations under the License.
                     Introspection API
                     with the ActionForms, some containers may require that all
                     the JavaBean patterns be followed, including
-                    declaring "
-                    <code>implements Serializable</code>
-                    " for each subclass. The safest thing is to review the
+                    declaring 
+                    <code>"implements Serializable"</code>
+                    for each subclass. The safest thing is to review the
                     <a href="../userGuide/preface.html#javabeans">JavaBean
                         specification</a>
                     and follow all the prescribed patterns.
@@ -183,7 +182,7 @@ limitations under the License.
                 </p>
                 <ul>
                     <li>
-                        ActionForms can have other beansor hashmaps as
+                        ActionForms can have other beans or hashmaps as
                         properties
                     </li>
                     <li>
@@ -197,13 +196,12 @@ limitations under the License.
                     </li>
                 </ul>
                 <p>
-                    ActionForms (a.k.a. "form beans") are really just Java
-                    beans (with a few
-                    special methods) that the framework creates and puts into
-                    session or request scope for you.
+                    ActionForms (a.k.a. "form beans") are really just JavaBeans
+                    (with a few special methods) that the framework creates
+                    and puts into session or request scope for you.
                     There is nothing preventing you from using other beans, or
-                    including
-                    them in your form beans. Here are some examples:
+                    including them in your form beans. 
+                    Let's look at some examples.
                 </p>
                 <p>
                     <em>Collections as properties</em>
@@ -494,24 +492,19 @@ limitations under the License.
                 </ul>
 
                 <p>There are other rules to follow if you want other features
-                    of your
-                    form beans to be exposed. These include indexed attributes
-                    and mapped
-                    attributes. They are covered in detail in other areas of
-                    the
-                    documentation, in particular:</p>
-
-                <a href="indexedprops.html">indexedprops.html</a>
-
+                    of your form beans to be exposed, 
+                    especially in terms of indexed attributes and mapped attributes. 
+                    Specific rules are covered in detail in other areas of
+                    the documentation, in particular, 
+	    <a href="indexedprops.html">
+                      Indexed Properties, Mapped Properties, and Indexed Tags.
+                    </a></p>
 
                 <p>For a complete explanation of what a JavaBean is, and
-                    everything it can
-                    do, see the JavaBeans Specification (version 1.01) at:</p>
-
-                <a href="http://java.sun.com/products/javabeans/docs/beans.101.pdf">
-                    http://java.sun.com/products/javabeans/docs/beans.101.pdf</a>
-
-
+                    everything it can do, 
+                    see the 
+                    <a href="http://java.sun.com/products/javabeans/docs/beans.101.pdf">
+                      JavaBeans Specification (version 1.01).</a></p>
             </answer>
             </faq>
 
@@ -527,8 +520,7 @@ limitations under the License.
                     <code>DynaActionForm</code>
                     s to help reduce
                     the effort required, or use the code generation facilities
-                    of your
-                    IDE.
+                    of your IDE.
                 </p>
 
                 <p>Some issues to keep in mind regarding reuse of form beans

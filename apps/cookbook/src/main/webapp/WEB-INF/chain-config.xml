@@ -22,7 +22,7 @@
 
 <!--
     This file contains definitions of the standard Chain Of Responsibility
-    chains that emulate Struts 1.x processing functionality.  These chains
+    chains that emulate Struts 1.2 processing functionality.  These chains
     are defined in a catalog named "struts" so that the application can
     use the default catalog for its own purposes, without any potential for
     name clashes.

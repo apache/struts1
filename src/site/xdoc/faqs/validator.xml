@@ -872,7 +872,7 @@ limitations under the License.
 
                 <p>
                     By convention, the validators your application uses can
-                    beloaded through a
+                    be loaded through a
                     file named "validator-rules.xml", and the validator forms
                     (or "validations")
                     can be configured separately (say, in a "validations.xml"
@@ -1128,7 +1128,7 @@ public static boolean validateTwoFields(
 
             </subsection>
 
-            <subsection href="validator-bugs" name="Known Bugs">
+            <subsection href="validator-issues" name="Known Issues">
 
                 <p>
                     Since the Struts Validator relies on the Commons
@@ -1140,8 +1140,8 @@ public static boolean validateTwoFields(
                 <ul>
 
                     <li>
-                        <a href="http://issues.apache.org/bugzilla/buglist.cgi?bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=VERIFIED&amp;bug_severity=Blocker&amp;bug_severity=Critical&amp;bug_severity=Major&amp;bug_severity=Normal&amp;bug_severity=Minor&amp;email1=&amp;emailtype1=substring&amp;emailassigned_to1=1&amp;email2=&amp;emailtype2=substring&amp;emailreporter2=1&amp;bugidtype=include&amp;bug_id=&amp;changedin=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;product=Commons&amp;component=Validator&amp;short_desc=&amp;short_desc_type=allwordssubstr&amp;long_desc=&amp;long_desc_type=allwordssubstr&amp;bug_file_loc=&amp;bug_file_loc_type=allwordssubstr&amp;keywords=&amp;keywords_type=anywords&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=&amp;cmdtype=doit&amp;order=Bug+Number">
-                            Commons Validator Bugzilla Reports</a>
+                        <a href="http://issues.apache.org/jira/browse/VALIDATOR">
+                            Commons Validator Issue Tracker (JIRA)</a>
                     </li>
 
                 </ul>
@@ -1179,7 +1179,7 @@ public static boolean validateTwoFields(
                     The entry in your Validator configuration would look like
                     this:
                 </p>
-                <pre>
+                <source>
                     <![CDATA[
 <form name="medicalStatusForm">
 
@@ -1229,7 +1229,7 @@ public static boolean validateTwoFields(
   </var>
 </field>
 </form>
-]]></pre>
+]]></source>
 
                 <p>
                     Here's a more complex example using indexed properties.
@@ -1239,7 +1239,7 @@ public static boolean validateTwoFields(
                     If you have this in your Struts configuration
                 </p>
 
-                <pre><![CDATA[
+                <source><![CDATA[
 <form-bean
     name="dependentlistForm"
     type="org.apache.struts.webapp.validator.forms.ValidatorForm">
@@ -1251,7 +1251,7 @@ public static boolean validateTwoFields(
         type="java.lang.Boolean"
         initial="false"/>
 </form-bean>
-]]></pre>
+]]></source>
 
                 <p>
                     Where dependent is a bean that has properties lastName,
@@ -1263,7 +1263,7 @@ public static boolean validateTwoFields(
                     You can define a validation:
                 </p>
 
-                <pre><![CDATA[
+                <source><![CDATA[
 
 <form name="dependentlistForm">
 
@@ -1341,7 +1341,7 @@ public static boolean validateTwoFields(
 
 </form>
 
-]]></pre>
+]]></source>
 
                 <p>
                     Which is read as follows:
@@ -1391,8 +1391,7 @@ public static boolean validateTwoFields(
                     Struts configuration file:
                 </p>
 
-                <pre>
-                    <code>
+                <source>
                         <![CDATA[
   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
   <set-property property="pathnames"
@@ -1401,8 +1400,7 @@ public static boolean validateTwoFields(
   </plug-in>
   ]]>
 
-                    </code>
-                </pre>
+                </source>
 
             </subsection>
 
@@ -1420,47 +1418,46 @@ public static boolean validateTwoFields(
 
             <subsection href="resources" name="Validator Resources">
 
-                <p>
+                <ul>
+                <li>
                     <a href="http://otn.oracle.com/oramag/oracle/04-jan/o14dev_struts.html">
                         <strong>Check Your Form with Validator</strong>
                     </a>
                     by James Holmes.
                     Howto article in Oracle Magazine.
-                </p>
+                </li>
 
-                <p>
+                <li>
                     <a href="http://www.raibledesigns.com/page/rd/20030226#struts_validator_validating_two_fields">
                         <strong>Struts Validator: Validating Two Fields
                             Match</strong>
                     </a>
                     by Matt Raible.
                     Howto article.
-                </p>
+                </li>
 
-                <p>
+                <li>
                     <a href="http://www.strutskickstart.com/">
                         <strong>DynaForms and the Validator</strong>
                     </a>
                     by James Turner and Kevin Bedell.
                     Sample chapter from
                     <a href="http://www.strutskickstart.com/">Struts
-                        Kickstart</a>
-                    ;
+                        Kickstart;</a>
                     available as a free download (PDF).
-                </p>
+                </li>
 
-                <p>
-                    <a href="http://www.manning.com/getpage.html?project=husted&amp;filename=chapters.html">
+                <li>
+                    <a href="http://www.manning-source.com/books/husted/husted_ch12.pdf">
                         <strong>Validating user input</strong>
                     </a>
                     by David Winterfeldt and Ted Husted.
                     Sample chapter from
-                    <a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/hitchhikeguidetoA/">
-                        Struts in Action</a>
-                    ;
+                    <a href="http://www.amazon.com/exec/obidos/ISBN=1930110502/apachesoftwar-20/">
+                        Struts in Action;</a>
                     available as a free download (PDF).
-                </p>
-
+                </li>
+							</ul>
             </subsection>
 
         </section>

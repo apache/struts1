@@ -54,7 +54,7 @@ limitations under the License.
                         applications, but may also work with
                         other types of applications.</li>
                     <li>This material was originally written for Struts 1.1 (beta 2), 
-                        and reviewed for the 1.2.2 and 1.3.0 releases.</li>
+                        and reviewed for the 1.3.5 distribution.</li>
                 </ol>
             </subsection>
 
@@ -82,8 +82,7 @@ limitations under the License.
                     <li>Create or update
                         <code>web.xml</code>
                         to reference
-                        <code>ActionServlet</code>
-                        , taglibs used by the framework.
+                        <code>ActionServlet.</code>
                     </li>
                     <li>Parallel Tasks
                         <ol>
@@ -103,7 +102,7 @@ limitations under the License.
                                 <code>html</code>
                                 taglib
                                 to define the form elements.
-                                <a href="http://struts.apache.org/struts-taglib/tagreference-struts-bean.html">
+                                <a href="../struts-taglib/tagreference.html#struts-html.tld">
                                     (more...)</a>
                             </li>
                             <li>Use
@@ -112,7 +111,7 @@ limitations under the License.
                                 <code>bean</code>
                                 taglib to define the labels and other static
                                 text of the form.
-                                <a href="http://struts.apache.org/struts-taglib/tagreference-struts-bean.html">
+                                <a href="../struts-taglib/tagreference.html#struts-bean.tld">
                                     (more...)</a>
                                 <ol>
                                     <li>Create and maintain a properties file
@@ -201,7 +200,6 @@ limitations under the License.
                         to
                         reference
                         <code>ActionServlet</code>
-                        , taglibs used by Struts.
                         <a href="../userGuide/configuration.html#5_4_The_Web_Application_Deployment_Descriptor">
                             (more...)</a>
                     </li>
