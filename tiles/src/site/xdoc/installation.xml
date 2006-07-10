@@ -63,8 +63,8 @@ limitations under the License.
             Project</a>.  See the <a href="dependencies.html">Dependencies List</a>
             for specific versions.  These dependencies can be downloaded using
             the Maven build process.</li>
-        <li><strong>Struts Action Framework</strong> - If you are planning to use
-            Tiles with Struts Action, you should download and install the framework from
+        <li><strong>Apache Struts</strong> - If you are planning to use
+            Tiles with Struts, you should download and install the framework from
             <a href="http://struts.apache.org/">
             Apache Struts Project</a>.
             If you have acquired Tiles with the framework distribution, you
@@ -75,7 +75,7 @@ limitations under the License.
 
 <section name="Install A Tiles Binary Distribution" href="Installing">
     <p>First, download a binary distribution of Tiles, currently distributed
-       with the Struts Action Framework.</p>
+       with Struts.</p>
     <p>Unpack the Tiles binary distribution into a convenient directory.
        (If you build Tiles from the source distribution,
        the result of the build will already be an unpacked binary distribution
@@ -102,7 +102,7 @@ limitations under the License.
         <li>If you want to use the <em>definitions configuration file</em>, you
             need to initialize the definitions factory. This can be done as follows:
         <ul>
-            <li><strong>Using Tiles With Struts Action</strong> -
+            <li><strong>Using Tiles With Struts</strong> -
                 Modify the <code>WEB-INF/web.xml</code> file
                 for your web application to use a <code>&lt;servlet&gt;
                 </code> that responds to Struts actions.  Usually, this
@@ -122,7 +122,7 @@ limitations under the License.
     <load-on-startup>2</load-on-startup>
  </servlet>
     ]]></source>
-            <li><strong>Using Tiles With Struts Action</strong> -
+            <li><strong>Using Tiles with Struts</strong> -
                 You will also need to 
                 configure the Tiles Plugin and the Tiles Request Processor to
                 allow the framework to respond to Tiles-based Action Forwards.  Below
@@ -135,7 +135,7 @@ limitations under the License.
     </plug-in>
     ]]></source>
             </li>
-            <li><strong>Using Tiles Without Struts Action</strong> -
+            <li><strong>Using Tiles without Struts</strong> -
                 If you don't want to use the framework, use the
                 <code>org.apache.struts.tiles.TilesServlet</code> as the servlet.
             </li>

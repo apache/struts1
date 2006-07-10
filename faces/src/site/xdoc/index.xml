@@ -19,16 +19,16 @@ limitations under the License.
 <document>
 
   <properties>
-    <title>Struts Action Framework - Faces</title>
+    <title>Struts 1 - Faces</title>
   </properties>
 
   <body>
 
-    <section name="Struts Action and JavaServer Faces Integration Library">
+    <section name="Struts and JavaServer Faces Integration Library">
     <a name="welcome"/>
 
       <p>The "Struts-Faces" package contains an add-on library that supports the use of
-  JavaServer Faces (JSF) user interface technology in a Struts Action based web
+  JavaServer Faces (JSF) user interface technology in a Struts-based web
   application, in place of the Struts custom tag libraries.</p>
   
   <p>The Struts-Faces Integration Library should work with any implementation
@@ -50,8 +50,7 @@ limitations under the License.
 
       <p>Please report any bugs, or log any enhancement requests, in the
       <a href="http://issues.apache.org/struts/">Struts JIRA Issue Tracker</a>,
-      using project <code>Struts Action Framework</code> and component
-      <code>Faces</code>.</p>
+      using <code>Struts</code> and <code>Faces</code>.</p>
 
     </section>
 

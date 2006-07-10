@@ -140,8 +140,7 @@ limitations under the License.
 
                 <p>
                     An extension to version 1.1, named sslext, helps solve many
-                    of these issues for Struts Action 
-                    developers. It extends the ActionConfig class,
+                    of the HTTP/HTTPS switching issues. It extends the ActionConfig class,
                     RequestProcessor, and Plugin classes to
                     define a framework where developers may specify the
                     transmission protocol behavior for

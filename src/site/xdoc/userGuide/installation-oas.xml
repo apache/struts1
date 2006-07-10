@@ -44,7 +44,7 @@
                     <li>Modify the file
                         <code>$ORION_HOME/config/default-web-site.xml</code>
                         (or
-                        the configuration file for any other Orion web site)
+                        the configuration file for any other Orion website)
                         to include the following
                         declarations, after the declaration for the &lt;default-web-app>
                         if any:

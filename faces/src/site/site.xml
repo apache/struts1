@@ -19,7 +19,7 @@
  */
 -->
 
-<project name="Struts Action - Faces">
+<project name="Struts 1 - Faces">
     <bannerLeft>
         <name>Apache Software Foundation</name>
         <src>http://www.apache.org/images/asf-logo.gif</src>

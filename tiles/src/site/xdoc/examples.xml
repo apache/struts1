@@ -140,7 +140,7 @@ limitations under the License.
 
     <p>The scenario above can be avoided by defining Tiles in an XML configuration
        file.  The file is loaded at servlet startup using the Tiles Servlet or
-       a Struts Action plugin.  The example below defines the Tile in an XML file and
+       a plugin.  The example below defines the Tile in an XML file and
        uses the Tiles insert tag in a JSP to invoke it.</p>
 
     <strong>file: WEB-INF/tiles-defs.xml</strong>
@@ -271,9 +271,9 @@ limitations under the License.
 <section name="Tiles Controllers">
 </section>
 
-<section name="Using Tiles With Struts Action">
+<section name="Using Tiles With Struts">
 
-    <subsection name="Tiles Controller Invoking a Struts Action">
+    <subsection name="Tiles Controller Invoking an Action">
     </subsection>
     
     <subsection name="Forwarding To A Tiles Definition">

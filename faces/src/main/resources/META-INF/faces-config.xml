@@ -352,7 +352,7 @@
       <description>
         Struts action to be executed.
       </description>
-      <display-name>Struts Action</display-name>
+      <display-name>Struts 1</display-name>
       <property-name>action</property-name>
       <property-class>java.lang.String</property-class>
     </property>

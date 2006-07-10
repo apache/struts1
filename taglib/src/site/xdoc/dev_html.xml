@@ -31,7 +31,7 @@ limitations under the License.
                     a JSP view and the other components of a Web application.
                     Since a dynamic Web application often depends on gathering
                     data from a user, input forms play an important role in
-                    the Struts Action Framework. Consequently, the majority of the
+                    the Struts. Consequently, the majority of the
                     HTML tags involve HTML forms.
                 </p>
 

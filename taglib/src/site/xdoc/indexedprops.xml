@@ -39,11 +39,11 @@ limitations under the License.
                     except with explicit JSP expressions (&lt;%= %&gt;).
                 </p>
                 <p>
-                    The Struts Action Framework provides much more powerful features
+                    The framework provides much more powerful features
                     related to
                     indexed properties, but in truth most of the heavy lifting
                     is not even in
-                    the Struts Action Framework, but in the Jakarta Commons Beanutils
+                    the framework, but in the Jakarta Commons Beanutils
                     package. This
                     package is used by the framework to provide this functionality.
                     You can see the

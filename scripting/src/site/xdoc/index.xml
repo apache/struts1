@@ -18,7 +18,7 @@ limitations under the License.
 -->
 <document>
   <properties>
-    <title>Struts Action Framework - Scripting</title>
+    <title>Apache Struts - Scripting</title>
   </properties>
 
   <body>
@@ -34,7 +34,7 @@ limitations under the License.
         Struts Scripting allows an application to be developed rapidly with
         the quick development cycle (edit file -> refresh browser) that one 
         would expect in a scripting environment.  Furthermore, it enables other
-        non-Java trained members of a development team, such as web designers who
+        non-Java trained members of a development grup, such as web designers who
         may have a scripting background, to be more involved, leaving the Java
         developers to create the reusable services the Struts actions will interact
         with.  Finally, when used with Java-like languages such as <a

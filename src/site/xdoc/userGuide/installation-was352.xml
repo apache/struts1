@@ -181,7 +181,7 @@
                             $WAS_HOME/AppServer/hosts/default_host/struts-example/servlets/org/apache/struts/resources/struts-config_1_0.dtd</code>
                         <br/>
                         or be connected to the Internet to fetch the dtd from
-                        the Jakarta web site.
+                        the Jakarta website.
                     </li>
 
                     <li>Start your webapp in the Admin Console</li>

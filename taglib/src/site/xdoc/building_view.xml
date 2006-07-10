@@ -31,7 +31,7 @@ limitations under the License.
                     This chapter focuses on the task of building the
                     <em>View</em>
                     components
-                    for use with the Struts Action Framework.
+                    for use with Struts.
                     Many applications rely on JavaServer Pages (JSP)
                     technology to create the
                     presentation layer.
@@ -179,7 +179,7 @@ limitations under the License.
 
                 <p>
                     Please note that the i18n support in a framework like
-                    Struts Action is limited to
+                    Struts is limited to
                     the
                     <strong>presentation</strong>
                     of internationalized text and images to the user.

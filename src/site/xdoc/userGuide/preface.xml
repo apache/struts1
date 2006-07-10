@@ -1146,7 +1146,7 @@ limitations under the License.
 
                 <p>
                     Just as a HTTP server can be used to host several distinct
-                    web sites,
+                    websites,
                     a servlet container can be used to host more than one web
                     application.
                     The Java servlet platform provides a well-defined

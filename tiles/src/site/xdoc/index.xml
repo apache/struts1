@@ -18,14 +18,14 @@ limitations under the License.
 -->
 <document>
 <properties>
-  <title>Struts Action Framework - Tiles</title>
+  <title>Struts 1 - Tiles</title>
 </properties>
 
 <body>
 
 <section name="Welcome To Tiles">
     <p>Welcome to the Struts Tiles component.  Tiles is a templating 
-    framework.  It can be used to create a common look &amp; feel for a web site or
+    framework.  It can be used to create a common look &amp; feel for a website or
     application and to create reusable view components.  This site will give you
     all the information you need to get started.</p>
 </section>
@@ -58,7 +58,7 @@ limitations under the License.
              <ul>
                 <li>
                    Define common page layouts and reuse
-                   them across your web site.
+                   them across your website.
                 </li>
                 <li>
                    Define menu layouts, and use them by
