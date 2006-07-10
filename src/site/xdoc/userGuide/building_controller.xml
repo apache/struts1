@@ -1889,7 +1889,7 @@ limitations under the License.
                     The format of this document is described by the Document
                     Type Definition
                     (DTD) maintained at
-                    <a href="http://struts.apache.org/dtds/struts-config_1_3.dtd">
+                    <a href="../resources/struts-config_1_3.dtd">
                         http://struts.apache.org/dtds/struts-config_1_3.dtd.</a>
                     This chapter covers the configuration elements that you
                     will typically
@@ -2051,9 +2051,10 @@ limitations under the License.
                     For a complete description of the elements that can be
                     used with the
                     action element, see the
-                    <a href="http://struts.apache.org/dtds/struts-config/1_3">
-                        configuration DTD</a>
-                    and the
+                    <a href="../resources/struts-config_1_3.dtd">
+                        configuration DTD</a> or the online
+                    <a href="http://struts.apache.org/dtds/struts-config/1_3">LiveDTD</a>
+                    docs, and the
                     <a href="../apidocs/org/apache/struts/action/ActionMapping.html">
                         ActionMapping documentation.</a>
                 </p>

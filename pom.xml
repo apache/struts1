@@ -127,6 +127,29 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+               <artifactId>maven-antrun-plugin</artifactId>
+               <executions>
+                  <execution>
+                     <id>copy-dtds</id>
+                     <phase>site</phase>
+                     <configuration>
+                        <tasks>
+                           <copy todir="${project.build.directory}/site/resources"
+                                 failonerror="false">
+                              <fileset dir="${basedir}/core/src/main/resources/org/apache/struts/resources"/>
+                              <fileset dir="${basedir}/tiles/src/main/resources/org/apache/struts/resources"/>
+                           </copy>
+                        </tasks>
+                     </configuration>
+                     <goals>
+                        <goal>run</goal>
+                     </goals>
+                  </execution>
+               </executions>
+            </plugin>
+        </plugins>
         
         <defaultGoal>install</defaultGoal>
         
