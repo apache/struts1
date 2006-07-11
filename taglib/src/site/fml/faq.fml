@@ -16,129 +16,32 @@ limitations under the License.
 <!--
 // ======================================================================== 78
 -->
-<document>
-    <properties>
-        <title>Taglib FAQ</title>
-    </properties>
-    <body>
-        <a name="faq"/>
-        <section name="Struts Taglib FAQ">
 
-            <a name="contents"/>
-            <subsection name="Index">
+<faqs title="Taglib FAQ">
+        <part id="general">
 
-                <ul>
-
-                    <li>
-                        <a href="#jsf">What about JSTL and JavaServer
-                            Faces?</a>
-                    </li>
-
-                    <li>
-                        <a href="#xhtml">Are the Struts tags XHTML
-                            compliant?</a>
-                    </li>
-
-                    <li>
-                        <a href="#wml">Will the Struts tags support other
-                            markup languages such as WML</a>
-                    </li>
-
-                    <li>
-                        <a href="#multiple">Can I use multiple HTML form
-                            elements with the same
-                            name?</a>
-                    </li>
-
-                    <li>
-                        <a href="#multipleSubmits">Can I have multiple submit
-                            buttons on the same
-                            form?</a>
-                    </li>
-
-                    <li>
-                        <a href="#focus">Why doesn't the focus feature on the
-                            &lt;html:form>
-                            tag work in every circumstance?</a>
-                    </li>
-
-                    <li>
-                        <a href="#checkbox">Why are my checkboxes not being
-                            set from ON to
-                            OFF?</a>
-                    </li>
-
-                    <li>
-                        <a href="#javascript.submit">How do I use JavaScript
-                            to submit a form?</a>
-                    </li>
-
-                    <li>
-                        <a href="#javascript">How do I use JavaScript to
-                            ...</a>
-                    </li>
-
-                    <li>
-                        <a href="#reset">Do I need to implement reset and set
-                            all my form
-                            properties to their initial values?</a>
-                    </li>
-
-                    <li>
-                        <a href="#scriptlets">Can't I just create some of my
-                            JavaBeans in the JSP
-                            using a scriptlet?</a>
-                    </li>
-
-                    <li>
-                        <a href="#link">Why does the &lt;html:link> tag
-                            URL-encode javascript and
-                            mailto links?"</a>
-                    </li>
-
-                    <li>
-                        <a href="#pager">How can I scroll through list of
-                            pages like the search
-                            results in google?</a>
-                    </li>
-
-                    <li>
-                        <a href="#minimization">Why does the option tag render
-                            selected="selected"
-                            instead of just "selected"?
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#tags">Why does Struts Taglib provide for so
-                            little
-                            formatting?</a>
-                    </li>
-
-                    <li>
-                        <a href="#layout">Why doesn't Struts Taglib offer more
-                            layout options?</a>
-                    </li>
-
-                </ul>
-
-            </subsection>
-
-            <a name="jstl"/>
-            <subsection name="What about JSTL?">
-            		<p>
-            		   There is overlap between Struts Taglib and the 
+            <faq id="jstl">
+                <question>
+                What about JSTL?
+                </question>
+                <answer>
+                <p>
+                    There is overlap between Struts Taglib and the 
                     <a href="http://java.sun.com/products/jsp/jstl/">
                         JavaServer Standard Tag Library (JSTL).</a>
-            		   To make the best use of JSTL, 
-            		   use the <a href="../struts-el/index.html">
-            		   Struts EL component</a> instead. 
-            	   </p>
-            </subsection>
+                       To make the best use of JSTL, 
+                       use the <a href="../struts-el/index.html">
+                       Struts EL component</a> instead. 
+                   </p>             
+                </answer>
+             </faq>                
 
-            <a name="jsf"/>
-            <subsection name="What about JSF?">
-            
+
+            <faq id="jsf">
+                <question>
+                What about JSF?
+                </question>
+                <answer>
                 <p>
                     Struts 1 is <strong>not</strong> the best choice if you'd 
                     like to use JavaServer Faces components in your 
@@ -149,24 +52,33 @@ limitations under the License.
                     experimenting with JSF.
                 </p>
                 
-							  <p>
-								    For better JavaServer Faces support, 
-								    consider using Struts 2 or 
-								    <a href="http://shale.apache.org/">Apache Shale.</a>
-							  </p>
+                 <p>
+                    For better JavaServer Faces support, 
+                    consider using Struts 2 or 
+                   <a href="http://shale.apache.org/">Apache Shale.</a>
+                </p>
 
-            </subsection>
+                </answer>
+             </faq>                
 
-            <a name="xhtml"/>
-            <subsection name="Are the Struts tags XHTML compliant?">
-                <p>If you use an &lt;html:html xhtml="true&gt; or &lt;html:xhtml/&gt;
+            <faq id="xhtml">
+                <question>
+                Is Struts Taglib XHTML compliant?
+                </question>
+                <answer>
+                <p>
+                    If you use an &lt;html:html xhtml="true&gt; or &lt;html:xhtml/&gt;
                     element on your page, the tags
-                    will render as XHTML (since version 1.1).</p>
-            </subsection>
+                    will render as XHTML (since version 1.1).
+                 </p>
+                </answer>
+             </faq>                
 
-            <a name="wml"/>
-            <subsection
-                    name="Will the Struts tags support other markup languages such as WML">
+            <faq id="wml">
+                <question>
+                Will the Struts tags support other markup languages such as WML?
+                </question>
+                <answer>
                 <p>
                     The framework itself is markup neutral. The original Struts
                     taglibs are only one example of how
@@ -191,11 +103,14 @@ limitations under the License.
                     <a href="http://www.sys-con.com/pbdj/archives2/0904/hamboeck/">
                         WAP up your EAserver.</a>
                 </p>
-            </subsection>
+                </answer>
+             </faq>                
 
-            <a name="multiple"/>
-            <subsection
-                    name="Can I use multiple HTML form elements with the same name?">
+            <faq id="multiple">
+                <question>
+                Can I use multiple HTML form elements with the same name?
+                </question>
+                <answer>
                 <p>
                     Yes. Define the element as an array and the framework will
                     autopopulate it like any other.
@@ -210,11 +125,14 @@ limitations under the License.
                 <p>
                     And so forth
                 </p>
-            </subsection>
+                </answer>
+             </faq>                
 
-            <a name="multipleSubmits"/>
-            <subsection
-                    name="Can I have multiple submit buttons on the same form?">
+            <faq id="multipleSubmits">
+                <question>
+                Can I have multiple submit buttons on the same form
+                </question>
+                <answer>
                 <p>
                     <strong>Yes</strong>
                     . The issue is that only one action class can be
@@ -260,11 +178,14 @@ limitations under the License.
                     method of
                     your action form if you choose this route.
                 </p>
-            </subsection>
+                </answer>
+             </faq>                
 
-            <a name="focus"/>
-            <subsection
-                    name="Why doesn't the focus feature on the &lt;html:form> tag work in every circumstance?">
+            <faq id="focus">
+                <question>
+                Why doesn't the focus feature on the &lt;html:form> tag work in every circumstance?
+                </question>
+                <answer>
                 <p>
                     Unfortunately, there is some disagreement between the
                     various browsers, and different versions of the same
@@ -293,12 +214,14 @@ limitations under the License.
                     for a working example that you can use in your own 
                     applications. 
                 </p>
-                
-            </subsection>
+                </answer>
+             </faq>                
 
-            <a name="checkbox"/>
-            <subsection
-                    name="Why are my checkboxes not being set from ON to OFF?">
+            <faq id="checkbox">
+                <question>
+                Why are my checkboxes not being set from ON to OFF?
+                </question>
+                <answer>
                 <p>
                     A problem with a checkbox is that the browser will only
                     include it in the request
@@ -335,11 +258,15 @@ limitations under the License.
                     default values for an ActionForm correctly, and to
                     implement the reset method
                     when the ActionForm might kept in session scope.
-                </p>
-            </subsection>
+                </p>                
+                </answer>
+             </faq>                
 
-            <a name="javascript.submit"/>
-            <subsection name="Can I use JavaScript to submit a form?">
+            <faq id="javascript.submit">
+                <question>
+                Can I use JavaScript to submit a form?
+                </question>
+                <answer>
                 <p>
                     You can submit a form with a link as below.
                     BTW, the examples below assume you are in an &lt;html:form&gt;
@@ -411,12 +338,14 @@ limitations under the License.
                     <a href="http://husted.com/struts/tips/003.html">
                         http://husted.com/struts/tips/003.html</a>
                 </p>
+                </answer>
+             </faq>                
 
-            </subsection>
-
-            <a name="javascript"/>
-            <subsection name="How do I use JavaScript to ...">
-
+            <faq id="javascript">
+                <question>
+                How do I use JavaScript to ...
+                </question>
+                <answer>
                 <p>
                     The framework is mainly a server-side technology.
                     We bundled in some JSP tags to expose the framework
@@ -450,13 +379,15 @@ limitations under the License.
                     A very good JavaScript resource is Matt Kruse's site at
                     <a href="http://www.mattkruse.com/javascript/">
                         http://www.mattkruse.com/javascript/</a>
-                </p>
+                </p>                
+                </answer>
+             </faq>                
 
-            </subsection>
-
-            <a name="reset"/>
-            <subsection
-                    name="Do I need to implement reset and set all my form properties to their initial values?">
+            <faq id="reset">
+                <question>
+                Do I need to implement reset and set all my form properties to their initial values?
+                </question>
+                <answer>
                 <p>
                     No.
                     You need to set checkbox properties to false if the
@@ -471,12 +402,15 @@ limitations under the License.
                     request scope form, is pointless.
                     If the form is in request scope, everything already just
                     started at the initial value.
-                </p>
-            </subsection>
+                </p>                
+                </answer>
+             </faq>                
 
-            <a name="scriptlets"/>
-            <subsection
-                    name="Can't I just create some of my JavaBeans in the JSP using a scriptlet?">
+            <faq id="scriptlets">
+                <question>
+                Can't I just create some of my JavaBeans in the JSP using a scriptlet?
+                </question>
+                <answer>
                 <p>
                     The framework is designed to encourage a
                     <a href="http://www.javaworld.com/javaworld/jw-12-1999/jw-12-ssj-jspmvc.html">
@@ -513,12 +447,14 @@ limitations under the License.
                         mailing list,</a>
                     where there are more people still using these
                     approaches.
-                </p>
-            </subsection>
+                </p>                </answer>
+             </faq>                
 
-            <a name="link"/>
-            <subsection
-                    name="Why does the &lt;html:link> tag URL-encode javascript and mailto links?">
+            <faq id="link">
+                <question>
+                Why does the &lt;html:link> tag URL-encode javascript and mailto links?
+                </question>
+                <answer>
                 <p>
                     The &lt;html:link> tag is not intended for use with
                     client-side references like those used to launch
@@ -533,23 +469,30 @@ limitations under the License.
                     Simply markup the client-side links using the standard
                     <a/>
                     tag.
-                </p>
-            </subsection>
+                </p>                
+                </answer>
+             </faq>                
 
-            <a name="pager"/>
-            <subsection
-                    name="How can I scroll through list of pages like the search results in google?">
+            <faq id="pager">
+                <question>
+                How can I scroll through list of pages like the search results in Google?
+                </question>
+                <answer>
                 <p>Many Struts developers use the Pager from the JSPTags
                     site.</p>
                 <p>
                     <a href="http://jsptags.com/tags/navigation/pager/">
                         http://jsptags.com/tags/navigation/pager/</a>
-                </p>
-            </subsection>
+                </p>                
+                </answer>
+             </faq>                
+             
 
-            <a name="minimization"/>
-            <subsection
-                    name="Why does the option tag render selected=selected instead of just selected?">
+            <faq id="minimization">
+                <question>
+                Why does the option tag render selected=selected instead of just selected?
+                </question>
+                <answer>
                 <p>
                     Attribute minimization (that is, specifying an attribute
                     with no value) is
@@ -567,11 +510,14 @@ limitations under the License.
                     <a href="http://www.w3.org/TR/xhtml1/#h-4.5">
                         XHTML specification</a>
                 </p>
-            </subsection>
+                </answer>
+             </faq>                
 
-            <a name="tags"/>
-            <subsection
-                    name="Why does Struts Taglib provide for so little formatting?">
+            <faq id="tags">
+                <question>
+                Why does Struts Taglib provide for so little formatting?
+                </question>
+                <answer>
                 <p>
                     <em>The Struts tags seem to provide only the most
                         rudimentary functionality.
@@ -579,7 +525,7 @@ limitations under the License.
                         and advanced string handling?</em>
                 </p>
                 <p>
-                    Three reasons:
+                    Three historical reasons:
                 </p>
                 <p>
                     First, work started on the JSTL and we didn't want to
@@ -597,12 +543,16 @@ limitations under the License.
                     This leads to better reuse since the same "how to format"
                     code does not need to be repeated in every instance.
                     You can "say it once" in a JavaBean and be done with it.
-                </p>
-            </subsection>
+                </p>                
+                </answer>
+             </faq>                
+             
 
-            <a name="layout"/>
-            <subsection
-                    name="Why doesn't Struts Taglib offer more layout options?">
+            <faq id="layout">
+                <question>
+                Why doesn't Struts Taglib offer more layout options?
+                </question>
+                <answer>
                 <p>
                     For more flexible placement of error messages,
                     try the
@@ -631,15 +581,17 @@ limitations under the License.
                     DisplayTag is an excellent choice when you have tabular
                     data to present.
                 </p>
-            </subsection>
+                
+                </answer>
+             </faq>                
 
-            <a name="undocumented"/>
-            <subsection
-                    name="If you would like to contribute, here is a list of
-    popular but undocumented questions">
-
+            <faq id="undocumented">
+                <question>
+                If you would like to contribute, here is a list of
+    popular but undocumented questions
+                </question>
+                <answer>
                 <ul>
-
 
                     <li>Why do my option lists disappear when validation
                         fails?</li>
@@ -647,10 +599,8 @@ limitations under the License.
                     <li>Why can't I disable URL-encoding in the Struts
                         taglibs?</li>
 
-                </ul>
-            </subsection>
-
-
-        </section>
-    </body>
-</document>
+                </ul>                
+                </answer>
+            </faq>
+        </part>
+</faqs>
