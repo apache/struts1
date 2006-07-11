@@ -744,7 +744,7 @@
                         <code>ActionForm</code> bean associated with this form
                         must include a statement setting the corresponding
                         boolean property to <code>false</code> in the
-                        <code>reset()</code> method.</p>
+                        <code>reset()</code> method.</p>                        
         ]]>
         </description>
         <attribute>
@@ -2115,10 +2115,10 @@
                <code>href</code> attribute,
                or the <code>page</code> attribute.</p>
                
-		       <p>Additionally, you can specify a <code>module</code> prefix 
-			   for linking to other modules.</p>
-						   
-		   ]]>
+               <p>Additionally, you can specify a <code>module</code> prefix 
+               for linking to other modules.</p>
+                           
+           ]]>
             </description>
         </attribute>
         <attribute>
@@ -2127,14 +2127,14 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-			   <p>Prefix name of a <code>Module</code> that
-		       contains the action mapping for the <code>Action</code>
-		       that is specified by the <code>action</code> attribute.
-		       You <strong>must</strong> specify an <code>action</code> 
-		       attribute for this to have an effect.</p>
-		
-		       <p><strong>Note: </strong>Use "" to map to the default module.</p>
-		  ]]>
+               <p>Prefix name of a <code>Module</code> that
+               contains the action mapping for the <code>Action</code>
+               that is specified by the <code>action</code> attribute.
+               You <strong>must</strong> specify an <code>action</code> 
+               attribute for this to have an effect.</p>
+        
+               <p><strong>Note: </strong>Use "" to map to the default module.</p>
+          ]]>
             </description>
         </attribute>
         <attribute>
@@ -3647,10 +3647,10 @@
               <code>page</code>
                   attribute or the <code>src</code> attribute.</p>
                
-		       <p>Additionally, you can specify a <code>module</code> prefix 
-			   for linking to other modules.</p>
-						   
-			   ]]>
+               <p>Additionally, you can specify a <code>module</code> prefix 
+               for linking to other modules.</p>
+                           
+               ]]>
             </description>
         </attribute>
         <attribute>
@@ -3659,14 +3659,14 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-				   <p>Prefix name of a <code>Module</code> that
-				   contains the action mapping for the <code>Action</code>
-				   that is specified by the <code>action</code> attribute.
-				   You <strong>must</strong> specify an <code>action</code> 
-				   attribute for this to have an effect.</p>
-			
-				   <p><strong>Note: </strong>Use "" to map to the default module.</p>
-			  ]]>
+                   <p>Prefix name of a <code>Module</code> that
+                   contains the action mapping for the <code>Action</code>
+                   that is specified by the <code>action</code> attribute.
+                   You <strong>must</strong> specify an <code>action</code> 
+                   attribute for this to have an effect.</p>
+            
+                   <p><strong>Note: </strong>Use "" to map to the default module.</p>
+              ]]>
             </description>
         </attribute>
         <attribute>
@@ -4177,10 +4177,10 @@
                   <code>href</code> attribute, the <code>linkName</code>
                   attribute, or the <code>page</code> attribute.</p>
                
-		       <p>Additionally, you can specify a <code>module</code> prefix 
-			   for linking to other modules.</p>
-						   
-			   ]]>
+               <p>Additionally, you can specify a <code>module</code> prefix 
+               for linking to other modules.</p>
+                           
+               ]]>
             </description>
         </attribute>
         <attribute>
@@ -4189,14 +4189,14 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-				   <p>Prefix name of a <code>Module</code> that
-				   contains the action mapping for the <code>Action</code>
-				   that is specified by the <code>action</code> attribute.
-				   You <strong>must</strong> specify an <code>action</code> 
-				   attribute for this to have an effect.</p>
-			
-				   <p><strong>Note: </strong>Use "" to map to the default module.</p>
-			  ]]>
+                   <p>Prefix name of a <code>Module</code> that
+                   contains the action mapping for the <code>Action</code>
+                   that is specified by the <code>action</code> attribute.
+                   You <strong>must</strong> specify an <code>action</code> 
+                   attribute for this to have an effect.</p>
+            
+                   <p><strong>Note: </strong>Use "" to map to the default module.</p>
+              ]]>
             </description>
         </attribute>
         <attribute>
@@ -4811,6 +4811,11 @@
                 body content of this tag will be used as the value to be
                 returned.</li>
                 </ul>
+              
+                <p>
+                Also note that a map backed attribute cannot be used to hold a the String[]
+                for a group of multibox tags.
+               </p>                
 
         ]]>
         </description>
@@ -6844,10 +6849,10 @@
                   <code>href</code> attribute, or the <code>page</code>
                   attribute.</p>
                
-		       <p>Additionally, you can specify a <code>module</code> prefix 
-			   for linking to other modules.</p>
-						   
-			   
+               <p>Additionally, you can specify a <code>module</code> prefix 
+               for linking to other modules.</p>
+                           
+               
             <dl><dt><b>Since:</b></dt>
             <dd>Struts 1.2.0</dd></dl>
           ]]>
@@ -6859,14 +6864,14 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-				   <p>Prefix name of a <code>Module</code> that
-				   contains the action mapping for the <code>Action</code>
-				   that is specified by the <code>action</code> attribute.
-				   You <strong>must</strong> specify an <code>action</code> 
-				   attribute for this to have an effect.</p>
-			
-				   <p><strong>Note: </strong>Use "" to map to the default module.</p>
-			  ]]>
+                   <p>Prefix name of a <code>Module</code> that
+                   contains the action mapping for the <code>Action</code>
+                   that is specified by the <code>action</code> attribute.
+                   You <strong>must</strong> specify an <code>action</code> 
+                   attribute for this to have an effect.</p>
+            
+                   <p><strong>Note: </strong>Use "" to map to the default module.</p>
+              ]]>
             </description>
         </attribute>
         <attribute>
@@ -8741,9 +8746,9 @@
             tag has no attributes; you use it like this: &lt;html:xhtml/&gt;.
           </p>
           <p>
-          	<strong>Note</strong>: Included pages do not inherit the rendering
-          	style of the including page.  Each JSP fragment or Tile must use this
-          	tag to render as XHTML.  
+            <strong>Note</strong>: Included pages do not inherit the rendering
+            style of the including page.  Each JSP fragment or Tile must use this
+            tag to render as XHTML.  
           </p>
           ]]>
         </description>
