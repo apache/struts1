@@ -19,14 +19,13 @@ limitations under the License.
 <document>
 
     <properties>
-        <title>Using the DispatchAction and Validator</title>
+        <title>Creating a Multipage Wizard with DispatchAction and Validator</title>
     </properties>
 
     <body>
 
-        <section name="Dispatching And Validating">
+        <section name="Creating a Multipage Wizard with DispatchAction and Validator">
 
-            <subsection name="Overview">
 
                 <p>
                     This is simple example to illustrate how to build a
@@ -42,7 +41,6 @@ limitations under the License.
                     form field validations.
                 </p>
 
-            </subsection>
 
             <subsection name="Using the DispatchAction">
 
@@ -84,9 +82,11 @@ http://localhost:8080/howto/name.do?submitName=enterName
 </action>
 ]]></source>
 
+                <p>
                 The method
                 <code>enterName</code>
                 simply forwards to the first page.
+                </p>
 
                 <source><![CDATA[
 public ActionForward enterName(ActionMapping mapping,
@@ -100,6 +100,7 @@ public ActionForward enterName(ActionMapping mapping,
 }
 ]]></source>
 
+                <p>
                 On the page
                 <code>name.jsp</code>
                 is a hidden field for the
@@ -112,15 +113,18 @@ public ActionForward enterName(ActionMapping mapping,
                 Javascript to set the
                 <code>submitName</code>
                 parameter
+                </p>
 
 
                 <source><![CDATA[
 <html:submit onclick="this.form.submitName.value='enterAddress'"/>
 ]]></source>
 
+                <p>
                 The
                 <code>enterAddress</code>
                 method then forwards to the address page.
+                </p>
 
                 <source><![CDATA[
 public ActionForward enterAddress(ActionMapping mapping,
@@ -133,25 +137,31 @@ public ActionForward enterAddress(ActionMapping mapping,
 }
 ]]></source>
 
+                <p>
                 On the
                 <code>adddress.jsp</code>
                 page, we again dynamically set the
                 <code>submitName</code>
                 parameter.
+                </p>
 
                 <source><![CDATA[
 <html:submit value="submit" onclick="this.form.submitName.value='submitAddress'"/>
 ]]></source>
 
+                <p>
                 And the action path that is submitted is
+                </p>
 
                 <source><![CDATA[
     <html:form action="/address">
 ]]></source>
 
+                <p>
                 The action mapping for
                 <code>/address</code>
                 is
+                </p>
 
                 <source><![CDATA[
 <action path="/address"
@@ -170,14 +180,17 @@ public ActionForward enterAddress(ActionMapping mapping,
 </action>
 ]]></source>
 
+                <p>
                 Note that two action mappings are required to handle the page
                 flow (we'll discuss why
                 in the next section).
+                </p>
 
             </subsection>
 
             <subsection name="Validations">
 
+                <p>
                 Let's now add some validations to require input fields using
                 the
                 Validator. In validation.xml, there's a
@@ -186,6 +199,7 @@ public ActionForward enterAddress(ActionMapping mapping,
                 that specifies two field validations for the form bean
                 named
                 <code>acmeForm.</code>
+                </p>
 
                 <source><![CDATA[
 <formset>
@@ -200,6 +214,7 @@ public ActionForward enterAddress(ActionMapping mapping,
   </formset>
 ]]></source>
 
+                <p>
                 We need to identify the page where the input field resides so
                 that
                 we can control which validations are triggered for a given
@@ -212,27 +227,34 @@ public ActionForward enterAddress(ActionMapping mapping,
                 <code>acmeForm</code>
                 (even validations for fields that the user
                 has not seen yet).
-
+                </p>
+                <p>
                 On each of the pages, a hidden field is used to identify
                 the page number.
-
+                </p>
+                <p>
                 In
                 <code>name.jsp</code>
+                </p>
 
                 <source><![CDATA[
 <html:hidden property="page" value="1"/>
 ]]></source>
 
+                <p>
                 In
                 <code>address.jsp</code>
+                </p>
 
                 <source><![CDATA[
 <html:hidden property="page" value="2"/>
 ]]></source>
 
+                <p>
                 The Validator will use the value of the page property in
                 determining which validations to run.
-
+                </p>
+                <p>                
                 Now let's revisit the reason for having two action mappings.
                 An action mapping
                 is required for each page since the
@@ -241,25 +263,29 @@ public ActionForward enterAddress(ActionMapping mapping,
                 to in case validation fails. Therefore we need to define an
                 action mapping for each page
                 that could be displayed after a validation fails.
+                </p>
 
             </subsection>
 
             <subsection name="Cancel and Previous">
 
+                <p>
                 The tricky part is how to setup Previous and Cancel buttons
                 for each of the pages. If the user clicks Previous then
                 the validations for the currrent page should not be triggered.
                 For Cancel, none of the validations should be triggered.
-
+                </p>
+                <p>
                 The solution for Previous is to set the page number property
                 to the number of the previous page, effectively circumventing
                 the validations associated with the current page.
+                </p>
 
                 <source><![CDATA[
    <html:submit value="previous"
           onclick="this.form.submitName.value='previous'; this.form.page.value='1'"/>
 ]]></source>
-
+                <p>
                 For cancel, there are two options. We could use the Struts
                 Taglib
                 Cancel button or create an action specifically designed to
@@ -267,7 +293,7 @@ public ActionForward enterAddress(ActionMapping mapping,
                 a cancel request. The
                 <code>cancel</code>
                 action has no associated validations.
-
+                </p>
 
                 <source><![CDATA[
 <action path="/cancel"
@@ -279,16 +305,20 @@ public ActionForward enterAddress(ActionMapping mapping,
 </action>
 ]]></source>
 
+                <p>
                 And the Cancel button submits to the
                 <code>/cancel</code>
                 action path.
+                </p>
 
                 <source><![CDATA[
 <html:submit value="cancel" onclick="this.form.action='/acme/cancel.do'"/>
 ]]></source>
 
+                <p>
                 The full example is
-                <a href="dispatchValidator.zip">here,</a>
+                <a href="dispatchValidator.zip">available for download.</a>
+                </p>
 
             </subsection>
 

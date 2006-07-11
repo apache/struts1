@@ -24,7 +24,7 @@ limitations under the License.
   <body>
     <section name="Struts Scripting User Guide">
       <a name="overview"/>
-      <p>The entire Struts Scripting project is only a few classes, since most of
+      <p>The entire Struts Scripting component is only a few classes, since most of
       the heavy lifting is done by the 
       <a href="http://jakarta.apache.org/bsf">Bean Scripting Framework</a> 
       and the scripting engines themselves.  Therefore, there are only a few steps
