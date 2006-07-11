@@ -518,13 +518,11 @@ limitations under the License.
                     engine that
                     performs these evaluations is often called just "EL"
                     (expression language)
-                    for short. After the JSTL was created, a derivative of the
-                    Struts tag
-                    library called Struts-EL was created. In short, this does
-                    everything that
-                    the Struts tag library does, but it uses the JSTL EL
-                    engine to evaluate
-                    attribute values.
+                    for short. After the JSTL was created, a derivative of
+                    Struts Taglib called Struts-EL was created. In short, 
+                    this component does everything that Struts Taglib does, 
+                    but it uses the JSTL EL engine to evaluate attribute 
+                    values.
                 </p>
                 <p>
                     If you use Struts-EL, you can get back some of the
@@ -558,6 +556,13 @@ limitations under the License.
                     &lt;/html-el:form&gt;
                     &lt;/body&gt;
                     &lt;/html&gt;</pre>
+                    
+                <p>    
+                    If you are using JSTL in your application (and we 
+                    recommend that you do!), 
+                    then use Struts EL in place of Struts Taglib.
+                </p>
+                    
             </subsection>
         </section>
     </body>

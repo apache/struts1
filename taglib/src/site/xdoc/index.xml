@@ -25,12 +25,74 @@ limitations under the License.
     <body>
       <section name="Welcome to Struts Taglib">
           <p>
-            The Struts JSP Taglib project provides JSP tag libraries to make developing
-            applications easier.  These tags help with everything from displaying error messages
-            to dealing with nested ActionForm beans.  A good place to begin is to browse the 
-            tag guides in the left menu.
+            The Struts Taglib component provides a set of JSP custom tag 
+            libraries that help developers create interactive form-based 
+            applications.
+            There are tags to help with everything from displaying error 
+            messages to dealing with nested ActionForm beans.  
           </p>
+            
+          <p>
+            Struts Taglib is composed of four distinct tag libraries: 
+            Bean, HTML, Logic, and Nested. 
+          </p>
+					<table>
+          	<tr>
+            	<th> 
+            	<a href="dev_bean.html">Bean</a>
+            	</th>
+            	<td>
+            	 The bean tags are  useful in defining new beans (in 
+            	 any scope) from a variety of possible sources, as well 
+            	 as a tag to render  a particular bean (or bean property) 
+            	 to the output response.
+							</td>
+						</tr>
+          	<tr>
+            	<th> 
+            	<a href="dev_html.html">HTML</a>
+            	</th>
+            	<td>
+            	 The HTML tags are used to create input forms, 
+            	 as well as other tags generally useful in the creation of
+            	 HTML-based user interfaces. 
+            	 The output is HTML 4.01 compliant or XHTML 1.0 when in 
+            	 XHTML mode.
+							</td>
+						</tr>
+          	<tr>
+            	<th> 
+            	<a href="dev_logic.html">Logic</a>
+            	</th>
+            	<td>
+            	 The Logic tags that are useful in managing conditional 
+            	 generation of output text, looping
+            	 over object collections for repetitive generation of output 
+            	 text, and application flow management
+							</td>
+						</tr>
+          	<tr>
+            	<th> 
+            	<a href="dev_nexted.html">Nested</a>
+            	</th>
+            	<td>
+            	 The Nested tags extend the base Struts tags to allow 
+            	 them to relate to each other in a nested nature. 
+            	 The fundamental logic of the original tags doesn't change, 
+            	 except in that all references to beans and bean properties 
+            	 will be managed in a nested context.
+							</td>
+						</tr>
+						</table>          
       </section>
+      
+      <section>
+            <p class="right">
+                Next:
+                <a href="faq.html">FAQ</a>
+            </p>      
+      </section>
+      
     </body>
 
 </document>

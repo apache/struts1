@@ -25,10 +25,9 @@ limitations under the License.
     <body>
         <section name="How to Build View Components">
 
-            <subsection name="Overview">
 
                 <p>
-                    This chapter focuses on the task of building the
+                    This section focuses on the task of building the
                     <em>View</em>
                     components
                     for use with Struts.
@@ -44,7 +43,6 @@ limitations under the License.
                     briefly discussed.
                 </p>
 
-            </subsection>
 
             <subsection name="Internationalized Messages">
 

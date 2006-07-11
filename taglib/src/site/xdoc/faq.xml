@@ -124,34 +124,37 @@ limitations under the License.
 
             </subsection>
 
-            <a name="jsf"/>
-            <subsection name="What about JSTL and JavaServer Faces?">
-                <p>
-                    The framework works well with the
+            <a name="jstl"/>
+            <subsection name="What about JSTL?">
+            		<p>
+            		   There is overlap between Struts Taglib and the 
                     <a href="http://java.sun.com/products/jsp/jstl/">
-                        JavaServer Standard Tag Library.</a>
-                    For a JSTL rendition of the original Struts JSP tags,
-                    see the
-                    <a href="http://struts.apache.org/struts-el/index.html">
-                        Struts EL subproject.</a>
-                </p>
+                        JavaServer Standard Tag Library (JSTL).</a>
+            		   To make the best use of JSTL, 
+            		   use the <a href="../struts-el/index.html">
+            		   Struts EL component</a> instead. 
+            	   </p>
+            </subsection>
 
+            <a name="jsf"/>
+            <subsection name="What about JSF?">
+            
                 <p>
-                    If you'd like to start using
-                    <a href="http://java.sun.com/j2ee/javaserverfaces/">
-                        JavaServer Faces</a>
-                    components in your application,
-                    please see the
-                    <a href="http://struts.apache.org/struts-faces/index.html">
-                        Struts Faces</a>
-                    subproject.
-                    If you'd like to get a fresh start in a pure JSF
-                    environment,
-                    please see the
-                    <a href="http://shale.apache.org/">Struts
-                        Shale</a>
-                    framework.
+                    Struts 1 is <strong>not</strong> the best choice if you'd 
+                    like to use JavaServer Faces components in your 
+                    application. 
+                    The Struts Faces component provides some interoperability 
+                    with JSF, 
+                    but Faces is really only intended as a stop gap for teams 
+                    experimenting with JSF.
                 </p>
+                
+							  <p>
+								    For better JavaServer Faces support, 
+								    consider using Struts 2 or 
+								    <a href="http://shale.apache.org/">Apache Shale.</a>
+							  </p>
+
             </subsection>
 
             <a name="xhtml"/>
@@ -223,8 +226,7 @@ limitations under the License.
                     There is more than one way to achieve this functionality.
                 </p>
                 <p>
-                    The way that is suggested by the framework is right out of the
-                    javadoc for
+                    One popular approach is to use a 
                     <a href="../api/org/apache/struts/actions/LookupDispatchAction.html">
                         <code>LookupDispatchAction.</code>
                     </a>
@@ -280,6 +282,18 @@ limitations under the License.
                     <a href="http://issues.apache.org/struts/browse/STR-899">
                         JIRA ticket.</a>
                 </p>
+                
+                <p>
+                    Another approach is to use a separate JavaScript that 
+                    automatically focusses the first enabled field on the 
+                    first form on a page. 
+                    See the article 
+                    <a href="http://www.codeproject.com/jscript/FocusFirstInput.asp">
+                    Set Focus to First Input on Web Page</a>
+                    for a working example that you can use in your own 
+                    applications. 
+                </p>
+                
             </subsection>
 
             <a name="checkbox"/>

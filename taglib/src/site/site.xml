@@ -16,17 +16,17 @@
             <item name="Struts 1" href="http://struts.apache.org/1.x" />
             <item name="Struts 2" href="http://struts.apache.org/2.0" />
         </links>
-        <menu name="Struts JSP Taglib Guides">
-            <item name="Bean" href="dev_bean.html"/>
-            <item name="HTML" href="dev_html.html"/>
-            <item name="Logic" href="dev_logic.html"/>
-            <item name="Nested" href="dev_nested.html"/>
-        </menu>
         <menu name="FAQs and HOWTOs">
             <item name="Taglib FAQ" href="faq.html"/>
             <item name="Building View Components" href="building_view.html"/>
             <item name="Indexed Properties" href="indexedprops.html"/>
        </menu>
+        <menu name="Struts Taglib Guides">
+            <item name="Bean" href="dev_bean.html"/>
+            <item name="HTML" href="dev_html.html"/>
+            <item name="Logic" href="dev_logic.html"/>
+            <item name="Nested" href="dev_nested.html"/>
+        </menu>
 
        <menu name="Components">
         
