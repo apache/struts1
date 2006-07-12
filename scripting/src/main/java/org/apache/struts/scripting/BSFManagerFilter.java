@@ -50,4 +50,3 @@ public interface BSFManagerFilter {
      */
     BSFManager apply(BSFManager mgr);
 }
-

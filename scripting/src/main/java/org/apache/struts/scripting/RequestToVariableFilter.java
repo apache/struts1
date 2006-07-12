@@ -98,4 +98,3 @@ public class RequestToVariableFilter implements BSFManagerFilter {
         return mgr;
     }
 }
-

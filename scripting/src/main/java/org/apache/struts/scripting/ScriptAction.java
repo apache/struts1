@@ -502,4 +502,3 @@ public class ScriptAction extends Action {
         public String string = null;
     }
 }
-
