@@ -1,5 +1,5 @@
 /*
- * $Id: RequestProcessor.java 370938 2006-01-21 00:19:02Z husted $
+ * $Id$
  *
  * Copyright 2003-2005 The Apache Software Foundation.
  *
@@ -23,7 +23,7 @@ import org.apache.struts.chain.contexts.ActionContext;
 /**
  * <p>Check to original uri is set, and if not, set it for this request.</p>
  *
- * @version $Rev: 179995 $ $Date: 2005-06-04 07:58:46 -0700 (Sat, 04 Jun 2005)
+ * @version $Rev$ $Date: 2005-06-04 07:58:46 -0700 (Sat, 04 Jun 2005)
  *          $
  */
 public abstract class AbstractSetOriginalURI extends ActionCommandBase {

@@ -1,5 +1,5 @@
 /*
- * $Id: Action.java 376862 2006-02-10 21:14:54Z husted $
+ * $Id$
  *
  * Copyright 2000-2004 The Apache Software Foundation.
  *

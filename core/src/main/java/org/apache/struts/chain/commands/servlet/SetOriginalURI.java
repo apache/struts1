@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * <p>Set the servlet path.</p>
  *
- * @version $Rev: 179995 $ $Date: 2005-06-04 07:58:46 -0700 (Sat, 04 Jun 2005)
+ * @version $Rev$ $Date: 2005-06-04 07:58:46 -0700 (Sat, 04 Jun 2005)
  *          $
  */
 public class SetOriginalURI extends AbstractSetOriginalURI {
