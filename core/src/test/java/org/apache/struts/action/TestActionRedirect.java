@@ -117,7 +117,7 @@ public class TestActionRedirect extends TestCase {
         assertHasParameter(ar.parameterValues, "object1", "someString");
         assertEquals("Incorrect original path.", forward.getPath(),
             ar.getOriginalPath());
-        assertTrue("Original had redirect to false", !ar.getRedirect());    
+        assertTrue("Original had redirect to false", !ar.getRedirect());
     }
 
     /**

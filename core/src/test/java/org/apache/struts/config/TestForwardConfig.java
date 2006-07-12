@@ -154,7 +154,7 @@ public class TestForwardConfig extends TestCase {
         moduleConfig.addForwardConfig(subConfig);
         moduleConfig.addForwardConfig(baseConfig);
 
-        // set the baseConfig to extend subConfig 
+        // set the baseConfig to extend subConfig
         baseConfig.setExtends("subConfig");
 
         boolean result = subConfig.checkCircularInheritance(moduleConfig, null);
@@ -176,7 +176,7 @@ public class TestForwardConfig extends TestCase {
         grand.setExtends("subConfig");
         moduleConfig.addForwardConfig(grand);
 
-        // set the baseConfig to extend grandConfig 
+        // set the baseConfig to extend grandConfig
         baseConfig.setExtends("grandConfig");
 
         boolean result = grand.checkCircularInheritance(moduleConfig, null);

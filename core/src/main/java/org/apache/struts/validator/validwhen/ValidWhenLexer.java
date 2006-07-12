@@ -69,7 +69,7 @@ public class ValidWhenLexer extends antlr.CharScanner
     public Token nextToken() throws TokenStreamException {
         Token theRetToken = null;
 
-tryAgain: 
+tryAgain:
         for (;;) {
             Token _token = null;
             int _ttype = Token.INVALID_TYPE;
@@ -244,7 +244,8 @@ tryAgain:
                 }
             } catch (CharStreamException cse) {
                 if (cse instanceof CharStreamIOException) {
-                    throw new TokenStreamIOException(((CharStreamIOException) cse).io);
+                    throw new TokenStreamIOException(
+                        ((CharStreamIOException) cse).io);
                 } else {
                     throw new TokenStreamException(cse.getMessage());
                 }
@@ -265,7 +266,7 @@ tryAgain:
         {
             int _cnt15 = 0;
 
-_loop15: 
+_loop15:
             do {
                 switch (LA(1)) {
                 case ' ': {
@@ -351,7 +352,7 @@ _loop15:
         }
 
         matchRange('1', '9');
-_loop20: 
+_loop20:
         do {
             if ((((LA(1) >= '0') && (LA(1) <= '9')))) {
                 matchRange('0', '9');
@@ -385,7 +386,7 @@ _loop20:
         {
             int _cnt23 = 0;
 
-_loop23: 
+_loop23:
             do {
                 switch (LA(1)) {
                 case '0':
@@ -448,7 +449,7 @@ _loop23:
         int _saveIndex;
 
         match('0');
-_loop26: 
+_loop26:
         do {
             if ((((LA(1) >= '0') && (LA(1) <= '7')))) {
                 matchRange('0', '7');
@@ -483,7 +484,7 @@ _loop26:
             {
                 int _cnt30 = 0;
 
-_loop30: 
+_loop30:
                 do {
                     if ((_tokenSet_0.member(LA(1)))) {
                         matchNot('\'');
@@ -511,7 +512,7 @@ _loop30:
             {
                 int _cnt33 = 0;
 
-_loop33: 
+_loop33:
                 do {
                     if ((_tokenSet_1.member(LA(1)))) {
                         matchNot('\"');
@@ -714,7 +715,7 @@ _loop33:
         {
             int _cnt42 = 0;
 
-_loop42: 
+_loop42:
             do {
                 switch (LA(1)) {
                 case 'a':

@@ -216,8 +216,8 @@ public class ValidatorPlugIn implements PlugIn {
                 URL input =
                     servlet.getServletContext().getResource(validatorRules);
 
-                // If the config isn't in the servlet context, try the class loader
-                // which allows the config files to be stored in a jar
+                // If the config isn't in the servlet context, try the class
+                // loader which allows the config files to be stored in a jar
                 if (input == null) {
                     input = getClass().getResource(validatorRules);
                 }

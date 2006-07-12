@@ -90,7 +90,8 @@ public class WebActionContext extends ActionContextBase {
      * <p> Return a map whose keys are <code>String</code> request parameter
      * names and whose values are <code>String</code> values. </p> <p> For
      * parameters which were submitted with more than one value, only one
-     * value will be returned, as if one called <code>ServletRequest.getParameter(String)</code>
+     * value will be returned, as if one called
+     * <code>ServletRequest.getParameter(String)</code>
      * </p>
      *
      * @return A map of web request parameters

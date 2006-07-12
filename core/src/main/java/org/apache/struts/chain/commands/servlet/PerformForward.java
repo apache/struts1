@@ -56,7 +56,7 @@ public class PerformForward extends AbstractPerformForward {
     protected void perform(ActionContext context, ForwardConfig forwardConfig)
         throws Exception {
         ServletActionContext sacontext = (ServletActionContext) context;
-        String uri = forwardConfig.getPath();;
+        String uri = forwardConfig.getPath();
 
         if (uri == null) {
             ActionServlet servlet = sacontext.getActionServlet();
@@ -123,7 +123,7 @@ public class PerformForward extends AbstractPerformForward {
         if (LOG.isDebugEnabled()) {
             LOG.debug("Including " + uri);
         }
-            
+
         rd.include(request, response);
     }
 }

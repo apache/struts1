@@ -61,7 +61,7 @@ public final class ClassUtils {
      *                                constructor
      */
     public static Object getApplicationInstance(String className)
-        throws ClassNotFoundException, IllegalAccessException, 
+        throws ClassNotFoundException, IllegalAccessException,
             InstantiationException {
         return (getApplicationClass(className).newInstance());
     }

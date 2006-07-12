@@ -292,8 +292,8 @@ public class WrappingLookupCommand implements Filter {
      * @throws NoSuchMethodException     On failed instantiation
      */
     protected Context getContext(Context context)
-        throws ClassNotFoundException, InstantiationException, 
-            InvocationTargetException, IllegalAccessException, 
+        throws ClassNotFoundException, InstantiationException,
+            InvocationTargetException, IllegalAccessException,
             NoSuchMethodException {
         if (wrapperClassName == null) {
             if (LOG.isDebugEnabled()) {

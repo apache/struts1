@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2006 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,9 +26,9 @@ import junit.framework.TestSuite;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.Globals;
-import org.apache.struts.mock.TestMockBase;                                                                                                                       
-import org.apache.struts.mock.MockFormBean;                                                                                                                       
-import org.apache.struts.mock.MockMultipartRequestHandler;                                                                                                                       
+import org.apache.struts.mock.TestMockBase;
+import org.apache.struts.mock.MockFormBean;
+import org.apache.struts.mock.MockMultipartRequestHandler;
 
 /**
  * Unit tests for the RequestUtil's <code>populate</code> method.
@@ -36,7 +36,7 @@ import org.apache.struts.mock.MockMultipartRequestHandler;
  * @version $Rev$
  */
 public class TestRequestUtilsPopulate extends TestMockBase {
-    
+
     /**
      * Defines the testcase name for JUnit.
      *
@@ -73,8 +73,8 @@ public class TestRequestUtilsPopulate extends TestMockBase {
         super.tearDown();
     }
 
-    /** 
-     * Ensure that the getMultipartRequestHandler cannot be seen in 
+    /**
+     * Ensure that the getMultipartRequestHandler cannot be seen in
      * a subclass of ActionForm.
      *
      * The purpose of this test is to ensure that Bug #38534 is fixed.
@@ -116,6 +116,5 @@ public class TestRequestUtilsPopulate extends TestMockBase {
         assertEquals("Mapping name has been modified", mockMappingName, mapping.getName());
 
     }
-    
-}
 
+}

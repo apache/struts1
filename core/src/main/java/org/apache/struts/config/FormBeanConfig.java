@@ -227,7 +227,7 @@ public class FormBeanConfig extends BaseConfig {
      * @see #inheritFrom(FormBeanConfig)
      */
     protected void inheritFormProperties(FormBeanConfig config)
-        throws ClassNotFoundException, IllegalAccessException, 
+        throws ClassNotFoundException, IllegalAccessException,
             InstantiationException, InvocationTargetException {
         throwIfConfigured();
 
@@ -481,7 +481,7 @@ public class FormBeanConfig extends BaseConfig {
      * @see #processExtends(ModuleConfig)
      */
     public void inheritFrom(FormBeanConfig config)
-        throws ClassNotFoundException, IllegalAccessException, 
+        throws ClassNotFoundException, IllegalAccessException,
             InstantiationException, InvocationTargetException {
         throwIfConfigured();
 
@@ -512,7 +512,7 @@ public class FormBeanConfig extends BaseConfig {
      * @see #inheritFrom(FormBeanConfig)
      */
     public void processExtends(ModuleConfig moduleConfig)
-        throws ClassNotFoundException, IllegalAccessException, 
+        throws ClassNotFoundException, IllegalAccessException,
             InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");

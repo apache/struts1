@@ -227,7 +227,7 @@ public class FieldChecks implements Serializable {
             String mask =
                 Resources.getVarValue("mask", field, validator, request, true);
 
-            if (value != null && value.length()>0 
+            if (value != null && value.length()>0
                 && !GenericValidator.matchRegexp(value, mask)) {
                 errors.add(field.getKey(),
                     Resources.getActionMessage(validator, request, va, field));

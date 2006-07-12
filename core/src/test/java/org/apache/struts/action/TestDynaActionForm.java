@@ -48,7 +48,7 @@ public class TestDynaActionForm extends TestDynaActionFormClass {
             "booleanProperty", "booleanSecond", "doubleProperty",
             "floatProperty", "intArray", "intIndexed", "intProperty",
             "listIndexed", "longProperty", "mappedProperty", "mappedIntProperty",
-            
+
 
             //        "nullProperty",
             "shortProperty", "stringArray", "stringIndexed", "stringProperty",

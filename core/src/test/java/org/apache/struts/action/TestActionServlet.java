@@ -984,7 +984,7 @@ public class TestActionServlet extends TestCase {
          * Set a flag so we know this method was called.
          */
         public void processExtends(ModuleConfig moduleConfig)
-            throws ClassNotFoundException, IllegalAccessException, 
+            throws ClassNotFoundException, IllegalAccessException,
                 InstantiationException {
             processExtendsCalled = true;
         }
@@ -1016,7 +1016,7 @@ public class TestActionServlet extends TestCase {
          */
         public void processExtends(ModuleConfig moduleConfig,
             ActionConfig actionConfig)
-            throws ClassNotFoundException, IllegalAccessException, 
+            throws ClassNotFoundException, IllegalAccessException,
                 InstantiationException {
             processExtendsCalled = true;
         }
@@ -1052,7 +1052,7 @@ public class TestActionServlet extends TestCase {
          */
         public void processExtends(ModuleConfig moduleConfig,
             ActionConfig actionConfig)
-            throws ClassNotFoundException, IllegalAccessException, 
+            throws ClassNotFoundException, IllegalAccessException,
                 InstantiationException {
             processExtendsCalled = true;
         }
@@ -1089,7 +1089,7 @@ public class TestActionServlet extends TestCase {
          * Set a flag so we know this method was called.
          */
         public void processExtends(ModuleConfig moduleConfig)
-            throws ClassNotFoundException, IllegalAccessException, 
+            throws ClassNotFoundException, IllegalAccessException,
                 InstantiationException {
             processExtendsCalled = true;
         }

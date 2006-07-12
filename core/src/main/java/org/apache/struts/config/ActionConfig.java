@@ -734,7 +734,7 @@ public class ActionConfig extends BaseConfig {
      * @see #inheritFrom(ActionConfig)
      */
     protected void inheritExceptionHandlers(ActionConfig baseConfig)
-        throws ClassNotFoundException, IllegalAccessException, 
+        throws ClassNotFoundException, IllegalAccessException,
             InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -774,7 +774,7 @@ public class ActionConfig extends BaseConfig {
      * @see #inheritFrom(ActionConfig)
      */
     protected void inheritForwards(ActionConfig baseConfig)
-        throws ClassNotFoundException, IllegalAccessException, 
+        throws ClassNotFoundException, IllegalAccessException,
             InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -972,7 +972,7 @@ public class ActionConfig extends BaseConfig {
      * @see #processExtends(ModuleConfig)
      */
     public void inheritFrom(ActionConfig config)
-        throws ClassNotFoundException, IllegalAccessException, 
+        throws ClassNotFoundException, IllegalAccessException,
             InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");

@@ -133,7 +133,7 @@ public class RequestUtils {
      *                                constructor
      */
     public static Object applicationInstance(String className)
-        throws ClassNotFoundException, IllegalAccessException, 
+        throws ClassNotFoundException, IllegalAccessException,
             InstantiationException {
         return applicationInstance(className, null);
     }
@@ -158,7 +158,7 @@ public class RequestUtils {
      */
     public static Object applicationInstance(String className,
         ClassLoader classLoader)
-        throws ClassNotFoundException, IllegalAccessException, 
+        throws ClassNotFoundException, IllegalAccessException,
             InstantiationException {
         return (applicationClass(className, classLoader).newInstance());
     }

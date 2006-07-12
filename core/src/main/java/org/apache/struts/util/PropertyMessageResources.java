@@ -265,7 +265,7 @@ public class PropertyMessageResources extends MessageResources {
                 log.warn("  Resource "+name+" Not Found.");
             }
         }
-        
+
 
         // Copy the corresponding values into our cache
         if (props.size() < 1) {

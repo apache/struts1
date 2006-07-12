@@ -328,7 +328,7 @@ public class TestFormBeanConfig extends TestCase {
         boolean processExtendsCalled = false;
 
         public void processExtends(ModuleConfig moduleConfig)
-            throws ClassNotFoundException, IllegalAccessException, 
+            throws ClassNotFoundException, IllegalAccessException,
                 InstantiationException, InvocationTargetException {
             super.processExtends(moduleConfig);
             processExtendsCalled = true;

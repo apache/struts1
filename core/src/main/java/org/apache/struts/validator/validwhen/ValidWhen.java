@@ -89,7 +89,8 @@ public class ValidWhen {
 
             if ((leftBracket > -1) && (rightBracket > -1)) {
                 index =
-                    Integer.parseInt(key.substring(leftBracket + 1, rightBracket));
+                    Integer.parseInt(key.substring(leftBracket + 1,
+                        rightBracket));
             }
         }
 

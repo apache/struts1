@@ -74,7 +74,7 @@ public class ActionRedirect extends ActionForward {
      * String[] depending on whether it has one or more entries.</p>
      */
     protected Map parameterValues = null;
-    
+
     /**
      * <p>Holds the anchor value.</p>
      */
@@ -149,6 +149,7 @@ public class ActionRedirect extends ActionForward {
      *
      * @param fieldName the name to use for the parameter
      * @param valueObj  the value for this parameter
+     * @return The ActionRedirect instance this method is called on
      */
     public ActionRedirect addParameter(String fieldName, Object valueObj) {
         String value = (valueObj != null) ? valueObj.toString() : "";
@@ -189,7 +190,7 @@ public class ActionRedirect extends ActionForward {
         }
         return this;
     }
-    
+
     /**
      * <p>Adds an anchor to the path.  Technically, the anchor value is
      * just stored for later and will be added to the path in getPath().
@@ -200,6 +201,7 @@ public class ActionRedirect extends ActionForward {
      * to append an anchor to the path or not.</p>
      *
      * @param anchorValue The anchor to append to the path
+     * @return The ActionRefirect instance this method is called on
      */
     public ActionRedirect setAnchor(String anchorValue) {
         this.anchorValue = ResponseUtils.encodeURL(anchorValue);
@@ -255,14 +257,14 @@ public class ActionRedirect extends ActionForward {
 
             result.append(parameterString);
         }
-        
+
         // append anchor string (or blank if none was set)
         result.append(anchorString);
 
 
         return result.toString();
     }
-    
+
     /**
      * <p>Forms the string containing the parameters
      *  passed onto this object thru calls to addParameter().</p>

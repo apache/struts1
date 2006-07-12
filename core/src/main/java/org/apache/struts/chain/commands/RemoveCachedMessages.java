@@ -31,10 +31,10 @@ import org.apache.struts.action.ActionMessages;
 public class RemoveCachedMessages extends ActionCommandBase {
 
     /**
-     * <p>Removes any <code>ActionMessages</code> object stored in the session 
-     * under <code>Globals.MESSAGE_KEY</code> and <code>Globals.ERROR_KEY</code> 
-     * if the messages' <code>isAccessed</code> method returns true.  This 
-     * allows messages to be stored in the session, displayed one time, and be 
+     * <p>Removes any <code>ActionMessages</code> object stored in the session
+     * under <code>Globals.MESSAGE_KEY</code> and <code>Globals.ERROR_KEY</code>
+     * if the messages' <code>isAccessed</code> method returns true.  This
+     * allows messages to be stored in the session, displayed one time, and be
      * released here.</p>
      *
      * @param actionCtx The <code>Context</code> for the current request
@@ -58,7 +58,7 @@ public class RemoveCachedMessages extends ActionCommandBase {
 
     /**
      * <p>Removes any <code>ActionMessages</code> object from the specified
-     * scope stored under the specified key if the messages' 
+     * scope stored under the specified key if the messages'
      * <code>isAccessed</code> method returns true.
      *
      * @param scope The scope to check for messages in.

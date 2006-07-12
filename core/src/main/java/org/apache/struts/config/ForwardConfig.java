@@ -353,7 +353,7 @@ public class ForwardConfig extends BaseConfig {
      * @see #processExtends(ModuleConfig, ActionConfig)
      */
     public void inheritFrom(ForwardConfig config)
-        throws ClassNotFoundException, IllegalAccessException, 
+        throws ClassNotFoundException, IllegalAccessException,
             InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
@@ -401,7 +401,7 @@ public class ForwardConfig extends BaseConfig {
      */
     public void processExtends(ModuleConfig moduleConfig,
         ActionConfig actionConfig)
-        throws ClassNotFoundException, IllegalAccessException, 
+        throws ClassNotFoundException, IllegalAccessException,
             InstantiationException, InvocationTargetException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");

@@ -50,7 +50,7 @@ public class TestDynaActionFormClass extends TestCase {
             new FormPropertyConfig("longProperty", "long", "321"),
             new FormPropertyConfig("mappedProperty", "java.util.Map", null),
             new FormPropertyConfig("mappedIntProperty", "java.util.Map", null),
-            
+
 
             //        new FormPropertyConfig("nullProperty", "java.lang.String", null),
             new FormPropertyConfig("shortProperty", "short", "987"),

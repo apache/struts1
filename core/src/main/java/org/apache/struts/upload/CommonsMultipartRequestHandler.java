@@ -394,7 +394,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
             if (log.isDebugEnabled()) {
                 log.debug("request.getCharacterEncoding=[" + encoding + "]");
             }
-        } 
+        }
 
         if (encoding != null) {
             try {

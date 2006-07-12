@@ -374,7 +374,7 @@ public class FormPropertyConfig extends BaseConfig {
      *               values from.
      */
     public void inheritFrom(FormPropertyConfig config)
-        throws IllegalAccessException, InvocationTargetException, 
+        throws IllegalAccessException, InvocationTargetException,
             InstantiationException, ClassNotFoundException {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");

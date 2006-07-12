@@ -329,6 +329,7 @@ public class ActionMessages implements Serializable {
      * <p>Returns a String representation of this ActionMessages' property
      * name=message list mapping.</p>
      *
+     * @return String representation of the messages
      * @see Object#toString()
      */
     public String toString() {

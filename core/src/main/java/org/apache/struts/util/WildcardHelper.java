@@ -310,7 +310,8 @@ public class WildcardHelper {
      * @return The offset in d of the part of r matched in d or -1 if that was
      *         not found.
      */
-    protected int indexOfArray(int[] r, int rpos, int rend, char[] d, int dpos) {
+    protected int indexOfArray(int[] r, int rpos, int rend, char[] d,
+        int dpos) {
         // Check if pos and len are legal
         if (rend < rpos) {
             throw new IllegalArgumentException("rend < rpos");
@@ -438,7 +439,8 @@ public class WildcardHelper {
      * @param dpos The starting offset in d for the matching.
      * @return true if array d starts from portion of array r.
      */
-    protected boolean matchArray(int[] r, int rpos, int rend, char[] d, int dpos) {
+    protected boolean matchArray(int[] r, int rpos, int rend, char[] d,
+        int dpos) {
         if ((d.length - dpos) < (rend - rpos)) {
             return (false);
         }
