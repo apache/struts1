@@ -1,5 +1,5 @@
 /*
- * $Id: MemoryUserDatabase.java 149093 2005-01-30 02:02:55Z jmitchell $ 
+ * $Id: MemoryUserDatabase.java 149093 2005-01-30 02:02:55Z jmitchell $
  *
  * Copyright 2000-2004 Apache Software Foundation
  *

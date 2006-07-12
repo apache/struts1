@@ -1,5 +1,5 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2000-2004 Apache Software Foundation
  *
@@ -64,9 +64,9 @@ public class MemoryUserDatabase implements UserDatabase {
      * The {@link User}s associated with this UserDatabase, keyed by username.
      */
     private HashMap users = new HashMap();
-    
+
     private boolean open = false;
-    
+
 
     // ------------------------------------------------------------- Properties
 
@@ -303,8 +303,8 @@ public class MemoryUserDatabase implements UserDatabase {
     public boolean isOpen() {
         return this.open;
     }
-    
-    
+
+
 
 
 }

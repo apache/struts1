@@ -1,14 +1,14 @@
 /*
- * $Id: Subscription.java 149009 2005-01-29 05:33:02Z jmitchell $ 
+ * $Id: Subscription.java 149009 2005-01-29 05:33:02Z jmitchell $
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,20 +31,22 @@ public class MemoryUserDatabaseTest extends BaseTestUserDatabase {
 
     protected String defaultPathName = "test-database.xml";
     private boolean deleteDatabaseFile = true;
-    
+
     public boolean isDeleteDatabaseFile() {
-		return deleteDatabaseFile;
-	}
-	public void setDeleteDatabaseFile(boolean deleteDatabaseFile) {
-		this.deleteDatabaseFile = deleteDatabaseFile;
-	}
-	protected UserDatabase getNewUserDatabase(){
+        return deleteDatabaseFile;
+    }
+
+    public void setDeleteDatabaseFile(boolean deleteDatabaseFile) {
+        this.deleteDatabaseFile = deleteDatabaseFile;
+    }
+
+    protected UserDatabase getNewUserDatabase() {
         // using default impl
         MemoryUserDatabase memoryUserDatabase = new MemoryUserDatabase();
         memoryUserDatabase.setPathname(defaultPathName);
         userDatabase = memoryUserDatabase;
         return memoryUserDatabase;
-        
+
     }
     protected User getNewUser(UserDatabase db, String userName){
         // using default impl
@@ -57,13 +59,14 @@ public class MemoryUserDatabaseTest extends BaseTestUserDatabase {
     protected void setUp() throws Exception {
         super.setUp();
         // force write to disk
-	     userDatabase.close();
+       userDatabase.close();
     }
+
     protected void tearDown() throws Exception {
-    	super.tearDown();
-    	if (isDeleteDatabaseFile()){
-    		File file = new File(defaultPathName);
-    		file.delete();
-    	}
+        super.tearDown();
+        if (isDeleteDatabaseFile()) {
+            File file = new File(defaultPathName);
+            file.delete();
+        }
     }
 }
