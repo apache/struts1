@@ -1,12 +1,12 @@
 /*
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -95,33 +95,37 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     protected int page = 0;
 
     /**
-     * This will be used as is for the JavaScript validation method name if it has a value.  This is
-     * the method name of the main JavaScript method that the form calls to perform validations.
+     * This will be used as is for the JavaScript validation method name if it
+     * has a value.  This is the method name of the main JavaScript method that
+     * the form calls to perform validations.
      */
     protected String methodName = null;
 
     /**
-     * The static JavaScript methods will only be printed if this is set to "true".
+     * The static JavaScript methods will only be printed if this is set to
+     * "true".
      */
     protected String staticJavascript = "true";
 
     /**
-     * The dynamic JavaScript objects will only be generated if this is set to "true".
+     * The dynamic JavaScript objects will only be generated if this is set to
+     * "true".
      */
     protected String dynamicJavascript = "true";
 
     /**
-     * The src attribute for html script element (used to include an external script
-     * resource). The src attribute is only recognized
+     * The src attribute for html script element (used to include an external
+     * script resource). The src attribute is only recognized
      * when the formName attribute is specified.
      */
     protected String src = null;
 
     /**
-     * The JavaScript methods will enclosed with html comments if this is set to "true".
+     * The JavaScript methods will enclosed with html comments if this is set to
+     * "true".
      */
     protected String htmlComment = "true";
-    
+
     /**
      * Hide JavaScript methods in a CDATA section for XHTML when "true".
      */
@@ -130,7 +134,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     private String htmlBeginComment = "\n<!-- Begin \n";
 
     private String htmlEndComment = "//End --> \n";
-    
+
     /**
      * Gets the key (form name) that will be used
      * to retrieve a set of validation rules to be
@@ -270,9 +274,11 @@ public class JavascriptValidatorTag extends BodyTagSupport {
     public int doStartTag() throws JspException {
         StringBuffer results = new StringBuffer();
 
-        HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+        HttpServletRequest request =
+          (HttpServletRequest)pageContext.getRequest();
         ServletContext servletContext = pageContext.getServletContext();
-        ModuleConfig config = ModuleUtils.getInstance().getModuleConfig(request, servletContext);
+        ModuleConfig config =
+          ModuleUtils.getInstance().getModuleConfig(request, servletContext);
 
         ValidatorResources resources =
             (ValidatorResources) pageContext.getAttribute(
@@ -296,7 +302,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 for (Iterator i = form.getFields().iterator(); i.hasNext();) {
                     Field field = (Field) i.next();
 
-                    for (Iterator x = field.getDependencyList().iterator(); x.hasNext();) {
+                    for (Iterator x = field.getDependencyList().iterator();
+                        x.hasNext();) {
                         Object o = x.next();
 
                         if (o != null && !lActionMethods.contains(o)) {
@@ -317,8 +324,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                             "Depends string \""
                                 + depends
                                 + "\" was not found in validator-rules.xml.");
-                    }               
-                    
+                    }
+
                     String javascript = va.getJavascript();
                     if (javascript != null && javascript.length() > 0) {
                         lActions.add(va);
@@ -332,19 +339,26 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                         ValidatorAction va1 = (ValidatorAction) o1;
                         ValidatorAction va2 = (ValidatorAction) o2;
 
-                        if ((va1.getDepends() == null || va1.getDepends().length() == 0)
-                            && (va2.getDepends() == null || va2.getDepends().length() == 0)) {
+                        if ((va1.getDepends() == null
+                            || va1.getDepends().length() == 0)
+                            && (va2.getDepends() == null
+                            || va2.getDepends().length() == 0)) {
                             return 0;
                         } else if (
-                            (va1.getDepends() != null && va1.getDepends().length() > 0)
-                                && (va2.getDepends() == null || va2.getDepends().length() == 0)) {
+                            (va1.getDepends() != null
+                            && va1.getDepends().length() > 0)
+                            && (va2.getDepends() == null
+                            || va2.getDepends().length() == 0)) {
                             return 1;
                         } else if (
-                            (va1.getDepends() == null || va1.getDepends().length() == 0)
-                                && (va2.getDepends() != null && va2.getDepends().length() > 0)) {
+                            (va1.getDepends() == null
+                            || va1.getDepends().length() == 0)
+                            && (va2.getDepends() != null
+                            && va2.getDepends().length() > 0)) {
                             return -1;
                         } else {
-                            return va1.getDependencyList().size() - va2.getDependencyList().size();
+                            return va1.getDependencyList().size() -
+                              va2.getDependencyList().size();
                         }
                     }
                 });
@@ -367,7 +381,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                     String jscriptVar = null;
                     String functionName = null;
 
-                    if (va.getJsFunctionName() != null && va.getJsFunctionName().length() > 0) {
+                    if (va.getJsFunctionName() != null
+                        && va.getJsFunctionName().length() > 0) {
                         functionName = va.getJsFunctionName();
                     } else {
                         functionName = va.getName();
@@ -375,26 +390,29 @@ public class JavascriptValidatorTag extends BodyTagSupport {
 
                     if (isStruts11()) {
                         results.append("    function " +
-                                       functionName + " () { \n");
+                          functionName + " () { \n");
                     } else {
                         results.append("    function " +
-                                       formName + "_" + functionName + " () { \n");
+                          formName + "_" + functionName +
+                          " () { \n");
                     }
-                    for (Iterator x = form.getFields().iterator(); x.hasNext();) {
+                    for (Iterator x = form.getFields().iterator();
+                        x.hasNext();) {
                         Field field = (Field) x.next();
 
-                        // Skip indexed fields for now until there is a good way to handle 
-                        // error messages (and the length of the list (could retrieve from scope?))
+                        // Skip indexed fields for now until there is a good
+                        // way to handle error messages (and the length of the
+                        // list (could retrieve from scope?))
                         if (field.isIndexed()
                             || field.getPage() != page
                             || !field.isDependency(va.getName())) {
-                                
+
                             continue;
                         }
-                        
+
                         String message =
                             Resources.getMessage(messages, locale, va, field);
-                        
+
                         message = (message != null) ? message : "";
 
                         jscriptVar = this.getNextVar(jscriptVar);
@@ -421,7 +439,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                             String varValue = var.getValue();
                             String jsType = var.getJsType();
 
-                            // skip requiredif variables field, fieldIndexed, fieldTest, fieldValue
+                            // skip requiredif variables field, fieldIndexed,
+                            // fieldTest, fieldValue
                             if (varName.startsWith("field")) {
                                 continue;
                             }
@@ -436,7 +455,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                                             "\\",
                                             "\\\\")
                                         + "; ");
-                            } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(jsType)) {
+                            } else if (Var.JSTYPE_REGEXP.equalsIgnoreCase(
+                                jsType)) {
                                 results.append(
                                     "this."
                                         + varName
@@ -446,7 +466,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                                             "\\",
                                             "\\\\")
                                         + "/; ");
-                            } else if (Var.JSTYPE_STRING.equalsIgnoreCase(jsType)) {
+                            } else if (Var.JSTYPE_STRING.equalsIgnoreCase(
+                                jsType)) {
                                 results.append(
                                     "this."
                                         + varName
@@ -456,7 +477,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                                             "\\",
                                             "\\\\")
                                         + "'; ");
-                                // So everyone using the latest format doesn't need to change their xml files immediately.
+                                // So everyone using the latest format doesn't
+                                // need to change their xml files immediately.
                             } else if ("mask".equalsIgnoreCase(varName)) {
                                 results.append(
                                     "this."
@@ -491,7 +513,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 }
             }
         }
-        
+
         if ("true".equalsIgnoreCase(staticJavascript)) {
             results.append(getJavascriptStaticMethods(resources));
         }
@@ -499,7 +521,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         if (form != null
             && ("true".equalsIgnoreCase(dynamicJavascript)
                 || "true".equalsIgnoreCase(staticJavascript))) {
-                    
+
             results.append(getJavascriptEnd());
         }
 
@@ -542,11 +564,11 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 + formName.substring(1, formName.length());
 
         sb.append(this.getStartElement());
-        
+
         if (this.isXhtml() && "true".equalsIgnoreCase(this.cdata)) {
             sb.append("<![CDATA[\r\n");
         }
-        
+
         if (!this.isXhtml() && "true".equals(htmlComment)) {
             sb.append(htmlBeginComment);
         }
@@ -556,12 +578,14 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             sb.append(
                 "    function validate"
                     + name
-                    + "(form) {                                                                   \n");
+                    + "(form) {                                          "
+                    + "                         \n");
         } else {
             sb.append(
                 "    function "
                     + methodName
-                    + "(form) {                                                                   \n");
+                    + "(form) {                                          "
+                    + "                         \n");
         }
         sb.append("        if (bCancel) \n");
         sb.append("      return true; \n");
@@ -608,11 +632,11 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         if (!this.isXhtml() && "true".equals(htmlComment)){
             sb.append(htmlEndComment);
         }
-        
+
         if (this.isXhtml() && "true".equalsIgnoreCase(this.cdata)) {
             sb.append("]]>\r\n");
         }
-        
+
         sb.append("</script>\n\n");
 
         return sb.toString();
@@ -641,7 +665,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                 } else if (i == input.length()) {
                     return input.substring(0, pos) + c;
                 } else {
-                    return input.substring(0, pos) + c + input.substring(pos, input.length() - 1);
+                    return input.substring(0, pos) + c + input.substring(pos,
+                      input.length() - 1);
                 }
             } else {
                 input = replaceChar(input, pos, 'a');
@@ -662,15 +687,18 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         } else if (pos == input.length()) {
             return input.substring(0, pos) + c;
         } else {
-            return input.substring(0, pos) + c + input.substring(pos, input.length() - 1);
+            return input.substring(0, pos) + c + input.substring(pos,
+              input.length() - 1);
         }
     }
 
     /**
-     * Constructs the beginning &lt;script&gt; element depending on xhtml status.
+     * Constructs the beginning &lt;script&gt; element depending on
+     * xhtml status.
      */
     private String getStartElement() {
-        StringBuffer start = new StringBuffer("<script type=\"text/javascript\"");
+        StringBuffer start =
+          new StringBuffer("<script type=\"text/javascript\"");
 
         // there is no language attribute in xhtml
         if (!this.isXhtml()) {
@@ -684,7 +712,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         start.append("> \n");
         return start.toString();
     }
-    
+
     /**
      * Returns true if this is an xhtml page.
      */
@@ -742,7 +770,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         UIComponent parentComponent =
             ((UIComponentTag) parent).getComponentInstance();
         if (parentComponent instanceof FormComponent) {
-            if (formName.equals(parentComponent.getAttributes().get("beanName"))) {
+            if (formName.equals(
+                parentComponent.getAttributes().get("beanName"))) {
                 formClientId = parentComponent.getClientId
                     (FacesContext.getCurrentInstance());
                 return (formClientId);

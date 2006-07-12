@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -385,14 +385,14 @@ public class FormComponent extends UIForm {
         Object values[] = (Object[]) state;
         super.restoreState(context, values[0]);
         action = (String) values[1];
-	enctype = (String) values[2];
-	focus = (String) values[3];
-	focusIndex = (String) values[4];
-	onreset = (String) values[5];
-	onsubmit = (String) values[6];
-	style = (String) values[7];
-	styleClass = (String) values[8];
-	target = (String) values[9];
+        enctype = (String) values[2];
+        focus = (String) values[3];
+        focusIndex = (String) values[4];
+        onreset = (String) values[5];
+        onsubmit = (String) values[6];
+        style = (String) values[7];
+        styleClass = (String) values[8];
+        target = (String) values[9];
 
     }
 
@@ -407,14 +407,14 @@ public class FormComponent extends UIForm {
         Object values[] = new Object[10];
         values[0] = super.saveState(context);
         values[1] = action;
-	values[2] = enctype;
-	values[3] = focus;
-	values[4] = focusIndex;
-	values[5] = onreset;
-	values[6] = onsubmit;
-	values[7] = style;
-	values[8] = styleClass;
-	values[9] = target;
+        values[2] = enctype;
+        values[3] = focus;
+        values[4] = focusIndex;
+        values[5] = onreset;
+        values[6] = onsubmit;
+        values[7] = style;
+        values[8] = styleClass;
+        values[9] = target;
         return (values);
 
     }

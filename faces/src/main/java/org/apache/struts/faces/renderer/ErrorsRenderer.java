@@ -1,12 +1,12 @@
 /*
  * Copyright 2002,2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -90,9 +90,9 @@ public class ErrorsRenderer extends AbstractRenderer {
 
         // Look up availability of our predefined resource keys
         MessageResources resources = resources(context, component);
-	if (Beans.isDesignTime() && (resources == null)) {
-	    resources = dummy;
-	}
+        if (Beans.isDesignTime() && (resources == null)) {
+            resources = dummy;
+        }
         Locale locale = context.getViewRoot().getLocale();
         boolean headerPresent = resources.isPresent(locale, "errors.header");
         boolean footerPresent = resources.isPresent(locale, "errors.footer");

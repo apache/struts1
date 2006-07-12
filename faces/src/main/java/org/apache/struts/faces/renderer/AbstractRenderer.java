@@ -1,12 +1,12 @@
 /*
  * Copyright 2002,2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -51,7 +51,7 @@ public abstract class AbstractRenderer extends Renderer {
 
 
     private static final Log log =
-	LogFactory.getLog(AbstractRenderer.class);
+  LogFactory.getLog(AbstractRenderer.class);
 
 
     // -------------------------------------------------------- Renderer Methods
@@ -88,7 +88,7 @@ public abstract class AbstractRenderer extends Renderer {
         if (component instanceof EditableValueHolder) {
             setSubmittedValue(context, component);
         }
-        
+
     }
 
 
@@ -116,11 +116,11 @@ public abstract class AbstractRenderer extends Renderer {
             throw new NullPointerException();
         }
 
-	if (log.isTraceEnabled()) {
-	    log.trace("encodeBegin(id=" + component.getId() +
-		      ", family=" + component.getFamily() +
-		      ", rendererType=" + component.getRendererType() + ")");
-	}
+        if (log.isTraceEnabled()) {
+            log.trace("encodeBegin(id=" + component.getId() +
+                ", family=" + component.getFamily() +
+                ", rendererType=" + component.getRendererType() + ")");
+        }
 
         // Render the element and attributes for this component
         ResponseWriter writer = context.getResponseWriter();
@@ -153,23 +153,23 @@ public abstract class AbstractRenderer extends Renderer {
             throw new NullPointerException();
         }
 
-	if (log.isTraceEnabled()) {
-	    log.trace("encodeChildren(id=" + component.getId() +
-		      ", family=" + component.getFamily() +
-		      ", rendererType=" + component.getRendererType() + ")");
-	}
-	Iterator kids = component.getChildren().iterator();
-	while (kids.hasNext()) {
-	    UIComponent kid = (UIComponent) kids.next();
-	    kid.encodeBegin(context);
-	    if (kid.getRendersChildren()) {
-		kid.encodeChildren(context);
-	    }
-	    kid.encodeEnd(context);
-	}
-	if (log.isTraceEnabled()) {
-	    log.trace("encodeChildren(id=" + component.getId() + ") end");
-	}
+        if (log.isTraceEnabled()) {
+            log.trace("encodeChildren(id=" + component.getId() +
+                    ", family=" + component.getFamily() +
+                    ", rendererType=" + component.getRendererType() + ")");
+        }
+        Iterator kids = component.getChildren().iterator();
+        while (kids.hasNext()) {
+            UIComponent kid = (UIComponent) kids.next();
+            kid.encodeBegin(context);
+            if (kid.getRendersChildren()) {
+                kid.encodeChildren(context);
+            }
+            kid.encodeEnd(context);
+        }
+        if (log.isTraceEnabled()) {
+            log.trace("encodeChildren(id=" + component.getId() + ") end");
+        }
 
     }
 
@@ -197,11 +197,11 @@ public abstract class AbstractRenderer extends Renderer {
             throw new NullPointerException();
         }
 
-	if (log.isTraceEnabled()) {
-	    log.trace("encodeEnd(id=" + component.getId() +
-		      ", family=" + component.getFamily() +
-		      ", rendererType=" + component.getRendererType() + ")");
-	}
+        if (log.isTraceEnabled()) {
+            log.trace("encodeEnd(id=" + component.getId() +
+                    ", family=" + component.getFamily() +
+                    ", rendererType=" + component.getRendererType() + ")");
+        }
 
         // Render the element closing for this component
         ResponseWriter writer = context.getResponseWriter();
@@ -231,33 +231,33 @@ public abstract class AbstractRenderer extends Renderer {
         }
 
         // Render this component and its children recursively
-	if (log.isTraceEnabled()) {
-	    log.trace("encodeRecursive(id=" + component.getId() +
-		      ", family=" + component.getFamily() +
-		      ", rendererType=" + component.getRendererType() +
-		      ") encodeBegin");
-	}
+        if (log.isTraceEnabled()) {
+            log.trace("encodeRecursive(id=" + component.getId() +
+                    ", family=" + component.getFamily() +
+                    ", rendererType=" + component.getRendererType() +
+                    ") encodeBegin");
+        }
         component.encodeBegin(context);
         if (component.getRendersChildren()) {
-	    if (log.isTraceEnabled()) {
-		log.trace("encodeRecursive(id=" + component.getId() +
-			  ") delegating");
-	    }
+            if (log.isTraceEnabled()) {
+                log.trace("encodeRecursive(id=" + component.getId() +
+                        ") delegating");
+            }
             component.encodeChildren(context);
         } else {
-	    if (log.isTraceEnabled()) {
-		log.trace("encodeRecursive(id=" + component.getId() +
-			  ") recursing");
-	    }
+            if (log.isTraceEnabled()) {
+                log.trace("encodeRecursive(id=" + component.getId() +
+                        ") recursing");
+            }
             Iterator kids = component.getChildren().iterator();
             while (kids.hasNext()) {
                 UIComponent kid = (UIComponent) kids.next();
                 encodeRecursive(context, kid);
             }
         }
-	if (log.isTraceEnabled()) {
-	    log.trace("encodeRecursive(id=" + component.getId() + ") encodeEnd");
-	}
+        if (log.isTraceEnabled()) {
+            log.trace("encodeRecursive(id=" + component.getId() + ") encodeEnd");
+        }
         component.encodeEnd(context);
 
     }
@@ -543,7 +543,7 @@ public abstract class AbstractRenderer extends Renderer {
             input.setValid(false);
             addConverterMessage(context, component, e.getMessage());
         }
-        
+
     }
     */
 
