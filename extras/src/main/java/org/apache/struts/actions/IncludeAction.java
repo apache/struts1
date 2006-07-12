@@ -37,7 +37,8 @@ import javax.servlet.http.HttpServletResponse;
  * <p>To configure the use of this Action in your <code>struts-config.xml</code>
  * file, create an entry like this:</p>
  *
- * <code> &lt;action path="/saveSubscription" type="org.apache.struts.actions.IncludeAction"
+ * <code> &lt;action path="/saveSubscription"
+ * type="org.apache.struts.actions.IncludeAction"
  * name="subscriptionForm" scope="request" input="/subscription.jsp"
  * parameter="/path/to/processing/servlet"&gt; </code>
  *
