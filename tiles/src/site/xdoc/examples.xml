@@ -246,7 +246,11 @@ limitations under the License.
 ...
     ]]></source>
     </subsection>
+
+</section>
     
+<!-- 
+
     <subsection name="Using Inheritance:  Overloading parameters">
     </subsection>
     
@@ -255,7 +259,6 @@ limitations under the License.
     
     <subsection name="List Usage">
     </subsection>
-</section>
 
 <section name="JSP Usage">
     <subsection name="Defining Tiles In A JSP Page">
@@ -280,6 +283,8 @@ limitations under the License.
     </subsection>
     
 </section>
+
+-->
 
 </body>
 </document>
