@@ -24,10 +24,19 @@ limitations under the License.
 <body>
 
 <section name="Welcome To Tiles">
-    <p>Welcome to the Struts Tiles component.  Tiles is a templating 
-    framework.  It can be used to create a common look &amp; feel for a website or
-    application and to create reusable view components.  This site will give you
-    all the information you need to get started.</p>
+    <p>
+        Welcome to the Struts Tiles component.Tiles is a templating 
+        system. (Include on steriods.) It can be used to create a common look 
+        and feel for a web application. Tiles can also be used to create 
+        reusable view components. This site will help 
+        you get started with Tiles. 
+    </p>
+    <p>
+        Tiles can also be used without Struts. A new release of Tiles, 
+        Tiles 2, is being prepared. If you would like to use Tiles without 
+        Struts, see the new <a href="">Tiles 2 subproject.</a> 
+        The focus of this site is using Tiles <em>with</em> Struts. 
+    </p>
 </section>
 
 <section name="Tiles Features" href="Features">
@@ -41,7 +50,7 @@ limitations under the License.
                 <li>
                    Definitions can take place : 
                    <ul>
-                      <li>in a centralized xml file</li>
+                      <li>in a centralized XML file</li>
                       <li>directly in JSP pages</li>
                       <li>programatically in Actions</li>
                    </ul>
@@ -134,7 +143,7 @@ limitations under the License.
           </li>
           
           <li>
-             For example, the key could be user provilege,
+             For example, the key could represent user privileges,
              browser type, arbitrary name stored in session, etc.
           </li>
           

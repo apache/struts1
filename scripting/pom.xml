@@ -34,7 +34,7 @@
    <artifactId>struts-scripting</artifactId>
    <packaging>jar</packaging>
    <name>Struts Scripting</name>
-   <url>http://struts.apache.org</url>
+   <url>http://struts.apache.org/1.x/struts-scripting/index.html</url>
 
    <distributionManagement>
       <site>
