@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,7 +42,7 @@ import org.apache.commons.logging.LogFactory;
  * if the underlying implementation doesn't support the operation.
  */
 public class TilesUtil {
-    
+
     /** Commons Logging instance.*/
     protected static Log log = LogFactory.getLog(TilesUtil.class);
 
@@ -98,7 +98,7 @@ public class TilesUtil {
         HttpServletResponse response,
         ServletContext servletContext)
         throws IOException, ServletException {
-            
+
         tilesUtilImpl.doForward(uri, request, response, servletContext);
     }
 
@@ -118,7 +118,7 @@ public class TilesUtil {
         HttpServletResponse response,
         ServletContext servletContext)
         throws IOException, ServletException {
-            
+
         tilesUtilImpl.doInclude(uri, request, response, servletContext);
     }
 
@@ -134,7 +134,7 @@ public class TilesUtil {
         throws IOException, ServletException {
         doInclude(uri, pageContext, true);
     }
-    
+
     /**
      * Do an include using PageContext.include().
      *
@@ -195,13 +195,13 @@ public class TilesUtil {
         ServletRequest request,
         ServletContext servletContext)
         throws FactoryNotFoundException, DefinitionsFactoryException {
-            
+
         try {
             return getDefinitionsFactory(request, servletContext).getDefinition(
                 definitionName,
                 (HttpServletRequest) request,
                 servletContext);
-                
+
         } catch (NullPointerException ex) { // Factory not found in context
             throw new FactoryNotFoundException("Can't get definitions factory from context.");
         }

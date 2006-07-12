@@ -2,13 +2,13 @@
  * $Id$
  *
  * Copyright 2004-2005 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -257,11 +257,11 @@ public class TilesPreProcessor implements Command
             rd.forward(context.getRequest(), context.getResponse());
         }
     }
-    
+
     /**
-     * <p>Get the <code>RequestDispatcher</code> for the specified <code>uri</code>.  If it is not found, 
-     * send a 500 error as a response and return null; 
-     *  
+     * <p>Get the <code>RequestDispatcher</code> for the specified <code>uri</code>.  If it is not found,
+     * send a 500 error as a response and return null;
+     *
      * @param context the current <code>ServletActionContext</code>
      * @param uri the ServletContext-relative URI of the request dispatcher to find.
      * @return the <code>RequestDispatcher</code>, or null if none is returned from the <code>ServletContext</code>.

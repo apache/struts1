@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,19 +42,19 @@ import org.apache.struts.util.RequestUtils;
  * is intended to be used without Struts.
  */
 public class TilesUtilImpl implements Serializable {
-    
+
     /** Commons Logging instance.*/
     protected static final Log log = LogFactory.getLog(TilesUtil.class);
 
     /** Constant name used to store factory in servlet context */
     public static final String DEFINITIONS_FACTORY =
         "org.apache.struts.tiles.DEFINITIONS_FACTORY";
-        
+
     /**
      * JSP 2.0 include method to use which supports configurable flushing.
      */
-    private static Method include = null;    
-    
+    private static Method include = null;
+
     /**
      * Initialize the include variable with the
      * JSP 2.0 method if available.
@@ -85,7 +85,7 @@ public class TilesUtilImpl implements Serializable {
         HttpServletResponse response,
         ServletContext servletContext)
         throws IOException, ServletException {
-            
+
         request.getRequestDispatcher(uri).forward(request, response);
     }
 
@@ -105,7 +105,7 @@ public class TilesUtilImpl implements Serializable {
         HttpServletResponse response,
         ServletContext servletContext)
         throws IOException, ServletException {
-            
+
         request.getRequestDispatcher(uri).include(request, response);
     }
 
@@ -125,13 +125,13 @@ public class TilesUtilImpl implements Serializable {
             if (include != null) {
                 include.invoke(pageContext, new Object[]{uri, Boolean.valueOf(flush)});
                 return;
-            } 
+            }
         } catch (IllegalAccessException e) {
             log.debug("Could not find JSP 2.0 include method.  Using old one.", e);
         } catch (InvocationTargetException e) {
             log.debug("Unable to execute JSP 2.0 include method.  Trying old one.", e);
         }
-            
+
         pageContext.include(uri);
     }
 
@@ -142,7 +142,7 @@ public class TilesUtilImpl implements Serializable {
     public DefinitionsFactory getDefinitionsFactory(
         ServletRequest request,
         ServletContext servletContext) {
-            
+
         return (DefinitionsFactory) servletContext.getAttribute(DEFINITIONS_FACTORY);
     }
 
@@ -164,13 +164,13 @@ public class TilesUtilImpl implements Serializable {
         ServletContext servletContext,
         DefinitionsFactoryConfig factoryConfig)
         throws DefinitionsFactoryException {
-            
+
         // Create configurable factory
         DefinitionsFactory factory =
             createDefinitionFactoryInstance(factoryConfig.getFactoryClassname());
-            
+
         factory.init(factoryConfig, servletContext);
-        
+
         // Make factory accessible from jsp tags (push it in appropriate context)
         makeDefinitionsFactoryAccessible(factory, servletContext);
         return factory;
@@ -187,7 +187,7 @@ public class TilesUtilImpl implements Serializable {
      */
     protected DefinitionsFactory createDefinitionFactoryInstance(String classname)
         throws DefinitionsFactoryException {
-            
+
         try {
             Class factoryClass = RequestUtils.applicationClass(classname);
             Object factory = factoryClass.newInstance();
@@ -200,29 +200,29 @@ public class TilesUtilImpl implements Serializable {
                         (ComponentDefinitionsFactory) factory);
             }
             return (DefinitionsFactory) factory;
-            
+
         } catch (ClassCastException ex) { // Bad classname
             throw new DefinitionsFactoryException(
                 "Error - createDefinitionsFactory : Factory class '"
                     + classname
                     + " must implement 'TilesDefinitionsFactory'.",
                 ex);
-                
+
         } catch (ClassNotFoundException ex) { // Bad classname
             throw new DefinitionsFactoryException(
                 "Error - createDefinitionsFactory : Bad class name '"
                     + classname
                     + "'.",
                 ex);
-                
+
         } catch (InstantiationException ex) { // Bad constructor or error
             throw new DefinitionsFactoryException(ex);
-            
+
         } catch (IllegalAccessException ex) {
             throw new DefinitionsFactoryException(ex);
         }
     }
-    
+
     /**
      * Make definition factory accessible to Tags.
      * Factory is stored in servlet context.
@@ -232,7 +232,7 @@ public class TilesUtilImpl implements Serializable {
     protected void makeDefinitionsFactoryAccessible(
         DefinitionsFactory factory,
         ServletContext servletContext) {
-            
+
         servletContext.setAttribute(DEFINITIONS_FACTORY, factory);
     }
 

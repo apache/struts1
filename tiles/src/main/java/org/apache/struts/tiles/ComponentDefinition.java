@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,7 +35,7 @@ import org.apache.struts.util.RequestUtils;
 public class ComponentDefinition implements Serializable {
 
     /**
-     * Commons Logging instance. 
+     * Commons Logging instance.
      */
     protected static Log log = LogFactory.getLog(ComponentDefinition.class);
 
@@ -54,32 +54,32 @@ public class ComponentDefinition implements Serializable {
      */
     protected Map attributes = null;
 
-    /** 
-     * Role associated to definition. 
+    /**
+     * Role associated to definition.
      */
     protected String role = null;
 
     /** Associated Controller URL or classname, if defined */
     protected String controller = null;
 
-    /** 
+    /**
      * Associated Controller typename, if controllerName defined.
-     * Can be CONTROLLER, ACTION or URL, or null. 
+     * Can be CONTROLLER, ACTION or URL, or null.
      */
     protected String controllerType = null;
 
-    /** 
-     * Controller name type. 
+    /**
+     * Controller name type.
      */
     public static final String URL = "url";
 
-    /** 
-     * Controller name type. 
+    /**
+     * Controller name type.
      */
     public static final String CONTROLLER = "controller";
 
-    /** 
-     * Controller name type. 
+    /**
+     * Controller name type.
      */
     public static final String ACTION = "action";
 

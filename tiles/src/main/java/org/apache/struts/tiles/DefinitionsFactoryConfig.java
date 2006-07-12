@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -50,8 +50,8 @@ public class DefinitionsFactoryConfig implements Serializable {
      */
     protected boolean parserValidate = true;
 
-    /** 
-     * Definition configuration file specified by user. 
+    /**
+     * Definition configuration file specified by user.
      */
     protected String definitionConfigFiles = null;
 
@@ -70,33 +70,33 @@ public class DefinitionsFactoryConfig implements Serializable {
      */
     protected String factoryName;
 
-    /** 
-     * Alternate name for parser debug details properties in configuration file. 
+    /**
+     * Alternate name for parser debug details properties in configuration file.
      * @deprecated This will be removed in a release after Struts 1.2.
      */
     public static final String PARSER_DETAILS_PARAMETER_NAME =
         "definitions-parser-details";
 
     /**
-     * Alternate name for parser validate properties in configuration file. 
+     * Alternate name for parser validate properties in configuration file.
      */
     public static final String PARSER_VALIDATE_PARAMETER_NAME =
         "definitions-parser-validate";
 
-    /** 
-     * Alternate name for factory classname properties in configuration file. 
+    /**
+     * Alternate name for factory classname properties in configuration file.
      */
     public static final String FACTORY_CLASSNAME_PARAMETER_NAME =
         "definitions-factory-class";
 
-    /** 
-     * Alternate name for definition files properties in configuration file. 
+    /**
+     * Alternate name for definition files properties in configuration file.
      */
     public static final String DEFINITIONS_CONFIG_PARAMETER_NAME =
         "definitions-config";
 
-    /** 
-     * Alternate name for definition debug details properties in configuration file. 
+    /**
+     * Alternate name for definition debug details properties in configuration file.
      * @deprecated This will be removed in a release after Struts 1.2.
      */
     public static final String TILES_DETAILS_PARAMETER_NAME = "definitions-debug";
@@ -219,7 +219,7 @@ public class DefinitionsFactoryConfig implements Serializable {
           map.put(TILES_DETAILS_PARAMETER_NAME, Integer.toString(getDebugLevel()) );
           map.put(PARSER_DETAILS_PARAMETER_NAME, Integer.toString(getParserDebugLevel()) );
           map.put(PARSER_VALIDATE_PARAMETER_NAME, new Boolean(getParserValidate()).toString() );
-        
+
           if( ! "org.apache.struts.tiles.xmlDefinition.I18nFactorySet".equals(getFactoryClassname()) )
           map.put(FACTORY_CLASSNAME_PARAMETER_NAME, getFactoryClassname());
         */

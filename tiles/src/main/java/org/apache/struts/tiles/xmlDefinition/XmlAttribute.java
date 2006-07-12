@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -131,7 +131,7 @@ public class XmlAttribute {
     }
 
     /**
-     * Access method for the value property. Return the value or a 
+     * Access method for the value property. Return the value or a
      * QualifiedAttribute containing the value if 'direct' is set.
      *
      * @return The current value of the value property.
@@ -173,7 +173,7 @@ public class XmlAttribute {
         if (body.length() == 0) {
             return;
         }
-        
+
         setValue(body);
     }
 
@@ -230,7 +230,8 @@ public class XmlAttribute {
             }
         }
 
-        // Create attribute wrapper to hold role if role is set and no type specified
+        // Create attribute wrapper to hold role if role is set and no type 
+        // specified
         if (role != null && value != null && valueType == null) {
             realValue = new UntypedAttribute(value.toString(), role);
         }

@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2005 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -55,31 +55,31 @@ import org.xml.sax.SAXException;
  */
 public class I18nFactorySet extends FactorySet {
 
-    /** 
-     * Commons Logging instance. 
+    /**
+     * Commons Logging instance.
      */
     protected static Log log = LogFactory.getLog(I18nFactorySet.class);
 
-    /** 
-     * Config file parameter name. 
+    /**
+     * Config file parameter name.
      */
     public static final String DEFINITIONS_CONFIG_PARAMETER_NAME =
         "definitions-config";
 
-    /** 
-     * Config file parameter name. 
+    /**
+     * Config file parameter name.
      */
     public static final String PARSER_DETAILS_PARAMETER_NAME =
         "definitions-parser-details";
 
-    /** 
-     * Config file parameter name. 
+    /**
+     * Config file parameter name.
      */
     public static final String PARSER_VALIDATE_PARAMETER_NAME =
         "definitions-parser-validate";
 
-    /** 
-     * Possible definition filenames. 
+    /**
+     * Possible definition filenames.
      */
     public static final String DEFAULT_DEFINITION_FILENAMES[] =
         {
@@ -87,42 +87,42 @@ public class I18nFactorySet extends FactorySet {
             "/WEB-INF/componentDefinitions.xml",
             "/WEB-INF/instanceDefinitions.xml" };
 
-    /** 
-     * Default filenames extension. 
+    /**
+     * Default filenames extension.
      */
     public static final String FILENAME_EXTENSION = ".xml";
 
-    /** 
-     * Default factory. 
+    /**
+     * Default factory.
      */
     protected DefinitionsFactory defaultFactory = null;
 
-    /** 
+    /**
      * XML parser used.
      * Attribute is transient to allow serialization. In this implementaiton,
      * xmlParser is created each time we need it ;-(.
      */
     protected transient XmlParser xmlParser;
 
-    /** 
+    /**
      * Do we want validating parser. Default is <code>false</code>.
      * Can be set from servlet config file.
      */
     protected boolean isValidatingParser = false;
 
-    /** 
+    /**
      * Parser detail level. Default is 0.
      * Can be set from servlet config file.
      */
     protected int parserDetailLevel = 0;
 
-    /** 
-     * Names of files containing instances descriptions. 
+    /**
+     * Names of files containing instances descriptions.
      */
     private List filenames = null;
 
-    /** 
-     * Collection of already loaded definitions set, referenced by their suffix. 
+    /**
+     * Collection of already loaded definitions set, referenced by their suffix.
      */
     private Map loaded = null;
 
@@ -480,7 +480,7 @@ public class I18nFactorySet extends FactorySet {
                 } catch (Exception e) {
                 }
             }
-            
+
             // If the config isn't in the servlet context, try the class loader
             // which allows the config files to be stored in a jar
             if (input == null) {

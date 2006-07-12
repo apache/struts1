@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,13 +40,13 @@ import org.apache.struts.tiles.TilesUtil;
  * This class also serves as an interface between Components and Struts. If
  * you want to rip away Struts, simply reimplement some methods in this class.
  * You can copy them from Struts.
- * 
+ *
  */
 public class TagUtils {
 
     /** Debug flag */
     public static final boolean debug = true;
-    
+
     /**
      * Maps lowercase JSP scope names to their PageContext integer constant
      * values.
@@ -76,16 +76,16 @@ public class TagUtils {
         if (scopeName == null) {
             return defaultValue;
         }
-        
+
         if (scopeName.equalsIgnoreCase("component")) {
             return ComponentConstants.COMPONENT_SCOPE;
-            
+
         } else if (scopeName.equalsIgnoreCase("template")) {
             return ComponentConstants.COMPONENT_SCOPE;
-            
+
         } else if (scopeName.equalsIgnoreCase("tile")) {
             return ComponentConstants.COMPONENT_SCOPE;
-            
+
         } else {
             return getScope(scopeName);
         }
@@ -123,14 +123,14 @@ public class TagUtils {
      */
     public static Object retrieveBean(String beanName, String scopeName, PageContext pageContext)
         throws JspException {
-        
+
         if (scopeName == null) {
             return findAttribute(beanName, pageContext);
         }
 
         // Default value doesn't matter because we have already check it
         int scope = getScope(scopeName, PageContext.PAGE_SCOPE);
-        
+
         //return pageContext.getAttribute( beanName, scope );
         return getAttribute(beanName, scope, pageContext);
     }
@@ -144,7 +144,7 @@ public class TagUtils {
      */
     public static Object findAttribute(String beanName, PageContext pageContext) {
         ComponentContext compContext = ComponentContext.getContext(pageContext.getRequest());
-        
+
         if (compContext != null) {
             Object attribute = compContext.findAttribute(beanName, pageContext);
             if (attribute != null) {
@@ -195,7 +195,7 @@ public class TagUtils {
         String beanScope,
         PageContext pageContext)
         throws JspException {
-            
+
         try {
             Object realValue;
             Object bean = retrieveBean(beanName, beanScope, pageContext);
@@ -205,7 +205,7 @@ public class TagUtils {
                 realValue = bean; // value can be null
             }
             return realValue;
-            
+
         } catch (NoSuchMethodException ex) {
             throw new JspException(
                 "Error - component.PutAttributeTag : Error while retrieving value from bean '"
@@ -216,7 +216,7 @@ public class TagUtils {
                     + beanScope
                     + "'. (exception : "
                     + ex.getMessage(), ex);
-                    
+
         } catch (InvocationTargetException ex) {
             throw new JspException(
                 "Error - component.PutAttributeTag : Error while retrieving value from bean '"
@@ -227,7 +227,7 @@ public class TagUtils {
                     + beanScope
                     + "'. (exception : "
                     + ex.getMessage(), ex);
-                    
+
         } catch (IllegalAccessException ex) {
             throw new JspException(
                 "Error - component.PutAttributeTag : Error while retrieving value from bean '"
@@ -259,7 +259,7 @@ public class TagUtils {
         Object value,
         String scope)
         throws JspException {
-            
+
         if (scope == null)
             pageContext.setAttribute(name, value, PageContext.REQUEST_SCOPE);
         else if (scope.equalsIgnoreCase("page"))
@@ -307,13 +307,13 @@ public class TagUtils {
      */
     public static ComponentDefinition getComponentDefinition(String name, PageContext pageContext)
         throws JspException {
-            
+
         try {
             return TilesUtil.getDefinition(
                 name,
                 pageContext.getRequest(),
                 pageContext.getServletContext());
-                
+
         } catch (NoSuchDefinitionException ex) {
             throw new JspException(
                 "Error : Can't get component definition for '"
@@ -321,7 +321,7 @@ public class TagUtils {
                     + "'. Check if this name exist in component definitions.",ex);
         } catch (FactoryNotFoundException ex) { // factory not found.
             throw new JspException(ex);
-            
+
         } catch (DefinitionsFactoryException ex) {
             if (debug)
                 ex.printStackTrace();

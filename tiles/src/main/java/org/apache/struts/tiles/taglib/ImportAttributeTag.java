@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,7 +53,8 @@ public class ImportAttributeTag extends TagSupport {
      */
     private int scope = PageContext.PAGE_SCOPE;
     /**
-     * Are errors ignored. This is the property for attribute <code>ignore</code>.
+     * Are errors ignored. This is the property for attribute
+     * <code>ignore</code>.
      * Default value is <code>false</code>, which throws an exception.
      * Only "attribute not found" - errors are ignored.
      */
@@ -111,7 +112,8 @@ public class ImportAttributeTag extends TagSupport {
 
     /**
      * Set ignore flag.
-     * @param ignore default: <code>false</code>: Exception is thrown when attribute is not found, set to <code>
+     * @param ignore default: <code>false</code>: Exception is thrown when
+     * attribute is not found, set to <code>
      * true</code> to ignore missing attributes silently
      */
   public void setIgnore(boolean ignore)
@@ -121,7 +123,8 @@ public class ImportAttributeTag extends TagSupport {
 
     /**
      * Get ignore flag.
-     * @return default: <code>false</code>: Exception is thrown when attribute is not found, set to <code>
+     * @return default: <code>false</code>: Exception is thrown when attribute
+     * is not found, set to <code>
      * true</code> to ignore missing attributes silently
      */
   public boolean getIgnore()
@@ -140,9 +143,12 @@ public class ImportAttributeTag extends TagSupport {
 public int doStartTag() throws JspException
     {
       // retrieve component context
-    ComponentContext compContext = (ComponentContext)pageContext.getAttribute(ComponentConstants.COMPONENT_CONTEXT, PageContext.REQUEST_SCOPE);
+    ComponentContext compContext =
+        (ComponentContext)pageContext.getAttribute(
+            ComponentConstants.COMPONENT_CONTEXT, PageContext.REQUEST_SCOPE);
     if( compContext == null )
-        throw new JspException ( "Error - tag importAttribute : no tiles context found." );
+        throw new JspException ( "Error - tag importAttribute : "
+            + "no tiles context found." );
 
       // set scope
     scope = TagUtils.getScope( scopeName, PageContext.PAGE_SCOPE );
@@ -154,8 +160,9 @@ public int doStartTag() throws JspException
         // Check if value exist and if we must send a runtime exception
       if( value == null )
         if(!isErrorIgnored) {
-          throw new JspException ( "Error - tag importAttribute : property '"+  name + "' not found in context. Check tag syntax" );
-        }    
+          throw new JspException ( "Error - tag importAttribute : property '"+
+              name + "' not found in context. Check tag syntax" );
+        }
 
       pageContext.setAttribute(name, value, scope);
       }
@@ -167,7 +174,8 @@ public int doStartTag() throws JspException
         String name = (String)names.next();
         if(name == null ) {
           if(!isErrorIgnored)
-            throw new JspException ( "Error - tag importAttribute : encountered an attribute with key 'null'" );
+            throw new JspException ( "Error - tag importAttribute : "
+                + "encountered an attribute with key 'null'" );
           else
             return SKIP_BODY;
         }
@@ -176,8 +184,9 @@ public int doStartTag() throws JspException
         // Check if value exist and if we must send a runtime exception
         if( value == null ) {
           if(!isErrorIgnored) {
-            throw new JspException ( "Error - tag importAttribute : property '"+ name + "' has a value of 'null'" );
-          }  
+            throw new JspException ( "Error - tag importAttribute : property '"
+                + name + "' has a value of 'null'" );
+          }
         }
         pageContext.setAttribute(name, value, scope);
         } // end loop

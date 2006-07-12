@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,50 +64,50 @@ public class PutTag extends BodyTagSupport implements ComponentConstants {
 
     /* JSP Tag attributes */
 
-    /** 
-     * Name of attribute to put in component context. 
+    /**
+     * Name of attribute to put in component context.
      */
     protected String attributeName = null;
 
-    /** 
-     * Associated attribute value. 
+    /**
+     * Associated attribute value.
      */
     private Object value = null;
 
-    /** 
-     * JSP Template compatibility. 
+    /**
+     * JSP Template compatibility.
      */
     private String direct = null;
 
-    /** 
-     * Requested type for the value. 
+    /**
+     * Requested type for the value.
      */
     private String valueType = null;
 
-    /** 
-     * Bean name attribute. 
+    /**
+     * Bean name attribute.
      */
     private String beanName = null;
 
-    /** 
-     * Bean property attribute. 
+    /**
+     * Bean property attribute.
      */
     private String beanProperty = null;
 
-    /** 
-     * Bean scope attribute. 
+    /**
+     * Bean scope attribute.
      */
     private String beanScope = null;
 
-    /** 
-     * Role attribute. 
+    /**
+     * Role attribute.
      */
     private String role = null;
 
     /* Internal properties */
 
-    /** 
-     * Cached real value computed from tag attributes. 
+    /**
+     * Cached real value computed from tag attributes.
      */
     protected Object realValue = null;
 
@@ -386,7 +386,7 @@ public class PutTag extends BodyTagSupport implements ComponentConstants {
             } else {
                 realValue = bean; // value can be null
             }
-            
+
         } catch (NoSuchMethodException ex) {
             throw new JspException(
                 "Error - component.PutAttributeTag : Error while retrieving value from bean '"

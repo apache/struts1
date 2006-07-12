@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,44 +38,44 @@ import org.apache.struts.tiles.taglib.ComponentConstants;
  */
 public class DefinitionsUtil extends TilesUtil implements ComponentConstants {
 
-    /** 
-     * Commons Logging instance. 
+    /**
+     * Commons Logging instance.
      */
     protected static Log log = LogFactory.getLog(DefinitionsUtil.class);
 
-    /** 
+    /**
      * Global user defined debug level.
-     * @deprecated This will be removed in a release after Struts 1.2. 
+     * @deprecated This will be removed in a release after Struts 1.2.
      */
     public static int userDebugLevel = 0;
 
-    /** 
-     * User Debug level. 
-     * @deprecated This will be removed in a release after Struts 1.2. 
+    /**
+     * User Debug level.
+     * @deprecated This will be removed in a release after Struts 1.2.
      */
     public static final int NO_DEBUG = 0;
 
-    /** 
-     * Name of init property carrying debug level. 
+    /**
+     * Name of init property carrying debug level.
      */
     public static final String DEFINITIONS_CONFIG_USER_DEBUG_LEVEL =
         "definitions-debug";
 
-    /** 
-     * Name of init property carrying factory class name. 
+    /**
+     * Name of init property carrying factory class name.
      */
     public static final String DEFINITIONS_FACTORY_CLASSNAME =
         "definitions-factory-class";
 
-    /** 
-     * Constant name used to store factory in context. 
+    /**
+     * Constant name used to store factory in context.
      */
     public static final String DEFINITIONS_FACTORY =
         "org.apache.struts.tiles.DEFINITIONS_FACTORY";
 
-    /** 
+    /**
      * Constant name used to store definition in jsp context.
-     * Used to pass definition from a Struts action to servlet forward. 
+     * Used to pass definition from a Struts action to servlet forward.
      */
     public static final String ACTION_DEFINITION =
         "org.apache.struts.tiles.ACTION_DEFINITION";

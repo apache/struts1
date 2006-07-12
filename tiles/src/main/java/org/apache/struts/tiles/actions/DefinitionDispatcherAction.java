@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -67,9 +67,9 @@ import org.apache.struts.tiles.TilesUtil;
  * @version $Rev$ $Date$
  */
 public class DefinitionDispatcherAction extends Action {
-    
-    /** 
-     * Commons Logging instance. 
+
+    /**
+     * Commons Logging instance.
      */
     protected static Log log = LogFactory.getLog(DefinitionDispatcherAction.class);
 
@@ -93,7 +93,7 @@ public class DefinitionDispatcherAction extends Action {
         HttpServletRequest request,
         HttpServletResponse response)
         throws Exception {
-            
+
         // Identify the request parameter containing the method name
         // If none defined, use "def"
         String parameter = mapping.getParameter();
@@ -104,7 +104,7 @@ public class DefinitionDispatcherAction extends Action {
         // Identify the method name to be dispatched to
         String name = request.getParameter(parameter);
         if (name == null) {
-            log.error("Can't get parameter '" + parameter + "'.");        
+            log.error("Can't get parameter '" + parameter + "'.");
 
             return mapping.findForward("error");
         }
@@ -117,25 +117,25 @@ public class DefinitionDispatcherAction extends Action {
                     name,
                     request,
                     getServlet().getServletContext());
-                    
+
             if (log.isDebugEnabled()) {
                 log.debug("Get Definition " + definition);
             }
-            
+
             DefinitionsUtil.setActionDefinition(request, definition);
-            
+
         } catch (FactoryNotFoundException e) {
             log.error("Can't get definition factory.", e);
             return mapping.findForward("error");
-            
+
         } catch (NoSuchDefinitionException e) {
             log.error("Can't get definition '" + name + "'.", e);
             return mapping.findForward("error");
-            
+
         } catch (DefinitionsFactoryException e) {
             log.error("General Factory error '" + e.getMessage() + "'.", e);
             return mapping.findForward("error");
-            
+
         } catch (Exception e) {
             log.error("General error '" + e.getMessage() + "'.", e);
             return mapping.findForward("error");

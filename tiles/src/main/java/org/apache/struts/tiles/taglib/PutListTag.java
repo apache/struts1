@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,18 +34,18 @@ public class PutListTag
     extends TagSupport
     implements ComponentConstants, AddTagParent, PutListTagParent {
 
-    /** 
-     * Name of this attribute. 
+    /**
+     * Name of this attribute.
      */
     private String attributeName = null;
-    
-    /** 
-     * The list itself. 
+
+    /**
+     * The list itself.
      */
     private List list = null;
-    
-    /** 
-     * Role attribute. 
+
+    /**
+     * Role attribute.
      */
     private String role = null;
 
@@ -115,7 +115,7 @@ public class PutListTag
         if (list == null) {
             list = new ArrayList();
         }
-        
+
         list.add(value);
     }
 
@@ -137,7 +137,7 @@ public class PutListTag
             def.setRole(nestedTag.getRole());
             attributeValue = def;
         }
-        
+
         // now add attribute to enclosing parent (i.e. : this object)
         addElement(attributeValue);
     }
@@ -165,7 +165,7 @@ public class PutListTag
             def.setRole(nestedTag.getRole());
             attributeValue = def;
         }
-        
+
         // now add attribute to enclosing parent (i.e. : this object)
         addElement(attributeValue);
     }
@@ -197,13 +197,13 @@ public class PutListTag
             PutListTagParent parent =
                 (PutListTagParent) findAncestorWithClass(this,
                     PutListTagParent.class);
-                    
+
             if (parent == null) {
                 throw new JspException("Error - tag putList : enclosing tag doesn't accept 'putList' tag.");
             }
-            
+
             return parent;
-            
+
         } catch (ClassCastException ex) {
             throw new JspException("Error - tag putList : enclosing tag doesn't accept 'putList' tag.", ex);
         }

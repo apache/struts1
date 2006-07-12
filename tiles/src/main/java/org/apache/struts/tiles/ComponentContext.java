@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 1999-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -70,7 +70,7 @@ public class ComponentContext implements Serializable {
             attributes = new HashMap(newAttributes);
             return;
         }
-        
+
         attributes.putAll(newAttributes);
     }
 
@@ -85,7 +85,7 @@ public class ComponentContext implements Serializable {
         if (defaultAttributes == null) {
             return;
         }
-        
+
         if (attributes == null) {
             attributes = new HashMap(defaultAttributes);
             return;
@@ -110,7 +110,7 @@ public class ComponentContext implements Serializable {
         if (attributes == null){
             return null;
         }
-        
+
         return attributes.get(name);
     }
 
@@ -122,7 +122,7 @@ public class ComponentContext implements Serializable {
         if (attributes == null) {
             return Collections.EMPTY_LIST.iterator();
         }
-        
+
         return attributes.keySet().iterator();
     }
 
@@ -151,7 +151,7 @@ public class ComponentContext implements Serializable {
         if (attribute == null) {
             attribute = pageContext.findAttribute(beanName);
         }
-        
+
         return attribute;
     }
 
@@ -167,11 +167,11 @@ public class ComponentContext implements Serializable {
         String beanName,
         int scope,
         PageContext pageContext) {
-            
+
         if (scope == ComponentConstants.COMPONENT_SCOPE){
             return getAttribute(beanName);
         }
-        
+
         return pageContext.getAttribute(beanName, scope);
     }
 
@@ -196,7 +196,7 @@ public class ComponentContext implements Serializable {
     static public void setContext(
         ComponentContext context,
         ServletRequest request) {
-            
+
         request.setAttribute(ComponentConstants.COMPONENT_CONTEXT, context);
     }
 }
