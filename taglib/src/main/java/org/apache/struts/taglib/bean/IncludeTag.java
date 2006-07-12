@@ -217,7 +217,7 @@ public class IncludeTag extends TagSupport {
         try {
             BufferedInputStream is =
                 new BufferedInputStream(conn.getInputStream());
-            InputStreamReader in = new InputStreamReader(is); // FIXME - encoding
+            InputStreamReader in = new InputStreamReader(is); // FIXME- encoding
             char[] buffer = new char[BUFFER_SIZE];
             int n = 0;
 

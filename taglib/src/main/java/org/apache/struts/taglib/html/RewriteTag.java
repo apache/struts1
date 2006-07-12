@@ -49,8 +49,8 @@ public class RewriteTag extends LinkTag {
         String url = null;
 
         try {
-            // Note that we're encoding the & character to &amp; in XHTML mode only, 
-            // otherwise the & is written as is to work in javascripts. 
+            // Note that we're encoding the & character to &amp; in XHTML mode only,
+            // otherwise the & is written as is to work in javascripts.
             url = TagUtils.getInstance().computeURLWithCharEncoding(pageContext,
                     forward, href, page, action, module, params, anchor, false,
                     this.isXhtml(), useLocalEncoding);

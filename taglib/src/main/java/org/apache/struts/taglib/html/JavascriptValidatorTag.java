@@ -363,7 +363,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
         ModuleConfig config =
             TagUtils.getInstance().getModuleConfig(pageContext);
         ValidatorResources resources =
-            (ValidatorResources) pageContext.getAttribute(ValidatorPlugIn.VALIDATOR_KEY
+            (ValidatorResources) pageContext.getAttribute(
+              ValidatorPlugIn.VALIDATOR_KEY
                 + config.getPrefix(), PageContext.APPLICATION_SCOPE);
 
         if (resources == null) {
@@ -482,8 +483,9 @@ public class JavascriptValidatorTag extends BodyTagSupport {
             for (Iterator x = form.getFields().iterator(); x.hasNext();) {
                 Field field = (Field) x.next();
 
-                // Skip indexed fields for now until there is a good way to handle
-                // error messages (and the length of the list (could retrieve from scope?))
+                // Skip indexed fields for now until there is a good way to
+                // handle error messages (and the length of the list (could
+                // retrieve from scope?))
                 if (field.isIndexed() || (field.getPage() != page)
                     || !field.isDependency(va.getName())) {
                     continue;
@@ -514,7 +516,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                         Resources.getVarValue(var, application, request, false);
                     String jsType = var.getJsType();
 
-                    // skip requiredif variables field, fieldIndexed, fieldTest, fieldValue
+                    // skip requiredif variables field, fieldIndexed, fieldTest,
+                    // fieldValue
                     if (varName.startsWith("field")) {
                         continue;
                     }
@@ -531,7 +534,8 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                         results.append("this." + varName + "='"
                             + varValueEscaped + "'; ");
 
-                        // So everyone using the latest format doesn't need to change their xml files immediately.
+                        // So everyone using the latest format doesn't need to
+                        // change their xml files immediately.
                     } else if ("mask".equalsIgnoreCase(varName)) {
                         results.append("this." + varName + "=/"
                             + varValueEscaped + "/; ");

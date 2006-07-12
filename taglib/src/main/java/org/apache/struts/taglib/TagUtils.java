@@ -68,7 +68,7 @@ public class TagUtils {
      * Commons logging instance.
      */
     private static final Log log = LogFactory.getLog(TagUtils.class);
-    
+
     /**
      * The message resources for this package. TODO We need to move the
      * relevant messages out of this properties file.
@@ -115,9 +115,9 @@ public class TagUtils {
      * @param instance The instance to set.
      */
     public static void setInstance(TagUtils instance){
-    	TagUtils.instance = instance;
+      TagUtils.instance = instance;
     }
-    
+
     /**
      * Compute a set of query parameters that will be dynamically added to a
      * generated URL.  The returned Map is keyed by parameter name, and the

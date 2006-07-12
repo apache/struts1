@@ -231,7 +231,8 @@ public class IterateTag extends BodyTagSupport {
 
         if (collection == null) {
             collection =
-                TagUtils.getInstance().lookup(pageContext, name, property, scope);
+                TagUtils.getInstance().lookup(pageContext, name, property,
+                    scope);
         }
 
         if (collection == null) {

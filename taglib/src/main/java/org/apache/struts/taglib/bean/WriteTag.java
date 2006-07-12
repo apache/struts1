@@ -220,7 +220,8 @@ public class WriteTag extends TagSupport {
     public int doStartTag() throws JspException {
         // Look up the requested bean (if necessary)
         if (ignore) {
-            if (TagUtils.getInstance().lookup(pageContext, name, scope) == null) {
+            if (TagUtils.getInstance().lookup(pageContext, name, scope)
+                == null) {
                 return (SKIP_BODY); // Nothing to output
             }
         }
@@ -275,7 +276,8 @@ public class WriteTag extends TagSupport {
      *
      * When a format string is retrieved from the message resources,
      * <code>applyLocalizedPattern</code> is used. For more about localized
-     * patterns, see <http://www.dei.unipd.it/corsi/fi2ae-docs/source/jdk1.1.7/src/java/text/resources/>.
+     * patterns, see
+     * <http://www.dei.unipd.it/corsi/fi2ae-docs/source/jdk1.1.7/src/java/text/resources/>.
      * (To obtain the correct value for some characters, you may need to view
      * the file in a hex editor and then use the Unicode escape form in the
      * property resources file.)
@@ -296,7 +298,8 @@ public class WriteTag extends TagSupport {
         if (value instanceof java.lang.String) {
             return (String) value;
         } else {
-            // Try to retrieve format string from resources by the key from formatKey.
+            // Try to retrieve format string from resources by the key from
+            // formatKey.
             if ((formatString == null) && (formatKey != null)) {
                 formatString = retrieveFormatString(this.formatKey);
 
@@ -329,7 +332,8 @@ public class WriteTag extends TagSupport {
                         format = NumberFormat.getNumberInstance(locale);
 
                         if (formatStrFromResources) {
-                            ((DecimalFormat) format).applyLocalizedPattern(formatString);
+                            ((DecimalFormat) format).applyLocalizedPattern(
+                                formatString);
                         } else {
                             ((DecimalFormat) format).applyPattern(formatString);
                         }

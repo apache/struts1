@@ -33,7 +33,7 @@ import javax.servlet.jsp.JspException;
  */
 public class NestedFormTag extends FormTag implements NestedNameSupport {
     //TODO: name property was removed from FormTag but appears to be required
-    //      for the nested version to work. See if it can be removed 
+    //      for the nested version to work. See if it can be removed
     //      from here altogether.
 
     /**
