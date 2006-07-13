@@ -115,7 +115,7 @@
         <version>2.0.1</version>
         <configuration>
           <descriptors>
-            <descriptor>src/main/assembly/dist.xml</descriptor>
+            <descriptor>src/main/assembly/all.xml</descriptor>
             <descriptor>src/main/assembly/lib.xml</descriptor>
             <descriptor>src/main/assembly/apps.xml</descriptor>
             <descriptor>src/main/assembly/src.xml</descriptor>
