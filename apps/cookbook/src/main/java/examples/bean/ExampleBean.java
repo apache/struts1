@@ -66,7 +66,7 @@ public class ExampleBean implements Serializable {
 
     /** HTML formatted markup */
     private String html =
-          "<p>This is a <strong>simple</strong> example of " 
+          "<p>This is a <strong>simple</strong> example of "
         + "<em>HTML</em> formatted text.</p>";
 
     // ------------------------------------------------------------ Constructors

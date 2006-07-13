@@ -27,7 +27,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 /**
- * Perform any tasks and setup any data that 
+ * Perform any tasks and setup any data that
  * must be prepared before the form is displayed.
  *
  * @version $Rev$ $Date$
@@ -46,8 +46,8 @@ public class PrepareTokenAction extends Action {
     // ---------------------------------------------------------- Action Methods
 
     /**
-     * Process the request and return an <code>ActionForward</code> instance 
-     * describing where and how control should be forwarded, or 
+     * Process the request and return an <code>ActionForward</code> instance
+     * describing where and how control should be forwarded, or
      * <code>null</code>if the response has already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
@@ -56,7 +56,7 @@ public class PrepareTokenAction extends Action {
      * @param response The HTTP response we are creating
      *
      * @exception Exception if an exception occurs
-     * 
+     *
      * @return the ActionForward to forward control to
      */
     public ActionForward execute(
@@ -66,10 +66,10 @@ public class PrepareTokenAction extends Action {
         HttpServletResponse response)
         throws Exception {
 
-        // Generate a unique token that will be 
+        // Generate a unique token that will be
         // check when the form is submitted
         saveToken(request);
-       
+
 
         // Forward to the form
         return mapping.findForward("success");

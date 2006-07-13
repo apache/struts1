@@ -27,7 +27,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 /**
- * Perform any tasks and setup any data that 
+ * Perform any tasks and setup any data that
  * must be prepared before the form is displayed.
  *
  * @version $Rev$ $Date$
@@ -46,8 +46,8 @@ public class PrepareMultiboxAction extends Action {
     // ---------------------------------------------------------- Action Methods
 
     /**
-     * Process the request and return an <code>ActionForward</code> instance 
-     * describing where and how control should be forwarded, or 
+     * Process the request and return an <code>ActionForward</code> instance
+     * describing where and how control should be forwarded, or
      * <code>null</code>if the response has already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
@@ -56,7 +56,7 @@ public class PrepareMultiboxAction extends Action {
      * @param response The HTTP response we are creating
      *
      * @exception Exception if an exception occurs
-     * 
+     *
      * @return the ActionForward to forward control to
      */
     public ActionForward execute(
@@ -67,24 +67,24 @@ public class PrepareMultiboxAction extends Action {
         throws Exception {
 
         System.out.println("Prepare MultiboxActionForm ....");
-            
-        /* 
-         * Prepare a String array of color names used to generate 
+
+        /*
+         * Prepare a String array of color names used to generate
          * checkboxes using html:multibox tags in the JSP page.
          */
         String[] colors =
             { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" };
         request.setAttribute("colors", colors);
-    
+
         /*
-         * Set default checkbox values. 
-         */ 
+         * Set default checkbox values.
+         */
         String[] defaultFruits = { "Orange", "Banana", "Apple" };
         String[] defaultColors = { "Orange", "Yellow" };
         MultiboxActionForm multiboxForm = (MultiboxActionForm) form;
         multiboxForm.setFruits(defaultFruits);
         multiboxForm.setColors(defaultColors);
-        
+
         // Return an ActionForward to the form
         return mapping.findForward("success");
 

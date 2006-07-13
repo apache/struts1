@@ -45,9 +45,9 @@ public class CustomValidator {
 
     // ---------------------------------------------------------- Public Methods
 
-    /** 
+    /**
      * Example validator for comparing the equality of two fields
-     * 
+     *
      * http://struts.apache.org/userGuide/dev_validator.html
      * http://www.raibledesigns.com/page/rd/20030226
      */
@@ -57,7 +57,7 @@ public class CustomValidator {
         Field field,
         ActionMessages errors,
         HttpServletRequest request) {
-    	
+
         String value =
             ValidatorUtils.getValueAsString(bean, field.getProperty());
         String property2 = field.getVarValue("secondProperty");

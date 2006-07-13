@@ -27,7 +27,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 /**
- * Retrieve and process data from the submitted form 
+ * Retrieve and process data from the submitted form
  *
  * @version $Rev$ $Date$
  */
@@ -45,8 +45,8 @@ public class ProcessValidatorAction extends Action {
     // ---------------------------------------------------------- Action Methods
 
     /**
-     * Process the request and return an <code>ActionForward</code> instance 
-     * describing where and how control should be forwarded, or 
+     * Process the request and return an <code>ActionForward</code> instance
+     * describing where and how control should be forwarded, or
      * <code>null</code>if the response has already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
@@ -55,7 +55,7 @@ public class ProcessValidatorAction extends Action {
      * @param response The HTTP response we are creating
      *
      * @exception Exception if the application logic throws an exception
-     * 
+     *
      * @return the ActionForward for the next view
      */
     public ActionForward execute(
@@ -65,7 +65,7 @@ public class ProcessValidatorAction extends Action {
         HttpServletResponse response)
         throws Exception {
 
-        // If user pressed 'Cancel' button, 
+        // If user pressed 'Cancel' button,
         // return to home page
         if (isCancelled(request)) {
             return mapping.findForward("home");

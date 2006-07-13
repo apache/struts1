@@ -27,7 +27,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 /**
- * Perform any tasks and setup any data that 
+ * Perform any tasks and setup any data that
  * must be prepared before the form is displayed.
  *
  * @version $Rev$ $Date$
@@ -46,8 +46,8 @@ public class PrepareBeanAction extends Action {
     // ---------------------------------------------------------- Action Methods
 
     /**
-     * Process the request and return an <code>ActionForward</code> instance 
-     * describing where and how control should be forwarded, or 
+     * Process the request and return an <code>ActionForward</code> instance
+     * describing where and how control should be forwarded, or
      * <code>null</code>if the response has already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
@@ -56,7 +56,7 @@ public class PrepareBeanAction extends Action {
      * @param response The HTTP response we are creating
      *
      * @exception Exception if an exception occurs
-     * 
+     *
      * @return the ActionForward to forward control to
      */
     public ActionForward execute(
@@ -72,10 +72,10 @@ public class PrepareBeanAction extends Action {
         example.getList().add("List entry #2");
         example.getList().add("List entry #3");
         example.getList().add("List entry #4");
-        
+
         // Add a nested bean
         example.setNested(new NestedBean());
-       
+
         // Place the example bean in the request scope
         request.setAttribute("example", example);
 

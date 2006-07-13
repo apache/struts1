@@ -59,14 +59,14 @@ public class MultiboxActionForm extends ActionForm {
     public void reset(ActionMapping mapping, HttpServletRequest request) {
 
         /*
-         * The ActionForm reset method should only be used to *clear* 
+         * The ActionForm reset method should only be used to *clear*
          * checkboxes. The correct place to *set* default checkbox values is in
          * the 'prepare' action, called prior to displaying the form page.
-         */ 
+         */
         String[] empty = {};
         this.fruits = empty;
         this.colors = empty;
-              
+
     }
 
     /**
@@ -78,16 +78,16 @@ public class MultiboxActionForm extends ActionForm {
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
-     * 
+     *
      * @return ActionMessages if any validation errors occurred
      */
     public ActionErrors validate(
         ActionMapping mapping,
         HttpServletRequest request) {
-        
+
         /*
-         * We're not doing any validation (yet) so return null to 
-         * indicate that there were no errors. (We don't 
+         * We're not doing any validation (yet) so return null to
+         * indicate that there were no errors. (We don't
          * actually need to override this nethod unles we're doing
          * validation - but it's here for reference)
          */

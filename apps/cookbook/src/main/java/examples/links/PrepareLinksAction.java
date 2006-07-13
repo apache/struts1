@@ -31,7 +31,7 @@ import org.apache.struts.action.ActionMapping;
 import examples.TestBean;
 
 /**
- * Perform any tasks and setup any data that 
+ * Perform any tasks and setup any data that
  * must be prepared before the form is displayed.
  *
  * @version $Rev$ $Date$
@@ -50,8 +50,8 @@ public class PrepareLinksAction extends Action {
     // ---------------------------------------------------------- Action Methods
 
     /**
-     * Process the request and return an <code>ActionForward</code> instance 
-     * describing where and how control should be forwarded, or 
+     * Process the request and return an <code>ActionForward</code> instance
+     * describing where and how control should be forwarded, or
      * <code>null</code>if the response has already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
@@ -60,7 +60,7 @@ public class PrepareLinksAction extends Action {
      * @param response The HTTP response we are creating
      *
      * @exception Exception if an exception occurs
-     * 
+     *
      * @return the ActionForward to forward control to
      */
     public ActionForward execute(
@@ -75,10 +75,10 @@ public class PrepareLinksAction extends Action {
         parms.put("fruit", "Apple");
         parms.put("animal", "Rabbit");
         request.setAttribute("parms", parms);
-        
+
         TestBean bean = new TestBean();
-        request.setAttribute("testBean", bean);        
-        
+        request.setAttribute("testBean", bean);
+
         // Just forward to the form - no preparation required
         return mapping.findForward("success");
 

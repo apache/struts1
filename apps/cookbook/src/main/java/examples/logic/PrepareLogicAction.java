@@ -35,7 +35,7 @@ import examples.TestBean;
 import examples.options.BookBean;
 
 /**
- * Perform any tasks and setup any data that 
+ * Perform any tasks and setup any data that
  * must be prepared before the form is displayed.
  *
  * @version $Rev$ $Date$
@@ -54,8 +54,8 @@ public class PrepareLogicAction extends Action {
     // ---------------------------------------------------------- Action Methods
 
     /**
-     * Process the request and return an <code>ActionForward</code> instance 
-     * describing where and how control should be forwarded, or 
+     * Process the request and return an <code>ActionForward</code> instance
+     * describing where and how control should be forwarded, or
      * <code>null</code>if the response has already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
@@ -64,7 +64,7 @@ public class PrepareLogicAction extends Action {
      * @param response The HTTP response we are creating
      *
      * @exception Exception if an exception occurs
-     * 
+     *
      * @return the ActionForward to forward control to
      */
     public ActionForward execute(
@@ -95,7 +95,7 @@ public class PrepareLogicAction extends Action {
         request.setAttribute("books", books);
 
         ActionErrors errors = new ActionErrors();
-        
+
         errors.add(ActionMessages.GLOBAL_MESSAGE,
             new ActionMessage("errors.detail", "This is a global error #1"));
         errors.add(ActionMessages.GLOBAL_MESSAGE,
@@ -111,10 +111,10 @@ public class PrepareLogicAction extends Action {
         messages.add("test",
             new ActionMessage("message.example.simple"));
 
-        
+
         saveMessages(request, messages);
         saveErrors(request, errors);
-        
+
         // Forward to the form
         return mapping.findForward("success");
 

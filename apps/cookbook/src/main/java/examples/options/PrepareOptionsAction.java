@@ -31,7 +31,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.util.LabelValueBean;
 
 /**
- * Perform any tasks and setup any data that 
+ * Perform any tasks and setup any data that
  * must be prepared before the form is displayed.
  *
  * @version $Rev$ $Date$
@@ -50,8 +50,8 @@ public class PrepareOptionsAction extends Action {
     // ---------------------------------------------------------- Action Methods
 
     /**
-     * Process the request and return an <code>ActionForward</code> instance 
-     * describing where and how control should be forwarded, or 
+     * Process the request and return an <code>ActionForward</code> instance
+     * describing where and how control should be forwarded, or
      * <code>null</code>if the response has already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
@@ -60,7 +60,7 @@ public class PrepareOptionsAction extends Action {
      * @param response The HTTP response we are creating
      *
      * @exception Exception if an exception occurs
-     * 
+     *
      * @return the ActionForward to forward control to
      */
     public ActionForward execute(
@@ -132,18 +132,18 @@ public class PrepareOptionsAction extends Action {
         books.add(new BookBean("0971661901", "Struts Fast Track"));
         request.setAttribute("books", books);
 
-        /* A Map 
-         * 
-         * Note: We are using a HashMap which is unsorted - the resulting 
+        /* A Map
+         *
+         * Note: We are using a HashMap which is unsorted - the resulting
          * options could appear in any order. If you want to your options to be
          * in a particular order you should you a SortedMap implementation such
-         * as the TreeMap. This behaviour is a feature of the standard Map 
+         * as the TreeMap. This behaviour is a feature of the standard Map
          * implementaions and nothing to to with Struts tags.
-         * 
-         * Also, we've used an Integer as the key to demonstrate that the 
-         * <html:options> and <html:optionsCollection> tags do not require 
+         *
+         * Also, we've used an Integer as the key to demonstrate that the
+         * <html:options> and <html:optionsCollection> tags do not require
          * String values for the label and values. If they are passed an object
-         * other than a String, they will automatically call the toString() 
+         * other than a String, they will automatically call the toString()
          * method and use the result.
          */
         HashMap animals = new HashMap();

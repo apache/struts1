@@ -26,12 +26,12 @@ package examples.options;
 public class BookBean {
 
     // ------------------------------------------------------ Instance Variables
-    
+
     /**
      * International Standard Book Number (ISBN)
      */
     private String isbn;
-    
+
     /**
      * Book Title
      */

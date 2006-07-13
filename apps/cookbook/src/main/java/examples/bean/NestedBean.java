@@ -29,10 +29,10 @@ import java.io.Serializable;
 public class NestedBean implements Serializable {
 
     // ------------------------------------------------------ Instance Variables
-    
+
     /** A string value */
     private String stringValue = "This is a string from NestedBean";
-    
+
     // ------------------------------------------------------------ Constructors
 
     /**

@@ -31,7 +31,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 /**
- * Retrieve and process data from the submitted form 
+ * Retrieve and process data from the submitted form
  *
  * @version $Rev$ $Date$
  */
@@ -49,8 +49,8 @@ public class ProcessLocalizationAction extends Action {
     // ---------------------------------------------------------- Action Methods
 
     /**
-     * Process the request and return an <code>ActionForward</code> instance 
-     * describing where and how control should be forwarded, or 
+     * Process the request and return an <code>ActionForward</code> instance
+     * describing where and how control should be forwarded, or
      * <code>null</code>if the response has already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
@@ -59,7 +59,7 @@ public class ProcessLocalizationAction extends Action {
      * @param response The HTTP response we are creating
      *
      * @exception Exception if the application logic throws an exception
-     * 
+     *
      * @return the ActionForward for the next view
      */
     public ActionForward execute(
@@ -71,12 +71,12 @@ public class ProcessLocalizationAction extends Action {
 
         // Extract attributes we will need
         HttpSession session = request.getSession();
-        
+
         // Get locale from request, if any
         Locale locale = request.getLocale();
 
-        // If supplied, set Locale based on request parameters; 
-        // country and language 
+        // If supplied, set Locale based on request parameters;
+        // country and language
         String language = request.getParameter("language");
         String country = request.getParameter("country");
 
@@ -85,8 +85,8 @@ public class ProcessLocalizationAction extends Action {
             locale = new java.util.Locale(language, country);
         } else if (language != null && language.length() > 0) {
             locale = new java.util.Locale(language, "");
-        } 
-        
+        }
+
         //Save locale
         session.setAttribute(Globals.LOCALE_KEY, locale);
 

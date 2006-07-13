@@ -93,7 +93,7 @@ public class SimpleActionForm extends ActionForm {
      *
      * @param mapping The mapping used to select this instance
      * @param request The servlet request we are processing
-     * 
+     *
      * @return ActionMessages if any validation errors occurred
      */
     public ActionErrors validate(

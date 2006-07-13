@@ -30,7 +30,7 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 
 /**
- * Retrieve and process data from the submitted form 
+ * Retrieve and process data from the submitted form
  *
  * @version $Rev$ $Date$
  */
@@ -48,8 +48,8 @@ public class ProcessTokenAction extends Action {
     // ---------------------------------------------------------- Action Methods
 
     /**
-     * Process the request and return an <code>ActionForward</code> instance 
-     * describing where and how control should be forwarded, or 
+     * Process the request and return an <code>ActionForward</code> instance
+     * describing where and how control should be forwarded, or
      * <code>null</code>if the response has already been completed.
      *
      * @param mapping The ActionMapping used to select this instance
@@ -58,7 +58,7 @@ public class ProcessTokenAction extends Action {
      * @param response The HTTP response we are creating
      *
      * @exception Exception if the application logic throws an exception
-     * 
+     *
      * @return the ActionForward for the next view
      */
     public ActionForward execute(
@@ -68,7 +68,7 @@ public class ProcessTokenAction extends Action {
         HttpServletResponse response)
         throws Exception {
 
-        // If user pressed 'Cancel' button, 
+        // If user pressed 'Cancel' button,
         // return to home page
         if (isCancelled(request)) {
             return mapping.findForward("home");
@@ -76,7 +76,7 @@ public class ProcessTokenAction extends Action {
 
         ActionErrors errors = new ActionErrors();
 
-        // Prevent unintentional duplication submissions by checking 
+        // Prevent unintentional duplication submissions by checking
         // that we have not received this token previously
         if (!isTokenValid(request)) {
             errors.add(
