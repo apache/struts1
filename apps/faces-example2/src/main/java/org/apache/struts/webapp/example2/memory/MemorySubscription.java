@@ -27,7 +27,7 @@ import org.apache.struts.webapp.example2.User;
  * database backed by an XML data file.</p>
  *
  * @author Craig R. McClanahan
- * @version $Rev: 54934 $ $Date: 2004-10-16 10:07:50 -0700 (Sat, 16 Oct 2004) $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 

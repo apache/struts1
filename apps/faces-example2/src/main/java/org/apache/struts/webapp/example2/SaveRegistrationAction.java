@@ -40,7 +40,7 @@ import org.apache.struts.action.ActionMapping;
  * registration is created, the user is also implicitly logged on.
  *
  * @author Craig R. McClanahan
- * @version $Rev: 55303 $ $Date: 2004-10-21 19:56:53 -0700 (Thu, 21 Oct 2004) $
+ * @version $Rev$ $Date$
  */
 
 public final class SaveRegistrationAction extends Action {
