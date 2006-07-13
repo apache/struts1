@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2000-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,27 +32,27 @@ public class CityStateZip implements java.io.Serializable {
 
 
     public String getCity() {
-       return sCity;	
+       return sCity;
     }
-    
+
     public void setCity(String sCity) {
-       	this.sCity = sCity;
+        this.sCity = sCity;
     }
 
     public String getStateProv() {
-       return sStateProv;	
+       return sStateProv;
     }
-    
+
     public void setStateProv(String sStateProv) {
-       	this.sStateProv = sStateProv;
+        this.sStateProv = sStateProv;
     }
 
     public String getZipPostal(int index) {
-       return sZipPostal[index];	
+       return sZipPostal[index];
     }
-    
+
     public void setZipPostal(int index, String value) {
-       	this.sZipPostal[index] = value;
+        this.sZipPostal[index] = value;
     }
 
 }

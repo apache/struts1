@@ -1,5 +1,5 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2005 The Apache Software Foundation.
  *
@@ -37,7 +37,7 @@ import org.apache.commons.logging.Log;
  * can be displayed.
  */
 public class ShowFileAction extends Action {
-    
+
     /** Logging Instance. */
     private static final Log log = LogFactory.getLog(ShowFileAction.class);
 
@@ -52,7 +52,7 @@ public class ShowFileAction extends Action {
         StringBuffer fileContents = new StringBuffer();
 
         if(fileName != null) {
-            
+
             InputStream input = servlet.getServletContext().getResourceAsStream(fileName);
             if (input == null) {
                 log.warn("File Not Found: "+fileName);
@@ -71,12 +71,12 @@ public class ShowFileAction extends Action {
         } else {
             log.error("No file name specified.");
         }
-            
+
 
         // Store the File contents and name in the Request
         request.setAttribute("fileName", fileName);
         request.setAttribute("fileContents", fileContents.toString());
-        
+
         return mapping.findForward("success");
     }
 }

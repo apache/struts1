@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2000-2004 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,7 +31,7 @@ import org.apache.struts.validator.ValidatorForm;
 */
 public final class RegistrationForm extends ValidatorForm implements Serializable {
     private String action = null;
-       
+
     private String sFirstName = null;
     private String sLastName = null;
     private String sAddr = null;
@@ -41,7 +41,7 @@ public final class RegistrationForm extends ValidatorForm implements Serializabl
 
 
     public String getAction() {
-	return action;
+  return action;
     }
 
     public void setAction(String action) {
@@ -49,53 +49,53 @@ public final class RegistrationForm extends ValidatorForm implements Serializabl
     }
 
     public String getFirstName() {
-       return sFirstName;	
+       return sFirstName;
     }
-    
+
     public void setFirstName(String sFirstName) {
-       	this.sFirstName = sFirstName;
+        this.sFirstName = sFirstName;
     }
-    
+
     public String getLastName() {
-       return sLastName;	
+       return sLastName;
     }
-    
+
     public void setLastName(String sLastName) {
-       	this.sLastName = sLastName;
+        this.sLastName = sLastName;
     }
 
     public String getAddr() {
-       return sAddr;	
+       return sAddr;
     }
-    
+
     public void setAddr(String sAddr) {
-       	this.sAddr = sAddr;
+        this.sAddr = sAddr;
     }
 
     public CityStateZip getCityStateZip() {
-       return csz;	
+       return csz;
     }
-    
+
     public void setCityStateZip(CityStateZip csz) {
-       	this.csz = csz;
+        this.csz = csz;
     }
 
     public String getPhone() {
-       return sPhone;	
+       return sPhone;
     }
-    
+
     public void setPhone(String sPhone) {
-       	this.sPhone = sPhone;
+        this.sPhone = sPhone;
     }
 
     public String getEmail() {
-       return sEmail;	
+       return sEmail;
     }
-    
+
     public void setEmail(String sEmail) {
-       	this.sEmail = sEmail;
+        this.sEmail = sEmail;
     }
-        
+
     /**
      * Reset all properties to their default values.
      *

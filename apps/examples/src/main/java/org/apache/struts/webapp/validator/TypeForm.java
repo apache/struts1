@@ -1,5 +1,5 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2000-2006 The Apache Software Foundation.
  *
@@ -78,7 +78,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setByte(String sByte) {
-       	this.sByte = sByte;
+        this.sByte = sByte;
     }
 
     public String getShort() {
@@ -86,7 +86,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setShort(String sShort) {
-       	this.sShort = sShort;
+        this.sShort = sShort;
     }
 
     public String getInteger() {
@@ -94,7 +94,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setInteger(String sInteger) {
-       	this.sInteger = sInteger;
+        this.sInteger = sInteger;
     }
 
     public String getIntRange() {
@@ -110,7 +110,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setLong(String sLong) {
-       	this.sLong = sLong;
+        this.sLong = sLong;
     }
 
     public String getFloat() {
@@ -118,7 +118,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setFloat(String sFloat) {
-       	this.sFloat = sFloat;
+        this.sFloat = sFloat;
     }
 
    /**
@@ -142,7 +142,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setDouble(String sDouble) {
-       	this.sDouble = sDouble;
+        this.sDouble = sDouble;
     }
 
     public String getDate() {
@@ -150,7 +150,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setDate(String sDate) {
-       	this.sDate = sDate;
+        this.sDate = sDate;
     }
 
     public String getCreditCard() {
@@ -158,7 +158,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setCreditCard(String sCreditCard) {
-       	this.sCreditCard = sCreditCard;
+        this.sCreditCard = sCreditCard;
     }
     public String getMinMaxLength() {
         return sMinMaxLength;
@@ -197,7 +197,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setSatisfaction(String sSatisfaction) {
-       	this.sSatisfaction = sSatisfaction;
+        this.sSatisfaction = sSatisfaction;
     }
 
     public String[] getOsList() {
@@ -205,7 +205,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setOsList(String[] anOsList) {
-       	this.sOsList = anOsList;
+        this.sOsList = anOsList;
     }
 
     public String getOverallSatisfaction() {
@@ -213,7 +213,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setOverallSatisfaction(String anOverallSatisfaction) {
-       	this.sOverallSatisfaction = anOverallSatisfaction;
+        this.sOverallSatisfaction = anOverallSatisfaction;
     }
 
     public String getWouldRecommend() {
@@ -221,7 +221,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setWouldRecommend(String anWouldRecommend) {
-       	this.sWouldRecommend = anWouldRecommend;
+        this.sWouldRecommend = anWouldRecommend;
     }
 
     public String[] getUsedLanguages() {
@@ -229,7 +229,7 @@ public final class TypeForm extends ValidatorForm implements Serializable {
     }
 
     public void setUsedLanguages(String[] anUsedLanguages) {
-       	this.sUsedLanguages = anUsedLanguages;
+        this.sUsedLanguages = anUsedLanguages;
     }
 
     public List getNameList() {
