@@ -46,7 +46,7 @@ import org.apache.struts.validator.ValidatorForm;
  * </ul>
  *
  * @author Craig R. McClanahan
- * @version $Rev: 54936 $ $Date: 2004-10-16 10:57:09 -0700 (Sat, 16 Oct 2004) $
+ * @version $Rev$ $Date$
  */
 
 public final class RegistrationForm extends ValidatorForm  {

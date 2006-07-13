@@ -37,7 +37,7 @@ import org.apache.struts.action.ActionMapping;
  * <code>SubscriptionForm</code> from the currently specified subscription.
  *
  * @author Craig R. McClanahan
- * @version $Rev: 155884 $ $Date: 2005-03-01 22:03:56 -0800 (Tue, 01 Mar 2005) $
+ * @version $Rev$ $Date$
  */
 
 public final class EditSubscriptionAction extends Action {

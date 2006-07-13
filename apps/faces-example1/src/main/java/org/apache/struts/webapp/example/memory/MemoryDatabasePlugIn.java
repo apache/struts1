@@ -48,7 +48,7 @@ import org.apache.struts.webapp.example.Constants;
  * of your servlet container.</p>
  *
  * @author Craig R. McClanahan
- * @version $Rev: 54934 $ $Date: 2004-10-16 10:07:50 -0700 (Sat, 16 Oct 2004) $
+ * @version $Rev$ $Date$
  */
 
 public final class MemoryDatabasePlugIn implements PlugIn {

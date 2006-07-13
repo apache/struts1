@@ -22,7 +22,7 @@ package org.apache.struts.webapp.example;
  * Manifest constants for the example application.
  *
  * @author Craig R. McClanahan
- * @version $Rev: 54934 $ $Date: 2004-10-16 10:07:50 -0700 (Sat, 16 Oct 2004) $
+ * @version $Rev$ $Date$
  */
 
 public final class Constants {

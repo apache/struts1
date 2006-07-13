@@ -38,7 +38,7 @@ import org.apache.struts.action.ActionMapping;
  * User (if any).
  *
  * @author Craig R. McClanahan
- * @version $Rev: 155884 $ $Date: 2005-03-01 22:03:56 -0800 (Tue, 01 Mar 2005) $
+ * @version $Rev$ $Date$
  */
 
 public final class EditRegistrationAction extends Action {
