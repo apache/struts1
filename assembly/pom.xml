@@ -105,7 +105,7 @@
                                 <type>war</type>
                             </artifactItem>
                         </artifactItems>
-                        <outputDirectory>${project.build.directory}/webapps</outputDirectory>
+                        <outputDirectory>${project.build.directory}/apps</outputDirectory>
                     </configuration>
                 </execution>
             </executions>
@@ -117,6 +117,9 @@
           <descriptors>
             <descriptor>src/main/assembly/dist.xml</descriptor>
             <descriptor>src/main/assembly/lib.xml</descriptor>
+            <descriptor>src/main/assembly/apps.xml</descriptor>
+            <descriptor>src/main/assembly/src.xml</descriptor>
+            <descriptor>src/main/assembly/docs.xml</descriptor>
           </descriptors>
           <finalName>struts-${version}</finalName>
           <outputDirectory>target/assembly/out</outputDirectory>

@@ -20,8 +20,8 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>target/webapps</directory>
-      <outputDirectory>webapps</outputDirectory>
+      <directory>target/apps</directory>
+      <outputDirectory>apps</outputDirectory>
       <includes>
         <include>*.war</include>
       </includes>

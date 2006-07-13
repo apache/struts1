@@ -1,14 +1,8 @@
 <assembly>
-  <id>lib</id>
+  <id>apps</id>
   <formats>
     <format>zip</format>
   </formats>
-  <dependencySets>
-    <dependencySet>
-      <outputDirectory>lib</outputDirectory>
-      <scope>runtime</scope>
-    </dependencySet>
-  </dependencySets>
   <fileSets>
     <fileSet>
     	<directory>src/main/resources</directory>
@@ -17,6 +11,13 @@
         <include>README*</include>
         <include>LICENSE*</include>
         <include>NOTICE*</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>target/apps</directory>
+      <outputDirectory>apps</outputDirectory>
+      <includes>
+        <include>*.war</include>
       </includes>
     </fileSet>
   </fileSets>
