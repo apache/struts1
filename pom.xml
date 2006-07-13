@@ -83,6 +83,17 @@
                 <module>integration</module>
             </modules>
         </profile>
+        <profile>
+            <id>assembly</id>
+            <activation>
+                <property>
+                    <name>assembly</name>
+                </property>
+            </activation>
+            <modules>
+                <module>assembly</module>
+            </modules>
+        </profile>
     </profiles>
 
     <modules>
