@@ -24,6 +24,21 @@ limitations under the License.
 
     <body>
         <section name="6.2 Installation" href="installation">
+        
+            <blockquote><p><em>
+            "Would you tell me, please, which way I ought to go from here?"
+            </p><p>
+            "That depends a good deal on where you want to get to."
+            </p><p>
+            "I don't much care where"
+            </p><p>
+            "Then it doesn't much matter which way you go."
+            </p><p>
+            "so long as I get somewhere."
+            </p><p>
+            "Oh, you're sure to do that, if only you walk long enough."
+            </em></p></blockquote>
+             
             <subsection name="Prerequisite Software" href="Prerequisites">
 
                 <p>The framework's binary distribution needs three other

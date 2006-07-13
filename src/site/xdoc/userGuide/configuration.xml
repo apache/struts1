@@ -25,6 +25,11 @@ limitations under the License.
     <body>
         <section name="5. Configuring Applications">
 
+            <blockquote><p><em>
+            "An author doesn't necessarily understand the meaning of his own 
+            story better than anyone else."
+            </em></p></blockquote>
+
             <a name="config-overview"/>
             <subsection name="5.1 Overview">
 
@@ -524,7 +529,7 @@ limitations under the License.
 
                 <p>
                     Since version 1.1, you have two options: you can list
-                    <a href="#5_4_1_Configure_the_ActionServlet_Instance">
+                    <a href="#dd_config">
                         multiple struts-config files</a>
                     as a
                     comma-delimited list, or you can subdivide a larger
@@ -571,7 +576,7 @@ limitations under the License.
                     under a given module, so choose something meaningful!).
                     For example:
                 </p>
-
+                               
                 <source><![CDATA[
     ...
     <init-param>
@@ -619,7 +624,7 @@ limitations under the License.
                     If you'd like to vary where the pages for each module are
                     stored,
                     see the
-                    <a href="#5_2_1_Controller_Configuration">
+                    <a href="#controller_config">
                         forwardPattern</a>
                     setting for the
                     Controller.
@@ -637,7 +642,7 @@ limitations under the License.
                 </p>
                 
                 <ol>
-                	<li>
+                    <li>
                     You can use the
                     <code>org.apache.struts.actions.SwitchAction</code>
                     from the Extras JAR,
@@ -823,6 +828,12 @@ limitations under the License.
                         an object of the same name in more than one
                         configuration file,
                         the last one loaded quietly wins.
+                        <br/>
+                        <strong>WARNING</strong>
+                        - Plugins are not designed 
+                        to be loaded more than once in the same module.
+                        The set of configuration files for a module 
+                        should load a plugin only once.
                     </li>
 
                     <li>

@@ -24,9 +24,7 @@ limitations under the License.
     <body>
         <section href="faq" name="How does Struts work?">
 
-            <subsection href="how" name="How does Struts work?">
-
-								<blockquote>
+                                <blockquote>
                 <p>
                     [From the <a href="kickstart.html#how">Kickstart FAQ</a>] <br/>
                     <em>"Java Servlets are designed to handle requests made by Web
@@ -39,7 +37,7 @@ limitations under the License.
                     This makes Web applications much easier to design, create,
                     and maintain."</em>
                 </p>
-								</blockquote>
+                                </blockquote>
 
                 <p>
                     That's a good high-level description,
@@ -96,7 +94,7 @@ limitations under the License.
                         </p>
                     </li>
                     <li>
-                    	  <p>
+                          <p>
                         In the framework configuration file(s), you associate
                         paths with
                         the controller components of your application, known
@@ -334,8 +332,6 @@ limitations under the License.
                     <code>.do</code>
                     extension).
                 </p>
-            </subsection>
-
         </section>
     </body>
 </document>

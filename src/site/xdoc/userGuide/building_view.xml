@@ -25,6 +25,11 @@ limitations under the License.
     <body>
         <section name="3. Building View Components">
 
+           <blockquote><p><em>
+           "What if I should fall right through the center of the earth... 
+           oh, and come out the other side, where people walk upside down."
+            </em></p></blockquote>
+
             <a name="overview"/>
             <subsection name="3.1 Overview">
 
@@ -34,7 +39,7 @@ limitations under the License.
                     but does not provide any actual view components of its
                     own.
                     Several <a href="#presentation_frameworks">
-                    	presentation technologies</a> are available, 
+                        presentation technologies</a> are available, 
                     including, among others, Cocoon, JSP, Velocity Templates, 
                     and XSLT.
                 </p>

@@ -25,6 +25,10 @@ limitations under the License.
     <body>
         <section name="4. Building Controller Components">
 
+            <blockquote><p><em>
+            "It would be so nice if something made sense for a change."
+            </em></p></blockquote>
+
             <a name="overview"/>
             <subsection name="4.1 Overview">
 
@@ -49,7 +53,7 @@ limitations under the License.
                         Write an ActionForm class to mediate between the Model
                         and the View. 
                         <a href="../faqs/actionForm.html">(See also
-				Building an ActionForm.)</a>
+                Building an ActionForm.)</a>
                     </li>
 
                     <li>
@@ -1233,13 +1237,13 @@ limitations under the License.
 
                 <source><![CDATA[
 <%
-	for (int i = 0; i < 10; i++) {
-		String name = "value(foo-" + i + ")";
+    for (int i = 0; i < 10; i++) {
+        String name = "value(foo-" + i + ")";
 %>
-		<html:text property="<%= name %>"/>
-		<br/>
+        <html:text property="<%= name %>"/>
+        <br/>
 <%
-	}
+    }
 %>
 ]]></source>
 

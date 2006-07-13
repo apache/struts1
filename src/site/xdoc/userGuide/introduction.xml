@@ -26,6 +26,11 @@ limitations under the License.
 
         <section name="1. Introduction" href="introduction">
 
+            <blockquote><p><em>
+            "Read the directions and directly you will be directed in the right 
+            direction."
+            </em></p></blockquote>
+
             <a name="history"/>
             <subsection
                     name="1.1 Forward into the Past! (or a brief history of Struts)"
