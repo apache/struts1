@@ -25,7 +25,7 @@ limitations under the License.
     <body>
         <section name="6.2 Installation" href="installation">
         
-            <blockquote><p><em>
+            <blockquote><em><p>
             "Would you tell me, please, which way I ought to go from here?"
             </p><p>
             "That depends a good deal on where you want to get to."
@@ -37,7 +37,7 @@ limitations under the License.
             "so long as I get somewhere."
             </p><p>
             "Oh, you're sure to do that, if only you walk long enough."
-            </em></p></blockquote>
+            </p></em></blockquote>
              
             <subsection name="Prerequisite Software" href="Prerequisites">
 
