@@ -400,84 +400,141 @@ limitations under the License.
                     stateful or stateless
                     Enterprise JavaBeans (EJBs) instead.
                 </p>
-
-            </subsection>
-
-            <a name="logic_frameworks"/>
-            <subsection name="2.6 Business Logic Frameworks">
-
-                <p>
-                    Most teams still roll their own business logic layer using
-                    plain old JavaBeans (POJOs).
-                    Though, business layer frameworks are beginning to emerge,
-                    and now include:
-                </p>
-                <ul>
-                    <li>
-                        <a href="http://jakarta.apache.org/commons/chain/">
-                            Commons Chain of Responsiblity</a>
-                    </li>
-                    <li>
-                        <a href="http://springframework.org/">Spring</a>
-                    </li>
-                    <li>
-                        <a href="http://www.opensymphony.com/xwork/">XWork</a>
-                    </li>
-                </ul>
-
-                <p>
-                    As of Struts 1.3, Commons Chain is used to construct the
-                    default
-                    Request Processor for the framework.
-                    See the 
-                    <a href="preface.html#chain">Preface</a>
-                    section for more.
-                </p>
-            </subsection>
-
-            <a name="data_frameworks"/>
-            <subsection name="2.6 Data Access Frameworks">
-
-                <p>
-                    Most often, the business layer is seen to be distinct from
-                    the
-                    data access layer.
-                    Some teams roll their own data access objects (DAOs),
-                    but more and more teams are turning to one of the many
-                    data access
-                    frameworks.
-                    Some popular data access frameworks include:
-                </p>
-
-                <ul>
-                    <li>
-                        <a href="http://java.sun.com/products/ejb/index.html">
-                            Enterprise Java Beans</a>
-                    </li>
-                    <li>
-                        <a href="http://www.hibernate.org/">Hibernate</a>
-                    </li>
-                    <li>
-                        <a href="http://ibatis.apache.org">iBATIS</a>
-                    </li>
-                    <li>
-                        <a href="http://java.sun.com/products/jdbc/index.html">
-                            JDBC</a>
-                    </li>
-                    <li>
-                        <a href="http://db.apache.org/ojb/">
-                            Object Relational Bridge</a>
-                    </li>
-                </ul>
-
-
+                
                 <p>
                     For more about using a database with your application, see
                     the
                     <a href="../faqs/db-howto.html">Accessing a Database
                         HowTo.</a>
                 </p>
+
+                <p>
+                    For more about business logic and data access frameworks, 
+                    see the <a href="http://struts.apache.org/primer.html">
+                    key technologies primer</a>.
+                </p>
+                
+
             </subsection>
+            
+            
+            <a name="dynabeans"/>
+            <subsection name="2.5.1 DynaBeans">
+
+                <p>
+                    DynaBeans combine the extensibility of JavaBeans with the
+                    flexibility of a Map.
+                    Defining even the simplest JavaBean requires defining a
+                    new class and coding a field and two methods for each
+                    property.
+                    The properties of a DynaBean can be configured via an XML
+                    descriptor.
+                    The virtual properties of a DynaBean can't be called by
+                    standard Java methods,
+                    but work well with components that rely on reflection and
+                    introspection.
+                </p>
+
+                <p>
+                    In your application, you can use DynaBeans to describe
+                    your HTML forms.
+                    This strategy can avoid creating a formal JavaBean
+                    subclass to store a few simple properties.
+                </p>
+
+                <p>
+                    For more about DynaBeans, see
+                </p>
+
+                <ul>
+                    <li>
+                        The Commons BeanUtils
+                        <a href="http://jakarta.apache.org/commons/beanutils/api/org/apache/commons/beanutils/package-summary.html#package_description">
+                            Package Description</a>
+                        and
+                        <a href="http://jakarta.apache.org/commons/beanutils/api/index.html">
+                            Javadocs.</a>
+                    </li>
+                    <li>
+                        <a href="https://formdef.dev.java.net/">Struts
+                            FormDef</a>
+                    </li>
+                </ul>
+
+            </subsection>            
+                
+            <a name="chain"/>
+            <subsection name="2.6 Commons Chain">
+
+                <p>
+                    A popular technique for organizing the execution of
+                    complex
+                    processing flows is the "Chain of Responsibility" pattern,
+                    as described (among many other places) in the classic
+                    <a href="http://www.amazon.com/exec/obidos/tg/detail/-/0201633612/apachesoftwar-20/">
+                        "Gang of Four" design patterns book.</a>
+                    The GoF summarizes the Chain of Responsibility pattern as
+                    "Avoid coupling the sender of a request to its receiver
+                    by giving more than one object a chance to handle the
+                    request.
+                    Chain the receiving objects
+                    and pass the request along the chain until an object
+                    handles it."
+                </p>
+
+                <p>
+                    The CoR pattern helps us keep software components loosely
+                    coupled.
+                    A component can call a Chain of Responsbility,
+                    without knowing what objects are on the chain or how they
+                    are
+                    implemented.
+                    Most importantly, we can adjust the Chain without changing
+                    how callers invoke the Chain.
+                    As of version 1.3,
+                    the default Request Processor,
+                    which acts as the framework's "kernal",
+                    is a Chain of Responsiblity.
+                </p>
+
+                <p>
+                    To implement its Chain, the Request Processor uses the
+                    <a href="http://jakarta.apache.org/commons/chain/">
+                        Chain of Responsibility</a>
+                    component in the Jakarta Commons
+                    which provides a standard implementation of the CoR
+                    pattern,
+                    along with various implementations of the Context and
+                    Command objects used by the Chain to service a request.
+                </p>
+
+                <p>
+                    For more about Chain of Responsiblity, see
+                </p>
+
+                <ul>
+                    <li>
+                        <a href="http://jakarta.apache.org/commons/chain/">
+                            Jakarta Commons Chain of Responsibility</a>
+                    </li>
+                    <li>
+                        <a href="http://www.onjava.com/lpt/a/5671">
+                            A look at Commons Chain</a>
+                    </li>
+                    <li>
+                        <a href="http://www.infonoia.com/en/content.jsp?d=inf.05.06&amp;pr=1">
+                            Better Code with Struts 1.3
+                        </a>
+                    </li>
+                </ul>
+                
+                <p>
+                    As of Struts 1.3, Commons Chain is used to construct the
+                    default
+                    Request Processor for the framework.
+                </p>                 
+
+            </subsection>                
         </section>
 
         <section>

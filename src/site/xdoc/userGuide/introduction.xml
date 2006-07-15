@@ -30,12 +30,23 @@ limitations under the License.
             "Read the directions and directly you will be directed in the right 
             direction."
             </em></p></blockquote>
+            
+                <p>
+                    The framework documentation is written for active web 
+                    developers and assumes a working
+                    knowledge about how Java web applications are built.
+                    For more about the underlying nuts and bolts,
+                    see the <a href="http://struts.apache.org/primer.html">
+                    Key Technologies Primer. 
+                    </a>
+                </p>
+                                
 
             <a name="history"/>
             <subsection
                     name="1.1 Forward into the Past! (or a brief history of Struts)"
                     href="history">
-
+                    
                 <p>
                     When Java servlets were first invented, many programmers
                     quickly realized that they were a

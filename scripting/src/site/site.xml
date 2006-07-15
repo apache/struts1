@@ -26,6 +26,9 @@
     
         <menu name="Components">
         
+            <item   name="Struts Apps"
+                    href="../struts-apps/index.html" />
+
             <item   name="Struts EL"
                     href="../struts-el/index.html" />
 
