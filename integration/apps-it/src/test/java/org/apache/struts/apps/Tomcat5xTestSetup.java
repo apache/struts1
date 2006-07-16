@@ -96,7 +96,7 @@ public class Tomcat5xTestSetup extends TestSetup {
         configuration.addDeployable(getWAR("struts-faces-example2"));
         configuration.addDeployable(getWAR("struts-mailreader"));
         configuration.addDeployable(getWAR("struts-scripting-mailreader"));
-        configuration.addDeployable(getWAR("strutsel-exercise-taglib"));
+        configuration.addDeployable(getWAR("struts-el-example"));
 
         configuration.setProperty(ServletPropertySet.PORT, port);
 

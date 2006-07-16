@@ -166,7 +166,7 @@ public class AppsTest extends TestCase {
     public void testStrutsELExcerciseTaglib() throws Exception {
         WebClient webClient = new WebClient();
         URL url = new URL("http://localhost:" + port
-                + "/strutsel-exercise-taglib-" + version);
+                + "/struts-el-example-" + version);
         HtmlPage page = (HtmlPage) webClient.getPage(url);
 
         assertEquals("Struts-EL Test Application", page.getTitleText());
