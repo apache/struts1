@@ -100,7 +100,7 @@
                             </artifactItem>
                             <artifactItem>
                                 <groupId>org.apache.struts</groupId>
-                                <artifactId>strutsel-exercise-taglib</artifactId>
+                                <artifactId>struts-el-example</artifactId>
                                 <version>${version}</version>
                                 <type>war</type>
                             </artifactItem>

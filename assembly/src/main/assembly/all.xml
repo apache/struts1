@@ -122,8 +122,8 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>../apps/strutsel-exercise-taglib</directory>
-      <outputDirectory>src/apps/strutsel-exercise-taglib</outputDirectory>
+      <directory>../apps/el-example</directory>
+      <outputDirectory>src/apps/el-example</outputDirectory>
       <includes>
         <include>pom.xml</include>
         <include>src/</include>
@@ -257,8 +257,8 @@
      <outputDirectory>docs/struts-apps/struts-scripting-mailreader</outputDirectory>
    </fileSet>
    <fileSet>
-     <directory>../apps/strutsel-exercise-taglib/target/site</directory>
-     <outputDirectory>docs/struts-apps/strutsel-exercise-taglib</outputDirectory>
+     <directory>../apps/el-example/target/site</directory>
+     <outputDirectory>docs/struts-apps/struts-el-example</outputDirectory>
    </fileSet>
    <fileSet>
      <directory>../core/target/site</directory>
