@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="Struts 1 - Tiles">
+<project name="Struts Tiles">
     <bannerLeft>
         <name>Apache Software Foundation</name>
         <src>http://www.apache.org/images/asf-logo.gif</src>
@@ -17,14 +17,12 @@
             <item name="Struts 2" href="http://struts.apache.org/2.0/" />
         </links>
         <menu name="Struts Tiles">
-            <item href="index.html" name="Tiles Home"/>
+            <item href="index.html" name="Welcome"/>
+            <item href="faq.html" name="FAQ"/>
             <item href="installation.html" name="Installation"/>
             <item href="userGuide.html" name="User Guide"/>
-            <item href="examples.html" name="Examples"/>
-            <item href="faq.html" name="FAQs"/>
-        </menu>
-        <menu name="Taglib Reference">
-            <item name="Struts Tiles" href="tagreference.html"/>    
+            <item href="examples.html" name="Creating Templates"/>
+            <item href="tagreference.html" name="Taglib Reference"/>    
         </menu>
         
         <menu name="Components">

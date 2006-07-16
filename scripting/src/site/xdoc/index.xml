@@ -18,11 +18,11 @@ limitations under the License.
 -->
 <document>
   <properties>
-    <title>Apache Struts - Scripting</title>
+    <title>Welcome</title>
   </properties>
 
   <body>
-    <section name="Struts Scripting">
+    <section name="Welcome to Struts Scripting">
     <a name="overview"/>
       <p>This component allows Struts Actions to be written in the scripting 
       language of one's choice rather than as Java classes.  It uses the 

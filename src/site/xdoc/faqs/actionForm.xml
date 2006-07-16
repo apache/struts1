@@ -26,8 +26,6 @@ limitations under the License.
     <body>
         <section name="How to Build an Action Form">
 
-            <subsection name="Creating a Login Form">
-
                 <p>
                     This is a simple example of a login form to illustrate how
                     Struts
@@ -280,8 +278,6 @@ limitations under the License.
                     </li>
 
                 </ul>
-
-            </subsection>
 
             <subsection name="Transferring Data">
 

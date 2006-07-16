@@ -18,11 +18,11 @@ limitations under the License.
 -->
 <document>
   <properties>
-    <title>Struts Scripting Source Code Guide</title>
+    <title>Source Code Guide</title>
   </properties>
 
   <body>
-    <section name="Struts Scripting Source Code Guide">
+    <section name="Source Code Guide">
       <a name="overview"/>
       <p>The Struts Scripting component, for the most part, follows Apache Struts build and
       source code layout, so if you are familiar with another Struts component, you'll be

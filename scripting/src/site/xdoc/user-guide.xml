@@ -18,11 +18,11 @@ limitations under the License.
 -->
 <document>
   <properties>
-    <title>Struts Scripting User Guide</title>
+    <title>User Guide</title>
   </properties>
 
   <body>
-    <section name="Struts Scripting User Guide">
+    <section name="User Guide">
       <a name="overview"/>
       <p>The entire Struts Scripting component is only a few classes, since most of
       the heavy lifting is done by the 

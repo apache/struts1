@@ -19,12 +19,12 @@ limitations under the License.
 <document>
 
   <properties>
-    <title>Struts 1 - Faces</title>
+    <title>Welcome</title>
   </properties>
 
   <body>
 
-    <section name="Struts Faces">
+    <section name="Welcome to Struts Faces">
     <a name="welcome"/>
 
   <p>
@@ -46,10 +46,10 @@ limitations under the License.
   </p>
   
   <p>
-  	Note that the Struts Faces component is intended as a "bridge" between 
-  	Struts 1 and JavaServer Faces. 
-  	The typical use case is a team that would like to experiment with JSF 
-  	components but does not want to completely rework an existing application. 
+    Note that the Struts Faces component is intended as a "bridge" between 
+    Struts 1 and JavaServer Faces. 
+    The typical use case is a team that would like to experiment with JSF 
+    components but does not want to completely rework an existing application. 
   </p>
   
   <p>

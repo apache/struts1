@@ -18,7 +18,7 @@ limitations under the License.
 -->
 <document>
     <properties>
-        <title>Struts Apps</title>
+        <title>Welcome</title>
     </properties>
 
     <body>
@@ -72,10 +72,10 @@ limitations under the License.
             </td></tr>
 
             <tr><th><a href="http://planetstruts.org/struts-el-example/">
-            El Example
+            EL Example
             </a></th><td>
-            Struts El Example demonstrates and tests the 
-            <a href="../struts-el/index.html">Struts El tags</a> 
+            Struts EL Example demonstrates and tests the 
+            <a href="../struts-el/index.html">Struts EL tags</a> 
             using tests from the Exercise-Taglib application. 
             </td></tr>
 
@@ -90,7 +90,7 @@ limitations under the License.
             <tr><th><a href="http://planetstruts.org/struts-faces-example2/">
             Faces Example 2
             </a></th><td>
-            Struts Faces Example 2 application is Tiles-enabled, 
+            Struts Faces Example 2 application is <em>Tiles-enabled,</em> 
             JSF-enabled rendition of the classic Struts MailReader. 
             </td></tr>
 

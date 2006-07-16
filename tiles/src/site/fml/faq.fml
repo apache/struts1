@@ -16,7 +16,7 @@
  * limitations under the License.
  */
  -->
-<faqs id="General FAQ">
+<faqs title="FAQ">
   <part id="General">
     <faq id="without">
       <question>Can I use Tiles without Struts?</question>

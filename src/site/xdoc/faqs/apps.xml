@@ -23,7 +23,6 @@ limitations under the License.
     </properties>
     <body>
         <section name="How to Build Applications">
-            <subsection name="About This Document">
                 <p>
                     This document outlines one possible sequence of
                     development steps that can be followed to create a
@@ -34,7 +33,6 @@ limitations under the License.
                     elsewhere and is referenced by "(more...)" links where
                     possible.
                 </p>
-            </subsection>
 
             <subsection name="Caveats">
                 <ol>

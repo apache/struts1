@@ -19,7 +19,7 @@
  */
 -->
 
-<project name="Struts 1 - Faces">
+<project name="Struts Faces">
     <bannerLeft>
         <name>Apache Software Foundation</name>
         <src>http://www.apache.org/images/asf-logo.gif</src>
@@ -37,6 +37,13 @@
             <item name="Struts 2" href="http://struts.apache.org/2.0/" />
         </links>
         
+        <menu name="Struts Faces">
+
+            <item   name="Welcome"
+                    href="index.html" />
+
+        </menu>
+
         <menu name="Components">
         
             <item   name="Struts Apps"

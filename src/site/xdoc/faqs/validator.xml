@@ -26,8 +26,6 @@ limitations under the License.
 
         <section name="Struts Validator Guide">
 
-            <subsection href="validator" name="Struts Validator">
-
                 <p>
                     The Struts Validator, in some form, has been available
                     since the
@@ -92,8 +90,6 @@ limitations under the License.
                     form in the validator
                     example).
                 </p>
-
-            </subsection>
 
             <subsection href="i18n" name="Internationalization">
 
@@ -1457,7 +1453,7 @@ public static boolean validateTwoFields(
                         Struts in Action;</a>
                     available as a free download (PDF).
                 </li>
-							</ul>
+                            </ul>
             </subsection>
 
         </section>
