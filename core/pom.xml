@@ -117,6 +117,16 @@
             <groupId>commons-chain</groupId>
             <artifactId>commons-chain</artifactId>
             <version>1.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>myfaces</groupId>
+                    <artifactId>myfaces-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.portlet</groupId>
+                    <artifactId>portlet-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>commons-digester</groupId>
