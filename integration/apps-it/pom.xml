@@ -66,14 +66,6 @@
       </dependency>
    </dependencies>
 
-   <profiles>
-      <profile>
-          <id>itest</id>
-          <activation>
-              <property>
-                  <name>itest</name>
-              </property>
-          </activation>
           <build>
             <plugins>
                <plugin>
@@ -120,7 +112,5 @@
                </plugin>
             </plugins>
          </build>
-      </profile>
-   </profiles>
 
 </project>
