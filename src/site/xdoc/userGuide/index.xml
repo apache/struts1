@@ -37,9 +37,6 @@ limitations under the License.
                                 into the Past!</a>
                         </li>
                         <li>
-                            <a href="introduction.html#mvc">1.2 The
-                                Model-View-Controller ('MVC') Design
-                                Pattern</a>
                             <ul>
                                 <li>
                                     <a href="introduction.html#modelConcepts">
@@ -425,7 +422,7 @@ limitations under the License.
         <section>
             <p class="right">
                 Next:
-                <a href="introduction.html">introduction</a>
+                <a href="introduction.html">Introduction</a>
             </p>
         </section>
 

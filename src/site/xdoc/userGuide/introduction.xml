@@ -79,7 +79,7 @@ limitations under the License.
                     applications.
                 </p>
 
-                <p>Another model was clearly needed ...</p>
+                <p>Clearly, another paradigm was needed ...</p>
 
                 <p>
                     Many clever developers realized that JavaServer Pages AND
@@ -121,59 +121,21 @@ limitations under the License.
                 </p>
 
             </subsection>
-
+            
             <a name="mvc"/>
-            <subsection
+            <subsection 
                     name="1.2 The Model-View-Controller ('MVC') Design Pattern"
                     href="mvc">
 
                 <p>
-                    In the original SmallTalk Model-View-Controller framework,
-                    an application is seen as having three distinct parts.
-                    The problem domain is represented by the Model.
-                    The output to the user is represented by the View.
-                    And, the input from the user is represented by Controller.
+                    The term "MVC" originated with the SmallTalk 
+                    Model-View-Controller framework. Under MVC, 
+                    an application is seen as having three distinct parts. The 
+                    problem domain is represented by the Model. The output to 
+                    the user is represented by the View. And, the input from the 
+                    user is represented by Controller.
                 </p>
 
-                <p>
-                    In Smalltalk MVC, the View updates itself from the Model,
-                    via the "Observer" pattern.
-                    The original MVC pattern is like a closed loop:
-                    The View talks to the Controller, which talks to the
-                    Model,
-                    which talks to the View.
-                </p>
-
-                <p>
-                    But, a direct link between the Model and the View is not
-                    practical
-                    for web applications,
-                    so we modify the classic MVC arrangement so that it would
-                    look
-                    less like a loop and more like a horseshoe with the
-                    controller
-                    in the middle.
-                </p>
-
-                <p>
-                    In the MVC/Model 2 design pattern, application flow is
-                    mediated by a
-                    central Controller. The Controller delegates requests - in
-                    our
-                    case, HTTP requests - to an appropriate handler. The
-                    handlers
-                    are tied to a Model, and each handler acts as an adapter
-                    between the request and the Model. The Model represents,
-                    or
-                    encapsulates, an application's business logic or
-                    state. Control is usually then forwarded back through the
-                    Controller to the appropriate View. The forwarding can be
-                    determined by consulting a set of mappings, usually loaded
-                    from a database or configuration file. This provides a
-                    loose
-                    coupling between the View and Model, which can make
-                    applications significantly easier to create and maintain.
-                </p>
             </subsection>
 
             <a name="modelConcepts"/>
