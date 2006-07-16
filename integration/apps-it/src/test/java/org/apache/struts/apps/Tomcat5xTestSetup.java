@@ -110,7 +110,7 @@ public class Tomcat5xTestSetup extends TestSetup {
     }
 
     private WAR getWAR(String context) {
-        return new WAR(localRepository + "/org/apache/struts/action/"
+        return new WAR(localRepository + "/org/apache/struts/"
                 + context + "/" + version + "/"
                 + context + "-" + version + ".war");
     }
