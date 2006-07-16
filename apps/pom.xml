@@ -49,7 +49,7 @@
       <module>examples</module>
       <module>blank</module>
       <module>mailreader</module>
-      <module>strutsel-exercise-taglib</module>
+      <module>el-example</module>
       <module>scripting-mailreader</module>
    </modules>
 

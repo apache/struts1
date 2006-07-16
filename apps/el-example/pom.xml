@@ -30,7 +30,7 @@
 
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.apache.struts</groupId>
-   <artifactId>strutsel-exercise-taglib</artifactId>
+   <artifactId>struts-el-example</artifactId>
    <packaging>war</packaging>
    <name>Struts Apps - Struts EL Exercise</name>
    
