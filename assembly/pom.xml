@@ -27,13 +27,13 @@
   <packaging>pom</packaging>
   <name>Struts Assembly</name>
   <description>
-  	Struts 1 Assembly
+    Struts 1 Assembly
   </description>
 
   <parent>
     <groupId>org.apache.struts</groupId>
     <artifactId>struts-parent</artifactId>
-    <version>1.3.5-SNAPSHOT</version>
+    <version>1.3.5</version>
   </parent>
 
   <scm>
