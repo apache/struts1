@@ -119,7 +119,7 @@ public class ActionRedirect extends ActionForward {
 
     /**
      * <p>Construct a new instance with a {@link ForwardConfig} object to copy
-     * name, path, and contextRelative values from.</p>
+     * name, path, contextRelative, and arbitrary property values from.</p>
      *
      * @param baseConfig the {@link ForwardConfig} to copy configuration
      *                   values from
@@ -129,6 +129,7 @@ public class ActionRedirect extends ActionForward {
         setPath(baseConfig.getPath());
         setModule(baseConfig.getModule());
         setRedirect(baseConfig.getRedirect());
+        inheritProperties(baseConfig);
         initializeParameters();
     }
 
