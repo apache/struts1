@@ -519,7 +519,7 @@ public class TestActionServlet extends TestCase {
 
         handler.setType("java.lang.NullPointerException");
         moduleConfig.addExceptionConfig(handler);
-        actionServlet.processExceptionExtension(handler, moduleConfig);
+        actionServlet.processExceptionExtension(handler, moduleConfig, null);
 
         assertTrue("processExtends() was not called",
             handler.processExtendsCalled);
@@ -544,7 +544,8 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addExceptionConfig(customSub);
 
         ExceptionConfig result =
-            actionServlet.processExceptionConfigClass(customSub, moduleConfig);
+            actionServlet.processExceptionConfigClass(customSub, moduleConfig, 
+                null);
 
         assertTrue("Incorrect class of exception config",
             result instanceof CustomExceptionConfig);
@@ -570,7 +571,7 @@ public class TestActionServlet extends TestCase {
         try {
             result =
                 actionServlet.processExceptionConfigClass(baseException,
-                    moduleConfig);
+                    moduleConfig, null);
         } catch (UnavailableException e) {
             fail("An exception should not be thrown when there's nothing to do");
         }
@@ -594,7 +595,8 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addExceptionConfig(customSub);
 
         ExceptionConfig result =
-            actionServlet.processExceptionConfigClass(customSub, moduleConfig);
+            actionServlet.processExceptionConfigClass(customSub, moduleConfig, 
+                null);
 
         assertSame("The instance returned should be the param given it.",
             customSub, result);
@@ -618,7 +620,8 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addExceptionConfig(customSub);
 
         try {
-            actionServlet.processExceptionConfigClass(customSub, moduleConfig);
+            actionServlet.processExceptionConfigClass(customSub, moduleConfig, 
+                null);
             fail("Exception should be thrown");
         } catch (UnavailableException e) {
             // success
@@ -643,7 +646,8 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addExceptionConfig(customSub);
 
         try {
-            actionServlet.processExceptionConfigClass(customSub, moduleConfig);
+            actionServlet.processExceptionConfigClass(customSub, moduleConfig, 
+                null);
         } catch (Exception e) {
             fail("Exception should not be thrown");
         }
@@ -694,7 +698,7 @@ public class TestActionServlet extends TestCase {
             new CustomForwardConfig("forward", "/forward.jsp");
 
         moduleConfig.addForwardConfig(forward);
-        actionServlet.processForwardExtension(forward, moduleConfig);
+        actionServlet.processForwardExtension(forward, moduleConfig, null);
 
         assertTrue("processExtends() was not called",
             forward.processExtendsCalled);
@@ -718,7 +722,8 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addForwardConfig(customSub);
 
         ForwardConfig result =
-            actionServlet.processForwardConfigClass(customSub, moduleConfig);
+            actionServlet.processForwardConfigClass(customSub, moduleConfig,
+                null);
 
         assertTrue("Incorrect class of forward config",
             result instanceof CustomForwardConfig);
@@ -744,7 +749,7 @@ public class TestActionServlet extends TestCase {
         try {
             result =
                 actionServlet.processForwardConfigClass(baseForward,
-                    moduleConfig);
+                    moduleConfig, null);
         } catch (UnavailableException e) {
             fail("An exception should not be thrown when there's nothing to do");
         }
@@ -768,7 +773,8 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addForwardConfig(customSub);
 
         ForwardConfig result =
-            actionServlet.processForwardConfigClass(customSub, moduleConfig);
+            actionServlet.processForwardConfigClass(customSub, moduleConfig,
+                null);
 
         assertSame("The instance returned should be the param given it.",
             customSub, result);
@@ -792,7 +798,8 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addForwardConfig(customSub);
 
         try {
-            actionServlet.processForwardConfigClass(customSub, moduleConfig);
+            actionServlet.processForwardConfigClass(customSub, moduleConfig,
+                null);
             fail("Exception should be thrown");
         } catch (UnavailableException e) {
             // success
@@ -817,7 +824,8 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addForwardConfig(customSub);
 
         try {
-            actionServlet.processForwardConfigClass(customSub, moduleConfig);
+            actionServlet.processForwardConfigClass(customSub, moduleConfig,
+                null);
         } catch (Exception e) {
             fail("Exception should not be thrown");
         }

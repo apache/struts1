@@ -1061,7 +1061,7 @@ public class ActionServlet extends HttpServlet {
         for (int i = 0; i < forwards.length; i++) {
             ForwardConfig forward = forwards[i];
 
-            processForwardExtension(forward, config);
+            processForwardExtension(forward, config, null);
         }
 
         for (int i = 0; i < forwards.length; i++) {
@@ -1076,14 +1076,18 @@ public class ActionServlet extends HttpServlet {
     }
 
     /**
-     * <p>Extend the forward's configuration as necessary.</p>
+     * <p>Extend the forward's configuration as necessary.  If actionConfig is 
+     * provided, then this method will process the forwardConfig as part
+     * of that actionConfig.  If actionConfig is null, the forwardConfig
+     * will be processed as a global forward.</p>
      *
      * @param forwardConfig the configuration to process.
      * @param moduleConfig  the module configuration for this module.
+     * @param actionConfig  If applicable, the config for the current action.
      * @throws ServletException if initialization cannot be performed.
      */
     protected void processForwardExtension(ForwardConfig forwardConfig,
-        ModuleConfig moduleConfig)
+        ModuleConfig moduleConfig, ActionConfig actionConfig)
         throws ServletException {
         try {
             if (!forwardConfig.isExtensionProcessed()) {
@@ -1093,9 +1097,10 @@ public class ActionServlet extends HttpServlet {
                 }
 
                 forwardConfig =
-                    processForwardConfigClass(forwardConfig, moduleConfig);
+                    processForwardConfigClass(forwardConfig, moduleConfig,
+                        actionConfig);
 
-                forwardConfig.processExtends(moduleConfig, null);
+                forwardConfig.processExtends(moduleConfig, actionConfig);
             }
         } catch (ServletException e) {
             throw e;
@@ -1107,10 +1112,14 @@ public class ActionServlet extends HttpServlet {
 
     /**
      * <p>Checks if the current forwardConfig is using the correct class based
-     * on the class of its configuration ancestor.</p>
+     * on the class of its configuration ancestor.  If actionConfig is 
+     * provided, then this method will process the forwardConfig as part
+     * of that actionConfig.  If actionConfig is null, the forwardConfig
+     * will be processed as a global forward.</p>
      *
      * @param forwardConfig The forward to check.
      * @param moduleConfig  The config for the current module.
+     * @param actionConfig  If applicable, the config for the current action.
      * @return The forward config using the correct class as determined by the
      *         config's ancestor and its own overridden value.
      * @throws UnavailableException if an instance of the forward config class
@@ -1118,7 +1127,8 @@ public class ActionServlet extends HttpServlet {
      * @throws ServletException     on class creation error
      */
     protected ForwardConfig processForwardConfigClass(
-        ForwardConfig forwardConfig, ModuleConfig moduleConfig)
+        ForwardConfig forwardConfig, ModuleConfig moduleConfig,
+        ActionConfig actionConfig)
         throws ServletException {
         String ancestor = forwardConfig.getExtends();
 
@@ -1128,7 +1138,17 @@ public class ActionServlet extends HttpServlet {
         }
 
         // Make sure that this config is of the right class
-        ForwardConfig baseConfig = moduleConfig.findForwardConfig(ancestor);
+        ForwardConfig baseConfig = null;
+        if (actionConfig != null) {
+            // Look for this in the actionConfig
+            baseConfig = actionConfig.findForwardConfig(ancestor);
+        } 
+        
+        if (baseConfig == null) {
+            // Either this is a forwardConfig that inherits a global config,
+            //  or actionConfig is null
+            baseConfig = moduleConfig.findForwardConfig(ancestor);
+        }
 
         if (baseConfig == null) {
             throw new UnavailableException("Unable to find " + "forward '"
@@ -1145,7 +1165,8 @@ public class ActionServlet extends HttpServlet {
 
                 try {
                     newForwardConfig =
-                        (ForwardConfig) RequestUtils.applicationInstance(baseConfigClassName);
+                        (ForwardConfig) RequestUtils.applicationInstance(
+                                baseConfigClassName);
 
                     // copy the values
                     BeanUtils.copyProperties(newForwardConfig, forwardConfig);
@@ -1154,8 +1175,14 @@ public class ActionServlet extends HttpServlet {
                 }
 
                 // replace forwardConfig with newForwardConfig
-                moduleConfig.removeForwardConfig(forwardConfig);
-                moduleConfig.addForwardConfig(newForwardConfig);
+                if (actionConfig != null) {
+                    actionConfig.removeForwardConfig(forwardConfig);
+                    actionConfig.addForwardConfig(newForwardConfig);
+                } else {
+                    // this is a global forward
+                    moduleConfig.removeForwardConfig(forwardConfig);
+                    moduleConfig.addForwardConfig(newForwardConfig);
+                }
                 forwardConfig = newForwardConfig;
             }
         }
@@ -1183,7 +1210,7 @@ public class ActionServlet extends HttpServlet {
         for (int i = 0; i < exceptions.length; i++) {
             ExceptionConfig exception = exceptions[i];
 
-            processExceptionExtension(exception, config);
+            processExceptionExtension(exception, config, null);
         }
 
         for (int i = 0; i < exceptions.length; i++) {
@@ -1198,14 +1225,18 @@ public class ActionServlet extends HttpServlet {
     }
 
     /**
-     * <p>Extend the exception's configuration as necessary.</p>
+     * <p>Extend the exception's configuration as necessary. If actionConfig is 
+     * provided, then this method will process the exceptionConfig as part
+     * of that actionConfig.  If actionConfig is null, the exceptionConfig
+     * will be processed as a global forward.</p>
      *
      * @param exceptionConfig the configuration to process.
      * @param moduleConfig    the module configuration for this module.
+     * @param actionConfig  If applicable, the config for the current action.     
      * @throws ServletException if initialization cannot be performed.
      */
     protected void processExceptionExtension(ExceptionConfig exceptionConfig,
-        ModuleConfig moduleConfig)
+        ModuleConfig moduleConfig, ActionConfig actionConfig)
         throws ServletException {
         try {
             if (!exceptionConfig.isExtensionProcessed()) {
@@ -1215,9 +1246,10 @@ public class ActionServlet extends HttpServlet {
                 }
 
                 exceptionConfig =
-                    processExceptionConfigClass(exceptionConfig, moduleConfig);
+                    processExceptionConfigClass(exceptionConfig, moduleConfig,
+                        actionConfig);
 
-                exceptionConfig.processExtends(moduleConfig, null);
+                exceptionConfig.processExtends(moduleConfig, actionConfig);
             }
         } catch (ServletException e) {
             throw e;
@@ -1229,17 +1261,22 @@ public class ActionServlet extends HttpServlet {
 
     /**
      * <p>Checks if the current exceptionConfig is using the correct class
-     * based on the class of its configuration ancestor.</p>
+     * based on the class of its configuration ancestor. If actionConfig is 
+     * provided, then this method will process the exceptionConfig as part
+     * of that actionConfig.  If actionConfig is null, the exceptionConfig
+     * will be processed as a global forward.</p>
      *
      * @param exceptionConfig The config to check.
      * @param moduleConfig    The config for the current module.
+     * @param actionConfig  If applicable, the config for the current action.
      * @return The exception config using the correct class as determined by
      *         the config's ancestor and its own overridden value.
      * @throws ServletException if an instance of the exception config class
      *                          cannot be created.
      */
     protected ExceptionConfig processExceptionConfigClass(
-        ExceptionConfig exceptionConfig, ModuleConfig moduleConfig)
+        ExceptionConfig exceptionConfig, ModuleConfig moduleConfig,
+        ActionConfig actionConfig)
         throws ServletException {
         String ancestor = exceptionConfig.getExtends();
 
@@ -1249,7 +1286,16 @@ public class ActionServlet extends HttpServlet {
         }
 
         // Make sure that this config is of the right class
-        ExceptionConfig baseConfig = moduleConfig.findExceptionConfig(ancestor);
+        ExceptionConfig baseConfig = null;
+        if (actionConfig != null) {
+            baseConfig = actionConfig.findExceptionConfig(ancestor);
+        } 
+        
+        if (baseConfig == null) {
+            // This means either there's no actionConfig anyway, or the 
+            // ancestor is not defined within the action.
+            baseConfig = moduleConfig.findExceptionConfig(ancestor);
+        }
 
         if (baseConfig == null) {
             throw new UnavailableException("Unable to find "
@@ -1266,17 +1312,24 @@ public class ActionServlet extends HttpServlet {
 
                 try {
                     newExceptionConfig =
-                        (ExceptionConfig) RequestUtils.applicationInstance(baseConfigClassName);
+                        (ExceptionConfig) RequestUtils.applicationInstance(
+                            baseConfigClassName);
 
                     // copy the values
-                    BeanUtils.copyProperties(newExceptionConfig, exceptionConfig);
+                    BeanUtils.copyProperties(newExceptionConfig, 
+                        exceptionConfig);
                 } catch (Exception e) {
                     handleCreationException(baseConfigClassName, e);
                 }
 
                 // replace exceptionConfig with newExceptionConfig
-                moduleConfig.removeExceptionConfig(exceptionConfig);
-                moduleConfig.addExceptionConfig(newExceptionConfig);
+                if (actionConfig != null) {
+                    actionConfig.removeExceptionConfig(exceptionConfig);
+                    actionConfig.addExceptionConfig(newExceptionConfig);
+                } else {
+                    moduleConfig.removeExceptionConfig(exceptionConfig);
+                    moduleConfig.addExceptionConfig(newExceptionConfig);
+                }
                 exceptionConfig = newExceptionConfig;
             }
         }
@@ -1358,6 +1411,21 @@ public class ActionServlet extends HttpServlet {
                     processActionConfigClass(actionConfig, moduleConfig);
 
                 actionConfig.processExtends(moduleConfig);
+            }
+            
+            // Process forwards extensions.
+            ForwardConfig[] forwards = actionConfig.findForwardConfigs();
+            for (int i = 0; i < forwards.length; i++) {
+                ForwardConfig forward = forwards[i];
+                processForwardExtension(forward, moduleConfig, actionConfig);
+            }
+
+            // Process exception extensions.
+            ExceptionConfig[] exceptions = actionConfig.findExceptionConfigs();
+            for (int i = 0; i < exceptions.length; i++) {
+                ExceptionConfig exception = exceptions[i];
+                processExceptionExtension(exception, moduleConfig, 
+                    actionConfig);
             }
         } catch (ServletException e) {
             throw e;
