@@ -862,6 +862,48 @@ public class TestActionServlet extends TestCase {
     }
 
     /**
+     * Test that an ActionConfig's ForwardConfig can inherit from a 
+     * global ForwardConfig.
+     */
+    public void testProcessActionExtensionWithForwardConfig()
+        throws ServletException {
+        ForwardConfig forwardConfig = new ForwardConfig();
+        forwardConfig.setName("sub");
+        forwardConfig.setExtends("success");
+        baseAction.addForwardConfig(forwardConfig);
+
+        moduleConfig.addActionConfig(baseAction);
+        moduleConfig.addForwardConfig(baseForward);
+        actionServlet.processActionConfigExtension(baseAction, moduleConfig);
+        
+        forwardConfig = baseAction.findForwardConfig("sub");
+
+        assertEquals("'sub' forward's inheritance was not processed.",
+            baseForward.getPath(), forwardConfig.getPath());
+    }
+
+    /**
+     * Test that an ActionConfig's ExceptionConfig can inherit from a 
+     * global ExceptionConfig.
+     */
+    public void testProcessActionExtensionWithExceptionConfig()
+        throws ServletException {
+        ExceptionConfig exceptionConfig = new ExceptionConfig();
+        exceptionConfig.setType("SomeException");
+        exceptionConfig.setExtends("java.lang.NullPointerException");
+        baseAction.addExceptionConfig(exceptionConfig);
+
+        moduleConfig.addActionConfig(baseAction);
+        moduleConfig.addExceptionConfig(baseException);
+        actionServlet.processActionConfigExtension(baseAction, moduleConfig);
+        
+        exceptionConfig = baseAction.findExceptionConfig("SomeException");
+
+        assertEquals("SomeException's inheritance was not processed.",
+            baseException.getKey(), exceptionConfig.getKey());
+    }
+
+    /**
      * Make sure processActionConfigClass() returns an instance of the correct
      * class if the base config is using a custom class.
      */
