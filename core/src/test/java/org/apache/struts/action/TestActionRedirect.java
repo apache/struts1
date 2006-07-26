@@ -106,6 +106,7 @@ public class TestActionRedirect extends TestCase {
     public void testActionRedirectFromExistingForward() {
         ActionForward forward = new ActionForward("/path.do?param=param1");
         forward.setRedirect(false);
+        forward.setProperty("key","value");
 
         ActionRedirect ar = new ActionRedirect(forward);
 
@@ -117,6 +118,8 @@ public class TestActionRedirect extends TestCase {
         assertHasParameter(ar.parameterValues, "object1", "someString");
         assertEquals("Incorrect original path.", forward.getPath(),
             ar.getOriginalPath());
+        assertEquals("Incorrect or missing property", "value",
+            ar.getProperty("key"));
         assertTrue("Original had redirect to false", !ar.getRedirect());
     }
 
