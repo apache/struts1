@@ -140,7 +140,7 @@ limitations under the License.
                         applications on the same servlet container, you will
                         be tempted
                         to place the
-                        <code>struts-action.jar</code>
+                        <code>struts-core.jar</code>
                         file into the shared repository
                         supported by your container. Be advised that this may
                         cause
