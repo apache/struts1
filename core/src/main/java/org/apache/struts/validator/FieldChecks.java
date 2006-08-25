@@ -1120,7 +1120,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                processFailure(errors, field, "floatRange", e);
+                processFailure(errors, field, "maxlength", e);
 
                 return false;
             }
