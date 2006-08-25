@@ -34,7 +34,7 @@
 <catalog name="struts">
 
     <define name="lookup"
-            className="org.apache.commons.chain.generic.LookupCommand" />
+            className="org.apache.commons.chain.generic.LookupCommand"/>
     <!-- ========== Servlet Complete Request Chain ========================= -->
 
     <chain name="servlet-standard">
@@ -126,7 +126,7 @@
 
         <!-- Set (if needed) the HTTP response content type -->
         <command
-                className="org.apache.struts.chain.commands.servlet.SetContentType"/>        
+                className="org.apache.struts.chain.commands.servlet.SetContentType"/>
 
 
         <!-- Identify the ActionConfig for this request -->
@@ -136,7 +136,7 @@
 
         <!-- Authorize the selected ActionConfig for this request -->
         <command
-                className="org.apache.struts.chain.commands.servlet.AuthorizeAction"/>    
+                className="org.apache.struts.chain.commands.servlet.AuthorizeAction"/>
 
 
         <!-- Create (if needed) the ActionForm for this request -->
@@ -195,7 +195,7 @@
     <chain name="process-view">
 
 
-        <!-- Lookup and execute a chain command if the current ForwardConfig is 
+        <!-- Lookup and execute a chain command if the current ForwardConfig is
              so-configured. -->
         <command
                 className="org.apache.struts.chain.commands.ExecuteForwardCommand"/>
@@ -227,7 +227,7 @@
         <command
                 className="org.apache.struts.chain.commands.servlet.ExceptionHandler"/>
 
-        <!-- Lookup and execute a chain command if the current ForwardConfig is 
+        <!-- Lookup and execute a chain command if the current ForwardConfig is
              so-configured. -->
         <command
                 className="org.apache.struts.chain.commands.ExecuteForwardCommand"/>
