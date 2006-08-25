@@ -172,13 +172,13 @@
 
 
         <!-- Lookup and execute a chain command if the current ActionConfig is
-       so-configured. -->
+             so-configured. -->
         <command
                 className="org.apache.struts.chain.commands.ExecuteCommand"/>
 
 
         <!-- Select the appropriate ForwardConfig for action mappings that only
-     have an ActionForward -->
+             have an ActionForward -->
         <command
                 className="org.apache.struts.chain.commands.servlet.SelectForward"/>
 
@@ -208,7 +208,7 @@
 
 
         <!-- Lookup and execute a chain command if the current ForwardConfig is
-       so-configured. -->
+             so-configured. -->
         <command
                 className="org.apache.struts.chain.commands.ExecuteForwardCommand"/>
 
