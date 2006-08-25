@@ -171,7 +171,7 @@
                 className="org.apache.struts.chain.commands.servlet.SelectInput"/>
 
 
-        <!-- Lookup and execute a chain command if the current ActionConfig is 
+        <!-- Lookup and execute a chain command if the current ActionConfig is
              so-configured. -->
         <command
                 className="org.apache.struts.chain.commands.ExecuteCommand"/>
