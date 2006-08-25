@@ -42,6 +42,7 @@ public class OptionTag extends BodyTagSupport {
         MessageResources.getMessageResources(Constants.Package
             + ".LocalStrings");
 
+
     /**
      * The message text to be displayed to the user for this tag (if any)
      */
@@ -59,6 +60,11 @@ public class OptionTag extends BodyTagSupport {
      * Is this option disabled?
      */
     protected boolean disabled = false;
+
+    /**
+     * Should the label be filtered for HTML sensitive characters?
+     */
+    protected boolean filter = false;
 
     /**
      * The key used to look up the text displayed to the user for this option,
@@ -108,6 +114,14 @@ public class OptionTag extends BodyTagSupport {
 
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
+    }
+
+    public boolean getFilter() {
+        return (this.filter);
+    }
+
+    public void setFilter(boolean filter) {
+        this.filter = filter;
     }
 
     public String getKey() {
@@ -223,7 +237,12 @@ public class OptionTag extends BodyTagSupport {
         throws JspException {
         StringBuffer results = new StringBuffer("<option value=\"");
 
-        results.append(this.value);
+        if (filter) {
+            results.append(TagUtils.getInstance().filter(this.value));
+        }
+        else {
+            results.append(this.value);
+        }
         results.append("\"");
 
         if (disabled) {

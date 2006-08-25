@@ -1958,7 +1958,7 @@
                <code>href</code> attribute,
                or the <code>page</code> attribute.</p>
             <p>Additionally, you can specify a <code>module</code> prefix 
-			   for linking to other modules.</p>
+         for linking to other modules.</p>
          ]]>
             </description>
         </attribute>
@@ -1969,10 +1969,10 @@
             <description>
                 <![CDATA[
             <p>Prefix name of a <code>Module</code> that
-		       contains the action mapping for the <code>Action</code>
-		       that is specified by the <code>action</code> attribute.
-		       You <strong>must</strong> specify an <code>action</code> 
-		       attribute for this to have an effect.</p>
+           contains the action mapping for the <code>Action</code>
+           that is specified by the <code>action</code> attribute.
+           You <strong>must</strong> specify an <code>action</code> 
+           attribute for this to have an effect.</p>
             <p>
                <strong>Note: </strong>Use "" to map to the default module.</p>
          ]]>
@@ -3387,7 +3387,7 @@
               <code>page</code>
                   attribute or the <code>src</code> attribute.</p>
             <p>Additionally, you can specify a <code>module</code> prefix 
-			   for linking to other modules.</p>
+         for linking to other modules.</p>
          ]]>
             </description>
         </attribute>
@@ -3398,10 +3398,10 @@
             <description>
                 <![CDATA[
             <p>Prefix name of a <code>Module</code> that
-				   contains the action mapping for the <code>Action</code>
-				   that is specified by the <code>action</code> attribute.
-				   You <strong>must</strong> specify an <code>action</code> 
-				   attribute for this to have an effect.</p>
+           contains the action mapping for the <code>Action</code>
+           that is specified by the <code>action</code> attribute.
+           You <strong>must</strong> specify an <code>action</code> 
+           attribute for this to have an effect.</p>
             <p>
                <strong>Note: </strong>Use "" to map to the default module.</p>
          ]]>
@@ -3907,7 +3907,7 @@
                   <code>href</code> attribute, the <code>linkName</code>
                   attribute, or the <code>page</code> attribute.</p>
             <p>Additionally, you can specify a <code>module</code> prefix 
-			   for linking to other modules.</p>
+         for linking to other modules.</p>
          ]]>
             </description>
         </attribute>
@@ -3918,10 +3918,10 @@
             <description>
                 <![CDATA[
             <p>Prefix name of a <code>Module</code> that
-				   contains the action mapping for the <code>Action</code>
-				   that is specified by the <code>action</code> attribute.
-				   You <strong>must</strong> specify an <code>action</code> 
-				   attribute for this to have an effect.</p>
+           contains the action mapping for the <code>Action</code>
+           that is specified by the <code>action</code> attribute.
+           You <strong>must</strong> specify an <code>action</code> 
+           attribute for this to have an effect.</p>
             <p>
                <strong>Note: </strong>Use "" to map to the default module.</p>
          ]]>
@@ -4904,6 +4904,19 @@
                 <![CDATA[
           Set to <code>true</code>
          ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>filter</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+            <description>
+                <![CDATA[
+                Set to <code>true</code> if you want the option label to be
+                filtered for sensitive characters in HTML.  By default, such
+                a value is NOT filtered.
+            ]]>
             </description>
         </attribute>
         <attribute>
@@ -6372,7 +6385,7 @@
                   <code>href</code> attribute, or the <code>page</code>
                   attribute.</p>
             <p>Additionally, you can specify a <code>module</code> prefix 
-			   for linking to other modules.</p>
+         for linking to other modules.</p>
             <dl><dt><b>Since:</b></dt>
             <dd>Struts 1.2.0</dd></dl>
           ]]>
@@ -6385,10 +6398,10 @@
             <description>
                 <![CDATA[
             <p>Prefix name of a <code>Module</code> that
-				   contains the action mapping for the <code>Action</code>
-				   that is specified by the <code>action</code> attribute.
-				   You <strong>must</strong> specify an <code>action</code> 
-				   attribute for this to have an effect.</p>
+           contains the action mapping for the <code>Action</code>
+           that is specified by the <code>action</code> attribute.
+           You <strong>must</strong> specify an <code>action</code> 
+           attribute for this to have an effect.</p>
             <p>
                <strong>Note: </strong>Use "" to map to the default module.</p>
          ]]>
@@ -8131,8 +8144,8 @@
           </p>
          <p>
             <strong>Note</strong>: Included pages do not inherit the rendering
-          	style of the including page.  Each JSP fragment or Tile must use this
-          	tag to render as XHTML.  
+            style of the including page.  Each JSP fragment or Tile must use this
+            tag to render as XHTML.  
           </p>
       ]]>
         </description>

@@ -5247,6 +5247,19 @@
             </description>
         </attribute>
         <attribute>
+            <name>filter</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+            <description>
+                <![CDATA[
+                Set to <code>true</code> if you want the option label to be
+                filtered for sensitive characters in HTML.  By default, such
+                a value is NOT filtered.
+            ]]>
+            </description>
+        </attribute>
+        <attribute>
             <name>key</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>

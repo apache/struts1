@@ -51,6 +51,12 @@ public class ELOptionTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("filter", ELOptionTag.class, null,
+                    "setFilterExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("key", ELOptionTag.class, null,
                     "setKeyExpr"));
         } catch (IntrospectionException ex) {

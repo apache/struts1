@@ -47,6 +47,12 @@ public class ELOptionTag extends OptionTag {
     private String disabledExpr;
 
     /**
+     * Instance variable mapped to "filter" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String filterExpr;
+
+    /**
      * Instance variable mapped to "key" tag attribute. (Mapping set in
      * associated BeanInfo class.)
      */
@@ -96,6 +102,14 @@ public class ELOptionTag extends OptionTag {
      */
     public String getDisabledExpr() {
         return (disabledExpr);
+    }
+
+    /**
+     * Getter method for "filter" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getFilterExpr() {
+        return (filterExpr);
     }
 
     /**
@@ -163,6 +177,14 @@ public class ELOptionTag extends OptionTag {
     }
 
     /**
+     * Setter method for "filter" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setFilterExpr(String filterExpr) {
+        this.filterExpr = filterExpr;
+    }
+
+    /**
      * Setter method for "key" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -217,6 +239,7 @@ public class ELOptionTag extends OptionTag {
         super.release();
         setBundleExpr(null);
         setDisabledExpr(null);
+        setFilterExpr(null);
         setKeyExpr(null);
         setLocaleExpr(null);
         setStyleExpr(null);
@@ -257,6 +280,12 @@ public class ELOptionTag extends OptionTag {
                 EvalHelper.evalBoolean("disabled", getDisabledExpr(), this,
                     pageContext)) != null) {
             setDisabled(bool.booleanValue());
+        }
+
+        if ((bool =
+                EvalHelper.evalBoolean("filter", getFilterExpr(), this,
+                    pageContext)) != null) {
+            setFilter(bool.booleanValue());
         }
 
         if ((string =
