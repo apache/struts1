@@ -31,213 +31,213 @@
 -->
 
 
-<catalog       name="struts">
+<catalog name="struts">
 
-    <define name= "lookup"
-            className= "org.apache.commons.chain.generic.LookupCommand" />
+    <define name="lookup"
+            className="org.apache.commons.chain.generic.LookupCommand" />
     <!-- ========== Servlet Complete Request Chain ========================= -->
 
-    <chain     name="servlet-standard">
+    <chain name="servlet-standard">
 
-      <!-- Establish exception handling filter -->
-      <command
-          className="org.apache.struts.chain.commands.ExceptionCatcher"
-        catalogName="struts"
-   exceptionCommand="servlet-exception"/>
+        <!-- Establish exception handling filter -->
+        <command
+                className="org.apache.struts.chain.commands.ExceptionCatcher"
+                catalogName="struts"
+                exceptionCommand="servlet-exception"/>
 
-      <lookup
-        catalogName="struts"
-               name="process-action"
-           optional="false"/>
+        <lookup
+                catalogName="struts"
+                name="process-action"
+                optional="false"/>
 
-      <lookup
-        catalogName="struts"
-               name="process-view"
-           optional="false"/>
+        <lookup
+                catalogName="struts"
+                name="process-view"
+                optional="false"/>
 
     </chain>
 
 
-    <!-- ========== View Processing chain ======================== -->
-   <chain      name="process-action">
+    <!-- ========== Action Processing chain ======================== -->
+    <chain name="process-action">
 
-      <!--
-           This chain attempts to emulate (most of) the standard request
-           processing in the standard org.apache.struts.action.RequestProcessor
-           class, by performing the corresponding tasks in individual Commands
-           that are composable.  The following list defines a cross reference
-           between the processXxx methods and the Commands that perform the
-           corresponding functionality:
+        <!--
+             This chain attempts to emulate (most of) the standard request
+             processing in the standard org.apache.struts.action.RequestProcessor
+             class, by performing the corresponding tasks in individual Commands
+             that are composable.  The following list defines a cross reference
+             between the processXxx methods and the Commands that perform the
+             corresponding functionality:
 
-           processMultipart        Integrated into servlet and legacy classes
+             processMultipart        Integrated into servlet and legacy classes
 
-           processPath             SelectAction (which also does processMapping)
+             processPath             SelectAction (which also does processMapping)
 
-           processException        ExceptionCatcher / ExceptionHandler
+             processException        ExceptionCatcher / ExceptionHandler
 
-           processLocale           SelectLocale
+             processLocale           SelectLocale
 
-           processContent          SetContentType
+             processContent          SetContentType
 
-           processNoCache          RequestNoCache
+             processNoCache          RequestNoCache
 
-           processPreprocess       LookupCommand with optional="true".  Multiple
-                                   occurrences of this can easily be added, to
-                                   support additional processing hooks at any
-                                   point in the chain without modifying the
-                                   standard definition.
+             processPreprocess       LookupCommand with optional="true".  Multiple
+                                     occurrences of this can easily be added, to
+                                     support additional processing hooks at any
+                                     point in the chain without modifying the
+                                     standard definition.
 
-           processMapping          SelectAction (which also does processPath)
+             processMapping          SelectAction (which also does processPath)
 
-           processRoles            AuthorizeAction
+             processRoles            AuthorizeAction
 
-           processActionForm       CreateActionForm
+             processActionForm       CreateActionForm
 
-           processPopulate         PopulateActionForm
+             processPopulate         PopulateActionForm
 
-           processValidate         ValidateActionForm / SelectInput
+             processValidate         ValidateActionForm / SelectInput
 
-           processForward          SelectForward
+             processForward          SelectForward
 
-           processInclude          SelectInclude / PerformInclude
+             processInclude          SelectInclude / PerformInclude
 
-           processActionCreate     CreateAction
+             processActionCreate     CreateAction
 
-           processActionPerform    ExecuteAction
-      -->
-
-
-      <!-- Look up optional preprocess command -->
-      <lookup
-        catalogName="struts"
-               name="servlet-standard-preprocess"
-           optional="true"/>
+             processActionPerform    ExecuteAction
+        -->
 
 
-      <!-- Identify the Locale for this request -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.SelectLocale"/>
+        <!-- Look up optional preprocess command -->
+        <lookup
+                catalogName="struts"
+                name="servlet-standard-preprocess"
+                optional="true"/>
 
 
-      <!-- Set (if needed) no cache HTTP response headers -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.RequestNoCache"/>
+        <!-- Identify the Locale for this request -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.SelectLocale"/>
 
 
-      <!-- Set (if needed) the HTTP response content type -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.SetContentType"/>        
+        <!-- Set (if needed) no cache HTTP response headers -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.RequestNoCache"/>
 
 
-      <!-- Identify the ActionConfig for this request -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.SelectAction"/>
+        <!-- Set (if needed) the HTTP response content type -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.SetContentType"/>        
 
 
-      <!-- Authorize the selected ActionConfig for this request -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.AuthorizeAction"/>    
+        <!-- Identify the ActionConfig for this request -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.SelectAction"/>
 
 
-      <!-- Create (if needed) the ActionForm for this request -->
-      <command
-          className="org.apache.struts.chain.commands.CreateActionForm"/>
+        <!-- Authorize the selected ActionConfig for this request -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.AuthorizeAction"/>    
 
 
-      <!-- Populate the ActionForm for this request -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.PopulateActionForm"/>
+        <!-- Create (if needed) the ActionForm for this request -->
+        <command
+                className="org.apache.struts.chain.commands.CreateActionForm"/>
 
 
-      <!-- Validate the ActionForm for this request -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.ValidateActionForm"/>
+        <!-- Populate the ActionForm for this request -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.PopulateActionForm"/>
 
 
-      <!-- Select the appropriate ForwardConfig for return to input page -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.SelectInput"/>
+        <!-- Validate the ActionForm for this request -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.ValidateActionForm"/>
 
 
-      <!-- Lookup and execute a chain command if the current ActionConfig is 
-           so-configured. -->
-      <command
-          className="org.apache.struts.chain.commands.ExecuteCommand"/>
+        <!-- Select the appropriate ForwardConfig for return to input page -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.SelectInput"/>
 
 
-      <!-- Select the appropriate ForwardConfig for action mappings that only
-           have an ActionForward -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.SelectForward"/>
+        <!-- Lookup and execute a chain command if the current ActionConfig is 
+             so-configured. -->
+        <command
+                className="org.apache.struts.chain.commands.ExecuteCommand"/>
 
 
-      <!-- Select the include uri (if any) for the current action mapping -->
-      <command
-          className="org.apache.struts.chain.commands.SelectInclude"/>
+        <!-- Select the appropriate ForwardConfig for action mappings that only
+             have an ActionForward -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.SelectForward"/>
 
 
-      <!-- Perform the include (if needed) -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.PerformInclude"/>
+        <!-- Select the include uri (if any) for the current action mapping -->
+        <command
+                className="org.apache.struts.chain.commands.SelectInclude"/>
 
 
-      <!-- Create (if needed) the Action for this request -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.CreateAction"/>
+        <!-- Perform the include (if needed) -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.PerformInclude"/>
 
 
-      <!-- Execute the Action for this request -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.ExecuteAction"/>
+        <!-- Create (if needed) the Action for this request -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.CreateAction"/>
+
+
+        <!-- Execute the Action for this request -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.ExecuteAction"/>
     </chain>
 
     <!-- ========== View Processing chain ======================== -->
     <chain name="process-view">
 
 
-      <!-- Lookup and execute a chain command if the current ForwardConfig is 
-           so-configured. -->
-      <command
-          className="org.apache.struts.chain.commands.ExecuteForwardCommand"/>
+        <!-- Lookup and execute a chain command if the current ForwardConfig is 
+             so-configured. -->
+        <command
+                className="org.apache.struts.chain.commands.ExecuteForwardCommand"/>
 
-      <command
-          className="org.apache.struts.tiles.commands.TilesPreProcessor"/>
+        <command
+                className="org.apache.struts.tiles.commands.TilesPreProcessor"/>
 
-      <!-- Follow the returned ForwardConfig (if any) -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.PerformForward"/>
+        <!-- Follow the returned ForwardConfig (if any) -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.PerformForward"/>
 
 
     </chain>
-    
+
     <!-- ========== Servlet Exception Handler Chain ======================== -->
 
-    <chain     name="servlet-exception">
+    <chain name="servlet-exception">
 
-      <!--
-            This chain is designed to be invoked (by o.a.s.c.ExceptionCatcher)
-            if an unhandled exception is thrown by any subsequent command
-            in a processing chain (including the one that invokes a Struts
-            action).  The standard definition of this chain supports the
-            exception mapping of Struts 1.1, but can be replaced in order
-            to handle exceptions differently.
-      -->
+        <!--
+              This chain is designed to be invoked (by o.a.s.c.ExceptionCatcher)
+              if an unhandled exception is thrown by any subsequent command
+              in a processing chain (including the one that invokes a Struts
+              action).  The standard definition of this chain supports the
+              exception mapping of Struts 1.1, but can be replaced in order
+              to handle exceptions differently.
+        -->
 
-      <!-- Execute the configured exception handler (if any) -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.ExceptionHandler"/>
+        <!-- Execute the configured exception handler (if any) -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.ExceptionHandler"/>
 
-      <!-- Lookup and execute a chain command if the current ForwardConfig is 
-           so-configured. -->
-      <command
-          className="org.apache.struts.chain.commands.ExecuteForwardCommand"/>
+        <!-- Lookup and execute a chain command if the current ForwardConfig is 
+             so-configured. -->
+        <command
+                className="org.apache.struts.chain.commands.ExecuteForwardCommand"/>
 
-      <command
-          className="org.apache.struts.tiles.commands.TilesPreProcessor"/>
+        <command
+                className="org.apache.struts.tiles.commands.TilesPreProcessor"/>
 
-      <!-- Follow the returned ForwardConfig (if any) -->
-      <command
-          className="org.apache.struts.chain.commands.servlet.PerformForward"/>
+        <!-- Follow the returned ForwardConfig (if any) -->
+        <command
+                className="org.apache.struts.chain.commands.servlet.PerformForward"/>
 
     </chain>
 
