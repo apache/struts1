@@ -66,6 +66,12 @@ public class ActionConfig extends BaseConfig {
      * specified <code>name</code>. </p>
      */
     protected String attribute = null;
+    
+    /**
+     * <p>The internal identification of this action mapping. Identifications are
+     * not inheritable and must be unique within a module.</p> 
+     */
+    protected String actionId = null;
 
     /**
      * <p>The path of the ActionConfig that this object should inherit
@@ -208,6 +214,30 @@ public class ActionConfig extends BaseConfig {
      * @since Struts 1.3.0
      */
     protected String catalog = null;
+
+    /**
+     * <p>The internal name of this action mapping. If an action has a name, it may be used
+     * as a shortcut in a URI. For example, an action with an identification of "editPerson"
+     * may be internally forwarded as "editPerson?id=1" which will then resolve to the
+     * real URI path at execution time.</p>
+     * @return the actionId
+     */
+    public String getActionId() {
+        return this.actionId;
+    }
+
+    /**
+     * <p>The internal name of this action mapping. The name is not inheritable,
+     * and must be unique within a module. </p>
+     * @param actionId the action identifier
+     */
+    public void setActionId(String actionId) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+
+        this.actionId = actionId;
+    }
 
     /**
      * <p> The module configuration with which we are associated.
@@ -1146,6 +1176,11 @@ public class ActionConfig extends BaseConfig {
 
         sb.append("validate=");
         sb.append(validate);
+
+        if (actionId != null) {
+            sb.append(",actionId=");
+            sb.append(actionId);
+        }
 
         if (attribute != null) {
             sb.append(",attribute=");
