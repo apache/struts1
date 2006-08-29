@@ -32,6 +32,7 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.upload.MultipartRequestHandler;
 import org.apache.struts.upload.MultipartRequestWrapper;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -261,6 +262,18 @@ public class RequestUtils {
         }
 
         return (instance);
+    }
+    
+    /**
+     * <p>Retrieves the servlet mapping pattern for the specified {@link ActionServlet}.</p>
+     * 
+     * @return the servlet mapping
+     * @see Globals#SERVLET_KEY
+	 * @since Struts 1.3.6
+     */
+    public static String getServletMapping(ActionServlet servlet) {
+        ServletContext servletContext = servlet.getServletConfig().getServletContext(); 
+        return (String)servletContext.getAttribute(Globals.SERVLET_KEY);
     }
 
     /**
@@ -955,5 +968,99 @@ public class RequestUtils {
         serverUri.append(uri);
 
         return serverUri;
+    }
+
+    /**
+     * <p>Returns the true path of the destination action if the specified forward
+     * is an action-aliased URL. This method version forms the URL based on
+     * the current request; selecting the current module if the forward does not
+     * explicitly contain a module path.</p>  
+     *  
+     * @param forward the forward config
+     * @param request the current request
+     * @param servlet the servlet handling the current request
+     * @return the context-relative URL of the action if the forward has an action identifier; otherwise <code>null</code>.
+     * @since Struts 1.3.6
+     */
+    public static String actionIdURL(ForwardConfig forward, HttpServletRequest request, ActionServlet servlet) {
+        ModuleConfig moduleConfig = null;
+        if (forward.getModule() != null) {
+            String prefix = forward.getModule();
+            moduleConfig = ModuleUtils.getInstance().getModuleConfig(prefix, servlet.getServletContext());
+        } else {
+            moduleConfig = ModuleUtils.getInstance().getModuleConfig(request);
+        }
+        return actionIdURL(forward.getPath(), moduleConfig, servlet);
+    }
+
+    /**
+     * <p>Returns the true path of the destination action if the specified forward
+     * is an action-aliased URL. This method version forms the URL based on
+     * the specified module.
+     * 
+     * @param originalPath the action-aliased path
+     * @param moduleConfig the module config for this request
+     * @param servlet the servlet handling the current request
+     * @return the context-relative URL of the action if the path has an action identifier; otherwise <code>null</code>.
+     * @since Struts 1.3.6
+     */
+    public static String actionIdURL(String originalPath, ModuleConfig moduleConfig, ActionServlet servlet) {
+        if (originalPath.startsWith("http") || originalPath.startsWith("/")) {
+            return null;
+        }
+
+        // Split the forward path into the resource and query string;
+        // it is possible a forward (or redirect) has added parameters.
+        String actionId = null;
+        String qs = null;
+        int qpos = originalPath.indexOf("?");
+        if (qpos == -1) {
+            actionId = originalPath;
+        } else {
+            actionId = originalPath.substring(0, qpos);
+            qs = originalPath.substring(qpos);
+        }
+        
+        // Find the action of the given actionId
+        ActionConfig actionConfig = moduleConfig.findActionConfigId(actionId);
+        if (actionConfig == null) {
+            if (log.isDebugEnabled()) {
+                log.debug("No actionId found for " + actionId);
+            }
+            return null;
+        }
+            
+        String path = actionConfig.getPath();
+        String mapping = RequestUtils.getServletMapping(servlet);
+        StringBuffer actionIdPath = new StringBuffer();
+        
+        // Form the path based on the servlet mapping pattern
+        if (mapping.startsWith("*")) {
+            actionIdPath.append(path);
+            actionIdPath.append(mapping.substring(1));
+        } else if (mapping.startsWith("/")) {  // implied ends with a *
+            mapping = mapping.substring(0, mapping.length() - 1);
+            if (mapping.endsWith("/") && path.startsWith("/")) {
+                actionIdPath.append(mapping);
+                actionIdPath.append(path.substring(1));
+            } else {
+                actionIdPath.append(mapping);
+                actionIdPath.append(path);
+            }
+        } else {
+            log.warn("Unknown servlet mapping pattern");
+            actionIdPath.append(path);
+        }
+        
+        // Lastly add any query parameters (the ? is part of the query string)
+        if (qs != null) {
+            actionIdPath.append(qs);
+        }
+
+        // Return the path
+        if (log.isDebugEnabled()) {
+            log.debug(originalPath + " unaliased to " + actionIdPath.toString());
+        }
+        return actionIdPath.toString();
     }
 }

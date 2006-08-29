@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2005 The Apache Software Foundation.
+ * Copyright 1999-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,6 +64,12 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
      * the <code>path</code> property.</p>
      */
     protected HashMap actionConfigs = null;
+    
+    /**
+     * <p>The set of action configuration for this module, if any, keyed by
+     * the <code>actionId</code> property.</p>
+     */
+    protected HashMap actionConfigIds = null;
 
     /**
      * <p>The set of action configurations for this module, if any, listed in
@@ -160,6 +166,7 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
         super();
         this.prefix = prefix;
         this.actionConfigs = new HashMap();
+        this.actionConfigIds = new HashMap();
         this.actionConfigList = new ArrayList();
         this.actionFormBeanClass = "org.apache.struts.action.ActionFormBean";
         this.actionMappingClass = "org.apache.struts.action.ActionMapping";
@@ -276,13 +283,30 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
         throwIfConfigured();
         config.setModuleConfig(this);
 
-        String key = config.getPath();
-
-        if (actionConfigs.containsKey(key)) {
-            log.warn("Overriding ActionConfig of path " + key);
+        String path = config.getPath();
+        if (actionConfigs.containsKey(path)) {
+            log.warn("Overriding ActionConfig of path " + path);
+        }
+        
+        String actionId = config.getActionId();
+        if ((actionId != null) && !actionId.equals("")) {
+            if (actionConfigIds.containsKey(actionId)) {
+                if (log.isWarnEnabled()) {
+                    ActionConfig otherConfig = (ActionConfig) actionConfigIds.get(actionId);
+                    StringBuffer msg = new StringBuffer("Overriding actionId[");
+                    msg.append(actionId);
+                    msg.append("] for path[");
+                    msg.append(otherConfig.getPath());
+                    msg.append("] with path[");
+                    msg.append(path);
+                    msg.append("]");
+                    log.warn(msg);
+                }
+            }
+            actionConfigIds.put(actionId, config);
         }
 
-        actionConfigs.put(key, config);
+        actionConfigs.put(path, config);
         actionConfigList.add(config);
     }
 
@@ -413,6 +437,22 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
         }
 
         return config;
+    }
+
+    /**
+     * <p>Returns the action configuration for the specifed action
+     * action identifier.</p>
+     * 
+     * @param actionId the action identifier
+     * @return the action config if found; otherwise <code>null</code>
+     * @see ActionConfig#getActionId()
+     * @since Struts 1.3.6
+     */
+    public ActionConfig findActionConfigId(String actionId) {
+        if (actionId != null) {
+            return (ActionConfig) this.actionConfigIds.get(actionId);
+        }
+        return null;
     }
 
     /**

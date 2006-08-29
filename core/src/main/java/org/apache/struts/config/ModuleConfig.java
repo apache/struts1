@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -186,6 +186,17 @@ public interface ModuleConfig {
      * none, a zero-length array is returned. </p>
      */
     ActionConfig[] findActionConfigs();
+
+    /**
+     * <p>Returns the action configuration for the specifed action
+     * action identifier.</p>
+     * 
+     * @param actionId the action identifier
+     * @return the action config if found; otherwise <code>null</code>
+     * @see ActionConfig#getActionId()
+     * @since Struts 1.3.6
+     */
+    ActionConfig findActionConfigId(String actionId);
 
     /**
      * <p> Return the exception configuration for the specified type, if any;

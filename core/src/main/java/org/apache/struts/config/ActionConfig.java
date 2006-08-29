@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,6 +70,8 @@ public class ActionConfig extends BaseConfig {
     /**
      * <p>The internal identification of this action mapping. Identifications are
      * not inheritable and must be unique within a module.</p> 
+     *
+     * @since Struts 1.3.6
      */
     protected String actionId = null;
 
@@ -220,7 +222,9 @@ public class ActionConfig extends BaseConfig {
      * as a shortcut in a URI. For example, an action with an identification of "editPerson"
      * may be internally forwarded as "editPerson?id=1" which will then resolve to the
      * real URI path at execution time.</p>
+     * 
      * @return the actionId
+     * @since Struts 1.3.6
      */
     public String getActionId() {
         return this.actionId;
@@ -229,7 +233,9 @@ public class ActionConfig extends BaseConfig {
     /**
      * <p>The internal name of this action mapping. The name is not inheritable,
      * and must be unique within a module. </p>
+     * 
      * @param actionId the action identifier
+     * @since Struts 1.3.6
      */
     public void setActionId(String actionId) {
         if (configured) {
@@ -1171,10 +1177,10 @@ public class ActionConfig extends BaseConfig {
         sb.append("cancellable=");
         sb.append(cancellable);
 
-        sb.append("path=");
+        sb.append(",path=");
         sb.append(path);
 
-        sb.append("validate=");
+        sb.append(",validate=");
         sb.append(validate);
 
         if (actionId != null) {

@@ -364,6 +364,15 @@ public class RequestProcessor {
         String forwardPath = forward.getPath();
         String uri;
 
+        // If the forward can be unaliased into an action, then use the path of the action
+        String actionIdPath = RequestUtils.actionIdURL(forward, request, servlet);
+        if (actionIdPath != null) {
+            forwardPath = actionIdPath;
+            ForwardConfig actionIdForward = new ForwardConfig(forward);
+            actionIdForward.setPath(actionIdPath);
+            forward = actionIdForward;
+        }
+
         // paths not starting with / should be passed through without any
         // processing (ie. they're absolute)
         if (forwardPath.startsWith("/")) {
@@ -545,6 +554,12 @@ public class RequestProcessor {
             return (true);
         }
 
+        // If the forward can be unaliased into an action, then use the path of the action
+        String actionIdPath = RequestUtils.actionIdURL(forward, this.moduleConfig, this.servlet);
+        if (actionIdPath != null) {
+            forward = actionIdPath;
+        }
+        
         internalModuleRelativeForward(forward, request, response);
 
         return (false);
@@ -571,6 +586,12 @@ public class RequestProcessor {
 
         if (include == null) {
             return (true);
+        }
+
+        // If the forward can be unaliased into an action, then use the path of the action
+        String actionIdPath = RequestUtils.actionIdURL(include, this.moduleConfig, this.servlet);
+        if (actionIdPath != null) {
+            include = actionIdPath;
         }
 
         internalModuleRelativeInclude(include, request, response);

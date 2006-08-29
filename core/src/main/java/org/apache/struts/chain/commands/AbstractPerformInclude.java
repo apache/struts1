@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2003-2005 The Apache Software Foundation.
+ * Copyright 2003-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,6 @@ public abstract class AbstractPerformInclude extends ActionCommandBase {
      */
     public boolean execute(ActionContext actionCtx)
         throws Exception {
-        ModuleConfig moduleConfig = actionCtx.getModuleConfig();
 
         // Is there an include to be performed?
         String include = actionCtx.getInclude();
@@ -49,7 +48,7 @@ public abstract class AbstractPerformInclude extends ActionCommandBase {
         }
 
         // Determine the currect uri
-        String uri = moduleConfig.getPrefix() + include;
+        String uri = includePath(actionCtx, include);
 
         // Perform the appropriate processing on this include uri
         perform(actionCtx, uri);
@@ -59,6 +58,19 @@ public abstract class AbstractPerformInclude extends ActionCommandBase {
 
     // ------------------------------------------------------- Protected Methods
 
+    /**
+     * <p>Returns the path to perform the include. Override this method to provide
+     * a different path.</p>
+     * 
+     * @param actionContext The context for this request
+     * @param include The forward to be performed
+     * @since Struts 1.3.6
+     */
+    protected String includePath(ActionContext actionContext, String include) {
+        ModuleConfig moduleConfig = actionContext.getModuleConfig();
+        return moduleConfig.getPrefix() + include;
+    }
+    
     /**
      * <p>Perform the appropriate processing on the specified include
      * uri.</p>

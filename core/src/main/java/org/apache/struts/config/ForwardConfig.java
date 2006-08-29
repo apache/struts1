@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -146,6 +146,18 @@ public class ForwardConfig extends BaseConfig {
         setPath(path);
         setRedirect(redirect);
         setModule(module);
+    }
+
+    /**
+     * <p>Construct a new instance based on the values of another
+     * ForwardConfig.</p>
+     *
+     * @param copyMe A ForwardConfig instance to copy
+     * @since Struts 1.3.6
+     */
+    public ForwardConfig(ForwardConfig copyMe) {
+        this(copyMe.getName(), copyMe.getPath(), copyMe.getRedirect(),
+            copyMe.getModule());
     }
 
     public String getExtends() {

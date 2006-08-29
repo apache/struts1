@@ -1,5 +1,5 @@
 /*
- * Copyright 2003-2005 The Apache Software Foundation.
+ * Copyright 2003-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package org.apache.struts.chain.commands.servlet;
 import org.apache.struts.chain.commands.AbstractPerformInclude;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
+import org.apache.struts.util.RequestUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -48,5 +49,16 @@ public class PerformInclude extends AbstractPerformInclude {
         RequestDispatcher rd = swcontext.getContext().getRequestDispatcher(uri);
 
         rd.forward(request, swcontext.getResponse());
+    }
+
+    protected String includePath(ActionContext actionContext, String include) {
+        ServletActionContext swcontext = (ServletActionContext) actionContext;
+        String actionIdPath = RequestUtils.actionIdURL(include, swcontext.getModuleConfig(), swcontext.getActionServlet());
+        if (actionIdPath != null) {
+            return super.includePath(actionContext, actionIdPath);
+        } else {
+            return super.includePath(actionContext, include);
+        }
+
     }
 }

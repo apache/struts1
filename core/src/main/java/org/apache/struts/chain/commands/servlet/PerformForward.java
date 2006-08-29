@@ -69,6 +69,15 @@ public class PerformForward extends AbstractPerformForward {
         ServletContext servletContext = sacontext.getContext();
         HttpServletResponse response = sacontext.getResponse();
 
+        // If the forward can be unaliased into an action, then use the path of the action
+        String actionIdPath = RequestUtils.actionIdURL(forwardConfig, sacontext.getRequest(), sacontext.getActionServlet());
+        if (actionIdPath != null) {
+            uri = actionIdPath;
+            ForwardConfig actionIdForwardConfig = new ForwardConfig(forwardConfig);
+            actionIdForwardConfig.setPath(actionIdPath);
+            forwardConfig = actionIdForwardConfig;
+        }
+
         if (uri.startsWith("/")) {
             uri = resolveModuleRelativePath(forwardConfig, servletContext, request);
         }
