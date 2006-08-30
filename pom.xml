@@ -94,6 +94,30 @@
                 <module>assembly</module>
             </modules>
         </profile>
+        <profile>
+            <!-- STR-2942 - Temporary profile to assist with DTDDoc plugin testing -->
+            <id>dtddoc</id>
+            <repositories>
+                <repository>
+                    <id>dtddoc</id>
+                    <url>http://dtddoc.sf.net/maven2</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>dtddoc</id>
+                    <url>http://dtddoc.sf.net/maven2</url>
+                </pluginRepository>
+            </pluginRepositories>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>net.sf.dtddoc</groupId>
+                        <artifactId>dtddoc-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
     </profiles>
 
     <modules>
