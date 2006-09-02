@@ -24,6 +24,7 @@ import org.apache.struts.Globals;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
+import org.apache.struts.action.ActionServlet;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.html.Constants;
@@ -388,8 +389,16 @@ public class TagUtils {
         } else if (href != null) {
             url.append(href);
         } else if (action != null) {
-            url.append(instance.getActionMappingURL(action, module,
-                    pageContext, false));
+            ActionServlet servlet = (ActionServlet) pageContext.getServletContext().getAttribute(Globals.ACTION_SERVLET_KEY);
+            String actionIdPath = RequestUtils.actionIdURL(action, moduleConfig, servlet);
+            if (actionIdPath != null) {
+                action = actionIdPath;
+                url.append(request.getContextPath());
+                url.append(actionIdPath);
+            } else {
+                url.append(instance.getActionMappingURL(action, module,
+                        pageContext, false));
+            }
         } else /* if (page != null) */
          {
             url.append(request.getContextPath());

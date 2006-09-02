@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
+import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
@@ -764,6 +765,13 @@ public class FormTag extends TagSupport {
                 postbackAction = postbackAction.substring(prefix.length());
             }
             calcAction = postbackAction;
+        } else {
+            // Translate the action if it is an actionId
+            ActionConfig actionConfig = moduleConfig.findActionConfigId(this.action);
+            if (actionConfig != null) {
+                this.action = actionConfig.getPath();
+                calcAction = this.action;
+            }
         }
 
         servlet =
