@@ -50,6 +50,10 @@
             <item
                     name="Javadoc"
                     href="apidocs/index.html"
+                    />
+            <item
+                    name="DTDDoc"
+                    href="dtddoc/index.html"
                     />        
             <item
                     name="Source Repository"

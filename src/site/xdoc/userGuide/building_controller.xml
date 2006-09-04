@@ -2057,7 +2057,7 @@ limitations under the License.
                     action element, see the
                     <a href="../dtds/struts-config_1_3.dtd">
                         configuration DTD</a> or the online
-                    <a href="http://struts.apache.org/dtds/struts-config/1_3">LiveDTD</a>
+                    <a href="../struts-core/dtddoc/struts-config_1_3.dtd.html">DTDDoc</a>
                     docs, and the
                     <a href="../apidocs/org/apache/struts/action/ActionMapping.html">
                         ActionMapping documentation.</a>
