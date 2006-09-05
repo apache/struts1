@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -136,6 +136,11 @@ public class LinkTag extends BaseHandlerTag {
      * Include transaction token (if any) in the hyperlink?
      */
     protected boolean transaction = false;
+    
+    /**
+     * Additional parameters included programatically.
+     */
+    protected Map parameters = null;
 
     /**
      * Name of parameter to generate to hold index number
@@ -302,29 +307,6 @@ public class LinkTag extends BaseHandlerTag {
      * @throws JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
-        // Generate the opening anchor element
-        StringBuffer results = new StringBuffer("<a");
-
-        // Special case for name anchors
-        prepareAttribute(results, "name", getLinkName());
-
-        // * @since Struts 1.1
-        if ((getLinkName() == null) || (getForward() != null)
-            || (getHref() != null) || (getPage() != null)
-            || (getAction() != null)) {
-            prepareAttribute(results, "href", calculateURL());
-        }
-
-        prepareAttribute(results, "target", getTarget());
-        prepareAttribute(results, "accesskey", getAccesskey());
-        prepareAttribute(results, "tabindex", getTabindex());
-        results.append(prepareStyles());
-        results.append(prepareEventHandlers());
-        prepareOtherAttributes(results);
-        results.append(">");
-
-        TagUtils.getInstance().write(pageContext, results.toString());
-
         // Evaluate the body of this tag
         this.text = null;
 
@@ -354,15 +336,34 @@ public class LinkTag extends BaseHandlerTag {
      * @throws JspException if a JSP exception has occurred
      */
     public int doEndTag() throws JspException {
-        // Prepare the textual content and ending element of this hyperlink
-        StringBuffer results = new StringBuffer();
+        // Generate the opening anchor element
+        StringBuffer results = new StringBuffer("<a");
 
+        // Special case for name anchors
+        prepareAttribute(results, "name", getLinkName());
+
+        // * @since Struts 1.1
+        if ((getLinkName() == null) || (getForward() != null)
+            || (getHref() != null) || (getPage() != null)
+            || (getAction() != null)) {
+            prepareAttribute(results, "href", calculateURL());
+        }
+
+        prepareAttribute(results, "target", getTarget());
+        prepareAttribute(results, "accesskey", getAccesskey());
+        prepareAttribute(results, "tabindex", getTabindex());
+        results.append(prepareStyles());
+        results.append(prepareEventHandlers());
+        prepareOtherAttributes(results);
+        results.append(">");
+
+        TagUtils.getInstance().write(pageContext, results.toString());
+
+        // Prepare the textual content and ending element of this hyperlink
         if (text != null) {
             results.append(text);
         }
-
         results.append("</a>");
-
         TagUtils.getInstance().write(pageContext, results.toString());
 
         return (EVAL_PAGE);
@@ -385,6 +386,7 @@ public class LinkTag extends BaseHandlerTag {
         paramName = null;
         paramProperty = null;
         paramScope = null;
+        parameters = null;
         property = null;
         scope = null;
         target = null;
@@ -409,6 +411,14 @@ public class LinkTag extends BaseHandlerTag {
             TagUtils.getInstance().computeParameters(pageContext, paramId,
                 paramName, paramProperty, paramScope, name, property, scope,
                 transaction);
+        
+        // Add parameters collected from the tag's inner body
+        if (this.parameters != null) {
+            if (params == null) {
+                params = new HashMap();
+            }
+            params.putAll(this.parameters);
+        }
 
         // if "indexed=true", add "index=x" parameter to query string
         // * @since Struts 1.1
@@ -440,5 +450,19 @@ public class LinkTag extends BaseHandlerTag {
         }
 
         return (url);
+    }
+    
+    /**
+     * <p>Adds a parameter to this link.</p>
+     * 
+     * @param paramName the parameter name
+     * @param paramValue the parameter value
+     * @since Struts 1.3.6
+     */
+    public void addParameter(String paramName, Object paramValue) {
+        if (this.parameters == null) {
+            this.parameters = new HashMap();
+        }
+        this.parameters.put(paramName, paramValue);
     }
 }

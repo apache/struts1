@@ -23,6 +23,7 @@ import javax.servlet.jsp.JspException;
 
 import java.net.MalformedURLException;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -35,16 +36,24 @@ public class RewriteTag extends LinkTag {
     // --------------------------------------------------------- Public Methods
 
     /**
-     * Render the appropriately encoded URI.
+     * Render the URI.
      *
      * @throws JspException if a JSP exception has occurred
      */
-    public int doStartTag() throws JspException {
+    public int doEndTag() throws JspException {
         // Generate the hyperlink URL
         Map params =
             TagUtils.getInstance().computeParameters(pageContext, paramId,
                 paramName, paramProperty, paramScope, name, property, scope,
                 transaction);
+
+        // Add parameters collected from the tag's inner body
+        if (this.parameters != null) {
+            if (params == null) {
+                params = new HashMap();
+            }
+            params.putAll(this.parameters);
+        }
 
         String url = null;
 
@@ -61,16 +70,6 @@ public class RewriteTag extends LinkTag {
         }
 
         TagUtils.getInstance().write(pageContext, url);
-
-        return (SKIP_BODY);
-    }
-
-    /**
-     * Ignore the end of this tag.
-     *
-     * @throws JspException if a JSP exception has occurred
-     */
-    public int doEndTag() throws JspException {
         return (EVAL_PAGE);
     }
 }

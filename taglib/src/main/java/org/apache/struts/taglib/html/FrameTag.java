@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Copyright 1999-2006 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -138,11 +138,20 @@ public class FrameTag extends LinkTag {
     // --------------------------------------------------------- Public Methods
 
     /**
-     * Render the appropriately encoded URI.
+     * Evaluate the body for any parameters.
      *
      * @throws JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
+        return (EVAL_BODY_TAG);
+    }
+
+    /**
+     * Render the appropriately encoded URI.
+     *
+     * @throws JspException if a JSP exception has occurred
+     */
+    public int doEndTag() throws JspException {
         // Print this element to our output writer
         StringBuffer results = new StringBuffer("<frame");
 
@@ -163,15 +172,6 @@ public class FrameTag extends LinkTag {
         results.append(getElementClose());
         TagUtils.getInstance().write(pageContext, results.toString());
 
-        return (SKIP_BODY);
-    }
-
-    /**
-     * Ignore the end of this tag.
-     *
-     * @throws JspException if a JSP exception has occurred
-     */
-    public int doEndTag() throws JspException {
         return (EVAL_PAGE);
     }
 
