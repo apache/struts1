@@ -36,13 +36,24 @@ limitations under the License.
   <p>
     The Struts-Faces Integration Library should work with any implementation
     of JavaServer Faces, version 1.0 or later.  It has primarily been tested
-    against <a href="http://java.sun.com/j2ee/javaserverfaces/">
-    version 1.1 of the JavaServer Faces reference implementation.</a>
+    against version 1.1 of the 
+    <a href="http://java.sun.com/javaee/javaserverfaces/">JavaServer Faces</a>
+    reference implementation.
   </p>
 
   <p>
     For more information, consult the
-    <a href="README.txt" target="_blank">README</a> file.
+    <a href="README.txt" target="_blank">README</a> file or the
+    <a href="http://wiki.apache.org/struts/StrutsFaces">StrutsFaces</a>
+    wiki page.
+  </p>
+  
+  <p>Known issues with some JSF implementations:
+    <ul>
+      <li><a href="http://issues.apache.org/jira/browse/MYFACES-1421">
+      [MYFACES-1421]</a> - MyFaces 1.1.4 does not recognize the family of the
+      Struts Faces form component.</li>
+    </ul>
   </p>
   
   <p>
