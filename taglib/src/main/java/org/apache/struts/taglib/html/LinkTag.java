@@ -140,7 +140,7 @@ public class LinkTag extends BaseHandlerTag {
     /**
      * Additional parameters included programatically.
      */
-    protected Map parameters = null;
+    protected Map parameters = new HashMap();
 
     /**
      * Name of parameter to generate to hold index number
@@ -307,9 +307,10 @@ public class LinkTag extends BaseHandlerTag {
      * @throws JspException if a JSP exception has occurred
      */
     public int doStartTag() throws JspException {
-        // Evaluate the body of this tag
         this.text = null;
+        this.parameters.clear();
 
+        // Evaluate the body of this tag
         return (EVAL_BODY_TAG);
     }
 
@@ -413,7 +414,7 @@ public class LinkTag extends BaseHandlerTag {
                 transaction);
         
         // Add parameters collected from the tag's inner body
-        if (this.parameters != null) {
+        if (!this.parameters.isEmpty()) {
             if (params == null) {
                 params = new HashMap();
             }
@@ -460,9 +461,6 @@ public class LinkTag extends BaseHandlerTag {
      * @since Struts 1.3.6
      */
     public void addParameter(String paramName, Object paramValue) {
-        if (this.parameters == null) {
-            this.parameters = new HashMap();
-        }
         this.parameters.put(paramName, paramValue);
     }
 }

@@ -48,7 +48,7 @@ public class RewriteTag extends LinkTag {
                 transaction);
 
         // Add parameters collected from the tag's inner body
-        if (this.parameters != null) {
+        if (!this.parameters.isEmpty()) {
             if (params == null) {
                 params = new HashMap();
             }

@@ -138,15 +138,6 @@ public class FrameTag extends LinkTag {
     // --------------------------------------------------------- Public Methods
 
     /**
-     * Evaluate the body for any parameters.
-     *
-     * @throws JspException if a JSP exception has occurred
-     */
-    public int doStartTag() throws JspException {
-        return (EVAL_BODY_TAG);
-    }
-
-    /**
      * Render the appropriately encoded URI.
      *
      * @throws JspException if a JSP exception has occurred
