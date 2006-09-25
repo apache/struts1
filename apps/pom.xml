@@ -84,6 +84,7 @@
          <!-- Include source code under WEB-INF/src/java -->
          <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.1</version>
             <executions>
                <execution>
                   <id>copy-sources</id>
