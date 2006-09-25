@@ -22,7 +22,7 @@
 <hr noshade="noshade" />   
 
 <html:errors/>
-<html:form action="/processValidator" method="get">
+<html:form action="validatorAction" method="get">
 
 	<table>
 	<tr><td>Byte:</td><td><html:text property="byteValue" /> -128 .. 127</td></tr>
