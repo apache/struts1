@@ -19,6 +19,40 @@ limitations under the License.
 <faqs title="Newbie FAQ">
         <part id="general">
 
+            <faq id="chain">
+                <question>How do I load a custom chain config file?</question>
+                <answer>
+
+                    <p>Use the <code>chainConfig</code> init param for
+                        ActionServlet to specify a comma delimited list of 
+                        chain config files.
+                    </p>
+
+                    <p>This will override the default value of
+                        <code>chainConfig</code>, so unless you are
+                        overriding the default request processing chain, you
+                        must include the default chain config file in the list.
+                    </p>
+
+                    <pre>
+                        &lt;init-param>
+                            &lt;param-name>chainConfig&lt;/param-name>
+                            &lt;param-value>
+                                org/apache/struts/chain/chain-config.xml,
+                                /WEB-INF/custom-chain-config.xml
+                            &lt;/param-value>
+                        &lt;/init-param>
+                    </pre>
+
+                    <p>For another method of loading chain config files, see
+                        <a href="http://jakarta.apache.org/commons/chain/cookbook.html#Load_a_Catalog_From_a_Web_Application">
+                            Load a Catalog From a Web Application</a>
+                        in the Commons Chain Cookbook.
+                    </p>
+                </answer>
+
+            </faq>
+
             <faq id="modules">
 	    <question>What is a modular application? What does module-relative mean?</question>                    
             <answer>
