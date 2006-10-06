@@ -29,8 +29,7 @@ import java.lang.reflect.InvocationTargetException;
  * <code>&lt;form-property&gt;</code> element in a Struts configuration
  * file.<p>
  *
- * @version $Rev$ $Date: 2005-11-12 11:52:08 -0500 (Sat, 12 Nov 2005)
- *          $
+ * @version $Rev$ $Date: 2005-11-12 11:52:08 -0500 (Sat, 12 Nov 2005)$
  * @since Struts 1.1
  */
 public class FormPropertyConfig extends BaseConfig {
@@ -255,7 +254,9 @@ public class FormPropertyConfig extends BaseConfig {
 
             try {
                 baseClass = classLoader.loadClass(baseType);
-            } catch (Throwable t) {
+            } catch (ClassNotFoundException ex) {
+                log.error("Class '" + baseType +
+                          "' not found for property '" + name + "'");
                 baseClass = null;
             }
         }
