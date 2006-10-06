@@ -224,7 +224,9 @@ public class FormPropertyConfig implements Serializable {
             }
             try {
                 baseClass = classLoader.loadClass(baseType);
-            } catch (Throwable t) {
+            } catch (ClassNotFoundException ex) {
+                log.error("Class '" + baseType +
+                          "' not found for property '" + name + "'");
                 baseClass = null;
             }
         }
