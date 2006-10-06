@@ -155,9 +155,9 @@
     manager should only be used with legacy business classes that don't provide
     their own  connectivity. When possible, we <b>strongly</b> recommend use of
     the standard DAO pattern, so that the Action classes do not need to know
-    anything about the persitence mechanism. <strong>The DataSource manager is being
-    retained in Struts 1.x for backward compatibility but may not be retained
-    in Struts 2.x or later.</strong>
+    anything about the persitence mechanism. <strong>The DataSource manager is
+    retained in Struts 1.2.x for backward compatibility but has been removed
+    in Struts 1.3.x.</strong>
     </p>
 
     <p>
