@@ -25,7 +25,6 @@
 <li>Refeshing this page and selecting OK when your browser asks if you want to resubmit the data.</li>
 </ol>
 In either case, the input form page will be displayed, along with an error message explaining that the form has been submitted out of sequence.
-</p>
 
 <p><strong>Important:</strong> This example demonstrates how you can prevent <em>unintentional</em> form resubmission. 
 The token is reset before the input form is redisplayed. This means that once the user has been notified of the attempted
