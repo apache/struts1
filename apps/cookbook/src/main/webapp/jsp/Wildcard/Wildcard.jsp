@@ -15,6 +15,7 @@
 <html:link action="Home">
     <img src="images/return.gif" height="24" width="24" alt="Return to examples page" class="icon" />
 </html:link>
+</p>
 <h1>Wildcard Example</h1>
 <hr noshade="noshade"/>
 <h2>Select a link. </h2>
