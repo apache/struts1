@@ -64,9 +64,16 @@
       <s:message      key="index.heading"/>
     </f:facet>
 
+    <s:commandLink     id="test"
+           actionListener="#{indexBacking.testListener}"
+                immediate="true"
+               styleClass="link"
+                 rendered="#{false}">
+               <h:outputText value="Click here to test ActionListener"></h:outputText>
+    </s:commandLink>
+
     <s:commandLink     id="create"
                    action="#{indexBacking.create}"
-                immediate="true"
                styleClass="link">
       <f:param       name="action"
                     value="Create"/>
@@ -79,6 +86,8 @@
                styleClass="link">
       <s:message      key="index.logon"/>
     </s:commandLink>
+    
+    <h:message for="test"></h:message>
 
   </h:panelGrid>
 

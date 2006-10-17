@@ -235,7 +235,7 @@
     <description><![CDATA[
       <p>Displays a list of error messages prepared by form bean
       or business logic validation processing.</p>
-<p>In order to use this component successfully, you must have
+      <p>In order to use this component successfully, you must have
       defined an application scope <code>MessageResources</code> bean
       under the specified attribute name, with optinal definitions for
       the following message keys:</p>

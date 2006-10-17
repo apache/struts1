@@ -21,6 +21,7 @@ import javax.faces.component.ActionSource;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.el.MethodBinding;
+import javax.faces.event.ActionEvent;
 
 
 /**
@@ -38,6 +39,7 @@ public class CommandLinkTag extends AbstractFacesTag {
 
     private String accesskey = null;
     private String action = null;
+    private String actionListener = null;
     private String charset = null;
     private String dir = null;
     private String hreflang = null;
@@ -78,6 +80,11 @@ public class CommandLinkTag extends AbstractFacesTag {
     }
 
 
+    public void setactionListener(String actionListener) {
+    	this.actionListener = actionListener;
+    }
+    
+    
     public void setCharset(String charset) {
         this.charset = charset;
     }
@@ -214,6 +221,7 @@ public class CommandLinkTag extends AbstractFacesTag {
         super.release();
         accesskey = null;
         action = null;
+        actionListener = null;
         charset = null;
         dir = null;
         hreflang = null;
@@ -288,6 +296,14 @@ public class CommandLinkTag extends AbstractFacesTag {
                 MethodBinding mb = new ConstantMethodBinding(outcome);
                 ((ActionSource) component).setAction(mb);
             }
+        }
+        if (actionListener != null) {
+        	if (isValueReference(actionListener)) {
+        		Class[] args = {ActionEvent.class};
+        		MethodBinding mb = FacesContext.getCurrentInstance().
+        		getApplication().createMethodBinding(actionListener, args);
+        		((ActionSource) component).setActionListener(mb);
+        	}
         }
         setStringAttribute(component, "accesskey", accesskey);
         setStringAttribute(component, "charset", charset);

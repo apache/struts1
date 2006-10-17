@@ -19,6 +19,8 @@ package org.apache.struts.webapp.example;
 
 
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -54,7 +56,13 @@ public class IndexBacking extends AbstractBacking {
         return (null);
 
     }
-
+    /**
+     * <p>Testing actionListener call</p>
+     * @param actionEvent
+     */
+    public void testListener(ActionEvent actionEvent){
+//    	System.out.println("================= it works!!");
+    }
 
     /**
      * <p>Forward to the <em>Logon</em> page.</p>
