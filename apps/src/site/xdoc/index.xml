@@ -34,8 +34,8 @@ limitations under the License.
                 Tomcat's <code>webapps</code> folder. 
              </p>
              
-             <p>Click the links below to view online examples hosted by
-             <a href="http://planetstruts.org">Planet Struts</a>.</p>
+             <p>As a convenience, the linked examples are available online 
+             at <a href="http://planetstruts.org">Planet Struts</a>.</p>
              
             <table>
 
@@ -74,33 +74,33 @@ limitations under the License.
             web application.
             </td></tr>
 
-            <tr><th><a href="http://planetstruts.org/struts-el-example/">
+            <tr><th>
             EL Example
-            </a></th><td>
+            </th><td>
             Struts EL Example demonstrates and tests the 
             <a href="../struts-el/index.html">Struts EL tags</a> 
             using tests from the Exercise-Taglib application. 
             </td></tr>
 
-            <tr><th><a href="http://planetstruts.org/struts-faces-example1/">
+            <tr><th>
             Faces Example 1
-            </a></th><td>
+            </th><td>
             The Struts Faces Example 1 application is JSF-enabled rendition 
             of the classic Struts MailReader,
             </td></tr>
 
 
-            <tr><th><a href="http://planetstruts.org/struts-faces-example2/">
+            <tr><th>
             Faces Example 2
-            </a></th><td>
+            </th><td>
             Struts Faces Example 2 application is <em>Tiles-enabled,</em> 
             JSF-enabled rendition of the classic Struts MailReader. 
             </td></tr>
 
 
-            <tr><th><a href="http://planetstruts.org/struts-scripting-mailreader/">
+            <tr><th>
             Scripting MailReader
-            </a></th><td>
+            </th><td>
             Struts Scripting Mailreader is a scripting-enabled rendition of the 
             classic Struts MailReader. Here, Actions are written with scripts 
             rather than Java.
