@@ -36,6 +36,12 @@
    <name>Struts EL</name>
    <url>http://struts.apache.org</url>
    
+    <scm>
+        <connection>scm:svn:http://svn.apache.org/repos/asf/struts/struts1/trunk/el/</connection>
+        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/struts/struts1/trunk/el/</developerConnection>
+        <url>http://svn.apache.org/repos/asf/struts/struts1/trunk/el/</url>
+    </scm>
+    
    <distributionManagement>
       <site>
          <id>apache-site</id>

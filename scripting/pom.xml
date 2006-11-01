@@ -36,6 +36,12 @@
    <name>Struts Scripting</name>
    <url>http://struts.apache.org</url>
 
+    <scm>
+        <connection>scm:svn:http://svn.apache.org/repos/asf/struts/struts1/trunk/scripting/</connection>
+        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/struts/struts1/trunk/scripting/</developerConnection>
+        <url>http://svn.apache.org/repos/asf/struts/struts1/trunk/scripting/</url>
+    </scm>
+    
    <distributionManagement>
       <site>
          <id>apache-site</id>

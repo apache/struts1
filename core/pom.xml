@@ -37,9 +37,9 @@
     <url>http://struts.apache.org</url>
 
     <scm>
-        <connection>svm:svn:http://svn.apache.org/repos/asf/struts/action/trunk</connection>
-        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/struts/action/trunk</developerConnection>
-        <url>http://svn.apache.org/repos/asf/struts/action/trunk</url>
+        <connection>scm:svn:http://svn.apache.org/repos/asf/struts/struts1/trunk/core/</connection>
+        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/struts/struts1/trunk/core</developerConnection>
+        <url>http://svn.apache.org/repos/asf/struts/struts1/trunk/core</url>
     </scm>
     
     <distributionManagement>
