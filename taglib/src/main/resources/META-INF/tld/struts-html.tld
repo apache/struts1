@@ -2967,6 +2967,18 @@
             </description>
         </attribute>
         <attribute>
+            <name>module</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+                   <p>Prefix name of a <code>Module</code> that
+                   the <code>page</code> or <code>pageKey</code>
+                   attributes relate to.</p>
+              ]]>
+            </description>
+        </attribute>
+        <attribute>
             <name>onblur</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>

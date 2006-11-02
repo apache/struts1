@@ -20,6 +20,7 @@ package org.apache.struts.taglib.html;
 import org.apache.struts.Globals;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
+import org.apache.struts.util.ModuleUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -63,6 +64,12 @@ public class ImageTag extends SubmitTag {
      * The message resources key for the URL of this image.
      */
     protected String srcKey = null;
+
+    /**
+     * The module prefix (beginning with a slash) which will be used to find
+     * the action for this link.
+     */
+    protected String module = null;
 
     // --------------------------------------------------------- Constructor
     public ImageTag() {
@@ -122,6 +129,14 @@ public class ImageTag extends SubmitTag {
 
     public void setSrcKey(String srcKey) {
         this.srcKey = srcKey;
+    }
+
+    public String getModule() {
+        return (this.module);
+    }
+
+    public void setModule(String module) {
+        this.module = module;
     }
 
     // --------------------------------------------------------- Protected Methods
@@ -191,11 +206,12 @@ public class ImageTag extends SubmitTag {
                 throw e;
             }
 
-            ModuleConfig config =
-                (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
-
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
+
+            ModuleConfig config =
+                ModuleUtils.getInstance().getModuleConfig(this.module,
+                    request, pageContext.getServletContext());
 
             String pageValue = this.page;
 
@@ -217,11 +233,12 @@ public class ImageTag extends SubmitTag {
                 throw e;
             }
 
-            ModuleConfig config =
-                (ModuleConfig) pageContext.getRequest().getAttribute(Globals.MODULE_KEY);
-
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
+
+            ModuleConfig config =
+                ModuleUtils.getInstance().getModuleConfig(this.module,
+                    request, pageContext.getServletContext());
 
             String pageValue =
                 TagUtils.getInstance().message(pageContext, getBundle(),

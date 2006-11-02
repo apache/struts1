@@ -93,6 +93,12 @@ public class ELImageTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("module", ELImageTag.class,
+                    null, "setModuleExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("onblur", ELImageTag.class,
                     null, "setOnblurExpr"));
         } catch (IntrospectionException ex) {

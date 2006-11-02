@@ -87,6 +87,12 @@ public class ELImageTag extends ImageTag {
     private String localeExpr;
 
     /**
+     * Instance variable mapped to "module" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String moduleExpr;
+
+    /**
      * Instance variable mapped to "onblur" tag attribute. (Mapping set in
      * associated BeanInfo class.)
      */
@@ -306,6 +312,14 @@ public class ELImageTag extends ImageTag {
      */
     public String getLocaleExpr() {
         return (localeExpr);
+    }
+
+    /**
+     * Getter method for "module" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getModuleExpr() {
+        return (moduleExpr);
     }
 
     /**
@@ -581,6 +595,14 @@ public class ELImageTag extends ImageTag {
     }
 
     /**
+     * Setter method for "module" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setModuleExpr(String moduleExpr) {
+        this.moduleExpr = moduleExpr;
+    }
+
+    /**
      * Setter method for "onblur" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -794,6 +816,7 @@ public class ELImageTag extends ImageTag {
         setDisabledExpr(null);
         setIndexedExpr(null);
         setLocaleExpr(null);
+        setModuleExpr(null);
         setOnblurExpr(null);
         setOnchangeExpr(null);
         setOnclickExpr(null);
@@ -895,6 +918,12 @@ public class ELImageTag extends ImageTag {
                 EvalHelper.evalString("locale", getLocaleExpr(), this,
                     pageContext)) != null) {
             setLocale(string);
+        }
+
+        if ((string =
+                EvalHelper.evalString("module", getModuleExpr(), this,
+                    pageContext)) != null) {
+            setModule(string);
         }
 
         if ((string =
