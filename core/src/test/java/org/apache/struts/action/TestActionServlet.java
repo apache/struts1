@@ -1,19 +1,22 @@
 /*
  * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.apache.struts.action;
 
@@ -544,7 +547,7 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addExceptionConfig(customSub);
 
         ExceptionConfig result =
-            actionServlet.processExceptionConfigClass(customSub, moduleConfig, 
+            actionServlet.processExceptionConfigClass(customSub, moduleConfig,
                 null);
 
         assertTrue("Incorrect class of exception config",
@@ -595,7 +598,7 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addExceptionConfig(customSub);
 
         ExceptionConfig result =
-            actionServlet.processExceptionConfigClass(customSub, moduleConfig, 
+            actionServlet.processExceptionConfigClass(customSub, moduleConfig,
                 null);
 
         assertSame("The instance returned should be the param given it.",
@@ -620,7 +623,7 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addExceptionConfig(customSub);
 
         try {
-            actionServlet.processExceptionConfigClass(customSub, moduleConfig, 
+            actionServlet.processExceptionConfigClass(customSub, moduleConfig,
                 null);
             fail("Exception should be thrown");
         } catch (UnavailableException e) {
@@ -646,7 +649,7 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addExceptionConfig(customSub);
 
         try {
-            actionServlet.processExceptionConfigClass(customSub, moduleConfig, 
+            actionServlet.processExceptionConfigClass(customSub, moduleConfig,
                 null);
         } catch (Exception e) {
             fail("Exception should not be thrown");
@@ -862,7 +865,7 @@ public class TestActionServlet extends TestCase {
     }
 
     /**
-     * Test that an ActionConfig's ForwardConfig can inherit from a 
+     * Test that an ActionConfig's ForwardConfig can inherit from a
      * global ForwardConfig.
      */
     public void testProcessActionExtensionWithForwardConfig()
@@ -875,7 +878,7 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addActionConfig(baseAction);
         moduleConfig.addForwardConfig(baseForward);
         actionServlet.processActionConfigExtension(baseAction, moduleConfig);
-        
+
         forwardConfig = baseAction.findForwardConfig("sub");
 
         assertEquals("'sub' forward's inheritance was not processed.",
@@ -883,7 +886,7 @@ public class TestActionServlet extends TestCase {
     }
 
     /**
-     * Test that an ActionConfig's ExceptionConfig can inherit from a 
+     * Test that an ActionConfig's ExceptionConfig can inherit from a
      * global ExceptionConfig.
      */
     public void testProcessActionExtensionWithExceptionConfig()
@@ -896,7 +899,7 @@ public class TestActionServlet extends TestCase {
         moduleConfig.addActionConfig(baseAction);
         moduleConfig.addExceptionConfig(baseException);
         actionServlet.processActionConfigExtension(baseAction, moduleConfig);
-        
+
         exceptionConfig = baseAction.findExceptionConfig("SomeException");
 
         assertEquals("SomeException's inheritance was not processed.",

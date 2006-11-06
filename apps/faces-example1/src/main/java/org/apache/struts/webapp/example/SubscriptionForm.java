@@ -1,17 +1,22 @@
 /*
- * Copyright 1999-2001,2004 The Apache Software Foundation.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * $Id$
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 
 
@@ -92,7 +97,7 @@ public final class SubscriptionForm extends ActionForm  {
      */
     public String getAction() {
 
-	return (this.action);
+    return (this.action);
 
     }
 
@@ -135,7 +140,7 @@ public final class SubscriptionForm extends ActionForm  {
      */
     public String getHost() {
 
-	return (this.host);
+    return (this.host);
 
     }
 
@@ -157,7 +162,7 @@ public final class SubscriptionForm extends ActionForm  {
      */
     public String getPassword() {
 
-	return (this.password);
+    return (this.password);
 
     }
 
@@ -179,7 +184,7 @@ public final class SubscriptionForm extends ActionForm  {
      */
     public String getType() {
 
-	return (this.type);
+    return (this.type);
 
     }
 
@@ -201,7 +206,7 @@ public final class SubscriptionForm extends ActionForm  {
      */
     public String getUsername() {
 
-	return (this.username);
+    return (this.username);
 
     }
 
@@ -254,23 +259,23 @@ public final class SubscriptionForm extends ActionForm  {
 
         ActionErrors errors = new ActionErrors();
 
-	if ((host == null) || (host.length() < 1))
+    if ((host == null) || (host.length() < 1))
             errors.add("host",
                        new ActionMessage("error.host.required"));
-	if ((username == null) || (username.length() < 1))
+    if ((username == null) || (username.length() < 1))
             errors.add("username",
                        new ActionMessage("error.username.required"));
-	if ((password == null) || (password.length() < 1))
+    if ((password == null) || (password.length() < 1))
             errors.add("password",
                        new ActionMessage("error.password.required"));
-	if ((type == null) || (type.length() < 1))
+    if ((type == null) || (type.length() < 1))
             errors.add("type",
                        new ActionMessage("error.type.required"));
-	else if (!"imap".equals(type) && !"pop3".equals(type))
+    else if (!"imap".equals(type) && !"pop3".equals(type))
             errors.add("type",
                        new ActionMessage("error.type.invalid", type));
 
-	return (errors);
+    return (errors);
 
     }
 

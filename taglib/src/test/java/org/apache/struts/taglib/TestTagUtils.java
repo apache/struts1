@@ -1,17 +1,22 @@
 /*
- * Copyright 2004-2005 The Apache Software Foundation.
+ * $Id: $
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.apache.struts.taglib;
 
@@ -249,7 +254,7 @@ public class TestTagUtils extends TagTestBase {
                     "SomeBean", null, null, "SomeBean", null, null, false);
 
             //            map = tagutils.computeParameters(
-            //                    page, "paramId", "SomeBean", "stringArray", null, 
+            //                    page, "paramId", "SomeBean", "stringArray", null,
             //                    null, null, null, false);
             assertNotNull("map is null", map);
 
@@ -622,7 +627,7 @@ public class TestTagUtils extends TagTestBase {
         }
 
         assertNotNull("url present", url);
-        assertEquals("url value", 
+        assertEquals("url value",
         //                     "/myapp/relative.jsp",
         "relative.jsp", url);
     }
@@ -641,7 +646,7 @@ public class TestTagUtils extends TagTestBase {
         }
 
         assertNotNull("url present", url);
-        assertEquals("url value", 
+        assertEquals("url value",
         //                     "/myapp/relative.jsp",
         "relative.jsp", url);
     }
@@ -770,7 +775,7 @@ public class TestTagUtils extends TagTestBase {
         }
 
         assertNotNull("url present", url);
-        assertEquals("url value", 
+        assertEquals("url value",
         //                     "/myapp/2/relative.jsp",
         "relative.jsp", url);
     }
@@ -790,7 +795,7 @@ public class TestTagUtils extends TagTestBase {
         }
 
         assertNotNull("url present", url);
-        assertEquals("url value", 
+        assertEquals("url value",
         //                     "/myapp/relative.jsp",
         "relative.jsp", url);
     }
@@ -967,9 +972,9 @@ public class TestTagUtils extends TagTestBase {
             || url.equals("/myapp/bar?foo2=bar2&foo1=bar1"));
     }
 
-    // Add parameters only 
-    //  -- forward URL 
-    //  -- do not encode seperator 
+    // Add parameters only
+    //  -- forward URL
+    //  -- do not encode seperator
     //  -- send param with null value
     public void testComputeURL3h() {
         request.setPathElements("/myapp", "/action.do", null, null);
@@ -991,9 +996,9 @@ public class TestTagUtils extends TagTestBase {
         assertTrue("url value", url.equals("/myapp/bar?foo1="));
     }
 
-    // Add parameters only 
-    //  -- forward URL 
-    //  -- do not encode seperator 
+    // Add parameters only
+    //  -- forward URL
+    //  -- do not encode seperator
     //  -- send param with null value
     //  -- add ? to page
     public void testComputeURL3i() {
@@ -1016,9 +1021,9 @@ public class TestTagUtils extends TagTestBase {
         assertTrue("url value", url.equals("/myapp/bar?&foo1="));
     }
 
-    // Add parameters only 
-    //  -- forward URL 
-    //  -- do not encode seperator 
+    // Add parameters only
+    //  -- forward URL
+    //  -- do not encode seperator
     //  -- send param with null value
     //  -- add ? and param to page
     public void testComputeURL3j() {
@@ -1567,7 +1572,7 @@ public class TestTagUtils extends TagTestBase {
     }
 
     // ------------------------------------------ getActionMessages()
-    // -- using ActionMessages 
+    // -- using ActionMessages
     public void testActionMessages_getActionMessages_PageContext_String1() {
         ActionMessages actionMessages = new ActionMessages();
 
@@ -1599,7 +1604,7 @@ public class TestTagUtils extends TagTestBase {
         }
     }
 
-    // -- using ActionErrors 
+    // -- using ActionErrors
     public void testActionMessages_getActionMessages_PageContext_String2() {
         ActionMessages actionMessages = new ActionMessages();
 
@@ -1631,7 +1636,7 @@ public class TestTagUtils extends TagTestBase {
         }
     }
 
-    // -- using String 
+    // -- using String
     public void testActionMessages_getActionMessages_PageContext_String3() {
         request.setAttribute("foo", "bar");
 
@@ -1665,7 +1670,7 @@ public class TestTagUtils extends TagTestBase {
         }
     }
 
-    // -- using String Array 
+    // -- using String Array
     public void testActionMessages_getActionMessages_PageContext_String4() {
         String[] vals = new String[] { "bar", "baz" };
 
@@ -2168,24 +2173,24 @@ public class TestTagUtils extends TagTestBase {
             fail("JspException should not have been thrown");
         }
     }
-    
+
     public void testOverrideInstance(){
-    	
+
         class CustomTagUtils extends TagUtils{
-        	public String filter(String value) {
-        		return "I HAVE BEEN OVERRIDDEN!";
-        	}
+            public String filter(String value) {
+                return "I HAVE BEEN OVERRIDDEN!";
+            }
         }
         // verify original logic
         assertNull("Filter Test", TagUtils.getInstance().filter(null));
-        
+
         // set the custom instance
         TagUtils.setInstance(new CustomTagUtils());
         assertEquals("Custom Instance Test", TagUtils.getInstance().filter(null), "I HAVE BEEN OVERRIDDEN!");
-        
+
         // reset back to the cached instance
         TagUtils.setInstance(tagutils);
         assertNull("Filter Test", TagUtils.getInstance().filter(null));
-        
+
     }
 }

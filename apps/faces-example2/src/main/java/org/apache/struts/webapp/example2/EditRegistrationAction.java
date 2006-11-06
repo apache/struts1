@@ -1,17 +1,22 @@
 /*
- * Copyright 1999-2002,2004 The Apache Software Foundation.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * $Id$
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 
 
@@ -73,48 +78,48 @@ public final class EditRegistrationAction extends Action {
      *  an exception
      */
     public ActionForward execute(ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
-	throws Exception {
+                 ActionForm form,
+                 HttpServletRequest request,
+                 HttpServletResponse response)
+    throws Exception {
 
-	// Extract attributes we will need
-	HttpSession session = request.getSession();
-	String action = request.getParameter("action");
-	if (action == null)
-	    action = "Create";
+    // Extract attributes we will need
+    HttpSession session = request.getSession();
+    String action = request.getParameter("action");
+    if (action == null)
+        action = "Create";
         if (log.isDebugEnabled()) {
             log.debug("EditRegistrationAction:  Processing " + action +
                         " action");
         }
 
-	// Is there a currently logged on user?
-	User user = null;
-	if (!"Create".equals(action)) {
-	    user = (User) session.getAttribute(Constants.USER_KEY);
-	    if (user == null) {
+    // Is there a currently logged on user?
+    User user = null;
+    if (!"Create".equals(action)) {
+        user = (User) session.getAttribute(Constants.USER_KEY);
+        if (user == null) {
                 if (log.isDebugEnabled()) {
                     log.debug(" User is not logged on in session "
                               + session.getId());
                 }
-		return (mapping.findForward("logon"));
-	    }
-	}
+        return (mapping.findForward("logon"));
+        }
+    }
 
-	// Populate the user registration form
-	if (form == null) {
+    // Populate the user registration form
+    if (form == null) {
             if (log.isTraceEnabled()) {
                 log.trace(" Creating new RegistrationForm bean under key "
                           + mapping.getAttribute());
             }
-	    form = new RegistrationForm();
+        form = new RegistrationForm();
             if ("request".equals(mapping.getScope()))
                 request.setAttribute(mapping.getAttribute(), form);
             else
                 session.setAttribute(mapping.getAttribute(), form);
-	}
-	RegistrationForm regform = (RegistrationForm) form;
-	if (user != null) {
+    }
+    RegistrationForm regform = (RegistrationForm) form;
+    if (user != null) {
             if (log.isTraceEnabled()) {
                 log.trace(" Populating form from " + user);
             }
@@ -133,7 +138,7 @@ public final class EditRegistrationAction extends Action {
                 log.error("RegistrationForm.populate", t);
                 throw new ServletException("RegistrationForm.populate", t);
             }
-	}
+    }
 
         // Set a transactional control token to prevent double posting
         if (log.isTraceEnabled()) {
@@ -141,7 +146,7 @@ public final class EditRegistrationAction extends Action {
         }
         saveToken(request);
 
-	// Forward control to the edit user registration page
+    // Forward control to the edit user registration page
         if (log.isTraceEnabled()) {
             log.trace(" Forwarding to 'success' page");
         }

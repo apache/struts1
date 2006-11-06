@@ -1,19 +1,22 @@
 /*
  * $Id$
  *
- * Copyright 1999-2006 The Apache Software Foundation.
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.apache.struts.config.impl;
 
@@ -64,7 +67,7 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
      * the <code>path</code> property.</p>
      */
     protected HashMap actionConfigs = null;
-    
+
     /**
      * <p>The set of action configuration for this module, if any, keyed by
      * the <code>actionId</code> property.</p>
@@ -287,7 +290,7 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
         if (actionConfigs.containsKey(path)) {
             log.warn("Overriding ActionConfig of path " + path);
         }
-        
+
         String actionId = config.getActionId();
         if ((actionId != null) && !actionId.equals("")) {
             if (actionConfigIds.containsKey(actionId)) {
@@ -442,7 +445,7 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
     /**
      * <p>Returns the action configuration for the specifed action
      * action identifier.</p>
-     * 
+     *
      * @param actionId the action identifier
      * @return the action config if found; otherwise <code>null</code>
      * @see ActionConfig#getActionId()

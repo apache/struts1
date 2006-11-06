@@ -1,17 +1,22 @@
 /*
- * Copyright 1999-2001,2004 The Apache Software Foundation.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * $Id$
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 
 
@@ -52,8 +57,8 @@ public class LinkUserTag extends TagSupport {
      * The message resources for this package.
      */
     protected static MessageResources messages =
-	MessageResources.getMessageResources
-	("org.apache.struts.webapp.example.ApplicationResources");
+    MessageResources.getMessageResources
+    ("org.apache.struts.webapp.example.ApplicationResources");
 
 
     /**
@@ -70,7 +75,7 @@ public class LinkUserTag extends TagSupport {
      */
     public String getPage() {
 
-	return (this.page);
+    return (this.page);
 
     }
 
@@ -82,7 +87,7 @@ public class LinkUserTag extends TagSupport {
      */
     public void setPage(String page) {
 
-	this.page = page;
+    this.page = page;
 
     }
 
@@ -92,7 +97,7 @@ public class LinkUserTag extends TagSupport {
      */
     public String getName() {
 
-	return (this.name);
+    return (this.name);
 
     }
 
@@ -104,7 +109,7 @@ public class LinkUserTag extends TagSupport {
      */
     public void setName(String name) {
 
-	this.name = name;
+    this.name = name;
 
     }
 
@@ -119,45 +124,45 @@ public class LinkUserTag extends TagSupport {
      */
     public int doStartTag() throws JspException {
 
-	// Generate the URL to be encoded
+    // Generate the URL to be encoded
         HttpServletRequest request =
             (HttpServletRequest) pageContext.getRequest();
         StringBuffer url = new StringBuffer(request.getContextPath());
         url.append(page);
-	User user = null;
-	try {
-	    user = (User) pageContext.findAttribute(name);
+    User user = null;
+    try {
+        user = (User) pageContext.findAttribute(name);
         } catch (ClassCastException e) {
-	    user = null;
-	}
-	if (user == null)
-	    throw new JspException
-	        (messages.getMessage("linkUser.noUser", name));
-	if (page.indexOf("?") < 0)
-	    url.append("?");
-	else
-	    url.append("&");
-	url.append("username=");
-	url.append(ResponseUtils.filter(user.getUsername()));
+        user = null;
+    }
+    if (user == null)
+        throw new JspException
+            (messages.getMessage("linkUser.noUser", name));
+    if (page.indexOf("?") < 0)
+        url.append("?");
+    else
+        url.append("&");
+    url.append("username=");
+    url.append(ResponseUtils.filter(user.getUsername()));
 
-	// Generate the hyperlink start element
-	HttpServletResponse response =
-	  (HttpServletResponse) pageContext.getResponse();
-	StringBuffer results = new StringBuffer("<a href=\"");
-	results.append(response.encodeURL(url.toString()));
-	results.append("\">");
+    // Generate the hyperlink start element
+    HttpServletResponse response =
+      (HttpServletResponse) pageContext.getResponse();
+    StringBuffer results = new StringBuffer("<a href=\"");
+    results.append(response.encodeURL(url.toString()));
+    results.append("\">");
 
-	// Print this element to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print(results.toString());
-	} catch (IOException e) {
-	    throw new JspException
-		(messages.getMessage("linkUser.io", e.toString()));
-	}
+    // Print this element to our output writer
+    JspWriter writer = pageContext.getOut();
+    try {
+        writer.print(results.toString());
+    } catch (IOException e) {
+        throw new JspException
+        (messages.getMessage("linkUser.io", e.toString()));
+    }
 
-	// Evaluate the body of this tag
-	return (EVAL_BODY_INCLUDE);
+    // Evaluate the body of this tag
+    return (EVAL_BODY_INCLUDE);
 
     }
 
@@ -171,16 +176,16 @@ public class LinkUserTag extends TagSupport {
     public int doEndTag() throws JspException {
 
 
-	// Print the ending element to our output writer
-	JspWriter writer = pageContext.getOut();
-	try {
-	    writer.print("</a>");
-	} catch (IOException e) {
-	    throw new JspException
-	        (messages.getMessage("link.io", e.toString()));
-	}
+    // Print the ending element to our output writer
+    JspWriter writer = pageContext.getOut();
+    try {
+        writer.print("</a>");
+    } catch (IOException e) {
+        throw new JspException
+            (messages.getMessage("link.io", e.toString()));
+    }
 
-	return (EVAL_PAGE);
+    return (EVAL_PAGE);
 
     }
 

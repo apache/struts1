@@ -1,19 +1,22 @@
 /*
  * $Id$
  *
- * Copyright 1999-2006 The Apache Software Foundation.
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.apache.struts.taglib.html;
 
@@ -136,7 +139,7 @@ public class LinkTag extends BaseHandlerTag {
      * Include transaction token (if any) in the hyperlink?
      */
     protected boolean transaction = false;
-    
+
     /**
      * Additional parameters included programatically.
      */
@@ -412,7 +415,7 @@ public class LinkTag extends BaseHandlerTag {
             TagUtils.getInstance().computeParameters(pageContext, paramId,
                 paramName, paramProperty, paramScope, name, property, scope,
                 transaction);
-        
+
         // Add parameters collected from the tag's inner body
         if (!this.parameters.isEmpty()) {
             if (params == null) {
@@ -452,10 +455,10 @@ public class LinkTag extends BaseHandlerTag {
 
         return (url);
     }
-    
+
     /**
      * <p>Adds a parameter to this link.</p>
-     * 
+     *
      * @param paramName the parameter name
      * @param paramValue the parameter value
      * @since Struts 1.3.6

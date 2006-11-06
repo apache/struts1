@@ -1,19 +1,22 @@
 /*
  * $Id$
  *
- * Copyright 1999-2006 The Apache Software Foundation.
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 package org.apache.struts.util;
 
@@ -263,16 +266,16 @@ public class RequestUtils {
 
         return (instance);
     }
-    
+
     /**
      * <p>Retrieves the servlet mapping pattern for the specified {@link ActionServlet}.</p>
-     * 
+     *
      * @return the servlet mapping
      * @see Globals#SERVLET_KEY
-	 * @since Struts 1.3.6
+     * @since Struts 1.3.6
      */
     public static String getServletMapping(ActionServlet servlet) {
-        ServletContext servletContext = servlet.getServletConfig().getServletContext(); 
+        ServletContext servletContext = servlet.getServletConfig().getServletContext();
         return (String)servletContext.getAttribute(Globals.SERVLET_KEY);
     }
 
@@ -974,8 +977,8 @@ public class RequestUtils {
      * <p>Returns the true path of the destination action if the specified forward
      * is an action-aliased URL. This method version forms the URL based on
      * the current request; selecting the current module if the forward does not
-     * explicitly contain a module path.</p>  
-     *  
+     * explicitly contain a module path.</p>
+     *
      * @param forward the forward config
      * @param request the current request
      * @param servlet the servlet handling the current request
@@ -997,7 +1000,7 @@ public class RequestUtils {
      * <p>Returns the true path of the destination action if the specified forward
      * is an action-aliased URL. This method version forms the URL based on
      * the specified module.
-     * 
+     *
      * @param originalPath the action-aliased path
      * @param moduleConfig the module config for this request
      * @param servlet the servlet handling the current request
@@ -1020,7 +1023,7 @@ public class RequestUtils {
             actionId = originalPath.substring(0, qpos);
             qs = originalPath.substring(qpos);
         }
-        
+
         // Find the action of the given actionId
         ActionConfig actionConfig = moduleConfig.findActionConfigId(actionId);
         if (actionConfig == null) {
@@ -1029,11 +1032,11 @@ public class RequestUtils {
             }
             return null;
         }
-            
+
         String path = actionConfig.getPath();
         String mapping = RequestUtils.getServletMapping(servlet);
         StringBuffer actionIdPath = new StringBuffer();
-        
+
         // Form the path based on the servlet mapping pattern
         if (mapping.startsWith("*")) {
             actionIdPath.append(path);
@@ -1051,7 +1054,7 @@ public class RequestUtils {
             log.warn("Unknown servlet mapping pattern");
             actionIdPath.append(path);
         }
-        
+
         // Lastly add any query parameters (the ? is part of the query string)
         if (qs != null) {
             actionIdPath.append(qs);

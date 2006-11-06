@@ -1,50 +1,43 @@
 /*
- * $Id$ 
+ * $Id$
  *
- * Copyright 1999-2005 The Apache Software Foundation.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
-
 
 package org.apache.struts.tiles;
 
-
-import javax.servlet.ServletException;
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Locale;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.struts.Globals;
-import org.apache.struts.action.PlugIn;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.ModuleConfigFactory;
 import org.apache.struts.config.PlugInConfig;
 import org.apache.struts.mock.MockActionServlet;
 import org.apache.struts.mock.TestMockBase;
-import org.apache.struts.util.RequestUtils;
+import org.apache.struts.Globals;
 import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
+import org.apache.struts.util.RequestUtils;
+import org.apache.struts.action.PlugIn;
+import org.apache.commons.beanutils.BeanUtils;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
-/**
- * <p>Unit tests for <code>org.apache.struts.tiles.*</code>.</p>
- *
- * @version $Rev$ $Date$
- */
+import javax.servlet.ServletException;
+import java.util.Locale;
+import java.util.Map;
+import java.util.HashMap;
 
 public class TestTilesPlugin extends TestMockBase {
 
@@ -103,34 +96,34 @@ public class TestTilesPlugin extends TestMockBase {
      * @param moduleName
      */
     public ModuleConfig createModuleConfig(
-    	String moduleName,
-    	String configFileName,
-    	boolean moduleAware) {
-            
-    	ModuleConfig moduleConfig =
-    		ModuleConfigFactory.createFactory().createModuleConfig(moduleName);
-            
-    	context.setAttribute(Globals.MODULE_KEY + moduleName, moduleConfig);
-    
-    	// Set tiles plugin
-    	PlugInConfig pluginConfig = new PlugInConfig();
-    	pluginConfig.setClassName("org.apache.struts.tiles.TilesPlugin");
-        
-    	pluginConfig.addProperty(
-    		"moduleAware",
-    		(moduleAware == true ? "true" : "false"));
-            
-    	pluginConfig.addProperty(
-    		"definitions-config",
-    		"/org/apache/struts/tiles/config/" + configFileName);
-            
-    	moduleConfig.addPlugInConfig(pluginConfig);
-    	return moduleConfig;
+        String moduleName,
+        String configFileName,
+        boolean moduleAware) {
+
+        ModuleConfig moduleConfig =
+            ModuleConfigFactory.createFactory().createModuleConfig(moduleName);
+
+        context.setAttribute(Globals.MODULE_KEY + moduleName, moduleConfig);
+
+        // Set tiles plugin
+        PlugInConfig pluginConfig = new PlugInConfig();
+        pluginConfig.setClassName("org.apache.struts.tiles.TilesPlugin");
+
+        pluginConfig.addProperty(
+            "moduleAware",
+            (moduleAware == true ? "true" : "false"));
+
+        pluginConfig.addProperty(
+            "definitions-config",
+            "/org/apache/struts/tiles/config/" + configFileName);
+
+        moduleConfig.addPlugInConfig(pluginConfig);
+        return moduleConfig;
     }
 
     /**
      * Fake call to init module plugins
-     * @param config
+     * @param moduleConfig
      */
   public void initModulePlugIns( ModuleConfig moduleConfig)
   {
@@ -141,7 +134,7 @@ public class TestTilesPlugin extends TestMockBase {
   for (int i = 0; i < plugIns.length; i++) {
       try {
           plugIns[i] =
-              (PlugIn)RequestUtils.applicationInstance(plugInConfigs[i].getClassName());
+              (PlugIn) RequestUtils.applicationInstance(plugInConfigs[i].getClassName());
           BeanUtils.populate(plugIns[i], plugInConfigs[i].getProperties());
             // Pass the current plugIn config object to the PlugIn.
             // The property is set only if the plugin declares it.
@@ -166,39 +159,39 @@ public class TestTilesPlugin extends TestMockBase {
      * Test multi factory creation when moduleAware=true.
      */
     public void testMultiFactory() {
-    	// init TilesPlugin
-    	module1 = createModuleConfig("/module1", "tiles-defs.xml", true);
-    	module2 = createModuleConfig("/module2", "tiles-defs.xml", true);
-    	initModulePlugIns(module1);
-    	initModulePlugIns(module2);
-    
-    	// mock request context
-    	request.setAttribute(Globals.MODULE_KEY, module1);
-    	request.setPathElements("/myapp", "/module1/foo.do", null, null);
-    	// Retrieve factory for module1
-    	DefinitionsFactory factory1 =
-    		TilesUtil.getDefinitionsFactory(request, context);
-            
-    	assertNotNull("factory found", factory1);
-    	assertEquals(
-    		"factory name",
-    		"/module1",
-    		factory1.getConfig().getFactoryName());
-    
-    	// mock request context
-    	request.setAttribute(Globals.MODULE_KEY, module2);
-    	request.setPathElements("/myapp", "/module2/foo.do", null, null);
-    	// Retrieve factory for module2
-    	DefinitionsFactory factory2 =
-    		TilesUtil.getDefinitionsFactory(request, context);
-    	assertNotNull("factory found", factory2);
-    	assertEquals(
-    		"factory name",
-    		"/module2",
-    		factory2.getConfig().getFactoryName());
-    
-    	// Check that factory are different
-    	assertNotSame("Factory from different modules", factory1, factory2);
+        // init TilesPlugin
+        module1 = createModuleConfig("/module1", "tiles-defs.xml", true);
+        module2 = createModuleConfig("/module2", "tiles-defs.xml", true);
+        initModulePlugIns(module1);
+        initModulePlugIns(module2);
+
+        // mock request context
+        request.setAttribute(Globals.MODULE_KEY, module1);
+        request.setPathElements("/myapp", "/module1/foo.do", null, null);
+        // Retrieve factory for module1
+        DefinitionsFactory factory1 =
+            TilesUtil.getDefinitionsFactory(request, context);
+
+        assertNotNull("factory found", factory1);
+        assertEquals(
+            "factory name",
+            "/module1",
+            factory1.getConfig().getFactoryName());
+
+        // mock request context
+        request.setAttribute(Globals.MODULE_KEY, module2);
+        request.setPathElements("/myapp", "/module2/foo.do", null, null);
+        // Retrieve factory for module2
+        DefinitionsFactory factory2 =
+            TilesUtil.getDefinitionsFactory(request, context);
+        assertNotNull("factory found", factory2);
+        assertEquals(
+            "factory name",
+            "/module2",
+            factory2.getConfig().getFactoryName());
+
+        // Check that factory are different
+        assertNotSame("Factory from different modules", factory1, factory2);
     }
 
     /**
@@ -379,7 +372,7 @@ public class TestTilesPlugin extends TestMockBase {
    * just a variant being incorrectly displayed.
    */
   private String print(Locale locale) {
-         
+
       return locale.getLanguage() + "_" +
                 locale.getCountry() + "_" +
                 locale.getVariant();

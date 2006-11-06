@@ -16,7 +16,6 @@
  * limitations under the License.
  */
 
-
 package org.apache.struts.webapp.examples;
 
 import org.apache.struts.config.FormBeanConfig;

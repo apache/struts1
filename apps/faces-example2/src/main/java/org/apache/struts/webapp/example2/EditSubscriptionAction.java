@@ -1,17 +1,22 @@
 /*
- * Copyright 1999-2001,2004 The Apache Software Foundation.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * $Id$
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 
 
@@ -72,62 +77,62 @@ public final class EditSubscriptionAction extends Action {
      *  an exception
      */
     public ActionForward execute(ActionMapping mapping,
-				 ActionForm form,
-				 HttpServletRequest request,
-				 HttpServletResponse response)
-	throws Exception {
+                 ActionForm form,
+                 HttpServletRequest request,
+                 HttpServletResponse response)
+    throws Exception {
 
-	// Extract attributes we will need
-	HttpSession session = request.getSession();
-	String action = request.getParameter("action");
-	if (action == null) {
-	    action = "Create";
+    // Extract attributes we will need
+    HttpSession session = request.getSession();
+    String action = request.getParameter("action");
+    if (action == null) {
+        action = "Create";
         }
-	String host = request.getParameter("host");
+    String host = request.getParameter("host");
         if (log.isDebugEnabled()) {
             log.debug("EditSubscriptionAction:  Processing " + action +
                       " action");
         }
 
-	// Is there a currently logged on user?
-	User user = (User) session.getAttribute(Constants.USER_KEY);
-	if (user == null) {
+    // Is there a currently logged on user?
+    User user = (User) session.getAttribute(Constants.USER_KEY);
+    if (user == null) {
             if (log.isTraceEnabled()) {
                 log.trace(" User is not logged on in session "
                           + session.getId());
             }
-	    return (mapping.findForward("logon"));
-	}
+        return (mapping.findForward("logon"));
+    }
 
-	// Identify the relevant subscription
-	Subscription subscription =
+    // Identify the relevant subscription
+    Subscription subscription =
             user.findSubscription(request.getParameter("host"));
-	if ((subscription == null) && !action.equals("Create")) {
+    if ((subscription == null) && !action.equals("Create")) {
             if (log.isTraceEnabled()) {
                 log.trace(" No subscription for user " +
                           user.getUsername() + " and host " + host);
             }
-	    return (mapping.findForward("failure"));
-	}
+        return (mapping.findForward("failure"));
+    }
         if (subscription != null) {
             session.setAttribute(Constants.SUBSCRIPTION_KEY, subscription);
         }
 
-	// Populate the subscription form
-	if (form == null) {
+    // Populate the subscription form
+    if (form == null) {
             if (log.isTraceEnabled()) {
                 log.trace(" Creating new SubscriptionForm bean under key "
                           + mapping.getAttribute());
             }
-	    form = new SubscriptionForm();
+        form = new SubscriptionForm();
             if ("request".equals(mapping.getScope())) {
                 request.setAttribute(mapping.getAttribute(), form);
             } else {
                 session.setAttribute(mapping.getAttribute(), form);
             }
-	}
-	SubscriptionForm subform = (SubscriptionForm) form;
-	subform.setAction(action);
+    }
+    SubscriptionForm subform = (SubscriptionForm) form;
+    subform.setAction(action);
         if (!action.equals("Create")) {
             if (log.isTraceEnabled()) {
                 log.trace(" Populating form from " + subscription);
@@ -147,11 +152,11 @@ public final class EditSubscriptionAction extends Action {
             }
         }
 
-	// Forward control to the edit subscription page
+    // Forward control to the edit subscription page
         if (log.isTraceEnabled()) {
             log.trace(" Forwarding to 'success' page");
         }
-	return (mapping.findForward("success"));
+    return (mapping.findForward("success"));
 
     }
 

@@ -1,21 +1,23 @@
 /*
- * $Id$ 
+ * $Id$
  *
- * Copyright 1999-2004 The Apache Software Foundation.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
-
 
 package org.apache.struts.tiles.xmlDefinition;
 
@@ -59,11 +61,11 @@ public class XmlParser
       */
   public XmlParser()
   {
-	digester = new Digester();
-	digester.setValidating(validating);
-	digester.setNamespaceAware(true);
-	digester.setUseContextClassLoader(true);
-	// Register our local copy of the DTDs that we can find
+    digester = new Digester();
+    digester.setValidating(validating);
+    digester.setNamespaceAware(true);
+    digester.setUseContextClassLoader(true);
+    // Register our local copy of the DTDs that we can find
   for (int i = 0; i < registrations.length; i += 2) {
       URL url = this.getClass().getResource(registrations[i+1]);
       if (url != null)
@@ -91,7 +93,7 @@ public class XmlParser
     */
   private void initDigesterForComponentsDefinitionsSyntax( Digester digester )
   {
-	 // Common constants
+     // Common constants
   String PACKAGE_NAME = "org.apache.struts.tiles.xmlDefinition";
   String DEFINITION_TAG = "component-definitions/definition";
   String definitionHandlerClass = PACKAGE_NAME + ".XmlDefinition";
@@ -105,25 +107,25 @@ public class XmlParser
   String ADD_LIST_ELE_TAG = LIST_TAG + "/add";
 
     // syntax rules
-	digester.addObjectCreate(  DEFINITION_TAG, definitionHandlerClass );
-	digester.addSetProperties( DEFINITION_TAG);
-	digester.addSetNext(       DEFINITION_TAG, "putDefinition", definitionHandlerClass);
+    digester.addObjectCreate(  DEFINITION_TAG, definitionHandlerClass );
+    digester.addSetProperties( DEFINITION_TAG);
+    digester.addSetNext(       DEFINITION_TAG, "putDefinition", definitionHandlerClass);
     // put / putAttribute rules
-	digester.addObjectCreate(  PUT_TAG, putAttributeHandlerClass);
-	digester.addSetNext(       PUT_TAG, "addAttribute", putAttributeHandlerClass);
-	digester.addSetProperties( PUT_TAG);
-	digester.addCallMethod(    PUT_TAG, "setBody", 0);
+    digester.addObjectCreate(  PUT_TAG, putAttributeHandlerClass);
+    digester.addSetNext(       PUT_TAG, "addAttribute", putAttributeHandlerClass);
+    digester.addSetProperties( PUT_TAG);
+    digester.addCallMethod(    PUT_TAG, "setBody", 0);
     // list rules
-	digester.addObjectCreate(  LIST_TAG, listHandlerClass);
-	digester.addSetProperties( LIST_TAG);
-	digester.addSetNext(       LIST_TAG, "addAttribute", putAttributeHandlerClass);
+    digester.addObjectCreate(  LIST_TAG, listHandlerClass);
+    digester.addSetProperties( LIST_TAG);
+    digester.addSetNext(       LIST_TAG, "addAttribute", putAttributeHandlerClass);
     // list elements rules
     // We use Attribute class to avoid rewriting a new class.
     // Name part can't be used in listElement attribute.
-	digester.addObjectCreate(  ADD_LIST_ELE_TAG, putAttributeHandlerClass);
-	digester.addSetNext(       ADD_LIST_ELE_TAG, "add", putAttributeHandlerClass);
-	digester.addSetProperties( ADD_LIST_ELE_TAG);
-	digester.addCallMethod(    ADD_LIST_ELE_TAG, "setBody", 0);
+    digester.addObjectCreate(  ADD_LIST_ELE_TAG, putAttributeHandlerClass);
+    digester.addSetNext(       ADD_LIST_ELE_TAG, "add", putAttributeHandlerClass);
+    digester.addSetProperties( ADD_LIST_ELE_TAG);
+    digester.addCallMethod(    ADD_LIST_ELE_TAG, "setBody", 0);
   }
 
    /**
@@ -133,7 +135,7 @@ public class XmlParser
     */
   private void initDigesterForTilesDefinitionsSyntax( Digester digester )
   {
-	 // Common constants
+     // Common constants
   String PACKAGE_NAME = "org.apache.struts.tiles.xmlDefinition";
   String DEFINITION_TAG = "tiles-definitions/definition";
   String definitionHandlerClass = PACKAGE_NAME + ".XmlDefinition";
@@ -150,37 +152,37 @@ public class XmlParser
   String ADD_LIST_ELE_TAG = "*/" + LIST_TAG + "/add";
 
     // syntax rules
-	digester.addObjectCreate(  DEFINITION_TAG, definitionHandlerClass );
-	digester.addSetProperties( DEFINITION_TAG);
-	digester.addSetNext(       DEFINITION_TAG, "putDefinition", definitionHandlerClass);
+    digester.addObjectCreate(  DEFINITION_TAG, definitionHandlerClass );
+    digester.addSetProperties( DEFINITION_TAG);
+    digester.addSetNext(       DEFINITION_TAG, "putDefinition", definitionHandlerClass);
     // put / putAttribute rules
     // Rules for a same pattern are called in order, but rule.end() are called
     // in reverse order.
     // SetNext and CallMethod use rule.end() method. So, placing SetNext in
     // first position ensure it will be called last (sic).
-	digester.addObjectCreate(  PUT_TAG, putAttributeHandlerClass);
-	digester.addSetNext(       PUT_TAG, "addAttribute", putAttributeHandlerClass);
-	digester.addSetProperties( PUT_TAG);
-	digester.addCallMethod(    PUT_TAG, "setBody", 0);
+    digester.addObjectCreate(  PUT_TAG, putAttributeHandlerClass);
+    digester.addSetNext(       PUT_TAG, "addAttribute", putAttributeHandlerClass);
+    digester.addSetProperties( PUT_TAG);
+    digester.addCallMethod(    PUT_TAG, "setBody", 0);
     // Definition level list rules
     // This is rules for lists nested in a definition
-	digester.addObjectCreate(  DEF_LIST_TAG, listHandlerClass);
-	digester.addSetProperties( DEF_LIST_TAG);
-	digester.addSetNext(       DEF_LIST_TAG, "addAttribute", putAttributeHandlerClass);
+    digester.addObjectCreate(  DEF_LIST_TAG, listHandlerClass);
+    digester.addSetProperties( DEF_LIST_TAG);
+    digester.addSetNext(       DEF_LIST_TAG, "addAttribute", putAttributeHandlerClass);
     // list elements rules
     // We use Attribute class to avoid rewriting a new class.
     // Name part can't be used in listElement attribute.
-	digester.addObjectCreate(  ADD_LIST_ELE_TAG, putAttributeHandlerClass);
-	digester.addSetNext(       ADD_LIST_ELE_TAG, "add", putAttributeHandlerClass);
-	digester.addSetProperties( ADD_LIST_ELE_TAG);
-	digester.addCallMethod(    ADD_LIST_ELE_TAG, "setBody", 0);
+    digester.addObjectCreate(  ADD_LIST_ELE_TAG, putAttributeHandlerClass);
+    digester.addSetNext(       ADD_LIST_ELE_TAG, "add", putAttributeHandlerClass);
+    digester.addSetProperties( ADD_LIST_ELE_TAG);
+    digester.addCallMethod(    ADD_LIST_ELE_TAG, "setBody", 0);
 
     // nested list elements rules
     // Create a list handler, and add it to parent list
   String NESTED_LIST = "*/" + LIST_TAG + "/" + LIST_TAG;
-	digester.addObjectCreate(  NESTED_LIST, listHandlerClass);
-	digester.addSetProperties( NESTED_LIST);
-	digester.addSetNext(       NESTED_LIST, "add", putAttributeHandlerClass);
+    digester.addObjectCreate(  NESTED_LIST, listHandlerClass);
+    digester.addSetProperties( NESTED_LIST);
+    digester.addSetNext(       NESTED_LIST, "add", putAttributeHandlerClass);
 
     // item elements rules
     // We use Attribute class to avoid rewriting a new class.
@@ -189,16 +191,16 @@ public class XmlParser
   // non String ADD_WILDCARD = LIST_TAG + "/addx*";
   String ADD_WILDCARD = "*/item";
   String menuItemDefaultClass = "org.apache.struts.tiles.beans.SimpleMenuItem";
-	digester.addObjectCreate(  ADD_WILDCARD, menuItemDefaultClass, "classtype");
-	digester.addSetNext(       ADD_WILDCARD, "add", "java.lang.Object");
-	digester.addSetProperties( ADD_WILDCARD);
+    digester.addObjectCreate(  ADD_WILDCARD, menuItemDefaultClass, "classtype");
+    digester.addSetNext(       ADD_WILDCARD, "add", "java.lang.Object");
+    digester.addSetProperties( ADD_WILDCARD);
 
     // bean elements rules
   String BEAN_TAG = "*/bean";
   String beanDefaultClass = "org.apache.struts.tiles.beans.SimpleMenuItem";
-	digester.addObjectCreate(  BEAN_TAG, beanDefaultClass, "classtype");
-	digester.addSetNext(       BEAN_TAG, "add", "java.lang.Object");
-	digester.addSetProperties( BEAN_TAG);
+    digester.addObjectCreate(  BEAN_TAG, beanDefaultClass, "classtype");
+    digester.addSetNext(       BEAN_TAG, "add", "java.lang.Object");
+    digester.addSetProperties( BEAN_TAG);
 
     // Set properties to surrounding element
   digester.addSetProperty(BEAN_TAG+ "/set-property", "property", "value");
@@ -212,7 +214,7 @@ public class XmlParser
     */
   private void initDigesterForInstancesSyntax( Digester digester )
   {
-    	// Build a digester to process our configuration resource
+        // Build a digester to process our configuration resource
   String PACKAGE_NAME = "org.apache.struts.tiles.xmlDefinition";
   String INSTANCE_TAG = "component-instances/instance";
   String instanceHandlerClass = PACKAGE_NAME + ".XmlDefinition";
@@ -227,27 +229,27 @@ public class XmlParser
   String ADD_LIST_ELE_TAG = LIST_TAG + "/add";
 
     // component instance rules
-	digester.addObjectCreate(  INSTANCE_TAG, instanceHandlerClass );
-	digester.addSetProperties( INSTANCE_TAG);
-	digester.addSetNext(       INSTANCE_TAG, "putDefinition", instanceHandlerClass);
+    digester.addObjectCreate(  INSTANCE_TAG, instanceHandlerClass );
+    digester.addSetProperties( INSTANCE_TAG);
+    digester.addSetNext(       INSTANCE_TAG, "putDefinition", instanceHandlerClass);
     // put / putAttribute rules
-	digester.addObjectCreate(  PUTATTRIBUTE_TAG, putAttributeHandlerClass);
-	digester.addSetProperties( PUTATTRIBUTE_TAG);
-	digester.addSetNext(       PUTATTRIBUTE_TAG, "addAttribute", putAttributeHandlerClass);
+    digester.addObjectCreate(  PUTATTRIBUTE_TAG, putAttributeHandlerClass);
+    digester.addSetProperties( PUTATTRIBUTE_TAG);
+    digester.addSetNext(       PUTATTRIBUTE_TAG, "addAttribute", putAttributeHandlerClass);
     // put / putAttribute rules
-	digester.addObjectCreate(  PUT_TAG, putAttributeHandlerClass);
-	digester.addSetProperties( PUT_TAG);
-	digester.addSetNext(       PUT_TAG, "addAttribute", putAttributeHandlerClass);
+    digester.addObjectCreate(  PUT_TAG, putAttributeHandlerClass);
+    digester.addSetProperties( PUT_TAG);
+    digester.addSetNext(       PUT_TAG, "addAttribute", putAttributeHandlerClass);
     // list rules
-	digester.addObjectCreate(  LIST_TAG, listHandlerClass);
-	digester.addSetProperties( LIST_TAG);
-	digester.addSetNext(       LIST_TAG, "addAttribute", putAttributeHandlerClass);
+    digester.addObjectCreate(  LIST_TAG, listHandlerClass);
+    digester.addSetProperties( LIST_TAG);
+    digester.addSetNext(       LIST_TAG, "addAttribute", putAttributeHandlerClass);
     // list elements rules
     // We use Attribute class to avoid rewriting a new class.
     // Name part can't be used in listElement attribute.
-	digester.addObjectCreate(  ADD_LIST_ELE_TAG, putAttributeHandlerClass);
-	digester.addSetProperties( ADD_LIST_ELE_TAG);
-	digester.addSetNext(       ADD_LIST_ELE_TAG, "add", putAttributeHandlerClass);
+    digester.addObjectCreate(  ADD_LIST_ELE_TAG, putAttributeHandlerClass);
+    digester.addSetProperties( ADD_LIST_ELE_TAG);
+    digester.addSetNext(       ADD_LIST_ELE_TAG, "add", putAttributeHandlerClass);
   }
 
    /**
@@ -270,20 +272,20 @@ public class XmlParser
    */
   public void parse( InputStream in, XmlDefinitionsSet definitions ) throws IOException, SAXException
   {
-	try
+    try
     {
       // set first object in stack
     //digester.clear();
     digester.push(definitions);
       // parse
-	  digester.parse(in);
-	  in.close();
-	  }
+      digester.parse(in);
+      in.close();
+      }
   catch (SAXException e)
     {
-	  //throw new ServletException( "Error while parsing " + mappingConfig, e);
+      //throw new ServletException( "Error while parsing " + mappingConfig, e);
     throw e;
-	  }
+      }
 
   }
 
@@ -311,9 +313,9 @@ public class XmlParser
     // Open file
     try
       {
-	    input = new BufferedInputStream(
+        input = new BufferedInputStream(
                              new FileInputStream( filename) );
-	//    input2 = new BufferedInputStream(
+    //    input2 = new BufferedInputStream(
           //                   new FileInputStream( filename2) );
       }
      catch( IOException ex )
@@ -323,7 +325,7 @@ public class XmlParser
     // Check file syntax
     try
       {
-	    XmlParser parser = new XmlParser();
+        XmlParser parser = new XmlParser();
       parser.setValidating(true);
       XmlDefinitionsSet definitions = new XmlDefinitionsSet();
         System.out.println( "  Parse file" );
