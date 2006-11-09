@@ -329,6 +329,8 @@ public class Resources {
      * @param request the servlet request
      * @param va      Validator action
      * @param field   the validator Field
+     * @deprecated Use getActionMessage(Validator, HttpServletRequest,
+     *    ValidatorAction, Field) method instead
      */
     public static ActionMessage getActionMessage(HttpServletRequest request,
         ValidatorAction va, Field field) {
