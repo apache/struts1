@@ -27,6 +27,7 @@ import org.apache.commons.beanutils.WrapDynaBean;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.config.FormBeanConfig;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -75,6 +76,11 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean,
      */
     protected boolean pathValidation = false;
 
+    /**
+     * The name used to identify the ActionForm in the struts-config.xml
+     */
+    private String strutsConfigFormName;
+
     // ------------------- Constructor ----------------------------------
 
     /**
@@ -108,6 +114,26 @@ public class BeanValidatorForm extends ValidatorForm implements DynaBean,
     }
 
     // ------------------- Public Methods ----------------------------------
+
+    /**
+     * <p>Perform intialization of the ActionForm.</p>
+     * <p>This method is called when the form is created.</p>
+     *
+     * @since Struts 1.3.6
+     */
+    public void initialize(FormBeanConfig formBeanConfig) {
+        strutsConfigFormName = formBeanConfig.getName();
+    }
+
+    /**
+     * Return name used to identify the ActionForm in the
+     * struts-config.xml.
+     *
+     * @since Struts 1.3.6
+     */
+    public String getStrutsConfigFormName() {
+        return strutsConfigFormName;
+    }
 
     /**
      * <p>Return the <code>DynaBean</code> that this <code>ActionForm</code>

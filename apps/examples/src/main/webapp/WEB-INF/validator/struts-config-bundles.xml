@@ -7,7 +7,7 @@
   <!--============================================== Form Bean Definitions  -->
   <form-beans>
 
-    <form-bean name="bundlesForm" type="org.apache.struts.validator.DynaValidatorForm">
+    <form-bean name="bundlesForm" type="org.apache.struts.validator.LazyValidatorForm">
         <form-property name="name"    type="java.lang.String" />
         <form-property name="address" type="java.lang.String" />
         <form-property name="phone"   type="java.lang.String" />
@@ -26,7 +26,7 @@
     <action path="/validateBundleExamples" 
             type="org.apache.struts.actions.ForwardAction" 
             name="bundlesForm" 
-            scope="request" 
+            scope="session" 
             parameter="/welcome.do" 
             validate="true"
             cancellable="true"
@@ -40,7 +40,7 @@
     <action path="/validateJsBundleExamples" 
             type="org.apache.struts.actions.ForwardAction" 
             name="bundlesForm" 
-            scope="request" 
+            scope="session" 
             parameter="/welcome.do" 
             validate="true"
             cancellable="true"

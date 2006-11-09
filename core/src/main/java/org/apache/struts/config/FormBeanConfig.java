@@ -318,6 +318,10 @@ public class FormBeanConfig extends BaseConfig {
             dynaClass.setRestricted(isRestricted());
         }
 
+        if (form instanceof BeanValidatorForm) {
+            ((BeanValidatorForm)form).initialize(this);
+        }
+
         return form;
     }
 
@@ -379,11 +383,18 @@ public class FormBeanConfig extends BaseConfig {
                     Class formClass = form.getClass();
 
                     if (form instanceof BeanValidatorForm) {
-                        // what we really want is to compare against the
-                        //  BeanValidatorForm's getInstance()
                         BeanValidatorForm beanValidatorForm =
                             (BeanValidatorForm) form;
 
+                        if (beanValidatorForm.getInstance() instanceof DynaBean) {
+                            String formName = beanValidatorForm.getStrutsConfigFormName();
+                            if (getName().equals(formName)) {
+                                log.debug("Can reuse existing instance (BeanValidatorForm)");
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }
                         formClass = beanValidatorForm.getInstance().getClass();
                     }
 
