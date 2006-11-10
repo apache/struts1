@@ -73,6 +73,10 @@ public class FacesTilesRequestProcessor extends TilesRequestProcessor {
     protected static Log log =
         LogFactory.getLog(FacesTilesRequestProcessor.class);
 
+    /**
+     * <p>The lifecycle id.</p>
+     */
+    public static final String LIFECYCLE_ID_ATTR = "javax.faces.LIFECYCLE_ID";
 
 
     // ------------------------------------------------------- Protected Methods
@@ -123,8 +127,8 @@ public class FacesTilesRequestProcessor extends TilesRequestProcessor {
         // Create a FacesContext for this request if necessary
         LifecycleFactory lf = (LifecycleFactory)
             FactoryFinder.getFactory(FactoryFinder.LIFECYCLE_FACTORY);
-        Lifecycle lifecycle = // FIXME - alternative lifecycle ids
-            lf.getLifecycle(LifecycleFactory.DEFAULT_LIFECYCLE);
+        Lifecycle lifecycle = 
+            lf.getLifecycle(getLifecycleId());
         boolean created = false;
         FacesContext context = FacesContext.getCurrentInstance();
         if (context == null) {
@@ -440,6 +444,15 @@ public class FacesTilesRequestProcessor extends TilesRequestProcessor {
 
     // --------------------------------------------------------- Private Methods
 
+
+    /**
+     * <p>Return the used Lifecycle ID (default or custom).</p>
+     */
+    private String getLifecycleId()
+    {
+        String lifecycleId = this.servlet.getServletContext().getInitParameter(LIFECYCLE_ID_ATTR);
+        return lifecycleId != null ? lifecycleId : LifecycleFactory.DEFAULT_LIFECYCLE;
+    }  
 
     /**
      * <p>Return <code>true</code> if the specified context-relative URI
