@@ -57,7 +57,7 @@
                     />        
         </menu>
         
-        <menu name="Product Support">
+        <menu name="Support">
             <item
                     name="User Mailing List"
                     href="http://struts.apache.org/mail.html"
