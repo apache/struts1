@@ -325,6 +325,13 @@ public class Resources {
      * Gets the <code>ActionMessage</code> based on the
      * <code>ValidatorAction</code> message and the <code>Field</code>'s arg
      * objects.
+     * <p>
+     * <strong>Note:</strong> this method does not respect bundle information
+     * stored with the field's &lt;msg&gt; or &lt;arg&gt; elements, and localization
+     * will not work for alternative resource bundles. This method is
+     * deprecated for this reason, and you should use
+     * {@link #getActionMessage(Validator,HttpServletRequest,ValidatorAction,Field)}
+     * instead. 
      *
      * @param request the servlet request
      * @param va      Validator action
