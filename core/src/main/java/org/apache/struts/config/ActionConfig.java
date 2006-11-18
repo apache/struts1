@@ -235,14 +235,20 @@ public class ActionConfig extends BaseConfig {
 
     /**
      * <p>The internal name of this action mapping. The name is not inheritable,
-     * and must be unique within a module. </p>
+     * may not contain a forward slash, and must be unique within a module. </p>
      *
      * @param actionId the action identifier
      * @since Struts 1.3.6
+     * @throws IllegalStateException if the configuration is frozen
+     * @throws IllegalArgumentException if the identifier contains a forward slash
      */
     public void setActionId(String actionId) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
+        }
+        
+        if ((actionId != null) && (actionId.indexOf("/") > -1)) {
+            throw new IllegalArgumentException("actionId '" + actionId + "' may not contain a forward slash");
         }
 
         this.actionId = actionId;
