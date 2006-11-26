@@ -30,8 +30,8 @@
    <li><html:link page="/processLocalization.do?language=fr">French</html:link></li>
    <li><html:link page="/processLocalization.do?language=de">German</html:link></li>
    <li><html:link page="/processLocalization.do?language=es">Spanish</html:link></li>
-   <li><html:link page="/processLocalization.do?language=it">Italian</html:link></li>
-   <li><html:link page="/processLocalization.do?language=pt">Portuguese</html:link></li>
+   <li><html:link page="/processLocalization.do?language=it" lang="it" dir="ltr">Italian</html:link></li>
+   <li><html:link page="/processLocalization.do?language=pt" lang="pt" dir="ltr">Portuguese</html:link></li>
 </ul>
 
 <hr />
