@@ -242,11 +242,21 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
      * The name of the session attribute key for our locale.
      */
     private String locale = Globals.LOCALE_KEY;
-
+    
     /**
      * The advisory title of this element.
      */
     private String title = null;
+
+    /**
+     * The language code of this element.
+     */
+    private String lang = null;
+    
+    /**
+     * The direction for weak/neutral text of this element.
+     */
+    private String dir = null;
 
     /**
      * The message resources key of the advisory title.
@@ -728,6 +738,42 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         this.titleKey = titleKey;
     }
 
+    /**
+     * Returns the language code of this element.
+     * 
+     * @since Struts 1.3.6
+     */
+    public String getLang() {
+        return this.lang;
+    }
+
+    /**
+     * Sets the language code of this element.
+     * 
+     * @since Struts 1.3.6
+     */
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    /**
+     * Returns the direction for weak/neutral text this element.
+     * 
+     * @since Struts 1.3.6
+     */
+    public String getDir() {
+        return this.dir;
+    }
+
+    /**
+     * Sets the direction for weak/neutral text of this element.
+     * 
+     * @since Struts 1.3.6
+     */
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
+
     // --------------------------------------------------------- Public Methods
 
     /**
@@ -942,6 +988,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
 
         prepareAttribute(styles, "title", message(getTitle(), getTitleKey()));
         prepareAttribute(styles, "alt", message(getAlt(), getAltKey()));
+        prepareInternationalization(styles);
 
         return styles.toString();
     }
@@ -981,7 +1028,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         throws JspException {
         return null;
     }
-
+    
     /**
      * Prepares the event handlers for inclusion in the component's HTML tag.
      *
@@ -1075,6 +1122,18 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
                 handlers.append(" readonly=\"readonly\"");
             }
         }
+    }
+
+    /**
+     * Prepares the internationalization attribtes, appending them to the the given
+     * StringBuffer.
+     *
+     * @param handlers The StringBuffer that output will be appended to.
+     * @since Struts 1.3.6
+     */
+    protected void prepareInternationalization(StringBuffer handlers) {
+        prepareAttribute(handlers, "lang", getLang());
+        prepareAttribute(handlers, "dir", getDir());
     }
 
     /**
