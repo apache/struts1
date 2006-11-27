@@ -97,6 +97,16 @@ public class OptionTag extends BodyTagSupport {
     protected String styleId = null;
 
     /**
+     * The language code of this element.
+     */
+    private String lang = null;
+    
+    /**
+     * The direction for weak/neutral text of this element.
+     */
+    private String dir = null;
+
+    /**
      * The server value for this option, also used to match against the
      * current property value to determine whether this option should be
      * marked as selected.
@@ -181,6 +191,42 @@ public class OptionTag extends BodyTagSupport {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    /**
+     * Returns the language code of this element.
+     * 
+     * @since Struts 1.3.6
+     */
+    public String getLang() {
+        return this.lang;
+    }
+
+    /**
+     * Sets the language code of this element.
+     * 
+     * @since Struts 1.3.6
+     */
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    /**
+     * Returns the direction for weak/neutral text this element.
+     * 
+     * @since Struts 1.3.6
+     */
+    public String getDir() {
+        return this.dir;
+    }
+
+    /**
+     * Sets the direction for weak/neutral text of this element.
+     * 
+     * @since Struts 1.3.6
+     */
+    public void setDir(String dir) {
+        this.dir = dir;
     }
 
     // --------------------------------------------------------- Public Methods
@@ -274,6 +320,18 @@ public class OptionTag extends BodyTagSupport {
             results.append("\"");
         }
 
+        if (dir != null) {
+            results.append(" dir=\"");
+            results.append(dir);
+            results.append("\"");
+        }
+
+        if (lang != null) {
+            results.append(" lang=\"");
+            results.append(lang);
+            results.append("\"");
+        }
+
         results.append(">");
 
         results.append(text());
@@ -310,8 +368,10 @@ public class OptionTag extends BodyTagSupport {
     public void release() {
         super.release();
         bundle = Globals.MESSAGES_KEY;
+        dir = null;
         disabled = false;
         key = null;
+        lang = null;
         locale = Globals.LOCALE_KEY;
         style = null;
         styleClass = null;

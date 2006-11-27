@@ -785,11 +785,13 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         alt = null;
         altKey = null;
         bundle = null;
+        dir = null;
         errorKey = Globals.ERROR_KEY;
         errorStyle = null;
         errorStyleClass = null;
         errorStyleId = null;
         indexed = false;
+        lang = null;
         locale = Globals.LOCALE_KEY;
         onclick = null;
         ondblclick = null;

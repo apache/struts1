@@ -190,6 +190,16 @@ public class FormTag extends TagSupport {
      */
     protected boolean readonly = false;
 
+    /**
+     * The language code of this element.
+     */
+    private String lang = null;
+    
+    /**
+     * The direction for weak/neutral text of this element.
+     */
+    private String dir = null;
+
     // ------------------------------------------------------------- Properties
 
     /**
@@ -406,6 +416,42 @@ public class FormTag extends TagSupport {
         return readonly;
     }
 
+    /**
+     * Returns the language code of this element.
+     * 
+     * @since Struts 1.3.6
+     */
+    public String getLang() {
+        return this.lang;
+    }
+
+    /**
+     * Sets the language code of this element.
+     * 
+     * @since Struts 1.3.6
+     */
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    /**
+     * Returns the direction for weak/neutral text this element.
+     * 
+     * @since Struts 1.3.6
+     */
+    public String getDir() {
+        return this.dir;
+    }
+
+    /**
+     * Sets the direction for weak/neutral text of this element.
+     * 
+     * @since Struts 1.3.6
+     */
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
+
     // --------------------------------------------------------- Public Methods
 
     /**
@@ -495,7 +541,9 @@ public class FormTag extends TagSupport {
         renderAction(results);
         renderAttribute(results, "accept-charset", getAcceptCharset());
         renderAttribute(results, "class", getStyleClass());
+        renderAttribute(results, "dir", getDir());
         renderAttribute(results, "enctype", getEnctype());
+        renderAttribute(results, "lang", getLang());
         renderAttribute(results, "onreset", getOnreset());
         renderAttribute(results, "onsubmit", getOnsubmit());
         renderAttribute(results, "style", getStyle());
@@ -716,9 +764,11 @@ public class FormTag extends TagSupport {
         action = null;
         moduleConfig = null;
         enctype = null;
+        dir = null;
         disabled = false;
         focus = null;
         focusIndex = null;
+        lang = null;
         mapping = null;
         method = null;
         onreset = null;
