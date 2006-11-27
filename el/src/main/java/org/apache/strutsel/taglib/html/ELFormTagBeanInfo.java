@@ -49,7 +49,7 @@ public class ELFormTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
-            proplist.add(new PropertyDescriptor("disabled", ELTextTag.class,
+            proplist.add(new PropertyDescriptor("disabled", ELFormTag.class,
                     null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {
         }
@@ -103,7 +103,7 @@ public class ELFormTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
-            proplist.add(new PropertyDescriptor("readonly", ELTextTag.class,
+            proplist.add(new PropertyDescriptor("readonly", ELFormTag.class,
                     null, "setReadonlyExpr"));
         } catch (IntrospectionException ex) {
         }
