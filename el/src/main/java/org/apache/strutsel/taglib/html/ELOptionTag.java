@@ -44,6 +44,12 @@ public class ELOptionTag extends OptionTag {
     private String bundleExpr;
 
     /**
+     * Instance variable mapped to "dir" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String dirExpr;
+
+    /**
      * Instance variable mapped to "disabled" tag attribute. (Mapping set in
      * associated BeanInfo class.)
      */
@@ -54,6 +60,12 @@ public class ELOptionTag extends OptionTag {
      * associated BeanInfo class.)
      */
     private String filterExpr;
+
+    /**
+     * Instance variable mapped to "lang" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String langExpr;
 
     /**
      * Instance variable mapped to "key" tag attribute. (Mapping set in
@@ -100,6 +112,14 @@ public class ELOptionTag extends OptionTag {
     }
 
     /**
+     * Getter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getDirExpr() {
+        return (dirExpr);
+    }
+
+    /**
      * Getter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -113,6 +133,14 @@ public class ELOptionTag extends OptionTag {
      */
     public String getFilterExpr() {
         return (filterExpr);
+    }
+
+    /**
+     * Getter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getLangExpr() {
+        return (langExpr);
     }
 
     /**
@@ -172,6 +200,14 @@ public class ELOptionTag extends OptionTag {
     }
 
     /**
+     * Setter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setDirExpr(String dirExpr) {
+        this.dirExpr = dirExpr;
+    }
+
+    /**
      * Setter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -193,6 +229,14 @@ public class ELOptionTag extends OptionTag {
      */
     public void setKeyExpr(String keyExpr) {
         this.keyExpr = keyExpr;
+    }
+
+    /**
+     * Setter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setLangExpr(String langExpr) {
+        this.langExpr = langExpr;
     }
 
     /**
@@ -241,8 +285,10 @@ public class ELOptionTag extends OptionTag {
     public void release() {
         super.release();
         setBundleExpr(null);
+        setDirExpr(null);
         setDisabledExpr(null);
         setFilterExpr(null);
+        setLangExpr(null);
         setKeyExpr(null);
         setLocaleExpr(null);
         setStyleExpr(null);
@@ -279,6 +325,12 @@ public class ELOptionTag extends OptionTag {
             setBundle(string);
         }
 
+        if ((string =
+        		EvalHelper.evalString("dir", getDirExpr(), this,
+        			pageContext)) != null) {
+        	setDir(string);
+        }
+        
         if ((bool =
                 EvalHelper.evalBoolean("disabled", getDisabledExpr(), this,
                     pageContext)) != null) {
@@ -289,6 +341,12 @@ public class ELOptionTag extends OptionTag {
                 EvalHelper.evalBoolean("filter", getFilterExpr(), this,
                     pageContext)) != null) {
             setFilter(bool.booleanValue());
+        }
+
+        if ((string =
+            	EvalHelper.evalString("lang", getLangExpr(), this,
+            		pageContext)) != null) {
+        	setLang(string);
         }
 
         if ((string =

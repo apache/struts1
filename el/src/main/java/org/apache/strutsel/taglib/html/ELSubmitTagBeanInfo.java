@@ -66,6 +66,12 @@ public class ELSubmitTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELSubmitTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELSubmitTag.class,
                     null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {
@@ -74,6 +80,12 @@ public class ELSubmitTagBeanInfo extends SimpleBeanInfo {
         try {
             proplist.add(new PropertyDescriptor("indexed", ELSubmitTag.class,
                     null, "setIndexedExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELSubmitTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 

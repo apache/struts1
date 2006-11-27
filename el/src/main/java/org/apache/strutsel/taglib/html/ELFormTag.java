@@ -43,6 +43,12 @@ public class ELFormTag extends FormTag {
     private String actionExpr;
 
     /**
+     * Instance variable mapped to "dir" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String dirExpr;
+
+    /**
      * Instance variable mapped to "disabled" tag attribute. (Mapping set in
      * associated BeanInfo class.)
      */
@@ -65,6 +71,12 @@ public class ELFormTag extends FormTag {
      * associated BeanInfo class.)
      */
     private String focusIndexExpr;
+
+    /**
+     * Instance variable mapped to "lang" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String langExpr;
 
     /**
      * Instance variable mapped to "method" tag attribute. (Mapping set in
@@ -135,6 +147,14 @@ public class ELFormTag extends FormTag {
     }
 
     /**
+     * Getter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getDirExpr() {
+        return (dirExpr);
+    }
+
+    /**
      * Getter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -164,6 +184,14 @@ public class ELFormTag extends FormTag {
      */
     public String getFocusIndexExpr() {
         return (focusIndexExpr);
+    }
+
+    /**
+     * Getter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getLangExpr() {
+        return (langExpr);
     }
 
     /**
@@ -255,6 +283,14 @@ public class ELFormTag extends FormTag {
     }
 
     /**
+     * Setter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setDirExpr(String dirExpr) {
+        this.dirExpr = dirExpr;
+    }
+
+    /**
      * Setter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -284,6 +320,14 @@ public class ELFormTag extends FormTag {
      */
     public void setFocusIndexExpr(String focusIndexExpr) {
         this.focusIndexExpr = focusIndexExpr;
+    }
+
+    /**
+     * Setter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setLangExpr(String langExpr) {
+        this.langExpr = langExpr;
     }
 
     /**
@@ -372,10 +416,12 @@ public class ELFormTag extends FormTag {
     public void release() {
         super.release();
         setActionExpr(null);
+        setDirExpr(null);
         setDisabledExpr(null);
         setEnctypeExpr(null);
         setFocusExpr(null);
         setFocusIndexExpr(null);
+        setLangExpr(null);
         setMethodExpr(null);
         setOnresetExpr(null);
         setOnsubmitExpr(null);
@@ -416,6 +462,12 @@ public class ELFormTag extends FormTag {
             setAction(string);
         }
 
+        if ((string =
+        		EvalHelper.evalString("dir", getDirExpr(), this,
+        			pageContext)) != null) {
+        	setDir(string);
+        }
+        
         if ((bool =
                 EvalHelper.evalBoolean("disabled", getDisabledExpr(), this,
                     pageContext)) != null) {
@@ -437,6 +489,12 @@ public class ELFormTag extends FormTag {
                 EvalHelper.evalString("focusIndex", getFocusIndexExpr(), this,
                     pageContext)) != null) {
             setFocusIndex(string);
+        }
+
+        if ((string =
+            	EvalHelper.evalString("lang", getLangExpr(), this,
+            		pageContext)) != null) {
+        	setLang(string);
         }
 
         if ((string =

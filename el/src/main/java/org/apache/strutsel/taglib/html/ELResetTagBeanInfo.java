@@ -68,8 +68,20 @@ public class ELResetTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELResetTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELResetTag.class,
                     null, "setDisabledExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELResetTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 

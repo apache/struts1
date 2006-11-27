@@ -72,6 +72,12 @@ public class ELImageTag extends ImageTag {
     private String bundleExpr;
 
     /**
+     * Instance variable mapped to "dir" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String dirExpr;
+
+    /**
      * Instance variable mapped to "disabled" tag attribute. (Mapping set in
      * associated BeanInfo class.)
      */
@@ -82,6 +88,12 @@ public class ELImageTag extends ImageTag {
      * associated BeanInfo class.)
      */
     private String indexedExpr;
+
+    /**
+     * Instance variable mapped to "lang" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String langExpr;
 
     /**
      * Instance variable mapped to "locale" tag attribute. (Mapping set in
@@ -294,6 +306,14 @@ public class ELImageTag extends ImageTag {
     }
 
     /**
+     * Getter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getDirExpr() {
+        return (dirExpr);
+    }
+
+    /**
      * Getter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -307,6 +327,14 @@ public class ELImageTag extends ImageTag {
      */
     public String getIndexedExpr() {
         return (indexedExpr);
+    }
+
+    /**
+     * Getter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getLangExpr() {
+        return (langExpr);
     }
 
     /**
@@ -574,6 +602,14 @@ public class ELImageTag extends ImageTag {
     }
 
     /**
+     * Setter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setDirExpr(String dirExpr) {
+        this.dirExpr = dirExpr;
+    }
+
+    /**
      * Setter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -587,6 +623,14 @@ public class ELImageTag extends ImageTag {
      */
     public void setIndexedExpr(String indexedExpr) {
         this.indexedExpr = indexedExpr;
+    }
+
+    /**
+     * Setter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setLangExpr(String langExpr) {
+        this.langExpr = langExpr;
     }
 
     /**
@@ -816,8 +860,10 @@ public class ELImageTag extends ImageTag {
         setAltKeyExpr(null);
         setBorderExpr(null);
         setBundleExpr(null);
+        setDirExpr(null);
         setDisabledExpr(null);
         setIndexedExpr(null);
+        setLangExpr(null);
         setLocaleExpr(null);
         setModuleExpr(null);
         setOnblurExpr(null);
@@ -905,6 +951,12 @@ public class ELImageTag extends ImageTag {
             setBundle(string);
         }
 
+        if ((string =
+        		EvalHelper.evalString("dir", getDirExpr(), this,
+        			pageContext)) != null) {
+        	setDir(string);
+        }
+        
         if ((bool =
                 EvalHelper.evalBoolean("disabled", getDisabledExpr(), this,
                     pageContext)) != null) {
@@ -915,6 +967,12 @@ public class ELImageTag extends ImageTag {
                 EvalHelper.evalBoolean("indexed", getIndexedExpr(), this,
                     pageContext)) != null) {
             setIndexed(bool.booleanValue());
+        }
+
+        if ((string =
+            	EvalHelper.evalString("lang", getLangExpr(), this,
+            		pageContext)) != null) {
+        	setLang(string);
         }
 
         if ((string =

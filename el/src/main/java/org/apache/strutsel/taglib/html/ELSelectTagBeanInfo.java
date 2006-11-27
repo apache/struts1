@@ -60,6 +60,12 @@ public class ELSelectTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELSelectTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELSelectTag.class,
                     null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {
@@ -92,6 +98,12 @@ public class ELSelectTagBeanInfo extends SimpleBeanInfo {
         try {
             proplist.add(new PropertyDescriptor("indexed", ELSelectTag.class,
                     null, "setIndexedExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELSelectTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 

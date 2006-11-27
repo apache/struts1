@@ -78,6 +78,12 @@ public class ELLinkTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELLinkTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("href", ELLinkTag.class, null,
                     "setHrefExpr"));
         } catch (IntrospectionException ex) {
@@ -92,6 +98,12 @@ public class ELLinkTagBeanInfo extends SimpleBeanInfo {
         try {
             proplist.add(new PropertyDescriptor("indexId", ELLinkTag.class,
                     null, "setIndexIdExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELLinkTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 

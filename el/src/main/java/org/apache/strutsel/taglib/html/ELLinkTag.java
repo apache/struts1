@@ -66,6 +66,12 @@ public class ELLinkTag extends LinkTag {
     private String bundleExpr;
 
     /**
+     * Instance variable mapped to "dir" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String dirExpr;
+
+    /**
      * Instance variable mapped to "forward" tag attribute. (Mapping set in
      * associated BeanInfo class.)
      */
@@ -88,6 +94,12 @@ public class ELLinkTag extends LinkTag {
      * associated BeanInfo class.)
      */
     private String indexIdExpr;
+
+    /**
+     * Instance variable mapped to "lang" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String langExpr;
 
     /**
      * Instance variable mapped to "linkName" tag attribute. (Mapping set in
@@ -310,6 +322,14 @@ public class ELLinkTag extends LinkTag {
     }
 
     /**
+     * Getter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getDirExpr() {
+        return (dirExpr);
+    }
+
+    /**
      * Getter method for "forward" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -339,6 +359,14 @@ public class ELLinkTag extends LinkTag {
      */
     public String getIndexIdExpr() {
         return (indexIdExpr);
+    }
+
+    /**
+     * Getter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getLangExpr() {
+        return (langExpr);
     }
 
     /**
@@ -622,6 +650,14 @@ public class ELLinkTag extends LinkTag {
     }
 
     /**
+     * Setter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setDirExpr(String dirExpr) {
+        this.dirExpr = dirExpr;
+    }
+
+    /**
      * Setter method for "forward" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -651,6 +687,14 @@ public class ELLinkTag extends LinkTag {
      */
     public void setIndexIdExpr(String indexIdExpr) {
         this.indexIdExpr = indexIdExpr;
+    }
+
+    /**
+     * Setter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setLangExpr(String langExpr) {
+        this.langExpr = langExpr;
     }
 
     /**
@@ -903,10 +947,12 @@ public class ELLinkTag extends LinkTag {
         setModuleExpr(null);
         setAnchorExpr(null);
         setBundleExpr(null);
+        setDirExpr(null);
         setForwardExpr(null);
         setHrefExpr(null);
         setIndexedExpr(null);
         setIndexIdExpr(null);
+        setLangExpr(null);
         setLinkNameExpr(null);
         setNameExpr(null);
         setOnblurExpr(null);
@@ -992,6 +1038,12 @@ public class ELLinkTag extends LinkTag {
         }
 
         if ((string =
+        		EvalHelper.evalString("dir", getDirExpr(), this,
+        			pageContext)) != null) {
+        	setDir(string);
+        }
+        
+        if ((string =
                 EvalHelper.evalString("forward", getForwardExpr(), this,
                     pageContext)) != null) {
             setForward(string);
@@ -1012,6 +1064,12 @@ public class ELLinkTag extends LinkTag {
                 EvalHelper.evalString("indexId", getIndexIdExpr(), this,
                     pageContext)) != null) {
             setIndexId(string);
+        }
+
+        if ((string =
+            	EvalHelper.evalString("lang", getLangExpr(), this,
+            		pageContext)) != null) {
+        	setLang(string);
         }
 
         if ((string =

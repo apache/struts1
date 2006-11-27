@@ -56,6 +56,12 @@ public class ELSelectTag extends SelectTag {
     private String bundleExpr;
 
     /**
+     * Instance variable mapped to "dir" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String dirExpr;
+
+    /**
      * Instance variable mapped to "disabled" tag attribute. (Mapping set in
      * associated BeanInfo class.)
      */
@@ -90,6 +96,12 @@ public class ELSelectTag extends SelectTag {
      * associated BeanInfo class.)
      */
     private String indexedExpr;
+
+    /**
+     * Instance variable mapped to "lang" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String langExpr;
 
     /**
      * Instance variable mapped to "multiple" tag attribute. (Mapping set in
@@ -260,6 +272,14 @@ public class ELSelectTag extends SelectTag {
     }
 
     /**
+     * Getter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getDirExpr() {
+        return (dirExpr);
+    }
+
+    /**
      * Getter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -305,6 +325,14 @@ public class ELSelectTag extends SelectTag {
      */
     public String getIndexedExpr() {
         return (indexedExpr);
+    }
+
+    /**
+     * Getter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getLangExpr() {
+        return (langExpr);
     }
 
     /**
@@ -524,6 +552,14 @@ public class ELSelectTag extends SelectTag {
     }
 
     /**
+     * Setter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setDirExpr(String dirExpr) {
+        this.dirExpr = dirExpr;
+    }
+
+    /**
      * Setter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -569,6 +605,14 @@ public class ELSelectTag extends SelectTag {
      */
     public void setIndexedExpr(String indexedExpr) {
         this.indexedExpr = indexedExpr;
+    }
+
+    /**
+     * Setter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setLangExpr(String langExpr) {
+        this.langExpr = langExpr;
     }
 
     /**
@@ -771,12 +815,14 @@ public class ELSelectTag extends SelectTag {
         setAltExpr(null);
         setAltKeyExpr(null);
         setBundleExpr(null);
+        setDirExpr(null);
         setDisabledExpr(null);
         setErrorKeyExpr(null);
         setErrorStyleExpr(null);
         setErrorStyleClassExpr(null);
         setErrorStyleIdExpr(null);
         setIndexedExpr(null);
+        setLangExpr(null);
         setMultipleExpr(null);
         setNameExpr(null);
         setOnblurExpr(null);
@@ -842,6 +888,12 @@ public class ELSelectTag extends SelectTag {
             setBundle(string);
         }
 
+        if ((string =
+        		EvalHelper.evalString("dir", getDirExpr(), this,
+        			pageContext)) != null) {
+        	setDir(string);
+        }
+
         if ((bool =
                 EvalHelper.evalBoolean("disabled", getDisabledExpr(), this,
                     pageContext)) != null) {
@@ -876,6 +928,12 @@ public class ELSelectTag extends SelectTag {
                 EvalHelper.evalBoolean("indexed", getIndexedExpr(), this,
                     pageContext)) != null) {
             setIndexed(bool.booleanValue());
+        }
+
+        if ((string =
+            	EvalHelper.evalString("lang", getLangExpr(), this,
+            		pageContext)) != null) {
+        	setLang(string);
         }
 
         if ((string =

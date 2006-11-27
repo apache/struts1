@@ -48,6 +48,12 @@ public class ELOptionTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELOptionTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELOptionTag.class,
                     null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {
@@ -56,6 +62,12 @@ public class ELOptionTagBeanInfo extends SimpleBeanInfo {
         try {
             proplist.add(new PropertyDescriptor("filter", ELOptionTag.class, null,
                     "setFilterExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELOptionTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 

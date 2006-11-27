@@ -66,6 +66,12 @@ public class ELPasswordTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELPasswordTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("disabled",
                     ELPasswordTag.class, null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {
@@ -98,6 +104,12 @@ public class ELPasswordTagBeanInfo extends SimpleBeanInfo {
         try {
             proplist.add(new PropertyDescriptor("indexed", ELPasswordTag.class,
                     null, "setIndexedExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELPasswordTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 

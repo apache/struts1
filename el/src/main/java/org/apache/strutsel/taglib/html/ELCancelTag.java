@@ -60,10 +60,22 @@ public class ELCancelTag extends CancelTag {
     private String bundleExpr;
 
     /**
+     * Instance variable mapped to "dir" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String dirExpr;
+
+    /**
      * Instance variable mapped to "disabled" tag attribute. (Mapping set in
      * associated BeanInfo class.)
      */
     private String disabledExpr;
+
+    /**
+     * Instance variable mapped to "lang" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String langExpr;
 
     /**
      * Instance variable mapped to "onblur" tag attribute. (Mapping set in
@@ -224,11 +236,27 @@ public class ELCancelTag extends CancelTag {
     }
 
     /**
+     * Getter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getDirExpr() {
+        return (dirExpr);
+    }
+
+    /**
      * Getter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
     public String getDisabledExpr() {
         return (disabledExpr);
+    }
+
+    /**
+     * Getter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getLangExpr() {
+        return (langExpr);
     }
 
     /**
@@ -432,11 +460,27 @@ public class ELCancelTag extends CancelTag {
     }
 
     /**
+     * Setter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setDirExpr(String dirExpr) {
+        this.dirExpr = dirExpr;
+    }
+
+    /**
      * Setter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
     public void setDisabledExpr(String disabledExpr) {
         this.disabledExpr = disabledExpr;
+    }
+
+    /**
+     * Setter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setLangExpr(String langExpr) {
+        this.langExpr = langExpr;
     }
 
     /**
@@ -616,7 +660,9 @@ public class ELCancelTag extends CancelTag {
         setAltExpr(null);
         setAltKeyExpr(null);
         setBundleExpr(null);
+        setDirExpr(null);
         setDisabledExpr(null);
+        setLangExpr(null);
         setOnblurExpr(null);
         setOnchangeExpr(null);
         setOnclickExpr(null);
@@ -685,10 +731,22 @@ public class ELCancelTag extends CancelTag {
             setBundle(string);
         }
 
+        if ((string =
+        		EvalHelper.evalString("dir", getDirExpr(), this,
+        			pageContext)) != null) {
+        	setDir(string);
+        }
+        
         if ((bool =
                 EvalHelper.evalBoolean("disabled", getDisabledExpr(), this,
                     pageContext)) != null) {
             setDisabled(bool.booleanValue());
+        }
+
+        if ((string =
+            	EvalHelper.evalString("lang", getLangExpr(), this,
+            		pageContext)) != null) {
+        	setLang(string);
         }
 
         if ((string =

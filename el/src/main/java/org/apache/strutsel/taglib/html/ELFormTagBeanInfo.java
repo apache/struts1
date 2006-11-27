@@ -43,6 +43,12 @@ public class ELFormTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELFormTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELTextTag.class,
                     null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {
@@ -63,6 +69,12 @@ public class ELFormTagBeanInfo extends SimpleBeanInfo {
         try {
             proplist.add(new PropertyDescriptor("focusIndex", ELFormTag.class,
                     null, "setFocusIndexExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELFormTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 

@@ -60,6 +60,12 @@ public class ELHiddenTag extends HiddenTag {
     private String bundleExpr;
 
     /**
+     * Instance variable mapped to "dir" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String dirExpr;
+
+    /**
      * Instance variable mapped to "disabled" tag attribute. (Mapping set in
      * associated BeanInfo class.)
      */
@@ -70,6 +76,12 @@ public class ELHiddenTag extends HiddenTag {
      * associated BeanInfo class.)
      */
     private String indexedExpr;
+
+    /**
+     * Instance variable mapped to "lang" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String langExpr;
 
     /**
      * Instance variable mapped to "name" tag attribute. (Mapping set in
@@ -236,6 +248,14 @@ public class ELHiddenTag extends HiddenTag {
     }
 
     /**
+     * Getter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getDirExpr() {
+        return (dirExpr);
+    }
+
+    /**
      * Getter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -249,6 +269,14 @@ public class ELHiddenTag extends HiddenTag {
      */
     public String getIndexedExpr() {
         return (indexedExpr);
+    }
+
+    /**
+     * Getter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getLangExpr() {
+        return (langExpr);
     }
 
     /**
@@ -460,6 +488,14 @@ public class ELHiddenTag extends HiddenTag {
     }
 
     /**
+     * Setter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setDirExpr(String dirExpr) {
+        this.dirExpr = dirExpr;
+    }
+
+    /**
      * Setter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -473,6 +509,14 @@ public class ELHiddenTag extends HiddenTag {
      */
     public void setIndexedExpr(String indexedExpr) {
         this.indexedExpr = indexedExpr;
+    }
+
+    /**
+     * Setter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setLangExpr(String langExpr) {
+        this.langExpr = langExpr;
     }
 
     /**
@@ -660,8 +704,10 @@ public class ELHiddenTag extends HiddenTag {
         setAltExpr(null);
         setAltKeyExpr(null);
         setBundleExpr(null);
+        setDirExpr(null);
         setDisabledExpr(null);
         setIndexedExpr(null);
+        setLangExpr(null);
         setNameExpr(null);
         setOnblurExpr(null);
         setOnchangeExpr(null);
@@ -731,6 +777,12 @@ public class ELHiddenTag extends HiddenTag {
             setBundle(string);
         }
 
+        if ((string =
+        		EvalHelper.evalString("dir", getDirExpr(), this,
+        			pageContext)) != null) {
+        	setDir(string);
+        }
+        
         if ((bool =
                 EvalHelper.evalBoolean("disabled", getDisabledExpr(), this,
                     pageContext)) != null) {
@@ -741,6 +793,12 @@ public class ELHiddenTag extends HiddenTag {
                 EvalHelper.evalBoolean("indexed", getIndexedExpr(), this,
                     pageContext)) != null) {
             setIndexed(bool.booleanValue());
+        }
+
+        if ((string =
+            	EvalHelper.evalString("lang", getLangExpr(), this,
+            		pageContext)) != null) {
+        	setLang(string);
         }
 
         if ((string =

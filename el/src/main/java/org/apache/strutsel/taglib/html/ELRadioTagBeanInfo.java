@@ -66,6 +66,12 @@ public class ELRadioTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELRadioTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELRadioTag.class,
                     null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {
@@ -98,6 +104,12 @@ public class ELRadioTagBeanInfo extends SimpleBeanInfo {
         try {
             proplist.add(new PropertyDescriptor("indexed", ELRadioTag.class,
                     null, "setIndexedExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELRadioTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 

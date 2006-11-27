@@ -72,6 +72,12 @@ public class ELTextareaTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELTextareaTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("disabled",
                     ELTextareaTag.class, null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {
@@ -104,6 +110,12 @@ public class ELTextareaTagBeanInfo extends SimpleBeanInfo {
         try {
             proplist.add(new PropertyDescriptor("indexed", ELTextareaTag.class,
                     null, "setIndexedExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELTextareaTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 

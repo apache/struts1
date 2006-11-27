@@ -68,8 +68,20 @@ public class ELCancelTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELCancelTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELCancelTag.class,
                     null, "setDisabledExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELCancelTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 

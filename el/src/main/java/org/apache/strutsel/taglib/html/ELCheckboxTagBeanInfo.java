@@ -66,6 +66,12 @@ public class ELCheckboxTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELCheckboxTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("disabled",
                     ELCheckboxTag.class, null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {
@@ -98,6 +104,12 @@ public class ELCheckboxTagBeanInfo extends SimpleBeanInfo {
         try {
             proplist.add(new PropertyDescriptor("indexed", ELCheckboxTag.class,
                     null, "setIndexedExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELCheckboxTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 

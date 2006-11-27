@@ -66,6 +66,12 @@ public class ELButtonTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELButtonTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("disabled", ELButtonTag.class,
                     null, "setDisabledExpr"));
         } catch (IntrospectionException ex) {
@@ -74,6 +80,12 @@ public class ELButtonTagBeanInfo extends SimpleBeanInfo {
         try {
             proplist.add(new PropertyDescriptor("indexed", ELButtonTag.class,
                     null, "setIndexedExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELButtonTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 

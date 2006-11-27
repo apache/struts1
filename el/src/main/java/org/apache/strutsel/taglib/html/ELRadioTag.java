@@ -60,6 +60,12 @@ public class ELRadioTag extends RadioTag {
     private String bundleExpr;
 
     /**
+     * Instance variable mapped to "dir" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String dirExpr;
+
+    /**
      * Instance variable mapped to "disabled" tag attribute. (Mapping set in
      * associated BeanInfo class.)
      */
@@ -100,6 +106,12 @@ public class ELRadioTag extends RadioTag {
      * associated BeanInfo class.)
      */
     private String indexedExpr;
+
+    /**
+     * Instance variable mapped to "lang" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String langExpr;
 
     /**
      * Instance variable mapped to "name" tag attribute. (Mapping set in
@@ -266,6 +278,14 @@ public class ELRadioTag extends RadioTag {
     }
 
     /**
+     * Getter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getDirExpr() {
+        return (dirExpr);
+    }
+
+    /**
      * Getter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -303,6 +323,14 @@ public class ELRadioTag extends RadioTag {
      */
     public String getErrorStyleIdExpr() {
         return (errorStyleIdExpr);
+    }
+
+    /**
+     * Getter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getLangExpr() {
+        return (langExpr);
     }
 
     /**
@@ -530,6 +558,14 @@ public class ELRadioTag extends RadioTag {
     }
 
     /**
+     * Setter method for "dir" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setDirExpr(String dirExpr) {
+        this.dirExpr = dirExpr;
+    }
+
+    /**
      * Setter method for "disabled" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -583,6 +619,14 @@ public class ELRadioTag extends RadioTag {
      */
     public void setIndexedExpr(String indexedExpr) {
         this.indexedExpr = indexedExpr;
+    }
+
+    /**
+     * Setter method for "lang" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setLangExpr(String langExpr) {
+        this.langExpr = langExpr;
     }
 
     /**
@@ -770,6 +814,7 @@ public class ELRadioTag extends RadioTag {
         setAltExpr(null);
         setAltKeyExpr(null);
         setBundleExpr(null);
+        setDirExpr(null);
         setDisabledExpr(null);
         setErrorKeyExpr(null);
         setErrorStyleExpr(null);
@@ -777,6 +822,7 @@ public class ELRadioTag extends RadioTag {
         setErrorStyleIdExpr(null);
         setIdNameExpr(null);
         setIndexedExpr(null);
+        setLangExpr(null);
         setNameExpr(null);
         setOnblurExpr(null);
         setOnchangeExpr(null);
@@ -846,6 +892,12 @@ public class ELRadioTag extends RadioTag {
             setBundle(string);
         }
 
+        if ((string =
+        		EvalHelper.evalString("dir", getDirExpr(), this,
+        			pageContext)) != null) {
+        	setDir(string);
+        }
+        
         if ((bool =
                 EvalHelper.evalBoolean("disabled", getDisabledExpr(), this,
                     pageContext)) != null) {
@@ -886,6 +938,12 @@ public class ELRadioTag extends RadioTag {
                 EvalHelper.evalBoolean("indexed", getIndexedExpr(), this,
                     pageContext)) != null) {
             setIndexed(bool.booleanValue());
+        }
+
+        if ((string =
+            	EvalHelper.evalString("lang", getLangExpr(), this,
+            		pageContext)) != null) {
+        	setLang(string);
         }
 
         if ((string =

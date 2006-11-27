@@ -79,6 +79,12 @@ public class ELImgTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("dir", ELImgTag.class,
+                    null, "setDirExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("height", ELImgTag.class, null,
                     "setHeightExpr"));
         } catch (IntrospectionException ex) {
@@ -99,6 +105,12 @@ public class ELImgTagBeanInfo extends SimpleBeanInfo {
         try {
             proplist.add(new PropertyDescriptor("ismap", ELImgTag.class, null,
                     "setIsmapExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
+            proplist.add(new PropertyDescriptor("lang", ELImgTag.class,
+                    null, "setLangExpr"));
         } catch (IntrospectionException ex) {
         }
 
