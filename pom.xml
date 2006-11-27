@@ -94,38 +94,6 @@
                 <module>assembly</module>
             </modules>
         </profile>
-        <profile>
-            <!-- STR-2942 - Temporary profile to assist with DTDDoc plugin testing -->
-            <id>dtddoc</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>dtddoc</id>
-                    <url>http://dtddoc.sf.net/maven2</url>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>dtddoc</id>
-                    <url>http://dtddoc.sf.net/maven2</url>
-                </pluginRepository>
-            </pluginRepositories>
-            <reporting>
-                <plugins>
-                    <plugin>
-                        <groupId>net.sf.dtddoc</groupId>
-                        <artifactId>dtddoc-maven-plugin</artifactId>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/web-app*</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </reporting>
-        </profile>
     </profiles>
 
     <modules>
@@ -184,6 +152,11 @@
                         </archive>
                     </configuration>
                 </plugin>
+                <plugin>
+	                  <groupId>net.sf.dtddoc</groupId>
+	                  <artifactId>dtddoc-maven-plugin</artifactId>
+                    <version>1.0.0</version>
+	              </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -243,6 +216,15 @@
             </plugin>
             <plugin>
                 <artifactId>maven-pmd-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>net.sf.dtddoc</groupId>
+                <artifactId>dtddoc-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/web-app*</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </reporting>
