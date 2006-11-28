@@ -117,6 +117,8 @@
 
    <reporting>
       <plugins>
+      <!-- 
+         STR-2979: Faces build causes NPE with maven-taglib-plugin
          <plugin>
             <groupId>net.sourceforge.maven-taglib</groupId>
             <artifactId>maven-taglib-plugin</artifactId>
@@ -124,6 +126,7 @@
                <taglib.src.dir>${basedir}/src/main/resources/META-INF/tld</taglib.src.dir>
             </configuration>
          </plugin>
+      -->
       </plugins>
    </reporting>
 
