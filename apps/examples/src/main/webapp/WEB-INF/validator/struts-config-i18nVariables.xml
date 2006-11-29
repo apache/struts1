@@ -104,9 +104,12 @@
             automatically 'escape' single quotes.
 
     -->
-  <message-resources key="i18nExample"   null="false" parameter="org.apache.struts.webapp.validator.I18nExample" />
+  <message-resources key="i18nExample"   null="false" parameter="org.apache.struts.webapp.validator.I18nExample">
+      <set-property key="mode" value="JSTL"/>
+  </message-resources>
   <message-resources key="i18nVariables" null="true"  parameter="org.apache.struts.webapp.validator.I18nExampleVariables" >
       <set-property property="escape" value="false"/>
+      <set-property key="mode" value="JSTL"/>
   </message-resources>
 
 </struts-config>

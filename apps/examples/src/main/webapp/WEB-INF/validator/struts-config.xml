@@ -89,7 +89,9 @@
 
 
   <!-- ===================================== Message Resources Definitions  -->
-  <message-resources                 parameter="org.apache.struts.webapp.validator.MessageResources" />
+  <message-resources parameter="org.apache.struts.webapp.validator.MessageResources">
+      <set-property key="mode" value="JSTL"/>
+  </message-resources>
 
   <!-- ============================================ Plug Ins Configuration  -->
 

@@ -33,8 +33,8 @@ import java.util.Properties;
 
 /**
  * Concrete subclass of <code>MessageResources</code> that reads message keys
- * and corresponding strings from named property resources in the same manner
- * that <code>java.util.PropertyResourceBundle</code> does.  The
+ * and corresponding strings from named property resources in a <b><i>similar</i></b> manner
+ * (see <i>modes</i> below) that <code>java.util.PropertyResourceBundle</code> does.  The
  * <code>base</code> property defines the base property resource name, and
  * must be specified. <p> <strong>IMPLEMENTATION NOTE</strong> - This class
  * trades memory for speed by caching all messages located via generalizing
@@ -43,10 +43,89 @@ import java.util.Properties;
  * response time on subsequent requests for the same locale + key
  * combination.
  *
- * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
- *          $
+ * <h2>Operating Modes</h2>
+ * This implementation can be configured to operate in one of three modes:
+ * <ul>
+ *    <li>1. <b>Default</b> - default, backwardly compatible, Struts behaviour (i.e. the way
+ *    its always worked).</li>
+ *    <li>2. <b>JSTL</b> - compatible with how JSTL finds messages
+ *        (fix for <a href="http://issues.apache.org/struts/browse/STR-2925">STR-2925</a>)</li>
+ *    <li>3. <b>Resource</b> - compatible with how Java's <code>PropertyResourceBundle</code>
+ *        finds messages (fix for
+ *        <a href="http://issues.apache.org/struts/browse/STR-2077">STR-2077</a>)</li>
+ * </ul>
+ *
+ * <h3>1. Default Mode</h3>
+ * <i>Default mode</i> is the way this implementation has always operated. It searches
+ * for a message key for property resources in the following sequence:
+ * <pre>
+ *      base + "_" + localeLanguage + "_" + localeCountry + "_" + localeVariant
+ *      base + "_" + localeLanguage + "_" + localeCountry
+ *      base + "_" + localeLanguage
+ *      base + "_" + default locale
+ *      base
+ * </pre>
+ * <p>
+ * This mode is the <i>default</i> and requires no additional configuration.
+ *
+ * <h3>2. JSTL Mode</h3>
+ * <i>JSTL mode</i> is compatible with how JSTL operates and the default Locale
+ * is not used when looking for a message key. <i>JSTL mode</i> searches for
+ * a message key for property resources in the following sequence:
+ * <pre>
+ *      base + "_" + localeLanguage + "_" + localeCountry + "_" + localeVariant
+ *      base + "_" + localeLanguage + "_" + localeCountry
+ *      base + "_" + localeLanguage
+ *      base
+ * </pre>
+ * <p>
+ * Configure <code>PropertyMessageResources</code> to operate in this mode by
+ * specifying a value of <code>JSTL</code> for the <code>mode</code>
+ * key in your <code>struts-config.xml</code>:
+ * <pre>
+ *      &lt;message-resources parameter="mypackage.MyMessageResources"&gt;
+ *          &lt;set-property key="mode" value="JSTL"/&gt;
+ *      &lt;/message-resources&gt;
+ * </pre>
+ *
+ * <h3>3. Resource Mode</h3>
+ * <i>Resource mode</i> is compatible with how Java's <code>PropertyResourceBundle</code>
+ * operates. <i>Resource mode</i> searches first through the specified Locale's language,
+ * country and variant, then through the default Locale's language,
+ * country and variant and finally using just the <code>base</code>:
+ * <pre>
+ *      base + "_" + localeLanguage + "_" + localeCountry + "_" + localeVariant
+ *      base + "_" + localeLanguage + "_" + localeCountry
+ *      base + "_" + localeLanguage
+ *      base + "_" + defaultLanguage + "_" + defaultCountry + "_" + defaultVariant
+ *      base + "_" + defaultLanguage + "_" + defaultCountry
+ *      base + "_" + defaultLanguage
+ *      base
+ * </pre>
+ * <p>
+ * Configure <code>PropertyMessageResources</code> to operate in this mode by
+ * specifying a value of <code>resource</code> for the <code>mode</code>
+ * key in your <code>struts-config.xml</code>:
+ * <pre>
+ *      &lt;message-resources parameter="mypackage.MyMessageResources"&gt;
+ *          &lt;set-property key="mode" value="resource"/&gt;
+ *      &lt;/message-resources&gt;
+ * </pre>
+ * 
+ * @version $Rev$ $Date$
  */
 public class PropertyMessageResources extends MessageResources {
+
+
+    /** Indicates compatibility with how PropertyMessageResources has always looked up messages */
+    private static final int MODE_DEFAULT = 0;
+
+    /** Indicates compatibility with how JSTL looks up messages */
+    private static final int MODE_JSTL = 1;
+
+    /** Indicates compatibility with how java's PropertyResourceBundle looks up messages */
+    private static final int MODE_RESOURCE_BUNDLE = 2;
+
     /**
      * The <code>Log</code> instance for this class.
      */
@@ -66,6 +145,11 @@ public class PropertyMessageResources extends MessageResources {
      * calculated in <code>messageKey()</code>.
      */
     protected HashMap messages = new HashMap();
+
+    /**
+     * Compatibility mode that PropertyMessageResources is operating in.
+     */
+    private int mode = MODE_DEFAULT;
 
     // ----------------------------------------------------------- Constructors
 
@@ -101,8 +185,35 @@ public class PropertyMessageResources extends MessageResources {
     // --------------------------------------------------------- Public Methods
 
     /**
-     * Returns a text message for the specified key, for the default Locale. A
-     * null string result will be returned by this method if no relevant
+     * Set the compatibility mode this implementation uses for message lookup.
+     *
+     * @param mode <code>JSTL</code> for JSTL compatibility,
+     *  <code>resource</code> for PropertyResourceBundle compatibility or
+     *  <code>default</code> for Struts backward compatibility.
+     */
+    public void setMode(String mode) {
+        String value = (mode == null ? null : mode.trim());
+        if ("jstl".equalsIgnoreCase(value)) {
+            this.mode = MODE_JSTL;
+            if (log.isDebugEnabled()) {
+                log.info("Operating in JSTL compatible mode [" + mode + "]");
+            }
+        } else if ("resource".equalsIgnoreCase(value)) {
+            this.mode = MODE_RESOURCE_BUNDLE;
+            if (log.isDebugEnabled()) {
+                log.info("Operating in PropertyResourceBundle compatible mode [" + mode + "]");
+            }
+        } else {
+            this.mode = MODE_DEFAULT;
+            if (log.isDebugEnabled()) {
+                log.info("Operating in Default mode [" + mode + "]");
+            }
+        }
+    }
+
+    /**
+     * Returns a text message for the specified key, for the specified or default
+     * Locale. A null string result will be returned by this method if no relevant
      * message resource is found for this key or Locale, if the
      * <code>returnNull</code> property is set.  Otherwise, an appropriate
      * error message will be returned. <p> This method must be implemented by
@@ -121,72 +232,45 @@ public class PropertyMessageResources extends MessageResources {
         // Initialize variables we will require
         String localeKey = localeKey(locale);
         String originalKey = messageKey(localeKey, key);
-        String messageKey = null;
         String message = null;
-        int underscore = 0;
-        boolean addIt = false; // Add if not found under the original key
 
-        // Loop from specific to general Locales looking for this message
-        while (true) {
-            // Load this Locale's messages if we have not done so yet
-            loadLocale(localeKey);
-
-            // Check if we have this key for the current locale key
-            messageKey = messageKey(localeKey, key);
-
-            synchronized (messages) {
-                message = (String) messages.get(messageKey);
-
-                if (message != null) {
-                    if (addIt) {
-                        messages.put(originalKey, message);
-                    }
-
-                    return (message);
-                }
-            }
-
-            // Strip trailing modifiers to try a more general locale key
-            addIt = true;
-            underscore = localeKey.lastIndexOf("_");
-
-            if (underscore < 0) {
-                break;
-            }
-
-            localeKey = localeKey.substring(0, underscore);
+        // Search the specified Locale
+        message = findMessage(locale, key, originalKey);
+        if (message != null) {
+            return message;
         }
 
-        // Try the default locale if the current locale is different
-        if (!defaultLocale.equals(locale)) {
-            localeKey = localeKey(defaultLocale);
-            messageKey = messageKey(localeKey, key);
-            loadLocale(localeKey);
+        // JSTL Compatibility - JSTL doesn't use the default locale
+        if (mode == MODE_JSTL) {
 
-            synchronized (messages) {
-                message = (String) messages.get(messageKey);
+           // do nothing (i.e. don't use default Locale)
 
-                if (message != null) {
-                    messages.put(originalKey, message);
+        // PropertyResourcesBundle - searches through the hierarchy
+        // for the default Locale (e.g. first en_US then en)
+        } else if (mode == MODE_RESOURCE_BUNDLE) {
 
-                    return (message);
-                }
+            if (!defaultLocale.equals(locale)) {
+                message = findMessage(defaultLocale, key, originalKey);
             }
+
+        // Default (backwards) Compatibility - just searches the
+        // specified Locale (e.g. just en_US)
+        } else {
+
+            if (!defaultLocale.equals(locale)) {
+                localeKey = localeKey(defaultLocale);
+                message = findMessage(localeKey, key, originalKey);
+            }
+
+        }
+        if (message != null) {
+            return message;
         }
 
-        // As a last resort, try the default Locale
-        localeKey = "";
-        messageKey = messageKey(localeKey, key);
-        loadLocale(localeKey);
-
-        synchronized (messages) {
-            message = (String) messages.get(messageKey);
-
-            if (message != null) {
-                messages.put(originalKey, message);
-
-                return (message);
-            }
+        // Find the message in the default properties file
+        message = findMessage("", key, originalKey);
+        if (message != null) {
+            return message;
         }
 
         // Return an appropriate error indication
@@ -288,6 +372,85 @@ public class PropertyMessageResources extends MessageResources {
 
                 messages.put(messageKey(localeKey, key), props.getProperty(key));
             }
+        }
+    }
+
+    // -------------------------------------------------------- Private Methods
+
+    /**
+     * Returns a text message for the specified key, for the specified Locale.
+     * <p>
+     * A null string result will be returned by this method if no relevant
+     * message resource is found. This method searches through the locale
+     * <i>hierarchy</i> (i.e. variant --> languge --> country) for the message.
+     *
+     * @param locale The requested message Locale, or <code>null</code> for
+     *  the system default Locale
+     * @param key The message key to look up
+     * @param originalKey The original message key to cache any found message under
+     * @return text message for the specified key and locale
+     */
+    private String findMessage(Locale locale, String key, String originalKey) {
+
+        // Initialize variables we will require
+        String localeKey = localeKey(locale);
+        String messageKey = null;
+        String message = null;
+        int underscore = 0;
+
+        // Loop from specific to general Locales looking for this message
+        while (true) {
+            message = findMessage(localeKey, key, originalKey);
+            if (message != null) {
+                break;
+            }
+
+            // Strip trailing modifiers to try a more general locale key
+            underscore = localeKey.lastIndexOf("_");
+
+            if (underscore < 0) {
+                break;
+            }
+
+            localeKey = localeKey.substring(0, underscore);
+        }
+
+        return message;
+
+    }
+
+    /**
+     * Returns a text message for the specified key, for the specified Locale.
+     * <p>
+     * A null string result will be returned by this method if no relevant
+     * message resource is found.
+     *
+     * @param locale The requested key of the Locale
+     * @param key The message key to look up
+     * @param originalKey The original message key to cache any found message under
+     * @return text message for the specified key and locale
+     */
+    private String findMessage(String localeKey, String key, String originalKey) {
+
+        // Load this Locale's messages if we have not done so yet
+        loadLocale(localeKey);
+
+        // Check if we have this key for the current locale key
+        String messageKey = messageKey(localeKey, key);
+
+        // Add if not found under the original key
+        boolean addIt = !messageKey.equals(originalKey);
+
+        synchronized (messages) {
+            String message = (String) messages.get(messageKey);
+
+            if (message != null) {
+                if (addIt) {
+                    messages.put(originalKey, message);
+                }
+
+            }
+            return (message);
         }
     }
 }

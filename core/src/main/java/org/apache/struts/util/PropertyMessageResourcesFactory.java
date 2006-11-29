@@ -26,8 +26,7 @@ package org.apache.struts.util;
  * configuration paramter for such instances is the base Java package name of
  * the resources entries from which our keys and values will be loaded.
  *
- * @version $Rev$ $Date: 2005-05-07 12:11:38 -0400 (Sat, 07 May 2005)
- *          $
+ * @version $Rev$ $Date$
  */
 public class PropertyMessageResourcesFactory extends MessageResourcesFactory {
     // --------------------------------------------------------- Public Methods
@@ -39,6 +38,13 @@ public class PropertyMessageResourcesFactory extends MessageResourcesFactory {
      * @param config Configuration parameter(s) for the requested bundle
      */
     public MessageResources createResources(String config) {
-        return new PropertyMessageResources(this, config, this.returnNull);
+        PropertyMessageResources messageResources =
+               new PropertyMessageResources(this, config, this.returnNull);
+        String mode = null;
+        if (getConfig() != null) {
+            mode = getConfig().getProperty("mode");
+        }
+        messageResources.setMode(mode);
+        return messageResources;
     }
 }

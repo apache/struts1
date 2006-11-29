@@ -446,6 +446,34 @@ limitations under the License.
                     '.
                 </p>
 
+                <p>
+                </p>
+
+                <p>
+                    The default <code>PropertyMessageResources</code>
+                    implementation can operate in one of three modes:
+                </p>
+
+                <ul>
+                  <li><b>Default</b> - default, backwardly compatible,
+                      Struts behaviour (i.e. the way its always worked).</li>
+                  <li><b>JSTL</b> - compatible with how JSTL finds messages.</li>
+                  <li><b>Resource</b> - compatible with how Java's 
+                      <code>PropertyResourceBundle</code> finds messages.</li>
+                </ul>
+
+                <p>
+                    The <i>mode</i> can be configured in the struts-config.xml 
+                   (for more details see <code>PropertyMessageResources</code>
+                    <a href="../struts-core/apidocs/org/apache/struts/util/PropertyMessageResources.html">
+                    JavaDoc</a>):.
+                </p>
+                <source><![CDATA[
+<message-resources parameter="MyWebAppResources">
+    <set-property key="mode" value="JSTL"/>
+</message-resources>
+]]></source>
+
             </subsection>
 
             <a name="plugin_config"/>
