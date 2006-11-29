@@ -126,8 +126,7 @@ import javax.servlet.http.HttpServletResponse;
  * Also, a request parameter, which would be visible to the application user,
  * is not required to enable selection of the handler method. </p>
  *
- * @version $Rev$ $Date: 2005-05-14 21:27:02 -0400 (Sat, 14 May 2005)
- *          $
+ * @version $Rev$ $Date$
  * @since Struts 1.2
  */
 public class MappingDispatchAction extends DispatchAction {
@@ -191,6 +190,23 @@ public class MappingDispatchAction extends DispatchAction {
         log.error(message);
 
         throw new ServletException(message);
+    }
+
+    /**
+     * <p>Returns the parameter value.</p>
+     *
+     * @param mapping  The ActionMapping used to select this instance
+     * @param form     The optional ActionForm bean for this request (if any)
+     * @param request  The HTTP request we are processing
+     * @param response The HTTP response we are creating
+     * @return The <code>ActionMapping</code> parameter's value
+     */
+    protected String getParameter(ActionMapping mapping, ActionForm form,
+        HttpServletRequest request, HttpServletResponse response)
+        throws Exception {
+
+        return mapping.getParameter();
+
     }
 
     /**
