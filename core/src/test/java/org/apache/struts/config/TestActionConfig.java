@@ -310,6 +310,55 @@ public class TestActionConfig extends TestCase {
     }
 
     /**
+     * Make sure that correct exception is thrown if a base action can't be
+     * found.
+     */
+    public void testInheritBoolean()
+        throws Exception {
+
+        ActionConfig parentConfig = new ActionConfig();
+        parentConfig.setPath("/parent");
+        ActionConfig childConfig  = null;
+
+        // Test if boolean is NOT set it IS inherited
+        parentConfig.setValidate(true);
+        parentConfig.setCancellable(true);
+        childConfig = new ActionConfig();
+        childConfig.inheritFrom(parentConfig);
+        assertEquals("default validate inherit true", true, childConfig.getValidate());
+        assertEquals("default cancellable inherit true", true, childConfig.getValidate());
+
+        // Test if boolean is NOT set it IS inherited
+        parentConfig.setValidate(false);
+        parentConfig.setCancellable(false);
+        childConfig = new ActionConfig();
+        childConfig.inheritFrom(parentConfig);
+        assertEquals("default validate inherit false", false, childConfig.getValidate());
+        assertEquals("default cancellable inherit false", false, childConfig.getValidate());
+
+        // Test if boolean IS set it is NOT inherited
+        parentConfig.setValidate(true);
+        parentConfig.setCancellable(true);
+        childConfig = new ActionConfig();
+        childConfig.setValidate(false);
+        childConfig.setCancellable(false);
+        childConfig.inheritFrom(parentConfig);
+        assertEquals("set validate (not inherit true)", false, childConfig.getValidate());
+        assertEquals("set cancellable (not inherit false)", false, childConfig.getValidate());
+
+        // Test if boolean IS set it is NOT inherited
+        parentConfig.setValidate(false);
+        parentConfig.setCancellable(false);
+        childConfig = new ActionConfig();
+        childConfig.setValidate(true);
+        childConfig.setCancellable(true);
+        childConfig.inheritFrom(parentConfig);
+        assertEquals("set validate (not inherit false)", true, childConfig.getValidate());
+        assertEquals("set cancellable (not inherit false)", true, childConfig.getValidate());
+
+    }
+
+    /**
      * Used to detect that ActionConfig is making the right calls.
      */
     public static class CustomActionConfig extends ActionConfig {

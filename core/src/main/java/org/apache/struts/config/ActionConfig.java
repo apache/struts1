@@ -35,8 +35,7 @@ import java.util.HashMap;
  * <code>&lt;action&gt;</code> element from a Struts module configuration
  * file.</p>
  *
- * @version $Rev$ $Date: 2005-08-06 04:12:10 -0400 (Sat, 06 Aug 2005)
- *          $
+ * @version $Rev$ $Date$
  * @since Struts 1.1
  */
 public class ActionConfig extends BaseConfig {
@@ -83,6 +82,11 @@ public class ActionConfig extends BaseConfig {
      * properties from.</p> </p>
      */
     protected String inherit = null;
+
+    /**
+     * Indicates whether the "cancellable " property has been set or not.
+     */
+    private boolean cancellableSet = false;
 
     /**
      * <p>Can this Action be cancelled? [false]</p> <p> By default, when an
@@ -193,6 +197,11 @@ public class ActionConfig extends BaseConfig {
      * when true.
      */
     protected boolean unknown = false;
+
+    /**
+     * Indicates whether the "validate" property has been set or not.
+     */
+    private boolean validateSet = false;
 
     /**
      * <p> Should the <code>validate()</code> method of the form bean
@@ -323,6 +332,7 @@ public class ActionConfig extends BaseConfig {
         }
 
         this.cancellable = cancellable;
+        this.cancellableSet = true;
     }
 
     /**
@@ -677,6 +687,7 @@ public class ActionConfig extends BaseConfig {
         }
 
         this.validate = validate;
+        this.validateSet = true;
     }
 
     /**
@@ -1028,7 +1039,7 @@ public class ActionConfig extends BaseConfig {
             setAttribute(config.getAttribute());
         }
 
-        if (!getCancellable()) {
+        if (!cancellableSet) {
             setCancellable(config.getCancellable());
         }
 
@@ -1092,7 +1103,7 @@ public class ActionConfig extends BaseConfig {
             setUnknown(config.getUnknown());
         }
 
-        if (getValidate()) {
+        if (!validateSet) {
             setValidate(config.getValidate());
         }
 
