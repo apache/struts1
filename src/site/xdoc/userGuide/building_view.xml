@@ -172,7 +172,7 @@ limitations under the License.
                     </li>
 
                     <li>
-                        <a href="../apidocs/org/apache/struts/util/MessageResources.html">
+                        <a href="../struts-core/apidocs/org/apache/struts/util/MessageResources.html">
                             <strong>MessageResources</strong>
                         </a>
                         - The framework class
