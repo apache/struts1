@@ -98,8 +98,8 @@ limitations under the License.
 								<p>Just as the <code>TilesRequestProcessor</code> could recognize a tile definition
 								and resolve it to the intended JSP, so does Struts now have built-in
 								recognition for URIs that begin with an <code>actionId</code> and will automatically
-								translate forwards. Both these forwards will be rewritten internally
-								to forward to <code>/person/view.do</code> (with parameters included):
+								translate forwards. Both these forwards below will be resolved internally
+								to <code>/person/view.do</code> (with parameters included):
 								</p>
 								
 <pre>
@@ -112,8 +112,8 @@ limitations under the License.
 								<code>actionId</code>:</p>
 								
 <pre>
-&lt;html:form action="savePersonAction"&gt;...&lt;html:form&gt;
-&lt;html:link action="viewPersonAction" /&gt;
+&lt;html:form action="savePersonAction"&gt;...&lt;/html:form&gt;
+&lt;html:link action="viewPersonAction"&gt;...&lt;/html:link&gt;
 </pre>
 								
 								<p>Note: It is good practice to name the <code>actionId</code> as <em>entityAction</em>
