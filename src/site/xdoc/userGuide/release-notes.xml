@@ -83,19 +83,118 @@ limitations under the License.
                         Subversion client</a>
                     interfaces.
                 </p>
+                
+                <h4>Action ID</h4>
+                <p>An action mapping may now may be given an identifier by the new <code>actionId</code>
+                property which uniquely identifies the mapping within a module:</p>
+                
+<pre>
+&lt;action path="/person/view" type="..." input="..."&gt;
+    &lt;set-property property="actionId" value="viewPersonAction" /&gt;
+    &lt;forward name="success" path="person.jsp" /&gt;
+&lt;/action&gt;
+</pre>
+                
+								<p>Just as the <code>TilesRequestProcessor</code> could recognize a tile definition
+								and resolve it to the intended JSP, so does Struts now have built-in
+								recognition for URIs that begin with an <code>actionId</code> and will automatically
+								translate forwards. Both these forwards will be rewritten internally
+								to forward to <code>/person/view.do</code> (with parameters included):
+								</p>
+								
+<pre>
+&lt;forward name="success" path="viewPersonAction" /&gt;
+&lt;forward name="success" path="viewPersonAction?fruit=banana&amp;color=yellow" /&gt;
+</pre>
+								
+								<p>You can effectively eliminate all URI management throughout the Struts configuration
+								files <b>and</b> within JSP. The tag libraries are also updated to recognize the 
+								<code>actionId</code>:</p>
+								
+<pre>
+&lt;html:form action="savePersonAction"&gt;...&lt;html:form&gt;
+&lt;html:link action="viewPersonAction" /&gt;
+</pre>
+								
+								<p>Note: It is good practice to name the <code>actionId</code> as <em>entityAction</em>
+								to distinguish the identifier from, perhaps, a Tiles definition named <em>entityPage</em>.</p>
+								
+								<h4>Internationalization (I18N) Tag Properties</h4>
+								
+								<p>Struts tag libraries now include the HTML I18N properties. This allows sites that 
+								specialize in internationalization to specify both bi-directional text and language
+								at the tag level:</p>
+								
+<pre>
+&lt;html:link action="viewPersonAction" dir="ltor" lang="es"/&gt;vea a persona&lt;/html:link&gt;
+</pre>
 
-<h3>Resolved Issues</h3>
-<p>The following issues have been resolved since the 1.3.3 test build:</p>
-<h4>Bugs</h4>
-<ul>
-<li>[<a href='http://issues.apache.org/struts/browse/STR-####'>STR-####</a>] - .... </li>
-</ul>
-            
-<h4>Tasks</h4>
-<ul>
-<li>[<a href='http://issues.apache.org/struts/browse/STR-####'>STR-####</a>] - .... </li>
-</ul>
+								<h4>Dynamic Link Parameters</h4>
+								
+								<p>The Struts <code>&lt;html:link&gt;</code>, <code>&lt;html:frame&gt;</code>, 
+								<code>&lt;html:rewrite&gt;</code> tag libaries now allow their bodies to nest the new 
+								<code>&lt;html:param&gt;</code> tag. This is useful when it	is awkward (or inappropriate)
+								to pass in existing parameters as a <code>Map</code>, which is still supported and will 
+								be appened to any present <code>&lt;html:param&gt;</code> tags:</p>
 
+<pre>
+&lt;html:link action="viewPersonAction"&gt;
+    View Profile of A Struts Developer
+    &lt;html:param name="id" value="1" /&gt;
+    &lt;html:param name="name" value="Ted Husted" /&gt;
+&lt;/html:link&gt;
+</pre>
+
+<h3>Issue Tracking</h3>
+    
+<h4>Bug</h4>
+<ul>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2894'>STR-2894</a>] - The &lt;form-bean&gt; type attribute should be optional</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2903'>STR-2903</a>] - MappingDispatchAction throws an error when mapping.getParameter returns null</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2916'>STR-2916</a>] - Arbitrary properties don't get copied when creating ActionRedirect objects based on an existing ForwardConfig</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2917'>STR-2917</a>] - ForwardConfig inheritance doesn't work when trying to inherit global forwards</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2920'>STR-2920</a>] - Broken link to "MessageResources" in user guide</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2922'>STR-2922</a>] - Broken Link in User Guide</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2925'>STR-2925</a>] - Seemingly random message resources in another language</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2932'>STR-2932</a>] - html:option tag does not apply any filtering to escape HTML-sensitive characters</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2935'>STR-2935</a>] - Tiles resource chain-config.xml missing RemovedCachedMessages and SetOriginalURI</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2936'>STR-2936</a>] - Incorrect validator name floatRange used in maxlength error</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2955'>STR-2955</a>] - extending action does not pick up the correct validate attribute</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2966'>STR-2966</a>] - s:commandLink doesn't work with Apache Trinidad or Oracle's ADF Faces</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2967'>STR-2967</a>] - html:image takes a "module-aware" path but does not allow module to be specified</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2971'>STR-2971</a>] - one of validator.Resources.getActionMessage method does not respect message's "bundle" attribute</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2972'>STR-2972</a>] - LazyValidatorForm cannot be saved in the session</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2973'>STR-2973</a>] - multiple lifecycle (FIXME in code)</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2977'>STR-2977</a>] - ELFormTagBeanInfo wrongly references ELTextTag</li>
+</ul>
+    
+<h4>Improvement</h4>
+<ul>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2077'>STR-2077</a>] - PropertyMessageResources behaviour different from PropertyResourceBundle</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2839'>STR-2839</a>] - Create aggregated Javadocs</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2951'>STR-2951</a>] - Various documentation improvements</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2952'>STR-2952</a>] - Maven build and infrastructure improvements</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2958'>STR-2958</a>] - ClassNotFoundExceptions are swallowed by FormPropertyConfig</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2980'>STR-2980</a>] - Typo in documentation: "indefinately"</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2981'>STR-2981</a>] - Adjust AbstractAuthorizeAction to allow custom code to throw its own UnauthorizedActionException</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2982'>STR-2982</a>] - Complete JavaDoc package summaries</li>
+</ul>
+    
+<h4>New Feature</h4>
+<ul>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-746'>STR-746</a>] - Add &lt;html:param&gt; for multiple parameters</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-1559'>STR-1559</a>] - Need Bidirectional support for RtoL languages in html:html tag</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2864'>STR-2864</a>] - Add actionId attribute to action mapping</li>
+</ul>
+    
+<h4>Task</h4>
+<ul>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2942'>STR-2942</a>] - Use the DTDDoc plugin to generate HTML formatted DTD documentation</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2944'>STR-2944</a>] - Update the dtds whenever the top-level site is published</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2968'>STR-2968</a>] - ASF Source Header and Copyright Notice Policy</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2978'>STR-2978</a>] - Struts 1.3.6 omnibus</li>
+</ul>
+    
             </subsection>
 
             <subsection>
