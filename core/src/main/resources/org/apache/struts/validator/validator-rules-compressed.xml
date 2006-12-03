@@ -60,7 +60,8 @@
                        org.apache.struts.action.ActionMessages,
                        org.apache.commons.validator.Validator,
                        javax.servlet.http.HttpServletRequest"
-                   msg="errors.required"/>
+                   msg="errors.required"
+                   jsFunction="org.apache.commons.validator.javascript.validateRequired-compress"/>
 
         <validator name="requiredif"
                    classname="org.apache.struts.validator.FieldChecks"
@@ -96,7 +97,7 @@
                        javax.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.minlength"
-                   jsFunction="org.apache.commons.validator.javascript.validateMinLength"/>
+                   jsFunction="org.apache.commons.validator.javascript.validateMinLength-compress"/>
 
 
         <validator name="maxlength"
@@ -110,7 +111,7 @@
                        javax.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.maxlength"
-                   jsFunction="org.apache.commons.validator.javascript.validateMaxLength"/>
+                   jsFunction="org.apache.commons.validator.javascript.validateMaxLength-compress"/>
 
 
         <validator name="mask"
@@ -123,7 +124,8 @@
                        org.apache.commons.validator.Validator,
                        javax.servlet.http.HttpServletRequest"
                    depends=""
-                   msg="errors.invalid"/>
+                   msg="errors.invalid"
+                   jsFunction="org.apache.commons.validator.javascript.validateMask-compress"/>
 
 
         <validator name="byte"
@@ -137,7 +139,8 @@
                        javax.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.byte"
-                   jsFunctionName="ByteValidations"/>
+                   jsFunctionName="ByteValidations"
+                   jsFunction="org.apache.commons.validator.javascript.validateByte-compress"/>
 
 
         <validator name="short"
@@ -151,7 +154,8 @@
                        javax.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.short"
-                   jsFunctionName="ShortValidations"/>
+                   jsFunctionName="ShortValidations"
+                   jsFunction="org.apache.commons.validator.javascript.validateShort-compress"/>
 
 
         <validator name="integer"
@@ -165,7 +169,8 @@
                        javax.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.integer"
-                   jsFunctionName="IntegerValidations"/>
+                   jsFunctionName="IntegerValidations"
+                   jsFunction="org.apache.commons.validator.javascript.validateInteger-compress"/>
 
 
         <validator name="long"
@@ -192,7 +197,8 @@
                        javax.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.float"
-                   jsFunctionName="FloatValidations"/>
+                   jsFunctionName="FloatValidations"
+                   jsFunction="org.apache.commons.validator.javascript.validateFloat-compress"/>
 
         <validator name="double"
                    classname="org.apache.struts.validator.FieldChecks"
@@ -295,7 +301,8 @@
                        javax.servlet.http.HttpServletRequest"
                    depends=""
                    msg="errors.date"
-                   jsFunctionName="DateValidations"/>
+                   jsFunctionName="DateValidations"
+                   jsFunction="org.apache.commons.validator.javascript.validateDate-compress"/>
 
 
         <validator name="intRange"
@@ -308,7 +315,8 @@
                        org.apache.commons.validator.Validator,
                        javax.servlet.http.HttpServletRequest"
                    depends="integer"
-                   msg="errors.range"/>
+                   msg="errors.range"
+                   jsFunction="org.apache.commons.validator.javascript.validateIntRange-compress"/>
 
         <validator name="longRange"
                    classname="org.apache.struts.validator.FieldChecks"
@@ -333,7 +341,8 @@
                        org.apache.commons.validator.Validator,
                        javax.servlet.http.HttpServletRequest"
                    depends="float"
-                   msg="errors.range"/>
+                   msg="errors.range"
+                   jsFunction="org.apache.commons.validator.javascript.validateFloatRange-compress"/>
 
         <validator name="doubleRange"
                    classname="org.apache.struts.validator.FieldChecks"
@@ -358,7 +367,8 @@
                        org.apache.commons.validator.Validator,
                        javax.servlet.http.HttpServletRequest"
                    depends=""
-                   msg="errors.creditcard"/>
+                   msg="errors.creditcard"
+                   jsFunction="org.apache.commons.validator.javascript.validateCreditCard-compress"/>
 
 
         <validator name="email"
@@ -371,7 +381,8 @@
                        org.apache.commons.validator.Validator,
                        javax.servlet.http.HttpServletRequest"
                    depends=""
-                   msg="errors.email"/>
+                   msg="errors.email"
+                   jsFunction="org.apache.commons.validator.javascript.validateEmail-compress"/>
 
         <validator name="url"
                    classname="org.apache.struts.validator.FieldChecks"
@@ -395,7 +406,7 @@
                    methodParams=""
                    depends=""
                    msg=""
-                   jsFunction="org.apache.commons.validator.javascript.validateUtilities"/>
+                   jsFunction="org.apache.commons.validator.javascript.validateUtilities-compress"/>
 
     </global>
 

@@ -100,7 +100,7 @@
        with a comma delimited list of resource files to load. 
     -->
   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
-    <set-property property="pathnames" value="/org/apache/struts/validator/validator-rules.xml,
+    <set-property property="pathnames" value="/org/apache/struts/validator/validator-rules-compressed.xml,
                                               /WEB-INF/validator/validation.xml,
                                               /WEB-INF/validator/validation-bundles.xml,
                                               /WEB-INF/validator/validation-i18nVariables.xml,
