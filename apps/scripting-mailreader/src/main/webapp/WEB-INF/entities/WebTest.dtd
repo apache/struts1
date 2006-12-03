@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+   
+         http://www.apache.org/licenses/LICENSE-2.0
+   
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
 <!ENTITY % boolean "(true|false|on|off|yes|no)">
 <!ENTITY % tasks "propertyfile | ccmkdir | importtypelib | vsscheckin | sql | cvspass | csc | dirname | replaceregexp | get | jjtree | sleep | jarlib-display | length | dependset | zip | patch | jspc | style | nice | test | tstamp | unwar | vsshistory | cvschangelog | ccmcheckin | bzip2 | sync | vssadd | javadoc | translate | signjar | cclock | chown | jarlib-available | WsdlToDotnet | buildnumber | jpcovmerge | cvsversion | ejbjar | war | rename | sequential | serverdeploy | property | subant | move | ildasm | copydir | cccheckin | ccunlock | wljspc | fixcrlf | sosget | pathconvert | record | exec | ccmklabel | manifest | jpcovreport | execon | ccmcheckout | ant | xmlvalidate | xslt | iplanet-ejbc | ccmcheckintask | gzip | native2ascii | ccrmtype | ear | input | presetdef | rmic | checksum | mail | loadfile | vsscheckout | soscheckin | mimemail | gunzip | concat | cab | touch | parallel | antcall | ccmkbl | cccheckout | typedef | filter | xmlproperty | import | copy | jsharpc | symlink | antstructure | script | ccmcreatetask | rpm | delete | replace | mmetrics | attrib | waitfor | untar | loadproperties | available | echoproperties | junit | chgrp | bunzip2 | whichresource | copyfile | vsscreate | macrodef | unjar | vbc | wsdltodotnet | mkdir | condition | cvs | tempfile | junitreport | ccmkattr | taskdef | echo | ccupdate | java | renameext | vsslabel | basename | javadoc2 | vsscp | tar | setproxy | ilasm | soscheckout | apply | ccuncheckout | jarlib-resolve | cvstagdiff | jlink | javacc | chmod | pvcs | jarlib-manifest | jar | ccmklbtype | scriptdef | defaultexcludes | mparse | blgenclient | uptodate | jjdoc | genkey | javah | ccmkelem | ccmreconfigure | fail | unzip | javac | jpcoverage | soslabel | depend | vssget | deltree">
 <!ENTITY % types "patternset | assertions | propertyset | filtermapper | filterset | libfileset | isfileselected | mergemapper | identitymapper | filterreader | scriptfilter | unpackagemapper | concatfilter | extension | fileset | dirset | globmapper | filelist | filterchain | path | compositemapper | classfileset | regexpmapper | selector | xmlcatalog | flattenmapper | description | chainedmapper | packagemapper | mapper | zipfileset | substitution | extensionSet | redirector | regexp">
