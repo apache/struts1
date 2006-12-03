@@ -95,47 +95,47 @@ limitations under the License.
 &lt;/action&gt;
 </pre>
                 
-								<p>Just as the <code>TilesRequestProcessor</code> could recognize a tile definition
-								and resolve it to the intended JSP, so does Struts now have built-in
-								recognition for URIs that begin with an <code>actionId</code> and will automatically
-								translate forwards. Both these forwards below will be resolved internally
-								to <code>/person/view.do</code> (with parameters included):
-								</p>
-								
+        <p>Just as the <code>TilesRequestProcessor</code> could recognize a tile definition
+        and resolve it to the intended JSP, so does Struts now have built-in
+        recognition for URIs that begin with an <code>actionId</code> and will automatically
+        translate forwards. Both these forwards below will be resolved internally
+        to <code>/person/view.do</code> (with parameters included):
+        </p>
+
 <pre>
 &lt;forward name="success" path="viewPersonAction" /&gt;
 &lt;forward name="success" path="viewPersonAction?fruit=banana&amp;color=yellow" /&gt;
 </pre>
-								
-								<p>You can effectively eliminate all URI management throughout the Struts configuration
-								files <b>and</b> within JSP. The tag libraries are also updated to recognize the 
-								<code>actionId</code>:</p>
-								
+
+        <p>You can effectively eliminate all URI management throughout the Struts configuration
+        files <b>and</b> within JSP. The tag libraries are also updated to recognize the 
+        <code>actionId</code>:</p>
+
 <pre>
 &lt;html:form action="savePersonAction"&gt;...&lt;/html:form&gt;
 &lt;html:link action="viewPersonAction"&gt;...&lt;/html:link&gt;
 </pre>
-								
-								<p>Note: It is good practice to name the <code>actionId</code> as <em>entityAction</em>
-								to distinguish the identifier from, perhaps, a Tiles definition named <em>entityPage</em>.</p>
-								
-								<h4>Internationalization (I18N) Tag Properties</h4>
-								
-								<p>Struts tag libraries now include the HTML I18N properties. This allows sites that 
-								specialize in internationalization to specify both bi-directional text and language
-								at the tag level:</p>
-								
+
+        <p>Note: It is good practice to name the <code>actionId</code> as <em>entityAction</em>
+        to distinguish the identifier from, perhaps, a Tiles definition named <em>entityPage</em>.</p>
+
+        <h4>Internationalization (I18N) Tag Properties</h4>
+
+        <p>Struts tag libraries now include the HTML I18N properties. This allows sites that 
+        specialize in internationalization to specify both bi-directional text and language
+        at the tag level:</p>
+
 <pre>
 &lt;html:link action="viewPersonAction" dir="ltor" lang="es"/&gt;vea a persona&lt;/html:link&gt;
 </pre>
 
-								<h4>Dynamic Link Parameters</h4>
-								
-								<p>The Struts <code>&lt;html:link&gt;</code>, <code>&lt;html:frame&gt;</code>, 
-								<code>&lt;html:rewrite&gt;</code> tag libaries now allow their bodies to nest the new 
-								<code>&lt;html:param&gt;</code> tag. This is useful when it	is awkward (or inappropriate)
-								to pass in existing parameters as a <code>Map</code>, which is still supported and will 
-								be appened to any present <code>&lt;html:param&gt;</code> tags:</p>
+        <h4>Dynamic Link Parameters</h4>
+
+        <p>The Struts <code>&lt;html:link&gt;</code>, <code>&lt;html:frame&gt;</code>, 
+        <code>&lt;html:rewrite&gt;</code> tag libaries now allow their bodies to nest the new 
+        <code>&lt;html:param&gt;</code> tag. This is useful when it is awkward (or inappropriate)
+        to pass in existing parameters as a <code>Map</code>, which is still supported and will 
+        be appened to any present <code>&lt;html:param&gt;</code> tags:</p>
 
 <pre>
 &lt;html:link action="viewPersonAction"&gt;
