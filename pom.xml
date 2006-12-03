@@ -199,9 +199,11 @@
              </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
+<!--
                 <configuration>
                   <aggregate>true</aggregate>
                 </configuration>
+-->
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-report-plugin</artifactId>
