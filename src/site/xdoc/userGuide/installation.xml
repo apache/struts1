@@ -89,7 +89,7 @@ limitations under the License.
                         source distribution, you must download and install the
                         <a href="http://maven.apache.org/">Apache
                             Maven 2</a>
-                        build system (2.0-beta-5, or later).
+                        build system (2.0.4 or later).
                     </li>
 
                 </ul>
@@ -194,9 +194,10 @@ limitations under the License.
                         this particular page, like this:</li>
                 </ul>
 
-                <pre>&lt;%@ taglib uri="/tags/struts-bean" prefix="bean" %&gt;
-                    &lt;%@ taglib uri="/tags/struts-html" prefix="html" %&gt;
-                    &lt;%@ taglib uri="/tags/struts-logic" prefix="logic" %&gt;
+                <pre>
+                    &lt;%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %&gt;
+                    &lt;%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %&gt;
+                    &lt;%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %&gt;
                 </pre>
 
                 <ul>
