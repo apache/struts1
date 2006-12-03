@@ -63,6 +63,19 @@ limitations under the License.
 
             </subsection>
 
+            <a name="dependencies"/>
+            <subsection name="Dependencies">
+                <p>
+                    The only dependency change is an upgrade of
+                    <a href="http://jakarta.apache.org/commons/validator/">Commons
+                        Validator</a> from version 1.3.0 to 1.3.1.
+                    Validator 1.3.0 can still be used with this version of Struts,
+                    but an upgrade is required use the new <i>compressed</i> versions of the
+                    Validator JavaScript (see the new <code>validator-rules-compressed.xml</code>
+                    distributed with this release).
+                </p>
+            </subsection>
+
             <a name="Highlight"/>
             <subsection name="Highlights of Changes">
                 <p>
@@ -185,6 +198,7 @@ limitations under the License.
 <li>[<a href='http://issues.apache.org/struts/browse/STR-746'>STR-746</a>] - Add &lt;html:param&gt; for multiple parameters</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-1559'>STR-1559</a>] - Need Bidirectional support for RtoL languages in html:html tag</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2864'>STR-2864</a>] - Add actionId attribute to action mapping</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2983'>STR-2983</a>] - Provide a new <i>compressed</i> version of the validator-rules.xml (requires <a href='http://jakarta.apache.org/commons/validator/'>Commons Validator 1.3.1</a>)</li>
 </ul>
     
 <h4>Task</h4>
