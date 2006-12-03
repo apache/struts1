@@ -158,6 +158,25 @@ limitations under the License.
 &lt;/html:link&gt;
 </pre>
 
+        <h4>Property MessageResources  Modes</h4>
+        <p><code>PropertyMessageResources</code> now has a <i>compatibility mode</i>
+        option which allows it to be configured to operate in modes compatible with
+        either <i>JSTL</i> or <code>PropertyResourceBundle</code> (as well as the
+        <i>backwardly compatible</i> default mode). To use the new modes configure
+        the the message resources in the <code>struts-config.xml</code> in the
+        following way (<strong>note</strong> the use of the <strong>key</strong> attribute
+        in <code>&lt;set-property&gt;</code>): </p>
+                
+        <pre>
+        &lt;message-resources parameter="...."&gt;
+            &lt;set-property key="mode" value="JSTL"/&gt;     // JSTL mode
+        &lt;/message-resources&gt;
+
+        &lt;message-resources parameter="...."&gt;
+            &lt;set-property key="mode" value="resource"/&gt; // PropertyResourceBundle mode
+        &lt;/message-resources&gt;
+        </pre>
+
 <h3>Issue Tracking</h3>
     
 <h4>Bug</h4>
@@ -168,7 +187,6 @@ limitations under the License.
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2917'>STR-2917</a>] - ForwardConfig inheritance doesn't work when trying to inherit global forwards</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2920'>STR-2920</a>] - Broken link to "MessageResources" in user guide</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2922'>STR-2922</a>] - Broken Link in User Guide</li>
-<li>[<a href='http://issues.apache.org/struts/browse/STR-2925'>STR-2925</a>] - Seemingly random message resources in another language</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2932'>STR-2932</a>] - html:option tag does not apply any filtering to escape HTML-sensitive characters</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2935'>STR-2935</a>] - Tiles resource chain-config.xml missing RemovedCachedMessages and SetOriginalURI</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2936'>STR-2936</a>] - Incorrect validator name floatRange used in maxlength error</li>
@@ -183,7 +201,8 @@ limitations under the License.
     
 <h4>Improvement</h4>
 <ul>
-<li>[<a href='http://issues.apache.org/struts/browse/STR-2077'>STR-2077</a>] - PropertyMessageResources behaviour different from PropertyResourceBundle</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2077'>STR-2077</a>] - Provide a <code>PropertyResourceBundle</code> compatibility option for PropertyMessageResources</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2925'>STR-2925</a>] - Provide a <i>JSTL</i> compatibility option for PropertyMessageResources</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2839'>STR-2839</a>] - Create aggregated Javadocs</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2951'>STR-2951</a>] - Various documentation improvements</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2952'>STR-2952</a>] - Maven build and infrastructure improvements</li>
