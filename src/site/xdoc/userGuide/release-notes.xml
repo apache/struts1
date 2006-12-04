@@ -171,15 +171,15 @@
         following way (<strong>note</strong> the use of the <strong>key</strong> attribute
         in <code>&lt;set-property&gt;</code>): </p>
                 
-        <pre>
-        &lt;message-resources parameter="...."&gt;
-            &lt;set-property key="mode" value="JSTL"/&gt;     // JSTL mode
-        &lt;/message-resources&gt;
+<pre>
+&lt;message-resources parameter="...."&gt;
+    &lt;set-property key="mode" value="JSTL"/&gt;     // JSTL mode
+&lt;/message-resources&gt;
 
-        &lt;message-resources parameter="...."&gt;
-            &lt;set-property key="mode" value="resource"/&gt; // PropertyResourceBundle mode
-        &lt;/message-resources&gt;
-        </pre>
+&lt;message-resources parameter="...."&gt;
+    &lt;set-property key="mode" value="resource"/&gt; // PropertyResourceBundle mode
+&lt;/message-resources&gt;
+</pre>
 
 <h3>Issue Tracking</h3>
     
