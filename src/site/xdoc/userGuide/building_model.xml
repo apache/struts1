@@ -497,7 +497,7 @@
                     how callers invoke the Chain.
                     As of version 1.3,
                     the default Request Processor,
-                    which acts as the framework's "kernal",
+                    which acts as the framework's "kernel",
                     is a Chain of Responsiblity.
                 </p>
 
