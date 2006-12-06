@@ -735,29 +735,13 @@ public class ActionServlet extends HttpServlet {
      */
     protected void parseModuleConfigFile(Digester digester, URL url)
         throws UnavailableException {
-        InputStream input = null;
 
         try {
-            InputSource is = new InputSource(url.toExternalForm());
-            URLConnection conn = url.openConnection();
-
-            conn.setUseCaches(false);
-            conn.connect();
-            input = conn.getInputStream();
-            is.setByteStream(input);
-            digester.parse(is);
+            digester.parse(url);
         } catch (IOException e) {
             handleConfigException(url.toString(), e);
         } catch (SAXException e) {
             handleConfigException(url.toString(), e);
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    throw new UnavailableException(e.getMessage());
-                }
-            }
         }
     }
 

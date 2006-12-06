@@ -235,12 +235,10 @@ public class ValidatorPlugIn implements PlugIn {
             }
 
             int urlSize = urlList.size();
-            String[] urlArray = new String[urlSize];
+            URL[] urlArray = new URL[urlSize];
 
             for (int urlIndex = 0; urlIndex < urlSize; urlIndex++) {
-                URL url = (URL) urlList.get(urlIndex);
-
-                urlArray[urlIndex] = url.toExternalForm();
+                urlArray[urlIndex] = (URL) urlList.get(urlIndex);
             }
 
             this.resources = new ValidatorResources(urlArray);
