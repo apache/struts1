@@ -147,6 +147,16 @@ main menu.
 
 <tr>
     <td colspan="4" align="center">
+        <html-el:link page="/html-link.do" accesskey="3" tabindex="3"
+                      title="String via nested param tag">
+            String via nested param tag
+            <html-el:param name="stringProperty" value="${newValue}" />
+        </html-el:link>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="4" align="center">
         <html-el:link page="/html-link.do" accesskey="4" tabindex="2"
                       paramId="booleanProperty"
                       paramName="testbean"

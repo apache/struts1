@@ -1896,6 +1896,7 @@
         <name>link</name>
         <tag-class>
             org.apache.struts.taglib.nested.html.NestedLinkTag</tag-class>
+        <body-content>JSP</body-content>
         <description>
             <![CDATA[
             <p><strong>Nested Extension - Render an HTML anchor or hyperlink</strong></p>
