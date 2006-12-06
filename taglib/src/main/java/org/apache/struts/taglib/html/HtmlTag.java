@@ -114,8 +114,8 @@ public class HtmlTag extends TagSupport {
         language = currentLocale.getLanguage();
         country = currentLocale.getCountry();
 
-        boolean validLanguage = ((language != null) && (language.length() > 0));
-        boolean validCountry = country.length() > 0;
+        boolean validLanguage = isValidRfc2616(language);
+        boolean validCountry  = isValidRfc2616(country);
 
         if (this.xhtml) {
             this.pageContext.setAttribute(Globals.XHTML_KEY, "true",
@@ -171,5 +171,26 @@ public class HtmlTag extends TagSupport {
     public void release() {
         this.xhtml = false;
         this.lang = false;
+    }
+
+    /**
+     * Check whether the value contains valid characters for the
+     * "Accept-Language" header according to RFC 2616 (section 14.4).
+     *
+     * @param value The value to check
+     * @return <code>true</code> if valid, otherwise <code>false</code>
+     */
+    private boolean isValidRfc2616(String value) {
+        if (value == null || value.length() == 0) {
+            return false;
+        }
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+            
+            if (!(Character.isLetter(c) || c == '-')) {
+                return false;
+            }
+        }
+        return true;
     }
 }
