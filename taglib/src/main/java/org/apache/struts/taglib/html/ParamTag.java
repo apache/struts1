@@ -1,5 +1,5 @@
 /*
- * $Id: $
+ * $Id$
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -29,8 +29,7 @@ import javax.servlet.jsp.tagext.Tag;
 /**
  * Adds a new request parameter to its parent {@link LinkTag}.
  *
- * @version $Rev: 376841 $ $Date: 2005-04-06 02:37:00 -0400 (Wed, 06 Apr 2005)
- *          $
+ * @version $Rev$ $Date$
  * @since Struts 1.3.6
  */
 public class ParamTag extends BodyTagSupport {
