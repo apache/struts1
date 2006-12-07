@@ -2063,7 +2063,7 @@
                         configuration DTD</a> or the online
                     <a href="../struts-core/dtddoc/struts-config_1_3.dtd.html">DTDDoc</a>
                     docs, and the
-                    <a href="../struts-core/apidocs/org/apache/struts/action/ActionMapping.html">
+                    <a href="../apidocs/org/apache/struts/action/ActionMapping.html">
                         ActionMapping documentation.</a>
                 </p>
 
