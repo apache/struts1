@@ -180,6 +180,7 @@
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2496'>STR-2496</a>] - [struts-faces] Example applications don't work?!</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2493'>STR-2493</a>] - [struts-faces] ErrorsRenderer assumes ActionErrors</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-1892'>STR-1892</a>] - timezone support for bean:write tag</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2987'>STR-2987</a>] - Scripting Mailreader: cannot log out</li>
 </ul>
             
 <h4>Tasks</h4>
