@@ -40,4 +40,4 @@ session.removeAttribute(Constants.USER_KEY);
 session.invalidate();
 
 // Forward control to the specified success URI
-struts.setForwardName("success");
+struts.setForwardName("Success");

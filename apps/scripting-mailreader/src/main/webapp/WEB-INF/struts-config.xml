@@ -154,7 +154,8 @@
         <!-- Process a user logoff -->
         <action
                 path="/Logoff"
-                type="org.apache.struts.scripting.ScriptAction">
+                type="org.apache.struts.scripting.ScriptAction"
+                parameter="/WEB-INF/scripts/Logoff.gv">
             <forward
                     name="Success"
                     path="/Welcome.do"/>
