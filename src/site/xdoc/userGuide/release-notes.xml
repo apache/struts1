@@ -211,6 +211,7 @@
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2973'>STR-2973</a>] - multiple lifecycle (FIXME in code)</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2977'>STR-2977</a>] - ELFormTagBeanInfo wrongly references ELTextTag</li>
 <li>[<a href='http://issues.apache.org/struts/browse/STR-2985'>STR-2985</a>] - Validate language and country according to RFC2616 in HtmlTag</li>
+<li>[<a href='http://issues.apache.org/struts/browse/STR-2987'>STR-2987</a>] - Scripting Mailreader: cannot log out</li>
 </ul>
     
 <h4>Improvement</h4>
