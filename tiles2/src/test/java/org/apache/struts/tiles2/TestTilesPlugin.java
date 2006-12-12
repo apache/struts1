@@ -19,7 +19,7 @@
  * under the License.
  */
 
-package org.apache.struts.tiles;
+package org.apache.struts.tiles2;
 
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.ModuleConfigFactory;

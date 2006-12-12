@@ -19,7 +19,7 @@
  * under the License.
  */
 
-package org.apache.struts.tiles;
+package org.apache.struts.tiles2;
 
 import java.util.Map;
 import java.util.Locale;
