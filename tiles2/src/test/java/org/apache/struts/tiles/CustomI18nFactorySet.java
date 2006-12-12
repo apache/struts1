@@ -25,7 +25,10 @@ import java.util.Map;
 import java.util.Locale;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
-import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
+
+import org.apache.struts.tiles2.DefinitionsFactoryException;
+import org.apache.struts.tiles2.FactoryNotFoundException;
+import org.apache.struts.tiles2.xmlDefinition.I18nFactorySet;
 /**
  * <p>Test I18nFactorySet.</p>
  *
@@ -46,7 +49,7 @@ public class CustomI18nFactorySet extends I18nFactorySet {
         super(servletContext, properties);
     }
 
-    public org.apache.struts.tiles.xmlDefinition.DefinitionsFactory createFactory(
+    public org.apache.struts.tiles2.xmlDefinition.DefinitionsFactory createFactory(
         Object key,
         ServletRequest request,
         ServletContext servletContext)

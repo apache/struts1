@@ -27,7 +27,10 @@ import org.apache.struts.config.PlugInConfig;
 import org.apache.struts.mock.MockActionServlet;
 import org.apache.struts.mock.TestMockBase;
 import org.apache.struts.Globals;
-import org.apache.struts.tiles.xmlDefinition.I18nFactorySet;
+import org.apache.struts.tiles2.ComponentDefinition;
+import org.apache.struts.tiles2.DefinitionsFactory;
+import org.apache.struts.tiles2.TilesUtil;
+import org.apache.struts.tiles2.xmlDefinition.I18nFactorySet;
 import org.apache.struts.util.RequestUtils;
 import org.apache.struts.action.PlugIn;
 import org.apache.commons.beanutils.BeanUtils;
@@ -107,7 +110,7 @@ public class TestTilesPlugin extends TestMockBase {
 
         // Set tiles plugin
         PlugInConfig pluginConfig = new PlugInConfig();
-        pluginConfig.setClassName("org.apache.struts.tiles.TilesPlugin");
+        pluginConfig.setClassName("org.apache.struts.tiles2.TilesPlugin");
 
         pluginConfig.addProperty(
             "moduleAware",
@@ -232,7 +235,7 @@ public class TestTilesPlugin extends TestMockBase {
 
      Locale locale = null;
      ComponentDefinition definition = null;
-     org.apache.struts.tiles.xmlDefinition.DefinitionsFactory factory = null;
+     org.apache.struts.tiles2.xmlDefinition.DefinitionsFactory factory = null;
 
      Map properties = new HashMap();
 
@@ -289,7 +292,7 @@ public class TestTilesPlugin extends TestMockBase {
 
      Locale locale = null;
      ComponentDefinition definition = null;
-     org.apache.struts.tiles.xmlDefinition.DefinitionsFactory factory = null;
+     org.apache.struts.tiles2.xmlDefinition.DefinitionsFactory factory = null;
 
      Map properties = new HashMap();
 
