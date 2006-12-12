@@ -32,11 +32,8 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.tiles2.DefinitionsFactory;
-import org.apache.struts.tiles2.DefinitionsFactoryException;
-import org.apache.struts.tiles2.TilesUtil;
-
-
+import org.apache.tiles.definition.DefinitionsFactoryException;
+import org.apache.tiles.definition.util.DefinitionsFactoryUtil;
 
 /**
  * <p>A standard <strong>Action</strong> that calls the
@@ -74,12 +71,8 @@ public class ReloadDefinitionsAction extends Action {
 
         try {
           ServletContext context = getServlet().getServletContext();
-            DefinitionsFactory factory = TilesUtil.getDefinitionsFactory(request, context);
-            factory.setConfig(factory.getConfig(), context);
+          DefinitionsFactoryUtil.reloadDefinitionsFactory(context);
             writer.println("OK");
-        } catch (ClassCastException e) {
-            writer.println("FAIL - " + e.toString());
-            getServlet().log("ReloadAction", e);
         } catch (DefinitionsFactoryException e) {
             writer.println("FAIL - " + e.toString());
             getServlet().log("ReloadAction", e);
