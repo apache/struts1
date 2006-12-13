@@ -89,6 +89,7 @@ public class TilesPreProcessor implements Command
         ForwardConfig forwardConfig = sacontext.getForwardConfig();
         if (forwardConfig == null || forwardConfig.getPath() == null)
         {
+            // this is not a serious error, so log at low priority
             log.debug("No forwardConfig or no path, so pass to next command.");
             return (false);
         }
@@ -101,9 +102,11 @@ public class TilesPreProcessor implements Command
             return false;
         }
         
+        boolean retValue = false;
+        
         if (container.isValidDefinition(sacontext.getRequest(),
         		sacontext.getResponse(), forwardConfig.getPath())) {
-            // this is not a serious error, so log at low priority
+            retValue = sacontext.getResponse().isCommitted();
 	        container.render(sacontext.getRequest(), sacontext.getResponse(),
 	        		forwardConfig.getPath());
         } else {
@@ -114,6 +117,6 @@ public class TilesPreProcessor implements Command
         	}
         }
         
-        return sacontext.getResponse().isCommitted();
+        return retValue;
     }
 }
