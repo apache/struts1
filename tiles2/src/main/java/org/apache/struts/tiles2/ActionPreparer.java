@@ -29,12 +29,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts.action.Action;
+import org.apache.tiles.ComponentContext;
+import org.apache.tiles.TilesException;
+import org.apache.tiles.context.TilesRequestContext;
+import org.apache.tiles.context.servlet.ServletTilesRequestContext;
+import org.apache.tiles.preparer.ViewPreparerSupport;
 
 /**
  * Struts wrapper implementation of Controller.  This implementation wraps an
  * <code>Action</code> in a <code>Controller</code>.
  */
-public class ActionController implements Controller {
+public class ActionPreparer extends ViewPreparerSupport {
 
     /**
      * Struts action wrapped.
@@ -46,46 +51,19 @@ public class ActionController implements Controller {
      *
      * @param action Action to be wrapped.
      */
-    public ActionController(Action action) {
+    public ActionPreparer(Action action) {
         this.action = action;
     }
 
-    /**
-     * Method associated to a tile and called immediately before tile is
-     * included.  This implementation calls a Struts Action. No servlet is
-     * set by this method.
-     *
-     * @param tileContext    Current tile context.
-     * @param request        Current request.
-     * @param response       Current response.
-     * @param servletContext Current servlet context.
-     */
-    public void perform(
-            ComponentContext tileContext,
-            HttpServletRequest request,
-            HttpServletResponse response,
-            ServletContext servletContext)
-            throws ServletException, IOException {
-
-        try {
-            action.execute(null, null, request, response);
-
-        } catch (Exception e) {
-            throw new ServletException(e);
+    public void execute(TilesRequestContext tilesContext,
+            ComponentContext componentContext) throws Exception {
+        if (tilesContext instanceof ServletTilesRequestContext) {
+            ServletTilesRequestContext servletTilesContext =
+                    (ServletTilesRequestContext) tilesContext;
+            this.action.execute(null, null, servletTilesContext.getRequest(),
+                    servletTilesContext.getResponse());
+        } else {
+            throw new TilesException("Not using a ServletTilesRequestContext");
         }
-    }
-
-    /**
-     * @see org.apache.struts.tiles2.Controller#execute(org.apache.struts.tiles2.ComponentContext, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, javax.servlet.ServletContext)
-     */
-    public void execute(
-            ComponentContext tileContext,
-            HttpServletRequest request,
-            HttpServletResponse response,
-            ServletContext servletContext)
-            throws Exception {
-
-        this.action.execute(null, null, request, response);
-
     }
 }

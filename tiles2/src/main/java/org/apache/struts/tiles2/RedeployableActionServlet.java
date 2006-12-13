@@ -26,9 +26,8 @@ import org.apache.struts.Globals;
 import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ModuleConfig;
-import org.apache.struts.tiles2.DefinitionsFactory;
-import org.apache.struts.tiles2.DefinitionsFactoryException;
-import org.apache.struts.tiles2.TilesRequestProcessor;
+import org.apache.tiles.definition.DefinitionsFactoryException;
+import org.apache.tiles.definition.util.DefinitionsFactoryUtil;
 
 
 /**
@@ -77,9 +76,8 @@ public class RedeployableActionServlet extends ActionServlet {
 
         try {
             // reload Tiles defs
-            DefinitionsFactory factory = processor.getDefinitionsFactory();
-            factory.init(factory.getConfig(), getServletContext());
-            // System.out.println("reloaded tiles-definitions");
+            DefinitionsFactoryUtil.reloadDefinitionsFactory(
+                    getServletContext());
         } catch (DefinitionsFactoryException e) {
             e.printStackTrace();
         }

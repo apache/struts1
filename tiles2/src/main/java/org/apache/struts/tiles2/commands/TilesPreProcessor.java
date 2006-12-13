@@ -20,27 +20,14 @@
  */
 package org.apache.struts.tiles2.commands;
 
-import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.chain.Command;
 import org.apache.commons.chain.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ForwardConfig;
-import org.apache.struts.tiles2.ComponentContext;
-import org.apache.struts.tiles2.ComponentDefinition;
-import org.apache.struts.tiles2.Controller;
-import org.apache.struts.tiles2.DefinitionsUtil;
-import org.apache.struts.tiles2.FactoryNotFoundException;
-import org.apache.struts.tiles2.NoSuchDefinitionException;
-import org.apache.struts.tiles2.TilesUtil;
-import org.apache.struts.upload.MultipartRequestWrapper;
+import org.apache.tiles.TilesContainer;
+import org.apache.tiles.access.TilesAccess;
 
 
 /**
@@ -107,179 +94,26 @@ public class TilesPreProcessor implements Command
         }
 
 
-        ComponentDefinition definition = null;
-        try
-        {
-            definition = TilesUtil.getDefinition(forwardConfig.getPath(),
-                    sacontext.getRequest(),
-                    sacontext.getContext());
+        TilesContainer container = TilesAccess.getContainer(sacontext
+        		.getContext());
+        if (container == null) {
+            log.debug("Tiles container not found, so pass to next command.");
+            return false;
         }
-        catch (FactoryNotFoundException ex)
-        {
+        
+        if (container.isValidDefinition(sacontext.getRequest(),
+        		sacontext.getResponse(), forwardConfig.getPath())) {
             // this is not a serious error, so log at low priority
-            log.debug("Tiles DefinitionFactory not found, so pass to next command.");
-            return false;
-        }
-        catch (NoSuchDefinitionException ex)
-        {
-            // ignore not found
-            log.debug("NoSuchDefinitionException " + ex.getMessage());
-        }
-
-        // Do we do a forward (original behavior) or an include ?
-        boolean doInclude = false;
-        ComponentContext tileContext = null;
-
-        // Get current tile context if any.
-        // If context exists, or if the response has already been committed we will do an include
-        tileContext = ComponentContext.getContext(sacontext.getRequest());
-        doInclude = (tileContext != null || sacontext.getResponse().isCommitted());
-
-        // Controller associated to a definition, if any
-        Controller controller = null;
-
-        // Computed uri to include
-        String uri = null;
-
-        if (definition != null)
-        {
-            // We have a "forward config" definition.
-            // We use it to complete missing attribute in context.
-            // We also get uri, controller.
-            uri = definition.getPath();
-            controller = definition.getOrCreateController();
-
-            if (tileContext == null) {
-                tileContext =
-                        new ComponentContext(definition.getAttributes());
-                ComponentContext.setContext(tileContext, sacontext.getRequest());
-
-            } else {
-                tileContext.addMissing(definition.getAttributes());
-            }
-        }
-
-        // Process definition set in Action, if any.  This may override the
-        // values for uri or controller found using the ForwardConfig, and
-        // may augment the tileContext with additional attributes.
-        // :FIXME: the class DefinitionsUtil is deprecated, but I can't find
-        // the intended alternative to use.
-        definition = DefinitionsUtil.getActionDefinition(sacontext.getRequest());
-        if (definition != null) { // We have a definition.
-                // We use it to complete missing attribute in context.
-                // We also overload uri and controller if set in definition.
-                if (definition.getPath() != null) {
-                    log.debug("Override forward uri "
-                              + uri
-                              + " with action uri "
-                              + definition.getPath());
-                        uri = definition.getPath();
-                }
-
-                if (definition.getOrCreateController() != null) {
-                    log.debug("Override forward controller with action controller");
-                        controller = definition.getOrCreateController();
-                }
-
-                if (tileContext == null) {
-                        tileContext =
-                                new ComponentContext(definition.getAttributes());
-                        ComponentContext.setContext(tileContext, sacontext.getRequest());
-                } else {
-                        tileContext.addMissing(definition.getAttributes());
-                }
-        }
-
-
-        if (uri == null) {
-            log.debug("no uri computed, so pass to next command");
-            return false;
-        }
-
-        // Execute controller associated to definition, if any.
-        if (controller != null) {
-            log.trace("Execute controller: " + controller);
-            controller.execute(
-                    tileContext,
-                    sacontext.getRequest(),
-                    sacontext.getResponse(),
-                    sacontext.getContext());
-        }
-
-        // If request comes from a previous Tile, do an include.
-        // This allows to insert an action in a Tile.
-
-        if (doInclude) {
-            log.info("Tiles process complete; doInclude with " + uri);
-            doInclude(sacontext, uri);
+	        container.render(sacontext.getRequest(), sacontext.getResponse(),
+	        		forwardConfig.getPath());
         } else {
-            log.info("Tiles process complete; forward to " + uri);
-            doForward(sacontext, uri);
+            // ignore not found
+        	if (log.isDebugEnabled()) {
+        		log.debug("Cannot find definition '" + forwardConfig.getPath()
+                        + "'");
+        	}
         }
-
-        log.debug("Tiles processed, so clearing forward config from context.");
-        sacontext.setForwardConfig( null );
-        return (false);
+        
+        return sacontext.getResponse().isCommitted();
     }
-
-
-    // ------------------------------------------------------- Protected Methods
-
-    /**
-     * <p>Do an include of specified URI using a <code>RequestDispatcher</code>.</p>
-     *
-     * @param context a chain servlet/web context
-     * @param uri Context-relative URI to include
-     */
-    protected void doInclude(
-        ServletActionContext context,
-        String uri)
-        throws IOException, ServletException {
-
-        RequestDispatcher rd = getRequiredDispatcher(context, uri);
-
-        if (rd != null) {
-            rd.include(context.getRequest(), context.getResponse());
-        }
-    }
-
-    /**
-     * <p>Do an include of specified URI using a <code>RequestDispatcher</code>.</p>
-     *
-     * @param context a chain servlet/web context
-     * @param uri Context-relative URI to include
-     */
-    protected void doForward(
-        ServletActionContext context,
-        String uri)
-        throws IOException, ServletException {
-
-        RequestDispatcher rd = getRequiredDispatcher(context, uri);
-
-        if (rd != null) {
-            rd.forward(context.getRequest(), context.getResponse());
-        }
-    }
-
-    /**
-     * <p>Get the <code>RequestDispatcher</code> for the specified <code>uri</code>.  If it is not found,
-     * send a 500 error as a response and return null;
-     *
-     * @param context the current <code>ServletActionContext</code>
-     * @param uri the ServletContext-relative URI of the request dispatcher to find.
-     * @return the <code>RequestDispatcher</code>, or null if none is returned from the <code>ServletContext</code>.
-     * @throws IOException if <code>getRequestDispatcher(uri)</code> has an error.
-     */
-    private RequestDispatcher getRequiredDispatcher(ServletActionContext context, String uri) throws IOException {
-        RequestDispatcher rd = context.getContext().getRequestDispatcher(uri);
-        if (rd == null) {
-            log.debug("No request dispatcher found for " + uri);
-            HttpServletResponse response = context.getResponse();
-            response.sendError(
-                HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                "Error getting RequestDispatcher for " + uri);
-        }
-        return rd;
-    }
-
 }

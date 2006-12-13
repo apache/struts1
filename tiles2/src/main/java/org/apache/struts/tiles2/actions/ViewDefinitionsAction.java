@@ -32,8 +32,10 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.tiles2.DefinitionsFactory;
-import org.apache.struts.tiles2.TilesUtil;
+import org.apache.tiles.TilesContainer;
+import org.apache.tiles.access.TilesAccess;
+import org.apache.tiles.definition.DefinitionsFactory;
+import org.apache.tiles.impl.BasicTilesContainer;
 
 
 
@@ -42,8 +44,10 @@ import org.apache.struts.tiles2.TilesUtil;
  * definitions of the Tiles factory.
  * Useful to check what is effectivly loaded in a
  * Tiles factory
+ * 
+ * @version $Rev$ $Date$
  */
-
+// TODO This class should be moved to a test package.
 public class ViewDefinitionsAction extends Action {
 
     /**
@@ -71,9 +75,12 @@ public class ViewDefinitionsAction extends Action {
 
         try {
           ServletContext context = getServlet().getServletContext();
-            DefinitionsFactory factory =
-                TilesUtil.getDefinitionsFactory(request, context );
-            writer.println( factory.toString() );
+          TilesContainer container = TilesAccess.getContainer(context);
+          if (container instanceof BasicTilesContainer) {
+        	  DefinitionsFactory factory = ((BasicTilesContainer) container)
+        	  		.getDefinitionsFactory();
+              writer.println( factory.toString() ); // FIXME It does not work!
+          }
         } catch (Exception e) {
             writer.println("FAIL - " + e.toString());
             getServlet().log("ReloadAction", e);

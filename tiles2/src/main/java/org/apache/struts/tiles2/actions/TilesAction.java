@@ -29,7 +29,8 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.tiles2.ComponentContext;
+import org.apache.tiles.ComponentContext;
+import org.apache.tiles.access.TilesAccess;
 
 /**
  * Base class for Tiles Actions.
@@ -65,7 +66,8 @@ public abstract class TilesAction extends Action {
         throws Exception {
 
         // Try to retrieve tile context
-        ComponentContext context = ComponentContext.getContext(request);
+        ComponentContext context = TilesAccess.getContainer(request.getSession()
+        		.getServletContext()).getComponentContext(request, response);
         if (context == null) {
             throw new ServletException(
                 "Can't find Tile context for '"
