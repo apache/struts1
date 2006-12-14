@@ -23,6 +23,7 @@ package org.apache.struts.tiles2;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,9 @@ import org.apache.struts.action.ActionServlet;
 import org.apache.struts.action.RequestProcessor;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.tiles.TilesContainer;
+import org.apache.tiles.TilesException;
+import org.apache.tiles.access.TilesAccess;
 
 /**
  * <p><strong>RequestProcessor</strong> contains the processing logic that
@@ -55,14 +59,11 @@ import org.apache.struts.config.ModuleConfig;
 public class TilesRequestProcessor extends RequestProcessor {
 
     /**
-     * Definitions factory.
-     */
-    protected DefinitionsFactory definitionsFactory = null;
-
-    /**
      * Commons Logging instance.
      */
     protected static Log log = LogFactory.getLog(TilesRequestProcessor.class);
+    
+    protected ServletContext servletContext;
 
     /**
      * Initialize this request processor instance.
@@ -75,68 +76,6 @@ public class TilesRequestProcessor extends RequestProcessor {
         throws ServletException {
 
         super.init(servlet, moduleConfig);
-        this.initDefinitionsMapping();
-    }
-
-    /**
-     * Read component instance mapping configuration file.
-     * This is where we read files properties.
-     */
-    protected void initDefinitionsMapping() throws ServletException {
-        // Retrieve and set factory for this modules
-        definitionsFactory =
-            (
-                (TilesUtilStrutsImpl) TilesUtil
-                    .getTilesUtil())
-                    .getDefinitionsFactory(
-                getServletContext(),
-                moduleConfig);
-
-        if (definitionsFactory == null) { // problem !
-
-            log.info(
-                "Definition Factory not found for module '"
-                    + moduleConfig.getPrefix()
-                    + "'. "
-                    + "Have you declared the appropriate plugin in struts-config.xml ?");
-
-            return;
-        }
-
-        log.info(
-            "Tiles definition factory found for request processor '"
-                + moduleConfig.getPrefix()
-                + "'.");
-
-    }
-
-    /**
-     * Process a Tile definition name.
-     * This method tries to process the parameter <code>definitionName</code>
-     * as a definition name.
-     * It returns <code>true</code> if a definition has been processed, or
-     * <code>false</code> otherwise.
-     * This method is deprecated; the method without the
-     * <code>contextRelative</code> parameter should be used instead.
-     *
-     * @param definitionName Definition name to insert.
-     * @param contextRelative Is the definition marked contextRelative ?
-     * @param request Current page request.
-     * @param response Current page response.
-     * @return <code>true</code> if the method has processed uri as a
-     * definition name, <code>false</code> otherwise.
-     * @deprecated use processTilesDefinition(definitionName, request, response)
-     *  instead.  This method will be removed in a version after 1.3.0.
-     */
-    protected boolean processTilesDefinition(
-        String definitionName,
-        boolean contextRelative,
-        HttpServletRequest request,
-        HttpServletResponse response)
-        throws IOException, ServletException {
-
-        return processTilesDefinition(definitionName, request, response);
-
     }
 
     /**
@@ -158,120 +97,31 @@ public class TilesRequestProcessor extends RequestProcessor {
         HttpServletResponse response)
         throws IOException, ServletException {
 
-        // Do we do a forward (original behavior) or an include ?
-        boolean doInclude = false;
-
-        // Controller associated to a definition, if any
-        Controller controller = null;
-
-        // Computed uri to include
-        String uri = null;
-
-        ComponentContext tileContext = null;
-
-        try {
-            // Get current tile context if any.
-            // If context exist, we will do an include
-            tileContext = ComponentContext.getContext(request);
-            doInclude = (tileContext != null);
-            ComponentDefinition definition = null;
-
-            // Process tiles definition names only if a definition factory exist,
-            // and definition is found.
-            if (definitionsFactory != null) {
-                // Get definition of tiles/component corresponding to uri.
-                try {
-                    definition =
-                        definitionsFactory.getDefinition(
-                            definitionName,
-                            request,
-                            getServletContext());
-                } catch (NoSuchDefinitionException ex) {
-                    // Ignore not found
-                    log.debug("NoSuchDefinitionException " + ex.getMessage());
-                }
-                if (definition != null) { // We have a definition.
-                    // We use it to complete missing attribute in context.
-                    // We also get uri, controller.
-                    uri = definition.getPath();
-                    controller = definition.getOrCreateController();
-
-                    if (tileContext == null) {
-                        tileContext =
-                            new ComponentContext(definition.getAttributes());
-                        ComponentContext.setContext(tileContext, request);
-
-                    } else {
-                        tileContext.addMissing(definition.getAttributes());
-                    }
-                }
-            }
-
-            // Process definition set in Action, if any.
-            definition = DefinitionsUtil.getActionDefinition(request);
-            if (definition != null) { // We have a definition.
-                // We use it to complete missing attribute in context.
-                // We also overload uri and controller if set in definition.
-                if (definition.getPath() != null) {
-                    uri = definition.getPath();
-                }
-
-                if (definition.getOrCreateController() != null) {
-                    controller = definition.getOrCreateController();
-                }
-
-                if (tileContext == null) {
-                    tileContext =
-                        new ComponentContext(definition.getAttributes());
-                    ComponentContext.setContext(tileContext, request);
-                } else {
-                    tileContext.addMissing(definition.getAttributes());
-                }
-            }
-
-        } catch (java.lang.InstantiationException ex) {
-
-            log.error("Can't create associated controller", ex);
-
-            throw new ServletException(
-                "Can't create associated controller",
-                ex);
-        } catch (DefinitionsFactoryException ex) {
-            throw new ServletException(ex);
-        }
-
-        // Have we found a definition ?
-        if (uri == null) {
+        TilesContainer container = TilesAccess.getContainer(servlet
+                .getServletContext());
+        if (container == null) {
+            log.debug("Tiles container not found, so pass to next command.");
             return false;
         }
-
-        // Execute controller associated to definition, if any.
-        if (controller != null) {
+        
+        boolean retValue = false;
+        
+        if (container.isValidDefinition(request, response, definitionName)) {
+            retValue = response.isCommitted();
             try {
-                controller.execute(
-                    tileContext,
-                    request,
-                    response,
-                    getServletContext());
-
-            } catch (Exception e) {
-                throw new ServletException(e);
+                container.render(request, response, definitionName);
+            } catch (TilesException e) {
+                throw new ServletException("Cannot render definition '"
+                        + definitionName + "'");
+            }
+        } else {
+            // ignore not found
+            if (log.isDebugEnabled()) {
+                log.debug("Cannot find definition '" + definitionName + "'");
             }
         }
-
-        // If request comes from a previous Tile, do an include.
-        // This allows to insert an action in a Tile.
-        if (log.isDebugEnabled()) {
-            log.debug("uri=" + uri + " doInclude=" + doInclude);
-        }
-
-        if (doInclude) {
-            doInclude(uri, request, response);
-        } else {
-            doForward(uri, request, response); // original behavior
-        }
-
-        return true;
+        
+        return retValue;
     }
 
     /**
@@ -397,12 +247,4 @@ public class TilesRequestProcessor extends RequestProcessor {
 
         super.internalModuleRelativeInclude(uri, request, response);
     }
-
-    /**
-     * Get associated definition factory.
-     */
-    public DefinitionsFactory getDefinitionsFactory() {
-        return definitionsFactory;
-    }
-
 }
