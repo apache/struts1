@@ -115,7 +115,7 @@ public class TestTilesPlugin extends TestMockBase {
 
         pluginConfig.addProperty(
             "definitions-config",
-            "/org/apache/struts/tiles/config/" + configFileName);
+            "/org/apache/struts/tiles2/config/" + configFileName);
 
         moduleConfig.addPlugInConfig(pluginConfig);
         return moduleConfig;
@@ -172,7 +172,8 @@ public class TestTilesPlugin extends TestMockBase {
         // Retrieve TilesContainer
         TilesContainer container = TilesAccess.getContainer(actionServlet
                 .getServletContext());
-        assertSame(container.getClass().getName(), BasicTilesContainer.class);
+        assertSame(container.getClass().getName(),
+                BasicTilesContainer.class.getName());
         
         // Retrieve factory for module1
         DefinitionsFactory factory1 = ((BasicTilesContainer) container)
@@ -210,7 +211,8 @@ public class TestTilesPlugin extends TestMockBase {
   // Retrieve TilesContainer
   TilesContainer container = TilesAccess.getContainer(actionServlet
           .getServletContext());
-  assertSame(container.getClass().getName(), BasicTilesContainer.class);
+  assertSame(container.getClass().getName(),
+          BasicTilesContainer.class.getName());
   
   // Retrieve factory for module1
   DefinitionsFactory factory1 = ((BasicTilesContainer) container)
