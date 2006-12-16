@@ -21,29 +21,56 @@
 
 package org.apache.struts.tiles2.util;
 
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Enumeration;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.iterators.IteratorEnumeration;
 import org.apache.struts.config.PlugInConfig;
 
 /**
- * Adapts a {@link PlugInConfig} object to become a context-like object,
+ * Adapts a {@link PlugInConfig} object to become a ServletContext object,
  * exposing init parameters methods.
  */
-public class PlugInConfigContextAdapter {
+public class PlugInConfigContextAdapter implements ServletContext {
 
     /**
      * The internal plugin config object.
      */
     private PlugInConfig plugInConfigObject;
+    
+    /**
+     * The servlet context.
+     */
+    private ServletContext rootContext;
+    
+    /**
+     * The set of all parameter names.
+     */
+    private Set<String> parameterNames;
 
     /**
      * Constructor.
      *
      * @param plugInConfigObject The plugin config object to use.
      */
-    public PlugInConfigContextAdapter(PlugInConfig plugInConfigObject) {
+    public PlugInConfigContextAdapter(PlugInConfig plugInConfigObject,
+            ServletContext servletContext) {
         this.plugInConfigObject = plugInConfigObject;
+        this.rootContext = servletContext;
+        parameterNames = new LinkedHashSet<String>();
+        parameterNames.addAll(this.plugInConfigObject.getProperties().keySet());
+        CollectionUtils.addAll(parameterNames, this.rootContext
+                .getInitParameterNames());
     }
 
     /**
@@ -53,7 +80,15 @@ public class PlugInConfigContextAdapter {
      * @return The value of the parameter.
      */
     public String getInitParameter(String parameterName) {
-        return plugInConfigObject.getProperties().get(parameterName).toString();
+        String retValue;
+        
+        retValue = (String) plugInConfigObject.getProperties()
+                .get(parameterName);
+        if (retValue == null) {
+            retValue = rootContext.getInitParameter(parameterName);
+        }
+        
+        return retValue;
     }
 
     /**
@@ -62,7 +97,96 @@ public class PlugInConfigContextAdapter {
      * @return The names of all initialization parameters.
      */
     public Enumeration getInitParameterNames() {
-        return new IteratorEnumeration(plugInConfigObject.getProperties()
-                .keySet().iterator());
+        return new IteratorEnumeration(parameterNames.iterator());
+    }
+
+    // The rest of the methods are wrapping implementations of the interface.
+    
+    public ServletContext getContext(String string) {
+        return rootContext.getContext(string);
+    }
+
+    public int getMajorVersion() {
+        return rootContext.getMajorVersion();
+    }
+
+    public int getMinorVersion() {
+        return rootContext.getMinorVersion();
+    }
+
+    public String getMimeType(String string) {
+        return rootContext.getMimeType(string);
+    }
+
+    public Set getResourcePaths(String string) {
+        return rootContext.getResourcePaths(string);
+    }
+
+    public URL getResource(String string) throws MalformedURLException {
+        return rootContext.getResource(string);
+    }
+
+    public InputStream getResourceAsStream(String string) {
+        return rootContext.getResourceAsStream(string);
+    }
+
+    public RequestDispatcher getRequestDispatcher(String string) {
+        return rootContext.getRequestDispatcher(string);
+    }
+
+    public RequestDispatcher getNamedDispatcher(String string) {
+        return rootContext.getNamedDispatcher(string);
+    }
+
+    public Servlet getServlet(String string) throws ServletException {
+        return rootContext.getServlet(string);
+    }
+
+    public Enumeration getServlets() {
+        return rootContext.getServlets();
+    }
+
+    public Enumeration getServletNames() {
+        return rootContext.getServletNames();
+    }
+
+    public void log(String string) {
+        rootContext.log(string);
+    }
+
+    public void log(Exception exception, String string) {
+        rootContext.log(exception, string);
+    }
+
+    public void log(String string, Throwable throwable) {
+        rootContext.log(string, throwable);
+    }
+
+    public String getRealPath(String string) {
+        return rootContext.getRealPath(string);
+    }
+
+    public String getServerInfo() {
+        return rootContext.getServerInfo();
+    }
+
+    public Object getAttribute(String string) {
+        return rootContext.getAttribute(string);
+    }
+
+    public Enumeration getAttributeNames() {
+        return rootContext.getAttributeNames();
+    }
+
+    public void setAttribute(String string, Object object) {
+        rootContext.setAttribute(string, object);
+    }
+
+    public void removeAttribute(String string) {
+        rootContext.removeAttribute(string);
+    }
+
+    public String getServletContextName() {
+        return rootContext.getServletContextName();
     }
 }

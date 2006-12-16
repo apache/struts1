@@ -123,6 +123,9 @@ public class TilesPlugin implements PlugIn {
      */
     public void init(ActionServlet servlet, ModuleConfig moduleConfig)
         throws ServletException {
+        
+        currentPlugInConfigContextAdapter = new PlugInConfigContextAdapter(
+                this.currentPlugInConfigObject, servlet.getServletContext());
 
         // Set RequestProcessor class
         this.initRequestProcessorClass(moduleConfig);
@@ -218,7 +221,5 @@ public class TilesPlugin implements PlugIn {
      */
     public void setCurrentPlugInConfigObject(PlugInConfig plugInConfigObject) {
         this.currentPlugInConfigObject = plugInConfigObject;
-        currentPlugInConfigContextAdapter = new PlugInConfigContextAdapter(
-                this.currentPlugInConfigObject);
     }
 }
