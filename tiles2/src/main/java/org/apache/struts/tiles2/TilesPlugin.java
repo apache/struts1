@@ -21,6 +21,9 @@
 
 package org.apache.struts.tiles2;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 
 import org.apache.commons.logging.Log;
@@ -37,7 +40,14 @@ import org.apache.struts.util.RequestUtils;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.TilesException;
 import org.apache.tiles.access.TilesAccess;
+import org.apache.tiles.context.BasicTilesContextFactory;
+import org.apache.tiles.definition.DefinitionsFactory;
+import org.apache.tiles.definition.UrlDefinitionsFactory;
+import org.apache.tiles.factory.KeyedDefinitionsFactoryTilesContainerFactory;
 import org.apache.tiles.factory.TilesContainerFactory;
+import org.apache.tiles.impl.BasicTilesContainer;
+import org.apache.tiles.impl.KeyedDefinitionsFactoryTilesContainer;
+import org.apache.tiles.preparer.BasicPreparerFactory;
 
 /**
  * Tiles Plugin used to initialize Tiles.
@@ -66,6 +76,24 @@ import org.apache.tiles.factory.TilesContainerFactory;
  */
 // TODO Complete the plugin to be module-aware.
 public class TilesPlugin implements PlugIn {
+
+    private static final Map<String, String> MODULE_AWARE_DEFAULTS =
+        new HashMap<String, String>();
+
+    static {
+        MODULE_AWARE_DEFAULTS.put(TilesContainerFactory
+                .CONTAINER_FACTORY_INIT_PARAM,
+                KeyedDefinitionsFactoryTilesContainerFactory.class.getName());
+        MODULE_AWARE_DEFAULTS.put(TilesContainerFactory
+                .CONTEXT_FACTORY_INIT_PARAM,
+                BasicTilesContextFactory.class.getName());
+        MODULE_AWARE_DEFAULTS.put(TilesContainerFactory
+                .DEFINITIONS_FACTORY_INIT_PARAM,
+                UrlDefinitionsFactory.class.getName());
+        MODULE_AWARE_DEFAULTS.put(TilesContainerFactory
+                .PREPARER_FACTORY_INIT_PARAM,
+                BasicPreparerFactory.class.getName());
+    }
 
     /**
      * Commons Logging instance.
@@ -132,12 +160,58 @@ public class TilesPlugin implements PlugIn {
         
         // Initialize Tiles
         try {
-            TilesContainerFactory factory = TilesContainerFactory
-                    .getFactory(currentPlugInConfigContextAdapter);
-            TilesContainer container = factory.createContainer(
-                    currentPlugInConfigContextAdapter);
-            TilesAccess.setContainer(currentPlugInConfigContextAdapter,
-                    container);
+            TilesContainerFactory factory;
+            TilesContainer container;
+            if (moduleAware) {
+                factory = TilesContainerFactory.getFactory(
+                        currentPlugInConfigContextAdapter,
+                        MODULE_AWARE_DEFAULTS);
+                container = TilesAccess.getContainer(
+                        currentPlugInConfigContextAdapter);
+                if (container == null) {
+                    container = factory.createContainer(
+                            currentPlugInConfigContextAdapter);
+                    TilesAccess.setContainer(currentPlugInConfigContextAdapter,
+                            container);
+                }
+                if (container instanceof KeyedDefinitionsFactoryTilesContainer) {
+                    if (factory instanceof KeyedDefinitionsFactoryTilesContainerFactory) {
+                        DefinitionsFactory defsFactory =
+                            ((KeyedDefinitionsFactoryTilesContainerFactory) factory)
+                            .createDefinitionsFactory(currentPlugInConfigContextAdapter);
+                        Map<String, String> initParameters = new HashMap<String, String>();
+                        String param = (String) currentPlugInConfigObject
+                                .getProperties().get(BasicTilesContainer
+                                        .DEFINITIONS_CONFIG);
+                        if (param == null) {
+                            param = (String) currentPlugInConfigObject
+                                .getProperties().get("definitions-config");
+                        }
+                        if (param != null) {
+                            initParameters.put(BasicTilesContainer
+                                    .DEFINITIONS_CONFIG, param);
+                        }
+                        ((KeyedDefinitionsFactoryTilesContainer) container)
+                                .setDefinitionsFactory(moduleConfig.getPrefix(),
+                                        defsFactory, initParameters);
+                    } else {
+                        log.warn("The created factory is not instance of "
+                                + "KeyedDefinitionsFactoryTilesContainerFactory"
+                                + " and cannot be configured correctly");
+                    }
+                } else {
+                    log.warn("The created container is not instance of "
+                            + "KeyedDefinitionsFactoryTilesContainer"
+                            + " and cannot be configured correctly");
+                }
+            } else {
+                factory = TilesContainerFactory
+                        .getFactory(currentPlugInConfigContextAdapter);
+                container = factory.createContainer(
+                        currentPlugInConfigContextAdapter);
+                TilesAccess.setContainer(currentPlugInConfigContextAdapter,
+                        container);
+            }
         } catch (TilesException e) {
             log.fatal("Unable to retrieve tiles factory.", e);
             throw new IllegalStateException("Unable to instantiate container.");
