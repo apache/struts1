@@ -39,6 +39,7 @@ import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
 import org.apache.tiles.definition.DefinitionsFactory;
 import org.apache.tiles.impl.BasicTilesContainer;
+import org.apache.tiles.impl.KeyedDefinitionsFactoryTilesContainer;
 
 public class TestTilesPlugin extends TestMockBase {
 
@@ -173,11 +174,11 @@ public class TestTilesPlugin extends TestMockBase {
         TilesContainer container = TilesAccess.getContainer(actionServlet
                 .getServletContext());
         assertSame(container.getClass().getName(),
-                BasicTilesContainer.class.getName());
+                KeyedDefinitionsFactoryTilesContainer.class.getName());
         
         // Retrieve factory for module1
-        DefinitionsFactory factory1 = ((BasicTilesContainer) container)
-            .getDefinitionsFactory();
+        DefinitionsFactory factory1 = ((KeyedDefinitionsFactoryTilesContainer) container)
+            .getDefinitionsFactory("/module1");
 
         assertNotNull("factory found", factory1);
 
@@ -185,8 +186,8 @@ public class TestTilesPlugin extends TestMockBase {
         request.setAttribute(Globals.MODULE_KEY, module2);
         request.setPathElements("/myapp", "/module2/foo.do", null, null);
         // Retrieve factory for module2
-        DefinitionsFactory factory2 = ((BasicTilesContainer) container)
-                .getDefinitionsFactory();
+        DefinitionsFactory factory2 = ((KeyedDefinitionsFactoryTilesContainer) container)
+                .getDefinitionsFactory("/module2");
         assertNotNull("factory found", factory2);
 
         // Check that factory are different
