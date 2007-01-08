@@ -212,7 +212,7 @@
                 className="org.apache.struts.chain.commands.ExecuteForwardCommand"/>
 
         <command
-                className="org.apache.struts.tiles.commands.TilesPreProcessor"/>
+                className="org.apache.struts.tiles2.commands.TilesPreProcessor"/>
 
         <!-- Follow the returned ForwardConfig (if any) -->
         <command
@@ -244,7 +244,7 @@
                 className="org.apache.struts.chain.commands.ExecuteForwardCommand"/>
 
         <command
-                className="org.apache.struts.tiles.commands.TilesPreProcessor"/>
+                className="org.apache.struts.tiles2.commands.TilesPreProcessor"/>
 
         <!-- Follow the returned ForwardConfig (if any) -->
         <command
