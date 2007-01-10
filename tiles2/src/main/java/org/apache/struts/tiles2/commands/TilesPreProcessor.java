@@ -28,7 +28,6 @@ import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.access.TilesAccess;
-import org.apache.tiles.impl.KeyedDefinitionsFactoryTilesContainer;
 
 
 /**
@@ -104,12 +103,6 @@ public class TilesPreProcessor implements Command
         }
         
         boolean retValue = false;
-        
-        if (sacontext.getModuleConfig().getPrefix() != null) {
-            sacontext.getRequest().setAttribute(KeyedDefinitionsFactoryTilesContainer
-                    .DEFINITIONS_FACTORY_KEY_ATTRIBUTE_NAME,
-                    sacontext.getModuleConfig().getPrefix());
-        }
         
         if (container.isValidDefinition(sacontext.getRequest(),
         		sacontext.getResponse(), forwardConfig.getPath())) {

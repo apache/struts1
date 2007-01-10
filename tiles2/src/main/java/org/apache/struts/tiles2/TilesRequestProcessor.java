@@ -37,7 +37,6 @@ import org.apache.struts.config.ModuleConfig;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.TilesException;
 import org.apache.tiles.access.TilesAccess;
-import org.apache.tiles.impl.KeyedDefinitionsFactoryTilesContainer;
 
 /**
  * <p><strong>RequestProcessor</strong> contains the processing logic that
@@ -106,12 +105,6 @@ public class TilesRequestProcessor extends RequestProcessor {
         }
         
         boolean retValue = false;
-        
-        if (moduleConfig.getPrefix() != null) {
-            request.setAttribute(KeyedDefinitionsFactoryTilesContainer
-                    .DEFINITIONS_FACTORY_KEY_ATTRIBUTE_NAME,
-                    moduleConfig.getPrefix());
-        }
         
         if (container.isValidDefinition(request, response, definitionName)) {
             retValue = response.isCommitted();

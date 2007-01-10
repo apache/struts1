@@ -36,17 +36,21 @@ import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.PlugInConfig;
 import org.apache.struts.tiles2.util.PlugInConfigContextAdapter;
+import org.apache.struts.util.ModuleUtils;
 import org.apache.struts.util.RequestUtils;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.TilesException;
 import org.apache.tiles.access.TilesAccess;
 import org.apache.tiles.context.BasicTilesContextFactory;
+import org.apache.tiles.context.TilesRequestContext;
+import org.apache.tiles.context.servlet.ServletTilesRequestContext;
 import org.apache.tiles.definition.DefinitionsFactory;
 import org.apache.tiles.definition.UrlDefinitionsFactory;
 import org.apache.tiles.factory.KeyedDefinitionsFactoryTilesContainerFactory;
 import org.apache.tiles.factory.TilesContainerFactory;
 import org.apache.tiles.impl.BasicTilesContainer;
 import org.apache.tiles.impl.KeyedDefinitionsFactoryTilesContainer;
+import org.apache.tiles.impl.KeyedDefinitionsFactoryTilesContainer.KeyExtractor;
 import org.apache.tiles.preparer.BasicPreparerFactory;
 
 /**
@@ -93,6 +97,10 @@ public class TilesPlugin implements PlugIn {
         MODULE_AWARE_DEFAULTS.put(TilesContainerFactory
                 .PREPARER_FACTORY_INIT_PARAM,
                 BasicPreparerFactory.class.getName());
+        MODULE_AWARE_DEFAULTS.put(
+                KeyedDefinitionsFactoryTilesContainerFactory
+                .KEY_EXTRACTOR_CLASS_INIT_PARAM,
+                ModuleKeyExtractor.class.getName());
     }
 
     /**
@@ -295,5 +303,22 @@ public class TilesPlugin implements PlugIn {
      */
     public void setCurrentPlugInConfigObject(PlugInConfig plugInConfigObject) {
         this.currentPlugInConfigObject = plugInConfigObject;
+    }
+    
+    public static class ModuleKeyExtractor implements KeyExtractor {
+
+        public String getDefinitionsFactoryKey(TilesRequestContext request) {
+            String retValue = null;
+            
+            if (request instanceof ServletTilesRequestContext) {
+                ModuleConfig config = ModuleUtils.getInstance().getModuleConfig(
+                        ((ServletTilesRequestContext) request).getRequest());
+                if (config != null) {
+                    retValue = config.getPrefix();
+                }
+            }
+            return retValue;
+        }
+        
     }
 }
