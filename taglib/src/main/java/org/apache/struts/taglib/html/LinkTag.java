@@ -361,8 +361,6 @@ public class LinkTag extends BaseHandlerTag {
         prepareOtherAttributes(results);
         results.append(">");
 
-        TagUtils.getInstance().write(pageContext, results.toString());
-
         // Prepare the textual content and ending element of this hyperlink
         if (text != null) {
             results.append(text);
