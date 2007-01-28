@@ -36,15 +36,15 @@
    <url>http://struts.apache.org</url>
    
     <scm>
-        <connection>scm:svn:http://svn.apache.org/repos/asf/struts/struts1/trunk/tiles/</connection>
-        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/struts/struts1/trunk/tiles/</developerConnection>
-        <url>http://svn.apache.org/repos/asf/struts/struts1/trunk/tiles/</url>
+        <connection>scm:svn:http://svn.apache.org/repos/asf/struts/struts1/trunk/tiles2/</connection>
+        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/struts/struts1/trunk/tiles2/</developerConnection>
+        <url>http://svn.apache.org/repos/asf/struts/struts1/trunk/tiles2/</url>
     </scm>
     
    <distributionManagement>
       <site>
          <id>apache-site</id>
-         <url>scp://people.apache.org/www/struts.apache.org/1.x/struts-tiles</url>
+         <url>scp://people.apache.org/www/struts.apache.org/1.x/struts-tiles2</url>
       </site>
    </distributionManagement>
 
@@ -100,13 +100,13 @@
       </dependency>
 
       <dependency>
-         <groupId>org.apache.struts.tiles</groupId>
+         <groupId>org.apache.tiles</groupId>
          <artifactId>tiles-core</artifactId>
          <version>2.0-SNAPSHOT</version>
       </dependency>
 
       <dependency>
-         <groupId>org.apache.struts.tiles</groupId>
+         <groupId>org.apache.tiles</groupId>
          <artifactId>tiles-api</artifactId>
          <version>2.0-SNAPSHOT</version>
       </dependency>
