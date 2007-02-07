@@ -241,6 +241,7 @@ options {
  k=2;
 caseSensitive=false;
 defaultErrorHandler=false;
+charVocabulary='\40'..'\176';
 }
 tokens {
 ANDSIGN="and";

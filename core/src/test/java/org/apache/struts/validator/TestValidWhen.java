@@ -141,6 +141,12 @@ public class TestValidWhen extends TestCase {
         // double quote
         doParse("(*this* == \"" + testValue + "\")", testValue, 0,
             "stringValue1", true);
+
+        // obscure characters
+        doParse("(*this* == \":\")", ":", 0,
+            "stringValue1", true);
+        doParse("(*this* == \"foo:bar\")", "foo:bar", 0,
+            "stringValue1", true);
     }
 
     /**
