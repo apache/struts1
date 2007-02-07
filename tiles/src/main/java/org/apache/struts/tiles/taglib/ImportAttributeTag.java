@@ -161,13 +161,18 @@ public int doStartTag() throws JspException
       {
       Object value = compContext.getAttribute(name);
         // Check if value exist and if we must send a runtime exception
-      if( value == null )
-        if(!isErrorIgnored) {
+      if( value == null ) 
+        {
+        if(!isErrorIgnored) 
+          {
           throw new JspException ( "Error - tag importAttribute : property '"+
               name + "' not found in context. Check tag syntax" );
+          }
         }
-
-      pageContext.setAttribute(name, value, scope);
+       else 
+        {
+        pageContext.setAttribute(name, value, scope);
+        }
       }
      else
       { // set all attributes
