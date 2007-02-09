@@ -1088,11 +1088,9 @@
                 </p>
 
                 <source>
-                    &lt;form-bean name="myForm"
-                    type="org.apache.struts.validator.LazyValidatorForm"&gt;
-                    &lt;form-property name="myMap" type="java.util.TreeMap" /&gt;
-                    &lt;form-property name="myBeans"
-                    type="org.apache.commons.beanutils.LazyDynaBean[]" /&gt;
+                    &lt;form-bean name="myForm" type="org.apache.struts.validator.LazyValidatorForm"&gt;
+                        &lt;form-property name="myMap" type="java.util.TreeMap" /&gt;
+                        &lt;form-property name="myBeans" type="org.apache.commons.beanutils.LazyDynaBean[]" /&gt;
                     &lt;/form-bean&gt;
                 </source>
 
@@ -1122,10 +1120,10 @@
                 <source>
                     public class MyLazyForm extends LazyValidatorForm {
 
-                    public MyLazyForm () {
-                    super();
-                    setPathValidation(true);
-                    }
+                        public MyLazyForm () {
+                            super();
+                            setPathValidation(true);
+                        }
 
                     }
                 </source>
@@ -1142,10 +1140,8 @@
                 </p>
 
                 <source>
-                    &lt;form-bean name="myForm"
-                    type="org.apache.commons.beanutils.LazyDynaBean"&gt;
-                    &lt;form-property name="myBeans"
-                    type="org.apache.commons.beanutils.LazyDynaBean[]" /&gt;
+                    &lt;form-bean name="myForm" type="org.apache.commons.beanutils.LazyDynaBean"&gt;
+                        &lt;form-property name="myBeans" type="org.apache.commons.beanutils.LazyDynaBean[]" /&gt;
                     &lt;/form-bean&gt;
                 </source>
 
@@ -1322,7 +1318,7 @@
                     ServletResponse response)
                     throws Exception;
 
-                    public ActionForward execute(ActionMapping mapping,
+public ActionForward execute(ActionMapping mapping,
                     ActionForm form,
                     HttpServletRequest request,
                     HttpServletResponse response)
