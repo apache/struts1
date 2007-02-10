@@ -91,6 +91,8 @@
 -->
 <!ENTITY % RequestScope "(request|session)">
 
+<!-- Defines possible values for automatic form bean population -->
+<!ENTITY % PopulateStrategy "(request|forward|request-forward|none)">
 
 <!-- ========== Top Level Elements ======================================== -->
 
@@ -452,6 +454,16 @@ The "form-bean" element describes a particular form bean, which is a
                      action mapping, or set to "false" if you do not want the
                      validate method called.
                      [true]
+
+     reset           Allows to specify conditions for automatic form reset.
+                     Possible values: not specified, "request", "forward",
+                     "request-forward" or "none".
+                     [request-forward]
+
+     populate        Allows to specify conditions for automatic form population
+                     with HTTP request values. Possible values: not specified,
+                     "request", "forward", "request-forward" or "none".
+                     [request-forward]
 -->
 <!ELEMENT action (icon?, display-name?, description?, set-property*, exception*, forward*)>
 <!ATTLIST action         id             ID              #IMPLIED>
@@ -474,6 +486,8 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST action         type           %ClassName;     #IMPLIED>
 <!ATTLIST action         unknown        %Boolean;       #IMPLIED>
 <!ATTLIST action         validate       %Boolean;       #IMPLIED>
+<!ATTLIST action         reset          %PopulateStrategy; #IMPLIED>
+<!ATTLIST action         populate       %PopulateStrategy; #IMPLIED>
 
 
 <!-- The "controller" element describes the ControllerConfig bean

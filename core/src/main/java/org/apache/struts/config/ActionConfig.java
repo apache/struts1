@@ -41,6 +41,23 @@ import java.util.HashMap;
 public class ActionConfig extends BaseConfig {
     private static final Log log = LogFactory.getLog(ActionConfig.class);
 
+    /**
+     * Literal that describes request condition for "reset" and "populate"
+     * properties.
+     *
+     * @since Struts 1.4
+     */
+    public static final String REQUEST_STR = "request";
+
+    /**
+     * Literal that describes forward condition for "reset" and "populate"
+     * properties.
+     *
+     * @since Struts 1.4
+     */
+    public static final String FORWARD_STR = "forward";
+
+
     // ----------------------------------------------------- Instance Variables
 
     /**
@@ -176,6 +193,32 @@ public class ActionConfig extends BaseConfig {
      * form bean is accessed, if any. </p>
      */
     protected String scope = "session";
+
+    /**
+     * <p>Identifies conditions for automatic form reset.</p>
+     *
+     * <p>Possible values: null (not specified), "request", "forward" or
+     * "request-forward" (used when not specified). If not specified then
+     * the form bean is reset both for direct and for forwarded request.</p>
+     *
+     * @since Struts 1.4
+     */
+    protected String reset = REQUEST_STR + "-" + FORWARD_STR;
+
+    /**
+     * <p>Identifies conditions for automatic form population with values
+     * from HTTP request.</p>
+     *
+     * <p>Possible values: null (not specified), "request", "forward" or
+     * "request-forward" (used when not specified). If not specified then
+     * the form bean is populated both for direct and for forwarded request.
+     * This means that when a chained action mapping refers to the same
+     * form bean as originating action, then the form bean is repopulated
+     * and changes made by originating action are lost.</p>
+     *
+     * @since Struts 1.4
+     */
+    protected String populate = REQUEST_STR + "-" + FORWARD_STR;
 
     /**
      * <p> Suffix used to match request parameter names to form bean property
@@ -623,6 +666,54 @@ public class ActionConfig extends BaseConfig {
         }
 
         this.scope = scope;
+    }
+
+    /**
+     * <p>Reads when a corresponding action form should be reset
+     * ("request", "session" or "request,session").</p>
+     *
+     * @since Struts 1.4
+     */
+    public String getReset() {
+        return (this.reset);
+    }
+
+    /**
+     * @param reset identifies, when a corresponding action form should be
+     *        reset ("request", "session" or "request,session").
+     *
+     * @since Struts 1.4
+     */
+    public void setReset(String reset) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+
+        this.reset = reset;
+    }
+
+    /**
+     * <p>Reads when a corresponding action form should be automatically
+     * populated ("request", "session" or "request,session").</p>
+     *
+     * @since Struts 1.4
+     */
+    public String getPopulate() {
+        return (this.populate);
+    }
+
+    /**
+     * @param populate identifies, when a corresponding action form should be
+     *        automatically populated ("request", "session" or "request,session").
+     *
+     * @since Struts 1.4
+     */
+    public void setPopulate(String populate) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+
+        this.populate= populate;
     }
 
     /**
@@ -1271,6 +1362,16 @@ public class ActionConfig extends BaseConfig {
         if (scope != null) {
             sb.append(",scope=");
             sb.append(scope);
+        }
+
+        if (reset != null) {
+            sb.append(",reset=");
+            sb.append(reset);
+        }
+
+        if (populate != null) {
+            sb.append(",populate=");
+            sb.append(populate);
         }
 
         if (suffix != null) {

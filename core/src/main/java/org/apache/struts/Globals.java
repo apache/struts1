@@ -209,4 +209,11 @@ public class Globals implements Serializable {
      * The property under which a transaction token is reported.
      */
     public static final String TOKEN_KEY = TAGLIB_PACKAGE + ".TOKEN";
+
+    /**
+     * The request attributes key under which forwarding flag is stored.
+     *
+     * @since Struts 1.4
+     */
+    public static final String FORWARD_KEY = "org.apache.struts.action.FORWARD";
 }

@@ -1066,4 +1066,17 @@ public class RequestUtils {
         }
         return actionIdPath.toString();
     }
+
+    /**
+     * Verifies whether current request is forwarded from one action to
+     * another or not.
+     * @param request current HTTP request 
+     * @return true if the request contains Globals.FORWARD_KEY, which means
+     *         that request has been forwarded from another action.
+     *
+     * @since Struts 1.4
+     */
+    public static boolean isForwarded(HttpServletRequest request) {
+        return request.getAttribute(Globals.FORWARD_KEY) != null;
+    }
 }
