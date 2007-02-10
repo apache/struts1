@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -311,8 +312,18 @@ public class TilesPlugin implements PlugIn {
             String retValue = null;
             
             if (request instanceof ServletTilesRequestContext) {
+            	HttpServletRequest servletRequest =
+            		(HttpServletRequest)((ServletTilesRequestContext) request).getRequest(); 
                 ModuleConfig config = ModuleUtils.getInstance().getModuleConfig(
-                        ((ServletTilesRequestContext) request).getRequest());
+                        servletRequest);
+
+                if (config == null) {
+                    // ModuleConfig not found in current request. Select it.
+                    ModuleUtils.getInstance().selectModule(servletRequest,
+                    		servletRequest.getSession().getServletContext());
+                    config = ModuleUtils.getInstance().getModuleConfig(servletRequest);
+                }
+                
                 if (config != null) {
                     retValue = config.getPrefix();
                 }
