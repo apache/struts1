@@ -22,8 +22,8 @@
      DOCTYPE element at the beginning (after the "xml" declaration):
 
      <!DOCTYPE struts-config PUBLIC
-       "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
-       "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+       "-//Apache Software Foundation//DTD Struts Configuration 1.4//EN"
+       "http://struts.apache.org/dtds/struts-config_1_4.dtd">
 
      $Id$
 -->
@@ -91,6 +91,8 @@
 -->
 <!ENTITY % RequestScope "(request|session)">
 
+<!-- Defines possible values for automatic form bean population -->
+<!ENTITY % PopulateStrategy "(request|forward|request-forward|none)">
 
 <!-- ========== Top Level Elements ======================================== -->
 
@@ -452,6 +454,16 @@ The "form-bean" element describes a particular form bean, which is a
                      action mapping, or set to "false" if you do not want the
                      validate method called.
                      [true]
+
+     reset           Allows to specify conditions for automatic form reset.
+                     Possible values: not specified, "request", "forward",
+                     "request-forward" or "none".
+                     [request-forward]
+
+     populate        Allows to specify conditions for automatic form population
+                     with HTTP request values. Possible values: not specified,
+                     "request", "forward", "request-forward" or "none".
+                     [request-forward]
 -->
 <!ELEMENT action (icon?, display-name?, description?, set-property*, exception*, forward*)>
 <!ATTLIST action         id             ID              #IMPLIED>
@@ -467,7 +479,9 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST action         name           %BeanName;      #IMPLIED>
 <!ATTLIST action         parameter      CDATA           #IMPLIED>
 <!ATTLIST action         path           %RequestPath;   #REQUIRED>
+<!ATTLIST action         populate       %PopulateStrategy; #IMPLIED>
 <!ATTLIST action         prefix         CDATA           #IMPLIED>
+<!ATTLIST action         reset          %PopulateStrategy; #IMPLIED>
 <!ATTLIST action         roles          CDATA           #IMPLIED>
 <!ATTLIST action         scope          %RequestScope;  #IMPLIED>
 <!ATTLIST action         suffix         CDATA           #IMPLIED>
