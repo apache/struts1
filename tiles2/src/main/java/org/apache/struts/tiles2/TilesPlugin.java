@@ -36,6 +36,7 @@ import org.apache.struts.chain.ComposableRequestProcessor;
 import org.apache.struts.config.ControllerConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.PlugInConfig;
+import org.apache.struts.tiles2.preparer.StrutsPreparerFactory;
 import org.apache.struts.tiles2.util.PlugInConfigContextAdapter;
 import org.apache.struts.util.ModuleUtils;
 import org.apache.struts.util.RequestUtils;
@@ -52,7 +53,6 @@ import org.apache.tiles.factory.TilesContainerFactory;
 import org.apache.tiles.impl.BasicTilesContainer;
 import org.apache.tiles.impl.KeyedDefinitionsFactoryTilesContainer;
 import org.apache.tiles.impl.KeyedDefinitionsFactoryTilesContainer.KeyExtractor;
-import org.apache.tiles.preparer.BasicPreparerFactory;
 
 /**
  * Tiles Plugin used to initialize Tiles.
@@ -85,23 +85,28 @@ public class TilesPlugin implements PlugIn {
     private static final Map<String, String> MODULE_AWARE_DEFAULTS =
         new HashMap<String, String>();
 
+    private static final Map<String, String> NO_MODULE_DEFAULTS =
+        new HashMap<String, String>();
+
     static {
-        MODULE_AWARE_DEFAULTS.put(TilesContainerFactory
-                .CONTAINER_FACTORY_INIT_PARAM,
-                KeyedDefinitionsFactoryTilesContainerFactory.class.getName());
-        MODULE_AWARE_DEFAULTS.put(TilesContainerFactory
+        NO_MODULE_DEFAULTS.put(TilesContainerFactory
                 .CONTEXT_FACTORY_INIT_PARAM,
                 BasicTilesContextFactory.class.getName());
-        MODULE_AWARE_DEFAULTS.put(TilesContainerFactory
+        NO_MODULE_DEFAULTS.put(TilesContainerFactory
                 .DEFINITIONS_FACTORY_INIT_PARAM,
                 UrlDefinitionsFactory.class.getName());
-        MODULE_AWARE_DEFAULTS.put(TilesContainerFactory
+        NO_MODULE_DEFAULTS.put(TilesContainerFactory
                 .PREPARER_FACTORY_INIT_PARAM,
-                BasicPreparerFactory.class.getName());
+                StrutsPreparerFactory.class.getName());
+
+        MODULE_AWARE_DEFAULTS.putAll(NO_MODULE_DEFAULTS);
         MODULE_AWARE_DEFAULTS.put(
                 KeyedDefinitionsFactoryTilesContainerFactory
                 .KEY_EXTRACTOR_CLASS_INIT_PARAM,
                 ModuleKeyExtractor.class.getName());
+        MODULE_AWARE_DEFAULTS.put(TilesContainerFactory
+                .CONTAINER_FACTORY_INIT_PARAM,
+                KeyedDefinitionsFactoryTilesContainerFactory.class.getName());
     }
 
     /**

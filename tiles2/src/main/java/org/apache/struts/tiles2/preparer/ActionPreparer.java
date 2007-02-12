@@ -19,7 +19,7 @@
  * under the License.
  */
 
-package org.apache.struts.tiles2;
+package org.apache.struts.tiles2.preparer;
 
 import org.apache.struts.action.Action;
 import org.apache.tiles.ComponentContext;
