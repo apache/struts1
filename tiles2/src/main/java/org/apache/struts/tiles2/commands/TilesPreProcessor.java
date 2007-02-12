@@ -102,11 +102,8 @@ public class TilesPreProcessor implements Command
             return false;
         }
         
-        boolean retValue = false;
-        
         if (container.isValidDefinition(sacontext.getRequest(),
         		sacontext.getResponse(), forwardConfig.getPath())) {
-            retValue = sacontext.getResponse().isCommitted();
 	        container.render(sacontext.getRequest(), sacontext.getResponse(),
 	        		forwardConfig.getPath());
         } else {
@@ -117,6 +114,7 @@ public class TilesPreProcessor implements Command
         	}
         }
         
-        return retValue;
+        sacontext.setForwardConfig(null);
+        return false;
     }
 }
