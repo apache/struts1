@@ -21,13 +21,6 @@
 
 package org.apache.struts.tiles2;
 
-import java.io.IOException;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.struts.action.Action;
 import org.apache.tiles.ComponentContext;
 import org.apache.tiles.TilesException;
