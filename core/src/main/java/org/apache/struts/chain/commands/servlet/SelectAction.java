@@ -46,20 +46,20 @@ public class SelectAction extends AbstractSelectAction {
         // For prefix matching, match on the path info
         path = (String) request.getAttribute(Constants.INCLUDE_PATH_INFO);
 
-        if (path == null) {
+        if ((path == null) || (path.length() == 0)) {
             path = request.getPathInfo();
         }
 
         // For extension matching, match on the servlet path
-        if (path == null) {
+        if ((path == null) || (path.length() == 0)) {
             path =
                 (String) request.getAttribute(Constants.INCLUDE_SERVLET_PATH);
 
-            if (path == null) {
+            if ((path == null) || (path.length() == 0)) {
                 path = request.getServletPath();
             }
 
-            if (path == null) {
+            if ((path == null) || (path.length() == 0)) {
                 throw new IllegalArgumentException(
                     "No path information in request");
             }
