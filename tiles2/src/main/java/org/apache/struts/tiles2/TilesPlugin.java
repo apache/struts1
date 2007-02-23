@@ -43,7 +43,7 @@ import org.apache.struts.util.RequestUtils;
 import org.apache.tiles.TilesContainer;
 import org.apache.tiles.TilesException;
 import org.apache.tiles.access.TilesAccess;
-import org.apache.tiles.context.BasicTilesContextFactory;
+import org.apache.tiles.context.ChainedTilesContextFactory;
 import org.apache.tiles.context.TilesRequestContext;
 import org.apache.tiles.context.servlet.ServletTilesRequestContext;
 import org.apache.tiles.definition.DefinitionsFactory;
@@ -91,7 +91,7 @@ public class TilesPlugin implements PlugIn {
     static {
         NO_MODULE_DEFAULTS.put(TilesContainerFactory
                 .CONTEXT_FACTORY_INIT_PARAM,
-                BasicTilesContextFactory.class.getName());
+                ChainedTilesContextFactory.class.getName());
         NO_MODULE_DEFAULTS.put(TilesContainerFactory
                 .DEFINITIONS_FACTORY_INIT_PARAM,
                 UrlDefinitionsFactory.class.getName());
