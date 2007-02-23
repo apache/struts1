@@ -65,8 +65,7 @@ public class CreateAction
             action = (Action) actions.get(type);
 
             if (action == null) {
-                log.info("Initialize action of type: " + type);
-                action = (Action) ClassUtils.getApplicationInstance(type);
+                action = createAction(context, type);
                 actions.put(type, action);
             }
         }
@@ -79,5 +78,10 @@ public class CreateAction
         }
 
         return (action);
+    }
+
+    protected Action createAction(ActionContext context, String type) throws Exception {
+        log.info("Initialize action of type: " + type);
+        return (Action) ClassUtils.getApplicationInstance(type);
     }
 }
