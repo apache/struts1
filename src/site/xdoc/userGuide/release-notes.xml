@@ -70,7 +70,12 @@
 <li>[<a href='https://issues.apache.org/struts/browse/STR-2996'>STR-2996</a>] - ImportAttributeTag throws a NPE when ignore=true and the attribute value is unavailable</li>
 <li>[<a href='https://issues.apache.org/struts/browse/STR-2997'>STR-2997</a>] - [validator] validwhen strings don't work right</li>
 <li>[<a href='https://issues.apache.org/struts/browse/STR-2998'>STR-2998</a>] - LinkTag renders the link twice</li>
-</ul>    
+</ul>
+
+<h4>Improvement</h4>
+<ul>
+<li>[<a href='https://issues.apache.org/struts/browse/STR-3008'>STR-3008</a>] - AbstractCreateAction: Refactor creation into separate method</li>
+</ul>
             </subsection>
 
             <subsection>
