@@ -130,5 +130,6 @@ public abstract class AbstractCreateAction extends ActionCommandBase {
      *                   class.
      * @since Struts 1.3.7
      */
-    protected abstract Action createAction(ActionContext context, String type);
+    protected abstract Action createAction(ActionContext context, String type)
+        throws Exception;
 }
