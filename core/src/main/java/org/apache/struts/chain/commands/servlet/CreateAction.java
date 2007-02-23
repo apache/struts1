@@ -80,6 +80,19 @@ public class CreateAction
         return (action);
     }
 
+    
+    /**
+     * <p>Invoked by <code>getAction</code> when the <code>Action</code> 
+     * actually has to be created. If the instance is already created and 
+     * cached, this method will not be called. </p>
+     * 
+     * @param context      The <code>Context</code> for this request
+     * @param type         Name of class to instantiate
+     * @return Instantiated Action class
+     * @throws Exception if there are any problems instantiating the Action
+     *                   class.
+     * @since Struts 1.3.7
+     */
     protected Action createAction(ActionContext context, String type) throws Exception {
         log.info("Initialize action of type: " + type);
         return (Action) ClassUtils.getApplicationInstance(type);
