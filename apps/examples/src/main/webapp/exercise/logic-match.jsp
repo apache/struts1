@@ -35,7 +35,7 @@
         <th>Test Type</th>
         <th>Variable Content</th>
         <th>Value Content</th>
-        <th>Correct Value Test</th>
+        <th>Match Test</th>
         <th>Test Result</th>
       </tr>
       <tr>
