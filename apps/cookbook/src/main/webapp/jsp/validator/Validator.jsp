@@ -48,7 +48,7 @@
 	<tr><td>Float:</td><td><html:text property="floatValue" /> 1.4E-45 .. 3.4028235E38</td></tr>
 	<tr><td>Double:</td><td><html:text property="doubleValue" /> 4.9E-324 .. 1.7976931348623157E308</td></tr>
 	<tr><td>Credit Card:</td><td><html:text property="creditCard" /> e.g. 4444333322221111 (no spaces) </td></tr>
-	<tr><td>Date:</td><td><html:text property="date" /> dd/mm/yyyy</td></tr>
+	<tr><td>Date:</td><td><html:text property="date" /> mm/dd/yyyy</td></tr>
 	<tr><td>Email:</td><td><html:text property="email" /></td></tr>
 	<tr><td>Mask:</td><td><html:text property="mask" /> US zip code e.g. 90210</td></tr>
 	<tr><td>Min Length:</td><td><html:text property="min" /> (minimum 5 characters)</td></tr>
