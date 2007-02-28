@@ -606,26 +606,26 @@
 </tr>
 <tr>
     <td>string / NULL</td>
-    <td><c:out value="${bean.nullProperty}" default=""/></td>
+    <td><c:out value="${bean.nullProperty}" default="null"/></td>
     <td>&nbsp;</td>
     <td>equal greaterEqual lessEqual</td>
     <td>
-        <c:if test='${bean.nullProperty eq ""}'>
+        <c:if test='${bean.nullProperty eq null}'>
             equal
         </c:if>
-        <c:if test='${bean.nullProperty ge ""}'>
+        <c:if test='${bean.nullProperty ge null}'>
             greaterEqual
         </c:if>
-        <c:if test='${bean.nullProperty gt ""}'>
+        <c:if test='${bean.nullProperty gt null}'>
             greaterThan
         </c:if>
-        <c:if test='${bean.nullProperty le ""}'>
+        <c:if test='${bean.nullProperty le null}'>
             lessEqual
         </c:if>
-        <c:if test='${bean.nullProperty lt ""}'>
+        <c:if test='${bean.nullProperty lt null}'>
             lessThan
         </c:if>
-        <c:if test='${bean.nullProperty ne ""}'>
+        <c:if test='${bean.nullProperty ne null}'>
             notEqual
         </c:if>
     </td>

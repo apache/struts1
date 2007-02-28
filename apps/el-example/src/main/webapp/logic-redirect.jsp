@@ -47,19 +47,19 @@
         <tr>
             <td>
                 Redirect with <html-el:link forward="redirectForward">
-                Forward</html-el:link>
+                Forward</html-el:link> to index page
             </td>
         </tr>
         <tr>
             <td>
                 Redirect with <html-el:link forward="redirectHref">
-                Href</html-el:link>
+                Href</html-el:link> to http:/struts.apache.org/
             </td>
         </tr>
         <tr>
             <td>
                 Redirect with <html-el:link forward="redirectPage">
-                Page</html-el:link>
+                Page</html-el:link> to index page
             </td>
         </tr>
     </table>
