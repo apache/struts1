@@ -37,7 +37,7 @@
         <forward name="redirectForward"
                  path="/logic-redirect.jsp?redirectType=forward&amp;param1=index"/>
         <forward name="redirectHref"
-                 path="/logic-redirect.jsp?redirectType=href&amp;param1=/el-example/index.jsp"/>
+                 path="/logic-redirect.jsp?redirectType=href&amp;param1=http://struts.apache.org/"/>
         <forward name="redirectPage"
                  path="/logic-redirect.jsp?redirectType=page&amp;param1=/index.jsp"/>
     </global-forwards>
@@ -105,7 +105,7 @@
                 name="testbean"
                 scope="session"
                 validate="false">
-            <forward name="input" path="/bean-dyna.jsp"/>
+            <forward name="input" path="/html-setters.jsp"/>
         </action>
         <action path="/bean-dyna"
                 type="org.apache.struts.webapp.el.exercise.DynaSetAction"
