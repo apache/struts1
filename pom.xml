@@ -127,6 +127,7 @@
         <module>scripting</module>
         <module>taglib</module>
         <module>tiles</module>
+        <module>tiles2</module>
     </modules>
 
     <licenses>
