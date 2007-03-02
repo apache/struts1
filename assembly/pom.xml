@@ -167,6 +167,11 @@
     </dependency>
     <dependency>
       <groupId>org.apache.struts</groupId>
+      <artifactId>struts-tiles2</artifactId>
+      <version>${version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.struts</groupId>
       <artifactId>struts-mailreader-dao</artifactId>
       <version>${version}</version>
     </dependency>
