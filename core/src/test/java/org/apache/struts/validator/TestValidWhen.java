@@ -78,6 +78,7 @@ public class TestValidWhen extends TestCase {
                 new PojoBean(41, 52), new PojoBean(51, 62)
             });
         testBean.setMapped("testKey", "mappedValue");
+        testBean.setStringArray(new String[] {"zero", "one", "two", "three"});
     }
 
     public void tearDown() {
@@ -222,6 +223,25 @@ public class TestValidWhen extends TestCase {
             "stringValue1", false);
         doParse("((*this* != 'ABC') and (stringValue2 != null))", testBean, 0,
             "stringValue1", false);
+    }
+
+    /**
+     * Test Indexed Property.
+     */
+    public void testIndexedValue() {
+
+        // Test Case for Jira Issue STR-2802
+        // see https://issues.apache.org/struts/browse/STR-2802
+        //
+        // Currently validwhen is throwing an exception when using
+        // the "indexed" syntax - this test case is to help resolve
+        // that - logging the exception
+        //
+        try {
+            doParse("(stringArray[1] == 'one')", testBean, 1, "stringArray[1]");
+        } catch(Exception e) {
+            log.error("TestValidWhen.testIndexedValue() threw exception", e);
+        }
     }
 
     /**

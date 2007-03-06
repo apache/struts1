@@ -35,6 +35,7 @@ public class PojoBean {
     protected Integer integerValue2;
     protected PojoBean[] beans;
     protected Map map = new HashMap();
+    protected String[] stringArray;
 
     /**
      * Default Constructor
@@ -86,6 +87,27 @@ public class PojoBean {
      */
     public String getStringValue2() {
         return stringValue2;
+    }
+
+    /**
+     * Set the stringArray.
+     */
+    public void setStringArray(String[] stringArray) {
+        this.stringArray = stringArray;
+    }
+
+    /**
+     * Return stringArray.
+     */
+    public String[] getStringArray() {
+        return stringArray;
+    }
+
+    /**
+     * Return Indexed value for stringArray.
+     */
+    public String getStringArray(int index) {
+        return stringArray[index];
     }
 
     /**
