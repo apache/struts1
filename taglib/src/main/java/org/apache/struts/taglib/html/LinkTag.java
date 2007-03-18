@@ -388,7 +388,7 @@ public class LinkTag extends BaseHandlerTag {
         paramName = null;
         paramProperty = null;
         paramScope = null;
-        parameters = null;
+        parameters.clear();
         property = null;
         scope = null;
         target = null;
