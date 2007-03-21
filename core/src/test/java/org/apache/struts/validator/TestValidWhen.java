@@ -229,19 +229,9 @@ public class TestValidWhen extends TestCase {
      * Test Indexed Property.
      */
     public void testIndexedValue() {
-
         // Test Case for Jira Issue STR-2802
         // see https://issues.apache.org/struts/browse/STR-2802
-        //
-        // Currently validwhen is throwing an exception when using
-        // the "indexed" syntax - this test case is to help resolve
-        // that - logging the exception
-        //
-        try {
-            doParse("(stringArray[1] == 'one')", testBean, 1, "stringArray[1]");
-        } catch(Exception e) {
-            log.error("TestValidWhen.testIndexedValue() threw exception", e);
-        }
+        doParse("(stringArray[1] == 'one')", testBean, 1, "stringArray[1]", true);
     }
 
     /**
