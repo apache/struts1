@@ -273,12 +273,11 @@ public ValidWhenParser(ParserSharedInputState state) {
 			argStack.push(ValidatorUtils.getValueAsString(form, i3 + "[" + i4 + "]" + i5));
 			
 		}
-		else if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACKET) && (LA(5)==LBRACKET)) {
+		else if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACKET) && (_tokenSet_0.member(LA(5)))) {
 			identifier();
 			match(LBRACKET);
 			integer();
 			match(RBRACKET);
-			match(LBRACKET);
 			
 			Object i7 = argStack.pop();
 			Object i6 = argStack.pop();

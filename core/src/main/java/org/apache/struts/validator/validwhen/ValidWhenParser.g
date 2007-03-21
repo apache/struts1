@@ -182,7 +182,7 @@ field
             Object i3 = argStack.pop();
             argStack.push(ValidatorUtils.getValueAsString(form, i3 + "[" + i4 + "]" + i5));
 }
-| identifier LBRACKET integer RBRACKET LBRACKET {
+| identifier LBRACKET integer RBRACKET {
             Object i7 = argStack.pop();
             Object i6 = argStack.pop();
             argStack.push(ValidatorUtils.getValueAsString(form, i6 + "[" + i7 + "]"));
