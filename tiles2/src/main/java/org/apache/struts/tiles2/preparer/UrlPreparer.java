@@ -26,7 +26,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tiles.ComponentContext;
+import org.apache.tiles.AttributeContext;
 import org.apache.tiles.context.TilesRequestContext;
 import org.apache.tiles.context.servlet.ServletTilesRequestContext;
 import org.apache.tiles.preparer.ViewPreparer;
@@ -43,7 +43,7 @@ public class UrlPreparer implements ViewPreparer {
     }
 
     public void execute(TilesRequestContext tilesContext,
-            ComponentContext componentContext) throws Exception {
+            AttributeContext attributeContext) throws Exception {
         
         if (tilesContext instanceof ServletTilesRequestContext) {
             ServletTilesRequestContext servletTilesContext =

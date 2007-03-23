@@ -22,7 +22,7 @@
 package org.apache.struts.tiles2.preparer;
 
 import org.apache.struts.action.Action;
-import org.apache.tiles.ComponentContext;
+import org.apache.tiles.AttributeContext;
 import org.apache.tiles.TilesException;
 import org.apache.tiles.context.TilesRequestContext;
 import org.apache.tiles.context.servlet.ServletTilesRequestContext;
@@ -49,7 +49,7 @@ public class ActionPreparer extends ViewPreparerSupport {
     }
 
     public void execute(TilesRequestContext tilesContext,
-            ComponentContext componentContext) throws Exception {
+            AttributeContext attributeContext) throws Exception {
         if (tilesContext instanceof ServletTilesRequestContext) {
             ServletTilesRequestContext servletTilesContext =
                     (ServletTilesRequestContext) tilesContext;

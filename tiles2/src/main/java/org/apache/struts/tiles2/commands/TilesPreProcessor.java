@@ -70,7 +70,7 @@ public class TilesPreProcessor implements Command
      * to a <code>RequestDispatcher</code>.</p>
      *
      * <p>Note that if the command finds a previously existing
-     * <code>ComponentContext</code> in the request, then it
+     * <code>AttributeContext</code> in the request, then it
      * infers that it has been called from within another tile,
      * so instead of changing the <code>ForwardConfig</code> in the chain
      * <code>Context</code>, the command uses <code>RequestDispatcher</code>

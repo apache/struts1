@@ -29,7 +29,7 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.tiles.ComponentContext;
+import org.apache.tiles.AttributeContext;
 import org.apache.tiles.access.TilesAccess;
 
 /**
@@ -38,7 +38,7 @@ import org.apache.tiles.access.TilesAccess;
  * called when action is invoked. The difference is, that the execute() method takes
  * an additional parameter : tile context.
  * This class extends Struts Action. Subclasses should override
- * execute(ComponentContext ...) method instead of Struts
+ * execute(AttributeContext ...) method instead of Struts
  * execute(ActionMapping ...) method.
  * @version $Rev$ $Date$
  */
@@ -66,8 +66,8 @@ public abstract class TilesAction extends Action {
         throws Exception {
 
         // Try to retrieve tile context
-        ComponentContext context = TilesAccess.getContainer(request.getSession()
-        		.getServletContext()).getComponentContext(request, response);
+        AttributeContext context = TilesAccess.getContainer(request.getSession()
+        		.getServletContext()).getAttributeContext(request, response);
         if (context == null) {
             throw new ServletException(
                 "Can't find Tile context for '"
@@ -96,7 +96,7 @@ public abstract class TilesAction extends Action {
      * @since Struts 1.1
      */
     public ActionForward execute(
-        ComponentContext context,
+        AttributeContext context,
         ActionMapping mapping,
         ActionForm form,
         HttpServletRequest request,
