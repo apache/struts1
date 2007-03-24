@@ -131,7 +131,7 @@ public class ActionRedirect extends ActionForward {
         setName(baseConfig.getName());
         setPath(baseConfig.getPath());
         setModule(baseConfig.getModule());
-        setRedirect(baseConfig.getRedirect());
+        setRedirect(true);
         inheritProperties(baseConfig);
         initializeParameters();
     }

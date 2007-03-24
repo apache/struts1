@@ -23,23 +23,19 @@
 <document>
 
     <properties>
-        <title>Release Notes (since 1.3.7)</title>
+        <title>Release Notes (since 1.3.6)</title>
     </properties>
     <body>
-        <section name="6.1 Release Notes - Version 1.3.8">
+        <section name="6.1 Release Notes - Version 1.3.7">
 
             <a name="release_notes"/>
             <subsection name="Introduction">
                 <p>
                     This section contains release notes for changes that have
-                    taken place to Struts since the last public release, but
-                    there have been two intermediate test distributions since. Please 
-                    read the previous release notes to understand all issues
-                    that crescendo at this version:
-                    <blockquote>
-                        <a href="release-notes-1_3_7.html">Version 1.3.7</a><br/>
-                        <a href="release-notes-1_3_6.html">Version 1.3.6</a><br/>
-                    </blockquote>
+                    taken place to Struts,
+                    since the
+                    <a href="release-notes-1_3_6.html">Version 1.3.6</a>
+                    distribution.
                     To keep up-to-date on all changes to the framework, 
                     subscribe to
                     the (commits at struts.apache.org) list.
@@ -69,12 +65,18 @@
     
 <h4>Bug</h4>
 <ul>
-<li>[<a href='https://issues.apache.org/struts/browse/STR-3009'>STR-3009</a>] - ActionRedirect from ForwardConfig not redirecting properly?</li>
-<li>[<a href='https://issues.apache.org/struts/browse/STR-3010'>STR-3010</a>] - Faces Example2 webapp references older DTD version in struts-config.xml which doesn't have the cancellable attribute</li>
-<li>[<a href='https://issues.apache.org/struts/browse/STR-3011'>STR-3011</a>] - EL Example webapp has a number of errors</li>
-<li>[<a href='https://issues.apache.org/struts/browse/STR-3012'>STR-3012</a>] - User guide does not have links to 1.3.5, 1.3.6, 1.3.7 release notes</li>
+<li>[<a href='https://issues.apache.org/struts/browse/STR-2961'>STR-2961</a>] - SelectAction getPath returns null when used with URL rewriting and breaks application</li>
+<li>[<a href='https://issues.apache.org/struts/browse/STR-2979'>STR-2979</a>] - Faces build causes NPE with maven-taglib-plugin</li>
+<li>[<a href='https://issues.apache.org/struts/browse/STR-2996'>STR-2996</a>] - ImportAttributeTag throws a NPE when ignore=true and the attribute value is unavailable</li>
+<li>[<a href='https://issues.apache.org/struts/browse/STR-2997'>STR-2997</a>] - [validator] validwhen strings don't work right</li>
+<li>[<a href='https://issues.apache.org/struts/browse/STR-2998'>STR-2998</a>] - LinkTag renders the link twice</li>
 </ul>
-</subsection>
+
+<h4>Improvement</h4>
+<ul>
+<li>[<a href='https://issues.apache.org/struts/browse/STR-3008'>STR-3008</a>] - AbstractCreateAction: Refactor creation into separate method</li>
+</ul>
+            </subsection>
 
             <subsection>
                 <p class="right">Next:
