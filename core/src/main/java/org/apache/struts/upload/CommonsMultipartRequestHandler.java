@@ -41,6 +41,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -244,10 +245,16 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
     public void rollback() {
         Iterator iter = elementsFile.values().iterator();
 
+        Object o;
         while (iter.hasNext()) {
-            FormFile formFile = (FormFile) iter.next();
-
-            formFile.destroy();
+            o = iter.next();
+            if (o instanceof List) {
+                for (Iterator i = ((List)o).iterator(); i.hasNext(); ) {
+                    ((FormFile)i.next()).destroy();
+                }
+            } else {
+                ((FormFile)o).destroy();
+            }
         }
     }
 
@@ -448,8 +455,22 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
     protected void addFileParameter(FileItem item) {
         FormFile formFile = new CommonsFormFile(item);
 
-        elementsFile.put(item.getFieldName(), formFile);
-        elementsAll.put(item.getFieldName(), formFile);
+        String name = item.getFieldName();
+        if (elementsFile.containsKey(name)) {
+            Object o = elementsFile.get(name);
+            if (o instanceof List) {
+                ((List)o).add(formFile);
+            } else {
+                List list = new ArrayList();
+                list.add((FormFile)o);
+                list.add(formFile);
+                elementsFile.put(name, list);
+                elementsAll.put(name, list);
+            }
+        } else {
+            elementsFile.put(name, formFile);
+            elementsAll.put(name, formFile);
+        }
     }
 
     // ---------------------------------------------------------- Inner Classes
