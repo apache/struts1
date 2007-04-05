@@ -76,9 +76,10 @@ public abstract class AbstractCreateAction extends ActionCommandBase {
         String type = actionConfig.getType();
 
         if (type == null) {
-            if ((actionConfig.getForward() == null)
+            String command = actionConfig.getCommand();
+            if ((command == null) && (actionConfig.getForward() == null)
                 && (actionConfig.getInclude() == null)) {
-                LOG.error("no type for " + actionConfig.getPath());
+                LOG.error("no type or command for " + actionConfig.getPath());
             } else {
                 LOG.trace("no type for " + actionConfig.getPath());
             }
