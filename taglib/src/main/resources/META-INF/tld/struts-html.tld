@@ -4364,11 +4364,9 @@
             <rtexprvalue>true</rtexprvalue>
             <description>
                 <![CDATA[
-                <p>Identifier to be assigned to this HTML element (renders
-                an "id" attribute).</p>
-
-                <p><strong>N.B.</strong> If present, the <code>errorStyleId</code>
-                overrides this attribute in the event of an error for the element.</p>
+                <p>Identifier to be attached to this label (renders
+                a "for" attribute) when the identifier is different
+                than the property name.</p>
             ]]>
             </description>
         </attribute>
