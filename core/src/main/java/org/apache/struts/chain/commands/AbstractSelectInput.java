@@ -22,6 +22,7 @@ package org.apache.struts.chain.commands;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.Action;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
@@ -74,16 +75,36 @@ public abstract class AbstractSelectInput extends ActionCommandBase {
                 LOG.trace("Finding ForwardConfig for '" + input + "'");
             }
 
-            forwardConfig = actionConfig.findForwardConfig(input);
-
-            if (forwardConfig == null) {
-                forwardConfig = moduleConfig.findForwardConfig(input);
+            // If the input parameter is specified, use that, otherwise try
+            // to find one in the mapping or the module under the standard
+            // conventional "input" name.
+            if (input != null) {
+                forwardConfig = actionConfig.findForwardConfig(input);
+                if (forwardConfig == null) {
+                    forwardConfig = moduleConfig.findForwardConfig(input);
+                }
+            } else {
+                forwardConfig = actionConfig.findForwardConfig(Action.INPUT);
+                if (forwardConfig == null) {
+                    forwardConfig = moduleConfig.findForwardConfig(Action.INPUT);
+                }
             }
         } else {
             if (LOG.isTraceEnabled()) {
                 LOG.trace("Delegating to forward() for '" + input + "'");
             }
 
+            // If no input parameter is specified, try to find one in the 
+            // module under the standard conventional "input" name. Because
+            // the Controller is not setup to treat the input parameter as
+            // a mapping, the action mapping check is skipped.
+            if (input == null) {
+                forwardConfig = moduleConfig.findForwardConfig(Action.INPUT);
+                if (forwardConfig != null) {
+                    input = Action.INPUT;
+                }
+            }
+            
             forwardConfig = forward(actionCtx, moduleConfig, input);
         }
 
