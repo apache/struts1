@@ -354,6 +354,11 @@ The "form-bean" element describes a particular form bean, which is a
      to process a request for a specific module-relative URI. The following
      attributes are defined:
 
+     actionId        The name which uniquely identifies the mapping within a 
+                     module. The Controlelr has built-in recognition for URIs
+                     that begin with an actionId and will automatically 
+                     translate forwards.
+
      attribute       Name of the request-scope or session-scope attribute that
                      is used to access our ActionForm bean, if it is other than
                      the bean's specified "name". Optional if "name" is specified,
@@ -467,6 +472,7 @@ The "form-bean" element describes a particular form bean, which is a
 -->
 <!ELEMENT action (icon?, display-name?, description?, set-property*, exception*, forward*)>
 <!ATTLIST action         id             ID              #IMPLIED>
+<!ATTLIST action         actionId       CDATA           #IMPLIED>
 <!ATTLIST action         attribute      %BeanName;      #IMPLIED>
 <!ATTLIST action         cancellable    %Boolean;       #IMPLIED>
 <!ATTLIST action         catalog        CDATA           #IMPLIED>
