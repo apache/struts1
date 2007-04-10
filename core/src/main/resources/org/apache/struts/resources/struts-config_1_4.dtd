@@ -307,6 +307,7 @@ The "form-bean" element describes a particular form bean, which is a
      name            The unique identifier for this forward. Referenced by the
                      Action object at runtime to select - by its logical name -
                      the resource that should complete the request/response.
+                     ["success"].
 
      path            The module-relative path to the resources that is 
                      encapsulated by the logical name of this ActionForward.
@@ -325,7 +326,7 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST forward        command        CDATA           #IMPLIED>
 <!ATTLIST forward        extends        CDATA           #IMPLIED>
 <!ATTLIST forward        module         %RequestPath;   #IMPLIED>
-<!ATTLIST forward        name           CDATA           #REQUIRED>
+<!ATTLIST forward        name           CDATA           "success">
 <!ATTLIST forward        path           %RequestPath;   #IMPLIED>
 <!ATTLIST forward        redirect       %Boolean;       #IMPLIED>
 
