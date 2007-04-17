@@ -132,7 +132,13 @@ public class TilesUtilImpl implements Serializable {
         } catch (IllegalAccessException e) {
             log.debug("Could not find JSP 2.0 include method.  Using old one.", e);
         } catch (InvocationTargetException e) {
-            log.debug("Unable to execute JSP 2.0 include method.  Trying old one.", e);
+            if (e.getCause() instanceof ServletException){
+               throw ((ServletException)e.getCause());
+            } else if (e.getCause() instanceof IOException){
+               throw ((IOException)e.getCause());
+            } else {
+               throw new ServletException(e);
+            }
         }
 
         pageContext.include(uri);

@@ -21,6 +21,7 @@
 package org.apache.struts.util;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
@@ -32,6 +33,7 @@ import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.FormBeanConfig;
 import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.ModuleConfig;
+import org.apache.struts.upload.FormFile;
 import org.apache.struts.upload.MultipartRequestHandler;
 import org.apache.struts.upload.MultipartRequestWrapper;
 
@@ -40,13 +42,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -451,6 +456,7 @@ public class RequestUtils {
 
             if (isMultipart) {
                 parameterValue = multipartParameters.get(name);
+                parameterValue = rationalizeMultipleFileProperty(bean, name, parameterValue);
             } else {
                 parameterValue = request.getParameterValues(name);
             }
@@ -479,6 +485,46 @@ public class RequestUtils {
     }
 
     /**
+     * <p>If the given form bean can accept multiple FormFile objects but the user only uploaded a single, then 
+     * the property will not match the form bean type.  This method performs some simple checks to try to accommodate
+     * that situation.</p>
+     * @param bean
+     * @param name
+     * @param parameterValue
+     * @return 
+     * @throws ServletException if the introspection has any errors.
+     */
+    private static Object rationalizeMultipleFileProperty(Object bean, String name, Object parameterValue) throws ServletException {
+    	if (!(parameterValue instanceof FormFile)) return parameterValue;
+
+    	FormFile formFileValue = (FormFile) parameterValue;
+    	try {
+			Class propertyType = PropertyUtils.getPropertyType(bean, name);
+
+			if (propertyType.isAssignableFrom(List.class)) {
+				ArrayList list = new ArrayList(1);
+				list.add(formFileValue);
+				return list;
+			}
+
+			if (propertyType.isArray() && propertyType.getComponentType().equals(FormFile.class)) {
+				return new FormFile[] { formFileValue };
+			}
+
+    	} catch (IllegalAccessException e) {
+			throw new ServletException(e);
+		} catch (InvocationTargetException e) {
+			throw new ServletException(e);
+		} catch (NoSuchMethodException e) {
+			throw new ServletException(e);
+		}
+    	
+		// no changes
+    	return parameterValue;
+    	
+	}
+
+	/**
      * <p>Try to locate a multipart request handler for this request. First,
      * look for a mapping-specific handler stored for us under an attribute.
      * If one is not present, use the global multipart handler, if there is

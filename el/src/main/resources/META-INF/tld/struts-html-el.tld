@@ -5170,7 +5170,6 @@
             <name>filter</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
-            <type>boolean</type>
             <description>
                 <![CDATA[
                 Set to <code>true</code> if you want the option label to be
