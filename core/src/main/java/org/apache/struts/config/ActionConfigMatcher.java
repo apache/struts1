@@ -180,7 +180,13 @@ public class ActionConfigMatcher implements Serializable {
         ForwardConfig cfg;
 
         for (int x = 0; x < fConfigs.length; x++) {
-            cfg = new ActionForward();
+            try {
+                cfg = (ActionForward) BeanUtils.cloneBean(fConfigs[x]);
+            } catch (Exception ex) {
+                log.warn("Unable to clone action config, recommend not using "
+                        + "wildcards", ex);
+                return null;
+            }
             cfg.setName(fConfigs[x].getName());
             cfg.setPath(convertParam(fConfigs[x].getPath(), vars));
             cfg.setRedirect(fConfigs[x].getRedirect());
