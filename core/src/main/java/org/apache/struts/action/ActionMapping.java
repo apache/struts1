@@ -100,17 +100,24 @@ public class ActionMapping extends ActionConfig {
     }
 
     /**
-     * <p>Create (if necessary) and return an {@link ActionForward} that
-     * corresponds to the <code>input</code> property of this Action.</p>
-     *
+     * <p>
+     * Create (if necessary) and return an {@link ActionForward} that
+     * corresponds to the <code>input</code> property of this Action.
+     * If the input parameter is specified, use that, otherwise try
+     * to find one in the mapping or the module under the standard
+     * conventional "input" name.
+     * 
      * @return The input forward for this action mapping.
      * @since Struts 1.1
      */
     public ActionForward getInputForward() {
+        String input = getInput();
         if (getModuleConfig().getControllerConfig().getInputForward()) {
-            return (findForward(getInput()));
-        } else {
-            return (new ActionForward(getInput()));
+            if (input != null) {
+                return findForward(input);
+            }
+            return findForward(Action.INPUT);
         }
+        return (new ActionForward(input));
     }
 }
