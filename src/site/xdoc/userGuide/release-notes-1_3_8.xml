@@ -23,19 +23,23 @@
 <document>
 
     <properties>
-        <title>Release Notes (since 1.3.8)</title>
+        <title>Release Notes (since 1.3.7)</title>
     </properties>
     <body>
-        <section name="6.1 Release Notes - Version 1.3.9">
+        <section name="6.1 Release Notes - Version 1.3.8">
 
             <a name="release_notes"/>
             <subsection name="Introduction">
                 <p>
                     This section contains release notes for changes that have
-                    taken place to Struts,
-                    since the
-                    <a href="release-notes-1_3_8.html">Version 1.3.8</a>
-                    distribution.
+                    taken place to Struts since the last public release, but
+                    there have been two intermediate test distributions since. Please 
+                    read the previous release notes to understand all issues
+                    that crescendo at this version:
+                    <blockquote>
+                        <a href="release-notes-1_3_7.html">Version 1.3.7</a><br/>
+                        <a href="release-notes-1_3_6.html">Version 1.3.6</a><br/>
+                    </blockquote>
                     To keep up-to-date on all changes to the framework, 
                     subscribe to
                     the (commits at struts.apache.org) list.
@@ -62,24 +66,13 @@
 
             <a name="Highlight"/>
             <subsection name="Issue Tracking">
+    
 <h4>Bug</h4>
 <ul>
-<li>[<a href='https://issues.apache.org/struts/browse/STR-2597'>STR-2597</a>] - Unexpected Tiles recursion on JSP errors?</li>
-<li>[<a href='https://issues.apache.org/struts/browse/STR-3015'>STR-3015</a>] - release set parameters to null in LinkTag</li>
-<li>[<a href='https://issues.apache.org/struts/browse/STR-3020'>STR-3020</a>] - AbstractCreateAction emits error unnecessarily</li>
-<li>[<a href='https://issues.apache.org/struts/browse/STR-3021'>STR-3021</a>] - Tiles insert is evaluated twice if JSP error occures</li>
-<li>[<a href='https://issues.apache.org/struts/browse/STR-3028'>STR-3028</a>] - struts-html-el.tld option tag filter type causing tld not to load</li>
-<li>[<a href='https://issues.apache.org/struts/browse/STR-3029'>STR-3029</a>] - ActionConfigMatcher does not instantiate the correct ActionForward</li>
-</ul>
-    
-<h4>Improvement</h4>
-<ul>
-<li>[<a href='https://issues.apache.org/struts/browse/STR-487'>STR-487</a>] - Multiple file upload not possible due to MultiPartRequestHandler limitation?</li>
-</ul>
-        
-<h4>Task</h4>
-<ul>
-<li>[<a href='https://issues.apache.org/struts/browse/STR-3034'>STR-3034</a>] - Remove Tiles 2 module from 1.3 branch</li>
+<li>[<a href='https://issues.apache.org/struts/browse/STR-3009'>STR-3009</a>] - ActionRedirect from ForwardConfig not redirecting properly?</li>
+<li>[<a href='https://issues.apache.org/struts/browse/STR-3010'>STR-3010</a>] - Faces Example2 webapp references older DTD version in struts-config.xml which doesn't have the cancellable attribute</li>
+<li>[<a href='https://issues.apache.org/struts/browse/STR-3011'>STR-3011</a>] - EL Example webapp has a number of errors</li>
+<li>[<a href='https://issues.apache.org/struts/browse/STR-3012'>STR-3012</a>] - User guide does not have links to 1.3.5, 1.3.6, 1.3.7 release notes</li>
 </ul>
 </subsection>
 
