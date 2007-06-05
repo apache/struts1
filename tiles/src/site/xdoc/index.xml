@@ -38,8 +38,8 @@
     <p>
         Tiles can also be used without Struts. A new release of Tiles, 
         Tiles 2, is being prepared. If you would like to use Tiles without 
-        Struts, see the new <a href="">Tiles 2 subproject.</a> 
-        The focus of this site is using Tiles <em>with</em> Struts. 
+        Struts, see the new <a href="http://tiles.apache.org/">Apache Tiles 2
+        project.</a> The focus of this site is using Tiles <em>with</em> Struts. 
     </p>
 </section>
 
