@@ -31,7 +31,7 @@
 </div>
 
 Whatever changes you make to properties should be reflected when the page
-is redisplayed. When first started, all of the listed checkboxes should
+is redisplayed. When first started, all of the listed checkboxes should not 
 be selected. Press "Save" to update, or "Cancel" to return to the
 main menu.
 
