@@ -158,7 +158,8 @@ main menu.
 <tr>
     <th align="right">stringIndexed[1]</th>
     <td align="left">
-        <html-el:textarea property="stringIndexed[1]" rows="${1+3}"/>
+        <html-el:textarea disabled="${!empty pageScope}"
+                          property="stringIndexed[1]" rows="${1+3}"/>
     </td>
     <th align="right">nested.stringIndexed[1]</th>
     <td align="left">
@@ -170,7 +171,8 @@ main menu.
 <tr>
     <th align="right">stringIndexed[1]</th>
     <td align="left">
-        <html-el:text property="stringIndexed[1]" size="32"/>
+        <html-el:text property="stringIndexed[1]" 
+                      disabled="${!empty pageScope}" size="32"/>
     </td>
     <th align="right">nested.stringIndexed[1]</th>
     <td align="left">
