@@ -32,19 +32,22 @@
     </div>
 
     <html-el:form action="html-file.do">
-        <table>
+        <table cellpadding="10">
             <tr>
+                <td>As String property</td>
                 <td>
                     <html-el:file property="stringProperty"/>
                 </td>
             </tr>
             <tr>
+                <td>As String property, disabled if not empty pageScope</td>
                 <td>
                     <html-el:file property="stringProperty"
                                   disabled="${!empty pageScope}"/>
                 </td>
             </tr>
             <tr>
+                <td>Iterating over a collection as String properties</td>
                 <td>
                     <logic-el:iterate collection="${pageScope}" id="item">
                         <html-el:file property="stringProperty"

@@ -39,7 +39,7 @@
                                    title="Flag One" tabindex="3" accesskey="1"
                                    disabled="${!empty pageScope}"/>
                 </td>
-                <td>flag one</td>
+                <td>flag one (disabled if not empty pageScope)</td>
             </tr>
             <tr>
                 <td>
