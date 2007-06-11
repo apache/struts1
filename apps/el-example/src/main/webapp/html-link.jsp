@@ -111,7 +111,7 @@ main menu.
 
 <tr>
     <th colspan="4" align="center">
-        Hyperlinks To Be Tested
+        Hyperlinks To Be Tested (via page attribtue)
     </th>
 </tr>
 
@@ -188,6 +188,12 @@ main menu.
             Float, int, and stringArray via name (Map)
         </html-el:link>
     </td>
+</tr>
+
+<tr>
+    <th colspan="4" align="center">
+        Hyperlinks To Be Tested (via action attribtue)
+    </th>
 </tr>
 
 <tr>
