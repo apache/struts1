@@ -524,8 +524,8 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
          *
          * @return The size of the file, in bytes.
          */
-        public int getFileSize() {
-            return (int) fileItem.getSize();
+        public long getFileSize() {
+            return fileItem.getSize();
         }
 
         /**
@@ -534,7 +534,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
          *
          * @param filesize The size of the file, in bytes.
          */
-        public void setFileSize(int filesize) {
+        public void setFileSize(long filesize) {
             throw new UnsupportedOperationException(
                 "The setFileSize() method is not supported.");
         }
