@@ -528,7 +528,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         public int getFileSize() {
             long size = fileItem.getSize();
             if (size > Integer.MAX_VALUE) {
-                throw new IllegalStateException("Size is greater than 2 GB; use getSize()");
+                throw new IllegalStateException("Size is greater than 2 GB; use getFileLength()");
             }
             return (int) size;
         }
