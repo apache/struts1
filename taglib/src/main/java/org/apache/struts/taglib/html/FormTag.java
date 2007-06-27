@@ -721,7 +721,8 @@ public class FormTag extends TagSupport {
         results.append(lineEnd);
         results.append(lineEnd);
 
-        results.append("  if (focusControl.type != \"hidden\" && ");
+        results.append("  if (focusControl != null && ");
+        results.append("focusControl.type != \"hidden\" && ");
         results.append("!focusControl.disabled && ");
         results.append("focusControl.style.display != \"none\") {");
         results.append(lineEnd);
