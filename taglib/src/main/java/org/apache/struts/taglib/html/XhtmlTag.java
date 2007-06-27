@@ -20,7 +20,10 @@
  */
 package org.apache.struts.taglib.html;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
+import org.apache.struts.taglib.TagUtils;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
@@ -32,6 +35,17 @@ import javax.servlet.jsp.tagext.TagSupport;
  * Example:<br/> &lt;html:xhtml/&gt; </p>
  */
 public class XhtmlTag extends TagSupport {
+    
+    /**
+     * Commons logging instance.
+     */
+    private static final Log log = LogFactory.getLog(XhtmlTag.class);
+
+    /**
+     * The scope within which to store the markup format.
+     */
+    private String scope;
+    
     /**
      * Constructor for XhtmlTag.
      */
@@ -43,9 +57,24 @@ public class XhtmlTag extends TagSupport {
      * @see javax.servlet.jsp.tagext.Tag#doEndTag()
      */
     public int doEndTag() throws JspException {
-        this.pageContext.setAttribute(Globals.XHTML_KEY, "true",
-            PageContext.PAGE_SCOPE);
-
+        int inScope = PageContext.PAGE_SCOPE;
+        try {
+            if (scope != null) {
+                inScope = TagUtils.getInstance().getScope(scope);
+            }
+        } catch (JspException e) {
+            log.warn("invalid scope name - defaulting to PAGE_SCOPE", e);
+        }
+        
+        this.pageContext.setAttribute(Globals.XHTML_KEY, "true", inScope);
         return EVAL_PAGE;
+    }
+
+    public String getScope() {
+        return this.scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
     }
 }
