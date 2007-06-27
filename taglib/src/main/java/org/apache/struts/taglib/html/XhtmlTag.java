@@ -59,8 +59,8 @@ public class XhtmlTag extends TagSupport {
     public int doEndTag() throws JspException {
         int inScope = PageContext.PAGE_SCOPE;
         try {
-            if (scope != null) {
-                inScope = TagUtils.getInstance().getScope(scope);
+            if (this.scope != null) {
+                inScope = TagUtils.getInstance().getScope(this.scope);
             }
         } catch (JspException e) {
             log.warn("invalid scope name - defaulting to PAGE_SCOPE", e);
