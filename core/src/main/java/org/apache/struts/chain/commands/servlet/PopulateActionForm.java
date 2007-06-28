@@ -84,7 +84,7 @@ public class PopulateActionForm extends AbstractPopulateActionForm {
      * @param actionConfig action config for current request
      * @return true if action form should be populated
      *
-     * @since Struts 1.3.7
+     * @since Struts 1.4
      */
     protected boolean isPopulate(HttpServletRequest request, ActionConfig actionConfig) {
         String strPopulate = actionConfig.getPopulate();
@@ -97,7 +97,7 @@ public class PopulateActionForm extends AbstractPopulateActionForm {
      * @param actionConfig action config for current request
      * @return true if action form should be reset
      *
-     * @since Struts 1.3.7
+     * @since Struts 1.4
      */
     protected boolean isReset(HttpServletRequest request, ActionConfig actionConfig) {
         String strReset = actionConfig.getReset();
@@ -114,7 +114,7 @@ public class PopulateActionForm extends AbstractPopulateActionForm {
      *         corresponding action form; false if if action mapping is
      *         configured not to reset (or populate) the action form.
      *
-     * @since Struts 1.3.7
+     * @since Struts 1.4
      */
     protected boolean getResetOrPopulate(HttpServletRequest request, String strAttr) {
         // Reset configuration is not defined (should not happen,
