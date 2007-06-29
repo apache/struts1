@@ -4605,6 +4605,27 @@
             ]]>
             </description>
         </attribute>
+        <attribute>
+            <name>title</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+                  <p>The advisory title for this element.</p>
+                  ]]>
+            </description>
+        </attribute>
+        <attribute>
+            <name>titleKey</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>
+                <![CDATA[
+                  <p>The message resources key for the advisory title
+                  for this element.</p>
+                  ]]>
+            </description>
+        </attribute>
     </tag>
     <tag>
         <name>link</name>
