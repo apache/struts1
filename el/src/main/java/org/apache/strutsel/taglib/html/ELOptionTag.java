@@ -311,7 +311,7 @@ public class ELOptionTag extends OptionTag {
      * Setter method for "titleKey" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
-    public void setStyleIdExpr(String titleKeyExpr) {
+    public void setTitleKeyExpr(String titleKeyExpr) {
         this.titleKeyExpr = titleKeyExpr;
     }
 
