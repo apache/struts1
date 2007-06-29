@@ -338,8 +338,8 @@ public class ELOptionTag extends OptionTag {
         setStyleExpr(null);
         setStyleClassExpr(null);
         setStyleIdExpr(null);
-        setTitle(null);
-        setTitleKey(null);
+        setTitleExpr(null);
+        setTitleKeyExpr(null);
         setValueExpr(null);
     }
 
