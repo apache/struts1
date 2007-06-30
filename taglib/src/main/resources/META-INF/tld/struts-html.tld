@@ -5369,6 +5369,9 @@
         
                 <pre>errors.divideZero=The mathematical expression 
                 &lt;strong&gt;{0}&lt;/strong&gt; caused a divide by zero.</pre>
+                
+                <dl><dt><b>Since:</b></dt>
+                <dd>Struts 1.4</dd></dl>
                 ]]>
             </description>
         </attribute>
