@@ -702,7 +702,7 @@ public class FormTag extends TagSupport {
 
         // xhtml content should emit CDATA section
         // but html content should use the browser hiding trick
-        results.append(isXhtml() ? "<![CDATA[" : "<!--");
+        results.append(isXhtml() ? "//<![CDATA[" : "<!--");
         results.append(lineEnd);
 
         // Construct the control name that will receive focus.
@@ -745,7 +745,8 @@ public class FormTag extends TagSupport {
         results.append("  }");
         results.append(lineEnd);
 
-        results.append(isXhtml() ? "]]>" : "// -->");
+        results.append("//");
+        results.append(isXhtml() ? "]]>" : "-->");
         results.append(lineEnd);
 
         results.append("</script>");
