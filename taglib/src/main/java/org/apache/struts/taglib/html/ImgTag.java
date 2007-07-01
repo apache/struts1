@@ -20,6 +20,7 @@
  */
 package org.apache.struts.taglib.html;
 
+import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
@@ -473,6 +474,12 @@ public class ImgTag extends BaseHandlerTag {
      * @throws JspException if an error occurs
      */
     protected String src() throws JspException {
+        ModuleConfig moduleConfig =
+            ModuleUtils.getInstance().getModuleConfig(this.module,
+                (HttpServletRequest) pageContext.getRequest(),
+                pageContext.getServletContext());
+
+
         // Deal with a direct context-relative page that has been specified
         if (this.page != null) {
             if ((this.src != null) || (this.srcKey != null)
@@ -480,18 +487,13 @@ public class ImgTag extends BaseHandlerTag {
                 throwImgTagSrcException();
             }
 
-            ModuleConfig config =
-                ModuleUtils.getInstance().getModuleConfig(this.module,
-                    (HttpServletRequest) pageContext.getRequest(),
-                    pageContext.getServletContext());
-
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
             String pageValue = this.page;
 
-            if (!srcDefaultReference(config)) {
+            if (!srcDefaultReference(moduleConfig)) {
                 pageValue =
-                    TagUtils.getInstance().pageURL(request, this.page, config);
+                    TagUtils.getInstance().pageURL(request, this.page, moduleConfig);
             }
 
             return (request.getContextPath() + pageValue);
@@ -503,20 +505,15 @@ public class ImgTag extends BaseHandlerTag {
                 throwImgTagSrcException();
             }
 
-            ModuleConfig config =
-                ModuleUtils.getInstance().getModuleConfig(this.module,
-                    (HttpServletRequest) pageContext.getRequest(),
-                    pageContext.getServletContext());
-
             HttpServletRequest request =
                 (HttpServletRequest) pageContext.getRequest();
             String pageValue =
                 TagUtils.getInstance().message(pageContext, getBundle(),
                     getLocale(), this.pageKey);
 
-            if (!srcDefaultReference(config)) {
+            if (!srcDefaultReference(moduleConfig)) {
                 pageValue =
-                    TagUtils.getInstance().pageURL(request, pageValue, config);
+                    TagUtils.getInstance().pageURL(request, pageValue, moduleConfig);
             }
 
             return (request.getContextPath() + pageValue);
@@ -525,6 +522,12 @@ public class ImgTag extends BaseHandlerTag {
         if (this.action != null) {
             if ((this.src != null) || (this.srcKey != null)) {
                 throwImgTagSrcException();
+            }
+
+            // Translate the action if it is an actionId
+            ActionConfig actionConfig = moduleConfig.findActionConfigId(this.action);
+            if (actionConfig != null) {
+                action = actionConfig.getPath();
             }
 
             return TagUtils.getInstance().getActionMappingURL(action, module,
