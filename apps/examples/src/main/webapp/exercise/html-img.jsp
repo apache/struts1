@@ -50,6 +50,14 @@
     </tr>
     <tr>
     <td>
+    Struts img tag via action attribute and actionId
+    </td>
+    <td>
+    <html:img action="imgAction" />
+    </td>
+    </tr>
+    <tr>
+    <td>
     Struts img tag via page attribute, default module
     </td>
     <td>
