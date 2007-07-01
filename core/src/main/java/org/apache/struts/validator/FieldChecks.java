@@ -240,7 +240,7 @@ public class FieldChecks implements Serializable {
                 return true;
             }
         } catch (Exception e) {
-            processFailure(errors, field, "mask", e);
+            processFailure(errors, field, validator.getFormName(), "mask", e);
 
             return false;
         }
@@ -835,7 +835,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                processFailure(errors, field, "longRange", e);
+                processFailure(errors, field, validator.getFormName(), "longRange", e);
 
                 return false;
             }
@@ -889,7 +889,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                processFailure(errors, field, "intRange", e);
+                processFailure(errors, field, validator.getFormName(), "intRange", e);
 
                 return false;
             }
@@ -943,7 +943,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                processFailure(errors, field, "doubleRange", e);
+                processFailure(errors, field, validator.getFormName(), "doubleRange", e);
 
                 return false;
             }
@@ -997,7 +997,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                processFailure(errors, field, "floatRange", e);
+                processFailure(errors, field, validator.getFormName(), "floatRange", e);
 
                 return false;
             }
@@ -1123,7 +1123,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                processFailure(errors, field, "maxlength", e);
+                processFailure(errors, field, validator.getFormName(), "maxlength", e);
 
                 return false;
             }
@@ -1179,7 +1179,7 @@ public class FieldChecks implements Serializable {
                     return false;
                 }
             } catch (Exception e) {
-                processFailure(errors, field, "minlength", e);
+                processFailure(errors, field, validator.getFormName(), "minlength", e);
 
                 return false;
             }
@@ -1309,11 +1309,11 @@ public class FieldChecks implements Serializable {
      * Process a validation failure.
      */
     private static void processFailure(ActionMessages errors, Field field,
-        String validator, Throwable t) {
+        String formName, String validatorName, Throwable t) {
         // Log the error
         String logErrorMsg =
-            sysmsgs.getMessage("validation.failed", validator,
-                field.getProperty(), t.toString());
+            sysmsgs.getMessage("validation.failed", validatorName,
+                field.getProperty(), formName, t.toString());
 
         log.error(logErrorMsg);
 
