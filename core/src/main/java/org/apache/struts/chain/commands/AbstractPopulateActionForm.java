@@ -45,21 +45,26 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
      */
     public boolean execute(ActionContext actionCtx)
         throws Exception {
-        // Is there a form bean for this request?
+        
+        ActionConfig actionConfig = actionCtx.getActionConfig();
         ActionForm actionForm = actionCtx.getActionForm();
 
+        // First determine if the request was cancelled
+        handleCancel(actionCtx, actionConfig, actionForm);
+
+        // Is there a form bean for this request?
         if (actionForm == null) {
             return (false);
         }
 
-        // Reset the form bean property values
-        ActionConfig actionConfig = actionCtx.getActionConfig();
+        // If request is cancelled, form manipulation is prevented
+        if (actionCtx.getCancelled().booleanValue()) {
+            return (false);
+        }
 
+        // Reset and repopulate the form bean property values
         reset(actionCtx, actionConfig, actionForm);
-
         populate(actionCtx, actionConfig, actionForm);
-
-        handleCancel(actionCtx, actionConfig, actionForm);
 
         return (false);
     }
