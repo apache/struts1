@@ -275,12 +275,14 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      */
     protected void clearInputStream(HttpServletRequest request) {
         try {
-            ServletInputStream is = request.getInputStream();
-            byte[] data = new byte[DEFAULT_SIZE_THRESHOLD];
-            int bytesRead = 0;
-            do {
-                bytesRead = is.read(data);
-            } while (bytesRead > -1);
+            if (System.getProperty("os.name").contains("Windows")) {
+                ServletInputStream is = request.getInputStream();
+                byte[] data = new byte[DEFAULT_SIZE_THRESHOLD];
+                int bytesRead = 0;
+                do {
+                    bytesRead = is.read(data);
+                } while (bytesRead > -1);
+            }   
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
