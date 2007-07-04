@@ -33,6 +33,7 @@ import org.apache.struts.config.ModuleConfig;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 
 import java.io.File;
@@ -188,10 +189,11 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
             // Special handling for uploads that are too big.
             request.setAttribute(MultipartRequestHandler.ATTRIBUTE_MAX_LENGTH_EXCEEDED,
                 Boolean.TRUE);
-
+            clearInputStream(request);
             return;
         } catch (FileUploadException e) {
             log.error("Failed to parse multipart request", e);
+            clearInputStream(request);
             throw new ServletException(e);
         }
 
@@ -266,6 +268,23 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
     }
 
     // -------------------------------------------------------- Support Methods
+
+    /**
+     * Finishes reading the input stream from an aborted upload. Fix for
+     * STR-2700 to prevent Window machines from hanging.
+     */
+    protected void clearInputStream(HttpServletRequest request) {
+        try {
+            ServletInputStream is = request.getInputStream();
+            byte[] data = new byte[DEFAULT_SIZE_THRESHOLD];
+            int bytesRead = 0;
+            do {
+                bytesRead = is.read(data);
+            } while (bytesRead > -1);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+    }
 
     /**
      * <p> Returns the maximum allowable size, in bytes, of an uploaded file.
