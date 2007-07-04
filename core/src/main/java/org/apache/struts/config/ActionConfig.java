@@ -1384,6 +1384,7 @@ public class ActionConfig extends BaseConfig {
             sb.append(type);
         }
 
+        sb.append("]");
         return (sb.toString());
     }
 }
