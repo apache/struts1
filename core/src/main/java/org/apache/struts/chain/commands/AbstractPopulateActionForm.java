@@ -57,11 +57,6 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
             return (false);
         }
 
-        // If request is cancelled, form manipulation is prevented
-        if (actionCtx.getCancelled().booleanValue()) {
-            return (false);
-        }
-
         // Reset and repopulate the form bean property values
         reset(actionCtx, actionConfig, actionForm);
         populate(actionCtx, actionConfig, actionForm);
