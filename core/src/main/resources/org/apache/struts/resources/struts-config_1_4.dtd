@@ -491,6 +491,7 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST action         reset          %PopulateStrategy; #IMPLIED>
 <!ATTLIST action         roles          CDATA           #IMPLIED>
 <!ATTLIST action         scope          %RequestScope;  #IMPLIED>
+<!ATTLIST action         singleton      %Boolean;       #IMPLIED>
 <!ATTLIST action         suffix         CDATA           #IMPLIED>
 <!ATTLIST action         type           %ClassName;     #IMPLIED>
 <!ATTLIST action         unknown        %Boolean;       #IMPLIED>
