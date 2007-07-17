@@ -40,6 +40,7 @@ import org.apache.commons.digester.RuleSet;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
+import org.apache.struts.chain.ComposableRequestProcessor;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ConfigRuleSet;
 import org.apache.struts.config.ExceptionConfig;
@@ -617,6 +618,15 @@ public class ActionServlet extends HttpServlet {
                     "Cannot initialize RequestProcessor of class "
                     + config.getControllerConfig().getProcessorClass() + ": "
                     + e);
+            }
+            
+            // Emit a warning to the log if the classic RequestProcessor is 
+            // being used without composition. Hopefully developers will 
+            // heed this message and make the upgrade.
+            if (!(processor instanceof ComposableRequestProcessor)) {
+                log.warn("Use of the classic RequestProcessor is not recommended. " +
+                        "Please upgrade to the ComposableRequestProcessor to " +
+                        "receive the advantage of modern enhancements and fixes.");
             }
 
             processor.init(this, config);
