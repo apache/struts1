@@ -741,6 +741,11 @@ public class RequestProcessor {
         throws IOException {
         String path;
 
+        // Set per request the original path for postback forms
+        if (request.getAttribute(Globals.ORIGINAL_URI_KEY) == null) {
+            request.setAttribute(Globals.ORIGINAL_URI_KEY, request.getServletPath());
+        }
+
         // For prefix matching, match on the path info (if any)
         path = (String) request.getAttribute(INCLUDE_PATH_INFO);
 
