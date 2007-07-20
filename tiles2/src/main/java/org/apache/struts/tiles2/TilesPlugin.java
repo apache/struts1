@@ -45,7 +45,6 @@ import org.apache.tiles.TilesException;
 import org.apache.tiles.access.TilesAccess;
 import org.apache.tiles.context.ChainedTilesContextFactory;
 import org.apache.tiles.context.TilesRequestContext;
-import org.apache.tiles.context.servlet.ServletTilesRequestContext;
 import org.apache.tiles.definition.DefinitionsFactory;
 import org.apache.tiles.definition.UrlDefinitionsFactory;
 import org.apache.tiles.factory.KeyedDefinitionsFactoryTilesContainerFactory;
@@ -53,6 +52,7 @@ import org.apache.tiles.factory.TilesContainerFactory;
 import org.apache.tiles.impl.BasicTilesContainer;
 import org.apache.tiles.impl.KeyedDefinitionsFactoryTilesContainer;
 import org.apache.tiles.impl.KeyedDefinitionsFactoryTilesContainer.KeyExtractor;
+import org.apache.tiles.servlet.context.ServletTilesRequestContext;
 
 /**
  * Tiles Plugin used to initialize Tiles.
@@ -275,7 +275,7 @@ public class TilesPlugin implements PlugIn {
         String configProcessorClassname = ctrlConfig.getProcessorClass();
 
         // Check if specified classname exist
-        Class configProcessorClass;
+        Class<?> configProcessorClass;
         try {
             configProcessorClass =
                 RequestUtils.applicationClass(configProcessorClassname);
@@ -304,7 +304,7 @@ public class TilesPlugin implements PlugIn {
         }
 
         // Check if specified request processor is compatible with Tiles.
-        Class tilesProcessorClass = TilesRequestProcessor.class;
+        Class<?> tilesProcessorClass = TilesRequestProcessor.class;
         if (!tilesProcessorClass.isAssignableFrom(configProcessorClass)) {
             // Not compatible
             String msg =

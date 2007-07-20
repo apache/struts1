@@ -21,6 +21,8 @@
  */
 package org.apache.struts.tiles2.preparer;
 
+import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +30,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tiles.AttributeContext;
 import org.apache.tiles.context.TilesRequestContext;
-import org.apache.tiles.context.servlet.ServletTilesRequestContext;
+import org.apache.tiles.preparer.PreparerException;
 import org.apache.tiles.preparer.ViewPreparer;
+import org.apache.tiles.servlet.context.ServletTilesRequestContext;
 
 /**
  * @version $Rev$ $Date$
@@ -43,7 +46,7 @@ public class UrlPreparer implements ViewPreparer {
     }
 
     public void execute(TilesRequestContext tilesContext,
-            AttributeContext attributeContext) throws Exception {
+            AttributeContext attributeContext) throws PreparerException {
         
         if (tilesContext instanceof ServletTilesRequestContext) {
             ServletTilesRequestContext servletTilesContext =
@@ -53,13 +56,21 @@ public class UrlPreparer implements ViewPreparer {
             RequestDispatcher rd = request.getSession().getServletContext()
                     .getRequestDispatcher(url);
             if (rd == null) {
-                throw new ServletException(
+                throw new PreparerException(
                     "Controller can't find url '" + url + "'.");
             }
     
-            rd.include(request, response);
+            try {
+                rd.include(request, response);
+            } catch (ServletException e) {
+                throw new PreparerException(
+                        "The request dispatcher threw an exception", e);
+            } catch (IOException e) {
+                throw new PreparerException(
+                        "The request dispatcher threw an I/O exception", e);
+            }
         } else {
-            throw new ServletException("Cannot dispatch url '" + url
+            throw new PreparerException("Cannot dispatch url '" + url
                     + "' since this preparer has not been called under a servlet environment");
         }
     }

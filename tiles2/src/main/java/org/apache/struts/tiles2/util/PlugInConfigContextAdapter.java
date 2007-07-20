@@ -63,6 +63,7 @@ public class PlugInConfigContextAdapter implements ServletContext {
      *
      * @param plugInConfigObject The plugin config object to use.
      */
+    @SuppressWarnings("unchecked")
     public PlugInConfigContextAdapter(PlugInConfig plugInConfigObject,
             ServletContext servletContext) {
         this.plugInConfigObject = plugInConfigObject;
@@ -96,6 +97,7 @@ public class PlugInConfigContextAdapter implements ServletContext {
      *
      * @return The names of all initialization parameters.
      */
+    @SuppressWarnings("unchecked")
     public Enumeration getInitParameterNames() {
         return new IteratorEnumeration(parameterNames.iterator());
     }
@@ -118,6 +120,7 @@ public class PlugInConfigContextAdapter implements ServletContext {
         return rootContext.getMimeType(string);
     }
 
+    @SuppressWarnings("unchecked")
     public Set getResourcePaths(String string) {
         return rootContext.getResourcePaths(string);
     }
@@ -138,14 +141,17 @@ public class PlugInConfigContextAdapter implements ServletContext {
         return rootContext.getNamedDispatcher(string);
     }
 
+    @SuppressWarnings("deprecation")
     public Servlet getServlet(String string) throws ServletException {
         return rootContext.getServlet(string);
     }
 
+    @SuppressWarnings({ "deprecation", "unchecked" })
     public Enumeration getServlets() {
         return rootContext.getServlets();
     }
 
+    @SuppressWarnings({ "deprecation", "unchecked" })
     public Enumeration getServletNames() {
         return rootContext.getServletNames();
     }
@@ -154,6 +160,7 @@ public class PlugInConfigContextAdapter implements ServletContext {
         rootContext.log(string);
     }
 
+    @SuppressWarnings("deprecation")
     public void log(Exception exception, String string) {
         rootContext.log(exception, string);
     }
@@ -174,6 +181,7 @@ public class PlugInConfigContextAdapter implements ServletContext {
         return rootContext.getAttribute(string);
     }
 
+    @SuppressWarnings("unchecked")
     public Enumeration getAttributeNames() {
         return rootContext.getAttributeNames();
     }
