@@ -189,6 +189,17 @@ public class TilesPlugin implements PlugIn {
                             container);
                 }
                 if (container instanceof KeyedDefinitionsFactoryTilesContainer) {
+                	KeyedDefinitionsFactoryTilesContainer keyedContainer =
+                		(KeyedDefinitionsFactoryTilesContainer) container;
+                	// If we have a definition factory for the current module prefix
+                	// then we are trying to re-initialize the same module, and it is
+                	// wrong!
+                    if (keyedContainer.getProperDefinitionsFactory(moduleConfig
+							.getPrefix()) != null) {
+                		throw new ServletException("Tiles definitions factory for module '"
+										+ moduleConfig.getPrefix()
+										+ "' has already been configured");
+                	}
                     if (factory instanceof KeyedDefinitionsFactoryTilesContainerFactory) {
                         DefinitionsFactory defsFactory =
                             ((KeyedDefinitionsFactoryTilesContainerFactory) factory)
@@ -205,8 +216,7 @@ public class TilesPlugin implements PlugIn {
                             initParameters.put(BasicTilesContainer
                                     .DEFINITIONS_CONFIG, param);
                         }
-                        ((KeyedDefinitionsFactoryTilesContainer) container)
-                                .setDefinitionsFactory(moduleConfig.getPrefix(),
+                        keyedContainer.setDefinitionsFactory(moduleConfig.getPrefix(),
                                         defsFactory, initParameters);
                     } else {
                         log.warn("The created factory is not instance of "
@@ -221,6 +231,10 @@ public class TilesPlugin implements PlugIn {
             } else {
                 factory = TilesContainerFactory
                         .getFactory(currentPlugInConfigContextAdapter);
+                if (TilesAccess.getContainer(currentPlugInConfigContextAdapter) != null) {
+                    throw new ServletException(
+                            "Tiles container has already been configured");
+                }
                 container = factory.createContainer(
                         currentPlugInConfigContextAdapter);
                 TilesAccess.setContainer(currentPlugInConfigContextAdapter,
