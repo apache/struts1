@@ -884,11 +884,11 @@ public class TagUtils {
         } catch (IllegalAccessException e) {
             saveException(pageContext, e);
             throw new JspException(messages.getMessage("lookup.access",
-                    property, name));
+                    property, name), e);
         } catch (IllegalArgumentException e) {
             saveException(pageContext, e);
             throw new JspException(messages.getMessage("lookup.argument",
-                    property, name));
+                    property, name), e);
         } catch (InvocationTargetException e) {
             Throwable t = e.getTargetException();
 
@@ -898,7 +898,7 @@ public class TagUtils {
 
             saveException(pageContext, t);
             throw new JspException(messages.getMessage("lookup.target",
-                    property, name));
+                    property, name), e);
         } catch (NoSuchMethodException e) {
             saveException(pageContext, e);
 
@@ -916,7 +916,7 @@ public class TagUtils {
             }
 
             throw new JspException(messages.getMessage("lookup.method",
-                    property, beanName));
+                    property, beanName), e);
         }
     }
 
@@ -1152,7 +1152,7 @@ public class TagUtils {
             writer.print(text);
         } catch (IOException e) {
             saveException(pageContext, e);
-            throw new JspException(messages.getMessage("write.io", e.toString()));
+            throw new JspException(messages.getMessage("write.io", e.toString()), e);
         }
     }
 
@@ -1176,7 +1176,7 @@ public class TagUtils {
             writer.print(text);
         } catch (IOException e) {
             saveException(pageContext, e);
-            throw new JspException(messages.getMessage("write.io", e.toString()));
+            throw new JspException(messages.getMessage("write.io", e.toString()), e);
         }
     }
 }
