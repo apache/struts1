@@ -47,28 +47,29 @@ public class PlugInConfigContextAdapter implements ServletContext {
      * The internal plugin config object.
      */
     private PlugInConfig plugInConfigObject;
-    
+
     /**
      * The servlet context.
      */
     private ServletContext rootContext;
-    
+
     /**
      * The set of all parameter names.
      */
-    private Set<String> parameterNames;
+    private Set < String > parameterNames;
 
     /**
      * Constructor.
      *
      * @param plugInConfigObject The plugin config object to use.
+     * @param servletContext The servlet context to use.
      */
     @SuppressWarnings("unchecked")
     public PlugInConfigContextAdapter(PlugInConfig plugInConfigObject,
             ServletContext servletContext) {
         this.plugInConfigObject = plugInConfigObject;
         this.rootContext = servletContext;
-        parameterNames = new LinkedHashSet<String>();
+        parameterNames = new LinkedHashSet < String > ();
         parameterNames.addAll(this.plugInConfigObject.getProperties().keySet());
         CollectionUtils.addAll(parameterNames, this.rootContext
                 .getInitParameterNames());
@@ -82,13 +83,13 @@ public class PlugInConfigContextAdapter implements ServletContext {
      */
     public String getInitParameter(String parameterName) {
         String retValue;
-        
+
         retValue = (String) plugInConfigObject.getProperties()
                 .get(parameterName);
         if (retValue == null) {
             retValue = rootContext.getInitParameter(parameterName);
         }
-        
+
         return retValue;
     }
 
@@ -103,97 +104,119 @@ public class PlugInConfigContextAdapter implements ServletContext {
     }
 
     // The rest of the methods are wrapping implementations of the interface.
-    
+
+    /** {@inheritDoc} */
     public ServletContext getContext(String string) {
         return rootContext.getContext(string);
     }
 
+    /** {@inheritDoc} */
     public int getMajorVersion() {
         return rootContext.getMajorVersion();
     }
 
+    /** {@inheritDoc} */
     public int getMinorVersion() {
         return rootContext.getMinorVersion();
     }
 
+    /** {@inheritDoc} */
     public String getMimeType(String string) {
         return rootContext.getMimeType(string);
     }
 
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     public Set getResourcePaths(String string) {
         return rootContext.getResourcePaths(string);
     }
 
+    /** {@inheritDoc} */
     public URL getResource(String string) throws MalformedURLException {
         return rootContext.getResource(string);
     }
 
+    /** {@inheritDoc} */
     public InputStream getResourceAsStream(String string) {
         return rootContext.getResourceAsStream(string);
     }
 
+    /** {@inheritDoc} */
     public RequestDispatcher getRequestDispatcher(String string) {
         return rootContext.getRequestDispatcher(string);
     }
 
+    /** {@inheritDoc} */
     public RequestDispatcher getNamedDispatcher(String string) {
         return rootContext.getNamedDispatcher(string);
     }
 
+    /** {@inheritDoc} */
     @SuppressWarnings("deprecation")
     public Servlet getServlet(String string) throws ServletException {
         return rootContext.getServlet(string);
     }
 
+    /** {@inheritDoc} */
     @SuppressWarnings({ "deprecation", "unchecked" })
     public Enumeration getServlets() {
         return rootContext.getServlets();
     }
 
+    /** {@inheritDoc} */
     @SuppressWarnings({ "deprecation", "unchecked" })
     public Enumeration getServletNames() {
         return rootContext.getServletNames();
     }
 
+    /** {@inheritDoc} */
     public void log(String string) {
         rootContext.log(string);
     }
 
+    /** {@inheritDoc} */
     @SuppressWarnings("deprecation")
     public void log(Exception exception, String string) {
         rootContext.log(exception, string);
     }
 
+    /** {@inheritDoc} */
     public void log(String string, Throwable throwable) {
         rootContext.log(string, throwable);
     }
 
+    /** {@inheritDoc} */
     public String getRealPath(String string) {
         return rootContext.getRealPath(string);
     }
 
+    /** {@inheritDoc} */
     public String getServerInfo() {
         return rootContext.getServerInfo();
     }
 
+    /** {@inheritDoc} */
     public Object getAttribute(String string) {
         return rootContext.getAttribute(string);
     }
 
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     public Enumeration getAttributeNames() {
         return rootContext.getAttributeNames();
     }
 
+    /** {@inheritDoc} */
     public void setAttribute(String string, Object object) {
         rootContext.setAttribute(string, object);
     }
 
+    /** {@inheritDoc} */
     public void removeAttribute(String string) {
         rootContext.removeAttribute(string);
     }
 
+    /** {@inheritDoc} */
     public String getServletContextName() {
         return rootContext.getServletContextName();
     }

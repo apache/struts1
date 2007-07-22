@@ -51,14 +51,16 @@ import org.apache.tiles.access.TilesAccess;
  *
  *
  */
-public class TilesPreProcessor implements Command
-{
+public class TilesPreProcessor implements Command {
 
 
     // ------------------------------------------------------ Instance Variables
 
 
-    private static final Log log = LogFactory.getLog(TilesPreProcessor.class);
+    /**
+     * The logging object.
+     */
+    private static final Log LOG = LogFactory.getLog(TilesPreProcessor.class);
 
     // ---------------------------------------------------------- Public Methods
 
@@ -79,6 +81,7 @@ public class TilesPreProcessor implements Command
      *
      * @param context The <code>Context</code> for the current request
      *
+     * @throws Exception If something goes wrong.
      * @return <code>false</code> in most cases, but true if we determine
      * that we're processing in "include" mode.
      */
@@ -87,34 +90,33 @@ public class TilesPreProcessor implements Command
         // Is there a Tiles Definition to be processed?
         ServletActionContext sacontext = (ServletActionContext) context;
         ForwardConfig forwardConfig = sacontext.getForwardConfig();
-        if (forwardConfig == null || forwardConfig.getPath() == null)
-        {
+        if (forwardConfig == null || forwardConfig.getPath() == null) {
             // this is not a serious error, so log at low priority
-            log.debug("No forwardConfig or no path, so pass to next command.");
+            LOG.debug("No forwardConfig or no path, so pass to next command.");
             return (false);
         }
 
 
         TilesContainer container = TilesAccess.getContainer(sacontext
-        		.getContext());
+                .getContext());
         if (container == null) {
-            log.debug("Tiles container not found, so pass to next command.");
+            LOG.debug("Tiles container not found, so pass to next command.");
             return false;
         }
-        
+
         if (container.isValidDefinition(forwardConfig.getPath(),
                 sacontext.getRequest(), sacontext.getResponse())) {
-	        container.render(forwardConfig.getPath(), 
+            container.render(forwardConfig.getPath(),
                     sacontext.getRequest(), sacontext.getResponse());
             sacontext.setForwardConfig(null);
         } else {
             // ignore not found
-        	if (log.isDebugEnabled()) {
-        		log.debug("Cannot find definition '" + forwardConfig.getPath()
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Cannot find definition '" + forwardConfig.getPath()
                         + "'");
-        	}
+            }
         }
-        
+
         return false;
     }
 }

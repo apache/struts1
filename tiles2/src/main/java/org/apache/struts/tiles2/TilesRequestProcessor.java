@@ -62,7 +62,10 @@ public class TilesRequestProcessor extends RequestProcessor {
      * Commons Logging instance.
      */
     protected static Log log = LogFactory.getLog(TilesRequestProcessor.class);
-    
+
+    /**
+     * The used servlet context.
+     */
     protected ServletContext servletContext;
 
     /**
@@ -88,6 +91,10 @@ public class TilesRequestProcessor extends RequestProcessor {
      * @param definitionName Definition name to insert.
      * @param request Current page request.
      * @param response Current page response.
+     * @throws IOException If something goes wrong during writing the
+     * definition.
+     * @throws ServletException If something goes wrong during the evaluation
+     * of the definition
      * @return <code>true</code> if the method has processed uri as a
      * definition name, <code>false</code> otherwise.
      */
@@ -103,9 +110,9 @@ public class TilesRequestProcessor extends RequestProcessor {
             log.debug("Tiles container not found, so pass to next command.");
             return false;
         }
-        
+
         boolean retValue = false;
-        
+
         if (container.isValidDefinition(definitionName, request, response)) {
             retValue = response.isCommitted();
             try {
@@ -120,7 +127,7 @@ public class TilesRequestProcessor extends RequestProcessor {
                 log.debug("Cannot find definition '" + definitionName + "'");
             }
         }
-        
+
         return retValue;
     }
 
@@ -131,6 +138,10 @@ public class TilesRequestProcessor extends RequestProcessor {
      * @param uri Uri or Definition name to forward.
      * @param request Current page request.
      * @param response Current page response.
+     * @throws IOException If something goes wrong during writing the
+     * definition.
+     * @throws ServletException If something goes wrong during the evaluation
+     * of the definition
      */
     protected void doForward(
         String uri,
@@ -209,6 +220,10 @@ public class TilesRequestProcessor extends RequestProcessor {
      * @param uri Module-relative URI to forward to.
      * @param request Current page request.
      * @param response Current page response.
+     * @throws IOException If something goes wrong during writing the
+     * definition.
+     * @throws ServletException If something goes wrong during the evaluation
+     * of the definition
      * @since Struts 1.1
      */
     protected void internalModuleRelativeForward(
@@ -233,6 +248,10 @@ public class TilesRequestProcessor extends RequestProcessor {
      * @param uri Module-relative URI to forward to.
      * @param request Current page request.
      * @param response Current page response.
+     * @throws IOException If something goes wrong during writing the
+     * definition.
+     * @throws ServletException If something goes wrong during the evaluation
+     * of the definition
      * @since Struts 1.1
      */
     protected void internalModuleRelativeInclude(

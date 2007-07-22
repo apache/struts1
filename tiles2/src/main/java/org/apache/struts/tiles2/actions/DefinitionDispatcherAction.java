@@ -79,8 +79,9 @@ public class DefinitionDispatcherAction extends Action {
      * @param request The HTTP request we are processing
      * @param response The HTTP response we are creating
      *
-     * @exception Exception if the application business logic throws
+     * @throws Exception if the application business logic throws
      *  an exception
+     * @return The forward object..
      * @since Struts 1.1
      */
     public ActionForward execute(

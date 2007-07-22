@@ -82,11 +82,19 @@ import org.apache.tiles.servlet.context.ServletTilesRequestContext;
 // TODO Complete the plugin to be module-aware.
 public class TilesPlugin implements PlugIn {
 
-    private static final Map<String, String> MODULE_AWARE_DEFAULTS =
-        new HashMap<String, String>();
+    /**
+     * Defaults form Tiles 2 configuration in case of a module-aware
+     * configuration.
+     */
+    private static final Map < String, String > MODULE_AWARE_DEFAULTS =
+        new HashMap < String, String > ();
 
-    private static final Map<String, String> NO_MODULE_DEFAULTS =
-        new HashMap<String, String>();
+    /**
+     * Defaults form Tiles 2 configuration in case of a configuration without
+     * modules.
+     */
+    private static final Map < String, String > NO_MODULE_DEFAULTS =
+        new HashMap < String, String > ();
 
     static {
         NO_MODULE_DEFAULTS.put(TilesContainerFactory
@@ -123,13 +131,13 @@ public class TilesPlugin implements PlugIn {
      * The plugin config object provided by the ActionServlet initializing
      * this plugin.
      */
-    protected PlugInConfig currentPlugInConfigObject=null;
-    
+    protected PlugInConfig currentPlugInConfigObject = null;
+
     /**
      * The plugin config object adapted to become a context-like object, that
      * exposes init parameters methods.
      */
-    protected PlugInConfigContextAdapter currentPlugInConfigContextAdapter=null;
+    protected PlugInConfigContextAdapter currentPlugInConfigContextAdapter = null;
 
     /**
      * Get the module aware flag.
@@ -165,13 +173,13 @@ public class TilesPlugin implements PlugIn {
      */
     public void init(ActionServlet servlet, ModuleConfig moduleConfig)
         throws ServletException {
-        
+
         currentPlugInConfigContextAdapter = new PlugInConfigContextAdapter(
                 this.currentPlugInConfigObject, servlet.getServletContext());
 
         // Set RequestProcessor class
         this.initRequestProcessorClass(moduleConfig);
-        
+
         // Initialize Tiles
         try {
             TilesContainerFactory factory;
@@ -189,22 +197,23 @@ public class TilesPlugin implements PlugIn {
                             container);
                 }
                 if (container instanceof KeyedDefinitionsFactoryTilesContainer) {
-                	KeyedDefinitionsFactoryTilesContainer keyedContainer =
-                		(KeyedDefinitionsFactoryTilesContainer) container;
-                	// If we have a definition factory for the current module prefix
-                	// then we are trying to re-initialize the same module, and it is
-                	// wrong!
+                    KeyedDefinitionsFactoryTilesContainer keyedContainer =
+                        (KeyedDefinitionsFactoryTilesContainer) container;
+                    // If we have a definition factory for the current module
+                    // prefix then we are trying to re-initialize the same module,
+                    // and it is wrong!
                     if (keyedContainer.getProperDefinitionsFactory(moduleConfig
-							.getPrefix()) != null) {
-                		throw new ServletException("Tiles definitions factory for module '"
-										+ moduleConfig.getPrefix()
-										+ "' has already been configured");
-                	}
+                            .getPrefix()) != null) {
+                        throw new ServletException("Tiles definitions factory for module '"
+                                        + moduleConfig.getPrefix()
+                                        + "' has already been configured");
+                    }
                     if (factory instanceof KeyedDefinitionsFactoryTilesContainerFactory) {
                         DefinitionsFactory defsFactory =
                             ((KeyedDefinitionsFactoryTilesContainerFactory) factory)
                             .createDefinitionsFactory(currentPlugInConfigContextAdapter);
-                        Map<String, String> initParameters = new HashMap<String, String>();
+                        Map < String, String > initParameters =
+                            new HashMap < String, String > ();
                         String param = (String) currentPlugInConfigObject
                                 .getProperties().get(BasicTilesContainer
                                         .DEFINITIONS_CONFIG);
@@ -275,7 +284,7 @@ public class TilesPlugin implements PlugIn {
         String configProcessorClassname = ctrlConfig.getProcessorClass();
 
         // Check if specified classname exist
-        Class<?> configProcessorClass;
+        Class < ? > configProcessorClass;
         try {
             configProcessorClass =
                 RequestUtils.applicationClass(configProcessorClassname);
@@ -304,7 +313,7 @@ public class TilesPlugin implements PlugIn {
         }
 
         // Check if specified request processor is compatible with Tiles.
-        Class<?> tilesProcessorClass = TilesRequestProcessor.class;
+        Class < ? > tilesProcessorClass = TilesRequestProcessor.class;
         if (!tilesProcessorClass.isAssignableFrom(configProcessorClass)) {
             // Not compatible
             String msg =
@@ -324,31 +333,35 @@ public class TilesPlugin implements PlugIn {
     public void setCurrentPlugInConfigObject(PlugInConfig plugInConfigObject) {
         this.currentPlugInConfigObject = plugInConfigObject;
     }
-    
+
+    /**
+     * Extracts the definitions factory key according to the module prefix.
+     */
     public static class ModuleKeyExtractor implements KeyExtractor {
 
+        /** {@inheritDoc} */
         public String getDefinitionsFactoryKey(TilesRequestContext request) {
             String retValue = null;
-            
+
             if (request instanceof ServletTilesRequestContext) {
-            	HttpServletRequest servletRequest =
-            		(HttpServletRequest)((ServletTilesRequestContext) request).getRequest(); 
+                HttpServletRequest servletRequest =
+                    (HttpServletRequest) ((ServletTilesRequestContext) request).getRequest();
                 ModuleConfig config = ModuleUtils.getInstance().getModuleConfig(
                         servletRequest);
 
                 if (config == null) {
                     // ModuleConfig not found in current request. Select it.
                     ModuleUtils.getInstance().selectModule(servletRequest,
-                    		servletRequest.getSession().getServletContext());
+                            servletRequest.getSession().getServletContext());
                     config = ModuleUtils.getInstance().getModuleConfig(servletRequest);
                 }
-                
+
                 if (config != null) {
                     retValue = config.getPrefix();
                 }
             }
             return retValue;
         }
-        
+
     }
 }

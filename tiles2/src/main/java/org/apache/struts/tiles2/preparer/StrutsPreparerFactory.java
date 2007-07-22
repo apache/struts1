@@ -28,14 +28,17 @@ import org.apache.tiles.preparer.ViewPreparer;
 import org.apache.tiles.util.ClassUtil;
 
 /**
+ * Factory used to instantiate preparers in a Struts 1 / Tiles 2 environment.
+ *
  * @version $Rev$ $Date$
  */
 public class StrutsPreparerFactory extends BasicPreparerFactory {
 
+    /** {@inheritDoc} */
     @Override
     protected ViewPreparer createPreparer(String name) throws TilesException {
         ViewPreparer retValue;
-        
+
         if (name.startsWith("/")) {
             retValue = new UrlPreparer(name);
         } else {
@@ -46,7 +49,7 @@ public class StrutsPreparerFactory extends BasicPreparerFactory {
                 retValue = super.createPreparer(name);
             }
         }
-        
+
         return retValue;
     }
 

@@ -38,19 +38,28 @@ import org.apache.tiles.servlet.context.ServletTilesRequestContext;
  * @version $Rev$ $Date$
  */
 public class UrlPreparer implements ViewPreparer {
-    
+
+    /**
+     * The URL to be used as a preparer.
+     */
     private String url;
 
+    /**
+     * Constructor.
+     * 
+     * @param url The URL to be used as a preparer.
+     */
     public UrlPreparer(String url) {
         this.url = url;
     }
 
+    /** {@inheritDoc} */
     public void execute(TilesRequestContext tilesContext,
             AttributeContext attributeContext) throws PreparerException {
-        
+
         if (tilesContext instanceof ServletTilesRequestContext) {
             ServletTilesRequestContext servletTilesContext =
-                (ServletTilesRequestContext) tilesContext; 
+                (ServletTilesRequestContext) tilesContext;
             HttpServletRequest request = servletTilesContext.getRequest();
             HttpServletResponse response = servletTilesContext.getResponse();
             RequestDispatcher rd = request.getSession().getServletContext()
@@ -59,7 +68,7 @@ public class UrlPreparer implements ViewPreparer {
                 throw new PreparerException(
                     "Controller can't find url '" + url + "'.");
             }
-    
+
             try {
                 rd.include(request, response);
             } catch (ServletException e) {

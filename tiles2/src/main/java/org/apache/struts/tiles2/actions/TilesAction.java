@@ -54,8 +54,9 @@ public abstract class TilesAction extends Action {
      * @param request The HTTP request we are processing.
      * @param response The HTTP response we are creating.
      *
-     * @exception Exception if the application business logic throws
+     * @throws Exception if the application business logic throws
      *  an exception
+     * @return The forward object.
      * @since Struts 1.1
      */
     public ActionForward execute(
@@ -67,7 +68,7 @@ public abstract class TilesAction extends Action {
 
         // Try to retrieve tile context
         AttributeContext context = TilesAccess.getContainer(request.getSession()
-        		.getServletContext()).getAttributeContext(request, response);
+                .getServletContext()).getAttributeContext(request, response);
         if (context == null) {
             throw new ServletException(
                 "Can't find Tile context for '"
@@ -91,8 +92,9 @@ public abstract class TilesAction extends Action {
      * @param request The HTTP request we are processing.
      * @param response The HTTP response we are creating.
      *
-     * @exception Exception if the application business logic throws
+     * @throws Exception if the application business logic throws
      *  an exception
+     * @return The forward object.
      * @since Struts 1.1
      */
     public ActionForward execute(

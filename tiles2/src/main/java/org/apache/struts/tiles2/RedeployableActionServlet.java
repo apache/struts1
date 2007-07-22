@@ -54,8 +54,13 @@ import org.apache.tiles.definition.util.DefinitionsFactoryUtil;
  * @since 1.2.1
  */
 public class RedeployableActionServlet extends ActionServlet {
+
+    /**
+     * The request processor for Tiles definitions.
+     */
     private TilesRequestProcessor tileProcessor;
 
+    /** {@inheritDoc} */
     protected synchronized RequestProcessor
             getRequestProcessor(ModuleConfig config) throws ServletException {
 
@@ -65,8 +70,8 @@ public class RedeployableActionServlet extends ActionServlet {
         }
 
         // reset the request processor
-        String requestProcessorKey = Globals.REQUEST_PROCESSOR_KEY +
-                config.getPrefix();
+        String requestProcessorKey = Globals.REQUEST_PROCESSOR_KEY
+                + config.getPrefix();
         getServletContext().removeAttribute(requestProcessorKey);
 
         // create a new request processor instance
