@@ -386,8 +386,8 @@ The "form-bean" element describes a particular form bean, which is a
      command         The name of a commons-chain command which should be looked up
                      and executed as part of servicing this request.  
 
-     extends         The path of the action mapping configuration that this 
-                     will inherit configuration information from.
+     extends         The path or actionId of the action mapping configuration 
+                     that this will inherit configuration information from.
 
      forward         Module-relative path of the servlet or other resource that
                      will process this request, instead of the Action class
