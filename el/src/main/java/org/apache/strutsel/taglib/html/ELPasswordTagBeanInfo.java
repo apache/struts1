@@ -204,6 +204,12 @@ public class ELPasswordTagBeanInfo extends SimpleBeanInfo {
         }
 
         try {
+            proplist.add(new PropertyDescriptor("onselect", 
+                    ELPasswordTag.class, null, "setOnselectExpr"));
+        } catch (IntrospectionException ex) {
+        }
+
+        try {
             proplist.add(new PropertyDescriptor("property",
                     ELPasswordTag.class, null, "setPropertyExpr"));
         } catch (IntrospectionException ex) {
