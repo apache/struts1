@@ -198,6 +198,12 @@ public class ELPasswordTag extends PasswordTag {
     private String onmouseupExpr;
 
     /**
+     * Instance variable mapped to "onselect" tag attribute. (Mapping set in
+     * associated BeanInfo class.)
+     */
+    private String onselectExpr;
+
+    /**
      * Instance variable mapped to "property" tag attribute. (Mapping set in
      * associated BeanInfo class.)
      */
@@ -477,6 +483,14 @@ public class ELPasswordTag extends PasswordTag {
      */
     public String getOnmouseupExpr() {
         return (onmouseupExpr);
+    }
+
+    /**
+     * Getter method for "onselect" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public String getOnselectExpr() {
+        return (onselectExpr);
     }
 
     /**
@@ -784,6 +798,14 @@ public class ELPasswordTag extends PasswordTag {
     }
 
     /**
+     * Setter method for "onselect" tag attribute. (Mapping set in associated
+     * BeanInfo class.)
+     */
+    public void setOnselectExpr(String onselectExpr) {
+        this.onselectExpr = onselectExpr;
+    }
+
+    /**
      * Setter method for "property" tag attribute. (Mapping set in associated
      * BeanInfo class.)
      */
@@ -903,6 +925,7 @@ public class ELPasswordTag extends PasswordTag {
         setOnmouseoutExpr(null);
         setOnmouseoverExpr(null);
         setOnmouseupExpr(null);
+        setOnselectExpr(null);
         setPropertyExpr(null);
         setReadonlyExpr(null);
         setRedisplayExpr(null);
@@ -1096,6 +1119,12 @@ public class ELPasswordTag extends PasswordTag {
                 EvalHelper.evalString("onmouseup", getOnmouseupExpr(), this,
                     pageContext)) != null) {
             setOnmouseup(string);
+        }
+
+        if ((string =
+                EvalHelper.evalString("onselect", getOnselectExpr(), this,
+                    pageContext)) != null) {
+            setOnselect(string);
         }
 
         if ((string =
