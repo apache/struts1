@@ -495,36 +495,38 @@ public class RequestUtils {
      * @throws ServletException if the introspection has any errors.
      */
     private static Object rationalizeMultipleFileProperty(Object bean, String name, Object parameterValue) throws ServletException {
-    	if (!(parameterValue instanceof FormFile)) return parameterValue;
+        if (!(parameterValue instanceof FormFile)) {
+            return parameterValue;
+        }
 
-    	FormFile formFileValue = (FormFile) parameterValue;
-    	try {
-			Class propertyType = PropertyUtils.getPropertyType(bean, name);
+        FormFile formFileValue = (FormFile) parameterValue;
+        try {
+            Class propertyType = PropertyUtils.getPropertyType(bean, name);
 
-			if (propertyType.isAssignableFrom(List.class)) {
-				ArrayList list = new ArrayList(1);
-				list.add(formFileValue);
-				return list;
-			}
+            if (propertyType.isAssignableFrom(List.class)) {
+                ArrayList list = new ArrayList(1);
+                list.add(formFileValue);
+                return list;
+            }
 
-			if (propertyType.isArray() && propertyType.getComponentType().equals(FormFile.class)) {
-				return new FormFile[] { formFileValue };
-			}
+            if (propertyType.isArray() && propertyType.getComponentType().equals(FormFile.class)) {
+                return new FormFile[] { formFileValue };
+            }
 
-    	} catch (IllegalAccessException e) {
-			throw new ServletException(e);
-		} catch (InvocationTargetException e) {
-			throw new ServletException(e);
-		} catch (NoSuchMethodException e) {
-			throw new ServletException(e);
-		}
-    	
-		// no changes
-    	return parameterValue;
-    	
-	}
+        } catch (IllegalAccessException e) {
+            throw new ServletException(e);
+        } catch (InvocationTargetException e) {
+            throw new ServletException(e);
+        } catch (NoSuchMethodException e) {
+            throw new ServletException(e);
+        }
 
-	/**
+        // no changes
+        return parameterValue;
+
+    }
+
+    /**
      * <p>Try to locate a multipart request handler for this request. First,
      * look for a mapping-specific handler stored for us under an attribute.
      * If one is not present, use the global multipart handler, if there is
