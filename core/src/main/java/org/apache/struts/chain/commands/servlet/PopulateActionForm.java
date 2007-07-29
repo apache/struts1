@@ -20,8 +20,6 @@
  */
 package org.apache.struts.chain.commands.servlet;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
@@ -41,7 +39,6 @@ import javax.servlet.http.HttpServletRequest;
  *          $
  */
 public class PopulateActionForm extends AbstractPopulateActionForm {
-    private static final Log log = LogFactory.getLog(PopulateActionForm.class);
 
     // ------------------------------------------------------- Protected Methods
 
@@ -51,23 +48,16 @@ public class PopulateActionForm extends AbstractPopulateActionForm {
         ServletActionContext saContext = (ServletActionContext) context;
         HttpServletRequest request = saContext.getRequest();
 
-        // Populate the form bean only if configured so
-        if (isPopulate(request, actionConfig)) {
-            RequestUtils.populate(actionForm, actionConfig.getPrefix(),
-                actionConfig.getSuffix(), saContext.getRequest());
-        }
+        RequestUtils.populate(actionForm, actionConfig.getPrefix(),
+            actionConfig.getSuffix(), request);
     }
 
     protected void reset(ActionContext context, ActionConfig actionConfig,
         ActionForm actionForm) {
-
         ServletActionContext saContext = (ServletActionContext) context;
         HttpServletRequest request = saContext.getRequest();
 
-        // Reset the form bean only if configured so
-        if (isReset(request, actionConfig)) {
-            actionForm.reset((ActionMapping) actionConfig, saContext.getRequest());
-        }
+        actionForm.reset((ActionMapping) actionConfig, request);
 
         // Set the multipart class
         if (actionConfig.getMultipartClass() != null) {
@@ -79,27 +69,33 @@ public class PopulateActionForm extends AbstractPopulateActionForm {
     // ---------------------------------------------------------- Helper Methods
 
     /**
-     * Verifies whether an action form should be populated
+     * Determines whether an action form should be populated
      * @param request current HTTP request
      * @param actionConfig action config for current request
      * @return true if action form should be populated
      *
      * @since Struts 1.4
      */
-    protected boolean isPopulate(HttpServletRequest request, ActionConfig actionConfig) {
+    protected boolean isPopulate(ActionContext context, ActionConfig actionConfig) {
+        ServletActionContext saContext = (ServletActionContext) context;
+        HttpServletRequest request = saContext.getRequest();
+
         String strPopulate = actionConfig.getPopulate();
         return getResetOrPopulate(request, strPopulate);
     }
 
     /**
-     * Verifies whether an action form should be reset
+     * Determines whether an action form should be reset
      * @param request current HTTP request
      * @param actionConfig action config for current request
      * @return true if action form should be reset
      *
      * @since Struts 1.4
      */
-    protected boolean isReset(HttpServletRequest request, ActionConfig actionConfig) {
+    protected boolean isReset(ActionContext context, ActionConfig actionConfig) {
+        ServletActionContext saContext = (ServletActionContext) context;
+        HttpServletRequest request = saContext.getRequest();
+
         String strReset = actionConfig.getReset();
         return getResetOrPopulate(request, strReset);
     }
@@ -116,7 +112,7 @@ public class PopulateActionForm extends AbstractPopulateActionForm {
      *
      * @since Struts 1.4
      */
-    protected boolean getResetOrPopulate(HttpServletRequest request, String strAttr) {
+    private boolean getResetOrPopulate(HttpServletRequest request, String strAttr) {
         // Reset configuration is not defined (should not happen,
         // because default value are set to "request,forward".
         if (strAttr == null) return true;
