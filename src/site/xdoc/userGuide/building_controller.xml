@@ -198,7 +198,7 @@
                     Request Processor
                     <code>(ComposableRequestProcessor)</code>
                     is composed using
-                    <a href="http://jakarta.apache.org/commons/chain/">Jakarta
+                    <a href="http://commons.apache.org/chain/">
                         Commons Chain,</a>
                     which is an implementation of the
                     <i>Chain of Responsibility</i>
@@ -988,7 +988,7 @@
                     ActionForm which
                     <i>wraps</i>
                     a LazyDynaBean 
-                    <a href="http://jakarta.apache.org/commons/beanutils/apidocs/org/apache/commons/beanutils/package-summary.html#dynamic.lazy">
+                    <a href="http://commons.apache.org/beanutils/apidocs/org/apache/commons/beanutils/package-summary.html#dynamic.lazy">
                         (see Commons BeanUtils JavaDoc).</a>
                 </p>
 
@@ -1874,12 +1874,12 @@ public ActionForward execute(ActionMapping mapping,
                     of
                     the appropriate setter methods.
                     To make this process easier,
-                    the framework uses the Jakarta Commons Digester component
+                    the framework uses the Commons Digester component
                     to parse an XML-based description of the desired mappings
                     and create the appropriate objects initialized
                     to the appropriate default values.
                     See the
-                    <a href="http://jakarta.apache.org/commons">Jakarta
+                    <a href="http://commons.apache.org">Apache
                         Commons
                         website</a>
                     for more information about the Digester.
@@ -2389,7 +2389,7 @@ public ActionForward execute(ActionMapping mapping,
                 <p>
                     The framework doesn't configure logging itself -- it's all
                     done by
-                    <a href="http://jakarta.apache.org/commons/">
+                    <a href="http://commons.apache.org/">
                         commons-logging</a>
                     under the covers.
                     The default algorithm is a search:
@@ -2422,7 +2422,7 @@ public ActionForward execute(ActionMapping mapping,
                     For more information about the currently-supported
                     implementations,
                     please refer to the
-                    <a href="http://jakarta.apache.org/commons/logging/api/index.html">
+                    <a href="http://commons.apache.org/logging/api/index.html">
                         the description for the org.apache.commons.logging
                         package.</a>
                 </p>

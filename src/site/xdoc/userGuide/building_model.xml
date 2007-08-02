@@ -453,10 +453,10 @@
                 <ul>
                     <li>
                         The Commons BeanUtils
-                        <a href="http://jakarta.apache.org/commons/beanutils/api/org/apache/commons/beanutils/package-summary.html#package_description">
+                        <a href="http://commons.apache.org/beanutils/api/org/apache/commons/beanutils/package-summary.html#package_description">
                             Package Description</a>
                         and
-                        <a href="http://jakarta.apache.org/commons/beanutils/api/index.html">
+                        <a href="http://commons.apache.org/beanutils/api/index.html">
                             Javadocs.</a>
                     </li>
                     <li>
@@ -503,9 +503,9 @@
 
                 <p>
                     To implement its Chain, the Request Processor uses the
-                    <a href="http://jakarta.apache.org/commons/chain/">
+                    <a href="http://commons.apache.org/chain/">
                         Chain of Responsibility</a>
-                    component in the Jakarta Commons
+                    component in the Apache Commons
                     which provides a standard implementation of the CoR
                     pattern,
                     along with various implementations of the Context and
@@ -518,8 +518,8 @@
 
                 <ul>
                     <li>
-                        <a href="http://jakarta.apache.org/commons/chain/">
-                            Jakarta Commons Chain of Responsibility</a>
+                        <a href="http://commons.apache.org/chain/">
+                            Commons Chain of Responsibility</a>
                     </li>
                     <li>
                         <a href="http://www.onjava.com/lpt/a/5671">

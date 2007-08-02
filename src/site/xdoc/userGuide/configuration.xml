@@ -1271,7 +1271,7 @@
                     logging messages written by the framework, as well as the
                     commons libraries
                     that it utilizes, flow through an abstract wrapper called
-                    <a href="http://jakarta.apache.org/commons/logging">
+                    <a href="http://commons.apache.org/logging">
                         Commons Logging,</a>
                     which can be used as a wrapper around any logging
                     implementation. The most
@@ -1298,7 +1298,7 @@
                     on using Commons Logging, consult the documentation for
                     the logging system
                     you are using, plus the Commons Logging
-                    <a href="http://jakarta.apache.org/commons/logging/commons-logging-1.0.3/docs/api/">
+                    <a href="http://commons.apache.org/logging/commons-logging-1.0.3/docs/api/">
                         Javadocs.</a>
                 </p>
 
