@@ -37,7 +37,7 @@
                 like Java
                 Servlets, JavaBeans, ResourceBundles, and XML, as well as
                 various
-                <a href="http://jakarta.apache.org/commons/index.html">Jakarta
+                <a href="http://commons.apache.org/index.html">Apache
                     Commons</a>
                 packages, like BeanUtils and Chain of Responsibility.
                 The framework helps you create an extensible
@@ -79,7 +79,7 @@
                     <a href="struts-el/index.html">JSTL</a> and 
                     <a href="struts-faces/index.html">JSF,</a>
                     as well as
-                    <a href="http://jakarta.apache.org/velocity/tools/struts/">
+                    <a href="http://velocity.apache.org/tools/struts/">
                         Velocity Templates,</a>
                     <a href="http://stxx.sourceforge.net/">XSLT,</a>
                     and other presentation systems.
@@ -214,7 +214,7 @@
                     Every class deployed by the framework can be replaced by
                     your own default class.
                     The properties of your default class can be set using the
-                    <a href="http://jakarta.apache.org/commons/digester/">
+                    <a href="http://commons.apache.org/digester/">
                         Digester's</a>
                     <code>set-property</code>
                     feature.

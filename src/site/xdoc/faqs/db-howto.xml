@@ -310,7 +310,7 @@
 
             <p>
                 Since version 1.1, the simplest option is to use a
-                <a href="http://jakarta.apache.org/commons/beanutils/api/org/apache/commons/beanutils/ResultSetDynaClass.html">
+                <a href="http://commons.apache.org/beanutils/api/org/apache/commons/beanutils/ResultSetDynaClass.html">
                     ResultSetDynaClass</a>
                 to transfer the ResultSet into an ArrayList of DynaBeans.
                 The Struts custom tags can use DynaBean properties as easily

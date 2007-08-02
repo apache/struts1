@@ -308,8 +308,8 @@
 
                 <p>
                     For more about using this technique, see the
-                    <a href="http://jakarta.apache.org/commons/beanutils/">
-                        Jakarta Commons BeanUtils documentation,</a>
+                    <a href="http://commons.apache.org/beanutils/">
+                        Commons BeanUtils documentation,</a>
                     and the Struts MailReader example application.
                 </p>
 
