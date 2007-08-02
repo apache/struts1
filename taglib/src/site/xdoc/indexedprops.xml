@@ -47,14 +47,14 @@
                     related to
                     indexed properties, but in truth most of the heavy lifting
                     is not even in
-                    the framework, but in the Jakarta Commons Beanutils
+                    the framework, but in the Commons Beanutils
                     package. This
                     package is used by the framework to provide this functionality.
                     You can see the
                     javadoc documentation for the Beanutils package at
                     <a
-                            href="http://jakarta.apache.org/commons/beanutils/api/index.html">
-                        http://jakarta.apache.org/commons/beanutils/api/index.html</a>
+                            href="http://commons.apache.org/beanutils/api/index.html">
+                        http://commons.apache.org/beanutils/api/index.html</a>
                     .
                     The information particularly related to indexed properties
                     is in the

@@ -413,7 +413,7 @@ value="<%= loginBean.getUsername() >"/>
                     Most of these references refer to "scalar" bean
                     properties, referring to
                     primitive or single Object properties.
-                    However, Struts, along with the Jakarta Commons Beanutils
+                    However, Struts, along with the Commons Beanutils
                     library, allow
                     you to use property references which refer to individual
                     items in an array,
@@ -424,8 +424,8 @@ value="<%= loginBean.getUsername() >"/>
 
                 <p>
                     Documentation on the Beanutils package can be found at
-                    <a href="http://jakarta.apache.org/commons/beanutils/api/index.html">
-                        http://jakarta.apache.org/commons/beanutils/api/index.html.</a>
+                    <a href="http://commons.apache.org/beanutils/api/index.html">
+                        http://commons.apache.org/beanutils/api/index.html.</a>
                     More information about using indexed and mapped properties
                     in Struts can
                     be found in the FAQ describing
