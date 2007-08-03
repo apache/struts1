@@ -513,7 +513,7 @@ public class FormTag extends TagSupport {
 
             if (bean == null) {
                 throw new JspException(messages.getMessage("formTag.create",
-                        beanType));
+                        beanType, beanName));
             }
 
             pageContext.setAttribute(beanName, bean, scope);
