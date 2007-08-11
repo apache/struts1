@@ -131,7 +131,7 @@
   <tiles:put name="header" value="header.jsp" />
   <tiles:put name="body"   value="body.jsp" />
 </tiles:definition>
-<tiles:insert beanName="templateDefinition" />
+<tiles:insert definition="templateDefinition" />
     ]]></source>
 
     <p>Using this method of defining Tiles can be very tricky.  If you define a
