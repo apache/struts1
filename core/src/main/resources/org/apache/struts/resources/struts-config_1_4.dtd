@@ -92,7 +92,7 @@
 <!ENTITY % RequestScope "(request|session)">
 
 <!-- Defines possible values for automatic form bean population -->
-<!ENTITY % PopulateStrategy "(request|forward|request-forward|none)">
+<!ENTITY % PopulateStrategy "CDATA">
 
 <!-- ========== Top Level Elements ======================================== -->
 
@@ -427,9 +427,17 @@ The "form-bean" element describes a particular form bean, which is a
                      because it will look like a filename extension and
                      cause your Action to not be located.
 
+     populate        Comma-delimited list of events that trigger the population
+                     of an ActionForm. Since Struts 1.4.
+                     [all]
+
      prefix          Prefix used to match request parameter names to ActionForm
                      property names, if any. Optional if "name" is specified,
                      else not allowed.
+
+     reset           Comma-delimited list of events that trigger the reset()
+                     method to be called on an ActionForm. Since Struts 1.4.
+                     [all]
 
      roles           Comma-delimited list of security role names that are allowed
                      access to this ActionMapping object. Since Struts 1.1.
@@ -466,10 +474,6 @@ The "form-bean" element describes a particular form bean, which is a
                      "request-forward" or "none".
                      [request-forward]
 
-     populate        Allows to specify conditions for automatic form population
-                     with HTTP request values. Possible values: not specified,
-                     "request", "forward", "request-forward" or "none".
-                     [request-forward]
 -->
 <!ELEMENT action (icon?, display-name?, description?, set-property*, exception*, forward*)>
 <!ATTLIST action         id             ID              #IMPLIED>

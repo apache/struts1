@@ -41,23 +41,6 @@ import java.util.HashMap;
 public class ActionConfig extends BaseConfig {
     private static final Log log = LogFactory.getLog(ActionConfig.class);
 
-    /**
-     * Literal that describes request condition for "reset" and "populate"
-     * properties.
-     *
-     * @since Struts 1.4
-     */
-    public static final String REQUEST_STR = "request";
-
-    /**
-     * Literal that describes forward condition for "reset" and "populate"
-     * properties.
-     *
-     * @since Struts 1.4
-     */
-    public static final String FORWARD_STR = "forward";
-
-
     // ----------------------------------------------------- Instance Variables
 
     /**
@@ -203,28 +186,21 @@ public class ActionConfig extends BaseConfig {
     /**
      * <p>Identifies conditions for automatic form reset.</p>
      *
-     * <p>Possible values: null (not specified), "request", "forward" or
-     * "request-forward" (used when not specified). If not specified then
-     * the form bean is reset both for direct and for forwarded request.</p>
-     *
      * @since Struts 1.4
      */
-    protected String reset = REQUEST_STR + "-" + FORWARD_STR;
+    protected String reset = PopulateEvent.ALL;
 
+    protected String[] resetNames = { PopulateEvent.ALL };
+    
     /**
-     * <p>Identifies conditions for automatic form population with values
+     * <p> Identifies conditions for automatic form population with values
      * from HTTP request.</p>
      *
-     * <p>Possible values: null (not specified), "request", "forward" or
-     * "request-forward" (used when not specified). If not specified then
-     * the form bean is populated both for direct and for forwarded request.
-     * This means that when a chained action mapping refers to the same
-     * form bean as originating action, then the form bean is repopulated
-     * and changes made by originating action are lost.</p>
-     *
      * @since Struts 1.4
      */
-    protected String populate = REQUEST_STR + "-" + FORWARD_STR;
+    protected String populate = PopulateEvent.ALL;
+
+    protected String[] populateNames = { PopulateEvent.ALL };
 
     /**
      * <p> Suffix used to match request parameter names to form bean property
@@ -677,20 +653,35 @@ public class ActionConfig extends BaseConfig {
     }
 
     /**
-     * <p>Reads when a corresponding action form should be reset
-     * ("request", "session" or "request,session").</p>
+     * <p> Gets the comma-delimiated list of events that specify when this
+     * action should be reset. </p>
      *
      * @since Struts 1.4
+     * @see #getResetNames()
+     * @see #setReset(String)
      */
     public String getReset() {
         return (this.reset);
     }
 
     /**
-     * @param reset identifies, when a corresponding action form should be
-     *        reset ("request", "session" or "request,session").
+     * <p> Gets the array of events names that specify when this
+     * action should be reset. </p>
+     * 
+     * @since Struts 1.4
+     * @see #getReset()
+     * @see PopulateEvent
+     */
+    public String[] getResetNames() {
+        return (this.resetNames);
+    }
+
+    /**
+     * @param reset the comma-delimited list of reset events
      *
      * @since Struts 1.4
+     * @see #getReset()
+     * @see #getResetNames()
      */
     public void setReset(String reset) {
         if (configured) {
@@ -698,30 +689,47 @@ public class ActionConfig extends BaseConfig {
         }
 
         this.reset = reset;
+        this.resetNames = reset.split(",");
     }
 
     /**
-     * <p>Reads when a corresponding action form should be automatically
-     * populated ("request", "session" or "request,session").</p>
+     * <p> Gets the comma-delimiated list of events that specify when this
+     * action should be populated. </p>
      *
      * @since Struts 1.4
+     * @see #getPopulateNames()
+     * @see #setPopulate(String)
      */
     public String getPopulate() {
         return (this.populate);
     }
+    
+    /**
+     * <p> Gets the array of events names that specify when this
+     * action should be populated. </p>
+     * 
+     * @since Struts 1.4
+     * @see #getPopulate()
+     * @see PopulateEvent
+     */
+    public String[] getPopulateNames() {
+        return (this.populateNames);
+    }
 
     /**
-     * @param populate identifies, when a corresponding action form should be
-     *        automatically populated ("request", "session" or "request,session").
+     * @param populate the comma-delimited list of populate events
      *
      * @since Struts 1.4
+     * @see #getPopulate()
+     * @see #getPopulateNames()
      */
     public void setPopulate(String populate) {
         if (configured) {
             throw new IllegalStateException("Configuration is frozen");
         }
 
-        this.populate= populate;
+        this.populate = populate;
+        this.populateNames = populate.split(",");
     }
     
     /**

@@ -1113,15 +1113,36 @@ public class RequestUtils {
     }
 
     /**
-     * Verifies whether current request is forwarded from one action to
-     * another or not.
+     * Determines whether the current request is forwarded.
+     * 
      * @param request current HTTP request 
-     * @return true if the request contains Globals.FORWARD_KEY, which means
-     *         that request has been forwarded from another action.
-     *
+     * @return true if the request is forwarded; otherwise false
      * @since Struts 1.4
      */
-    public static boolean isForwarded(HttpServletRequest request) {
-        return request.getAttribute(Globals.FORWARD_KEY) != null;
+    public static boolean isRequestForwarded(HttpServletRequest request) {
+        return (request.getAttribute("javax.servlet.forward.request_uri") != null);
+    }
+    
+    /**
+     * Determines whether the current request is included.
+     * 
+     * @param request current HTTP request 
+     * @return true if the request is included; otherwise false
+     * @since Struts 1.4
+     */
+    public static boolean isRequestIncluded(HttpServletRequest request) {
+        return (request.getAttribute("javax.servlet.include.request_uri") != null);
+    }
+    
+    /**
+     * Verifies whether current request is forwarded from one action to
+     * another or not.
+     * 
+     * @param request current HTTP request 
+     * @return true if the request is chained; otherwise false
+     * @since Struts 1.4
+     */
+    public static boolean isRequestChained(HttpServletRequest request) {
+        return (request.getAttribute(Globals.CHAIN_KEY) != null);
     }
 }

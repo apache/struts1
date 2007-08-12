@@ -47,7 +47,7 @@ public class ActionPostProcess extends ActionCommandBase {
 
         // Set flag in request object, notifying chained actions that
         // this request was already processed.
-        request.setAttribute(Globals.FORWARD_KEY, Boolean.TRUE);
+        request.setAttribute(Globals.CHAIN_KEY, Boolean.TRUE);
 
         // Continue chain processing
         return false;

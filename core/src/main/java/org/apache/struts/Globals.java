@@ -49,6 +49,13 @@ public class Globals implements Serializable {
     public static final String CANCEL_KEY = "org.apache.struts.action.CANCEL";
 
     /**
+     * The request attributes key under which chaining flag is stored.
+     *
+     * @since Struts 1.4
+     */
+    public static final String CHAIN_KEY = "org.apache.struts.action.CHAIN";
+
+    /**
      * <p>The base of the context attributes key under which our
      * <code>ModuleConfig</code> data structure will be stored.  This will be
      * suffixed with the actual module prefix (including the leading "/"
@@ -209,11 +216,4 @@ public class Globals implements Serializable {
      * The property under which a transaction token is reported.
      */
     public static final String TOKEN_KEY = TAGLIB_PACKAGE + ".TOKEN";
-
-    /**
-     * The request attributes key under which forwarding flag is stored.
-     *
-     * @since Struts 1.4
-     */
-    public static final String FORWARD_KEY = "org.apache.struts.action.FORWARD";
 }

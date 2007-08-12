@@ -27,6 +27,7 @@ import org.apache.struts.chain.commands.AbstractPopulateActionForm;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.config.ActionConfig;
+import org.apache.struts.config.PopulateEvent;
 import org.apache.struts.util.RequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -69,42 +70,37 @@ public class PopulateActionForm extends AbstractPopulateActionForm {
     // ---------------------------------------------------------- Helper Methods
 
     /**
-     * Determines whether an action form should be populated
+     * Determines whether an action form should be populated.
+     * 
      * @param request current HTTP request
      * @param actionConfig action config for current request
      * @return true if action form should be populated
-     *
      * @since Struts 1.4
      */
     protected boolean isPopulate(ActionContext context, ActionConfig actionConfig) {
-        ServletActionContext saContext = (ServletActionContext) context;
-        HttpServletRequest request = saContext.getRequest();
-
-        String strPopulate = actionConfig.getPopulate();
-        return getResetOrPopulate(request, strPopulate);
+        String[] events = actionConfig.getPopulateNames();
+        return getResetOrPopulate(context, events);
     }
 
     /**
-     * Determines whether an action form should be reset
+     * Determines whether an action form should be reset.
+     * 
      * @param request current HTTP request
      * @param actionConfig action config for current request
      * @return true if action form should be reset
-     *
      * @since Struts 1.4
      */
     protected boolean isReset(ActionContext context, ActionConfig actionConfig) {
-        ServletActionContext saContext = (ServletActionContext) context;
-        HttpServletRequest request = saContext.getRequest();
-
-        String strReset = actionConfig.getReset();
-        return getResetOrPopulate(request, strReset);
+        String[] events = actionConfig.getResetNames();
+        return getResetOrPopulate(context, events);
     }
 
     /**
      * Compares current request state (direct or forwarded) with configuration
      * from action mapping.
+     * 
      * @param request current HTTP request
-     * @param strAttr value of either "reset" or "populate" attributes of
+     * @param events values of either "reset" or "populate" attributes of
      *        an action mapping
      * @return true if action mapping is configured to reset (or populate)
      *         corresponding action form; false if if action mapping is
@@ -112,20 +108,50 @@ public class PopulateActionForm extends AbstractPopulateActionForm {
      *
      * @since Struts 1.4
      */
-    private boolean getResetOrPopulate(HttpServletRequest request, String strAttr) {
-        // Reset configuration is not defined (should not happen,
-        // because default value are set to "request,forward".
-        if (strAttr == null) return true;
-
-        // Reads Globals.FORWARD_KEY attribute from the HTTP request object
-        boolean forwarded = RequestUtils.isForwarded(request);
-
-        // Forwarded request is configured for reset/populate
-        if (forwarded && strAttr.indexOf(ActionConfig.FORWARD_STR) > -1) return true;
-
-        // Direct request is configured for reset/populate
-        if (!forwarded && strAttr.indexOf(ActionConfig.REQUEST_STR) > -1) return true;
-
+    private boolean getResetOrPopulate(ActionContext context, String[] events) {
+        // Reset configuration is not defined, but this should not happen
+        // because default value is provided
+        if ((events == null) || (events.length == 0)) {
+            return true;
+        }
+        
+        // First check against events that must be alone
+        if (events.length == 1) {
+            if (events[0].equals(PopulateEvent.ALL)) {
+                return true;
+            } 
+            if (events[0].equals(PopulateEvent.NONE)) {
+                return false;
+            }
+        }
+        
+        // Then check against the list of combinable events
+        HttpServletRequest request = ((ServletActionContext) context).getRequest();
+        for(int i = 0; i < events.length; i++) {
+            String attribute = events[i];
+            if (attribute.equals(PopulateEvent.FORWARD)) {
+                if (RequestUtils.isRequestForwarded(request)) {
+                    return true;
+                }
+            } else if (attribute.equals(PopulateEvent.INCLUDE)) {
+                if (RequestUtils.isRequestIncluded(request)) {
+                    return true;
+                }
+            } else if (attribute.equals(PopulateEvent.CHAIN)) {
+                if (RequestUtils.isRequestChained(request)) {
+                    return true;
+                }
+            } else if (attribute.equals(PopulateEvent.REQUEST)) {
+                if (RequestUtils.isRequestForwarded(request)) {
+                    continue;
+                }
+                if (RequestUtils.isRequestIncluded(request)) {
+                    continue;
+                }
+                return true;
+            }
+        }
+        
         // Do not reset/populate if a user explicity set anything
         // else besides "request" or "populate".
         return false;
