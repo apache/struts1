@@ -50,6 +50,7 @@ import org.apache.struts.config.ForwardConfig;
 import org.apache.struts.config.MessageResourcesConfig;
 import org.apache.struts.config.ModuleConfig;
 import org.apache.struts.config.ModuleConfigFactory;
+import org.apache.struts.config.ModuleConfigPostProcessor;
 import org.apache.struts.config.PlugInConfig;
 import org.apache.struts.util.MessageResources;
 import org.apache.struts.util.MessageResourcesFactory;
@@ -364,6 +365,7 @@ public class ActionServlet extends HttpServlet {
             initModuleForwards(moduleConfig);
             initModuleExceptionConfigs(moduleConfig);
             initModuleActions(moduleConfig);
+            postProcessModule(moduleConfig);
             moduleConfig.freeze();
 
             Enumeration names = getServletConfig().getInitParameterNames();
@@ -386,6 +388,7 @@ public class ActionServlet extends HttpServlet {
                 initModuleForwards(moduleConfig);
                 initModuleExceptionConfigs(moduleConfig);
                 initModuleActions(moduleConfig);
+                postProcessModule(moduleConfig);
                 moduleConfig.freeze();
             }
 
@@ -890,6 +893,21 @@ public class ActionServlet extends HttpServlet {
 
                 log(errMsg, e);
                 throw new UnavailableException(errMsg);
+            }
+        }
+    }
+
+    protected void postProcessModule(ModuleConfig moduleConfig) {
+        String plugInKey = Globals.PLUG_INS_KEY + moduleConfig.getPrefix(); 
+        PlugIn[] plugIns = (PlugIn[]) getServletContext().getAttribute(plugInKey);
+        if ((plugIns == null) || (plugIns.length == 0)) {
+            log.debug("No plugins to attempt post processing");
+        }
+        
+        for (int i = 0; i < plugIns.length; i++) {
+            PlugIn plugIn = plugIns[i];
+            if (plugIn instanceof ModuleConfigPostProcessor) {
+                ((ModuleConfigPostProcessor) plugIn).postProcessModule(moduleConfig);
             }
         }
     }
