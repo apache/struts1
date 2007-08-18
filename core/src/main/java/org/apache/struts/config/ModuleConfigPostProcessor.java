@@ -24,19 +24,52 @@ package org.apache.struts.config;
  * This interface is to be implemented by any plugin for custom modification of
  * a module after it is been configured but before it is frozen. This allows for
  * overriding or adding properties after standard initialization.
+ * <p>
+ * The types of child configurations provided are {@link ActionConfig},
+ * {@link ExceptionConfig}, {@link ForwardConfig} and
+ * {@link MessageResourcesConfig}. If interested in a particular configuration
+ * class, use the <code>instanceof</code> operator to check before casting.
+ * <p>
+ * Possible post-processors implementations may include property substitutions (<code>${...}</code>),
+ * querying additional configuration from a repository, extended configuration
+ * validation, preparing message resources for a particular domain/host,
+ * logging, etc.
  * 
+ * @see BaseConfig
+ * @see ActionConfig
+ * @see ExceptionConfig
+ * @see ForwardConfig
+ * @see MessageResourcesConfig
  * @see ModuleConfig
- * @see ModuleConfig#freeze()
  * @since Struts 1.4
  * @version $Rev$
  */
 public interface ModuleConfigPostProcessor {
 
     /**
+     * Applies this post-processor to the specified configuration object after
+     * it has been initialized by Struts but before it is frozen.
+     * 
+     * @param config the configuration
+     * @param moduleConfig the parent module configuration
+     */
+    void postProcessAfterInitialization(BaseConfig config, ModuleConfig moduleConfig);
+
+    /**
      * Modify the specified module after its standard initialization.
      * 
-     * @param config the module
+     * @param config the module configuration
      */
-    void postProcessModule(ModuleConfig config);
+    void postProcessAfterInitialization(ModuleConfig moduleConfig);
+
+    /**
+     * Applies this post-processor to the specified configuration object
+     * <i>before</i> it has been initialized and processed by Struts (such as
+     * heirarchy extensions).
+     * 
+     * @param config the configuration
+     * @param moduleConfig the parent module configuration
+     */
+    void postProcessBeforeInitialization(BaseConfig config, ModuleConfig moduleConfig);
 
 }
