@@ -38,9 +38,9 @@
     <inceptionYear>2000</inceptionYear>
 
     <scm>
-       <connection>scm:svn:http://svn.apache.org/repos/asf/struts/struts1/trunk</connection>
-       <developerConnection>scm:svn:https://svn.apache.org/repos/asf/struts/struts1/trunk</developerConnection>
-       <url>http://svn.apache.org/viewcvs.cgi/struts/struts1/trunk</url>
+       <connection>scm:svn:http://svn.apache.org/repos/asf/struts/struts1/branches/STRUTS_1_3_BRANCH</connection>
+       <developerConnection>scm:svn:https://svn.apache.org/repos/asf/struts/struts1/branches/STRUTS_1_3_BRANCH</developerConnection>
+       <url>http://svn.apache.org/viewcvs.cgi/struts/struts1/struts1/branches/STRUTS_1_3_BRANCH</url>
     </scm>
 
     <issueManagement>
