@@ -488,7 +488,7 @@ public class TestActionServlet extends TestCase {
         try {
             actionServlet.initModuleExceptionConfigs(moduleConfig);
         } catch (Exception e) {
-            fail("Unexpected exception caught.");
+            fail("Unexpected exception caught: " + e);
         }
     }
 
@@ -668,7 +668,7 @@ public class TestActionServlet extends TestCase {
         try {
             actionServlet.initModuleForwards(moduleConfig);
         } catch (Exception e) {
-            fail("Unexpected exception caught.");
+            fail("Unexpected exception caught: " + e);
         }
     }
 
@@ -846,7 +846,7 @@ public class TestActionServlet extends TestCase {
         try {
             actionServlet.initModuleActions(moduleConfig);
         } catch (Exception e) {
-            fail("Unexpected exception caught.");
+            fail("Unexpected exception caught: " + e);
         }
     }
 
