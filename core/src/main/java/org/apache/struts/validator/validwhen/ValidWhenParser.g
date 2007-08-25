@@ -57,12 +57,12 @@ String value;
         boolean intCompare = true;
 	if ((v1 == null) || (v2 == null)) {
 		if (String.class.isInstance(v1)) {
-			if (((String) v1).length() == 0) {
+			if (((String) v1).trim().length() == 0) {
 				v1 = null;
 			}
 		}
 		if (String.class.isInstance(v2)) {
-			if (((String) v2).length() == 0) {
+			if (((String) v2).trim().length() == 0) {
 				v2 = null;
 			}
 		}

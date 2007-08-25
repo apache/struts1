@@ -1,4 +1,4 @@
-// $ANTLR 2.7.2: "ValidWhenParser.g" -> "ValidWhenParser.java"$
+// $ANTLR 2.7.6 (2005-12-22): "ValidWhenParser.g" -> "ValidWhenParser.java"$
 
 /*
  * $Id$

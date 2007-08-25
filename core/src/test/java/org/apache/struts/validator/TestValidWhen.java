@@ -198,6 +198,14 @@ public class TestValidWhen extends TestCase {
 
         // Null
         doParse("(*this* == null)", testBean, 0, "stringValue2", true);
+
+        // 0-length empty string
+        testBean.setStringValue2("");
+        doParse("(*this* == null)", testBean, 0, "stringValue2", true);
+
+        // N-length empty string
+        testBean.setStringValue2("  ");
+        doParse("(*this* == null)", testBean, 0, "stringValue2", true);
     }
 
     /**
