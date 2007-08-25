@@ -41,26 +41,26 @@
              
             <table>
 
-            <tr><th><a href="http://planetstruts.org/struts-blank/">
+            <tr><th>
             Blank            
-            </a></th><td>
+            </th><td>
             Struts Blank is a template you can use to create your own 
             application. You can copy and rename the WAR, 
             deploy it to your server, and start adding your own code. 
             </td></tr>
 
-            <tr><th><a href="http://planetstruts.org/struts-cookbook/">
+            <tr><th>
             Cookbook
-            </a></th><td>
+            </th><td>
             Struts Cookbook is a show-and-tell application that 
             demonstrates some common use cases. 
             The source code for each example can be viewed through the 
             application itself.
             </td></tr>
 
-            <tr><th><a href="http://planetstruts.org/struts-examples/">
+            <tr><th>
             Examples
-            </a></th><td>
+            </th><td>
             Struts Example is a modular application. 
             Modules include an "exercise" application to test and 
             demonstrate the Struts Taglibs, 
@@ -69,9 +69,9 @@
             validation and localization features, 
             </td></tr>
 
-            <tr><th><a href="http://planetstruts.org/struts-mailreader/">
+            <tr><th>
             MailReader
-            </a></th><td>
+            </th><td>
             Struts MailReader is a best-practices example of a typical 
             web application.
             </td></tr>
