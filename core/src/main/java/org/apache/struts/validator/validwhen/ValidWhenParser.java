@@ -1,4 +1,4 @@
-// $ANTLR 2.7.2: "ValidWhenParser.g" -> "ValidWhenParser.java"$
+// $ANTLR 2.7.6 (2005-12-22): "ValidWhenParser.g" -> "ValidWhenParser.java"$
 
 /*
  * $Id$
@@ -69,12 +69,12 @@ String value;
         boolean intCompare = true;
 	if ((v1 == null) || (v2 == null)) {
 		if (String.class.isInstance(v1)) {
-			if (((String) v1).length() == 0) {
+			if (((String) v1).trim().length() == 0) {
 				v1 = null;
 			}
 		}
 		if (String.class.isInstance(v2)) {
-			if (((String) v2).length() == 0) {
+			if (((String) v2).trim().length() == 0) {
 				v2 = null;
 			}
 		}
@@ -273,12 +273,11 @@ public ValidWhenParser(ParserSharedInputState state) {
 			argStack.push(ValidatorUtils.getValueAsString(form, i3 + "[" + i4 + "]" + i5));
 			
 		}
-		else if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACKET) && (LA(5)==LBRACKET)) {
+		else if ((LA(1)==IDENTIFIER) && (LA(2)==LBRACKET) && ((LA(3) >= DECIMAL_LITERAL && LA(3) <= OCTAL_LITERAL)) && (LA(4)==RBRACKET) && (_tokenSet_0.member(LA(5)))) {
 			identifier();
 			match(LBRACKET);
 			integer();
 			match(RBRACKET);
-			match(LBRACKET);
 			
 			Object i7 = argStack.pop();
 			Object i6 = argStack.pop();
