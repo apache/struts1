@@ -493,8 +493,8 @@ public class TestActionServlet extends TestCase {
     }
 
     /**
-     * Test that initModuleExceptionConfigs throws an exception when a handler
-     * with a null key is present.
+     * Test that initModuleExceptionConfigs does not throw an exception 
+     * when a handler with a null key is present.
      */
     public void testInitModuleExceptionConfigsNullFormType()
         throws ServletException {
@@ -505,9 +505,9 @@ public class TestActionServlet extends TestCase {
 
         try {
             actionServlet.initModuleExceptionConfigs(moduleConfig);
-            fail("An exception should've been thrown here.");
-        } catch (UnavailableException e) {
             // success
+        } catch (UnavailableException e) {
+            fail("Exception shouldn't have been thrown here.");
         } catch (Exception e) {
             fail("Unrecognized exception thrown: " + e);
         }

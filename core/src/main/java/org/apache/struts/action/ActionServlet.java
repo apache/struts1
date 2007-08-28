@@ -1217,15 +1217,16 @@ public class ActionServlet extends HttpServlet {
             postProcessConfig(exception, config, false);
         }
 
-        for (int i = 0; i < exceptions.length; i++) {
-            ExceptionConfig exception = exceptions[i];
-
-            // Verify that required fields are all present for the config
-            if (exception.getKey() == null) {
-                handleValueRequiredException("key", exception.getType(),
-                    "global exception config");
-            }
-        }
+// STR-2924
+//        for (int i = 0; i < exceptions.length; i++) {
+//            ExceptionConfig exception = exceptions[i];
+//
+//            // Verify that required fields are all present for the config
+//            if (exception.getKey() == null) {
+//                handleValueRequiredException("key", exception.getType(),
+//                    "global exception config");
+//            }
+//        }
     }
 
     /**
@@ -1394,17 +1395,18 @@ public class ActionServlet extends HttpServlet {
                 }
             }
 
-            // ... and the exception configs
-            ExceptionConfig[] exceptions = actionConfig.findExceptionConfigs();
-
-            for (int j = 0; j < exceptions.length; j++) {
-                ExceptionConfig exception = exceptions[j];
-
-                if (exception.getKey() == null) {
-                    handleValueRequiredException("key", exception.getType(),
-                        "action exception config");
-                }
-            }
+// STR-2924
+//            // ... and the exception configs
+//            ExceptionConfig[] exceptions = actionConfig.findExceptionConfigs();
+//
+//            for (int j = 0; j < exceptions.length; j++) {
+//                ExceptionConfig exception = exceptions[j];
+//
+//                if (exception.getKey() == null) {
+//                    handleValueRequiredException("key", exception.getType(),
+//                        "action exception config");
+//                }
+//            }
         }
     }
 
