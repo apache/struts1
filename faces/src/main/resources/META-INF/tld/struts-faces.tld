@@ -500,8 +500,7 @@
   </tag>
   <tag>
     <name>javascript</name>
-    <tag-class>
-      org.apache.struts.faces.taglib.JavascriptValidatorTag
+    <tag-class>org.apache.struts.faces.taglib.JavascriptValidatorTag
     </tag-class>
     <description><![CDATA[
       <p>

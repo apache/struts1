@@ -439,8 +439,7 @@
     </tag>
     <tag>
         <name>messagesNotPresent</name>
-        <tag-class>
-            org.apache.strutsel.taglib.logic.ELMessagesNotPresentTag</tag-class>
+        <tag-class>org.apache.strutsel.taglib.logic.ELMessagesNotPresentTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -500,8 +499,7 @@
     </tag>
     <tag>
         <name>messagesPresent</name>
-        <tag-class>
-            org.apache.strutsel.taglib.logic.ELMessagesPresentTag</tag-class>
+        <tag-class>org.apache.strutsel.taglib.logic.ELMessagesPresentTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -685,8 +683,7 @@
     </tag>
     <tag>
         <name>notPresent</name>
-        <tag-class>
-            org.apache.strutsel.taglib.logic.ELNotPresentTag</tag-class>
+        <tag-class>org.apache.strutsel.taglib.logic.ELNotPresentTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
