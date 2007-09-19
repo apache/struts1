@@ -86,8 +86,7 @@
     </description>
     <tag>
         <name>nest</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.NestedPropertyTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.NestedPropertyTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -136,10 +135,8 @@
     </tag>
     <tag>
         <name>writeNesting</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.NestedWriteNestingTag</tag-class>
-        <tei-class>
-            org.apache.struts.taglib.nested.NestedWriteNestingTei</tei-class>
+        <tag-class>org.apache.struts.taglib.nested.NestedWriteNestingTag</tag-class>
+        <tei-class>org.apache.struts.taglib.nested.NestedWriteNestingTei</tei-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -234,10 +231,8 @@
     </tag>
     <tag>
         <name>define</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.bean.NestedDefineTag</tag-class>
-        <tei-class>
-            org.apache.struts.taglib.nested.bean.NestedDefineTei</tei-class>
+        <tag-class>org.apache.struts.taglib.nested.bean.NestedDefineTag</tag-class>
+        <tei-class>org.apache.struts.taglib.nested.bean.NestedDefineTei</tei-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[
@@ -298,8 +293,7 @@
     </tag>
     <tag>
         <name>message</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.bean.NestedMessageTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.bean.NestedMessageTag</tag-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[
@@ -383,8 +377,7 @@
     </tag>
     <tag>
         <name>size</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.bean.NestedSizeTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.bean.NestedSizeTag</tag-class>
         <tei-class>org.apache.struts.taglib.bean.SizeTei</tei-class>
         <body-content>empty</body-content>
         <description>
@@ -434,8 +427,7 @@
     </tag>
     <tag>
         <name>write</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.bean.NestedWriteTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.bean.NestedWriteTag</tag-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[
@@ -510,8 +502,7 @@
     </tag>
     <tag>
         <name>checkbox</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedCheckboxTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedCheckboxTag</tag-class>
         <description>
             <![CDATA[
             <p><strong>Nested Extension - Render A Checkbox Input Field</strong></p>
@@ -769,8 +760,7 @@
     </tag>
     <tag>
         <name>errors</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedErrorsTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedErrorsTag</tag-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[
@@ -856,8 +846,7 @@
     </tag>
     <tag>
         <name>file</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedFileTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedFileTag</tag-class>
         <description>
             <![CDATA[
             <p><strong>Nested Extension -
@@ -1135,8 +1124,7 @@
     </tag>
     <tag>
         <name>form</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedFormTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedFormTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -1279,8 +1267,7 @@
     </tag>
     <tag>
         <name>hidden</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedHiddenTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedHiddenTag</tag-class>
         <description>
             <![CDATA[
             <p><strong>Nested Extension -
@@ -1389,8 +1376,7 @@
     </tag>
     <tag>
         <name>image</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedImageTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedImageTag</tag-class>
         <description>
             <![CDATA[
             <p><strong>Nested Extension -
@@ -1636,8 +1622,7 @@
     </tag>
     <tag>
         <name>img</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedImgTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedImgTag</tag-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[
@@ -1894,8 +1879,7 @@
     </tag>
     <tag>
         <name>link</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedLinkTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedLinkTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -2177,8 +2161,7 @@
     </tag>
     <tag>
         <name>messages</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedMessagesTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedMessagesTag</tag-class>
         <tei-class>org.apache.struts.taglib.html.MessagesTei</tei-class>
         <body-content>JSP</body-content>
         <description>
@@ -2245,8 +2228,7 @@
     </tag>
     <tag>
         <name>multibox</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedMultiboxTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedMultiboxTag</tag-class>
         <description>
             <![CDATA[
             <p><strong>Nested Extension -
@@ -2475,8 +2457,7 @@
     </tag>
     <tag>
         <name>options</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedOptionsTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedOptionsTag</tag-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[
@@ -2566,8 +2547,7 @@
     </tag>
     <tag>
         <name>optionsCollection</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedOptionsCollectionTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedOptionsCollectionTag</tag-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[
@@ -2629,8 +2609,7 @@
     </tag>
     <tag>
         <name>password</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedPasswordTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedPasswordTag</tag-class>
         <description>
             <![CDATA[
             <p><strong>Nested Extension -
@@ -2921,8 +2900,7 @@
     </tag>
     <tag>
         <name>radio</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedRadioTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedRadioTag</tag-class>
         <description>
             <![CDATA[
             <p><strong>Nested Extension -
@@ -3164,8 +3142,7 @@
     </tag>
     <tag>
         <name>select</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedSelectTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedSelectTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -3438,8 +3415,7 @@
     </tag>
     <tag>
         <name>submit</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedSubmitTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedSubmitTag</tag-class>
         <description>
             <![CDATA[
             <p><strong>Nested Extension - Render A Submit Button</strong></p>
@@ -3647,8 +3623,7 @@
     </tag>
     <tag>
         <name>text</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedTextTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedTextTag</tag-class>
         <description>
             <![CDATA[
             <p><strong>Nested Extension -
@@ -3933,8 +3908,7 @@
     </tag>
     <tag>
         <name>textarea</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.html.NestedTextareaTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.html.NestedTextareaTag</tag-class>
         <description>
             <![CDATA[
             <p><strong>Nested Extension - Render A Textarea</strong></p>
@@ -4217,8 +4191,7 @@
     </tag>
     <tag>
         <name>empty</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedEmptyTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedEmptyTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4255,8 +4228,7 @@
     </tag>
     <tag>
         <name>equal</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedEqualTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedEqualTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4317,8 +4289,7 @@
     </tag>
     <tag>
         <name>greaterEqual</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedGreaterEqualTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedGreaterEqualTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4378,8 +4349,7 @@
     </tag>
     <tag>
         <name>greaterThan</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedGreaterThanTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedGreaterThanTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4440,10 +4410,8 @@
     </tag>
     <tag>
         <name>iterate</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedIterateTag</tag-class>
-        <tei-class>
-            org.apache.struts.taglib.nested.logic.NestedIterateTei</tei-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedIterateTag</tag-class>
+        <tei-class>org.apache.struts.taglib.nested.logic.NestedIterateTei</tei-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4516,8 +4484,7 @@
     </tag>
     <tag>
         <name>lessEqual</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedLessEqualTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedLessEqualTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4578,8 +4545,7 @@
     </tag>
     <tag>
         <name>lessThan</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedLessThanTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedLessThanTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4640,8 +4606,7 @@
     </tag>
     <tag>
         <name>match</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedMatchTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedMatchTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4708,8 +4673,7 @@
     </tag>
     <tag>
         <name>messagesNotPresent</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedMessagesNotPresentTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedMessagesNotPresentTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4747,8 +4711,7 @@
     </tag>
     <tag>
         <name>messagesPresent</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedMessagesPresentTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedMessagesPresentTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4786,8 +4749,7 @@
     </tag>
     <tag>
         <name>notEmpty</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedNotEmptyTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedNotEmptyTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4824,8 +4786,7 @@
     </tag>
     <tag>
         <name>notEqual</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedNotEqualTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedNotEqualTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4886,8 +4847,7 @@
     </tag>
     <tag>
         <name>notMatch</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedNotMatchTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedNotMatchTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -4954,8 +4914,7 @@
     </tag>
     <tag>
         <name>notPresent</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedNotPresentTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedNotPresentTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -5022,8 +4981,7 @@
     </tag>
     <tag>
         <name>present</name>
-        <tag-class>
-            org.apache.struts.taglib.nested.logic.NestedPresentTag</tag-class>
+        <tag-class>org.apache.struts.taglib.nested.logic.NestedPresentTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[

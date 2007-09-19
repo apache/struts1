@@ -283,8 +283,7 @@
     </tag>
     <tag>
         <name>definition</name>
-        <tag-class>
-            org.apache.strutsel.taglib.tiles.ELDefinitionTag</tag-class>
+        <tag-class>org.apache.strutsel.taglib.tiles.ELDefinitionTag</tag-class>
         <body-content>JSP</body-content>
         <description>
             <![CDATA[
@@ -708,8 +707,7 @@
     </tag>
     <tag>
         <name>getAsString</name>
-        <tag-class>
-            org.apache.strutsel.taglib.tiles.ELGetAttributeTag</tag-class>
+        <tag-class>org.apache.strutsel.taglib.tiles.ELGetAttributeTag</tag-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[
@@ -759,8 +757,7 @@
     </tag>
     <tag>
         <name>useAttribute</name>
-        <tag-class>
-            org.apache.strutsel.taglib.tiles.ELUseAttributeTag</tag-class>
+        <tag-class>org.apache.strutsel.taglib.tiles.ELUseAttributeTag</tag-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[
@@ -826,8 +823,7 @@
     </tag>
     <tag>
         <name>importAttribute</name>
-        <tag-class>
-            org.apache.strutsel.taglib.tiles.ELImportAttributeTag</tag-class>
+        <tag-class>org.apache.strutsel.taglib.tiles.ELImportAttributeTag</tag-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[
@@ -874,8 +870,7 @@
     </tag>
     <tag>
         <name>initComponentDefinitions</name>
-        <tag-class>
-            org.apache.strutsel.taglib.tiles.ELInitDefinitionsTag</tag-class>
+        <tag-class>org.apache.strutsel.taglib.tiles.ELInitDefinitionsTag</tag-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[

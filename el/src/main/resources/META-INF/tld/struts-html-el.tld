@@ -3829,8 +3829,7 @@
     </tag>
     <tag>
         <name>javascript</name>
-        <tag-class>
-            org.apache.strutsel.taglib.html.ELJavascriptValidatorTag</tag-class>
+        <tag-class>org.apache.strutsel.taglib.html.ELJavascriptValidatorTag</tag-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[
@@ -5425,8 +5424,7 @@
     </tag>
     <tag>
         <name>optionsCollection</name>
-        <tag-class>
-            org.apache.strutsel.taglib.html.ELOptionsCollectionTag</tag-class>
+        <tag-class>org.apache.strutsel.taglib.html.ELOptionsCollectionTag</tag-class>
         <body-content>empty</body-content>
         <description>
             <![CDATA[
