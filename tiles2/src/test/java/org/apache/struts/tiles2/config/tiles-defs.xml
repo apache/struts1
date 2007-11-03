@@ -20,7 +20,7 @@
 
  <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
-       "http://struts.apache.org/dtds/tiles-config_2_0.dtd">
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <!-- Definitions for Tiles documentation   -->
 
@@ -32,11 +32,11 @@
 
   <!-- Doc index page description  -->
   <definition name="doc.mainLayout" template="/layout/classicLayout.jsp">
-	  <put name="title"  value="Tiles Library Documentation" />
-	  <put name="header" value="/common/header.jsp" />
-	  <put name="menu"   value="doc.menu.main" />
-	  <put name="footer" value="/common/footer.jsp" />
-	  <put name="body"   value="doc.portal.body" />
+	  <put-attribute name="title"  value="Tiles Library Documentation" />
+	  <put-attribute name="header" value="/common/header.jsp" />
+	  <put-attribute name="menu"   value="doc.menu.main" />
+	  <put-attribute name="footer" value="/common/footer.jsp" />
+	  <put-attribute name="body"   value="doc.portal.body" />
   </definition>
 
   <!-- =======================================================  -->
@@ -44,21 +44,21 @@
   <!-- =======================================================  -->
 
   <definition name="doc.portal.body" template="/layout/columnsLayout.jsp">
-    <put name="numCols" value="2" />
-    <putList name="list0" >
-      <add value="/doc/portal/welcome.jsp" />
-      <add value="/doc/portal/features.jsp" />
-      <!--<add value="/doc/portal/todo.jsp" /> -->
-      <add value="/doc/portal/documentation.jsp" />
-    </putList>
-    <putList name="list1" >
-      <add value="/doc/portal/news.jsp" />
-      <add value="/doc/portal/download.jsp" />
-      <add value="/doc/portal/tilesCompsTemplates.jsp" />
-      <add value="/doc/portal/strutsIntegration.jsp" />
-      <add value="/doc/portal/comments.jsp" />
-      <add value="/doc/portal/revisions.jsp" />
-    </putList>
+    <put-attribute name="numCols" value="2" />
+    <put-list-attribute name="list0" >
+      <add-attribute value="/doc/portal/welcome.jsp" />
+      <add-attribute value="/doc/portal/features.jsp" />
+      <!--<add-attribute value="/doc/portal/todo.jsp" /> -->
+      <add-attribute value="/doc/portal/documentation.jsp" />
+    </put-list-attribute>
+    <put-list-attribute name="list1" >
+      <add-attribute value="/doc/portal/news.jsp" />
+      <add-attribute value="/doc/portal/download.jsp" />
+      <add-attribute value="/doc/portal/tilesCompsTemplates.jsp" />
+      <add-attribute value="/doc/portal/strutsIntegration.jsp" />
+      <add-attribute value="/doc/portal/comments.jsp" />
+      <add-attribute value="/doc/portal/revisions.jsp" />
+    </put-list-attribute>
   </definition>
   
   <!-- =======================================================  -->
@@ -67,24 +67,24 @@
 
   <!-- Menu bar definition -->
 <definition name="doc.menu.main" template="/layout/vboxLayout.jsp" >
-  <putList name="componentsList" >
-    <add value="doc.menu.links" />
-    <add value="doc.menu.taglib.references" />
-    <add value="doc.menu.printer.friendly" />
-    <add value="doc.menu.old.documents" />
-  </putList>
+  <put-list-attribute name="componentsList" >
+    <add-attribute value="doc.menu.links" />
+    <add-attribute value="doc.menu.taglib.references" />
+    <add-attribute value="doc.menu.printer.friendly" />
+    <add-attribute value="doc.menu.old.documents" />
+  </put-list-attribute>
 </definition>
 
   <!-- Documentation menu definition v1.1-->
 <definition name="doc.menu.links" template="/layouts/menu.jsp" >
-  <put name="title" value="Documentation" />
-    <putList name="items" >
+  <put-attribute name="title" value="Documentation" />
+    <put-list-attribute name="items" >
       <item value="Home"           link="/index.jsp"  />
       <item value="Live Examples (new)" link="/examples/index.jsp"  />
       <!--
 	  <item> <value>Commented Examples</value> 
 	  		<link>/examples/index.jsp</link>
-			<classtype>org.apache.struts.tiles.beans.SimpleMenuItem</classtype>
+			<classtype>org.apache.tiles.beans.SimpleMenuItem</classtype>
 	  </item>
 	  -->
       <item value="Quick overview" link="/doc/quickOverview.jsp"  />
@@ -97,36 +97,36 @@
       <item value="User Guide"	   link="/doc/userGuide.jsp" />
       <item value="Javadoc"        link="/api/index.html" />
       <item value="Struts Home"    link="http://www.apache.org"   icon="/images/struts-power.gif"        
-			classtype="org.apache.struts.tiles.beans.SimpleMenuItem" />
-    </putList>
+			classtype="org.apache.tiles.beans.SimpleMenuItem" />
+    </put-list-attribute>
 </definition>
 
   <!-- Printer friendly menu definition -->
 <definition name="doc.menu.printer.friendly" template="/layouts/menu.jsp" >
-  <put name="title" value="Printer Versions" />
-  <putList name="items" >
+  <put-attribute name="title" value="Printer Versions" />
+  <put-list-attribute name="items" >
     <item value="Quick Overview"     link="/test/testAll.jsp" />
     <item value="Tutorial"           link="/doc/tutorialBody.html" />
     <item value="User Guide"         link="/doc/userGuideBody.html" />
     <item value="Overview (old)"  	 link="/doc/overviewBody.html" />
-  </putList>
+  </put-list-attribute>
 </definition>
 
   <!-- Taglib menu definition -->
 <definition name="doc.menu.taglib.references" template="/layouts/menu.jsp" >
-  <put name="title" value="Tag Library Reference" />
-    <putList name="items" >
+  <put-attribute name="title" value="Tag Library Reference" />
+    <put-list-attribute name="items" >
       <item value="Tiles Tags"     link="/doc/tilesTags.jsp" />
       <!-- <item value="Extension Tags (old)"   link="/doc/extensionsTags.jsp" /> -->
-    </putList>
+    </put-list-attribute>
 </definition>
 
   <!-- Oldies menu definition -->
 <definition name="doc.menu.old.documents" template="/layouts/menu.jsp" >
-  <put name="title" value="Old Documents" />
-  <putList name="items" >
+  <put-attribute name="title" value="Old Documents" />
+  <put-list-attribute name="items" >
     <item value="Overview (old)"     link="/doc/overview.jsp" />
-  </putList>
+  </put-list-attribute>
 </definition>
 
 
