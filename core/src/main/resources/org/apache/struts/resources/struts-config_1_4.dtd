@@ -101,7 +101,7 @@
      hierarchy, and contains nested elements for all of the other
      configuration settings.
 -->
-<!ELEMENT struts-config (display-name?, description?, form-beans?, global-exceptions?, global-forwards?, action-mappings?, controller?, message-resources*, plug-in*)>
+<!ELEMENT struts-config (display-name?, description?, set-property?, form-beans?, global-exceptions?, global-forwards?, action-mappings?, controller?, message-resources*, plug-in*)>
 <!ATTLIST struts-config  id             ID              #IMPLIED>
 
 <!-- The "form-beans" element describes the set of form bean descriptors for this
