@@ -300,6 +300,9 @@ public class ActionServlet extends HttpServlet {
         destroyInternal();
         getServletContext().removeAttribute(Globals.ACTION_SERVLET_KEY);
 
+        CatalogFactory.clear();
+        PropertyUtils.clearDescriptors();
+
         // Release our LogFactory and Log instances (if any)
         ClassLoader classLoader =
             Thread.currentThread().getContextClassLoader();
@@ -324,9 +327,6 @@ public class ActionServlet extends HttpServlet {
               Bugzilla #14042. It was committed for version 1.136 by craigmcc
             */
         }
-
-        CatalogFactory.clear();
-        PropertyUtils.clearDescriptors();
     }
 
     /**
