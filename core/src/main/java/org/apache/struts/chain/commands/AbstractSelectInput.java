@@ -67,51 +67,28 @@ public abstract class AbstractSelectInput extends ActionCommandBase {
         ModuleConfig moduleConfig = actionConfig.getModuleConfig();
 
         // Cache an ForwardConfig back to our input page
-        ForwardConfig forwardConfig;
+        ForwardConfig forwardConfig = null;
         String input = actionConfig.getInput();
 
         if (moduleConfig.getControllerConfig().getInputForward()) {
             if (LOG.isTraceEnabled()) {
                 LOG.trace("Finding ForwardConfig for '" + input + "'");
             }
-
-            // If the input parameter is specified, use that, otherwise try
-            // to find one in the mapping or the module under the standard
-            // conventional "input" name.
-            if (input != null) {
-                forwardConfig = actionConfig.findForwardConfig(input);
-                if (forwardConfig == null) {
-                    forwardConfig = moduleConfig.findForwardConfig(input);
-                }
-            } else {
-                forwardConfig = actionConfig.findForwardConfig(Action.INPUT);
-                if (forwardConfig == null) {
-                    forwardConfig = moduleConfig.findForwardConfig(Action.INPUT);
-                }
+            forwardConfig = inputForward(actionConfig, moduleConfig, input);
+            if (forwardConfig == null) {
+                LOG.error(getErrorMessage(actionCtx, actionConfig));
             }
         } else {
             if (LOG.isTraceEnabled()) {
                 LOG.trace("Delegating to forward() for '" + input + "'");
             }
-
-            // If no input parameter is specified, try to find one in the 
-            // module under the standard conventional "input" name. Because
-            // the Controller is not setup to treat the input parameter as
-            // a mapping, the action mapping check is skipped.
-            if (input == null) {
-                forwardConfig = moduleConfig.findForwardConfig(Action.INPUT);
-                if (forwardConfig != null) {
-                    input = Action.INPUT;
-                }
-            }
-            
             forwardConfig = forward(actionCtx, moduleConfig, input);
         }
-
+        
         if (LOG.isDebugEnabled()) {
             LOG.debug("Forwarding back to " + forwardConfig);
         }
-
+        
         actionCtx.setForwardConfig(forwardConfig);
 
         return (false);
@@ -130,4 +107,48 @@ public abstract class AbstractSelectInput extends ActionCommandBase {
      */
     protected abstract ForwardConfig forward(ActionContext context,
         ModuleConfig moduleConfig, String uri);
+
+    /**
+     * <p> Retrieve error message from context. </p>
+     *
+     * @param context      The <code>Context</code> for the current request
+     * @param actionConfig The current action mapping
+     * @return error message
+     */
+    protected abstract String getErrorMessage(ActionContext context,
+        ActionConfig actionConfig);
+
+    /**
+     * Attempts to resolve the input as a {@link ForwardConfig} attribute. 
+     * This method should only invoked if the Controller has its 
+     * <code>inputForward</code> property set to <code>true</code>.
+     * If the input parameter is specified, use that, otherwise try
+     * to find one in the mapping or the module under the standard
+     * conventional <code>input</code> name.
+     *   
+     * @param actionConfig the config for the target action
+     * @param moduleConfig the config for the module of the action
+     * @param input the name of the input
+     * @return ForwardConfig representing destination
+     * @see Action#INPUT
+     */
+    protected ForwardConfig inputForward(ActionConfig actionConfig, 
+            ModuleConfig moduleConfig, String input) {
+        ForwardConfig forwardConfig;
+
+        if (input != null) {
+            forwardConfig = actionConfig.findForwardConfig(input);
+            if (forwardConfig == null) {
+                forwardConfig = moduleConfig.findForwardConfig(input);
+            }
+        } else {
+            forwardConfig = actionConfig.findForwardConfig(Action.INPUT);
+            if (forwardConfig == null) {
+                forwardConfig = moduleConfig.findForwardConfig(Action.INPUT);
+            }
+        }
+        
+        return forwardConfig;
+    }
+
 }
