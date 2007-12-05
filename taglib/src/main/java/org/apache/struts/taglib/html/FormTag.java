@@ -706,14 +706,22 @@ public class FormTag extends TagSupport {
             results.append(lineEnd);
         }
 
+        // Construct the index if needed and insert into focus statement
+        String index = "";
+        if (this.focusIndex != null) {
+            StringBuffer sb = new StringBuffer("[");
+            sb.append(this.focusIndex);
+            sb.append("]");
+            index = sb.toString();
+        }
+        
         // Construct the control name that will receive focus.
-        // This does not include any index.
         StringBuffer focusControl = new StringBuffer("document.forms[\"");
-
         focusControl.append(beanName);
         focusControl.append("\"].elements[\"");
         focusControl.append(this.focus);
         focusControl.append("\"]");
+        focusControl.append(index);
 
         results.append("  var focusControl = ");
         results.append(focusControl.toString());
@@ -727,19 +735,7 @@ public class FormTag extends TagSupport {
         results.append("focusControl.style.display != \"none\") {");
         results.append(lineEnd);
 
-        // Construct the index if needed and insert into focus statement
-        String index = "";
-
-        if (this.focusIndex != null) {
-            StringBuffer sb = new StringBuffer("[");
-
-            sb.append(this.focusIndex);
-            sb.append("]");
-            index = sb.toString();
-        }
-
         results.append("     focusControl");
-        results.append(index);
         results.append(".focus();");
         results.append(lineEnd);
 
