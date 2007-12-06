@@ -721,7 +721,7 @@ public class ModuleConfigImpl extends BaseConfig implements Serializable,
         
         if (Constants.STRUTS_URL_CASESENSITIVE.equals(key)) {
             Map actionConfigs2;
-            if (!Boolean.parseBoolean(value)) {
+            if (!Boolean.valueOf(value).booleanValue()) {
                 actionConfigs2 = new TreeMap(String.CASE_INSENSITIVE_ORDER);
             } else {
                 actionConfigs2 = new HashMap();

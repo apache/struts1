@@ -275,7 +275,7 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      */
     protected void clearInputStream(HttpServletRequest request) {
         try {
-            if (System.getProperty("os.name").contains("Windows")) {
+            if (System.getProperty("os.name").indexOf("Windows") >= -1) {
                 ServletInputStream is = request.getInputStream();
                 byte[] data = new byte[DEFAULT_SIZE_THRESHOLD];
                 int bytesRead = 0;
