@@ -25,6 +25,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.Globals;
+import org.apache.struts.action.ActionRedirect;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionServlet;
@@ -481,6 +482,26 @@ public class RequestUtils {
                 // in fact an ActionForm.
                 ((ActionForm) bean).setMultipartRequestHandler(multipartHandler);
             }
+        }
+    }
+
+    /**
+     * <p>Populates the parameters of the specified ActionRedirect from 
+     * the specified HTTP request.</p>
+     *
+     * @param redirect The ActionRedirect whose parameters are to be set
+     * @param request The HTTP request whose parameters are to be used
+     * @since Struts 1.4
+     */
+    public static void populate(ActionRedirect redirect, HttpServletRequest request) {
+        assert (redirect != null) : "redirect is required";
+        assert (request != null) : "request is required";
+        
+        Enumeration e = request.getParameterNames();
+        while (e.hasMoreElements()) {
+            String name = (String) e.nextElement();
+            String[] values = request.getParameterValues(name);
+            redirect.addParameter(name, values);
         }
     }
 
