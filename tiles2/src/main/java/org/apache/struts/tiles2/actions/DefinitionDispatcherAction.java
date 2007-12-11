@@ -111,8 +111,9 @@ public class DefinitionDispatcherAction extends Action {
         TilesContainer container = TilesAccess.getContainer(request
                 .getSession().getServletContext());
         if (container != null
-                && container.isValidDefinition(name, request, response)) {
-            container.render(name, request, response);
+                && container.isValidDefinition(name, new Object[] { request,
+                        response })) {
+            container.render(name, new Object[] { request, response });
         } else {
             log.error("Can't get definition '" + name + "'.");
             return mapping.findForward("error");

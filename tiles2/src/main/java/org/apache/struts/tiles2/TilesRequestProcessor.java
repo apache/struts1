@@ -113,10 +113,12 @@ public class TilesRequestProcessor extends RequestProcessor {
 
         boolean retValue = false;
 
-        if (container.isValidDefinition(definitionName, request, response)) {
+        if (container.isValidDefinition(definitionName, new Object[] { request,
+                response })) {
             retValue = response.isCommitted();
             try {
-                container.render(definitionName, request, response);
+                container.render(definitionName, new Object[] { request,
+                        response });
             } catch (TilesException e) {
                 throw new ServletException("Cannot render definition '"
                         + definitionName + "'");

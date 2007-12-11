@@ -67,8 +67,9 @@ public abstract class TilesAction extends Action {
         throws Exception {
 
         // Try to retrieve tile context
-        AttributeContext context = TilesAccess.getContainer(request.getSession()
-                .getServletContext()).getAttributeContext(request, response);
+        AttributeContext context = TilesAccess.getContainer(
+                request.getSession().getServletContext()).getAttributeContext(
+                new Object[] { request, response });
         if (context == null) {
             throw new ServletException(
                 "Can't find Tile context for '"

@@ -86,15 +86,15 @@ public class TilesPlugin implements PlugIn {
      * Defaults form Tiles 2 configuration in case of a module-aware
      * configuration.
      */
-    private static final Map < String, String > MODULE_AWARE_DEFAULTS =
-        new HashMap < String, String > ();
+    private static final Map MODULE_AWARE_DEFAULTS =
+        new HashMap();
 
     /**
      * Defaults form Tiles 2 configuration in case of a configuration without
      * modules.
      */
-    private static final Map < String, String > NO_MODULE_DEFAULTS =
-        new HashMap < String, String > ();
+    private static final Map NO_MODULE_DEFAULTS =
+        new HashMap();
 
     static {
         NO_MODULE_DEFAULTS.put(TilesContainerFactory
@@ -212,8 +212,7 @@ public class TilesPlugin implements PlugIn {
                         DefinitionsFactory defsFactory =
                             ((KeyedDefinitionsFactoryTilesContainerFactory) factory)
                             .createDefinitionsFactory(currentPlugInConfigContextAdapter);
-                        Map < String, String > initParameters =
-                            new HashMap < String, String > ();
+                        Map initParameters = new HashMap();
                         String param = (String) currentPlugInConfigObject
                                 .getProperties().get(BasicTilesContainer
                                         .DEFINITIONS_CONFIG);
@@ -284,7 +283,7 @@ public class TilesPlugin implements PlugIn {
         String configProcessorClassname = ctrlConfig.getProcessorClass();
 
         // Check if specified classname exist
-        Class < ? > configProcessorClass;
+        Class configProcessorClass;
         try {
             configProcessorClass =
                 RequestUtils.applicationClass(configProcessorClassname);
@@ -313,7 +312,7 @@ public class TilesPlugin implements PlugIn {
         }
 
         // Check if specified request processor is compatible with Tiles.
-        Class < ? > tilesProcessorClass = TilesRequestProcessor.class;
+        Class tilesProcessorClass = TilesRequestProcessor.class;
         if (!tilesProcessorClass.isAssignableFrom(configProcessorClass)) {
             // Not compatible
             String msg =

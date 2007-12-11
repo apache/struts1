@@ -49,18 +49,6 @@
    </distributionManagement>
 
    <build>
-      <pluginManagement>
-         <plugins>
-            <plugin>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-compiler-plugin</artifactId>
-               <configuration>
-                   <source>1.5</source>
-                   <target>1.5</target>
-               </configuration>
-            </plugin>
-         </plugins>
-      </pluginManagement>
       <resources>
          <resource>
             <directory>src/main/resources</directory>
@@ -110,6 +98,34 @@
          <groupId>org.apache.tiles</groupId>
          <artifactId>tiles-core</artifactId>
          <version>2.0.5</version>
+         <classifier>j4</classifier>
+         <exclusions>
+            <exclusion>
+                <groupId>org.apache.tiles</groupId>
+                <artifactId>tiles-api</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+
+      <dependency>
+         <groupId>org.apache.tiles</groupId>
+         <artifactId>tiles-api</artifactId>
+         <version>2.0.5</version>
+         <classifier>j4</classifier>
+      </dependency>
+
+      <dependency>
+          <groupId>net.sf.retrotranslator</groupId>
+          <artifactId>retrotranslator-runtime</artifactId>
+          <version>1.2.1</version>
+          <scope>runtime</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>backport-util-concurrent</groupId>
+          <artifactId>backport-util-concurrent</artifactId>
+          <version>3.0</version>
+          <scope>runtime</scope>
       </dependency>
 
       <dependency>

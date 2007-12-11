@@ -104,10 +104,10 @@ public class TilesPreProcessor implements Command {
             return false;
         }
 
-        if (container.isValidDefinition(forwardConfig.getPath(),
-                sacontext.getRequest(), sacontext.getResponse())) {
-            container.render(forwardConfig.getPath(),
-                    sacontext.getRequest(), sacontext.getResponse());
+        if (container.isValidDefinition(forwardConfig.getPath(), new Object[] {
+                sacontext.getRequest(), sacontext.getResponse() })) {
+            container.render(forwardConfig.getPath(), new Object[] {
+                    sacontext.getRequest(), sacontext.getResponse() });
             sacontext.setForwardConfig(null);
         } else {
             // ignore not found

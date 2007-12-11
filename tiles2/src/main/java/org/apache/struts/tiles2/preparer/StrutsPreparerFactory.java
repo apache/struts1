@@ -35,7 +35,6 @@ import org.apache.tiles.util.ClassUtil;
 public class StrutsPreparerFactory extends BasicPreparerFactory {
 
     /** {@inheritDoc} */
-    @Override
     protected ViewPreparer createPreparer(String name) throws TilesException {
         ViewPreparer retValue;
 
