@@ -148,6 +148,10 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.4.1</version>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
@@ -235,6 +239,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.4.1</version>
             </plugin>
             <plugin>
                 <artifactId>maven-checkstyle-plugin</artifactId>
