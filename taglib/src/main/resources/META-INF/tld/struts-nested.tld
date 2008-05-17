@@ -80,7 +80,7 @@
     attributes. These uses will then fall outside the nested context, and will
     most likely cause error. To take advantage of these options, markup using
     the original tag for these cases. For an example see the
-    <a href="options.html"><code>&lt;nested:options&gt;</code></a> tag.
+    <code>&lt;nested:options&gt;</code> tag.
     </p>
   ]]>
     </description>
@@ -242,7 +242,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../bean/define.html"><code>&lt;bean:define&gt;</code></a>
+      <code>&lt;bean:define&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -302,7 +302,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../bean/message.html"><code>&lt;bean:message&gt;</code></a>
+      <code>&lt;bean:message&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -387,7 +387,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../bean/size.html"><code>&lt;bean:size&gt;</code></a>
+      <code>&lt;bean:size&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -437,7 +437,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../bean/write.html"><code>&lt;bean:write&gt;</code></a>
+      <code>&lt;bean:write&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -508,7 +508,7 @@
             <p><strong>Nested Extension - Render A Checkbox Input Field</strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/checkbox.html"><code>&lt;html:checkbox&gt;</code></a>
+      <code>&lt;html:checkbox&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -769,7 +769,7 @@
      </strong></p>
           
        <p>This tag is an extension of the
-       <a href="../html/errors.html"><code>&lt;html:errors&gt;</code></a>
+       <code>&lt;html:errors&gt;</code>
        tag. Please consult its documentation for information on tag attributes
        and usage details.
        </p>
@@ -854,7 +854,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/file.html"><code>&lt;html:file&gt;</code></a>
+      <code>&lt;html:file&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -1131,7 +1131,7 @@
             <p><strong>Nested Extension - Define An Input Form</strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/form.html"><code>&lt;html:form&gt;</code></a>
+      <code>&lt;html:form&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -1275,7 +1275,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/hidden.html"><code>&lt;html:hidden&gt;</code></a>
+      <code>&lt;html:hidden&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -1384,7 +1384,7 @@
     </strong></p>
           
     <p>This tag is an extension of the
-    <a href="../html/image.html"><code>&lt;html:image&gt;</code></a>
+    <code>&lt;html:image&gt;</code>
     tag. Please consult its documentation for information on tag attributes
     and usage details.
     </p>
@@ -1629,7 +1629,7 @@
             <p><strong>Nested Extension - Render an HTML "img" tag</strong></p>
           
     <p>This tag is an extension of the
-    <a href="../html/img.html"><code>&lt;html:img&gt;</code></a>
+    <code>&lt;html:img&gt;</code>
     tag. Please consult its documentation for information on tag attributes
     and usage details.
     </p>
@@ -1886,7 +1886,7 @@
             <p><strong>Nested Extension - Render an HTML anchor or hyperlink</strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/link.html"><code>&lt;html:link&gt;</code></a>
+      <code>&lt;html:link&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -2171,7 +2171,7 @@
       </strong></p>
           
          <p>This tag is an extension of the
-         <a href="../html/messages.html"><code>&lt;html:messages&gt;</code></a>
+         <code>&lt;html:messages&gt;</code>
          tag. Please consult its documentation for information on tag attributes
          and usage details.
          </p>
@@ -2236,7 +2236,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/multibox.html"><code>&lt;html:multibox&gt;</code></a>
+      <code>&lt;html:multibox&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -2464,7 +2464,7 @@
             <p><strong>Nested Extension - Render a Collection of Select Options</strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/options.html"><code>&lt;html:options&gt;</code></a>
+      <code>&lt;html:options&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -2556,8 +2556,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/optionsCollection.html"
-      ><code>&lt;html:optionsCollection&gt;</code></a>
+      <code>&lt;html:optionsCollection&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -2617,7 +2616,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/password.html"><code>&lt;html:password&gt;</code></a>
+      <code>&lt;html:password&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -2908,7 +2907,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/radio.html"><code>&lt;html:radio&gt;</code></a>
+      <code>&lt;html:radio&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -3151,7 +3150,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/select.html"><code>&lt;html:select&gt;</code></a>
+      <code>&lt;html:select&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -3421,7 +3420,7 @@
             <p><strong>Nested Extension - Render A Submit Button</strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/submit.html"><code>&lt;html:submit&gt;</code></a>
+      <code>&lt;html:submit&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -3631,7 +3630,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/text.html"><code>&lt;html:text&gt;</code></a>
+      <code>&lt;html:text&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -3914,7 +3913,7 @@
             <p><strong>Nested Extension - Render A Textarea</strong></p>
           
       <p>This tag is an extension of the
-      <a href="../html/textarea.html"><code>&lt;html:textarea&gt;</code></a>
+      <code>&lt;html:textarea&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4201,7 +4200,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/empty.html"><code>&lt;logic:empty&gt;</code></a>
+      <code>&lt;logic:empty&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4238,7 +4237,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/equal.html"><code>&lt;logic:equal&gt;</code></a>
+      <code>&lt;logic:equal&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4298,7 +4297,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/greaterEqual.html"><code>&lt;logic:greaterEqual&gt;</code></a>
+      <code>&lt;logic:greaterEqual&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4359,7 +4358,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/greaterThan.html"><code>&lt;logic:greaterThan&gt;</code></a>
+      <code>&lt;logic:greaterThan&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4420,7 +4419,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/iterate.html"><code>&lt;logic:iterate&gt;</code></a>
+      <code>&lt;logic:iterate&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4494,7 +4493,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/lessEqual.html"><code>&lt;logic:lessEqual&gt;</code></a>
+      <code>&lt;logic:lessEqual&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4555,7 +4554,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/lessThan.html"><code>&lt;logic:lessThan&gt;</code></a>
+      <code>&lt;logic:lessThan&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4616,7 +4615,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/match.html"><code>&lt;logic:match&gt;</code></a>
+      <code>&lt;logic:match&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4684,7 +4683,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/messagesNotPresent.html"><code>&lt;logic:messagesNotPresent&gt;</code></a>
+      <code>&lt;logic:messagesNotPresent&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4722,7 +4721,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/messagesPresent.html"><code>&lt;logic:messagesPresent&gt;</code></a>
+      <code>&lt;logic:messagesPresent&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4759,7 +4758,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/notEmpty.html"><code>&lt;logic:notEmpty&gt;</code></a>
+      <code>&lt;logic:notEmpty&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4796,7 +4795,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/notEqual.html"><code>&lt;logic:notEqual&gt;</code></a>
+      <code>&lt;logic:notEqual&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4857,7 +4856,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/notMatch.html"><code>&lt;logic:notMatch&gt;</code></a>
+      <code>&lt;logic:notMatch&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4924,7 +4923,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/notPresent.html"><code>&lt;logic:notPresent&gt;</code></a>
+      <code>&lt;logic:notPresent&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>
@@ -4991,7 +4990,7 @@
     </strong></p>
           
       <p>This tag is an extension of the
-      <a href="../logic/present.html"><code>&lt;logic:present&gt;</code></a>
+      <code>&lt;logic:present&gt;</code>
       tag. Please consult its documentation for information on tag attributes
       and usage details.
       </p>

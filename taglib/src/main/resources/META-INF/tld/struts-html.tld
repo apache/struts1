@@ -117,7 +117,7 @@
             </p>
             <p>
              If a graphical button is needed (a button with an image), then the
-             <a href="#image"><code>image</code></a> tag is more appropriate.
+             <code>&lt;html:image&gt;</code> tag is more appropriate.
             </p>
         ]]>
         </description>
@@ -5268,9 +5268,9 @@
             <![CDATA[
                 <p>Adds a parameter to the following tags:
                   <ol>
-                    <li><a href="#frame">&lt;html:frame&gt;</a></li>
-                    <li><a href="#link">&lt;html:link&gt;</a></li>
-                    <li><a href="#rewrite">&lt;html:rewrite&gt;</a></li>
+                    <li>&lt;html:frame&gt;</li>
+                    <li>&lt;html:link&gt;</li>
+                    <li>&lt;html:rewrite&gt;</li>
                   </ol>
                 </p>
             
@@ -7645,7 +7645,7 @@
             <p><strong>Render an URI</strong></p>
           
                 <p>Renders a request URI based on exactly the same rules
-                as the <code><a href="#link">link</a></code> tag does,
+                as the <code>&lt;html:link&gt;</code> tag does,
                 but without creating
                 the <code>&lt;a&gt;</code> hyperlink.  This value is useful
                 when you want to generate a string constant for use by
@@ -8364,7 +8364,7 @@
             Renders an HTML &lt;input&gt; element of type <code>submit</code>.
             <p>
              If a graphical button is needed (a button with an image), then the
-             <a href="#image"><code>image</code></a> tag is more appropriate.
+             <code>&lt;html:image&gt;</code> tag is more appropriate.
             </p>
         ]]>
         </description>
