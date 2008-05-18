@@ -5578,9 +5578,9 @@
             <![CDATA[
                 <p>Adds a parameter to the following tags:
                     <ol>
-                        <li><a href="#frame">&lt;html:frame&gt;</li>
-                        <li><a href="#link">&lt;html:link&gt;</li>
-                        <li><a href="#rewrite">&lt;html:rewrite&gt;</li>
+                        <li><code>&lt;html:frame&gt;</code></li>
+                        <li><code>&lt;html:link&gt;</code></li>
+                        <li><code>&lt;html:rewrite&gt;</code></li>
                     </ol>
                 </p>
             
