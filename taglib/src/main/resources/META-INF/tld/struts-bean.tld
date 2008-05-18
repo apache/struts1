@@ -195,7 +195,7 @@
     </p>
 
     <p>See the Bean Developer's Guide section on
-    <a href="../api/org/apache/struts/taglib/bean/package-summary.html#doc.Creation">
+    <a href="../apidocs/org/apache/struts/taglib/bean/package-summary.html#doc.Creation">
     bean creation</a> for more information about these differences, as well
     as alternative approaches to introducing beans into a JSP page.</p>
     ]]>
