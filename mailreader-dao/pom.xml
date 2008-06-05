@@ -41,6 +41,10 @@
         <url>http://svn.apache.org/repos/asf/struts/struts1/trunk/mailreader-dao/</url>
     </scm>
 
+   <properties>
+       <struts.osgi.symbolicName>org.apache.struts.apps.mailreader.dao</struts.osgi.symbolicName>
+   </properties>
+
    <build>
       <resources>
             <resource>

@@ -47,6 +47,11 @@
          <url>scp://people.apache.org/www/struts.apache.org/1.x/struts-el</url>
       </site>
    </distributionManagement>
+
+   <properties>
+       <struts.osgi.symbolicName>org.apache.strutsel.taglib</struts.osgi.symbolicName>
+       <struts.osgi.export>org.apache.strutsel.*;version=${pom.version}</struts.osgi.export>
+   </properties>
    
    <build>
       <resources>
