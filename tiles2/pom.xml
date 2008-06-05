@@ -66,34 +66,40 @@
    </build>
 
    <dependencies>
-
       <dependency>
-         <groupId>javax.servlet</groupId>
-         <artifactId>servlet-api</artifactId>
-         <version>2.4</version>
-         <scope>provided</scope>
-      </dependency>
-
-      <dependency>
-         <groupId>javax.servlet</groupId>
-         <artifactId>jsp-api</artifactId>
-         <version>2.0</version>
-         <scope>test</scope>
-      </dependency>
-
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <version>3.8.1</version>
-         <scope>test</scope>
-      </dependency>
-
-      <dependency>
-         <groupId>org.apache.struts</groupId>
+         <groupId>${pom.groupId}</groupId>
          <artifactId>struts-core</artifactId>
          <version>${pom.version}</version>
       </dependency>
-
+      <dependency>
+          <groupId>backport-util-concurrent</groupId>
+          <artifactId>backport-util-concurrent</artifactId>
+          <version>3.0</version>
+          <scope>runtime</scope>
+      </dependency>
+      <dependency>
+          <groupId>commons-collections</groupId>
+          <artifactId>commons-collections</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>servlet-api</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>jsp-api</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>net.sf.retrotranslator</groupId>
+          <artifactId>retrotranslator-runtime</artifactId>
+          <version>1.2.1</version>
+          <scope>runtime</scope>
+      </dependency>
       <dependency>
          <groupId>org.apache.tiles</groupId>
          <artifactId>tiles-core</artifactId>
@@ -106,34 +112,12 @@
             </exclusion>
          </exclusions>
       </dependency>
-
       <dependency>
          <groupId>org.apache.tiles</groupId>
          <artifactId>tiles-api</artifactId>
          <version>2.0.5</version>
          <classifier>j4</classifier>
       </dependency>
-
-      <dependency>
-          <groupId>net.sf.retrotranslator</groupId>
-          <artifactId>retrotranslator-runtime</artifactId>
-          <version>1.2.1</version>
-          <scope>runtime</scope>
-      </dependency>
-
-      <dependency>
-          <groupId>backport-util-concurrent</groupId>
-          <artifactId>backport-util-concurrent</artifactId>
-          <version>3.0</version>
-          <scope>runtime</scope>
-      </dependency>
-
-      <dependency>
-          <groupId>commons-collections</groupId>
-          <artifactId>commons-collections</artifactId>
-          <version>2.1</version>
-      </dependency>
-
    </dependencies>
 
    <reporting>

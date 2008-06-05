@@ -72,29 +72,21 @@
 
    </build>
 
-   <dependencies>
-
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <version>3.8.1</version>
-         <scope>test</scope>
-      </dependency>
-
-      <dependency>
-         <groupId>javax.servlet</groupId>
-         <artifactId>servlet-api</artifactId>
-         <version>2.3</version>
-         <scope>provided</scope>
-      </dependency>
-
-      <dependency>
-         <groupId>org.apache.struts</groupId>
-         <artifactId>struts-core</artifactId>
-         <version>${pom.version}</version>
-      </dependency>
-
-   </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>${pom.groupId}</groupId>
+            <artifactId>struts-core</artifactId>
+            <version>${pom.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+    </dependencies>
 
    <reporting>
       <plugins>
