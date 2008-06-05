@@ -72,7 +72,7 @@
       <dependency>
          <groupId>taglibs</groupId>
          <artifactId>standard</artifactId>
-         <version>1.0.2</version>
+         <version>1.0.6</version>
       </dependency>
 
       <!-- Required by MyFaces -->
