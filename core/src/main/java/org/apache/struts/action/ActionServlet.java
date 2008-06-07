@@ -401,7 +401,9 @@ public class ActionServlet extends HttpServlet {
                 + "unexpected exception or error thrown, so marking the "
                 + "servlet as unavailable.  Most likely, this is due to an "
                 + "incorrect or missing library dependency.", t);
-            throw new UnavailableException(t.getMessage());
+            UnavailableException t2 = new UnavailableException(t.getMessage());
+            t2.initCause(t);
+            throw t2;
         }
     }
 
@@ -613,10 +615,11 @@ public class ActionServlet extends HttpServlet {
                     (RequestProcessor) RequestUtils.applicationInstance(config.getControllerConfig()
                                                                               .getProcessorClass());
             } catch (Exception e) {
-                throw new UnavailableException(
+            	UnavailableException e2 = new UnavailableException(
                     "Cannot initialize RequestProcessor of class "
-                    + config.getControllerConfig().getProcessorClass() + ": "
-                    + e);
+                    + config.getControllerConfig().getProcessorClass());
+                e2.initCause(e);
+                throw e2;
             }
             
             // Emit a warning to the log if the classic RequestProcessor is 
@@ -769,7 +772,9 @@ public class ActionServlet extends HttpServlet {
         String msg = internal.getMessage("configParse", path);
 
         log.error(msg, e);
-        throw new UnavailableException(msg);
+        UnavailableException e2 = new UnavailableException(msg);
+        e2.initCause(e);
+        throw e2;
     }
 
     /**
@@ -786,7 +791,9 @@ public class ActionServlet extends HttpServlet {
             internal.getMessage("configExtends.creation", className);
 
         log.error(errorMessage, e);
-        throw new UnavailableException(errorMessage);
+        UnavailableException e2 = new UnavailableException(errorMessage);
+        e2.initCause(e);
+        throw e2;
     }
 
     /**
@@ -805,7 +812,9 @@ public class ActionServlet extends HttpServlet {
             internal.getMessage("configExtends", configType, configName);
 
         log.error(errorMessage, e);
-        throw new UnavailableException(errorMessage);
+        UnavailableException e2 = new UnavailableException(errorMessage);
+        e2.initCause(e);
+        throw e2;
     }
 
     /**
@@ -888,7 +897,9 @@ public class ActionServlet extends HttpServlet {
                         plugInConfigs[i].getClassName());
 
                 log(errMsg, e);
-                throw new UnavailableException(errMsg);
+                UnavailableException e2 = new UnavailableException(errMsg);
+                e2.initCause(e);
+                throw e2;
             }
         }
     }
@@ -1691,8 +1702,10 @@ public class ActionServlet extends HttpServlet {
         } catch (MissingResourceException e) {
             log.error("Cannot load internal resources from '" + internalName
                 + "'", e);
-            throw new UnavailableException(
+            UnavailableException e2 = new UnavailableException(
                 "Cannot load internal resources from '" + internalName + "'");
+            e2.initCause(e);
+            throw e2;
         }
     }
 
