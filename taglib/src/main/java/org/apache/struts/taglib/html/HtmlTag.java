@@ -65,7 +65,7 @@ public class HtmlTag extends TagSupport {
      *
      * @since Struts 1.4
      */
-    private BigDecimal xhtmlVersion = XHTML_1_0;
+    private BigDecimal xhtmlVersion = TagUtils.XHTML_1_0;
 
     /**
      * Are we rendering a lang attribute?
@@ -90,7 +90,7 @@ public class HtmlTag extends TagSupport {
     	if (xhtmlVersion != null) {
         	this.xhtmlVersion = new BigDecimal(xhtmlVersion);
     	} else {
-        	this.xhtmlVersion = XHTML_1_0;
+        	this.xhtmlVersion = TagUtils.XHTML_1_0;
     	}
     }
 
@@ -180,7 +180,7 @@ public class HtmlTag extends TagSupport {
         // If language is specified, output the attribute
         // unless XHTML is version >= 1.1
         if (this.lang && validLanguage) {
-        	if (!this.xhtml || (xhtmlVersion.compareTo(XHTML_1_1) < 0)) {
+        	if (!this.xhtml || (xhtmlVersion.compareTo(TagUtils.XHTML_1_1) < 0)) {
             	sb.append(" lang=\"");
                 sb.append(language);
 
