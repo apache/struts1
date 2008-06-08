@@ -70,6 +70,18 @@
             </modules>
         </profile>
         <profile>
+            <id>dormant</id>
+            <activation>
+                <property>
+                    <name>dormant</name>
+                </property>
+            </activation>
+            <modules>
+                <module>el</module>
+                <module>faces</module>
+            </modules>
+        </profile>
+        <profile>
             <id>itest</id>
             <activation>
                 <property>
@@ -120,9 +132,7 @@
 
     <modules>
         <module>core</module>
-        <module>el</module>
         <module>extras</module>
-        <module>faces</module>
         <module>mailreader-dao</module>
         <module>scripting</module>
         <module>taglib</module>
