@@ -115,7 +115,7 @@ public class TilesRequestProcessor extends RequestProcessor {
 
         if (container.isValidDefinition(definitionName, new Object[] { request,
                 response })) {
-            retValue = response.isCommitted();
+            retValue = true;
             try {
                 container.render(definitionName, new Object[] { request,
                         response });
