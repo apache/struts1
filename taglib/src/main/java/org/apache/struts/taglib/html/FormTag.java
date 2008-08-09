@@ -68,6 +68,11 @@ public class FormTag extends TagSupport {
     protected String action = null;
 
     /**
+     * Autocomplete non standard attribute
+     */
+    protected String autocomplete = null;
+
+    /**
      * A postback action URL to which this form should be submitted, if any.
      */
     private String postbackAction = null;
@@ -226,6 +231,20 @@ public class FormTag extends TagSupport {
      */
     public void setAction(String action) {
         this.action = action;
+    }
+
+    /**
+     * Return autocomplete
+     */
+    public String getAutocomplete() {
+        return autocomplete;
+    }
+
+    /**
+     * Activate/disactivate autocompletion (on/off)
+     */
+    public void setAutocomplete(String autocomplete) {
+        this.autocomplete = autocomplete;
     }
 
     /**
@@ -548,6 +567,9 @@ public class FormTag extends TagSupport {
         renderAttribute(results, "onsubmit", getOnsubmit());
         renderAttribute(results, "style", getStyle());
         renderAttribute(results, "target", getTarget());
+        if (!isXhtml()) {
+            renderAttribute(results, "autocomplete", getAutocomplete());
+        }
 
         // Hook for additional attributes
         renderOtherAttributes(results);
@@ -757,6 +779,7 @@ public class FormTag extends TagSupport {
     public void release() {
         super.release();
         action = null;
+        autocomplete = null;
         moduleConfig = null;
         enctype = null;
         dir = null;

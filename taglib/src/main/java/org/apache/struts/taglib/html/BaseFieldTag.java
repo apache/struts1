@@ -102,6 +102,9 @@ public abstract class BaseFieldTag extends BaseInputTag {
         prepareValue(results);
         results.append(this.prepareEventHandlers());
         results.append(this.prepareStyles());
+        if (!isXhtml()) {
+            prepareAttribute(results, "autocomplete", getAutocomplete());
+        }
         prepareOtherAttributes(results);
         results.append(this.getElementClose());
 
