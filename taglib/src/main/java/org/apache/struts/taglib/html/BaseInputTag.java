@@ -41,6 +41,11 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     // ----------------------------------------------------- Instance Variables
 
     /**
+     * Autocomplete non standard attribute
+     */
+    protected String autocomplete = null;
+
+    /**
      * The number of character columns for this field, or negative for no
      * limit.
      */
@@ -73,6 +78,21 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     protected String name = Constants.BEAN_KEY;
 
     // ------------------------------------------------------------- Properties
+
+    /**
+     * Return autocomplete
+     */
+    public String getAutocomplete() {
+        return autocomplete;
+    }
+
+    /**
+     * Activate/disactivate autocompletion (on/off)
+     */
+    public void setAutocomplete(String autocomplete) {
+        this.autocomplete = autocomplete;
+    }
+
     public String getName() {
         return (this.name);
     }
@@ -228,6 +248,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
      */
     public void release() {
         super.release();
+        autocomplete = null;
         name = Constants.BEAN_KEY;
         cols = null;
         maxlength = null;
