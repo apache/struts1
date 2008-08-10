@@ -70,7 +70,7 @@ public class FormTag extends TagSupport {
     /**
      * Autocomplete non standard attribute
      */
-    protected String autocomplete = null;
+    private String autocomplete = null;
 
     /**
      * A postback action URL to which this form should be submitted, if any.
@@ -235,6 +235,7 @@ public class FormTag extends TagSupport {
 
     /**
      * Return autocomplete
+     * @since 1.3.10
      */
     public String getAutocomplete() {
         return autocomplete;
@@ -242,6 +243,7 @@ public class FormTag extends TagSupport {
 
     /**
      * Activate/disactivate autocompletion (on/off)
+     * @since 1.3.10
      */
     public void setAutocomplete(String autocomplete) {
         this.autocomplete = autocomplete;

@@ -43,7 +43,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
     /**
      * Autocomplete non standard attribute
      */
-    protected String autocomplete = null;
+    private String autocomplete = null;
 
     /**
      * The number of character columns for this field, or negative for no
@@ -81,6 +81,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
 
     /**
      * Return autocomplete
+     * @since 1.3.10
      */
     public String getAutocomplete() {
         return autocomplete;
@@ -88,6 +89,7 @@ public abstract class BaseInputTag extends BaseHandlerTag {
 
     /**
      * Activate/disactivate autocompletion (on/off)
+     * @since 1.3.10
      */
     public void setAutocomplete(String autocomplete) {
         this.autocomplete = autocomplete;
