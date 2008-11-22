@@ -1,0 +1,151 @@
+/*
+ * $Id$
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+package org.apache.struts.chain.commands;
+
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.Dispatcher;
+import org.apache.struts.chain.Constants;
+import org.apache.struts.chain.commands.util.ClassUtils;
+import org.apache.struts.chain.contexts.ActionContext;
+import org.apache.struts.config.ActionConfig;
+import org.apache.struts.config.ForwardConfig;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class ExecuteDispatcher extends ActionCommandBase {
+
+    private static final Log log = LogFactory.getLog(ExecuteDispatcher.class);
+
+    /**
+     * Creates the dispatcher of the specified type.
+     * 
+     * @param type the dispatcher class name
+     * @param context the current action context
+     * @return the dispatcher
+     * @throws Exception if creation fails
+     * @see ClassUtils#getApplicationInstance(String)
+     */
+    protected Dispatcher createDispatcher(String type, ActionContext context)
+	    throws Exception {
+	log.info("Initializing dispatcher of type: " + type);
+	return (Dispatcher) ClassUtils.getApplicationInstance(type);
+    }
+
+    public boolean execute(ActionContext context) throws Exception {
+	// Skip processing if the current request is not valid
+	Boolean valid = context.getFormValid();
+	if ((valid == null) || !valid.booleanValue()) {
+	    return (false);
+	}
+
+	// If no dispatcher, skip
+	ActionConfig actionConfig = context.getActionConfig();
+	if (actionConfig.getDispatcher() == null) {
+	    return CONTINUE_PROCESSING;
+	}
+
+	// Obtain (or create) the dispatcher cache
+	String cacheKey = Constants.DISPATCHERS_KEY
+		+ context.getModuleConfig().getPrefix();
+	Map dispatchers = (Map) context.getApplicationScope().get(cacheKey);
+	if (dispatchers == null) {
+	    dispatchers = new HashMap();
+	    context.getApplicationScope().put(cacheKey, dispatchers);
+	}
+
+	// Lookup (or create) the dispatch instance
+	Dispatcher dispatcher = null;
+	synchronized (dispatchers) {
+	    String actionType = actionConfig.getType();
+	    dispatcher = (Dispatcher) dispatchers.get(actionType);
+	    if (dispatcher == null) {
+		String dispatcherType = actionConfig.getDispatcher();
+		dispatcher = createDispatcher(dispatcherType, context);
+		dispatchers.put(actionType, dispatcher);
+	    }
+	}
+
+	// Dispatch
+	Object result = dispatcher.dispatchAction(context);
+	processDispatchResult(result, context);
+	return CONTINUE_PROCESSING;
+    }
+
+    /**
+     * Interprets the specified dispatch result. Subclasses should override this
+     * method to provide custom result type handling. Four handlings are
+     * automatically provided:
+     * <ol>
+     * <li><code>null</code> type means the response was handled directly,
+     * and therefore no extra processing is perform</li>
+     * <li>{@link ForwardConfig} type is the classical response, and will be
+     * stored in the context</li>
+     * <li>{@link String} type represents the name of a required forward to
+     * lookup, and will be stored in the context</li>
+     * <li>{@link Void} type means the method had no return signature, and
+     * select the {@link Action#SUCCESS} action forward and store in the context</li>
+     * </ol>
+     * 
+     * @param result the result value
+     * @param context the current action context
+     * @throws IllegalStateException if unknown result type or the forward
+     *         cannot be found
+     * @see ActionMapping#findRequiredForward(String)
+     */
+    protected void processDispatchResult(Object result, ActionContext context) {
+	// Null means the response was handled directly
+	if (result == null) {
+	    return;
+	}
+
+	// A forward is the classical response
+	if (result instanceof ForwardConfig) {
+	    context.setForwardConfig((ForwardConfig) result);
+	    return;
+	}
+
+	// String represents the name of a forward
+	ActionConfig actionConfig = context.getActionConfig();
+	ActionMapping mapping = ((ActionMapping) actionConfig);
+	if (result instanceof String) {
+	    context.setForwardConfig(mapping
+		    .findRequiredForward((String) result));
+	    return;
+	}
+
+	// Select success if no return signature
+	if (result instanceof Void) {
+	    context.setForwardConfig(mapping
+		    .findRequiredForward(Action.SUCCESS));
+	    return;
+	}
+
+	// Unknown result type
+	throw new IllegalStateException("Unknown dispatch return type: "
+		+ result.getClass().getName());
+    }
+
+}

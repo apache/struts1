@@ -386,6 +386,11 @@ The "form-bean" element describes a particular form bean, which is a
      command         The name of a commons-chain command which should be looked up
                      and executed as part of servicing this request.  
 
+     dispatcher      The fully qualified Java class name of the Dispatcher 
+                     implementation to use to execute the action. This is optional,
+                     and the fallback behavior is to invoke the classical 
+                     execute() method.
+
      extends         The path or actionId of the action mapping configuration 
                      that this will inherit configuration information from.
 
@@ -483,6 +488,7 @@ The "form-bean" element describes a particular form bean, which is a
 <!ATTLIST action         catalog        CDATA           #IMPLIED>
 <!ATTLIST action         className      %ClassName;     #IMPLIED>
 <!ATTLIST action         command        CDATA           #IMPLIED>
+<!ATTLIST action         dispatcher     %ClassName;     #IMPLIED>
 <!ATTLIST action         extends        %RequestPath;   #IMPLIED>
 <!ATTLIST action         forward        %RequestPath;   #IMPLIED>
 <!ATTLIST action         include        %RequestPath;   #IMPLIED>
