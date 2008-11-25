@@ -18,30 +18,37 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.struts.action;
+package org.apache.struts.dispatcher;
 
+import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.contexts.ActionContext;
 
 /**
- * This interface defines an intermediate handler that determines what method to
- * execute in an {@link Action}. Unlike the classical execute signature, it is
- * up to the implementation to determine the particular arguments and return
- * type.
+ * <p>
+ * This abstract class is a template for choosing the target method based on the
+ * <code>parameter</code> attribute of the {@link ActionMapping}.
+ * </p>
  * 
  * @version $Rev$
  * @since Struts 1.4
  */
-public interface Dispatcher {
+public abstract class AbstractMappingDispatcher extends AbstractDispatcher {
 
-    /**
-     * Dispatches to the action referenced by the specified context.
-     * 
-     * @param context the current action context
-     * @return the result type, <code>null</code> if the response was handled
-     *         directly, or {@link Void} if the executed method has no return
-     *         signature
-     * @throws Exception if an exception occurs
-     */
-    Object dispatchAction(ActionContext context) throws Exception;
+    protected String resolveMethodName(ActionContext context) {
+	// Null out an empty string parameter
+	ActionMapping mapping = (ActionMapping) context.getActionConfig();
+	String parameter = mapping.getParameter();
+	if ("".equals(parameter)) {
+	    parameter = null;
+	}
+
+	if ((parameter == null)) {
+	    String message = messages.getMessage(KEY_MISSING_HANDLER_PROPERTY, mapping.getPath());
+	    log.error(message);
+	    throw new IllegalStateException(message);
+	}
+
+	return parameter;
+    }
 
 }

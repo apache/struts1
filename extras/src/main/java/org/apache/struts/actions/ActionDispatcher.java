@@ -27,9 +27,9 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.Dispatcher;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
+import org.apache.struts.dispatcher.Dispatcher;
 import org.apache.struts.util.MessageResources;
 
 import javax.servlet.ServletException;
@@ -504,7 +504,7 @@ public class ActionDispatcher implements Dispatcher {
     /**
      * @since Struts 1.4
      */
-    public Object dispatchAction(ActionContext context) throws Exception {
+    public Object dispatch(ActionContext context) throws Exception {
         ServletActionContext servletContext = (ServletActionContext) context;
         return execute((ActionMapping) context.getActionConfig(), context.getActionForm(),
             servletContext.getRequest(), servletContext.getResponse());

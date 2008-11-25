@@ -20,7 +20,7 @@
  */
 package org.apache.struts.chain;
 
-import org.apache.struts.action.Dispatcher;
+import org.apache.struts.dispatcher.Dispatcher;
 
 
 /**

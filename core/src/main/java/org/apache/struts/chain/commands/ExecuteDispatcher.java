@@ -22,12 +22,12 @@ package org.apache.struts.chain.commands;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.Dispatcher;
 import org.apache.struts.chain.Constants;
 import org.apache.struts.chain.commands.util.ClassUtils;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.config.ForwardConfig;
+import org.apache.struts.dispatcher.Dispatcher;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -89,7 +89,7 @@ public class ExecuteDispatcher extends ActionCommandBase {
 	}
 
 	// Dispatch
-	Object result = dispatcher.dispatchAction(context);
+	Object result = dispatcher.dispatch(context);
 	processDispatchResult(result, context);
 	return CONTINUE_PROCESSING;
     }

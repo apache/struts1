@@ -252,7 +252,7 @@ public class ActionConfig extends BaseConfig {
     protected String catalog = null;
     
     /**
-     * The name of the {@link org.apache.struts.action.Dispatcher} implementation
+     * The name of the {@link org.apache.struts.dispatcher.Dispatcher} implementation
      * that will dispatch to the end point of this action.
      * 
      * @since Struts 1.4
@@ -889,7 +889,7 @@ public class ActionConfig extends BaseConfig {
 
     /**
      * Retrieves the fully-qualified class name of the 
-     * {@link org.apache.struts.action.Dispatcher} implementation that will 
+     * {@link org.apache.struts.dispatcher.Dispatcher} implementation that will 
      * dispatch to the this action.
      *  
      * @return the dispatcher class name or <code>null</code>
@@ -902,7 +902,7 @@ public class ActionConfig extends BaseConfig {
 
     /**
      * Stores the fully-qualified class name of the 
-     * {@link org.apache.struts.action.Dispatcher} implementation that will 
+     * {@link org.apache.struts.dispatcher.Dispatcher} implementation that will 
      * dispatch to the this action.
      * 
      * @param dispatcher the dispatcher class name
