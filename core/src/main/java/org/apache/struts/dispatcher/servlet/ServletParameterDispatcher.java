@@ -35,10 +35,10 @@ public class ServletParameterDispatcher extends AbstractParameterDispatcher {
 	Action target = context.getAction();
 	Object[] args = ServletDispatchUtils.buildClassicExecuteArguments((ServletActionContext) context);
 	String path = context.getActionConfig().getPath();
-	return invoke(target, method, args, path, name);
+	return invoke(target, method, args, path);
     }
 
-    protected Method resolveMethod(String methodName, ActionContext context) throws NoSuchMethodException {
+    protected Method resolveMethod(ActionContext context, String methodName) throws NoSuchMethodException {
 	return ServletDispatchUtils.resolveClassicExecuteMethod(context, methodName);
     }
 
