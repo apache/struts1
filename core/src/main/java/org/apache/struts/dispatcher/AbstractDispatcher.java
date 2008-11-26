@@ -26,6 +26,7 @@ import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.util.MessageResources;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -43,7 +44,7 @@ import org.apache.commons.logging.LogFactory;
  * @version $Rev$
  * @since Struts 1.4
  */
-public abstract class AbstractDispatcher implements Dispatcher {
+public abstract class AbstractDispatcher implements Dispatcher, Serializable {
 
     // Package message bundle keys
     static final String LOCAL_STRINGS = "org.apache.struts.dispatcher.LocalStrings";
@@ -84,7 +85,7 @@ public abstract class AbstractDispatcher implements Dispatcher {
      * methods are called, so that introspection needs to occur only once per
      * method name.
      */
-    private final HashMap methods;
+    private transient final HashMap methods;
 
     /**
      * Construct a new dispatcher.
@@ -157,7 +158,12 @@ public abstract class AbstractDispatcher implements Dispatcher {
      */
     protected abstract Object dispatchMethod(ActionContext context, Method method, String name) throws Exception;
 
-    protected final void flushMethodCache() {
+    /**
+     * Empties the method cache.
+     * 
+     * @see #getMethod(ActionContext, String)
+     */
+    final void flushMethodCache() {
 	synchronized (methods) {
 	    methods.clear();
 	}
@@ -189,6 +195,7 @@ public abstract class AbstractDispatcher implements Dispatcher {
      */
     protected final Method getMethod(ActionContext context, String methodName) throws NoSuchMethodException {
 	synchronized (methods) {
+	    // Key the method based on the class-method combination
 	    StringBuffer keyBuf = new StringBuffer(100);
 	    keyBuf.append(context.getAction().getClass().getName());
 	    keyBuf.append(":");
