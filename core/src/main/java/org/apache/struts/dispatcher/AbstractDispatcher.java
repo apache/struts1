@@ -31,7 +31,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -77,7 +76,7 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
     /**
      * Shared commons Logging instance among subclasses.
      */
-    protected final Log log;
+    protected transient final Log log;
 
     /**
      * The dictionary of {@link Method} objects we have introspected for this
@@ -95,21 +94,8 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
 	methods = new HashMap();
     }
 
-    protected Object cancelled(ActionContext context) throws Exception {
-	Method method = getMethod(context, CANCELLED_METHOD_NAME);
-	return dispatchMethod(context, method, CANCELLED_METHOD_NAME);
-    }
-
     public Object dispatch(ActionContext context) throws Exception {
-	// Process cancelled requests
-	if (isCancelled(context)) {
-	    try {
-		return cancelled(context);
-	    } catch (NoSuchMethodException e) {
-		// expected and ignore
-	    }
-	}
-
+	// Resolve the method name; fallback to default if necessary
 	String methodName = resolveMethodName(context);
 	if ((methodName == null) || "".equals(methodName)) {
 	    methodName = getDefaultMethodName();
@@ -126,10 +112,13 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
 	try {
 	    method = getMethod(context, methodName);
 	} catch (NoSuchMethodException e) {
+	    // The log message reveals the offending method name...
 	    String path = context.getActionConfig().getPath();
 	    String message = messages.getMessage(MSG_KEY_MISSING_METHOD_LOG, path, methodName);
 	    log.error(message, e);
 
+	    // ...but the exception thrown does not
+	    // See r383718 (XSS vulnerability)
 	    String userMsg = messages.getMessage(MSG_KEY_MISSING_METHOD, path);
 	    NoSuchMethodException e2 = new NoSuchMethodException(userMsg);
 	    e2.initCause(e);
@@ -152,7 +141,7 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      * 
      * @return The forward to which control should be transferred, or
      *         <code>null</code> if the response has been completed.
-     * @throws Exception if the application business logic throws an exception.
+     * @throws Exception if the dispatch fails with an exception
      * @see #dispatchMethod(ActionMapping, ActionForm, HttpServletRequest,
      *      HttpServletResponse, String)
      */
@@ -187,10 +176,11 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      * will be the target of the dispatch. This implementation caches the method
      * instance for subsequent invocations.
      * 
+     * @param context the current action context
      * @param methodName the name of the method to be introspected
      * @return the method of the specified name
      * @throws NoSuchMethodException if no such method can be found
-     * @see #resolveMethod(ActionContext, String)
+     * @see #resolveMethod(String, ActionContext)
      * @see #flushMethodCache()
      */
     protected final Method getMethod(ActionContext context, String methodName) throws NoSuchMethodException {
@@ -205,7 +195,7 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
 	    Method method = (Method) methods.get(key);
 
 	    if (method == null) {
-		method = resolveMethod(methodName, context);
+		method = resolveMethod(context, methodName);
 		methods.put(key, method);
 	    }
 
@@ -213,24 +203,34 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
 	}
     }
 
-    protected final Object invoke(Object target, Method method, Object[] args, String path, String name)
-	    throws Exception {
+    /**
+     * Convenience method to help dispatch the specified method. The method is
+     * invoked via reflection.
+     * 
+     * @param target the target object
+     * @param method the method of the target object
+     * @param args the arguments for the method
+     * @param path the mapping path
+     * @return the return value of the method
+     * @throws Exception if the dispatch fails with an exception
+     */
+    protected final Object invoke(Object target, Method method, Object[] args, String path) throws Exception {
 	try {
 	    return method.invoke(target, args);
 	} catch (IllegalAccessException e) {
 	    String message = messages.getMessage(MSG_KEY_DISPATCH_ERROR, path);
-	    log.error(message + ":" + name, e);
+	    log.error(message + ":" + method.getName(), e);
 	    throw e;
 	} catch (InvocationTargetException e) {
 	    // Rethrow the target exception if possible so that the
 	    // exception handling machinery can deal with it
 	    Throwable t = e.getTargetException();
 	    if (t instanceof Exception) {
-		throw ((Exception) t);
+		throw (Exception) t;
 	    } else {
 		String message = messages.getMessage(MSG_KEY_DISPATCH_ERROR, path);
-		log.error(message + ":" + name, e);
-		throw new ServletException(t);
+		log.error(message + ":" + method.getName(), e);
+		throw new Exception(t);
 	    }
 	}
     }
@@ -258,21 +258,22 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      * resolution is only invoked if {@link #getMethod(String)} does not find a
      * match in its method cache.
      * 
-     * @param methodName the method name to use for introspection
      * @param context the current action context
+     * @param methodName the method name to use for introspection
      * @return the method to invoke
      * @throws NoSuchMethodException if an appropriate method cannot be found
      * @see #getMethod(String)
      * @see #invoke(Object, Method, Object[], String, String)
      */
-    protected abstract Method resolveMethod(String methodName, ActionContext context) throws NoSuchMethodException;
+    protected abstract Method resolveMethod(ActionContext context, String methodName) throws NoSuchMethodException;
 
     /**
      * Decides the method name that can handle the request.
      * 
      * @param context the current action context
      * @return the method name or <code>null</code> if no name can be resolved
-     * @see #resolveMethod(String, ActionContext)
+     * @see #getDefaultMethodName()
+     * @see #resolveMethod(ActionContext, String)
      */
     protected abstract String resolveMethodName(ActionContext context);
 
@@ -280,12 +281,12 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      * Services the case when the dispatch fails because the method name cannot
      * be resolved. The default behavior throws an {@link IllegalStateException}.
      * Subclasses should override this to provide custom handling such as
-     * sending an HTTP 404 error.
+     * sending an HTTP 404 error or dispatching elsewhere.
      * 
      * @param context the current action context
-     * @throws IllegalStateException always unless supressed by subclass
+     * @return the return value of the dispatch
+     * @throws Exception if an error occurs
      * @see #resolveMethodName(ActionContext)
-     * @see #getDefaultMethodName()
      */
     protected Object unspecified(ActionContext context) throws Exception {
 	ActionConfig config = context.getActionConfig();
