@@ -27,6 +27,8 @@ import org.apache.struts.dispatcher.AbstractMappingDispatcher;
 
 import java.lang.reflect.Method;
 
+import javax.servlet.http.HttpServletResponse;
+
 public class ServletMappingDispatcher extends AbstractMappingDispatcher {
 
     protected Object dispatchMethod(ActionContext context, Method method, String name) throws Exception {
@@ -38,6 +40,12 @@ public class ServletMappingDispatcher extends AbstractMappingDispatcher {
 
     protected Method resolveMethod(String methodName, ActionContext context) throws NoSuchMethodException {
 	return ServletDispatchUtils.resolveClassicExecuteMethod(context, methodName);
+    }
+
+    protected Object unspecified(ActionContext context) throws Exception {
+	HttpServletResponse response = ((ServletActionContext) context).getResponse();
+	response.sendError(HttpServletResponse.SC_NOT_FOUND);
+	return null;
     }
 
 }

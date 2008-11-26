@@ -27,6 +27,8 @@ import org.apache.struts.dispatcher.AbstractParameterDispatcher;
 
 import java.lang.reflect.Method;
 
+import javax.servlet.http.HttpServletResponse;
+
 public class ServletParameterDispatcher extends AbstractParameterDispatcher {
 
     protected Object dispatchMethod(ActionContext context, Method method, String name) throws Exception {
@@ -43,6 +45,12 @@ public class ServletParameterDispatcher extends AbstractParameterDispatcher {
     protected String resolveParameterValue(ActionContext context, String parameter) {
 	ServletActionContext servletContext = (ServletActionContext) context;
 	return (String) servletContext.getParam().get(parameter);
+    }
+
+    protected Object unspecified(ActionContext context) throws Exception {
+	HttpServletResponse response = ((ServletActionContext) context).getResponse();
+	response.sendError(HttpServletResponse.SC_NOT_FOUND);
+	return null;
     }
 
 }

@@ -43,7 +43,7 @@ public abstract class AbstractMappingDispatcher extends AbstractDispatcher {
 	}
 
 	if ((parameter == null)) {
-	    String message = messages.getMessage(KEY_MISSING_HANDLER_PROPERTY, mapping.getPath());
+	    String message = messages.getMessage(MSG_KEY_MISSING_MAPPING_PARAMETER, mapping.getPath());
 	    log.error(message);
 	    throw new IllegalStateException(message);
 	}

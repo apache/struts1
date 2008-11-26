@@ -20,8 +20,6 @@
  */
 package org.apache.struts.dispatcher;
 
-import org.apache.struts.Globals;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.contexts.ActionContext;
@@ -47,15 +45,13 @@ import org.apache.commons.logging.LogFactory;
  */
 public abstract class AbstractDispatcher implements Dispatcher {
 
-    // Package constants
-    static final String KEY_DISPATCH_ERROR = "dispatch.error";
-    static final String KEY_MISSING_METHOD = "dispatch.method.user";
-    static final String KEY_MISSING_HANDLER_PROPERTY = "dispatch.handler";
-    static final String KEY_WRONG_RETURN_TYPE = "dispatch.return";
-    static final String KEY_MISSING_NAMED_METHOD = "dispatch.method";
-    static final String KEY_MISSING_PARAMETER = "dispatch.parameter";
-    static final String KEY_RECURSIVE_DISPATCH = "dispatch.recursive";
-    static final String LOCAL_STRINGS = "org.apache.struts.actions.LocalStrings";
+    // Package message bundle keys
+    static final String LOCAL_STRINGS = "org.apache.struts.dispatcher.LocalStrings";
+    static final String MSG_KEY_DISPATCH_ERROR = "dispatcher.error";
+    static final String MSG_KEY_MISSING_METHOD = "dispatcher.missingMethod";
+    static final String MSG_KEY_MISSING_METHOD_LOG = "dispatcher.missingMethod.log";
+    static final String MSG_KEY_MISSING_MAPPING_PARAMETER = "dispatcher.missingMappingParameter";
+    static final String MSG_KEY_UNSPECIFIED = "dispatcher.unspecified";
 
     /**
      * The name of the <code>cancelled</code> method.
@@ -78,7 +74,7 @@ public abstract class AbstractDispatcher implements Dispatcher {
     static MessageResources messages = MessageResources.getMessageResources(LOCAL_STRINGS);
 
     /**
-     * Commons Logging instance.
+     * Shared commons Logging instance among subclasses.
      */
     protected final Log log;
 
@@ -91,10 +87,7 @@ public abstract class AbstractDispatcher implements Dispatcher {
     private final HashMap methods;
 
     /**
-     * Construct an instance of this class from the supplied parameters.
-     * 
-     * @param actionInstance the action instance to be invoked
-     * @see #ActionDispatcher(Action, int)
+     * Construct a new dispatcher.
      */
     public AbstractDispatcher() {
 	log = LogFactory.getLog(getClass());
@@ -116,23 +109,27 @@ public abstract class AbstractDispatcher implements Dispatcher {
 	    }
 	}
 
-	// Ensure there is a valid method name to call.
-	// This may be null if the user hacks the query string.
 	String methodName = resolveMethodName(context);
+	if ((methodName == null) || "".equals(methodName)) {
+	    methodName = getDefaultMethodName();
+	}
+
+	// Ensure there is a specified method name to invoke.
+	// This may be null if the user hacks the query string.
 	if (methodName == null) {
 	    return unspecified(context);
 	}
 
-	// Identify the method object to be dispatched to
+	// Identify the method object to dispatch
 	Method method;
 	try {
 	    method = getMethod(context, methodName);
 	} catch (NoSuchMethodException e) {
 	    String path = context.getActionConfig().getPath();
-	    String message = messages.getMessage(KEY_MISSING_NAMED_METHOD, path, methodName);
+	    String message = messages.getMessage(MSG_KEY_MISSING_METHOD_LOG, path, methodName);
 	    log.error(message, e);
 
-	    String userMsg = messages.getMessage(KEY_MISSING_METHOD, path);
+	    String userMsg = messages.getMessage(MSG_KEY_MISSING_METHOD, path);
 	    NoSuchMethodException e2 = new NoSuchMethodException(userMsg);
 	    e2.initCause(e);
 	    throw e2;
@@ -160,31 +157,44 @@ public abstract class AbstractDispatcher implements Dispatcher {
      */
     protected abstract Object dispatchMethod(ActionContext context, Method method, String name) throws Exception;
 
+    protected final void flushMethodCache() {
+	synchronized (methods) {
+	    methods.clear();
+	}
+    }
+
     /**
-     * Retrieves the name of the method to fallback upon if no value can be
-     * obtained from the parameter. The default implementation returns
+     * Retrieves the name of the method to fallback upon if no method name can
+     * be resolved. The default implementation returns
      * {@value #UNSPECIFIED_METHOD_NAME}.
      * 
      * @return the fallback method name; can be <code>null</code>
+     * @see #resolveMethodName(ActionContext)
      * @see #UNSPECIFIED_METHOD_NAME
      */
-    protected String getFallbackMethodName() {
+    protected String getDefaultMethodName() {
 	return UNSPECIFIED_METHOD_NAME;
     }
 
     /**
-     * Introspect the action to identify a method of the specified name that
-     * will receive the invocation of this dispatch. This implementation caches
-     * the method instance for subsequent invocations.
+     * Introspects the action to identify a method of the specified name that
+     * will be the target of the dispatch. This implementation caches the method
+     * instance for subsequent invocations.
      * 
      * @param methodName the name of the method to be introspected
      * @return the method of the specified name
      * @throws NoSuchMethodException if no such method can be found
      * @see #resolveMethod(ActionContext, String)
+     * @see #flushMethodCache()
      */
     protected final Method getMethod(ActionContext context, String methodName) throws NoSuchMethodException {
 	synchronized (methods) {
-	    String key = context.getAction().getClass().getName() + ":" + methodName;
+	    StringBuffer keyBuf = new StringBuffer(100);
+	    keyBuf.append(context.getAction().getClass().getName());
+	    keyBuf.append(":");
+	    keyBuf.append(methodName);
+	    String key = keyBuf.toString();
+
 	    Method method = (Method) methods.get(key);
 
 	    if (method == null) {
@@ -201,8 +211,8 @@ public abstract class AbstractDispatcher implements Dispatcher {
 	try {
 	    return method.invoke(target, args);
 	} catch (IllegalAccessException e) {
-	    String message = messages.getMessage(KEY_DISPATCH_ERROR, path, name);
-	    log.error(message, e);
+	    String message = messages.getMessage(MSG_KEY_DISPATCH_ERROR, path);
+	    log.error(message + ":" + name, e);
 	    throw e;
 	} catch (InvocationTargetException e) {
 	    // Rethrow the target exception if possible so that the
@@ -211,25 +221,23 @@ public abstract class AbstractDispatcher implements Dispatcher {
 	    if (t instanceof Exception) {
 		throw ((Exception) t);
 	    } else {
-		String message = messages.getMessage(KEY_DISPATCH_ERROR, path, name);
-		log.error(message, e);
+		String message = messages.getMessage(MSG_KEY_DISPATCH_ERROR, path);
+		log.error(message + ":" + name, e);
 		throw new ServletException(t);
 	    }
 	}
     }
 
     /**
-     * Determines whether the current form's cancel button was pressed. This
-     * method will check if the {@link Globals#CANCEL_KEY} request attribute has
-     * been set, which normally occurs if the cancel button generated by
-     * <strong>CancelTag</strong> was pressed by the user in the current
-     * request. If <code>true</code>, validation performed by the
-     * <code>validate()</code> method of the form; otherwise it will have been
-     * skipped by the controller servlet.
+     * Determines whether the current form's cancel button was pressed. The
+     * default behavior method will check if the
+     * {@link ActionContext#getCancelled()} context property is set , which
+     * normally occurs if the cancel button generated by <strong>CancelTag</strong>
+     * was pressed by the user in the current request.
      * 
      * @param context the current action context
-     * @return <code>true</code> if the cancel button was pressed;
-     *         <code>false</code> otherwise
+     * @return <code>true</code> if the request is cancelled; otherwise
+     *         <code>false</code>
      * @see org.apache.struts.taglib.html.CancelTag
      */
     protected boolean isCancelled(ActionContext context) {
@@ -239,8 +247,8 @@ public abstract class AbstractDispatcher implements Dispatcher {
 
     /**
      * Decides the appropriate method instance for the specified method name.
-     * Implementations may introspect for any desired method signature. The
-     * resolution is only needed if {@link #getMethod(String)} does not find a
+     * Implementations may introspect for any desired method signature. This
+     * resolution is only invoked if {@link #getMethod(String)} does not find a
      * match in its method cache.
      * 
      * @param methodName the method name to use for introspection
@@ -257,44 +265,24 @@ public abstract class AbstractDispatcher implements Dispatcher {
      * 
      * @param context the current action context
      * @return the method name or <code>null</code> if no name can be resolved
+     * @see #resolveMethod(String, ActionContext)
      */
     protected abstract String resolveMethodName(ActionContext context);
 
     /**
-     * Invoked when a method cannot be resolved. The default behavior delegates
-     * to the fallback method, if specified; otherwise throw an
-     * {@link IllegalStateException}. Subclasses should override this to
-     * provide custom handling such as sending an HTTP 404 error.
+     * Services the case when the dispatch fails because the method name cannot
+     * be resolved. The default behavior throws an {@link IllegalStateException}.
+     * Subclasses should override this to provide custom handling such as
+     * sending an HTTP 404 error.
      * 
      * @param context the current action context
-     * @throws NoSuchMethodException if the fallback method name is specified
-     *         but the corresponding method does not exist
      * @throws IllegalStateException always unless supressed by subclass
-     * @see #getFallbackMethodName()
+     * @see #resolveMethodName(ActionContext)
+     * @see #getDefaultMethodName()
      */
     protected Object unspecified(ActionContext context) throws Exception {
-	// Is the fallback method present?
-	Method method = null;
-	String name = getFallbackMethodName();
-	if (name != null) {
-	    try {
-		method = getMethod(context, name);
-	    } catch (NoSuchMethodException e) {
-		String msg = messages.getMessage(KEY_MISSING_METHOD, name);
-		NoSuchMethodException e2 = new NoSuchMethodException(msg);
-		e2.initCause(e);
-		throw e2;
-	    }
-	}
-
-	// Dispatch if fallback is available
-	if (method != null) {
-	    return dispatchMethod(context, method, name);
-	}
-
-	// Otherwise the dispatch has failed
 	ActionConfig config = context.getActionConfig();
-	String msg = messages.getMessage(KEY_MISSING_PARAMETER, config.getPath(), config.getParameter());
+	String msg = messages.getMessage(MSG_KEY_UNSPECIFIED, config.getPath());
 	log.error(msg);
 	throw new IllegalStateException(msg);
     }
