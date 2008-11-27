@@ -280,6 +280,9 @@
                 <configuration>
                   <aggregate>true</aggregate>
                   <links>
+                    <link>http://commons.apache.org/beanutils/api/</link>
+                    <link>http://commons.apache.org/logging/apidocs/</link>
+                    <link>http://commons.apache.org/validator/apidocs/</link>
                     <link>http://java.sun.com/j2se/1.4.2/docs/api/</link>
                     <link>http://java.sun.com/j2ee/1.4/docs/api/</link>
                   </links>
