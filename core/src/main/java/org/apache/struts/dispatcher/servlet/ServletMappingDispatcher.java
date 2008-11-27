@@ -29,11 +29,95 @@ import java.lang.reflect.Method;
 
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * This servlet-based dispatcher uses the configuration value of the
+ * <code>parameter</code> attribute from the corresponding
+ * {@link org.apache.struts.action.ActionMapping} to pick the appropriate method
+ * on the action. Because mapping characteristics may differ between the various
+ * handlers, actions can be combined in the same class that, differ in their use
+ * of method signatures, forms, and/or validation.
+ * <p>
+ * For example, a single action may manage a subscription process by defining
+ * the following methods:
+ * <ul>
+ * <li><code>public ActionForward create(ActionMapping mapping, ActionForm form,
+ * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
+ * <li><code>public ActionForward delete(ActionMapping mapping, ActionForm form,
+ * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
+ * <li><code>public ActionForward edit(ActionMapping mapping, ActionForm form,
+ * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
+ * <li><code>public ActionForward list(ActionMapping mapping, ActionForm form,
+ * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
+ * <li><code>public ActionForward save(ActionMapping mapping, ActionForm form,
+ * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
+ * </ul>
+ * for which a corresponding configuration would exist:
+ * 
+ * <pre><code>
+ *  &lt;action path=&quot;/createSubscription&quot;
+ *          type=&quot;org.example.SubscriptionAction&quot;
+ *          dispatcher=&quot;org.apache.struts.dispatcher.servlet.ServletMappingDispatcher&quot;
+ *          parameter=&quot;create&quot;&gt;
+ *      &lt;forward path=&quot;/editSubscription.jsp&quot;/&gt;
+ *  &lt;/action&gt;
+ * 
+ *  &lt;action path=&quot;/deleteSubscription&quot;
+ *          type=&quot;org.example.SubscriptionAction&quot;
+ *          dispatcher=&quot;org.apache.struts.dispatcher.servlet.ServletMappingDispatcher&quot;
+ *          parameter=&quot;delete&quot;
+ *          name=&quot;subscriptionForm&quot;
+ *          scope=&quot;request&quot;
+ *          input=&quot;/subscription.jsp&quot;&gt;
+ *      &lt;forward path=&quot;/deletedSubscription.jsp&quot;/&gt;
+ *  &lt;/action&gt;
+ * 
+ *  &lt;action path=&quot;/editSubscription&quot;
+ *          type=&quot;org.example.SubscriptionAction&quot;
+ *          dispatcher=&quot;org.apache.struts.dispatcher.servlet.ServletMappingDispatcher&quot;
+ *          parameter=&quot;edit&quot;&gt;
+ *      &lt;forward path=&quot;/editSubscription.jsp&quot;/&gt;
+ *  &lt;/action&gt;
+ * 
+ *  &lt;action path=&quot;/listSubscriptions&quot;
+ *          type=&quot;org.example.SubscriptionAction&quot;
+ *          dispatcher=&quot;org.apache.struts.dispatcher.servlet.ServletMappingDispatcher&quot;
+ *          parameter=&quot;list&quot;&gt;
+ *      &lt;forward path=&quot;/subscriptionList.jsp&quot;/&gt;
+ *  &lt;/action&gt;
+ *  
+ *  &lt;action path=&quot;/saveSubscription&quot;
+ *          type=&quot;org.example.SubscriptionAction&quot;
+ *          dispatcher=&quot;org.apache.struts.dispatcher.servlet.ServletMappingDispatcher&quot;
+ *          parameter=&quot;save&quot;
+ *          name=&quot;subscriptionForm&quot;
+ *          scope=&quot;request&quot;
+ *          validate=&quot;true&quot;
+ *          input=&quot;/editSubscription.jsp&quot;&gt;
+ *      &lt;forward path=&quot;/savedSubscription.jsp&quot;/&gt;
+ *  &lt;/action&gt;
+ * </code></pre>
+ * 
+ * @version $Rev$
+ * @since Struts 1.4
+ */
 public class ServletMappingDispatcher extends AbstractMappingDispatcher {
 
-    protected Object dispatchMethod(ActionContext context, Method method, String name) throws Exception {
+    /**
+     * Constructs the arguments that will be passed to the dispatched method.
+     * 
+     * @param context the current action context
+     * @param method the target method of this dispatch
+     * 
+     * @return the arguments array
+     * @see #dispatchMethod(ActionContext, Method, String)
+     */
+    protected Object[] buildMethodArguments(ServletActionContext context, Method method) {
+	return ServletDispatchUtils.buildClassicExecuteArguments(context);
+    }
+
+    protected final Object dispatchMethod(ActionContext context, Method method, String name) throws Exception {
 	Action target = context.getAction();
-	Object[] args = ServletDispatchUtils.buildClassicExecuteArguments((ServletActionContext) context);
+	Object[] args = buildMethodArguments((ServletActionContext) context, method);
 	String path = context.getActionConfig().getPath();
 	return invoke(target, method, args, path);
     }
@@ -42,6 +126,11 @@ public class ServletMappingDispatcher extends AbstractMappingDispatcher {
 	return ServletDispatchUtils.resolveClassicExecuteMethod(context, methodName);
     }
 
+    /**
+     * Sends the 404 HTTP error response.
+     * 
+     * @return always <code>null</code> since the response is handled directly
+     */
     protected Object unspecified(ActionContext context) throws Exception {
 	HttpServletResponse response = ((ServletActionContext) context).getResponse();
 	response.sendError(HttpServletResponse.SC_NOT_FOUND);

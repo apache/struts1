@@ -23,27 +23,8 @@ package org.apache.struts.dispatcher;
 import org.apache.struts.chain.contexts.ActionContext;
 
 /**
- * <p>
  * This abstract class is a template for choosing the target method based on a
- * servlet request parameter. It is based upon the functionality of
- * <code>org.apache.struts.actions.DispatchAction</code>.
- * </p>
- * <p>
- * To configure the use of this dispatcher in your configuration, create an
- * entry like below. The dispatcher will use the value of the request parameter
- * named "method" (or whatever specified) to pick the appropriate method on the
- * action.
- * </p>
- * 
- * <code>
- * &lt;action path=&quot;/saveSubscription&quot; 
- *            dispatcher=&quot;org.apache.struts.dispatcher.servlet.ServletParameterDispatcher&quot;
- *            name=&quot;subscriptionForm&quot; 
- *            scope=&quot;request&quot; 
- *            input=&quot;/subscription.jsp&quot;
- *            parameter=&quot;method&quot;/&gt;
- * </code>
- * <p>
+ * servlet request parameter.
  * 
  * @version $Rev$
  * @since Struts 1.4
@@ -77,7 +58,7 @@ public abstract class AbstractParameterDispatcher extends AbstractDispatcher {
      * <code>parameter</code> attribute; otherwise fallback to the default
      * parameter name.
      * 
-     * @param context the action context
+     * @param context the current action context
      * @return the mapping's parameter name
      * @see #getDefaultParameterName()
      */
@@ -102,6 +83,13 @@ public abstract class AbstractParameterDispatcher extends AbstractDispatcher {
 	return null;
     }
 
+    /**
+     * Extracts the value that is keyed by the specified parameter.
+     * 
+     * @param context the current action context
+     * @param parameter the parameter name
+     * @return the parameter value
+     */
     protected abstract String resolveParameterValue(ActionContext context, String parameter);
 
 }
