@@ -31,19 +31,34 @@ import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-final class ServletDispatchUtils {
+/**
+ * Dispatch utilities for servlet implementations.
+ * 
+ * @version $Rev$
+ * @since Struts 1.4
+ */
+final public class ServletDispatchUtils {
 
     /**
-     * The set of argument type classes for the reflected method call. These are
-     * the same for all calls, so calculate them only once.
+     * The set of argument type classes for the classic reflected method call.
+     * These are the same for all calls, so calculate them only once.
      * 
      * @see org.apache.struts.action.Action#execute(ActionMapping, ActionForm,
      *      javax.servlet.ServletRequest, javax.servlet.ServletResponse)
      */
-    public static final Class[] SERVLET_EXECUTE_SIGNATURE = { ActionMapping.class, ActionForm.class,
+    public static final Class[] CLASSIC_EXECUTE_SIGNATURE = { ActionMapping.class, ActionForm.class,
 	    HttpServletRequest.class, HttpServletResponse.class };
 
-    public static Object[] buildClassicExecuteArguments(ServletActionContext context) throws Exception {
+    /**
+     * Constructs the arguments to invoke the classic <code>execute</code>
+     * servlet signature from the specified context.
+     * 
+     * @param context the current context
+     * @return the arguments array
+     * @see #resolveClassicExecuteMethod(ActionContext, String)
+     * @see #CLASSIC_EXECUTE_SIGNATURE
+     */
+    public static Object[] buildClassicExecuteArguments(ServletActionContext context) {
 	ActionConfig mapping = context.getActionConfig();
 	ActionForm form = context.getActionForm();
 	HttpServletRequest request = context.getRequest();
@@ -55,13 +70,23 @@ final class ServletDispatchUtils {
      * Obtains the method instance with the classic <code>execute</code>
      * servlet signature.
      * 
-     * @return {@inheritDoc}
-     * @throws {@inheritDoc}
-     * @see #SERVLET_EXECUTE_SIGNATURE
+     * @param context the current context
+     * @param name the method name to introspect
+     * @return the found method in the action
+     * @throws NoSuchMethodException if the method does not exist
+     * @see #buildClassicExecuteArguments(ServletActionContext)
+     * @see #CLASSIC_EXECUTE_SIGNATURE
      */
     public static Method resolveClassicExecuteMethod(ActionContext context, String name) throws NoSuchMethodException {
 	Class actionClass = context.getAction().getClass();
-	return actionClass.getMethod(name, SERVLET_EXECUTE_SIGNATURE);
+	return actionClass.getMethod(name, CLASSIC_EXECUTE_SIGNATURE);
+    }
+
+    /**
+     * Prevent instantiation.
+     */
+    private ServletDispatchUtils() {
+	throw new UnsupportedOperationException();
     }
 
 }
