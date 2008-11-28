@@ -73,27 +73,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServletParameterDispatcher extends AbstractParameterDispatcher {
 
-    /**
-     * Constructs the arguments that will be passed to the dispatched method.
-     * 
-     * @param context the current action context
-     * @param method the target method of this dispatch
-     * 
-     * @return the arguments array
-     * @see #dispatchMethod(ActionContext, Method, String)
-     */
-    protected Object[] buildMethodArguments(ServletActionContext context, Method method) {
-	return ServletDispatchUtils.buildClassicExecuteArguments(context);
-    }
-
-    /**
-     * @see #buildMethodArguments(ServletActionContext, Method)
-     */
-    protected final Object dispatchMethod(ActionContext context, Method method, String name) throws Exception {
-	Action target = context.getAction();
-	String path = context.getActionConfig().getPath();
-	Object[] args = buildMethodArguments((ServletActionContext) context, method);
-	return invoke(target, method, args, path);
+    protected Object[] buildMethodArguments(ActionContext context, Method method) {
+	return ServletDispatchUtils.buildClassicExecuteArguments((ServletActionContext) context);
     }
 
     protected Method resolveMethod(ActionContext context, String methodName) throws NoSuchMethodException {

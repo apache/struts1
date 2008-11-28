@@ -20,6 +20,7 @@
  */
 package org.apache.struts.dispatcher;
 
+import org.apache.struts.action.Action;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.config.ActionConfig;
 import org.apache.struts.util.MessageResources;
@@ -88,6 +89,17 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
 	methods = new HashMap();
     }
 
+    /**
+     * Constructs the arguments that will be passed to the dispatched method.
+     * 
+     * @param context the current action context
+     * @param method the target method of this dispatch
+     * 
+     * @return the arguments array
+     * @see #dispatchMethod(ActionContext, Method, String)
+     */
+    protected abstract Object[] buildMethodArguments(ActionContext context, Method method);
+
     public Object dispatch(ActionContext context) throws Exception {
 	// Resolve the method name; fallback to default if necessary
 	String methodName = resolveMethodName(context);
@@ -124,15 +136,21 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
     }
 
     /**
-     * Dispatch to the specified method.
+     * Dispatches to the specified method.
      * 
      * @param context the current action context
      * @param method The method to invoke
      * @param name The name of the method to invoke
      * @return the return value of the method
      * @throws Exception if the dispatch fails with an exception
+     * @see #buildMethodArguments(ActionContext, Method)
      */
-    protected abstract Object dispatchMethod(ActionContext context, Method method, String name) throws Exception;
+    protected final Object dispatchMethod(ActionContext context, Method method, String name) throws Exception {
+	Action target = context.getAction();
+	String path = context.getActionConfig().getPath();
+	Object[] args = buildMethodArguments(context, method);
+	return invoke(target, method, args, path);
+    }
 
     /**
      * Empties the method cache.
@@ -242,8 +260,8 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
     /**
      * Decides the appropriate method instance for the specified method name.
      * Implementations may introspect for any desired method signature. This
-     * resolution is only invoked if {@link #getMethod(ActionContext, String)} does not find a
-     * match in its method cache.
+     * resolution is only invoked if {@link #getMethod(ActionContext, String)}
+     * does not find a match in its method cache.
      * 
      * @param context the current action context
      * @param methodName the method name to use for introspection
