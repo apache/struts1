@@ -24,8 +24,9 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.chain.contexts.ActionContext;
 
 /**
- * This abstract class is a template for choosing the target method based on the
- * <code>parameter</code> attribute of the {@link ActionMapping}.
+ * This abstract class is a template for choosing the target method that is
+ * named by the <code>parameter</code> attribute of the corresponding
+ * {@link ActionMapping}.
  * 
  * @version $Rev$
  * @since Struts 1.4

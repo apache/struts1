@@ -73,6 +73,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServletParameterDispatcher extends AbstractParameterDispatcher {
 
+    private static final long serialVersionUID = 1L;
+
     protected Object[] buildMethodArguments(ActionContext context, Method method) {
 	return ServletDispatchUtils.buildClassicExecuteArguments((ServletActionContext) context);
     }

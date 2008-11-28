@@ -23,8 +23,8 @@ package org.apache.struts.dispatcher;
 import org.apache.struts.chain.contexts.ActionContext;
 
 /**
- * This abstract class is a template for choosing the target method based on a
- * servlet request parameter.
+ * This abstract class is a template for choosing the target method that is
+ * identified by a submission parameter.
  * 
  * @version $Rev$
  * @since Struts 1.4

@@ -101,6 +101,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServletMappingDispatcher extends AbstractMappingDispatcher {
 
+    private static final long serialVersionUID = 1L;
+
     protected Object[] buildMethodArguments(ActionContext context, Method method) {
 	return ServletDispatchUtils.buildClassicExecuteArguments((ServletActionContext) context);
     }
