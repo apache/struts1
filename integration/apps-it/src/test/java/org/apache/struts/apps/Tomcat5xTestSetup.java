@@ -74,7 +74,7 @@ public class Tomcat5xTestSetup extends TestSetup {
             //System.out.println("INFO: Downloading Tomcat 5.0 from a mirror");
             Installer installer = new ZipURLInstaller(
                     new URL("http://mirrors.ibiblio.org/pub/mirrors/apache"
-                            + "/tomcat/tomcat-5/v5.0.30/bin/jakarta-tomcat-5.0.30.zip"));
+                            + "/tomcat/tomcat-5/v5.5.26/bin/apache-tomcat-5.5.26.zip"));
             installer.install();
             tomcatHome = installer.getHome();
         } else {
