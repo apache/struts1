@@ -52,19 +52,19 @@ public abstract class AbstractExecuteAction extends ActionCommandBase {
         // Skip processing if the current request is not valid
         Boolean valid = actionCtx.getFormValid();
         if ((valid == null) || !valid.booleanValue()) {
-            return (false);
+            return CONTINUE_PROCESSING;
         }
         
         // Skip processing if a dispatcher is available
         ActionConfig actionConfig = actionCtx.getActionConfig();
         if (actionConfig.getDispatcher() != null) {
-            return false;
+            return CONTINUE_PROCESSING;
         }
 
         // Acquire the resources we will need to send to the Action
         Action action = actionCtx.getAction();
         if (action == null) {
-            return (false);
+            return CONTINUE_PROCESSING;
         }
 
         ActionForm actionForm = actionCtx.getActionForm();
@@ -75,7 +75,7 @@ public abstract class AbstractExecuteAction extends ActionCommandBase {
 
         actionCtx.setForwardConfig(forwardConfig);
 
-        return (false);
+        return CONTINUE_PROCESSING;
     }
 
     // ------------------------------------------------------- Protected Methods

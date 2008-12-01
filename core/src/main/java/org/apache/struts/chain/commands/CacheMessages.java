@@ -50,7 +50,7 @@ public class CacheMessages extends ActionCommandBase {
             copyUnaccessedMessages(request, session, Globals.ERROR_KEY);
         }
 
-        return false;
+        return CONTINUE_PROCESSING;
     }
 
     /**

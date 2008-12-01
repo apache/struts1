@@ -58,7 +58,7 @@ public class ExecuteDispatcher extends ActionCommandBase {
 	// Skip processing if the current request is not valid
 	Boolean valid = context.getFormValid();
 	if ((valid == null) || !valid.booleanValue()) {
-	    return (false);
+	    return CONTINUE_PROCESSING;
 	}
 
 	// If no dispatcher, skip

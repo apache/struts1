@@ -50,6 +50,6 @@ public class ActionPostProcess extends ActionCommandBase {
         request.setAttribute(Globals.CHAIN_KEY, Boolean.TRUE);
 
         // Continue chain processing
-        return false;
+        return CONTINUE_PROCESSING;
     }
 }

@@ -78,7 +78,7 @@ public abstract class AbstractPopulateActionForm extends ActionCommandBase {
             populate(actionCtx, actionConfig, actionForm);
         }
 
-        return (false);
+        return CONTINUE_PROCESSING;
     }
 
     // ------------------------------------------------------- Protected Methods
