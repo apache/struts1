@@ -37,6 +37,7 @@
     <li><html:link module="/exercise" action="/welcome">Taglib Test Pages</html:link></li>
 
     <li><html:link module="/upload" action="/upload">Upload examples</html:link></li>
+    <li><html:link module="/upload" action="/upload2">Upload Test for STR-3173</html:link></li>
 
     <li><html:link module="/validator" action="/welcome">Validator and Localization examples</html:link></li>
 

@@ -38,6 +38,20 @@
             <forward name="display" path="/display.jsp"/>
         </action>
 
+
+        <!-- Upload Actions to test Bug# STR-3173 -->
+        <action path="/upload2" forward="/upload2.jsp"/>
+
+        <action path="/upload-submit2"
+                type="org.apache.struts.webapp.upload.UploadAction"
+                name="uploadForm"
+                scope="request"
+                validate="true"
+                input="input">
+            <forward name="input" path="/upload2.jsp"/>
+            <forward name="display" path="/display.jsp"/>
+        </action>
+
     </action-mappings>
 
     <!-- This is where you set the maximum file size for your file uploads.

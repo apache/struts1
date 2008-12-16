@@ -79,6 +79,11 @@ public class UploadAction extends Action
             //retrieve the file representation
             FormFile file = theForm.getTheFile();
 
+            // Following is to test fix for STR-3173
+            if (file == null) {
+                file = (FormFile)form.getMultipartRequestHandler().getFileElements().get("otherFile");
+            }
+
             //retrieve the file name
             String fileName= file.getFileName();
 
