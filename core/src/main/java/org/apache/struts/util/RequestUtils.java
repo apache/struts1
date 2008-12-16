@@ -524,6 +524,10 @@ public class RequestUtils {
         try {
             Class propertyType = PropertyUtils.getPropertyType(bean, name);
 
+            if (propertyType == null) {
+                return parameterValue;
+            }
+
             if (List.class.isAssignableFrom(propertyType)) {
                 ArrayList list = new ArrayList(1);
                 list.add(formFileValue);
