@@ -284,10 +284,12 @@ public class ComposableRequestProcessor extends RequestProcessor {
         } catch (Exception e) {
             // Execute the exception processing chain??
             throw new ServletException(e);
+        } finally {
+            // Release the context.
+            if (context != null) {
+                context.release();
+            }
         }
-
-        // Release the context.
-        context.release();
     }
 
     /**
