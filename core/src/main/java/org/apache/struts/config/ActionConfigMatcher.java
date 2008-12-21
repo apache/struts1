@@ -260,16 +260,23 @@ public class ActionConfigMatcher implements Serializable {
         Map.Entry entry;
         StringBuffer key = new StringBuffer("{0}");
         StringBuffer ret = new StringBuffer(val);
-        String keyTmp;
+        String keyStr;
         int x;
 
         for (Iterator i = vars.entrySet().iterator(); i.hasNext();) {
             entry = (Map.Entry) i.next();
             key.setCharAt(1, ((String) entry.getKey()).charAt(0));
-            keyTmp = key.toString();
-
+            keyStr = key.toString();
+            
+            // STR-3169
+            // Prevent an infinite loop by retaining the placeholders
+            // that contain itself in the substitution value
+            if (((String) entry.getValue()).contains(keyStr)) {
+            throw new IllegalStateException();
+            }
+            
             // Replace all instances of the placeholder
-            while ((x = ret.toString().indexOf(keyTmp)) > -1) {
+            while ((x = ret.toString().indexOf(keyStr)) > -1) {
                 ret.replace(x, x + 3, (String) entry.getValue());
             }
         }
