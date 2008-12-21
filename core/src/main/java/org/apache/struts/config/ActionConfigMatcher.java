@@ -151,6 +151,8 @@ public class ActionConfigMatcher implements Serializable {
      * @param vars A Map of wildcard-matched strings
      * @return A cloned ActionConfig with appropriate properties replaced with
      *         wildcard-matched values
+     * @throws IllegalStateException if a placeholder substitution is 
+     * impossible due to recursion
      */
     protected ActionConfig convertActionConfig(String path, ActionConfig orig,
         Map vars) {
