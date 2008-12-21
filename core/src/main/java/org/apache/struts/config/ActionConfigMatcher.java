@@ -152,6 +152,8 @@ public class ActionConfigMatcher implements Serializable {
      * @param vars A Map of wildcard-matched strings
      * @return A cloned ActionConfig with appropriate properties replaced with
      *         wildcard-matched values
+     * @throws IllegalStateException if a placeholder substitution is 
+     * impossible due to recursion
      */
     protected ActionConfig convertActionConfig(String path, ActionConfig orig,
         Map vars) {
@@ -231,6 +233,8 @@ public class ActionConfigMatcher implements Serializable {
      * @param orig  The original properties set with placehold values
      * @param props The target properties to store the processed values
      * @param vars  A Map of wildcard-matched strings
+     * @throws IllegalStateException if a placeholder substitution is 
+     * impossible due to recursion
      */
     protected void replaceProperties(Properties orig, Properties props, Map vars) {
         Map.Entry entry = null;
@@ -249,6 +253,8 @@ public class ActionConfigMatcher implements Serializable {
      * @param val  The value to convert
      * @param vars A Map of wildcard-matched strings
      * @return The new value
+     * @throws IllegalStateException if a placeholder substitution is 
+     * impossible due to recursion
      */
     protected String convertParam(String val, Map vars) {
         if (val == null) {
@@ -272,7 +278,7 @@ public class ActionConfigMatcher implements Serializable {
             // Prevent an infinite loop by retaining the placeholders
             // that contain itself in the substitution value
             if (((String) entry.getValue()).contains(keyStr)) {
-            throw new IllegalStateException();
+                throw new IllegalStateException();
             }
             
             // Replace all instances of the placeholder
