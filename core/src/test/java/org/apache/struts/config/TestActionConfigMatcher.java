@@ -25,6 +25,8 @@ import junit.framework.TestSuite;
 
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.config.ActionConfig;
+import org.apache.struts.config.ActionConfigMatcher;
 import org.apache.struts.mock.TestMockBase;
 
 /**
@@ -70,6 +72,88 @@ public class TestActionConfigMatcher extends TestMockBase {
         ActionConfigMatcher matcher = new ActionConfigMatcher(configs);
 
         assertNull("ActionConfig shouldn't be matched", matcher.match("/test"));
+    }
+
+    /**
+     * Verifies that a match succeeds when the substituted value contains a 
+     * placeholder key.
+     * <p>
+     * See STR-3169.
+     * 
+     * @since Struts 1.3.11
+     */
+    public void testMatchWithKeyInPath() {
+        ActionMapping[] mapping = new ActionMapping[1];
+        mapping[0] = new ActionMapping();
+        mapping[0].setPath("/page-*");
+    
+        ActionConfigMatcher matcher = new ActionConfigMatcher(mapping);
+        ActionConfig matched = matcher.match("/page-{0}");
+    
+        assertNotNull("ActionConfig should be matched", matched);
+        assertEquals("Path hasn't been replaced", "/page-{0}", matched.getPath());
+    }
+
+    /**
+     * Verifies that an infinite loop is prevented and substitution is skipped when
+     * the substituted value equals the placeholder key. 
+     * <p>
+     * See STR-3169.
+     * 
+     * @since Struts 1.3.11
+     * @see #testMatchWithSubstitutionEqualPlaceholderKey1()
+     */
+    public void testMatchWithSubstitutionEqualPlaceholderKey0() {
+        ActionMapping[] mapping = new ActionMapping[1];
+        mapping[0] = new ActionMapping();
+        mapping[0].setPath("/page-*");
+        mapping[0].setParameter("{0}");
+    
+        ActionConfigMatcher matcher = new ActionConfigMatcher(mapping);
+        ActionConfig matched = matcher.match("/page-{1}");
+    
+        assertNull("ActionConfig should not be matched", matched);
+    }
+    
+    /**
+     * Verifies that an infinite loop is prevented and substitution is skipped when
+     * the substituted value equals the placeholder key. 
+     * <p>
+     * See STR-3169.
+     * 
+     * @since Struts 1.3.11
+     * @see #testMatchWithSubstitutionEqualPlaceholderKey0()
+     */
+    public void testMatchWithSubstitutionEqualPlaceholderKey1() {
+        ActionMapping[] mapping = new ActionMapping[1];
+        mapping[0] = new ActionMapping();
+        mapping[0].setPath("/page-*");
+        mapping[0].setParameter("{1}");
+    
+        ActionConfigMatcher matcher = new ActionConfigMatcher(mapping);
+        ActionConfig matched = matcher.match("/page-{1}");
+    
+        assertNull("ActionConfig should not be matched", matched);
+    }
+
+    /**
+     * Verifies that an infinite loop is prevented and substitution is skipped when
+     * the the placeholder key is contained within the substituted value. 
+     * <p>
+     * See STR-3169.
+     * 
+     * @since Struts 1.3.11
+     */
+    public void testMatchWhenSubstitutionContainsPlaceholderKey() {
+        ActionMapping[] mapping = new ActionMapping[1];
+        mapping[0] = new ActionMapping();
+        mapping[0].setPath("/page-*");
+        mapping[0].setParameter("{1}");
+    
+        ActionConfigMatcher matcher = new ActionConfigMatcher(mapping);
+        ActionConfig matched = matcher.match("/page-{0}");
+    
+        assertNull("ActionConfig should not be matched", matched);
     }
 
     public void testNoWildcardMatch() {

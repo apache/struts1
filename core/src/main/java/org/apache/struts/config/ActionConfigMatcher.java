@@ -24,6 +24,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForward;
+import org.apache.struts.config.ActionConfig;
 import org.apache.struts.util.WildcardHelper;
 
 import java.io.Serializable;
@@ -123,9 +124,18 @@ public class ActionConfigMatcher implements Serializable {
                             + m.getActionConfig().getPath() + "'");
                     }
 
-                    config =
-                        convertActionConfig(path,
-                            (ActionConfig) m.getActionConfig(), vars);
+                    try {
+                        config =
+                            convertActionConfig(path,
+                                (ActionConfig) m.getActionConfig(), vars);
+                    } catch (IllegalStateException e) {
+                        log.warn("Path matches pattern '"
+                            + m.getActionConfig().getPath() + "' but is "
+                            + "incompatible with the matching config due "
+                            + "to recursive substitution: "
+                            + path);
+                        config = null;
+                    }
                 }
             }
         }
