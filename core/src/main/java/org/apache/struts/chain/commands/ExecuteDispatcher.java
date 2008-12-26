@@ -48,50 +48,53 @@ public class ExecuteDispatcher extends ActionCommandBase {
      * @throws Exception if creation fails
      * @see ClassUtils#getApplicationInstance(String)
      */
-    protected Dispatcher createDispatcher(String type, ActionContext context)
-	    throws Exception {
-	log.info("Initializing dispatcher of type: " + type);
-	return (Dispatcher) ClassUtils.getApplicationInstance(type);
+    protected Dispatcher createDispatcher(String type, ActionContext context) throws Exception {
+        log.info("Initializing dispatcher of type: " + type);
+        return (Dispatcher) ClassUtils.getApplicationInstance(type);
     }
 
     public boolean execute(ActionContext context) throws Exception {
-	// Skip processing if the current request is not valid
-	Boolean valid = context.getFormValid();
-	if ((valid == null) || !valid.booleanValue()) {
-	    return CONTINUE_PROCESSING;
-	}
+        // Skip processing if the current request is not valid
+        Boolean valid = context.getFormValid();
+        if ((valid == null) || !valid.booleanValue()) {
+            return CONTINUE_PROCESSING;
+        }
 
-	// If no dispatcher, skip
-	ActionConfig actionConfig = context.getActionConfig();
-	if (actionConfig.getDispatcher() == null) {
-	    return CONTINUE_PROCESSING;
-	}
+        // Skip processing if no dispatcher type specified
+        String dispatcherType = getDispatcherType(context);
+        if (dispatcherType == null) {
+            return CONTINUE_PROCESSING;
+        }
 
-	// Obtain (or create) the dispatcher cache
-	String cacheKey = Constants.DISPATCHERS_KEY
-		+ context.getModuleConfig().getPrefix();
-	Map dispatchers = (Map) context.getApplicationScope().get(cacheKey);
-	if (dispatchers == null) {
-	    dispatchers = new HashMap();
-	    context.getApplicationScope().put(cacheKey, dispatchers);
-	}
+        // Obtain (or create) the dispatcher cache
+        String cacheKey = Constants.DISPATCHERS_KEY + context.getModuleConfig().getPrefix();
+        Map dispatchers = (Map) context.getApplicationScope().get(cacheKey);
+        if (dispatchers == null) {
+            dispatchers = new HashMap();
+            context.getApplicationScope().put(cacheKey, dispatchers);
+        }
 
-	// Lookup (or create) the dispatch instance
-	Dispatcher dispatcher = null;
-	synchronized (dispatchers) {
-	    String actionType = actionConfig.getType();
-	    dispatcher = (Dispatcher) dispatchers.get(actionType);
-	    if (dispatcher == null) {
-		String dispatcherType = actionConfig.getDispatcher();
-		dispatcher = createDispatcher(dispatcherType, context);
-		dispatchers.put(actionType, dispatcher);
-	    }
-	}
+        // Lookup (or create) the dispatch instance
+        Dispatcher dispatcher = null;
+        synchronized (dispatchers) {
+            ActionConfig actionConfig = context.getActionConfig();
+            String actionType = actionConfig.getType();
+            dispatcher = (Dispatcher) dispatchers.get(actionType);
+            if (dispatcher == null) {
+                dispatcher = createDispatcher(dispatcherType, context);
+                dispatchers.put(actionType, dispatcher);
+            }
+        }
 
-	// Dispatch
-	Object result = dispatcher.dispatch(context);
-	processDispatchResult(result, context);
-	return CONTINUE_PROCESSING;
+        // Dispatch
+        Object result = dispatcher.dispatch(context);
+        processDispatchResult(result, context);
+
+        return CONTINUE_PROCESSING;
+    }
+
+    protected String getDispatcherType(ActionContext context) {
+        return (context != null) ? context.getActionConfig().getDispatcher() : null;
     }
 
     /**
@@ -116,36 +119,33 @@ public class ExecuteDispatcher extends ActionCommandBase {
      * @see ActionMapping#findRequiredForward(String)
      */
     protected void processDispatchResult(Object result, ActionContext context) {
-	// Null means the response was handled directly
-	if (result == null) {
-	    return;
-	}
+        // Null means the response was handled directly
+        if (result == null) {
+            return;
+        }
 
-	// A forward is the classical response
-	if (result instanceof ForwardConfig) {
-	    context.setForwardConfig((ForwardConfig) result);
-	    return;
-	}
+        // A forward is the classical response
+        if (result instanceof ForwardConfig) {
+            context.setForwardConfig((ForwardConfig) result);
+            return;
+        }
 
-	// String represents the name of a forward
-	ActionConfig actionConfig = context.getActionConfig();
-	ActionMapping mapping = ((ActionMapping) actionConfig);
-	if (result instanceof String) {
-	    context.setForwardConfig(mapping
-		    .findRequiredForward((String) result));
-	    return;
-	}
+        // String represents the name of a forward
+        ActionConfig actionConfig = context.getActionConfig();
+        ActionMapping mapping = ((ActionMapping) actionConfig);
+        if (result instanceof String) {
+            context.setForwardConfig(mapping.findRequiredForward((String) result));
+            return;
+        }
 
-	// Select success if no return signature
-	if (result instanceof Void) {
-	    context.setForwardConfig(mapping
-		    .findRequiredForward(Action.SUCCESS));
-	    return;
-	}
+        // Select success if no return signature
+        if (result instanceof Void) {
+            context.setForwardConfig(mapping.findRequiredForward(Action.SUCCESS));
+            return;
+        }
 
-	// Unknown result type
-	throw new IllegalStateException("Unknown dispatch return type: "
-		+ result.getClass().getName());
+        // Unknown result type
+        throw new IllegalStateException("Unknown dispatch return type: " + result.getClass().getName());
     }
 
 }
