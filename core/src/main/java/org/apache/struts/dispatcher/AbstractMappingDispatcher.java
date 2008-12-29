@@ -26,37 +26,77 @@ import org.apache.struts.chain.contexts.ActionContext;
 /**
  * This abstract class is a template for choosing the target method that is
  * named by the <code>parameter</code> attribute of the corresponding
- * {@link ActionMapping}.
+ * {@link ActionMapping}. The attribute value, if not provided, defaults to
+ * <code>execute</code>.
  * 
  * @version $Rev$
  * @since Struts 1.4
  */
 public abstract class AbstractMappingDispatcher extends AbstractDispatcher {
 
+    private String defaultMappingParameter;
+
+    /**
+     * Constructs a new dispatcher with the specified method resolver.
+     * 
+     * @param methodResolver the method resolver
+     */
+    public AbstractMappingDispatcher(MethodResolver methodResolver) {
+        super(methodResolver);
+        setDefaultMappingParameter(EXECUTE_METHOD_NAME);
+    }
+
+    /**
+     * Retrieves the default mapping parameter value. This value is used by
+     * {@link #resolveMethodName(ActionContext)} if the mapping did not provide
+     * a value.
+     * 
+     * @return the mapping parameter value or <code>null</code>
+     * @see #setDefaultMappingParameter(String)
+     */
+    protected final String getDefaultMappingParameter() {
+        return defaultMappingParameter;
+    }
+
     /**
      * Resolves the method name by obtaining the <code>parameter</code>
      * attribute from the {@link ActionMapping}.
      * 
      * @param context {@inheritDoc}
-     * @throws IllegalStateException if the parameter is absent
+     * @throws IllegalStateException if the parameter cannot be resolved
      * @return the parameter attribute value
      */
     protected String resolveMethodName(ActionContext context) {
-	// Null out an empty string parameter
-	ActionMapping mapping = (ActionMapping) context.getActionConfig();
-	String parameter = mapping.getParameter();
-	if ("".equals(parameter)) {
-	    parameter = null;
-	}
+        // Null out an empty string parameter
+        ActionMapping mapping = (ActionMapping) context.getActionConfig();
+        String parameter = mapping.getParameter();
+        if ("".equals(parameter)) {
+            parameter = null;
+        }
 
-	// Parameter is required
-	if ((parameter == null)) {
-	    String message = messages.getMessage(MSG_KEY_MISSING_MAPPING_PARAMETER, mapping.getPath());
-	    log.error(message);
-	    throw new IllegalStateException(message);
-	}
+        // Assign the default if the mapping did not provide a value
+        if (parameter == null) {
+            parameter = defaultMappingParameter;
+        }
 
-	return parameter;
+        // Parameter is required
+        if (parameter == null) {
+            String message = messages.getMessage(MSG_KEY_MISSING_MAPPING_PARAMETER, mapping.getPath());
+            log.error(message);
+            throw new IllegalStateException(message);
+        }
+
+        return parameter;
+    }
+
+    /**
+     * Stores the new default mapping parameter value.
+     * 
+     * @param defaultMappingParameter the parameter value
+     * @see #getDefaultMappingParameter()
+     */
+    protected final void setDefaultMappingParameter(String defaultMappingParameter) {
+        this.defaultMappingParameter = defaultMappingParameter;
     }
 
 }

@@ -20,12 +20,9 @@
  */
 package org.apache.struts.dispatcher.servlet;
 
-import org.apache.struts.action.Action;
 import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.dispatcher.AbstractParameterDispatcher;
-
-import java.lang.reflect.Method;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -49,20 +46,14 @@ import javax.servlet.http.HttpServletResponse;
  * </code>
  * <p>
  * This example will use the value of the request parameter named "method" to
- * pick the appropriate method, which must have the same signature (other than
- * method name) of the standard
- * {@link Action#execute(org.apache.struts.action.ActionMapping, org.apache.struts.action.ActionForm, 
- * javax.servlet.ServletRequest, javax.servlet.ServletResponse) Action.execute}
- * method. For example, you might have the following three methods in the same
- * action:
+ * pick the appropriate method. For example, you might have the following three
+ * methods in the same action:
  * 
  * <ul>
  * <li><code>public ActionForward delete(ActionMapping mapping, ActionForm form,
  * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
- * <li><code>public ActionForward insert(ActionMapping mapping, ActionForm form,
- * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
- * <li><code>public ActionForward update(ActionMapping mapping, ActionForm form,
- * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
+ * <li><code>public void insert(ActionContext context)</code></li>
+ * <li><code>public void update(ServletActionContext context)</code></li>
  * </ul>
  * and call one of the methods with a URL like this:
  * <p>
@@ -75,12 +66,11 @@ public class ServletParameterDispatcher extends AbstractParameterDispatcher {
 
     private static final long serialVersionUID = 1L;
 
-    protected Object[] buildMethodArguments(ActionContext context, Method method) {
-	return ServletDispatchUtils.buildClassicExecuteArguments((ServletActionContext) context);
-    }
-
-    protected Method resolveMethod(ActionContext context, String methodName) throws NoSuchMethodException {
-	return ServletDispatchUtils.resolveClassicExecuteMethod(context, methodName);
+    /**
+     * Constructs a new servlet parameter dispatcher.
+     */
+    public ServletParameterDispatcher() {
+        super(new ServletMethodResolver());
     }
 
     /**
@@ -91,8 +81,8 @@ public class ServletParameterDispatcher extends AbstractParameterDispatcher {
      * @return the servlet parameter value
      */
     protected String resolveParameterValue(ActionContext context, String parameter) {
-	ServletActionContext servletContext = (ServletActionContext) context;
-	return (String) servletContext.getParam().get(parameter);
+        ServletActionContext servletContext = (ServletActionContext) context;
+        return (String) servletContext.getParam().get(parameter);
     }
 
     /**
@@ -103,9 +93,9 @@ public class ServletParameterDispatcher extends AbstractParameterDispatcher {
      * @throws Exception if the error code fails to set
      */
     protected Object unspecified(ActionContext context) throws Exception {
-	HttpServletResponse response = ((ServletActionContext) context).getResponse();
-	response.sendError(HttpServletResponse.SC_NOT_FOUND);
-	return null;
+        HttpServletResponse response = ((ServletActionContext) context).getResponse();
+        response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        return null;
     }
 
 }

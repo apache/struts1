@@ -24,8 +24,6 @@ import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.dispatcher.AbstractMappingDispatcher;
 
-import java.lang.reflect.Method;
-
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -39,16 +37,11 @@ import javax.servlet.http.HttpServletResponse;
  * For example, a single action may manage a subscription process by defining
  * the following methods:
  * <ul>
- * <li><code>public ActionForward create(ActionMapping mapping, ActionForm form,
- * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
- * <li><code>public ActionForward delete(ActionMapping mapping, ActionForm form,
- * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
- * <li><code>public ActionForward edit(ActionMapping mapping, ActionForm form,
- * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
- * <li><code>public ActionForward list(ActionMapping mapping, ActionForm form,
- * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
- * <li><code>public ActionForward save(ActionMapping mapping, ActionForm form,
- * HttpServletRequest request, HttpServletResponse response) throws Exception</code></li>
+ * <li><code>public void create(ActionContext context)</code></li>
+ * <li><code>public void delete(ActionContext context)</code></li>
+ * <li><code>public String edit(ActionContext context)</code></li>
+ * <li><code>public ActionForward list(ActionContext context)</code></li>
+ * <li><code>public String save(ActionContext context)</code></li>
  * </ul>
  * for which a corresponding configuration would exist:
  * 
@@ -65,9 +58,9 @@ import javax.servlet.http.HttpServletResponse;
  *          dispatcher=&quot;org.apache.struts.dispatcher.servlet.ServletMappingDispatcher&quot;
  *          parameter=&quot;delete&quot;
  *          name=&quot;subscriptionForm&quot;
- *          scope=&quot;request&quot;
- *          input=&quot;/subscription.jsp&quot;&gt;
+ *          scope=&quot;request&quot;&gt;
  *      &lt;forward path=&quot;/deletedSubscription.jsp&quot;/&gt;
+ *      &lt;forward name=&quot;input&quot; path=&quot;/subscription.jsp&quot;
  *  &lt;/action&gt;
  * 
  *  &lt;action path=&quot;/editSubscription&quot;
@@ -90,9 +83,9 @@ import javax.servlet.http.HttpServletResponse;
  *          parameter=&quot;save&quot;
  *          name=&quot;subscriptionForm&quot;
  *          scope=&quot;request&quot;
- *          validate=&quot;true&quot;
- *          input=&quot;/editSubscription.jsp&quot;&gt;
+ *          validate=&quot;true&quot;&gt;
  *      &lt;forward path=&quot;/savedSubscription.jsp&quot;/&gt;
+ *      &lt;forward name=&quot;input&quot; path=&quot;/editSubscription.jsp&quot;
  *  &lt;/action&gt;
  * </code></pre>
  * 
@@ -103,12 +96,11 @@ public class ServletMappingDispatcher extends AbstractMappingDispatcher {
 
     private static final long serialVersionUID = 1L;
 
-    protected Object[] buildMethodArguments(ActionContext context, Method method) {
-	return ServletDispatchUtils.buildClassicExecuteArguments((ServletActionContext) context);
-    }
-
-    protected Method resolveMethod(ActionContext context, String methodName) throws NoSuchMethodException {
-	return ServletDispatchUtils.resolveClassicExecuteMethod(context, methodName);
+    /**
+     * Constructs a new servlet mapping dispatcher.
+     */
+    public ServletMappingDispatcher() {
+        super(new ServletMethodResolver());
     }
 
     /**
@@ -117,9 +109,9 @@ public class ServletMappingDispatcher extends AbstractMappingDispatcher {
      * @return always <code>null</code> since the response is handled directly
      */
     protected Object unspecified(ActionContext context) throws Exception {
-	HttpServletResponse response = ((ServletActionContext) context).getResponse();
-	response.sendError(HttpServletResponse.SC_NOT_FOUND);
-	return null;
+        HttpServletResponse response = ((ServletActionContext) context).getResponse();
+        response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        return null;
     }
 
 }

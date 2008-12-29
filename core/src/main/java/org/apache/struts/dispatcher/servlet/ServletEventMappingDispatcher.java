@@ -25,8 +25,6 @@ import org.apache.struts.chain.contexts.ActionContext;
 import org.apache.struts.chain.contexts.ServletActionContext;
 import org.apache.struts.dispatcher.AbstractEventMappingDispatcher;
 
-import java.lang.reflect.Method;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -59,8 +57,11 @@ public class ServletEventMappingDispatcher extends AbstractEventMappingDispatche
 
     private static final long serialVersionUID = 1L;
 
-    protected Object[] buildMethodArguments(ActionContext context, Method method) {
-	return ServletDispatchUtils.buildClassicExecuteArguments((ServletActionContext) context);
+    /**
+     * Constructs a new servlet event mapping dispatcher.
+     */
+    public ServletEventMappingDispatcher() {
+        super(new ServletMethodResolver());
     }
 
     /**
@@ -68,12 +69,8 @@ public class ServletEventMappingDispatcher extends AbstractEventMappingDispatche
      * suffixes (.x/.y), the method name has been found.
      */
     protected boolean isSubmissionParameter(ActionContext context, String methodKey) {
-	HttpServletRequest request = ((ServletActionContext) context).getRequest();
-	return (request.getParameter(methodKey) != null) || (request.getParameter(methodKey + ".x") != null);
-    }
-
-    protected Method resolveMethod(ActionContext context, String methodName) throws NoSuchMethodException {
-	return ServletDispatchUtils.resolveClassicExecuteMethod(context, methodName);
+        HttpServletRequest request = ((ServletActionContext) context).getRequest();
+        return (request.getParameter(methodKey) != null) || (request.getParameter(methodKey + ".x") != null);
     }
 
 }

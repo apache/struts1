@@ -34,7 +34,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * TODO
+ * This abstract class is the stock template for {@link Dispatcher}
+ * implementations.
  * 
  * @version $Rev$
  * @since Struts 1.4
@@ -57,11 +58,9 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
     public static final String CANCELLED_METHOD_NAME = "cancelled";
 
     /**
-     * The name of the <code>unspecified</code> method.
-     * 
-     * @see #unspecified(ActionContext)
+     * The name of the <code>execute</code> method.
      */
-    public static final String UNSPECIFIED_METHOD_NAME = "unspecified";
+    public static final String EXECUTE_METHOD_NAME = "execute";
 
     /**
      * The message resources for this package.
@@ -81,58 +80,71 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      */
     private transient final HashMap methods;
 
+    private final MethodResolver methodResolver;
+
     /**
-     * Construct a new dispatcher.
+     * Constructs a new dispatcher with the specified method resolver.
+     * 
+     * @param methodResolver the method resolver
      */
-    public AbstractDispatcher() {
-	log = LogFactory.getLog(getClass());
-	methods = new HashMap();
+    public AbstractDispatcher(MethodResolver methodResolver) {
+        this.methodResolver = methodResolver;
+        log = LogFactory.getLog(getClass());
+        methods = new HashMap();
     }
 
     /**
      * Constructs the arguments that will be passed to the dispatched method.
+     * The construction is delegated to the method resolver instance.
      * 
      * @param context the current action context
      * @param method the target method of this dispatch
-     * 
      * @return the arguments array
-     * @see #dispatchMethod(ActionContext, Method, String)
+     * @throws IllegalStateException if the method does not have a supported
+     *         signature
+     * @see MethodResolver#buildArguments(ActionContext, Method)
      */
-    protected abstract Object[] buildMethodArguments(ActionContext context, Method method);
+    Object[] buildMethodArguments(ActionContext context, Method method) {
+        Object[] args = methodResolver.buildArguments(context, method);
+        if (args == null) {
+            throw new IllegalStateException("Unsupported method signature: " + method.toString());
+        }
+        return args;
+    }
 
     public Object dispatch(ActionContext context) throws Exception {
-	// Resolve the method name; fallback to default if necessary
-	String methodName = resolveMethodName(context);
-	if ((methodName == null) || "".equals(methodName)) {
-	    methodName = getDefaultMethodName();
-	}
+        // Resolve the method name; fallback to default if necessary
+        String methodName = resolveMethodName(context);
+        if ((methodName == null) || "".equals(methodName)) {
+            methodName = getDefaultMethodName();
+        }
 
-	// Ensure there is a specified method name to invoke.
-	// This may be null if the user hacks the query string.
-	if (methodName == null) {
-	    return unspecified(context);
-	}
+        // Ensure there is a specified method name to invoke.
+        // This may be null if the user hacks the query string.
+        if (methodName == null) {
+            return unspecified(context);
+        }
 
-	// Identify the method object to dispatch
-	Method method;
-	try {
-	    method = getMethod(context, methodName);
-	} catch (NoSuchMethodException e) {
-	    // The log message reveals the offending method name...
-	    String path = context.getActionConfig().getPath();
-	    String message = messages.getMessage(MSG_KEY_MISSING_METHOD_LOG, path, methodName);
-	    log.error(message, e);
+        // Identify the method object to dispatch
+        Method method;
+        try {
+            method = getMethod(context, methodName);
+        } catch (NoSuchMethodException e) {
+            // The log message reveals the offending method name...
+            String path = context.getActionConfig().getPath();
+            String message = messages.getMessage(MSG_KEY_MISSING_METHOD_LOG, path, methodName);
+            log.error(message, e);
 
-	    // ...but the exception thrown does not
-	    // See r383718 (XSS vulnerability)
-	    String userMsg = messages.getMessage(MSG_KEY_MISSING_METHOD, path);
-	    NoSuchMethodException e2 = new NoSuchMethodException(userMsg);
-	    e2.initCause(e);
-	    throw e2;
-	}
+            // ...but the exception thrown does not
+            // See r383718 (XSS vulnerability)
+            String userMsg = messages.getMessage(MSG_KEY_MISSING_METHOD, path);
+            NoSuchMethodException e2 = new NoSuchMethodException(userMsg);
+            e2.initCause(e);
+            throw e2;
+        }
 
-	// Invoke the named method and return its result
-	return dispatchMethod(context, method, methodName);
+        // Invoke the named method and return its result
+        return dispatchMethod(context, method, methodName);
     }
 
     /**
@@ -146,10 +158,10 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      * @see #buildMethodArguments(ActionContext, Method)
      */
     protected final Object dispatchMethod(ActionContext context, Method method, String name) throws Exception {
-	Action target = context.getAction();
-	String path = context.getActionConfig().getPath();
-	Object[] args = buildMethodArguments(context, method);
-	return invoke(target, method, args, path);
+        Action target = context.getAction();
+        String path = context.getActionConfig().getPath();
+        Object[] args = buildMethodArguments(context, method);
+        return invoke(target, method, args, path);
     }
 
     /**
@@ -158,22 +170,22 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      * @see #getMethod(ActionContext, String)
      */
     final void flushMethodCache() {
-	synchronized (methods) {
-	    methods.clear();
-	}
+        synchronized (methods) {
+            methods.clear();
+        }
     }
 
     /**
      * Retrieves the name of the method to fallback upon if no method name can
      * be resolved. The default implementation returns
-     * {@value #UNSPECIFIED_METHOD_NAME}.
+     * {@link #EXECUTE_METHOD_NAME}.
      * 
      * @return the fallback method name; can be <code>null</code>
      * @see #resolveMethodName(ActionContext)
-     * @see #UNSPECIFIED_METHOD_NAME
+     * @see #EXECUTE_METHOD_NAME
      */
     protected String getDefaultMethodName() {
-	return UNSPECIFIED_METHOD_NAME;
+        return EXECUTE_METHOD_NAME;
     }
 
     /**
@@ -189,23 +201,23 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      * @see #flushMethodCache()
      */
     protected final Method getMethod(ActionContext context, String methodName) throws NoSuchMethodException {
-	synchronized (methods) {
-	    // Key the method based on the class-method combination
-	    StringBuffer keyBuf = new StringBuffer(100);
-	    keyBuf.append(context.getAction().getClass().getName());
-	    keyBuf.append(":");
-	    keyBuf.append(methodName);
-	    String key = keyBuf.toString();
+        synchronized (methods) {
+            // Key the method based on the class-method combination
+            StringBuffer keyBuf = new StringBuffer(100);
+            keyBuf.append(context.getAction().getClass().getName());
+            keyBuf.append(":");
+            keyBuf.append(methodName);
+            String key = keyBuf.toString();
 
-	    Method method = (Method) methods.get(key);
+            Method method = (Method) methods.get(key);
 
-	    if (method == null) {
-		method = resolveMethod(context, methodName);
-		methods.put(key, method);
-	    }
+            if (method == null) {
+                method = resolveMethod(context, methodName);
+                methods.put(key, method);
+            }
 
-	    return method;
-	}
+            return method;
+        }
     }
 
     /**
@@ -220,24 +232,28 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      * @throws Exception if the dispatch fails with an exception
      */
     protected final Object invoke(Object target, Method method, Object[] args, String path) throws Exception {
-	try {
-	    return method.invoke(target, args);
-	} catch (IllegalAccessException e) {
-	    String message = messages.getMessage(MSG_KEY_DISPATCH_ERROR, path);
-	    log.error(message + ":" + method.getName(), e);
-	    throw e;
-	} catch (InvocationTargetException e) {
-	    // Rethrow the target exception if possible so that the
-	    // exception handling machinery can deal with it
-	    Throwable t = e.getTargetException();
-	    if (t instanceof Exception) {
-		throw (Exception) t;
-	    } else {
-		String message = messages.getMessage(MSG_KEY_DISPATCH_ERROR, path);
-		log.error(message + ":" + method.getName(), e);
-		throw new Exception(t);
-	    }
-	}
+        try {
+            Object retval = method.invoke(target, args);
+            if (method.getReturnType() == void.class) {
+                retval = void.class;
+            }
+            return retval;
+        } catch (IllegalAccessException e) {
+            String message = messages.getMessage(MSG_KEY_DISPATCH_ERROR, path);
+            log.error(message + ":" + method.getName(), e);
+            throw e;
+        } catch (InvocationTargetException e) {
+            // Rethrow the target exception if possible so that the
+            // exception handling machinery can deal with it
+            Throwable t = e.getTargetException();
+            if (t instanceof Exception) {
+                throw (Exception) t;
+            } else {
+                String message = messages.getMessage(MSG_KEY_DISPATCH_ERROR, path);
+                log.error(message + ":" + method.getName(), e);
+                throw new Exception(t);
+            }
+        }
     }
 
     /**
@@ -250,11 +266,10 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      * @param context the current action context
      * @return <code>true</code> if the request is cancelled; otherwise
      *         <code>false</code>
-     * @see org.apache.struts.taglib.html.CancelTag
      */
     protected boolean isCancelled(ActionContext context) {
-	Boolean cancelled = context.getCancelled();
-	return (cancelled != null) && cancelled.booleanValue();
+        Boolean cancelled = context.getCancelled();
+        return (cancelled != null) && cancelled.booleanValue();
     }
 
     /**
@@ -270,7 +285,9 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      * @see #getMethod(ActionContext, String)
      * @see #invoke(Object, Method, Object[], String)
      */
-    protected abstract Method resolveMethod(ActionContext context, String methodName) throws NoSuchMethodException;
+    Method resolveMethod(ActionContext context, String methodName) throws NoSuchMethodException {
+        return methodResolver.resolveMethod(context, methodName);
+    }
 
     /**
      * Decides the method name that can handle the request.
@@ -280,7 +297,7 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      * @see #getDefaultMethodName()
      * @see #resolveMethod(ActionContext, String)
      */
-    protected abstract String resolveMethodName(ActionContext context);
+    abstract String resolveMethodName(ActionContext context);
 
     /**
      * Services the case when the dispatch fails because the method name cannot
@@ -294,10 +311,10 @@ public abstract class AbstractDispatcher implements Dispatcher, Serializable {
      * @see #resolveMethodName(ActionContext)
      */
     protected Object unspecified(ActionContext context) throws Exception {
-	ActionConfig config = context.getActionConfig();
-	String msg = messages.getMessage(MSG_KEY_UNSPECIFIED, config.getPath());
-	log.error(msg);
-	throw new IllegalStateException(msg);
+        ActionConfig config = context.getActionConfig();
+        String msg = messages.getMessage(MSG_KEY_UNSPECIFIED, config.getPath());
+        log.error(msg);
+        throw new IllegalStateException(msg);
     }
 
 }

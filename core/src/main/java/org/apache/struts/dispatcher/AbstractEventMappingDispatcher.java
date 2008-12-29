@@ -41,8 +41,8 @@ import java.util.StringTokenizer;
  * <p>
  * The <em>default</em> key is purely optional, but encouraged when nothing
  * matches (such as the user pressing the enter key). If this is not specified
- * and no parameters match the list of method keys, <code>null</code> is
- * returned which means the <code>unspecified</code> method will be invoked.
+ * and no parameters match the list of method keys, the method resolution
+ * returns <code>null</code>.
  * <p>
  * The order of the parameters are guaranteed to be iterated in the order
  * specified. If multiple buttons were accidently submitted, the first match in
@@ -60,6 +60,15 @@ public abstract class AbstractEventMappingDispatcher extends AbstractMappingDisp
     protected static final String DEFAULT_METHOD_KEY = "default";
 
     /**
+     * Constructs a new dispatcher with the specified method resolver.
+     * 
+     * @param methodResolver the method resolver
+     */
+    public AbstractEventMappingDispatcher(MethodResolver methodResolver) {
+        super(methodResolver);
+    }
+
+    /**
      * Determines whether the specified method key is a submission parameter.
      * 
      * @param context the current action context
@@ -70,38 +79,40 @@ public abstract class AbstractEventMappingDispatcher extends AbstractMappingDisp
     protected abstract boolean isSubmissionParameter(ActionContext context, String methodKey);
 
     protected final String resolveMethodName(ActionContext context) {
-	// Obtain the mapping parameter
-	String parameter = super.resolveMethodName(context);
-	assert parameter != null;
+        // Obtain the mapping parameter
+        String mappingParameter = super.resolveMethodName(context);
+        if (mappingParameter == null) {
+            return null;
+        }
 
-	// Parse it as a comma-separated list
-	StringTokenizer st = new StringTokenizer(parameter, ",");
-	String defaultMethodName = null;
+        // Parse it as a comma-separated list
+        StringTokenizer st = new StringTokenizer(mappingParameter, ",");
+        String defaultMethodName = null;
 
-	while (st.hasMoreTokens()) {
-	    String methodKey = st.nextToken().trim();
-	    String methodName = methodKey;
+        while (st.hasMoreTokens()) {
+            String methodKey = st.nextToken().trim();
+            String methodName = methodKey;
 
-	    // The key can either be a direct method name or an alias
-	    // to a method as indicated by a "key=value" signature
-	    int equals = methodKey.indexOf('=');
-	    if (equals > -1) {
-		methodName = methodKey.substring(equals + 1).trim();
-		methodKey = methodKey.substring(0, equals).trim();
-	    }
+            // The key can either be a direct method name or an alias
+            // to a method as indicated by a "key=value" signature
+            int equals = methodKey.indexOf('=');
+            if (equals > -1) {
+                methodName = methodKey.substring(equals + 1).trim();
+                methodKey = methodKey.substring(0, equals).trim();
+            }
 
-	    // Set the default if it passes by
-	    if (methodKey.equals(DEFAULT_METHOD_KEY)) {
-		defaultMethodName = methodName;
-	    }
+            // Set the default if it passes by
+            if (methodKey.equals(DEFAULT_METHOD_KEY)) {
+                defaultMethodName = methodName;
+            }
 
-	    // Is it a match?
-	    if (isSubmissionParameter(context, methodKey)) {
-		return methodName;
-	    }
-	}
+            // Is it a match?
+            if (isSubmissionParameter(context, methodKey)) {
+                return methodName;
+            }
+        }
 
-	return defaultMethodName;
+        return defaultMethodName;
     }
 
 }
