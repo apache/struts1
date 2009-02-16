@@ -119,7 +119,7 @@ public class ServletMethodResolver extends AbstractMethodResolver {
         if (context instanceof ServletActionContext) {
             try {
                 Class actionClass = context.getAction().getClass();
-                return actionClass.getDeclaredMethod(methodName, new Class[] { ServletActionContext.class });
+                return actionClass.getMethod(methodName, new Class[] { ServletActionContext.class });
             } catch (NoSuchMethodException e) {
                 // continue
             }

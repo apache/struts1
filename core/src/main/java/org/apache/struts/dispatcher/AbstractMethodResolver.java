@@ -79,13 +79,13 @@ public abstract class AbstractMethodResolver implements MethodResolver {
 
         // Does the method accept nothing?
         try {
-            return actionClass.getDeclaredMethod(methodName, EMPTY_ARGUMENT_TYPES);
+            return actionClass.getMethod(methodName, EMPTY_ARGUMENT_TYPES);
         } catch (NoSuchMethodException e) {
             // continue
         }
 
         // Does the method accept the action context?
-        return actionClass.getDeclaredMethod(methodName, ACTION_CONTEXT_ARGUMENT_TYPES);
+        return actionClass.getMethod(methodName, ACTION_CONTEXT_ARGUMENT_TYPES);
     }
 
 }
