@@ -725,11 +725,10 @@ public class FormTag extends TagSupport {
         results.append(">");
         results.append(lineEnd);
 
-        // xhtml script content shouldn't use the browser hiding trick
-        if (!this.isXhtml()) {
-            results.append("  <!--");
-            results.append(lineEnd);
-        }
+        // xhtml content should emit CDATA section
+        // but html content should use the browser hiding trick
+        results.append(isXhtml() ? "//<![CDATA[" : "<!--");
+        results.append(lineEnd);
 
         // Construct the index if needed and insert into focus statement
         String index = "";
@@ -767,10 +766,9 @@ public class FormTag extends TagSupport {
         results.append("  }");
         results.append(lineEnd);
 
-        if (!this.isXhtml()) {
-            results.append("  // -->");
-            results.append(lineEnd);
-        }
+        results.append("//");
+        results.append(isXhtml() ? "]]>" : "-->");
+        results.append(lineEnd);
 
         results.append("</script>");
         results.append(lineEnd);
