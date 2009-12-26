@@ -913,7 +913,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
     protected void prepareIndex(StringBuffer handlers, String name)
         throws JspException {
         if (name != null) {
-            handlers.append(TagUtils.getInstance().filter(name));
+            handlers.append(name);
         }
 
         handlers.append("[");
@@ -1156,9 +1156,9 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
         Object value) {
         if (value != null) {
             handlers.append(" ");
-            handlers.append(TagUtils.getInstance().filter(name));
+            handlers.append(name);
             handlers.append("=\"");
-            handlers.append(TagUtils.getInstance().filter(value.toString()));
+            handlers.append(value);
             handlers.append("\"");
         }
     }
@@ -1221,5 +1221,4 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
                     property, beanName));
         }
     }
-
 }
