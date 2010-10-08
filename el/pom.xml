@@ -50,7 +50,7 @@
 
    <properties>
        <struts.osgi.symbolicName>org.apache.strutsel.taglib</struts.osgi.symbolicName>
-       <struts.osgi.export>org.apache.strutsel.*;version=${pom.version}</struts.osgi.export>
+       <struts.osgi.export>org.apache.strutsel.*;version=${project.version}</struts.osgi.export>
    </properties>
    
    <build>
@@ -63,19 +63,19 @@
 
    <dependencies>
       <dependency>
-         <groupId>${pom.groupId}</groupId>
+         <groupId>${project.groupId}</groupId>
          <artifactId>struts-core</artifactId>
-         <version>${pom.version}</version>
+         <version>${project.version}</version>
       </dependency>
       <dependency>
-         <groupId>${pom.groupId}</groupId>
+         <groupId>${project.groupId}</groupId>
          <artifactId>struts-taglib</artifactId>
-         <version>${pom.version}</version>
+         <version>${project.version}</version>
       </dependency>
       <dependency>
-         <groupId>${pom.groupId}</groupId>
+         <groupId>${project.groupId}</groupId>
          <artifactId>struts-tiles</artifactId>
-         <version>${pom.version}</version>
+         <version>${project.version}</version>
          <optional>true</optional>
       </dependency>
       <dependency>

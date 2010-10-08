@@ -39,9 +39,9 @@
 
    <dependencies>
       <dependency>
-         <groupId>${pom.groupId}</groupId>
+         <groupId>${project.groupId}</groupId>
          <artifactId>struts-faces</artifactId>
-         <version>${pom.version}</version>
+         <version>${project.version}</version>
       </dependency>
       <dependency>
          <groupId>javax.servlet</groupId>
@@ -88,7 +88,7 @@
             </includes>
          </resource>
       </resources>
-      <finalName>${pom.artifactId}</finalName>
+      <finalName>${project.artifactId}</finalName>
    </build>
 
 </project>

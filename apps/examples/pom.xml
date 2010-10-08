@@ -39,14 +39,14 @@
 
    <dependencies>
       <dependency>
-         <groupId>${pom.groupId}</groupId>
+         <groupId>${project.groupId}</groupId>
          <artifactId>struts-taglib</artifactId>
-         <version>${pom.version}</version>
+         <version>${project.version}</version>
       </dependency>
       <dependency>
-         <groupId>${pom.groupId}</groupId>
+         <groupId>${project.groupId}</groupId>
          <artifactId>struts-extras</artifactId>
-         <version>${pom.version}</version>
+         <version>${project.version}</version>
       </dependency>
       <dependency>
          <groupId>commons-fileupload</groupId>

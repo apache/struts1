@@ -32,7 +32,7 @@
       </excludes>
     </dependencySet>
     <dependencySet>
-      <outputFileNameMapping>${artifactId}-${version}-j4.${extension}</outputFileNameMapping>
+      <outputFileNameMapping>${project.artifactId}-${project.version}-j4.${extension}</outputFileNameMapping>
       <outputDirectory>lib</outputDirectory>
       <includes>
         <include>org.apache.tiles:tiles-api:jar:j4</include>
