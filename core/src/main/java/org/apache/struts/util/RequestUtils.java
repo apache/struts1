@@ -46,7 +46,6 @@ import javax.servlet.http.HttpSession;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -55,6 +54,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * <p>General purpose utility methods related to processing a servlet request
@@ -69,6 +69,13 @@ public class RequestUtils {
      * <p>Commons Logging instance.</p>
      */
     protected static Log log = LogFactory.getLog(RequestUtils.class);
+
+    /**
+     * <p>Pattern matching 'class' access.</p>
+     */
+    protected static final Pattern CLASS_ACCESS_PATTERN = Pattern
+            .compile("(.*\\.|^|.*|\\[('|\"))class(\\.|('|\")]|\\[).*",
+                    Pattern.CASE_INSENSITIVE);
 
     // --------------------------------------------------------- Public Methods
 
@@ -464,7 +471,8 @@ public class RequestUtils {
 
             // Populate parameters, except "standard" struts attributes
             // such as 'org.apache.struts.action.CANCEL'
-            if (!(stripped.startsWith("org.apache.struts."))) {
+            if (!(stripped.startsWith("org.apache.struts."))
+                    && !CLASS_ACCESS_PATTERN.matcher(stripped).matches()) {
                 properties.put(stripped, parameterValue);
             }
         }
