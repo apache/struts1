@@ -1,75 +1,24 @@
 <?xml version="1.0"?>
-<project>
-  <pomVersion>3</pomVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
   <name>struts</name>
   <groupId>struts</groupId>
   <artifactId>struts</artifactId>
-  <currentVersion>1.2.10-SNAPSHOT</currentVersion>
+  <version>1.2.10-SNAPSHOT</version>
   <organization>
     <name>The Apache Software Foundation</name>
     <url>http://struts.apache.org/</url>
-    <logo>http://struts.apache.org/images/jakarta-logo.gif</logo>
   </organization>
-  <!-- <logo>/images/struts-blue.gif</logo>-->
-  <logo>http://struts.apache.org/struts/images/struts.gif</logo>
   <inceptionYear>2000</inceptionYear>
-  <package>org.apache.struts</package>
-  <shortDescription>MVC Web Application Framework</shortDescription>
   <!-- Gump integration -->
-  <gumpRepositoryId>jakarta</gumpRepositoryId>
   <description>The core of the Struts framework is a flexible control layer based on standard technologies like Java Servlets, JavaBeans, ResourceBundles, and Extensible Markup Language (XML), as well as various Jakarta Commons packages. Struts encourages application architectures based on the Model 2 approach, a variation of the classic Model-View-Controller (MVC) design paradigm. Struts provides its own Controller component and integrates with other technologies to provide the Model and the View. For the Model, Struts can interact with any standard data access technology, including Enterprise Java Beans, JDBC, and Object Relational Bridge. For the View, Struts works well with JavaServer Pages, including JSTL and JSF, as well as Velocity Templates, XSLT, and other presentation systems. The Struts framework provides the invisible underpinnings every professional web application needs to survive. Struts helps you create an extensible development environment for your application, based on published standards and proven design patterns.</description>
   <url>http://struts.apache.org/</url>
-  <issueTrackingUrl>http://issues.apache.org/bugzilla/</issueTrackingUrl>
-  <siteAddress>struts.apache.org</siteAddress>
-  <siteDirectory>/www/jakarta.apache.org/struts</siteDirectory>
-  <distributionDirectory>/www/apache.mirrors.pair.com/jakarta/struts/</distributionDirectory>
-  <repository>
-    <connection>scm|svn|http|//svn.apache.org/repos/asf/struts/core/trunk</connection>
-    <developerConnection>scm|svn|https|//svn.apache.org/repos/asf/struts/core/trunk</developerConnection>
-    <url>http://svn.apache.org/repos/asf/struts/core/trunk</url>
-  </repository>
-  <versions>
-    <version>
-      <id>1.0.2</id>
-      <name>1.0.2</name>
-      <tag>STRUTS_1_0_2</tag>
-    </version>
-    <version>
-      <id>1.1.0</id>
-      <name>1.1.0</name>
-      <tag>STRUTS_1_1</tag>
-    </version>
-    <version>
-      <id>1.2.0</id>
-      <name>1.2.0</name>
-      <tag>STRUTS_1_2_0</tag>
-    </version>
-    <version>
-      <id>1.2.1</id>
-      <name>1.2.1</name>
-      <tag>STRUTS_1_2_1</tag>
-    </version>
-    <version>
-      <id>1.2.2</id>
-      <name>1.2.2</name>
-      <tag>STRUTS_1_2_2</tag>
-    </version>
-    <version>
-      <id>1.2.3</id>
-      <name>1.2.3</name>
-      <tag>STRUTS_1_2_3</tag>
-    </version>
-    <version>
-      <id>1.2.4</id>
-      <name>1.2.4</name>
-      <tag>STRUTS_1_2_4</tag>
-    </version>
-    <version>
-      <id>1.2.5</id>
-      <name>1.2.5</name>
-      <tag>STRUTS_1_2_5</tag>
-    </version>
-  </versions>
+  <issueManagement>
+    <url>ttp://issues.apache.org/bugzilla/</url>
+  </issueManagement>
+
   <mailingLists>
     <mailingList>
       <name>Struts User List</name>
@@ -193,160 +142,148 @@
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.7.0</version>
-      <url>http://jakarta.apache.org/commons/beanutils.html</url>
-      <properties>
-        <war.bundle>true</war.bundle>
-        <cactus.bundle>true</cactus.bundle>
-      </properties>
+      <version>1.9.2</version>
     </dependency>
     <dependency>
       <groupId>commons-digester</groupId>
       <artifactId>commons-digester</artifactId>
       <version>1.6</version>
-      <url>http://jakarta.apache.org/commons/digester.html</url>
-      <properties>
-        <war.bundle>true</war.bundle>
-        <cactus.bundle>true</cactus.bundle>
-      </properties>
     </dependency>
     <dependency>
       <groupId>commons-fileupload</groupId>
       <artifactId>commons-fileupload</artifactId>
       <version>1.0</version>
-      <url>http://jakarta.apache.org/commons/fileupload/</url>
-      <properties>
-        <war.bundle>true</war.bundle>
-        <cactus.bundle>true</cactus.bundle>
-      </properties>
     </dependency>
     <dependency>
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
       <version>1.0.4</version>
-      <url>http://jakarta.apache.org/commons/logging.html</url>
-      <properties>
-        <war.bundle>true</war.bundle>
-        <cactus.bundle>true</cactus.bundle>
-      </properties>
     </dependency>
     <dependency>
       <groupId>commons-validator</groupId>
       <artifactId>commons-validator</artifactId>
       <version>1.1.4</version>
-      <url>http://jakarta.apache.org/commons/validator/</url>
-      <properties>
-        <war.bundle>true</war.bundle>
-        <cactus.bundle>true</cactus.bundle>
-      </properties>
     </dependency>
     <dependency>
       <groupId>oro</groupId>
       <artifactId>oro</artifactId>
       <version>2.0.7</version>
-      <url>http://jakarta.apache.org/oro/</url>
-      <properties>
-        <war.bundle>true</war.bundle>
-        <cactus.bundle>true</cactus.bundle>
-      </properties>
     </dependency>
     <dependency>
       <groupId>xml-apis</groupId>
       <artifactId>xml-apis</artifactId>
       <version>2.0.2</version>
-      <url>http://xml.apache.org/commons/</url>
-      <properties>
-        <war.bundle>true</war.bundle>
-        <scope>provided</scope>
-      </properties>
     </dependency>
     <dependency>
       <groupId>antlr</groupId>
       <artifactId>antlr</artifactId>
       <version>2.7.2</version>
-      <properties>
-        <war.bundle>true</war.bundle>
-      </properties>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
       <version>2.2</version>
-      <properties>
-        <scope>provided</scope>
-      </properties>
+      <scope>provided</scope>
     </dependency>
     <!-- for unit tests -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
-      <url>http://www.junit.org</url>
-      <properties>
-        <scope>test</scope>
-      </properties>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>cactus</groupId>
       <artifactId>cactus</artifactId>
-      <version>12-1.4.1</version>
-      <url>http://jakarta.apache.org/cactus</url>
-      <properties>
-        <scope>test</scope>
-      </properties>
+      <!--<version>12-1.4.1</version>-->
+      <version>13-1.7.2</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>cactus</groupId>
       <artifactId>cactus-ant</artifactId>
       <version>1.4.1</version>
-      <url>http://jakarta.apache.org/cactus</url>
-      <properties>
-        <scope>test</scope>
-      </properties>
+      <scope>test</scope>
     </dependency>
     <!-- for tld generation -->
     <dependency>
       <groupId>xalan</groupId>
       <artifactId>xalan</artifactId>
       <version>2.5.1</version>
-      <url>http://xml.apache.org/xalan</url>
-      <properties>
-        <scope>compile</scope>
-      </properties>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
   <build>
-    <nagEmailAddress>struts-dev@jakarta.apache.org</nagEmailAddress>
     <sourceDirectory>src/share</sourceDirectory>
     <!-- Unit test cases -->
-    <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
-    <integrationUnitTestSourceDirectory />
-    <aspectSourceDirectory />
-    <unitTest>
-      <includes>
-        <include>org/apache/struts/action/TestDynaActionForm.java</include>
-        <include>org/apache/struts/action/TestDynaActionFormClass.java</include>
-        <include>org/apache/struts/config/TestModuleConfig.java</include>
-        <include>org/apache/struts/config/TestActionConfigMatcher.java</include>
-        <include>org/apache/struts/util/Test*.java</include>
-      </includes>
-      <resources>
-        <resource>
-          <directory>${basedir}/conf/share</directory>
-          <targetPath>org/apache/struts/resources</targetPath>
+    <testSourceDirectory>src/test</testSourceDirectory>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.4</source>
+          <target>1.4</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.7</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <goals><goal>copy-resources</goal></goals>
+            <phase>compile</phase>
+            <configuration>
+              <outputDirectory>${project.build.outputDirectory}/org/apache/struts/resources</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>conf/share</directory>
+                  <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.dtd</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-test-resources</id>
+            <goals><goal>copy-resources</goal></goals>
+            <phase>test-compile</phase>
+            <configuration>
+              <outputDirectory>${project.build.testOutputDirectory}</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/test</directory>
+                  <includes>
+                    <include>**/*.xml</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.18.1</version>
+        <configuration>
           <includes>
-            <include>**/*.xml</include>
-            <include>**/*.dtd</include>
+            <include>org/apache/struts/action/TestDynaActionForm.java</include>
+            <include>org/apache/struts/action/TestDynaActionFormClass.java</include>
+            <include>org/apache/struts/config/TestModuleConfig.java</include>
+            <include>org/apache/struts/config/TestActionConfigMatcher.java</include>
+            <include>org/apache/struts/util/Test*.java</include>
           </includes>
-        </resource>
-        <resource>
-          <directory>${basedir}/src/test</directory>
-          <includes>
-            <include>**/*.xml</include>
-          </includes>
-        </resource>
-      </resources>
-    </unitTest>
+        </configuration>
+      </plugin>
+    </plugins>
+
     <!-- J A R  R E S O U R C E S -->
     <!-- Resources that are packaged up inside the JAR file -->
     <resources>
