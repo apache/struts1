@@ -1,10 +1,14 @@
-$Id: README,v 1.18 2003/12/10 01:04:10 husted Exp $
-
 STRUTS
 ======
 
-Introduction
-------------
+![build status](https://circleci.com/gh/kawasima/struts1-forever.png?style=shield&circle-token=8f99c0e6c923ca570acda8c3640446fdacad2a47)
+
+This struts1's fork is for maintenance to fix the vulnerabilities.
+
+$Id: README,v 1.18 2003/12/10 01:04:10 husted Exp $
+
+Introduction (Original)
+------------------------
 
 This subproject contains the source code for the "Struts" application support
 package, consisting of the following major components:
