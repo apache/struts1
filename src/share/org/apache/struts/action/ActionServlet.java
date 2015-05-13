@@ -40,6 +40,7 @@ import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.beanutils.SuppressPropertiesBeanIntrospector;
 import org.apache.commons.beanutils.converters.BigDecimalConverter;
 import org.apache.commons.beanutils.converters.BigIntegerConverter;
 import org.apache.commons.beanutils.converters.BooleanConverter;
@@ -1059,6 +1060,9 @@ public class ActionServlet extends HttpServlet {
      * @exception ServletException if we cannot initialize these resources
      */
     protected void initOther() throws ServletException {
+        PropertyUtils.addBeanIntrospector(
+                SuppressPropertiesBeanIntrospector.SUPPRESS_CLASS);
+        PropertyUtils.clearDescriptors();
 
         String value = null;
         value = getServletConfig().getInitParameter("config");
