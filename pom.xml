@@ -213,6 +213,7 @@
       <scope>compile</scope>
     </dependency>
   </dependencies>
+
   <build>
     <sourceDirectory>src/share</sourceDirectory>
     <!-- Unit test cases -->
@@ -227,6 +228,40 @@
           <source>1.4</source>
           <target>1.4</target>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>xml-maven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <id>generate-tlds</id>
+            <goals><goal>transform</goal></goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <transformationSets>
+                <transformationSet>
+                  <dir>doc/userGuide</dir>
+                  <stylesheet>doc/stylesheets/tld.xsl</stylesheet>
+                  <includes>
+                    <include>struts-bean.xml</include>
+                    <include>struts-html.xml</include>
+                    <include>struts-logic.xml</include>
+                    <include>struts-nested.xml</include>
+                    <include>struts-tiles.xml</include>
+                  </includes>
+                  <outputDir>${project.build.outputDirectory}/META-INF/tlds</outputDir>
+                  <fileMappers>
+                    <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
+                      <targetExtension>.tld</targetExtension>
+                    </fileMapper>
+                  </fileMappers>
+                </transformationSet>
+              </transformationSets>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
