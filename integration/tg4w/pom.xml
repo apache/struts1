@@ -85,7 +85,7 @@
         <pluginRepository>
             <id>net.sf.tools4java</id>
             <name>Tools4Java Maven Repository (TestGen4Web)</name>
-            <url>http://tools4java.sourceforge.net/m2/</url>
+            <url>https://tools4java.sourceforge.net/m2/</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>true</enabled></snapshots>
         </pluginRepository>
