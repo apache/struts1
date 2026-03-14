@@ -21,9 +21,9 @@ import javax.servlet.ServletException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import junit.framework.Test;
+import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.apache.cactus.JspTestCase;
-import org.apache.cactus.WebRequest;
+import org.apache.struts.mock.*;
 import org.apache.struts.util.LabelValueBean;
 
 /**
@@ -31,10 +31,26 @@ import org.apache.struts.util.LabelValueBean;
  * <code>org.apache.struts.taglib.logic.PresentTag</code> class.
  *
  */
-public class TestPresentTag extends JspTestCase {
+public class TestPresentTag extends TestCase {
     protected final static String COOKIE_KEY = "org.apache.struts.taglib.logic.COOKIE_KEY";
     protected final static String HEADER_KEY = "org.apache.struts.taglib.logic.HEADER_KEY";
     protected final static String PARAMETER_KEY = "org.apache.struts.taglib.logic.PARAMETER_KEY";
+
+    protected MockServletContext context;
+    protected MockServletConfig config;
+    protected MockHttpSession session;
+    protected MockHttpServletRequest request;
+    protected MockHttpServletResponse response;
+    protected MockPageContext pageContext;
+
+    public void setUp() {
+        context = new MockServletContext();
+        config = new MockServletConfig(context);
+        session = new MockHttpSession(context);
+        request = new MockHttpServletRequest(session);
+        response = new MockHttpServletResponse();
+        pageContext = new MockPageContext(config, request, response);
+    }
 
     /**
      * Defines the testcase name for JUnit.
@@ -283,18 +299,14 @@ public class TestPresentTag extends JspTestCase {
 		assertEquals("Property present (not null)", false, pt.condition(true));
 	}
 
-    /**
-     * Create cookie for testCookiePresent method test.
-    */
+    // Create cookie for testCookiePresent method test.
     /* FIXME: Cactus does not send cookies?
     public void beginCookiePresent(WebRequest testRequest) {
        testRequest.addCookie(COOKIE_KEY, "cookie value");
     }
     */
 
-    /**
-     * Verify that there is an cookie using the <code>PresentTag</code>.
-    */
+    // Verify that there is an cookie using the PresentTag.
     /* FIXME: Cactus does not send cookies?
     public void testCookiePresent() throws ServletException,  JspException {
         PresentTag pt = new PresentTag();
@@ -319,16 +331,10 @@ public class TestPresentTag extends JspTestCase {
     }
 
     /**
-     * Create header for testHeaderPresent method test.
-    */
-    public void beginHeaderPresent(WebRequest testRequest) {
-       testRequest.addHeader(HEADER_KEY, "header value");
-    }
-
-    /**
      * Verify that there is an header using the <code>PresentTag</code>.
     */
     public void testHeaderPresent() throws ServletException,  JspException {
+        request.addHeader(HEADER_KEY, "header value");
         PresentTag pt = new PresentTag();
 
         pt.setPageContext(pageContext);
@@ -350,16 +356,10 @@ public class TestPresentTag extends JspTestCase {
     }
 
     /**
-     * Create parameter for testParameterPresent method test.
-    */
-    public void beginParameterPresent(WebRequest testRequest) {
-       testRequest.addParameter(PARAMETER_KEY, "parameter value");
-    }
-
-    /**
      * Verify that there is an parameter using the <code>PresentTag</code>.
     */
     public void testParameterPresent() throws ServletException,  JspException {
+        request.addParameter(PARAMETER_KEY, "parameter value");
         PresentTag pt = new PresentTag();
 
         pt.setPageContext(pageContext);

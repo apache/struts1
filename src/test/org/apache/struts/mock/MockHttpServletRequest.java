@@ -22,6 +22,8 @@ package org.apache.struts.mock;
 
 import java.io.BufferedReader;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Locale;
@@ -66,14 +68,17 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
     public MockHttpServletRequest(HttpSession session) {
         super();
-        setHttpSession(session);
+        this.session = session;
     }
 
 
     public MockHttpServletRequest(String contextPath, String servletPath,
                                   String pathInfo, String queryString) {
         super();
-        setPathElements(contextPath, servletPath, pathInfo, queryString);
+        this.contextPath = contextPath;
+        this.servletPath = servletPath;
+        this.pathInfo = pathInfo;
+        this.queryString = queryString;
     }
 
 
@@ -82,8 +87,11 @@ public class MockHttpServletRequest implements HttpServletRequest {
                                   String pathInfo, String queryString,
                                   HttpSession session) {
         super();
-        setPathElements(contextPath, servletPath, pathInfo, queryString);
-        setHttpSession(session);
+        this.contextPath = contextPath;
+        this.servletPath = servletPath;
+        this.pathInfo = pathInfo;
+        this.queryString = queryString;
+        this.session = session;
     }
 
 
@@ -98,9 +106,21 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 
     /**
+     * The set of cookies.
+     */
+    protected ArrayList cookies = new ArrayList();
+
+
+    /**
      * The context path for this request.
      */
     protected String contextPath = null;
+
+
+    /**
+     * The set of headers, keyed by header name. Each value is an ArrayList of Strings.
+     */
+    protected HashMap headers = new HashMap();
 
 
     /**
@@ -155,6 +175,21 @@ public class MockHttpServletRequest implements HttpServletRequest {
     protected String contentType = null;
 
     // --------------------------------------------------------- Public Methods
+
+
+    public void addCookie(Cookie cookie) {
+        cookies.add(cookie);
+    }
+
+
+    public void addHeader(String name, String value) {
+        ArrayList values = (ArrayList) headers.get(name);
+        if (values == null) {
+            values = new ArrayList();
+            headers.put(name, values);
+        }
+        values.add(value);
+    }
 
 
     public void addParameter(String name, String value) {
@@ -219,7 +254,10 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 
     public Cookie[] getCookies() {
-        throw new UnsupportedOperationException();
+        if (cookies.isEmpty()) {
+            return null;
+        }
+        return (Cookie[]) cookies.toArray(new Cookie[cookies.size()]);
     }
 
 
@@ -229,17 +267,25 @@ public class MockHttpServletRequest implements HttpServletRequest {
 
 
     public String getHeader(String name) {
-        throw new UnsupportedOperationException();
+        ArrayList values = (ArrayList) headers.get(name);
+        if (values != null && !values.isEmpty()) {
+            return (String) values.get(0);
+        }
+        return null;
     }
 
 
     public Enumeration getHeaderNames() {
-        throw new UnsupportedOperationException();
+        return new MockEnumeration(headers.keySet().iterator());
     }
 
 
     public Enumeration getHeaders(String name) {
-        throw new UnsupportedOperationException();
+        ArrayList values = (ArrayList) headers.get(name);
+        if (values != null) {
+            return new MockEnumeration(values.iterator());
+        }
+        return new MockEnumeration(Collections.EMPTY_LIST.iterator());
     }
 
 

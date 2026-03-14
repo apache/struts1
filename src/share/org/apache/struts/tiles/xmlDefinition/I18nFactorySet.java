@@ -387,9 +387,9 @@ public class I18nFactorySet extends FactorySet {
     private List calculateSuffixes(Locale locale) {
 
         List suffixes = new ArrayList(3);
-        String language = locale.getLanguage();
-        String country  = locale.getCountry();
-        String variant  = locale.getVariant();
+        String language = sanitizeLocaleComponent(locale.getLanguage());
+        String country  = sanitizeLocaleComponent(locale.getCountry());
+        String variant  = sanitizeLocaleComponent(locale.getVariant());
 
         StringBuffer suffix = new StringBuffer();
         suffix.append('_');
@@ -412,6 +412,37 @@ public class I18nFactorySet extends FactorySet {
 
         return suffixes;
 
+    }
+
+    /**
+     * Validate a locale component (language, country, or variant) to
+     * prevent path traversal attacks (CVE-2023-49735).
+     * Returns the value unchanged if it contains only safe characters,
+     * or empty string otherwise.
+     * <p>Allowed characters are letters, digits, hyphens, and underscores
+     * ({@code [a-zA-Z0-9_-]}), which covers ISO 639 language codes,
+     * ISO 3166 country codes, and BCP 47 / vendor-specific variant
+     * subtags.</p>
+     * @param value The locale component value.
+     * @return The value if safe, or empty string if it contains
+     *         unsafe characters.
+     */
+    private String sanitizeLocaleComponent(String value) {
+        if (value == null || value.length() == 0) {
+            return "";
+        }
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
+                    || (c >= '0' && c <= '9') || c == '_' || c == '-')) {
+                if (log.isWarnEnabled()) {
+                    log.warn("Ignoring locale component with unsafe characters: "
+                        + value);
+                }
+                return "";
+            }
+        }
+        return value;
     }
 
     /**

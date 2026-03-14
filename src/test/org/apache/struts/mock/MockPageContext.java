@@ -23,6 +23,7 @@ package org.apache.struts.mock;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Stack;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -69,7 +70,19 @@ public class MockPageContext extends PageContext {
                            ServletRequest request,
                            ServletResponse response) {
         super();
-        setValues(config, request, response);
+        this.config = config;
+        if (config != null) {
+            this.application = config.getServletContext();
+        } else {
+            this.application = null;
+        }
+        this.request = request;
+        this.response = response;
+        if (request != null) {
+            this.session = ((HttpServletRequest) request).getSession(false);
+        } else {
+            this.session = null;
+        }
     }
 
 
@@ -79,12 +92,19 @@ public class MockPageContext extends PageContext {
     protected ServletContext application = null;
     protected HashMap attributes = new HashMap();    // Page scope attributes
     protected ServletConfig config = null;
+    protected JspWriter out = null;
     protected ServletRequest request = null;
     protected ServletResponse response = null;
     protected HttpSession session = null;
+    protected Stack writerStack = new Stack();
 
 
     // --------------------------------------------------------- Public Methods
+
+
+    public void setJspWriter(JspWriter out) {
+        this.out = out;
+    }
 
 
     public void setValues(ServletConfig config,
@@ -216,7 +236,7 @@ public class MockPageContext extends PageContext {
 
 
     public JspWriter getOut() {
-        throw new UnsupportedOperationException();
+        return (this.out);
     }
 
 
@@ -274,12 +294,16 @@ public class MockPageContext extends PageContext {
 
 
     public JspWriter popBody() {
-        throw new UnsupportedOperationException();
+        if (!writerStack.isEmpty()) {
+            out = (JspWriter) writerStack.pop();
+        }
+        return out;
     }
 
 
     public BodyContent pushBody() {
-        throw new UnsupportedOperationException();
+        writerStack.push(out);
+        return null;
     }
 
 

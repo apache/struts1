@@ -901,7 +901,7 @@ public abstract class BaseHandlerTag extends BodyTagSupport {
             handlers.append(" ");
             handlers.append(name);
             handlers.append("=\"");
-            handlers.append(value);
+            handlers.append(TagUtils.getInstance().filter(value.toString()));
             handlers.append("\"");
         }
     }

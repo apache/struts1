@@ -58,7 +58,7 @@ public class MockServletConfig implements ServletConfig {
 
     public MockServletConfig(ServletContext context) {
         super();
-        setServletContext(context);
+        this.context = context;
     }
 
 

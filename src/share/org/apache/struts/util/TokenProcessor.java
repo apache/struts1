@@ -19,7 +19,7 @@
 package org.apache.struts.util;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,11 +28,11 @@ import org.apache.struts.Globals;
 import org.apache.struts.taglib.html.Constants;
 
 /**
- * TokenProcessor is responsible for handling all token related functionality.  The 
- * methods in this class are synchronized to protect token processing from multiple
- * threads.  Servlet containers are allowed to return a different HttpSession object
- * for two threads accessing the same session so it is not possible to synchronize 
- * on the session.
+ * TokenProcessor is responsible for handling all token related functionality.  The
+ * session-mutating methods in this class are synchronized to protect token processing
+ * from multiple threads.  Servlet containers are allowed to return a different
+ * HttpSession object for two threads accessing the same session so it is not possible
+ * to synchronize on the session.
  * 
  * @since Struts 1.1
  */
@@ -56,12 +56,13 @@ public class TokenProcessor {
      */
     protected TokenProcessor() {
         super();
+        this.randomGenerator = new SecureRandom();
     }
 
     /**
-     * The timestamp used most recently to generate a token value.
+     * The cryptographically strong random number generator used for token generation.
      */
-    private long previous;
+    private final SecureRandom randomGenerator;
 
     /**
      * Return <code>true</code> if there is a transaction token stored in
@@ -124,7 +125,7 @@ public class TokenProcessor {
             return false;
         }
 
-        return saved.equals(token);
+        return MessageDigest.isEqual(saved.getBytes(), token.getBytes());
     }
 
     /**
@@ -163,26 +164,13 @@ public class TokenProcessor {
      * Generate a new transaction token, to be used for enforcing a single
      * request for a particular transaction.
      * 
-     * @param request The request we are processing
+     * @param request The request we are processing (unused; retained for API compatibility)
      */
-    public synchronized String generateToken(HttpServletRequest request) {
+    public String generateToken(HttpServletRequest request) {
 
-        HttpSession session = request.getSession();
-        try {
-            byte id[] = session.getId().getBytes();
-            long current = System.currentTimeMillis();
-            if (current == previous) {
-                current++;
-            }
-            previous = current;
-            byte now[] = new Long(current).toString().getBytes();
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(id);
-            md.update(now);
-            return toHex(md.digest());
-        } catch (NoSuchAlgorithmException e) {
-            return null;
-        }
+        byte[] random = new byte[20];
+        randomGenerator.nextBytes(random);
+        return toHex(random);
 
     }
 

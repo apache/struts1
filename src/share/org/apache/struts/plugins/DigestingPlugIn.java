@@ -177,6 +177,18 @@ public class DigestingPlugIn implements PlugIn {
             digester = this.newDigesterInstance();
         }
 
+        try {
+            digester.setFeature(
+                "http://apache.org/xml/features/disallow-doctype-decl", true);
+            digester.setFeature(
+                "http://xml.org/sax/features/external-general-entities", false);
+            digester.setFeature(
+                "http://xml.org/sax/features/external-parameter-entities", false);
+        } catch (Exception e) {
+            throw new ServletException(
+                "Failed to configure XML parser security features", e);
+        }
+
         this.applyRuleSets(digester);
 
         return digester;

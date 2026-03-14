@@ -1,14 +1,14 @@
 /*
- * $Id$ 
+ * $Id$
  *
  * Copyright 2000-2005 The Apache Software Foundation.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,10 +24,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.MissingResourceException;
+import java.util.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -40,6 +37,7 @@ import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.beanutils.SuppressPropertiesBeanIntrospector;
 import org.apache.commons.beanutils.converters.BigDecimalConverter;
 import org.apache.commons.beanutils.converters.BigIntegerConverter;
 import org.apache.commons.beanutils.converters.BooleanConverter;
@@ -326,7 +324,7 @@ public class ActionServlet extends HttpServlet {
             initInternal();
             initOther();
             initServlet();
-    
+
             getServletContext().setAttribute(Globals.ACTION_SERVLET_KEY, this);
             initModuleConfigFactory();
             // Initialize modules as needed
@@ -335,7 +333,7 @@ public class ActionServlet extends HttpServlet {
             initModuleDataSources(moduleConfig);
             initModulePlugIns(moduleConfig);
             moduleConfig.freeze();
-    
+
             Enumeration names = getServletConfig().getInitParameterNames();
             while (names.hasMoreElements()) {
                 String name = (String) names.nextElement();
@@ -350,23 +348,23 @@ public class ActionServlet extends HttpServlet {
                 initModulePlugIns(moduleConfig);
                 moduleConfig.freeze();
             }
-    
+
             this.initModulePrefixes(this.getServletContext());
-    
+
             this.destroyConfigDigester();
         } catch (UnavailableException ex) {
             throw ex;
         } catch (Throwable t) {
 
             // The follow error message is not retrieved from internal message
-            // resources as they may not have been able to have been 
+            // resources as they may not have been able to have been
             // initialized
             log.error("Unable to initialize Struts ActionServlet due to an "
                 + "unexpected exception or error thrown, so marking the "
                 + "servlet as unavailable.  Most likely, this is due to an "
                 + "incorrect or missing library dependency.", t);
             throw new UnavailableException(t.getMessage());
-        }    
+        }
     }
 
     /**
@@ -725,13 +723,13 @@ public class ActionServlet extends HttpServlet {
             if (url == null) {
                 url = getClass().getResource(path);
             }
-            
+
             if (url == null) {
                 String msg = internal.getMessage("configMissing", path);
                 log.error(msg);
                 throw new UnavailableException(msg);
             }
-	    
+
             InputSource is = new InputSource(url.toExternalForm());
             input = url.openStream();
             is.setByteStream(input);
@@ -950,6 +948,7 @@ public class ActionServlet extends HttpServlet {
 
         // Create a new Digester instance with standard capabilities
         configDigester = new Digester();
+        configureDigesterSecurity(configDigester);
         configDigester.setNamespaceAware(true);
         configDigester.setValidating(this.isValidating());
         configDigester.setUseContextClassLoader(true);
@@ -1031,6 +1030,27 @@ public class ActionServlet extends HttpServlet {
     }
 
 
+    /**
+     * Configure XXE-prevention features on the given Digester.
+     *
+     * @param digester the Digester instance to harden
+     * @throws ServletException if the XML parser does not support the required features
+     */
+    private static void configureDigesterSecurity(Digester digester)
+            throws ServletException {
+        try {
+            digester.setFeature(
+                "http://apache.org/xml/features/disallow-doctype-decl", true);
+            digester.setFeature(
+                "http://xml.org/sax/features/external-general-entities", false);
+            digester.setFeature(
+                "http://xml.org/sax/features/external-parameter-entities", false);
+        } catch (Exception e) {
+            throw new ServletException(
+                "Failed to configure XML parser security features", e);
+        }
+    }
+
 
     /**
      * <p>Initialize our internal MessageResources bundle.</p>
@@ -1059,6 +1079,15 @@ public class ActionServlet extends HttpServlet {
      * @exception ServletException if we cannot initialize these resources
      */
     protected void initOther() throws ServletException {
+        HashSet suppressProperties = new HashSet();
+        suppressProperties.add("class");
+        suppressProperties.add("multipartRequestHandler");
+        suppressProperties.add("resultValueMap");
+        suppressProperties.add("validatorResults");
+
+        PropertyUtils.addBeanIntrospector(
+                new SuppressPropertiesBeanIntrospector(suppressProperties));
+        PropertyUtils.clearDescriptors();
 
         String value = null;
         value = getServletConfig().getInitParameter("config");
@@ -1109,6 +1138,7 @@ public class ActionServlet extends HttpServlet {
 
         // Prepare a Digester to scan the web application deployment descriptor
         Digester digester = new Digester();
+        configureDigesterSecurity(digester);
         digester.push(this);
         digester.setNamespaceAware(true);
         digester.setValidating(false);

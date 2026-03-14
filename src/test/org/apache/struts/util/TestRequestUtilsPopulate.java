@@ -24,7 +24,6 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.util.RequestUtils;
 import org.apache.struts.Globals;
 import org.apache.struts.mock.TestMockBase;                                                                                                                       
 import org.apache.struts.mock.MockFormBean;                                                                                                                       
@@ -116,6 +115,137 @@ public class TestRequestUtilsPopulate extends TestMockBase {
         assertEquals("Mapping name has been modified", mockMappingName, mapping.getName());
 
     }
+	
+	/** 
+     * Ensure that the parameter of HTTP request
+     * which causes ClassLoader manipulation is ignored.
+     *
+     * The purpose of this test is to ensure that security problem
+     * CVE-2014-0114 is fixed.
+     *
+     */
+    public void testRequestParameterIgnore1() throws Exception {
+
+        String stringValue     = "Test";
+
+        MockFormBean  mockForm = new MockFormBean();
+
+       // Set up the mock HttpServletRequest
+        request.setMethod("GET");
+        request.setContentType("");
+
+        request.addParameter("class.xxx.case1", stringValue);
+
+        // Try to populate
+        try {
+            RequestUtils.populate(mockForm, request);
+        } catch(ServletException se) {
+            fail("Occur exception.");
+        }
+
+        // Check that "class." prefix parameter was ignored
+        assertNull("ActionForm property set", mockForm.getStringProperty());
+
+    }
+
+    /** 
+     * Ensure that the parameter of HTTP request
+     * which causes ClassLoader manipulation is ignored.
+     *
+     * The purpose of this test is to ensure that security problem
+     * CVE-2014-0114 is fixed.
+     *
+     */
+    public void testRequestParameterIgnore2() throws Exception {
+
+        String stringValue     = "Test";
+
+        MockFormBean  mockForm = new MockFormBean();
+
+        // Set up the mock HttpServletRequest
+        request.setMethod("GET");
+        request.setContentType("");
+
+        request.addParameter("xxx.class.case2", stringValue);
+
+        // Try to populate
+        try {
+            RequestUtils.populate(mockForm, request);
+        } catch(ServletException se) {
+            fail("Occur exception.");
+        }
+
+        // Check that ".class." containing parameter was ignored
+        assertNull("ActionForm property set", mockForm.getStringProperty());
+
+    }
+
+    /** 
+     * Ensure that the parameter of HTTP request
+     * which causes ClassLoader manipulation is ignored.
+     *
+     * The purpose of this test is to ensure that security problem
+     * CVE-2014-0114 is fixed.
+     *
+     */
+    public void testRequestParameterIgnore3() throws Exception {
+
+        String stringValue     = "Test";
+
+        MockFormBean  mockForm = new MockFormBean();
+
+        // Set up the mock HttpServletRequest
+        request.setMethod("GET");
+        request.setContentType("");
+
+        request.addParameter("stringProperty", stringValue);
+
+        // Try to populate
+        try {
+            RequestUtils.populate(mockForm, request);
+        } catch(ServletException se) {
+            fail("Occur exception.");
+        }
+
+        // Check that normal parameter was NOT ignored
+        assertEquals("ActionForm property not equal", stringValue, mockForm.getStringProperty());
+
+    }
+
+    /** 
+     * Ensure that the parameter of HTTP request
+     * which causes ClassLoader manipulation is ignored.
+     *
+     * The purpose of this test is to ensure that security problem
+     * CVE-2014-0114 is fixed.
+     *
+     */
+    public void testRequestParameterIgnore4() throws Exception {
+
+        String stringValue     = "Test";
+
+        MockFormBean  mockForm = new MockFormBean();
+
+        // Set up the mock HttpServletRequest
+        request.setMethod("GET");
+        request.setContentType("");
+
+        request.addParameter("class.xxx.case4", stringValue);
+        request.addParameter("xxx.class.case4", stringValue);
+        request.addParameter("stringProperty", stringValue);
+
+        // Try to populate
+        try {
+            RequestUtils.populate(mockForm, request);
+        } catch(ServletException se) {
+            fail("Occur exception.");
+        }
+
+        // Check that dangerous parameters were ignored but normal one was populated
+        assertEquals("ActionForm property not equal", stringValue, mockForm.getStringProperty());
+
+    }
+   
     
 }
 

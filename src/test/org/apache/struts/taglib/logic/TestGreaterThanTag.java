@@ -21,9 +21,9 @@ import javax.servlet.ServletException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import junit.framework.Test;
+import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.apache.cactus.JspTestCase;
-import org.apache.cactus.WebRequest;
+import org.apache.struts.mock.*;
 import org.apache.struts.util.LabelValueBean;
 
 /**
@@ -31,13 +31,20 @@ import org.apache.struts.util.LabelValueBean;
  * <code>org.apache.struts.taglib.logic.GreaterThanTag</code> class.
  *
  */
-public class TestGreaterThanTag extends JspTestCase {
+public class TestGreaterThanTag extends TestCase {
 
     protected final static String COOKIE_KEY = "org.apache.struts.taglib.logic.COOKIE_KEY";
     protected final static String HEADER_KEY = "org.apache.struts.taglib.logic.HEADER_KEY";
     protected final static String PARAMETER_KEY = "org.apache.struts.taglib.logic.PARAMETER_KEY";
     protected final static String GREATER_VAL = "6";
     protected final static String LESSER_VAL = "4";
+
+    protected MockServletContext context;
+    protected MockServletConfig config;
+    protected MockHttpSession session;
+    protected MockHttpServletRequest request;
+    protected MockHttpServletResponse response;
+    protected MockPageContext pageContext;
 
 
     /**
@@ -67,34 +74,25 @@ public class TestGreaterThanTag extends JspTestCase {
         return new TestSuite(TestGreaterThanTag.class);
     }
 
+    public void setUp() {
+        context = new MockServletContext();
+        config = new MockServletConfig(context);
+        session = new MockHttpSession(context);
+        request = new MockHttpServletRequest(session);
+        response = new MockHttpServletResponse();
+        pageContext = new MockPageContext(config, request, response);
+    }
+
     //----- Test initApplication() method --------------------------------------
 
-    /**
-     * Create cookie for testCookieGreaterThan method test.
-    */
+    // Create cookie for testCookieGreaterThan method test.
     /* FIXME: Cactus does not send cookies?
     public void beginCookieGreaterThan(WebRequest testRequest) {
        testRequest.addCookie(COOKIE_KEY, GREATER_VAL);
     }
     */
 
-    /**
-     * Create header for testHeaderGreaterThan method test.
-    */
-    public void beginHeaderGreaterThan(WebRequest testRequest) {
-       testRequest.addHeader(HEADER_KEY, GREATER_VAL);
-    }
-
-    /**
-     * Create header for testParameterGreaterThan method test.
-    */
-    public void beginParameterGreaterThan(WebRequest testRequest) {
-       testRequest.addParameter(PARAMETER_KEY, GREATER_VAL);
-    }
-
-    /**
-     * Verify the value stored in a cookie using <code>GreaterThanTag</code>.
-    */
+    // Verify the value stored in a cookie using GreaterThanTag.
     /* FIXME: Cactus does not send cookies?
     public void testCookieGreaterThan() throws ServletException,  JspException {
         GreaterThanTag gt = new GreaterThanTag();
@@ -112,6 +110,8 @@ public class TestGreaterThanTag extends JspTestCase {
      * Verify the value stored in header using <code>GreaterThanTag</code>.
     */
     public void testHeaderGreaterThan() throws ServletException,  JspException {
+        request.addHeader(HEADER_KEY, GREATER_VAL);
+
         GreaterThanTag gt = new GreaterThanTag();
         gt.setPageContext(pageContext);
         gt.setHeader(HEADER_KEY);
@@ -126,6 +126,8 @@ public class TestGreaterThanTag extends JspTestCase {
      * Verify the value stored in parameter using <code>GreaterThanTag</code>.
     */
     public void testParameterGreaterThan() throws ServletException,  JspException {
+        request.addParameter(PARAMETER_KEY, GREATER_VAL);
+
         GreaterThanTag gt = new GreaterThanTag();
         gt.setPageContext(pageContext);
         gt.setParameter(PARAMETER_KEY);

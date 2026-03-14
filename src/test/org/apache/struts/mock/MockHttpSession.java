@@ -59,7 +59,7 @@ public class MockHttpSession implements HttpSession {
 
     public MockHttpSession(ServletContext servletContext) {
         super();
-        setServletContext(servletContext);
+        this.servletContext = servletContext;
     }
 
 

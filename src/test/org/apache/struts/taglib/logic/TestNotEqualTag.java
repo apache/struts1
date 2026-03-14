@@ -20,16 +20,16 @@ package org.apache.struts.taglib.logic;
 import javax.servlet.ServletException;
 import javax.servlet.jsp.PageContext;
 import junit.framework.Test;
+import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.apache.cactus.JspTestCase;
-import org.apache.cactus.WebRequest;
+import org.apache.struts.mock.*;
 
 /**
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.logic.NotEqualTag</code> class.
  */
-public class TestNotEqualTag extends JspTestCase {
+public class TestNotEqualTag extends TestCase {
     protected final static String COOKIE_KEY = "org.apache.struts.taglib.logic.COOKIE_KEY";
     protected final static String HEADER_KEY = "org.apache.struts.taglib.logic.HEADER_KEY";
     protected final static String PARAMETER_KEY = "org.apache.struts.taglib.logic.PARAMETER_KEY";
@@ -40,6 +40,13 @@ public class TestNotEqualTag extends JspTestCase {
     protected static String testIntegerKey;
     protected static Integer testIntegerValue;
     protected static Integer testIntegerValue1;
+
+    protected MockServletContext context;
+    protected MockServletConfig config;
+    protected MockHttpSession session;
+    protected MockHttpServletRequest request;
+    protected MockHttpServletResponse response;
+    protected MockPageContext pageContext;
 
     /**
      * Defines the testcase name for JUnit.
@@ -70,6 +77,13 @@ public class TestNotEqualTag extends JspTestCase {
 
     public void setUp()
     {
+        context = new MockServletContext();
+        config = new MockServletConfig(context);
+        session = new MockHttpSession(context);
+        request = new MockHttpServletRequest(session);
+        response = new MockHttpServletResponse();
+        pageContext = new MockPageContext(config, request, response);
+
         testStringKey = "testString";
         testStringValue = "abc";
         testStringValue1 = "abcd";
@@ -86,9 +100,7 @@ public class TestNotEqualTag extends JspTestCase {
         net = null;
     }
 
-    /**
-     * Create cookie for testCookieStringEquals method test.
-    */
+    // Create cookie for testCookieStringEquals method test.
     /* FIXME: Cactus does not send cookies?
     public void beginCookieStringEquals(WebRequest testRequest) {
        testRequest.addCookie(COOKIE_KEY, "abc");
@@ -105,11 +117,9 @@ public class TestNotEqualTag extends JspTestCase {
     /**
      * Create cookie for testCookieStringNotEquals method test.
     */
-    public void beginCookieStringNotEquals(WebRequest testRequest) {
-       testRequest.addCookie(COOKIE_KEY, "abc");
-    }
-
     public void testCookieStringNotEquals() throws ServletException,  javax.servlet.jsp.JspException {
+        request.addCookie(new javax.servlet.http.Cookie(COOKIE_KEY, "abc"));
+
         net.setCookie(COOKIE_KEY);
         net.setValue(testStringValue1);
 
@@ -119,11 +129,9 @@ public class TestNotEqualTag extends JspTestCase {
     /**
      * Create cookie for testHeaderStringEquals method test.
     */
-    public void beginHeaderStringEquals(WebRequest testRequest) {
-       testRequest.addHeader(COOKIE_KEY, "abc");
-    }
-
     public void testHeaderStringEquals() throws ServletException,  javax.servlet.jsp.JspException {
+        request.addHeader(COOKIE_KEY, "abc");
+
         net.setHeader(COOKIE_KEY);
         net.setValue(testStringValue);
 
@@ -133,11 +141,9 @@ public class TestNotEqualTag extends JspTestCase {
     /**
      * Create cookie for testHeaderStringNotEquals method test.
     */
-    public void beginHeaderStringNotEquals(WebRequest testRequest) {
-       testRequest.addHeader(COOKIE_KEY, "abc");
-    }
-
     public void testHeaderStringNotEquals() throws ServletException,  javax.servlet.jsp.JspException {
+        request.addHeader(COOKIE_KEY, "abc");
+
         net.setHeader(COOKIE_KEY);
         net.setValue(testStringValue1);
 
@@ -147,11 +153,9 @@ public class TestNotEqualTag extends JspTestCase {
     /**
      * Create cookie for testParameterStringEquals method test.
     */
-    public void beginParameterStringEquals(WebRequest testRequest) {
-       testRequest.addParameter(PARAMETER_KEY, "abc");
-    }
-
     public void testParameterStringEquals() throws ServletException,  javax.servlet.jsp.JspException {
+        request.addParameter(PARAMETER_KEY, "abc");
+
         net.setParameter(PARAMETER_KEY);
         net.setValue(testStringValue);
 
@@ -161,11 +165,9 @@ public class TestNotEqualTag extends JspTestCase {
     /**
      * Create cookie for testParameterStringNotEquals method test.
     */
-    public void beginParameterStringNotEquals(WebRequest testRequest) {
-       testRequest.addParameter(PARAMETER_KEY, "abc");
-    }
-
     public void testParameterStringNotEquals() throws ServletException,  javax.servlet.jsp.JspException {
+        request.addParameter(PARAMETER_KEY, "abc");
+
         net.setParameter(PARAMETER_KEY);
         net.setValue(testStringValue1);
 

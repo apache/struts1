@@ -27,8 +27,6 @@ import junit.framework.TestSuite;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Locale;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.Globals;
 import org.apache.struts.action.PlugIn;

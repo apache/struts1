@@ -480,6 +480,23 @@ public class RequestUtils {
             } else {
                 parameterValue = request.getParameterValues(name);
             }
+			
+			// 2014/05/13 - CVE-2014-0114 security problem patch.
+            // Author: NTT DATA Corporation
+            if (stripped.startsWith("class.") || stripped.indexOf(".class.") >= 0) {
+                // this log output is only for detection of invalid parameters and not an integral part of the bug fix
+                log.info("ignore parameter: paramName=" + stripped);
+                continue;
+            }
+
+            // CVE-2016-1182: block properties that must not be set from
+            // request parameters.  SuppressPropertiesBeanIntrospector
+            // handles standard JavaBeans, but DynaBean implementations
+            // bypass introspection, so we filter here as well.
+            if ("validatorResults".equals(stripped)
+                    || "resultValueMap".equals(stripped)) {
+                continue;
+            }
 
             // Populate parameters, except "standard" struts attributes
             // such as 'org.apache.struts.action.CANCEL'

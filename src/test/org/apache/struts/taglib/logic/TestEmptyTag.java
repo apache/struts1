@@ -24,9 +24,9 @@ import javax.servlet.ServletException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import junit.framework.Test;
+import junit.framework.TestCase;
 import junit.framework.TestSuite;
-
-import org.apache.cactus.JspTestCase;
+import org.apache.struts.mock.*;
 import org.apache.struts.taglib.SimpleBeanForTesting;
 import org.apache.struts.util.LabelValueBean;
 
@@ -35,8 +35,24 @@ import org.apache.struts.util.LabelValueBean;
  * <code>org.apache.struts.taglib.logic.EmptyTag</code> class.
  *
  */
-public class TestEmptyTag extends JspTestCase {
-	
+public class TestEmptyTag extends TestCase {
+
+    protected MockServletContext context;
+    protected MockServletConfig config;
+    protected MockHttpSession session;
+    protected MockHttpServletRequest request;
+    protected MockHttpServletResponse response;
+    protected MockPageContext pageContext;
+
+    public void setUp() {
+        context = new MockServletContext();
+        config = new MockServletConfig(context);
+        session = new MockHttpSession(context);
+        request = new MockHttpServletRequest(session);
+        response = new MockHttpServletResponse();
+        pageContext = new MockPageContext(config, request, response);
+    }
+
     /**
      * Defines the testcase name for JUnit.
      *

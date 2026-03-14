@@ -18,20 +18,19 @@
 package org.apache.struts.taglib.logic;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.jsp.JspException;
 import junit.framework.Test;
+import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.apache.cactus.JspTestCase;
-import org.apache.cactus.WebRequest;
+import org.apache.struts.mock.*;
 
 /**
  * Suite of unit tests for the
  * <code>org.apache.struts.taglib.logic.EqualTag</code> class.
  *
  */
-public class TestEqualTag extends JspTestCase {
+public class TestEqualTag extends TestCase {
 
     protected final static String COOKIE_KEY =
         "org.apache.struts.taglib.logic.COOKIE_KEY";
@@ -49,6 +48,13 @@ public class TestEqualTag extends JspTestCase {
         new Integer(testIntegerValue.intValue() + 1);
 
     protected EqualTag et = null;
+
+    protected MockServletContext context;
+    protected MockServletConfig config;
+    protected MockHttpSession session;
+    protected MockHttpServletRequest request;
+    protected MockHttpServletResponse response;
+    protected MockPageContext pageContext;
 
     /**
      * Defines the testcase name for JUnit.
@@ -78,6 +84,13 @@ public class TestEqualTag extends JspTestCase {
     }
 
     public void setUp() {
+        context = new MockServletContext();
+        config = new MockServletConfig(context);
+        session = new MockHttpSession(context);
+        request = new MockHttpServletRequest(session);
+        response = new MockHttpServletResponse();
+        pageContext = new MockPageContext(config, request, response);
+
         et = new EqualTag();
         et.setPageContext(pageContext);
 
@@ -116,15 +129,10 @@ public class TestEqualTag extends JspTestCase {
     // ----------------------------------------------- Cookie String Not Equals
 
 
-    public void beginCookieStringNotEquals(WebRequest testRequest) {
-
-        testRequest.addCookie(COOKIE_KEY, "abc");
-
-    }
-
-
     public void testCookieStringNotEquals()
         throws ServletException, JspException {
+
+        request.addCookie(new javax.servlet.http.Cookie(COOKIE_KEY, "abc"));
 
         et.setCookie(COOKIE_KEY);
         et.setValue(testStringValue1);
@@ -138,15 +146,10 @@ public class TestEqualTag extends JspTestCase {
     // --------------------------------------------------- Header String Equals
 
 
-    public void beginHeaderStringEquals(WebRequest testRequest) {
-
-        testRequest.addHeader(HEADER_KEY, "abc");
-
-    }
-
-
     public void testHeaderStringEquals()
         throws ServletException, JspException {
+
+        request.addHeader(HEADER_KEY, "abc");
 
         et.setHeader(HEADER_KEY);
         et.setValue(testStringValue);
@@ -160,15 +163,10 @@ public class TestEqualTag extends JspTestCase {
     // ----------------------------------------------- Header String Not Equals
 
 
-    public void beginHeaderStringNotEquals(WebRequest testRequest) {
-
-        testRequest.addHeader(HEADER_KEY, "abc");
-
-    }
-
-
     public void testHeaderStringNotEquals()
         throws ServletException, JspException {
+
+        request.addHeader(HEADER_KEY, "abc");
 
         et.setHeader(HEADER_KEY);
         et.setValue(testStringValue1);
@@ -214,15 +212,10 @@ public class TestEqualTag extends JspTestCase {
     // ------------------------------------------------ Parameter String Equals
 
 
-    public void beginParameterStringEquals(WebRequest testRequest) {
-
-        testRequest.addParameter(PARAMETER_KEY, "abc");
-
-    }
-
-
     public void testParameterStringEquals()
         throws ServletException, JspException {
+
+        request.addParameter(PARAMETER_KEY, "abc");
 
         et.setParameter(PARAMETER_KEY);
         et.setValue(testStringValue);
@@ -236,15 +229,10 @@ public class TestEqualTag extends JspTestCase {
     // -------------------------------------------- Parameter String Not Equals
 
 
-    public void beginParameterStringNotEquals(WebRequest testRequest) {
-
-        testRequest.addParameter(PARAMETER_KEY, "abc");
-
-    }
-
-
     public void testParameterStringNotEquals()
         throws ServletException, JspException {
+
+        request.addParameter(PARAMETER_KEY, "abc");
 
         et.setParameter(PARAMETER_KEY);
         et.setValue(testStringValue1);

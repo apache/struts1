@@ -136,6 +136,13 @@ public class MultipartIterator
     protected boolean maxLengthExceeded;
 
     /**
+     * The maximum size in bytes of an individual text form field value.
+     * Text fields exceeding this limit will be silently discarded to
+     * prevent memory exhaustion (CVE-2023-34396).
+     */
+    protected long maxTextFieldSize = 256 * 1024;
+
+    /**
      * Constructs a MultipartIterator with a default buffer size and no file size
      * limit
      *
@@ -256,6 +263,13 @@ public class MultipartIterator
                     element = createTextMultipartElement(encoding);
                 }
                 this.inputStream.resetForNextBoundary();
+                // CVE-2023-34396: if an oversized text field was skipped,
+                // advance to the next element instead of returning null
+                // (which would terminate the caller's iteration loop).
+                if (element == null)
+                {
+                    return getNextElement();
+                }
             }
         }
         return element;
@@ -287,10 +301,23 @@ public class MultipartIterator
         MultipartElement element;
 
         int read = 0;
+        long totalRead = 0;
         byte[] buffer = new byte[TEXT_BUFFER_SIZE];
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         while ((read = this.inputStream.read(buffer, 0, TEXT_BUFFER_SIZE)) > 0)
         {
+            totalRead += read;
+            // CVE-2023-34396: enforce per-field size limit to prevent
+            // memory exhaustion from oversized text fields.
+            if (totalRead > this.maxTextFieldSize)
+            {
+                // Drain remaining data without storing it.
+                while (this.inputStream.read(buffer, 0, TEXT_BUFFER_SIZE) > 0)
+                {
+                    // discard
+                }
+                return null;
+            }
             baos.write(buffer, 0, read);
         }
         //create the element

@@ -29,6 +29,7 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.taglib.TagUtils;
 import org.apache.struts.util.MessageResources;
+import org.apache.struts.util.ResponseUtils;
 
 /**
  * Custom tag that renders error messages if an appropriate request attribute
@@ -258,7 +259,7 @@ public class ErrorsTag extends TagSupport {
             }
                     
             if (message != null) {
-                results.append(message);
+                results.append(ResponseUtils.filter(message));
             }
             
             if (suffixPresent) {

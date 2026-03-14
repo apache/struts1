@@ -496,7 +496,7 @@ public class JavascriptValidatorTag extends BodyTagSupport {
                     "     this.a"
                         + jscriptVar++
                         + " = new Array(\""
-                        + field.getKey()
+                        + escapeJavascript(field.getKey())
                         + "\", \""
                         + escapeQuotes(message)
                         + "\", ");

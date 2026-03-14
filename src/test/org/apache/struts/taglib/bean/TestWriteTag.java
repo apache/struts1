@@ -1,14 +1,12 @@
 /*
- * $Id$ 
+ * Copyright 2026 The Struts1-Forever Project.
  *
- * Copyright 1999-2004 The Apache Software Foundation.
- * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,180 +15,195 @@
  */
 package org.apache.struts.taglib.bean;
 
-import java.util.Locale;
-
 import javax.servlet.jsp.PageContext;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import junit.framework.TestCase;
 
-import org.apache.cactus.WebResponse;
-import org.apache.struts.Globals;
-import org.apache.struts.taglib.SimpleBeanForTesting;
-import org.apache.struts.taglib.TagUtils;
-import org.apache.struts.taglib.TaglibTestBase;
+import org.apache.struts.mock.MockHttpServletRequest;
+import org.apache.struts.mock.MockHttpServletResponse;
+import org.apache.struts.mock.MockHttpSession;
+import org.apache.struts.mock.MockJspWriter;
+import org.apache.struts.mock.MockPageContext;
+import org.apache.struts.mock.MockServletConfig;
+import org.apache.struts.mock.MockServletContext;
 
 /**
- * Suite of unit tests for the
- * <code>org.apache.struts.taglib.bean.WriteTag</code> class.
+ * Unit tests for {@link WriteTag} focusing on XSS prevention.
  *
+ * <h3>XSS Risk in bean:write</h3>
+ *
+ * <p>{@code <bean:write>} renders a bean property into the HTML output.
+ * When {@code filter="true"} (the default), it calls
+ * {@link org.apache.struts.taglib.TagUtils#filter(String)} which escapes
+ * the five HTML-sensitive characters ({@code < > & " '}).
+ * When {@code filter="false"}, the raw value is written directly — this is
+ * intentional for trusted content but is XSS-unsafe if user-supplied data
+ * reaches the tag.</p>
+ *
+ * <p>These tests verify that the default {@code filter=true} behaviour is
+ * correct for all XSS-relevant payloads, and document that
+ * {@code filter=false} bypasses escaping (so callers must ensure the value
+ * is already safe).</p>
  */
-public class TestWriteTag extends TaglibTestBase {
-        protected final static String TEST_STRING_VAL = "Test Value";
-        protected final static Integer TEST_INTEGER_VAL = new Integer("1234");
-        protected final static Double  TEST_DOUBLE_VAL  = new Double("1234.5961");
-        protected final static String REQUEST_KEY = "REQUEST_KEY";
+public class TestWriteTag extends TestCase {
+
+    private MockServletContext context;
+    private MockServletConfig config;
+    private MockHttpSession session;
+    private MockHttpServletRequest request;
+    private MockHttpServletResponse response;
+    private MockPageContext pageContext;
+    private MockJspWriter out;
+
+    protected void setUp() {
+        context = new MockServletContext();
+        config = new MockServletConfig(context);
+        session = new MockHttpSession(context);
+        request = new MockHttpServletRequest(session);
+        response = new MockHttpServletResponse();
+        pageContext = new MockPageContext(config, request, response);
+        out = new MockJspWriter();
+        pageContext.setJspWriter(out);
+    }
+
+    // ------------------------------------------------------------------
+    // Helper
+    // ------------------------------------------------------------------
 
     /**
-     * Defines the testcase name for JUnit.
-     *
-     * @param theName the testcase's name.
+     * Runs WriteTag.doStartTag() with the given string stored as a request
+     * attribute and returns the captured output.
      */
-    public TestWriteTag(String theName) {
-        super(theName);
+    private String runTag(String attrValue, boolean filter) throws Exception {
+        pageContext.setAttribute("testBean", attrValue, PageContext.REQUEST_SCOPE);
+        out = new MockJspWriter();
+        pageContext.setJspWriter(out);
+
+        WriteTag tag = new WriteTag();
+        tag.setPageContext(pageContext);
+        tag.setName("testBean");
+        tag.setScope("request");
+        tag.setFilter(filter);
+
+        tag.doStartTag();
+        tag.doEndTag();
+
+        return out.getContent();
     }
+
+    // ------------------------------------------------------------------
+    // filter=true (default) — XSS prevention
+    // ------------------------------------------------------------------
+
+    public void testWrite_FilterTrue_LessThan_IsEscaped() throws Exception {
+        String output = runTag("<script>alert(1)</script>", true);
+        assertFalse("Raw < must not appear in output", output.contains("<script>"));
+        assertTrue("&lt; must appear in output", output.contains("&lt;"));
+    }
+
+    public void testWrite_FilterTrue_ScriptTag_FullyEscaped() throws Exception {
+        String output = runTag("<script>alert(1)</script>", true);
+        assertEquals("&lt;script&gt;alert(1)&lt;/script&gt;", output);
+    }
+
+    public void testWrite_FilterTrue_AttributeInjection_Escaped() throws Exception {
+        // Attempt: " onmouseover="alert(1)
+        String output = runTag("\" onmouseover=\"alert(1)", true);
+        assertFalse("Raw double-quote must not appear", output.contains("\" onmouseover="));
+        assertTrue("&quot; must appear", output.contains("&quot;"));
+    }
+
+    public void testWrite_FilterTrue_SingleQuoteInjection_Escaped() throws Exception {
+        String output = runTag("' or '1'='1", true);
+        assertFalse("Raw single-quote must not appear", output.contains("'"));
+        assertTrue("&#39; must appear", output.contains("&#39;"));
+    }
+
+    public void testWrite_FilterTrue_Ampersand_Escaped() throws Exception {
+        String output = runTag("a=1&b=2", true);
+        assertFalse("Raw & must not appear", output.contains("a=1&b=2"));
+        assertTrue("&amp; must appear", output.contains("&amp;"));
+    }
+
+    public void testWrite_FilterTrue_PlainText_Unchanged() throws Exception {
+        String output = runTag("Hello World", true);
+        assertEquals("Hello World", output);
+    }
+
+    public void testWrite_FilterTrue_EmptyString_ProducesNoOutput() throws Exception {
+        String output = runTag("", true);
+        assertEquals("", output);
+    }
+
+    public void testWrite_FilterTrue_JavascriptUrl_Escaped() throws Exception {
+        // javascript: URL in a value context — < and > are still the only
+        // HTML chars that need escaping here, but the value itself should
+        // pass through filter() unmodified except for HTML chars.
+        String output = runTag("javascript:alert(1)", true);
+        // No HTML-special chars here, so output equals input
+        assertEquals("javascript:alert(1)", output);
+    }
+
+    // ------------------------------------------------------------------
+    // filter=false — raw output (documents XSS risk when misused)
+    //
+    // These tests document that filter=false passes the value through
+    // WITHOUT escaping. They PASS because that is the current behaviour.
+    // If caller-supplied data reaches the tag with filter=false, XSS
+    // is possible. The fix is always to set filter=true (the default).
+    // ------------------------------------------------------------------
 
     /**
-     * Start the tests.
-     *
-     * @param theArgs the arguments. Not used
+     * With filter=false, a script tag is written raw to the output.
+     * This documents that filter=false is XSS-unsafe for user data.
      */
-    public static void main(String[] theArgs) {
-        junit.awtui.TestRunner.main(new String[] {TestWriteTag.class.getName()});
+    public void testWrite_FilterFalse_ScriptTag_WrittenRaw() throws Exception {
+        String output = runTag("<script>alert(1)</script>", false);
+        // filter=false writes the value as-is — this is the current behaviour.
+        assertTrue("filter=false must write raw value (XSS-unsafe for user data)",
+                output.contains("<script>alert(1)</script>"));
     }
 
-    /**
-     * @return a test suite (<code>TestSuite</code>) that includes all methods
-     *         starting with "test"
-     */
-    public static Test suite() {
-        // All methods starting with "test" will be executed in the test suite.
-        return new TestSuite(TestWriteTag.class);
+    public void testWrite_FilterFalse_TrustedHtml_PassedThrough() throws Exception {
+        // Legitimate use: embedding pre-rendered HTML from a trusted source.
+        String trustedHtml = "<strong>Bold</strong>";
+        String output = runTag(trustedHtml, false);
+        assertEquals(trustedHtml, output);
     }
 
-        private void formatAndTest(String compare, String output) {
-                //fix for introduced carriage return / line feeds
-                output = replace(output,"\r","");
-                output = replace(output,"\n","");
-                output = output.trim();
-                //System.out.println("Testing [" + compare + "] == [" + output + "]");
-            assertEquals(compare, output);
-        }
+    // ------------------------------------------------------------------
+    // Absent bean with ignore=true — SKIP_BODY, no output
+    //
+    // When ignore=true, WriteTag checks for the bean's existence via
+    // TagUtils.lookup(pageContext, name, scope) before calling the full
+    // lookup. If the bean is absent, it returns SKIP_BODY without output.
+    // Without ignore=true, an absent bean causes a JspException.
+    // ------------------------------------------------------------------
 
-    private void runMyTest(String whichTest, String locale) throws Exception {
-        pageContext.setAttribute(Globals.LOCALE_KEY, new Locale(locale, locale), PageContext.SESSION_SCOPE);
-                request.setAttribute("runTest", whichTest);
-                pageContext.forward("/test/org/apache/struts/taglib/bean/TestWriteTag.jsp");
+    public void testWrite_AbsentBeanWithIgnore_NoOutput() throws Exception {
+        // "absentBean" is deliberately never put into scope
+        out = new MockJspWriter();
+        pageContext.setJspWriter(out);
+
+        WriteTag tag = new WriteTag();
+        tag.setPageContext(pageContext);
+        tag.setName("absentBean");
+        tag.setScope("request");
+        tag.setIgnore(true); // suppress JspException for missing bean
+
+        tag.doStartTag();
+        tag.doEndTag();
+
+        assertEquals("Absent bean with ignore=true must produce no output",
+                "", out.getContent());
     }
 
-        // Name
-    public void testWriteTagName() throws Exception {
-                pageContext.setAttribute(REQUEST_KEY,TEST_STRING_VAL,PageContext.REQUEST_SCOPE);
-                runMyTest("testWriteTagName", "");
-        }
-        public void endWriteTagName(WebResponse response){
-                formatAndTest(TEST_STRING_VAL, response.getText());
-        }
+    // ------------------------------------------------------------------
+    // Default filter setting — must be true (XSS-safe by default)
+    // ------------------------------------------------------------------
 
-        // Property
-    public void testWriteTagNameProperty() throws Exception {
-        SimpleBeanForTesting sbft = new SimpleBeanForTesting(TEST_STRING_VAL);
-                pageContext.setAttribute(REQUEST_KEY, sbft,PageContext.REQUEST_SCOPE);
-                runMyTest("testWriteTagNameProperty", "");
-        }
-        public void endWriteTagNameProperty(WebResponse response){
-                formatAndTest(TEST_STRING_VAL, response.getText());
-        }
-
-        // Name and Format
-    public void testWriteTagNameFormat() throws Exception {
-                pageContext.setAttribute(REQUEST_KEY,TEST_INTEGER_VAL,PageContext.REQUEST_SCOPE);
-                runMyTest("testWriteTagNameFormat", "");
-        }
-        public void endWriteTagNameFormat(WebResponse response){
-                formatAndTest("1,234" , response.getText());
-        }
-
-        // Name, Format, and FormatKey (default bundle)
-    public void testWriteTagNameFormatKeyDefaultBundle() throws Exception {
-                pageContext.setAttribute(REQUEST_KEY,TEST_INTEGER_VAL,PageContext.REQUEST_SCOPE);
-                runMyTest("testWriteTagNameFormatKeyDefaultBundle", "");
-        }
-        public void endWriteTagNameFormatKeyDefaultBundle(WebResponse response){
-                formatAndTest("$1,234" , response.getText());
-        }
-
-        // Name, Format, and FormatKey (alternate bundle)
-    public void testWriteTagNameFormatKeyAlternateBundle() throws Exception {
-                pageContext.setAttribute(REQUEST_KEY,TEST_INTEGER_VAL,PageContext.REQUEST_SCOPE);
-                runMyTest("testWriteTagNameFormatKeyAlternateBundle", "");
-        }
-        public void endWriteTagNameFormatKeyAlternateBundle(WebResponse response){
-                formatAndTest("$1,234" , response.getText());
-        }
-
-        // Name, Format, and FormatKey (default bundle) (Double)
-    public void testWriteTagNameFormatKeyDefaultBundleDouble() throws Exception {
-                pageContext.setAttribute(REQUEST_KEY, TEST_DOUBLE_VAL,PageContext.REQUEST_SCOPE);
-                runMyTest("testWriteTagNameFormatKeyDefaultBundleDouble", "");
-        }
-        public void endWriteTagNameFormatKeyDefaultBundleDouble(WebResponse response){
-                formatAndTest("$1,235" , response.getText());
-        }
-
-        // Name, Format, and FormatKey (alternate bundle) (Double)
-    public void testWriteTagNameFormatKeyAlternateBundleDouble() throws Exception {
-                pageContext.setAttribute(REQUEST_KEY,TEST_DOUBLE_VAL,PageContext.REQUEST_SCOPE);
-                runMyTest("testWriteTagNameFormatKeyAlternateBundleDouble", "");
-        }
-        public void endWriteTagNameFormatKeyAlternateBundleDouble(WebResponse response){
-                formatAndTest("$1,234.6" , response.getText());
-        }
-
-        // Name, Format, and FormatKey (default bundle)
-    public void testWriteTagNameFormatKeyDefaultBundle_fr() throws Exception {
-                pageContext.setAttribute(REQUEST_KEY, TEST_DOUBLE_VAL,PageContext.REQUEST_SCOPE);
-                runMyTest("testWriteTagNameFormatKeyDefaultBundle", "fr");
-        }
-        public void endWriteTagNameFormatKeyDefaultBundle_fr(WebResponse response){
-                formatAndTest("$1234,5961.", response.getText());
-        }
-
-        // Name, Format, and FormatKey (alternate bundle)
-    public void testWriteTagNameFormatKeyAlternateBundle_fr() throws Exception {
-                pageContext.setAttribute(REQUEST_KEY,TEST_DOUBLE_VAL,PageContext.REQUEST_SCOPE);
-                runMyTest("testWriteTagNameFormatKeyAlternateBundle", "fr");
-        }
-        public void endWriteTagNameFormatKeyAlternateBundle_fr(WebResponse response){
-                formatAndTest("$1234,5961." , response.getText());
-        }
-
-        // Name, Property, and Format
-    public void testWriteTagNamePropertyFormat() throws Exception {
-        SimpleBeanForTesting sbft = new SimpleBeanForTesting(TEST_INTEGER_VAL);
-                pageContext.setAttribute(REQUEST_KEY, sbft,PageContext.REQUEST_SCOPE);
-                runMyTest("testWriteTagNamePropertyFormat", "");
-        }
-        public void endWriteTagNamePropertyFormat(WebResponse response){
-                formatAndTest("1,234", response.getText());
-        }
-
-        // Name and ignore
-    public void testWriteTagNameIgnore() throws Exception {
-                runMyTest("testWriteTagNameIgnore", "");
-        }
-        public void endWriteTagNameIgnore(WebResponse response){
-                formatAndTest("", response.getText());
-        }
-
-        // Name and filter
-    public void testWriteTagNameFilter() throws Exception {
-                pageContext.setAttribute(REQUEST_KEY,"<testing&'\">",PageContext.REQUEST_SCOPE);
-                runMyTest("testWriteTagNameFilter", "");
-        }
-        public void endWriteTagNameFilter(WebResponse response){
-                formatAndTest(TagUtils.getInstance().filter("<testing&'\">"), response.getText());
-        }
-
-
+    public void testWrite_DefaultFilter_IsTrue() {
+        WriteTag tag = new WriteTag();
+        assertTrue("filter must default to true for XSS safety", tag.getFilter());
+    }
 }

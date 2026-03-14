@@ -1,0 +1,402 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <name>struts</name>
+  <groupId>struts</groupId>
+  <artifactId>struts</artifactId>
+  <version>1.2.10-SNAPSHOT</version>
+  <organization>
+    <name>The Apache Software Foundation</name>
+    <url>http://struts.apache.org/</url>
+  </organization>
+  <inceptionYear>2000</inceptionYear>
+  <!-- Gump integration -->
+  <description>The core of the Struts framework is a flexible control layer based on standard technologies like Java Servlets, JavaBeans, ResourceBundles, and Extensible Markup Language (XML), as well as various Jakarta Commons packages. Struts encourages application architectures based on the Model 2 approach, a variation of the classic Model-View-Controller (MVC) design paradigm. Struts provides its own Controller component and integrates with other technologies to provide the Model and the View. For the Model, Struts can interact with any standard data access technology, including Enterprise Java Beans, JDBC, and Object Relational Bridge. For the View, Struts works well with JavaServer Pages, including JSTL and JSF, as well as Velocity Templates, XSLT, and other presentation systems. The Struts framework provides the invisible underpinnings every professional web application needs to survive. Struts helps you create an extensible development environment for your application, based on published standards and proven design patterns.</description>
+  <url>http://struts.apache.org/</url>
+  <issueManagement>
+    <url>ttp://issues.apache.org/bugzilla/</url>
+  </issueManagement>
+
+  <mailingLists>
+    <mailingList>
+      <name>Struts User List</name>
+      <subscribe>user-subscribe@struts.apache.org</subscribe>
+      <unsubscribe>user-unsubscribe@struts.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=42</archive>
+    </mailingList>
+    <mailingList>
+      <name>Struts Developer List</name>
+      <subscribe>dev-subscribe@struts.apache.org</subscribe>
+      <unsubscribe>dev-unsubscribe@struts.apache.org</unsubscribe>
+      <archive>http://mail-archives.apache.org/eyebrowse/SummarizeList?listId=41</archive>
+    </mailingList>
+  </mailingLists>
+  <developers>
+    <developer>
+      <id>craigmcc</id>
+      <name>Craig R. McClanahan</name>
+      <email>craigmcc at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>husted</id>
+      <name>Ted Husted</name>
+      <email>husted at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>rleland</id>
+      <name>Rob Leland</name>
+      <email>rleland at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>cedric</id>
+      <name>Cedric Dumoulin</name>
+      <email>cedric.dumoulin at lifl.fr</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>martinc</id>
+      <name>Martin Cooper</name>
+      <email>martinc at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>arron</id>
+      <name>Arron Bates</name>
+      <email>arron at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>jholmes</id>
+      <name>James Holmes</name>
+      <email>jholmes at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>dmkarr</id>
+      <name>David M. Karr</name>
+      <email>dmkarr at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>ekbush</id>
+      <name>Eddie Bush</name>
+      <email>ekbush at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>dgraham</id>
+      <name>David Graham</name>
+      <email>dgraham at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>jmitchell</id>
+      <name>James Mitchell</name>
+      <email>jmitchell at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>turner</id>
+      <name>James Turner</name>
+      <email>turner at blackbear.com</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>sraeburn</id>
+      <name>Steve Raeburn</name>
+      <email>sraeburn at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>mrdon</id>
+      <name>Don Brown</name>
+      <email>mrdon at apache.org</email>
+      <organization></organization>
+    </developer>
+    <developer>
+      <id>germuska</id>
+      <name>Joe Germuska</name>
+      <email>germuska at apache.org</email>
+      <organization></organization>
+    </developer>
+      <developer>
+        <id>niallp</id>
+        <name>Niall Pemberton</name>
+        <email>niallp at apache.org</email>
+        <organization></organization>
+      </developer>
+  </developers>
+  <contributors>
+    <contributor>
+      <name>Tim Chen</name>
+      <email>tchen at ampabay.rr.com</email>
+      <organization></organization>
+    </contributor>
+  </contributors>
+  <dependencies>
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>1.11.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-digester</groupId>
+      <artifactId>commons-digester</artifactId>
+      <version>1.8.1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.6.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-validator</groupId>
+      <artifactId>commons-validator</artifactId>
+      <version>1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>oro</groupId>
+      <artifactId>oro</artifactId>
+      <version>2.0.7</version>
+    </dependency>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlr</artifactId>
+      <version>2.7.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-1.2-api</artifactId>
+      <version>2.24.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.24.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- for unit tests -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- for tld generation -->
+    <dependency>
+      <groupId>xalan</groupId>
+      <artifactId>xalan</artifactId>
+      <version>2.7.3</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src/share</sourceDirectory>
+    <!-- Unit test cases -->
+    <testSourceDirectory>src/test</testSourceDirectory>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.4</source>
+          <target>1.4</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>xml-maven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <id>generate-tlds</id>
+            <goals><goal>transform</goal></goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <transformationSets>
+                <transformationSet>
+                  <dir>doc/userGuide</dir>
+                  <stylesheet>doc/stylesheets/tld.xsl</stylesheet>
+                  <includes>
+                    <include>struts-bean.xml</include>
+                    <include>struts-html.xml</include>
+                    <include>struts-logic.xml</include>
+                    <include>struts-nested.xml</include>
+                    <include>struts-tiles.xml</include>
+                  </includes>
+                  <outputDir>${project.build.outputDirectory}/META-INF/tlds</outputDir>
+                  <fileMappers>
+                    <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
+                      <targetExtension>.tld</targetExtension>
+                    </fileMapper>
+                  </fileMappers>
+                </transformationSet>
+              </transformationSets>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.7</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <goals><goal>copy-resources</goal></goals>
+            <phase>compile</phase>
+            <configuration>
+              <outputDirectory>${project.build.outputDirectory}/org/apache/struts/resources</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>conf/share</directory>
+                  <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.dtd</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-test-resources</id>
+            <goals><goal>copy-resources</goal></goals>
+            <phase>test-compile</phase>
+            <configuration>
+              <outputDirectory>${project.build.testOutputDirectory}</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/test</directory>
+                  <includes>
+                    <include>**/*.xml</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.18.1</version>
+        <configuration>
+          <includes>
+            <include>org/apache/struts/action/TestDynaActionForm.java</include>
+            <include>org/apache/struts/action/TestDynaActionFormClass.java</include>
+            <include>org/apache/struts/action/TestActionServlet.java</include>
+            <include>org/apache/struts/action/TestDigesterXxePrevention.java</include>
+            <include>org/apache/struts/actions/Test*.java</include>
+            <include>org/apache/struts/config/Test*.java</include>
+            <include>org/apache/struts/taglib/TestTagUtils.java</include>
+            <include>org/apache/struts/taglib/bean/Test*.java</include>
+            <include>org/apache/struts/taglib/html/Test*.java</include>
+            <include>org/apache/struts/taglib/logic/Test*.java</include>
+            <include>org/apache/struts/util/Test*.java</include>
+            <include>org/apache/struts/upload/Test*.java</include>
+            <include>org/apache/struts/validator/Test*.java</include>
+            <include>org/apache/struts/tiles/TestI18nFactorySetPathTraversal.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+
+    <!-- J A R  R E S O U R C E S -->
+    <!-- Resources that are packaged up inside the JAR file -->
+    <resources>
+      <resource>
+        <directory>${basedir}/src/share</directory>
+        <includes>
+          <include>**/*.properties</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+  <reports>
+    <!--
+             |
+             | These should all be completely self contained. You should be able
+             | to generate each of them individually without needing the final
+             | xdoc transformation.
+             |
+             | Each report plugin with it's POM and plugin.jelly logic should
+             | contain everything needed to produced the report.
+             |
+            -->
+    <report>maven-jdepend-plugin</report>
+    <report>maven-checkstyle-plugin</report>
+    <report>maven-changes-plugin</report>
+    <report>maven-changelog-plugin</report>
+    <report>maven-file-activity-plugin</report>
+    <report>maven-developer-activity-plugin</report>
+    <report>maven-javadoc-plugin</report>
+    <report>maven-jxr-plugin</report>
+    <report>maven-junit-report-plugin</report>
+    <report>maven-tasklist-plugin</report>
+    <report>maven-pmd-plugin</report>
+    <report>maven-simian-plugin</report>
+    <!-- <report>maven-faq-plugin</report> -->
+  </reports>
+  <profiles>
+    <profile>
+      <id>JDK9</id>
+      <activation>
+        <jdk>[9</jdk>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <release>6</release>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>JDK11</id>
+      <activation>
+        <jdk>[11</jdk>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <release>8</release>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

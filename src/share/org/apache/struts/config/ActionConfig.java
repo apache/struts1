@@ -557,7 +557,36 @@ public class ActionConfig implements Serializable {
         }
         this.cancellable = cancellable;
     }
-    
+
+	// 2014/07/02 - security problem patch.
+    // Author: NTT DATA Corporation
+    /**
+     * Accepted page value for multi-page validation.<br>
+     * If two or more page values are accepted, then acceptPage is set minimum of them.<br>
+     * If multi-page validation is not use, acceptPage is not set. Then multi-page validation is disabled.
+     * @since Struts 1.2.9-sp2
+     */
+    protected Integer acceptPage = null;
+
+    /**
+     * Returns accepted page value for multi-page validation.
+     *
+     * @return Accepted page value for multi-page validation
+     * @since  Struts 1.2.9-sp2
+     */
+    public Integer getAcceptPage() {
+        return acceptPage;
+    }
+
+    /**
+     * Set accepted page value for multi-page validation.
+     *
+     * @param acceptPage Accepted page value for multi-page validation
+     * @since  Struts 1.2.9-sp2
+     */
+    public void setAcceptPage(Integer acceptPage) {
+        this.acceptPage = acceptPage;
+    }    
 
     // --------------------------------------------------------- Public Methods
 
@@ -811,6 +840,12 @@ public class ActionConfig implements Serializable {
         sb.append(validate);
         sb.append(",cancellable=");
         sb.append(cancellable);
+		
+		// 2014/07/02 - security problem patch.
+        // Author: NTT DATA Corporation
+        sb.append(",acceptPage=");
+        sb.append(acceptPage);
+		
         return (sb.toString());
 
     }

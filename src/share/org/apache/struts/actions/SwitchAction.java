@@ -91,9 +91,13 @@ public class SwitchAction extends Action {
             throw new ServletException(message);
         }
 
+        // Validate the page parameter against path traversal and
+        // Servlet-spec protected directories (C-1)
+        validatePage(page);
+
         // Switch to the requested module
         ModuleUtils.getInstance().selectModule(prefix, request, getServlet().getServletContext());
-        
+
         if (request.getAttribute(Globals.MODULE_KEY) == null) {
             String message = messages.getMessage("switch.prefix", prefix);
             log.error(message);
@@ -103,6 +107,158 @@ public class SwitchAction extends Action {
         // Forward control to the specified module-relative URI
         return (new ActionForward(page));
 
+    }
+
+
+    /**
+     * <p>Validate that the {@code page} parameter is a safe module-relative
+     * URI suitable for forwarding.</p>
+     *
+     * <p>A valid page must:</p>
+     * <ol>
+     *   <li>Start with {@code "/"} (module-relative)</li>
+     *   <li>Contain no path-traversal sequences ({@code ".."})</li>
+     *   <li>After normalization, not resolve into the Servlet-spec protected
+     *       directories {@code /WEB-INF/} or {@code /META-INF/}</li>
+     * </ol>
+     *
+     * @param page the page parameter value to validate
+     * @throws ServletException if the page value is unsafe
+     */
+    private void validatePage(String page) throws ServletException {
+        // Extract the path portion (before any query string)
+        String path = page;
+        int question = path.indexOf('?');
+        if (question >= 0) {
+            path = path.substring(0, question);
+        }
+
+        // Decode percent-encoded characters for defense-in-depth;
+        // servlet containers normally do this before getParameter(),
+        // but double-encoding attacks may leave encoded sequences.
+        path = decodePath(path);
+
+        // Requirement 1: must be module-relative (start with "/")
+        if (path.length() == 0 || path.charAt(0) != '/') {
+            rejectPage(page);
+            return;
+        }
+
+        // Normalize: collapse consecutive slashes, then resolve "." and ".."
+        path = normalizePath(path);
+        if (path == null) {
+            // normalizePath returns null when ".." escapes above the root
+            rejectPage(page);
+            return;
+        }
+
+        // Requirement 3: the Servlet specification (SRV.9.5 / SRV.10.5)
+        // reserves /WEB-INF/ and /META-INF/ — clients must never reach them.
+        // Compare case-insensitively for portability across file systems.
+        String upper = path.toUpperCase();
+        if (upper.startsWith("/WEB-INF/") || upper.equals("/WEB-INF")
+                || upper.startsWith("/META-INF/") || upper.equals("/META-INF")) {
+            rejectPage(page);
+        }
+    }
+
+    /**
+     * Throw a {@link ServletException} for an invalid page parameter.
+     */
+    private void rejectPage(String page) throws ServletException {
+        String message = messages.getMessage("switch.page", page);
+        log.error(message);
+        throw new ServletException(message);
+    }
+
+    /**
+     * <p>Normalize a path by resolving {@code "."} and {@code ".."} segments
+     * and collapsing consecutive slashes.</p>
+     *
+     * @param path an absolute path starting with {@code "/"}
+     * @return the normalized path, or {@code null} if {@code ".."} would
+     *         navigate above the root
+     */
+    static String normalizePath(String path) {
+        // Fast-path: nothing to normalize
+        if (path.indexOf('.') < 0 && path.indexOf("//") < 0) {
+            return path;
+        }
+
+        // Split on "/" and resolve segment by segment
+        // Use a simple array-based stack (Java 1.4 compatible)
+        String[] segments = splitPath(path);
+        String[] stack = new String[segments.length];
+        int top = 0;
+
+        for (int i = 0; i < segments.length; i++) {
+            String seg = segments[i];
+            if (seg.length() == 0 || seg.equals(".")) {
+                // skip empty segments (from "//") and "."
+                continue;
+            } else if (seg.equals("..")) {
+                if (top == 0) {
+                    // cannot go above root
+                    return null;
+                }
+                top--;
+            } else {
+                stack[top++] = seg;
+            }
+        }
+
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < top; i++) {
+            sb.append('/');
+            sb.append(stack[i]);
+        }
+        if (sb.length() == 0) {
+            return "/";
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Split a path on {@code "/"} (Java 1.4 compatible).
+     */
+    private static String[] splitPath(String path) {
+        java.util.List parts = new java.util.ArrayList();
+        int start = 0;
+        int idx;
+        while ((idx = path.indexOf('/', start)) >= 0) {
+            parts.add(path.substring(start, idx));
+            start = idx + 1;
+        }
+        parts.add(path.substring(start));
+        return (String[]) parts.toArray(new String[parts.size()]);
+    }
+
+    /**
+     * Decode percent-encoded characters ({@code %XX}) in a path string.
+     * This provides defense-in-depth against double-encoding attacks.
+     *
+     * @param path the path to decode
+     * @return the decoded path
+     */
+    private static String decodePath(String path) {
+        if (path.indexOf('%') < 0) {
+            return path;
+        }
+        StringBuffer sb = new StringBuffer(path.length());
+        for (int i = 0; i < path.length(); i++) {
+            char c = path.charAt(i);
+            if (c == '%' && i + 2 < path.length()) {
+                int hi = Character.digit(path.charAt(i + 1), 16);
+                int lo = Character.digit(path.charAt(i + 2), 16);
+                if (hi >= 0 && lo >= 0) {
+                    sb.append((char) (hi * 16 + lo));
+                    i += 2;
+                    continue;
+                }
+            }
+            sb.append(c);
+        }
+        return sb.toString();
     }
 
 

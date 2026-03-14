@@ -58,6 +58,17 @@ public class XmlParser
   public XmlParser()
   {
 	digester = new Digester();
+	try {
+	    digester.setFeature(
+	        "http://apache.org/xml/features/disallow-doctype-decl", true);
+	    digester.setFeature(
+	        "http://xml.org/sax/features/external-general-entities", false);
+	    digester.setFeature(
+	        "http://xml.org/sax/features/external-parameter-entities", false);
+	} catch (Exception e) {
+	    throw new RuntimeException(
+	        "Failed to configure XML parser security features", e);
+	}
 	digester.setValidating(validating);
 	digester.setNamespaceAware(true);
 	digester.setUseContextClassLoader(true);

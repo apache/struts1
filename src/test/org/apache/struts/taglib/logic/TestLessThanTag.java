@@ -21,9 +21,9 @@ import javax.servlet.ServletException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 import junit.framework.Test;
+import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.apache.cactus.JspTestCase;
-import org.apache.cactus.WebRequest;
+import org.apache.struts.mock.*;
 import org.apache.struts.util.LabelValueBean;
 
 /**
@@ -31,13 +31,20 @@ import org.apache.struts.util.LabelValueBean;
  * <code>org.apache.struts.taglib.logic.LessThanTag</code> class.
  *
  */
-public class TestLessThanTag extends JspTestCase {
+public class TestLessThanTag extends TestCase {
 	
     protected final static String COOKIE_KEY = "org.apache.struts.taglib.logic.COOKIE_KEY";
     protected final static String HEADER_KEY = "org.apache.struts.taglib.logic.HEADER_KEY";
     protected final static String PARAMETER_KEY = "org.apache.struts.taglib.logic.PARAMETER_KEY";
     protected final static String COMPARE_VAL = "4";
     protected final static String COMPARE_TO_VAL = "5";
+
+    protected MockServletContext context;
+    protected MockServletConfig config;
+    protected MockHttpSession session;
+    protected MockHttpServletRequest request;
+    protected MockHttpServletResponse response;
+    protected MockPageContext pageContext;
 
 
     /**
@@ -67,33 +74,23 @@ public class TestLessThanTag extends JspTestCase {
         return new TestSuite(TestLessThanTag.class);
     }
 
+    public void setUp() {
+        context = new MockServletContext();
+        config = new MockServletConfig(context);
+        session = new MockHttpSession(context);
+        request = new MockHttpServletRequest(session);
+        response = new MockHttpServletResponse();
+        pageContext = new MockPageContext(config, request, response);
+    }
+
     //----- Test initApplication() method --------------------------------------
 	
-    /**
-     * Create cookie for testCookiePresent method test.
-    */
-    public void beginCookieLessThan(WebRequest testRequest) {
-       testRequest.addCookie(COOKIE_KEY, COMPARE_VAL);
-    }
-
-    /**
-     * Create header for testHeaderLessThan method test.
-    */
-    public void beginHeaderLessThan(WebRequest testRequest) {
-       testRequest.addHeader(HEADER_KEY, COMPARE_VAL);
-    }
-
-    /**
-     * Create header for testParameterLessThan method test.
-    */
-    public void beginParameterLessThan(WebRequest testRequest) {
-       testRequest.addParameter(PARAMETER_KEY, COMPARE_VAL);
-    }
-
     /**
      * Verify the value stored in a cookie using <code>LessThanTag</code>.
     */
     public void testCookieLessThan() throws ServletException,  JspException {
+        request.addCookie(new javax.servlet.http.Cookie(COOKIE_KEY, COMPARE_VAL));
+
         LessThanTag ge = new LessThanTag();
         ge.setPageContext(pageContext);
         ge.setCookie(COOKIE_KEY);
@@ -108,6 +105,8 @@ public class TestLessThanTag extends JspTestCase {
      * Verify the value stored in header using <code>LessThanTag</code>.
     */
     public void testHeaderLessThan() throws ServletException,  JspException {
+        request.addHeader(HEADER_KEY, COMPARE_VAL);
+
         LessThanTag ge = new LessThanTag();
         ge.setPageContext(pageContext);
         ge.setHeader(HEADER_KEY);
@@ -122,6 +121,8 @@ public class TestLessThanTag extends JspTestCase {
      * Verify the value stored in parameter using <code>LessThanTag</code>.
     */
     public void testParameterLessThan() throws ServletException,  JspException {
+        request.addParameter(PARAMETER_KEY, COMPARE_VAL);
+
         LessThanTag ge = new LessThanTag();
         ge.setPageContext(pageContext);
         ge.setParameter(PARAMETER_KEY);

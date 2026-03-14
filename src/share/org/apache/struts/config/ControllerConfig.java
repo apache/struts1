@@ -167,6 +167,27 @@ public class ControllerConfig implements Serializable {
 
 
     /**
+     * The maximum size of an individual text form field value in a
+     * multipart request.  Can be expressed as a number followed by
+     * "K", "M", or "G".  Text fields exceeding this limit will be
+     * silently discarded to prevent memory exhaustion attacks
+     * (CVE-2023-34396).
+     */
+    protected String maxTextFieldSize = "256K";
+
+    public String getMaxTextFieldSize() {
+        return (this.maxTextFieldSize);
+    }
+
+    public void setMaxTextFieldSize(String maxTextFieldSize) {
+        if (configured) {
+            throw new IllegalStateException("Configuration is frozen");
+        }
+        this.maxTextFieldSize = maxTextFieldSize;
+    }
+
+
+    /**
      * The maximum file size to retain in memory.
      */
     protected String memFileSize = "256K";
@@ -324,6 +345,10 @@ public class ControllerConfig implements Serializable {
         if (this.maxFileSize != null) {
             sb.append(",maxFileSize=");
             sb.append(this.maxFileSize);
+        }
+        if (this.maxTextFieldSize != null) {
+            sb.append(",maxTextFieldSize=");
+            sb.append(this.maxTextFieldSize);
         }
         if (this.memFileSize != null) {
             sb.append(",memFileSize=");

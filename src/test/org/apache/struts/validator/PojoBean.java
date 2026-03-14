@@ -20,9 +20,6 @@ package org.apache.struts.validator;
 
 import java.util.Map;
 import java.util.HashMap;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 /**
  * Test Bean class.
@@ -55,18 +52,18 @@ public class PojoBean {
      * Construct Bean with a pair of String values.
      */
     public PojoBean(String stringValue1, String stringValue2) {
-       setStringValue1(stringValue1);
-       setStringValue2(stringValue2);
+       this.stringValue1 = stringValue1;
+       this.stringValue2 = stringValue2;
     }
-    
+
     /**
      * Construct Bean with a pair of integer values.
      */
     public PojoBean(int intValue1, int intValue2) {
-       setIntValue1(intValue1);
-       setIntValue2(intValue2);
-       setIntegerValue1(new Integer(intValue1));
-       setIntegerValue2(new Integer(intValue2));
+       this.intValue1 = intValue1;
+       this.intValue2 = intValue2;
+       this.integerValue1 = new Integer(intValue1);
+       this.integerValue2 = new Integer(intValue2);
     }
     
     /**

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<!--
+  Default module configuration.
+  Maps /switch.do to SwitchAction (the vulnerable action).
+-->
+<struts-config>
+
+  <action-mappings>
+    <!-- SwitchAction: reads "prefix" and "page" from request parameters -->
+    <action path="/switch"
+            type="org.apache.struts.actions.SwitchAction"/>
+
+    <action path="/welcome" forward="/index.jsp"/>
+  </action-mappings>
+
+</struts-config>

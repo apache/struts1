@@ -85,6 +85,19 @@ public class OptionTag extends BodyTagSupport {
     }
 
     /**
+     * Should the label and value be filtered for HTML sensitive characters?
+     */
+    protected boolean filter = true;
+
+    public boolean getFilter() {
+        return (this.filter);
+    }
+
+    public void setFilter(boolean filter) {
+        this.filter = filter;
+    }
+
+    /**
      * The key used to look up the text displayed to the user for this
      * option, if any.
      */
@@ -235,7 +248,11 @@ public class OptionTag extends BodyTagSupport {
     protected String renderOptionElement() throws JspException {
         StringBuffer results = new StringBuffer("<option value=\"");
         
-        results.append(this.value);
+        if (filter) {
+            results.append(TagUtils.getInstance().filter(this.value));
+        } else {
+            results.append(this.value);
+        }
         results.append("\"");
         if (disabled) {
             results.append(" disabled=\"disabled\"");
@@ -260,8 +277,13 @@ public class OptionTag extends BodyTagSupport {
         }
         results.append(">");
 
-        results.append(text());
-        
+        String optionText = text();
+        if (filter) {
+            results.append(TagUtils.getInstance().filter(optionText));
+        } else {
+            results.append(optionText);
+        }
+
         results.append("</option>");
         return results.toString();
     }
@@ -292,6 +314,7 @@ public class OptionTag extends BodyTagSupport {
         super.release();
         bundle = Globals.MESSAGES_KEY;
         disabled = false;
+        filter = true;
         key = null;
         locale = Globals.LOCALE_KEY;
         style = null;

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<!--
+  Module "module2" configuration.
+  A second module so we can test legitimate SwitchAction usage.
+-->
+<struts-config>
+
+  <action-mappings>
+    <action path="/hello" type="org.apache.struts.actions.ForwardAction" parameter="/module2/hello.jsp"/>
+
+  </action-mappings>
+
+</struts-config>

@@ -226,7 +226,8 @@ public abstract class LookupDispatchAction extends DispatchAction {
         if (key == null) {
             String message =
                 messages.getMessage("dispatch.resource", mapping.getPath());
-            LOG.error(message + " '" + keyName + "'");
+            String safeKeyName = keyName.replace('\r', '_').replace('\n', '_');
+            LOG.error(message + " '" + safeKeyName + "'");
             throw new ServletException(message);
         }
 

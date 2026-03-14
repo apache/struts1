@@ -70,6 +70,14 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
     public static final int DEFAULT_SIZE_THRESHOLD = 256 * 1024;
 
 
+    /**
+     * The default value for the maximum allowable size, in bytes, of an
+     * individual text form field in a multipart request. The value is
+     * equivalent to 256KB.
+     */
+    public static final long DEFAULT_MAX_TEXT_FIELD_SIZE = 256 * 1024;
+
+
     // ----------------------------------------------------- Instance Variables
 
 
@@ -96,6 +104,13 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      * The text request parameters.
      */
     private Hashtable elementsText;
+
+
+    /**
+     * The maximum size of an individual text form field value, in bytes.
+     * Set during {@link #handleRequest} from the module configuration.
+     */
+    private long maxTextFieldSize = DEFAULT_MAX_TEXT_FIELD_SIZE;
 
 
     /**
@@ -181,6 +196,8 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
         upload.setSizeThreshold((int) getSizeThreshold(ac));
         // Set the the location for saving data on disk.
         upload.setRepositoryPath(getRepositoryPath(ac));
+        // Set the maximum size of an individual text form field.
+        this.maxTextFieldSize = getMaxTextFieldSize(ac);
 
         // Create the hash tables to be populated.
         elementsText = new Hashtable();
@@ -302,6 +319,23 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
                 DEFAULT_SIZE_THRESHOLD);
     }
 
+
+    /**
+     * Returns the maximum allowable size, in bytes, of an individual text
+     * form field in a multipart request. The value is obtained from the
+     * current module's controller configuration.
+     *
+     * @param mc The current module's configuration.
+     *
+     * @return The maximum text field size, in bytes.
+     */
+    protected long getMaxTextFieldSize(ModuleConfig mc) {
+        return convertSizeToBytes(
+                mc.getControllerConfig().getMaxTextFieldSize(),
+                DEFAULT_MAX_TEXT_FIELD_SIZE);
+    }
+
+
     /**
      * Converts a size value from a string representation to its numeric value.
      * The string must be of the form nnnm, where nnn is an arbitrary decimal
@@ -402,6 +436,18 @@ public class CommonsMultipartRequestHandler implements MultipartRequestHandler {
      * @param item    The file item for the parameter to add.
      */
     protected void addTextParameter(HttpServletRequest request, FileItem item) {
+        // CVE-2023-34396: reject text fields that exceed the configured
+        // per-field size limit to prevent memory exhaustion.
+        if (item.getSize() > this.maxTextFieldSize) {
+            if (log.isWarnEnabled()) {
+                log.warn("Multipart text field '" + item.getFieldName()
+                        + "' exceeds maxTextFieldSize ("
+                        + item.getSize() + " > " + this.maxTextFieldSize
+                        + "). Skipping.");
+            }
+            return;
+        }
+
         String name = item.getFieldName();
         String value = null;
         boolean haveValue = false;
